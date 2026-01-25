@@ -1,0 +1,21 @@
+# Barrier condition characterization mapping (Fidel-#59, D-01)
+# Maps internal barrier_status values (from IncidentV23) to process safety terminology.
+barrier_condition:
+  worked:
+    display_name: "Barrier Performed"
+    description: "Barrier activated and functioned as designed"
+  failed:
+    display_name: "Barrier Failed"
+    description: "Barrier did not activate or did not achieve its intended function"
+  degraded:
+    display_name: "Barrier Degraded"
+    description: "Barrier partially activated but with reduced effectiveness"
+  not_installed:
+    display_name: "Barrier Absent"
+    description: "Required barrier was not installed or not present at time of event"
+  bypassed:
+    display_name: "Barrier Bypassed"
+    description: "Barrier was intentionally or unintentionally circumvented"
+  unknown:
+    display_name: "Barrier Condition Unknown"
+    description: "Insufficient information to characterize barrier condition"

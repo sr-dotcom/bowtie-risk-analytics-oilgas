@@ -1,0 +1,38 @@
+# Barrier type mapping — Fidel's 5-category process safety taxonomy (Comment #55)
+#
+# Keys match encoder.joblib values for runtime lookup.
+# The 'engineering' encoder value encompasses three Fidel hardware sub-categories;
+# full sub-classification requires additional barrier metadata beyond barrier_type.
+#
+# Fidel 5-Category Reference Taxonomy (Comment #55):
+#   1. Passive Hardware    — always present, no activation (walls, containment, dikes)
+#   2. Active Hardware     — auto-activated by process conditions (PSV, ESD, relief valves)
+#   3. Continuous Hardware — continuously operating monitoring/detection (gas detectors, SCADA)
+#   4. Active Hardware + Human — requires both hardware and human action (manual ESD, panel overrides)
+#   5. Active Human        — relies entirely on human action (procedures, training, permits)
+
+barrier_types:
+  engineering:
+    display_name: "Engineered Safety Barrier"
+    description: "Mechanical, electrical, or instrumented barriers — encompasses Passive, Active, and Continuous Hardware"
+    ps_category: "Active Hardware"
+    # Fidel sub-categories within 'engineering':
+    #   Passive Hardware (containment walls, blast walls, dikes)
+    #   Active Hardware (pressure relief valves, ESD systems)
+    #   Continuous Hardware (gas detectors, SCADA, monitoring systems)
+  administrative:
+    display_name: "Active Human Barrier"
+    description: "Human-action-dependent safeguards: procedures, training, permits, supervision"
+    ps_category: "Active Human"
+  human_hardware_hybrid:
+    display_name: "Active Hardware + Human Barrier"
+    description: "Barriers requiring both engineered systems and human intervention (manual ESD, panel overrides)"
+    ps_category: "Active Hardware + Human"
+  ppe:
+    display_name: "Passive Protective Equipment"
+    description: "Personal protective equipment — passive physical protection for personnel"
+    ps_category: "Passive Hardware"
+  unknown:
+    display_name: "Unclassified Barrier"
+    description: "Barrier type not categorized in incident record"
+    ps_category: "Unknown"

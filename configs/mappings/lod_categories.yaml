@@ -1,0 +1,20 @@
+# Line of Defense category mapping — process safety terminology (Fidel-#9, D-04, D-05)
+# Keys MUST match encoder.joblib values exactly.
+# Extensible: process safety standards define up to 11 LoD categories;
+# sub-categories can be added under each entry when Fidel's full list is available.
+lod_categories:
+  "1st":
+    display_name: "1st Line of Defense"
+    description: "Primary prevention or containment barrier — first layer to engage"
+  "2nd":
+    display_name: "2nd Line of Defense"
+    description: "Secondary barrier activated if 1st LoD fails"
+  "3rd":
+    display_name: "3rd Line of Defense"
+    description: "Tertiary barrier — deep fallback"
+  recovery:
+    display_name: "Recovery / Emergency Response"
+    description: "Consequence reduction and emergency response after top event"
+  unknown:
+    display_name: "Unclassified Line of Defense"
+    description: "Line of defense not categorized in incident record"

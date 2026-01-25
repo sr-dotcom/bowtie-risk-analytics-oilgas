@@ -1,0 +1,16 @@
+# PIF to degradation factor mapping — process safety terminology (Fidel-#12, D-06)
+# One-to-one mapping from internal pif_* feature names to display names.
+# All 12 PIF fields from feature_names.json are covered.
+pif_to_degradation:
+  pif_competence: "Operator Competence"
+  pif_fatigue: "Operator Fatigue"
+  pif_communication: "Communication Breakdown"
+  pif_situational_awareness: "Situational Awareness Loss"
+  pif_procedures: "Procedural Failure"
+  pif_workload: "Excessive Workload"
+  pif_time_pressure: "Time Pressure"
+  pif_tools_equipment: "Tools and Equipment Deficiency"
+  pif_safety_culture: "Safety Culture Weakness"
+  pif_management_of_change: "Management of Change Failure"
+  pif_supervision: "Inadequate Supervision"
+  pif_training: "Insufficient Training"
