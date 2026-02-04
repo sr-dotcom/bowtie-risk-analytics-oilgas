@@ -46,7 +46,7 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Claude Code (local tooling, not shared)
+# Local configuration
 .claude/
 CLAUDE.md
 
@@ -55,7 +55,7 @@ CLAUDE.md
 .env.*
 secrets/
 
-# Data (keep folder structure, ignore contents)
+# Data
 data/raw/*
 !data/raw/.gitkeep
 data/processed/*

@@ -1,56 +1,30 @@
 # Architecture Decisions
 
-## Overview
-This document records key architecture and design decisions for the Bowtie Risk Analytics project.
-
----
-
-## Decisions
-
-### ADR-002: Use Streamlit for MVP Demo Dashboard
-**Date:** Project initialization  
+## ADR-002: Streamlit for MVP
+**Date:** 2026-02-01
 **Status:** Accepted
 
 **Context:**
-Need a fast, reproducible way to present pipeline outputs (control coverage, gap analysis, risk score, explanations) in a simple interactive demo UI, without over-investing in front-end engineering.
+I need a way to visualize the pipeline outputs (coverage, gap analysis, risk scores) quickly. The main goal is a working demo for the project presentation, not a production-grade web app.
 
 **Decision:**
-Use Streamlit for the MVP dashboard (demo surface), not as a production web application framework.
+I'll use Streamlit. It's Python-native and lets me build the dashboard alongside the analytics code without context switching to JS/React.
 
-**Alternatives considered:**
-- Plotly Dash (more structure, similar Python-first UI)
-- FastAPI + React (high flexibility, higher build cost)
-- Jupyter/Voila (quick sharing, weaker app feel)
+**Trade-offs:**
+- **Pros:** Fast to build, runs locally easily, good enough for the demo.
+- **Cons:** limited UI customization compared to React, but that's acceptable for this scope.
 
-**Consequences:**
-- Rapid prototyping and easy local runs for grading/demo
-- Limited UI customization compared to full web frameworks
-- Deployment: primary goal is a hosted Streamlit demo if permitted; local run remains the fallback
-
----
-
-### ADR-001: Use Pydantic v2 for Data Models and Schema Validation
-**Date:** Project initialization  
+## ADR-001: Pydantic v2 for Data Models
+**Date:** 2026-02-01
 **Status:** Accepted
 
 **Context:**
-Need robust validation/serialization for structured JSON used throughout the pipeline:
-- Bowtie schema (hazards, threats, barriers/controls, consequences, escalation factors)
-- Incident extraction schema (structured fields extracted from narratives for analytics/model features)
+The data pipeline involves a lot of nested JSON structures (incidents, bowtie definitions). I need to ensure data quality before running analytics.
 
 **Decision:**
-Use Pydantic v2 as the canonical schema layer for all JSON models and validation in the pipeline.
+Use Pydantic v2 for all data models.
 
-**Alternatives considered:**
-- Python dataclasses + JSON Schema (more manual wiring)
-- Pandera (better for tabular validation; less ideal for nested JSON)
-- No formal validation (higher risk of silent data issues)
-
-**Consequences:**
-- Strong runtime validation and consistent serialization/deserialization
-- Earlier failure on malformed inputs (improves debugging and reproducibility)
-- Requires version pinning (Pydantic v2 behavior changes can be breaking)
-
----
-
-*Add new decisions above this line*
+**Reasoning:**
+- Strict type checking catches data issues early.
+- Serialization/deserialization is built-in.
+- It validates the schema for both the input (raw narratives) and output (analytics results).
