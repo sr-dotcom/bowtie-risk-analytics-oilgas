@@ -36,3 +36,16 @@ Verification:
 - Pipeline runs successfully (`python -m src.pipeline`)
 - Streamlit renders dashboard and incident explorer (`streamlit run src/app/main.py`)
 
+## 2026-02-05 — Step 1.2.2: Initial Data Acquisition (CSB/BSEE)
+
+Implemented a manifest-driven acquisition workflow for public incident reports:
+- Added incident/text manifest models with CSV load/save utilities.
+- Implemented CSB and BSEE discovery + PDF download with streaming and SHA256 hashing.
+- Added PDF-to-text extraction using pdfplumber and a text manifest for extraction results.
+- Extended the pipeline CLI with `acquire` and `extract-text` subcommands while preserving the original `process` behavior.
+- Added unit tests for manifests, sources, PDF extraction, and CLI parsing.
+
+Validation:
+- `pytest -q` passes.
+- CLI smoke tests: `python -m src.pipeline --help`, `python -m src.pipeline acquire --help`, acquisition + download + extract-text run end-to-end.
+

@@ -10,6 +10,7 @@
 - [x] Bowtie JSON schema definition
 - [x] Incident narrative ingestion
 - [ ] Labeling strategy and dataset creation
+- [x] Initial data acquisition (CSB/BSEE discovery + download + PDF→text) — DONE (2026-02-05)
 
 ## Phase 2: Analytics
 - [x] Control coverage computation
