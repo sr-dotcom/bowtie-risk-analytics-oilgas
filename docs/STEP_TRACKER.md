@@ -22,6 +22,6 @@
 - [ ] Explainability (SHAP)
 
 ## Phase 4: Application
-- [ ] Streamlit interface
+- [x] Streamlit interface (Dashboard KPIs + Incident Explorer)
 - [ ] Export functionality
 - [ ] Final documentation and demo

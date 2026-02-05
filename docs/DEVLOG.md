@@ -5,14 +5,6 @@ Set up the project structure with `src/`, `tests/`, and `data/` directories.
 Added Pydantic models for incident data and basic tests.
 Configured gitignore to exclude local env files.
 
-## 2026-02-04 - Phase 1 & 2 Implementation
-Implemented core data foundation and analytics engine:
-- **Schema**: Defined Pydantic models for `Incident`, `Threat`, `Barrier`, `Consequence`, and `Bowtie`.
-- **Ingestion**: Created a text loader to parse raw incident narratives and extract barrier information.
-- **Analytics**: Implemented logic to calculate barrier coverage (prevention/mitigation) and identify gaps against a reference Bowtie.
-- **Pipeline**: Built an end-to-end processing script (`src/pipeline.py`) that orchestrates ingestion and analytics.
-- **Verification**: Validated the pipeline with sample data and a "Loss of Containment" Bowtie definition.
-
 ## 2026-02-02 - Proposal Updates
 Updated the proposal based on feedback:
 - Narrowed MVP scope to "Loss of Containment" scenarios only.
@@ -23,3 +15,24 @@ Updated the proposal based on feedback:
 ## Next Steps
 - Implement JSON schema validation for Bowtie data.
 - Build the initial data ingestion pipeline.
+
+## 2026-02-04 - Phase 1 & 2 Implementation
+Implemented core data foundation and analytics engine:
+- **Schema**: Defined Pydantic models for `Incident`, `Threat`, `Barrier`, `Consequence`, and `Bowtie`.
+- **Ingestion**: Created a text loader to parse raw incident narratives and extract barrier information.
+- **Analytics**: Implemented logic to calculate barrier coverage (prevention/mitigation) and identify gaps against a reference Bowtie.
+- **Pipeline**: Built an end-to-end processing script (`src/pipeline.py`) that orchestrates ingestion and analytics.
+- **Verification**: Validated the pipeline with sample data and a "Loss of Containment" Bowtie definition.
+
+## 2026-02-04 - Streamlit MVP & App Hardening
+Implemented Streamlit MVP and stabilized end-to-end demo flow:
+- Added app data-loading utilities and tests to reliably read pipeline outputs.
+- Built Streamlit dashboard KPIs and an Incident Explorer for per-incident barrier coverage and gap details.
+- Hardened the UI against missing optional fields in incident JSON (safe defaults, no KeyErrors).
+- Updated .gitignore to prevent committing local planning artifacts.
+
+Verification:
+- Unit tests pass (`pytest`)
+- Pipeline runs successfully (`python -m src.pipeline`)
+- Streamlit renders dashboard and incident explorer (`streamlit run src/app/main.py`)
+
