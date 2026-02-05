@@ -167,3 +167,155 @@ def save_text_manifest(rows: list[TextManifestRow], path: Path) -> None:
             row_dict["extracted"] = str(row_dict["extracted"])
             row_dict["is_empty"] = str(row_dict["is_empty"])
             writer.writerow(row_dict)
+
+
+def _get_merge_key(row: IncidentManifestRow) -> tuple[str, str]:
+    """
+    Get the merge key for deduplication.
+
+    Key is (source, pdf_url), or fallback to (source, incident_id) if pdf_url is empty.
+    """
+    if row.pdf_url:
+        return (row.source, row.pdf_url)
+    return (row.source, row.incident_id)
+
+
+def _compare_rows(a: IncidentManifestRow, b: IncidentManifestRow) -> int:
+    """
+    Compare two rows to determine winner.
+
+    Returns:
+        -1 if a wins, 1 if b wins, 0 if tie.
+
+    Priority rules:
+    1. downloaded=True beats downloaded=False
+    2. retrieved_at newer beats older
+    3. sha256 present beats missing
+    4. file_size_bytes larger beats smaller
+    5. otherwise tie (existing wins)
+    """
+    # Rule 1: downloaded=True beats False
+    if a.downloaded and not b.downloaded:
+        return -1
+    if b.downloaded and not a.downloaded:
+        return 1
+
+    # Rule 2: newer retrieved_at beats older
+    if a.retrieved_at and b.retrieved_at:
+        if a.retrieved_at > b.retrieved_at:
+            return -1
+        if b.retrieved_at > a.retrieved_at:
+            return 1
+    elif a.retrieved_at and not b.retrieved_at:
+        return -1
+    elif b.retrieved_at and not a.retrieved_at:
+        return 1
+
+    # Rule 3: sha256 present beats missing
+    if a.sha256 and not b.sha256:
+        return -1
+    if b.sha256 and not a.sha256:
+        return 1
+
+    # Rule 4: larger file_size_bytes beats smaller
+    if a.file_size_bytes is not None and b.file_size_bytes is not None:
+        if a.file_size_bytes > b.file_size_bytes:
+            return -1
+        if b.file_size_bytes > a.file_size_bytes:
+            return 1
+    elif a.file_size_bytes is not None and b.file_size_bytes is None:
+        return -1
+    elif b.file_size_bytes is not None and a.file_size_bytes is None:
+        return 1
+
+    # Rule 5: tie
+    return 0
+
+
+def _enrich_winner(
+    winner: IncidentManifestRow, loser: IncidentManifestRow
+) -> IncidentManifestRow:
+    """
+    Enrich winner with missing descriptive fields from loser.
+
+    Descriptive fields that can be enriched:
+    - title, date_occurred, date_report_released, detail_url, pdf_path
+
+    State fields are NOT enriched (kept strictly from winner):
+    - downloaded, retrieved_at, http_status, content_type, file_size_bytes, sha256, error
+    """
+    updates = {}
+
+    # Enrich missing title
+    if not winner.title and loser.title:
+        updates["title"] = loser.title
+
+    # Enrich missing dates
+    if not winner.date_occurred and loser.date_occurred:
+        updates["date_occurred"] = loser.date_occurred
+    if not winner.date_report_released and loser.date_report_released:
+        updates["date_report_released"] = loser.date_report_released
+
+    # Enrich missing detail_url
+    if not winner.detail_url and loser.detail_url:
+        updates["detail_url"] = loser.detail_url
+
+    # Enrich missing pdf_path
+    if not winner.pdf_path and loser.pdf_path:
+        updates["pdf_path"] = loser.pdf_path
+
+    if updates:
+        return winner.model_copy(update=updates)
+    return winner
+
+
+def merge_incident_manifests(
+    existing: list[IncidentManifestRow],
+    new: list[IncidentManifestRow],
+) -> list[IncidentManifestRow]:
+    """
+    Merge existing and new manifest rows, deduplicating by key.
+
+    Key is (source, pdf_url), or fallback to (source, incident_id) if pdf_url is empty.
+
+    Conflict resolution picks a winner by priority:
+    1. downloaded=True beats downloaded=False
+    2. retrieved_at newer beats older
+    3. sha256 present beats missing
+    4. file_size_bytes larger beats smaller
+    5. existing wins on tie
+
+    Winner is enriched with missing descriptive fields from loser.
+
+    Args:
+        existing: Existing manifest rows (from file).
+        new: Newly discovered rows.
+
+    Returns:
+        Merged and deduplicated list of rows.
+    """
+    # Build index of existing rows by key
+    by_key: dict[tuple[str, str], IncidentManifestRow] = {}
+
+    for row in existing:
+        key = _get_merge_key(row)
+        by_key[key] = row
+
+    # Merge new rows
+    for row in new:
+        key = _get_merge_key(row)
+
+        if key in by_key:
+            existing_row = by_key[key]
+            comparison = _compare_rows(existing_row, row)
+
+            if comparison <= 0:
+                # Existing wins or tie - enrich existing from new
+                by_key[key] = _enrich_winner(existing_row, row)
+            else:
+                # New wins - enrich new from existing
+                by_key[key] = _enrich_winner(row, existing_row)
+        else:
+            by_key[key] = row
+
+    return list(by_key.values())

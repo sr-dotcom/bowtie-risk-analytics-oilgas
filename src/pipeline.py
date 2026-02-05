@@ -11,6 +11,7 @@ from src.ingestion.manifests import (
     load_incident_manifest,
     save_incident_manifest,
     save_text_manifest,
+    merge_incident_manifests,
 )
 from src.ingestion.pdf_text import process_incident_manifest
 from src.ingestion.sources.csb import discover_csb_incidents, download_csb_pdf
@@ -127,7 +128,13 @@ def cmd_acquire(args: argparse.Namespace) -> None:
     out_path = Path(args.out)
     raw_dir = out_path.parent
 
-    rows = []
+    # Load existing manifest if --append mode
+    existing_rows = []
+    if args.append and out_path.exists():
+        existing_rows = load_incident_manifest(out_path)
+        logger.info(f"Loaded {len(existing_rows)} existing rows from {out_path}")
+
+    new_rows = []
     session = requests.Session()
     session.headers["User-Agent"] = "BowtieRiskAnalytics/0.1 (academic research)"
 
@@ -137,7 +144,7 @@ def cmd_acquire(args: argparse.Namespace) -> None:
         for row in discover_csb_incidents(limit=args.csb_limit):
             if args.download:
                 row = download_csb_pdf(row, raw_dir, session, timeout=args.timeout)
-            rows.append(row)
+            new_rows.append(row)
 
     # Discover BSEE incidents
     if args.bsee_limit > 0:
@@ -145,7 +152,14 @@ def cmd_acquire(args: argparse.Namespace) -> None:
         for row in discover_bsee_incidents(limit=args.bsee_limit):
             if args.download:
                 row = download_bsee_pdf(row, raw_dir, session, timeout=args.timeout)
-            rows.append(row)
+            new_rows.append(row)
+
+    # Merge or overwrite
+    if args.append and existing_rows:
+        rows = merge_incident_manifests(existing_rows, new_rows)
+        logger.info(f"Merged {len(existing_rows)} existing + {len(new_rows)} new -> {len(rows)} total")
+    else:
+        rows = new_rows
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     save_incident_manifest(rows, out_path)
@@ -211,6 +225,11 @@ def main():
     )
     p_acquire.add_argument(
         "--timeout", type=int, default=30, help="Download timeout in seconds"
+    )
+    p_acquire.add_argument(
+        "--append",
+        action="store_true",
+        help="Merge with existing manifest instead of overwriting",
     )
     p_acquire.set_defaults(func=cmd_acquire)
 

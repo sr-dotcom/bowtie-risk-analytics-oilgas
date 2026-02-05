@@ -88,6 +88,7 @@ class TestCmdAcquire:
             mock_args.out = str(out_path)
             mock_args.download = False
             mock_args.timeout = 30
+            mock_args.append = False
 
             with patch(
                 "src.pipeline.discover_csb_incidents", return_value=iter([mock_row])
@@ -96,6 +97,114 @@ class TestCmdAcquire:
                     cmd_acquire(mock_args)
 
             assert out_path.exists()
+
+    def test_acquire_append_preserves_downloaded(self):
+        """--append mode preserves existing downloaded=True row."""
+        from src.ingestion.manifests import (
+            IncidentManifestRow,
+            save_incident_manifest,
+            load_incident_manifest,
+        )
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            out_path = Path(tmpdir) / "manifest.csv"
+
+            # Create existing manifest with downloaded=True
+            existing_row = IncidentManifestRow(
+                source="csb",
+                incident_id="test-1",
+                title="Existing",
+                detail_url="https://csb.gov/test",
+                pdf_url="https://csb.gov/test.pdf",
+                pdf_path="csb/pdfs/test.pdf",
+                downloaded=True,
+                http_status=200,
+                sha256="existing-hash",
+            )
+            save_incident_manifest([existing_row], out_path)
+
+            # New discovery returns same pdf_url but downloaded=False
+            new_row = IncidentManifestRow(
+                source="csb",
+                incident_id="test-1",
+                title="New Discovery",
+                detail_url="https://csb.gov/test",
+                pdf_url="https://csb.gov/test.pdf",
+                pdf_path="csb/pdfs/test.pdf",
+                downloaded=False,
+            )
+
+            mock_args = Mock()
+            mock_args.csb_limit = 1
+            mock_args.bsee_limit = 0
+            mock_args.out = str(out_path)
+            mock_args.download = False
+            mock_args.timeout = 30
+            mock_args.append = True
+
+            with patch(
+                "src.pipeline.discover_csb_incidents", return_value=iter([new_row])
+            ):
+                with patch("src.pipeline.discover_bsee_incidents", return_value=iter([])):
+                    cmd_acquire(mock_args)
+
+            # Verify: still exactly 1 row, still downloaded=True
+            final = load_incident_manifest(out_path)
+            assert len(final) == 1
+            assert final[0].downloaded is True
+            assert final[0].sha256 == "existing-hash"
+
+    def test_acquire_append_adds_new_incidents(self):
+        """--append mode adds new incidents to existing manifest."""
+        from src.ingestion.manifests import (
+            IncidentManifestRow,
+            save_incident_manifest,
+            load_incident_manifest,
+        )
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            out_path = Path(tmpdir) / "manifest.csv"
+
+            # Create existing manifest
+            existing_row = IncidentManifestRow(
+                source="csb",
+                incident_id="existing-1",
+                title="Existing",
+                detail_url="",
+                pdf_url="https://csb.gov/existing.pdf",
+                pdf_path="csb/pdfs/existing.pdf",
+                downloaded=True,
+            )
+            save_incident_manifest([existing_row], out_path)
+
+            # New discovery returns different incident
+            new_row = IncidentManifestRow(
+                source="csb",
+                incident_id="new-1",
+                title="New",
+                detail_url="",
+                pdf_url="https://csb.gov/new.pdf",
+                pdf_path="csb/pdfs/new.pdf",
+                downloaded=False,
+            )
+
+            mock_args = Mock()
+            mock_args.csb_limit = 1
+            mock_args.bsee_limit = 0
+            mock_args.out = str(out_path)
+            mock_args.download = False
+            mock_args.timeout = 30
+            mock_args.append = True
+
+            with patch(
+                "src.pipeline.discover_csb_incidents", return_value=iter([new_row])
+            ):
+                with patch("src.pipeline.discover_bsee_incidents", return_value=iter([])):
+                    cmd_acquire(mock_args)
+
+            # Verify: now has 2 rows
+            final = load_incident_manifest(out_path)
+            assert len(final) == 2
 
 
 class TestCmdExtractText:
