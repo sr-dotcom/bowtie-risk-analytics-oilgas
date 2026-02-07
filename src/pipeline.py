@@ -20,7 +20,12 @@ from src.models.incident import Incident
 from src.models.bowtie import Bowtie
 from src.analytics.engine import calculate_barrier_coverage, identify_gaps
 from src.analytics.aggregation import calculate_fleet_metrics
-from src.ingestion.structured import extract_structured, save_structured_manifest
+from src.ingestion.structured import (
+    extract_structured,
+    load_structured_manifest,
+    merge_structured_manifests,
+    save_structured_manifest,
+)
 
 # Configure logging
 logging.basicConfig(
@@ -226,8 +231,12 @@ def cmd_extract_structured(args: argparse.Namespace) -> None:
         resume=args.resume,
     )
 
-    save_structured_manifest(rows, manifest_path)
-    logger.info(f"Saved {len(rows)} structured extraction results to {manifest_path}")
+    # Merge with existing manifest so prior rows are not dropped
+    existing_rows = load_structured_manifest(manifest_path)
+    merged = merge_structured_manifests(existing_rows, rows)
+    save_structured_manifest(merged, manifest_path)
+    logger.info(f"Saved {len(merged)} structured extraction results to {manifest_path} "
+                f"({len(rows)} new, {len(existing_rows)} prior)")
 
     extracted = sum(1 for r in rows if r.extracted)
     valid = sum(1 for r in rows if r.valid)

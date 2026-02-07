@@ -1,8 +1,16 @@
 import json
 import pytest
 import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
-from src.ingestion.structured import extract_structured, _parse_llm_json
+from src.ingestion.structured import (
+    extract_structured,
+    load_structured_manifest,
+    merge_structured_manifests,
+    save_structured_manifest,
+    StructuredManifestRow,
+    _parse_llm_json,
+)
 from src.llm.stub import StubProvider
 
 
@@ -81,3 +89,81 @@ class TestExtractStructured:
             rows = extract_structured(text_dir, out_dir, provider, "stub")
             assert len(rows) == 2
             assert all(r.extracted for r in rows)
+
+
+class TestManifestPersistence:
+    def _make_row(self, incident_id: str) -> StructuredManifestRow:
+        return StructuredManifestRow(
+            incident_id=incident_id,
+            source_text_path=f"text/{incident_id}.txt",
+            output_json_path=f"out/{incident_id}.json",
+            provider="stub",
+            model=None,
+            extracted=True,
+            extracted_at=datetime(2025, 1, 1, tzinfo=timezone.utc),
+            valid=True,
+        )
+
+    def test_save_and_load_roundtrip(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            manifest_path = Path(tmpdir) / "manifest.csv"
+            original = [self._make_row("INC-001"), self._make_row("INC-002")]
+
+            save_structured_manifest(original, manifest_path)
+            loaded = load_structured_manifest(manifest_path)
+
+            assert len(loaded) == 2
+            assert loaded[0].incident_id == "INC-001"
+            assert loaded[1].incident_id == "INC-002"
+            assert loaded[0].extracted is True
+            assert loaded[0].valid is True
+
+    def test_load_nonexistent_returns_empty(self):
+        loaded = load_structured_manifest(Path("/tmp/does_not_exist.csv"))
+        assert loaded == []
+
+    def test_merge_upserts_by_incident_id(self):
+        old_row = self._make_row("INC-001")
+        updated_row = self._make_row("INC-001")
+        updated_row.valid = False
+        updated_row.validation_errors = "some error"
+        new_row = self._make_row("INC-002")
+
+        merged = merge_structured_manifests([old_row], [updated_row, new_row])
+
+        assert len(merged) == 2
+        by_id = {r.incident_id: r for r in merged}
+        assert by_id["INC-001"].valid is False  # new wins
+        assert by_id["INC-001"].validation_errors == "some error"
+        assert by_id["INC-002"].extracted is True
+
+    def test_extraction_preserves_prior_manifest_rows(self):
+        """Regression: running extraction must not drop prior manifest rows."""
+        provider = StubProvider()
+        with tempfile.TemporaryDirectory() as tmpdir:
+            text_dir = Path(tmpdir) / "text"
+            out_dir = Path(tmpdir) / "out"
+            manifest_path = Path(tmpdir) / "manifest.csv"
+            text_dir.mkdir()
+
+            # Seed manifest with a pre-existing row
+            prior_row = self._make_row("PRIOR-001")
+            save_structured_manifest([prior_row], manifest_path)
+
+            # Create a new text file for extraction
+            (text_dir / "NEW-001.txt").write_text("A new incident narrative.")
+
+            # Run extraction → returns only NEW-001
+            new_rows = extract_structured(text_dir, out_dir, provider, "stub")
+
+            # Simulate what pipeline does: load + merge + save
+            existing = load_structured_manifest(manifest_path)
+            merged = merge_structured_manifests(existing, new_rows)
+            save_structured_manifest(merged, manifest_path)
+
+            # Reload and verify both rows survive
+            final = load_structured_manifest(manifest_path)
+            ids = {r.incident_id for r in final}
+            assert "PRIOR-001" in ids, "Prior row was dropped!"
+            assert "NEW-001" in ids, "New row was not added!"
+            assert len(final) == 2

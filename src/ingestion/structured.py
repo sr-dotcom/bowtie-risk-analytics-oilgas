@@ -33,6 +33,47 @@ class StructuredManifestRow(BaseModel):
     raw_response_path: Optional[str] = None
 
 
+def load_structured_manifest(path: Path) -> list[StructuredManifestRow]:
+    """Load structured extraction manifest from CSV."""
+    if not path.exists():
+        return []
+
+    rows: list[StructuredManifestRow] = []
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for row_dict in reader:
+            # Convert string booleans
+            for key in ("extracted", "valid"):
+                if key in row_dict:
+                    row_dict[key] = row_dict[key].lower() == "true"
+            # Parse datetime
+            if "extracted_at" in row_dict and row_dict["extracted_at"]:
+                row_dict["extracted_at"] = datetime.fromisoformat(
+                    row_dict["extracted_at"]
+                )
+            elif "extracted_at" in row_dict:
+                row_dict["extracted_at"] = None
+            # Handle empty optional strings → None
+            for key in ("model", "validation_errors", "error", "raw_response_path"):
+                if key in row_dict and row_dict[key] == "":
+                    row_dict[key] = None
+            rows.append(StructuredManifestRow(**row_dict))
+    return rows
+
+
+def merge_structured_manifests(
+    existing: list[StructuredManifestRow],
+    new: list[StructuredManifestRow],
+) -> list[StructuredManifestRow]:
+    """Merge manifest rows, upserting by incident_id (new wins)."""
+    by_id: dict[str, StructuredManifestRow] = {}
+    for row in existing:
+        by_id[row.incident_id] = row
+    for row in new:
+        by_id[row.incident_id] = row
+    return list(by_id.values())
+
+
 def save_structured_manifest(rows: list[StructuredManifestRow], path: Path) -> None:
     """Save structured extraction manifest to CSV."""
     path.parent.mkdir(parents=True, exist_ok=True)
