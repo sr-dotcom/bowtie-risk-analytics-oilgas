@@ -69,15 +69,15 @@ Implemented a provider registry and HTTP-based LLM providers for structured inci
 python -m src.pipeline extract-structured --provider stub --limit 3
 
 # OpenAI
-export OPENAI_API_KEY="sk-..."
+export OPENAI_API_KEY="<YOUR_KEY>"
 python -m src.pipeline extract-structured --provider openai --model gpt-4o --limit 3
 
 # Anthropic
-export ANTHROPIC_API_KEY="sk-ant-..."
+export ANTHROPIC_API_KEY="<YOUR_KEY>"
 python -m src.pipeline extract-structured --provider anthropic --model claude-sonnet-4-5-20250929 --limit 3
 
 # Gemini
-export GEMINI_API_KEY="AIza..."
+export GEMINI_API_KEY="<YOUR_KEY>"
 python -m src.pipeline extract-structured --provider gemini --model gemini-2.0-flash --limit 3
 ```
 
