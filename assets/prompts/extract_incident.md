@@ -24,6 +24,16 @@ You are an expert oil & gas incident analyst specialising in Bowtie risk methodo
 9. **Side classification** -- Assign each control to either `"prevention"` (left side of Bowtie, linked to threats) or `"mitigation"` (right side, linked to consequences).
 10. **Supporting text** -- Populate `evidence.supporting_text` with short verbatim excerpts from the incident text that justify each extracted control or finding.
 
+## Enum Constraints (MUST follow exactly)
+
+- `bowtie.controls[*].side` must be exactly one of: `prevention`, `mitigation`
+- `bowtie.controls[*].barrier_type` must be exactly one of: `engineering`, `administrative`, `ppe`, `unknown`
+- `bowtie.controls[*].line_of_defense` must be exactly one of: `1st`, `2nd`, `3rd`, `recovery`, `unknown`
+- `bowtie.controls[*].performance.barrier_status` must be exactly one of: `active`, `degraded`, `failed`, `bypassed`, `not_installed`, `unknown`
+- `bowtie.controls[*].evidence.confidence` must be exactly one of: `high`, `medium`, `low`
+- If unsure or not stated, use `unknown` (or `medium` for confidence).
+- Do not invent new categories; do not use synonyms like "Engineering Control", "Admin", "First line", etc.
+
 ## Incident Text
 
 {{INCIDENT_TEXT}}

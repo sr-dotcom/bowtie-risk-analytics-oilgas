@@ -62,3 +62,18 @@ def test_load_prompt_default_paths() -> None:
     # Should contain content from both the prompt template and the schema
     assert "Bowtie" in result
     assert "schema_version" in result
+
+
+def test_prompt_contains_enum_constraints() -> None:
+    """Assembled prompt must include explicit enum constraint section."""
+    result = load_prompt("Some incident text.")
+    # Section header
+    assert "Enum Constraints" in result
+    # Each enum field with its allowed values
+    assert "`engineering`, `administrative`, `ppe`, `unknown`" in result
+    assert "`1st`, `2nd`, `3rd`, `recovery`, `unknown`" in result
+    assert "`active`, `degraded`, `failed`, `bypassed`, `not_installed`, `unknown`" in result
+    assert "`high`, `medium`, `low`" in result
+    assert "`prevention`, `mitigation`" in result
+    # Anti-synonym instruction
+    assert "Do not invent new categories" in result
