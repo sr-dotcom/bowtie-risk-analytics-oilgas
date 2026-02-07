@@ -205,15 +205,19 @@ def cmd_extract_structured(args: argparse.Namespace) -> None:
     out_dir = Path(args.out_dir)
     manifest_path = Path(args.manifest)
 
-    # Select provider
-    provider_name = args.provider
-    if provider_name == "stub":
-        from src.llm.stub import StubProvider
-        provider = StubProvider()
-    else:
-        raise ValueError(f"Unknown provider: {provider_name}. Available: stub")
+    # Select provider via registry
+    from src.llm.registry import get_provider
+    provider = get_provider(args.provider, model=args.model)
 
-    rows = extract_structured(text_dir, out_dir, provider, provider_name)
+    rows = extract_structured(
+        text_dir,
+        out_dir,
+        provider,
+        provider_name=args.provider,
+        model_name=args.model,
+        limit=args.limit,
+        resume=args.resume,
+    )
 
     save_structured_manifest(rows, manifest_path)
     logger.info(f"Saved {len(rows)} structured extraction results to {manifest_path}")
@@ -298,8 +302,29 @@ def main():
     p_struct.add_argument(
         "--provider",
         default="stub",
-        choices=["stub"],
+        choices=["stub", "openai", "anthropic", "gemini"],
         help="LLM provider to use",
+    )
+    p_struct.add_argument(
+        "--model", default=None, help="Model identifier (e.g. gpt-4o, claude-sonnet-4-5-20250929)"
+    )
+    p_struct.add_argument(
+        "--max-output-tokens", type=int, default=4096, help="Max output tokens for LLM"
+    )
+    p_struct.add_argument(
+        "--temperature", type=float, default=0.0, help="Sampling temperature"
+    )
+    p_struct.add_argument(
+        "--timeout", type=int, default=120, help="LLM request timeout in seconds"
+    )
+    p_struct.add_argument(
+        "--retries", type=int, default=2, help="Retry count on transient failures"
+    )
+    p_struct.add_argument(
+        "--limit", type=int, default=None, help="Max number of files to process"
+    )
+    p_struct.add_argument(
+        "--resume", action="store_true", help="Skip files with existing output JSON"
     )
     p_struct.set_defaults(func=cmd_extract_structured)
 
