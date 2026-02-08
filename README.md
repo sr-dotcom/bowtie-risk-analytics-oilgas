@@ -105,15 +105,16 @@ scripts/           Standalone analytics CLI
 | Optional | OpenAI | `--provider openai` | Experimental; kept for benchmarking and fallback |
 | Optional | Google Gemini | `--provider gemini` | Experimental; kept for benchmarking and fallback |
 
-The pipeline is designed to run end-to-end with **Anthropic only**. OpenAI and Gemini
-providers are maintained for comparison benchmarks but are not required for pipeline
-completion.
+The structured extraction stage is designed to run with **Anthropic only**. OpenAI and
+Gemini providers are maintained for comparison benchmarks but are not required for
+pipeline completion. Acquisition, text extraction, and quality gate stages do not
+require any LLM API key.
 
 ## Environment Variables
 
 | Variable | Status | Notes |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | **Required** | Default provider for structured extraction |
+| `ANTHROPIC_API_KEY` | **Required for LLM extraction** | Default provider for structured extraction |
 | `OPENAI_API_KEY` | Optional | Only needed with `--provider openai` |
 | `GEMINI_API_KEY` | Optional | Only needed with `--provider gemini` |
 
