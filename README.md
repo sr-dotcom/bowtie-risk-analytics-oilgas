@@ -14,9 +14,9 @@ pip install -r requirements.txt
 # 3. Run tests
 pytest
 
-# 4. Configure API keys (for LLM extraction)
+# 4. Configure Anthropic API key (required for structured extraction)
 cp .env.example .env
-# Edit .env with your API keys
+# Edit .env and set ANTHROPIC_API_KEY (other keys are optional)
 ```
 
 ## Pipeline Commands
@@ -96,14 +96,26 @@ tests/             Unit tests (pytest)
 scripts/           Standalone analytics CLI
 ```
 
+## LLM Provider Policy
+
+| Tier | Provider | Flag | Status |
+|------|----------|------|--------|
+| **Default** | Anthropic Claude Sonnet (`claude-sonnet-4-5-20250929`) | `--provider anthropic` | Recommended; used for all production extraction runs |
+| Testing | Stub | `--provider stub` | No API key needed; returns fixed JSON for dev/CI |
+| Optional | OpenAI | `--provider openai` | Experimental; kept for benchmarking and fallback |
+| Optional | Google Gemini | `--provider gemini` | Experimental; kept for benchmarking and fallback |
+
+The pipeline is designed to run end-to-end with **Anthropic only**. OpenAI and Gemini
+providers are maintained for comparison benchmarks but are not required for pipeline
+completion.
+
 ## Environment Variables
 
-| Variable | Provider | Required when |
+| Variable | Status | Notes |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | Anthropic (Claude) | `--provider anthropic` |
-| `OPENAI_API_KEY` | OpenAI | `--provider openai` |
-| `GEMINI_API_KEY` | Google Gemini | `--provider gemini` |
-| *(none)* | Stub (testing) | `--provider stub` (default) |
+| `ANTHROPIC_API_KEY` | **Required** | Default provider for structured extraction |
+| `OPENAI_API_KEY` | Optional | Only needed with `--provider openai` |
+| `GEMINI_API_KEY` | Optional | Only needed with `--provider gemini` |
 
 See `.env.example` for the template.
 
