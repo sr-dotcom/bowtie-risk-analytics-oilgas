@@ -1,30 +1,117 @@
 # Bowtie Risk Analytics
 
-Streamlit application for analyzing oil and gas incidents using the Bowtie risk methodology.
+Python pipeline and Streamlit dashboard for analyzing oil & gas incidents using the Bowtie risk methodology. Ingests public incident reports (CSB, BSEE), extracts structured risk data via LLM, and calculates barrier coverage metrics. Current scope: **Loss of Containment** scenarios.
 
-## Overview
-This project processes incident narratives to extract risk factors and visualize them using Bowtie diagrams. It aims to identify gaps in barrier coverage and calculate risk metrics.
+## Quickstart
 
-## Setup
-1.  Create a virtual environment:
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # Windows: venv\Scripts\activate
-    ```
-2.  Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  Run tests:
-    ```bash
-    pytest
-    ```
+```bash
+# 1. Create virtual environment
+python -m venv venv && source venv/bin/activate
 
-## Structure
-- `src/models`: Pydantic definitions for Incident and Bowtie elements.
-- `src/analytics`: Core logic for gap analysis and risk calculation.
-- `src/app`: Streamlit dashboard code.
-- `data`: Directory for raw and processed datasets.
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Run tests
+pytest
+
+# 4. Configure API keys (for LLM extraction)
+cp .env.example .env
+# Edit .env with your API keys
+```
+
+## Pipeline Commands
+
+The pipeline is driven by `python -m src.pipeline` with these subcommands:
+
+```bash
+# Discover and download incident PDFs
+python -m src.pipeline acquire --csb-limit 20 --bsee-limit 20 --download
+
+# Extract text from downloaded PDFs
+python -m src.pipeline extract-text
+
+# Structured extraction via LLM (requires API key in .env)
+python -m src.pipeline extract-structured --provider anthropic --model claude-sonnet-4-5-20250929
+
+# Run with stub provider (no API key needed, for testing)
+python -m src.pipeline extract-structured --provider stub --limit 3
+
+# Quality gate metrics on extracted JSON
+python -m src.pipeline quality-gate --incident-dir data/structured/incidents/anthropic
+
+# Legacy analytics pipeline
+python -m src.pipeline process
+```
+
+Use `--help` on any subcommand for full options. Key flags:
+- `--resume` — skip already-extracted files on re-runs
+- `--limit N` — process at most N files
+- `--provider {stub,openai,anthropic,gemini}` — LLM provider selection
+
+## Output Directory Contract
+
+All data artifacts are produced locally and **not committed to the repository**.
+Reproduce them by running the pipeline commands above.
+
+```
+data/
+  raw/
+    incidents_manifest_v0.csv    # Acquisition manifest
+    csb/                         # CSB PDFs + text/
+    bsee/                        # BSEE PDFs + text/
+  structured/
+    incidents/<provider>/        # Validated V2.2 JSON per incident
+    raw/<provider>/              # Raw LLM responses
+    structured_manifest.csv      # Extraction tracking manifest
+    run_reports/                  # Per-run summary reports
+  processed/                     # Legacy pipeline output
+  derived/                       # Flattened controls CSV + baseline analytics
+```
+
+## Project Structure
+
+```
+src/
+  models/          Pydantic v2 data models (Incident, Bowtie, V2.2 schema)
+  ingestion/       Data acquisition, PDF text extraction, structured LLM extraction
+  llm/             LLM provider abstraction (Stub, OpenAI, Anthropic, Gemini)
+  prompts/         Extraction prompt templates and loader
+  validation/      Pydantic-based schema validation
+  analytics/       Coverage calculation, gap analysis, flattening, baseline
+  app/             Streamlit dashboard
+  pipeline.py      CLI entry point
+
+assets/
+  schema/          V2.2 JSON schema and template
+  prompts/         Extraction prompt markdown
+
+docs/
+  decisions/       Architecture Decision Records (ADRs)
+  devlog/          Development log
+  step-tracker/    Phase-by-phase project status
+  meetings/        Meeting notes
+  handoff/         Historical planning documents
+
+tests/             Unit tests (pytest)
+scripts/           Standalone analytics CLI
+```
+
+## Environment Variables
+
+| Variable | Provider | Required when |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | Anthropic (Claude) | `--provider anthropic` |
+| `OPENAI_API_KEY` | OpenAI | `--provider openai` |
+| `GEMINI_API_KEY` | Google Gemini | `--provider gemini` |
+| *(none)* | Stub (testing) | `--provider stub` (default) |
+
+See `.env.example` for the template.
 
 ## Development
-Check `docs/DEVLOG.md` for daily progress updates.
+
+- Python 3.10+, type hints required on all functions
+- Pydantic v2 for all data models
+- Run `pytest` before pushing changes
+- See `CONTRIBUTING.md` for full guidelines
+- Progress tracked in `docs/devlog/DEVLOG.md`
+- Architecture decisions in `docs/decisions/ADR-index.md`
