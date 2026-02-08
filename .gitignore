@@ -58,7 +58,3 @@ secrets/
 
 # Data artifacts (never commit — reproduce via pipeline)
 /data/
-docs/plans/
-
-# Misc junk
-=1.0.0
