@@ -39,6 +39,9 @@ python -m src.pipeline extract-structured --provider stub --limit 3
 # Quality gate metrics on extracted JSON
 python -m src.pipeline quality-gate --incident-dir data/structured/incidents/anthropic
 
+# Generate Schema v2.3 dataset locally (gitignored output; may be missing in a clean clone)
+python -m src.pipeline convert-schema --incident-dir data/structured/incidents/anthropic --out-dir data/structured/incidents/schema_v2_3
+
 # Legacy analytics pipeline
 python -m src.pipeline process
 ```
@@ -52,6 +55,7 @@ Use `--help` on any subcommand for full options. Key flags:
 
 All data artifacts are produced locally and **not committed to the repository**.
 Reproduce them by running the pipeline commands above.
+The `data/structured/incidents/schema_v2_3` folder is a local, gitignored output directory and may be absent in a clean clone; generate it with the convert-schema command above.
 
 ```
 data/
@@ -61,6 +65,7 @@ data/
     bsee/                        # BSEE PDFs + text/
   structured/
     incidents/<provider>/        # Validated V2.2 JSON per incident
+    incidents/schema_v2_3/       # Local gitignored Schema v2.3 outputs (generate via convert-schema)
     raw/<provider>/              # Raw LLM responses
     structured_manifest.csv      # Extraction tracking manifest
     run_reports/                  # Per-run summary reports

@@ -260,7 +260,14 @@ def cmd_quality_gate(args: argparse.Namespace) -> None:
     from src.ingestion.structured import compute_quality_gate
     incident_dir = Path(args.incident_dir)
     if not incident_dir.exists():
-        logger.error(f"Incident directory not found: {incident_dir}")
+        logger.error(
+            "Incident directory not found: %s\n"
+            "Generate Schema v2.3 outputs locally with:\n"
+            "  python -m src.pipeline convert-schema --incident-dir "
+            "data/structured/incidents/anthropic --out-dir "
+            "data/structured/incidents/schema_v2_3",
+            incident_dir,
+        )
         return
     gate = compute_quality_gate(incident_dir)
     print(json.dumps(gate, indent=2))
