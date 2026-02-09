@@ -62,6 +62,7 @@ cat > "$OUT_DIR/README.md" <<EOF
 
 ## What this is
 This folder contains structured incident extraction outputs and the converted **Schema v2.3** incident JSON set, produced locally (not committed to git).
+The \`data/structured/incidents/schema_v2_3/\` folder is a local, gitignored output directory and may be missing in a clean clone.
 
 **Generated (UTC):** ${TS_UTC}
 **Tag:** ${TAG}
@@ -79,12 +80,17 @@ This folder contains structured incident extraction outputs and the converted **
   - Append-only manifest of extraction runs
 
 ## Quick verify commands (run from repo root)
-1) Strict v2.3 schema validation:
+1) Generate Schema v2.3 dataset locally (if missing):
+\`\`\`bash
+python -m src.pipeline convert-schema --incident-dir data/structured/incidents/anthropic --out-dir data/structured/incidents/schema_v2_3
+\`\`\`
+
+2) Strict v2.3 schema validation:
 \`\`\`bash
 python -m src.pipeline schema-check --incident-dir data/structured/incidents/schema_v2_3
 \`\`\`
 
-2) Content metrics (informational completeness):
+3) Content metrics (informational completeness):
 \`\`\`bash
 python -m src.pipeline quality-gate --incident-dir data/structured/incidents/schema_v2_3
 \`\`\`

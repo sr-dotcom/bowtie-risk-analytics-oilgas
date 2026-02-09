@@ -39,6 +39,9 @@ python -m src.pipeline extract-structured --provider stub --limit 3
 # Quality gate metrics on extracted JSON
 python -m src.pipeline quality-gate --incident-dir data/structured/incidents/schema_v2_3
 
+# Generate Schema v2.3 dataset locally (gitignored output; may be missing in a clean clone)
+python -m src.pipeline convert-schema --incident-dir data/structured/incidents/anthropic --out-dir data/structured/incidents/schema_v2_3
+
 # Legacy analytics pipeline
 python -m src.pipeline process
 ```
@@ -73,6 +76,7 @@ The output zip is written under `out/` and uses the naming convention
 
 All data artifacts are produced locally and **not committed to the repository**.
 Reproduce them by running the pipeline commands above.
+The `data/structured/incidents/schema_v2_3` folder is a local, gitignored output directory and may be absent in a clean clone; generate it with the convert-schema command above.
 
 ```
 data/
