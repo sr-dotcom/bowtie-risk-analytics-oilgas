@@ -206,7 +206,7 @@ def cmd_process(args: argparse.Namespace) -> None:
 
 
 def cmd_extract_structured(args: argparse.Namespace) -> None:
-    """Extract structured V2.2 JSON from text files using LLM."""
+    """Extract structured Schema v2.3 JSON from text files using LLM."""
     text_dir = Path(args.text_dir)
     out_dir = Path(args.out_dir)
     manifest_path = Path(args.manifest)
@@ -255,12 +255,49 @@ def cmd_extract_structured(args: argparse.Namespace) -> None:
                      f"(valid_rate={report['valid_rate']:.1%})")
 
 
+def cmd_schema_check(args: argparse.Namespace) -> None:
+    """Validate extracted JSON files against Schema v2.3."""
+    from src.validation.incident_validator import validate_incident_v2_2
+
+    incident_dir = Path(args.incident_dir)
+    if not incident_dir.exists():
+        logger.warning(f"Incident directory not found: {incident_dir}")
+        return
+
+    json_files = sorted(incident_dir.glob("*.json"))
+    if not json_files:
+        logger.warning(f"No JSON files found in {incident_dir}")
+        return
+
+    invalid_files: list[tuple[Path, list[str]]] = []
+    for json_path in json_files:
+        try:
+            payload = json.loads(json_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            invalid_files.append((json_path, [f"JSON decode error: {exc}"]))
+            continue
+
+        is_valid, errors = validate_incident_v2_2(payload)
+        if not is_valid:
+            invalid_files.append((json_path, errors))
+
+    valid_count = len(json_files) - len(invalid_files)
+    logger.info(f"Schema check: {valid_count}/{len(json_files)} valid in {incident_dir}")
+
+    if invalid_files:
+        for json_path, errors in invalid_files:
+            logger.error(f"Invalid: {json_path} ({len(errors)} errors)")
+            for err in errors[:5]:
+                logger.error(f"  - {err}")
+        raise SystemExit(1)
+
+
 def cmd_quality_gate(args: argparse.Namespace) -> None:
     """Run quality gate metrics on structured extraction results."""
     from src.ingestion.structured import compute_quality_gate
     incident_dir = Path(args.incident_dir)
     if not incident_dir.exists():
-        logger.error(f"Incident directory not found: {incident_dir}")
+        logger.warning(f"Incident directory not found: {incident_dir}")
         return
     gate = compute_quality_gate(incident_dir)
     print(json.dumps(gate, indent=2))
@@ -330,7 +367,8 @@ def main():
 
     # extract-structured subcommand
     p_struct = subparsers.add_parser(
-        "extract-structured", help="Extract structured V2.2 JSON from text using LLM"
+        "extract-structured",
+        help="Extract structured Schema v2.3 JSON from text using LLM",
     )
     p_struct.add_argument(
         "--text-dir",
@@ -376,13 +414,24 @@ def main():
     )
     p_struct.set_defaults(func=cmd_extract_structured)
 
+    # schema-check subcommand
+    p_schema = subparsers.add_parser(
+        "schema-check", help="Validate extracted JSON against Schema v2.3"
+    )
+    p_schema.add_argument(
+        "--incident-dir",
+        default="data/structured/incidents/schema_v2_3",
+        help="Directory with extracted JSON files",
+    )
+    p_schema.set_defaults(func=cmd_schema_check)
+
     # quality-gate subcommand
     p_qg = subparsers.add_parser(
         "quality-gate", help="Report quality metrics on structured extractions"
     )
     p_qg.add_argument(
         "--incident-dir",
-        default="data/structured/incidents/anthropic",
+        default="data/structured/incidents/schema_v2_3",
         help="Directory with extracted JSON files",
     )
     p_qg.set_defaults(func=cmd_quality_gate)

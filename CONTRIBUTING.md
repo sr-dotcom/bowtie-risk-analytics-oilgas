@@ -19,14 +19,14 @@
 
 ## Directory Structure
 
-- `src/models/` -- Pydantic v2 data models (Incident, Bowtie, V2.2 schema).
+- `src/models/` -- Pydantic v2 data models (Incident, Bowtie, Schema v2.3).
 - `src/ingestion/` -- Data acquisition, PDF text extraction, structured LLM extraction.
 - `src/llm/` -- LLM provider abstraction (Stub, OpenAI, Anthropic, Gemini).
 - `src/prompts/` -- Extraction prompt templates and loader.
 - `src/validation/` -- Pydantic-based schema validation.
 - `src/analytics/` -- Coverage calculation, gap analysis, flattening, baseline analytics.
 - `src/app/` -- Streamlit dashboard.
-- `assets/schema/` -- V2.2 JSON schema and template.
+- `assets/schema/` -- Schema v2.3 JSON schema and template.
 - `assets/prompts/` -- Extraction prompt markdown.
 - `docs/` -- ADRs, devlog, step tracker, meeting notes, handoff docs.
 - `scripts/` -- Standalone analytics CLI.

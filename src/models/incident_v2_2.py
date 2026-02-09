@@ -1,4 +1,4 @@
-"""Pydantic v2 models for Incident Schema V2.2."""
+"""Pydantic v2 models for Incident Schema v2.3."""
 
 from typing import Any, Literal, Optional, Union
 
@@ -296,7 +296,7 @@ class ControlItem(BaseModel):
 # ---------------------------------------------------------------------------
 
 class BowtieV2(BaseModel):
-    """Full bowtie diagram structure for V2.2."""
+    """Full bowtie diagram structure for Schema v2.3."""
 
     model_config = ConfigDict(strict=False)
 
@@ -387,7 +387,7 @@ class NotesInfo(BaseModel):
         description="Extraction rules for the LLM",
     )
     schema_version: str = Field(
-        default="2.2", description="Schema version identifier"
+        default="2.3", description="Schema version identifier"
     )
 
 
@@ -396,7 +396,7 @@ class NotesInfo(BaseModel):
 # ---------------------------------------------------------------------------
 
 class IncidentV2_2(BaseModel):
-    """Complete V2.2 incident record."""
+    """Complete Schema v2.3 incident record."""
 
     model_config = ConfigDict(strict=False)
 

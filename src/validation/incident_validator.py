@@ -1,4 +1,4 @@
-"""Validation utilities for V2.2 incident payloads."""
+"""Validation utilities for Schema v2.3 incident payloads."""
 
 from typing import Any
 
@@ -8,7 +8,7 @@ from src.models.incident_v2_2 import IncidentV2_2
 
 
 def validate_incident_v2_2(payload: dict[str, Any]) -> tuple[bool, list[str]]:
-    """Validate a dict against the V2.2 incident schema.
+    """Validate a dict against the Schema v2.3 incident schema.
 
     Returns:
         Tuple of (is_valid, list_of_error_messages).

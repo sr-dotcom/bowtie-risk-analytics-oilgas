@@ -4,10 +4,10 @@ from src.llm.base import LLMProvider
 
 
 class StubProvider(LLMProvider):
-    """Returns a fixed valid V2.2 incident JSON for testing."""
+    """Returns a fixed valid Schema v2.3 incident JSON for testing."""
 
     def extract(self, prompt: str) -> str:
-        """Return a sample V2.2 incident JSON."""
+        """Return a sample Schema v2.3 incident JSON."""
         sample = {
             "incident_id": "STUB-001",
             "source": {
@@ -91,7 +91,7 @@ class StubProvider(LLMProvider):
             },
             "notes": {
                 "rules": "Stub output for testing.",
-                "schema_version": "2.2"
+                "schema_version": "2.3"
             }
         }
         return json.dumps(sample, indent=2)

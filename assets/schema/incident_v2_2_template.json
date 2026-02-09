@@ -95,6 +95,6 @@
   },
   "notes": {
     "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
-    "schema_version": "2.2"
+    "schema_version": "2.3"
   }
 }

@@ -85,9 +85,8 @@ python -m src.pipeline extract-structured --provider gemini --model gemini-2.0-f
 
 | Artifact | Path |
 |---|---|
-| Structured JSON | `data/structured/incidents/<incident_id>.json` |
+| Structured JSON | `data/structured/incidents/schema_v2_3/<incident_id>.json` |
 | Raw LLM response | `data/structured/raw/<provider>/<incident_id>.txt` |
 | Extraction manifest | `data/structured/structured_manifest.csv` |
 
 Use `--resume` to skip already-extracted incidents on re-runs. The manifest is upserted by `incident_id`, so prior rows are preserved across runs.
-

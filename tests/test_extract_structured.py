@@ -333,7 +333,7 @@ class TestModelDumpWritePath:
             assert "summary" in data["event"]
 
             # notes must have schema_version
-            assert data["notes"]["schema_version"] == "2.2"
+            assert data["notes"]["schema_version"] == "2.3"
 
 
 class TestQualityGate:

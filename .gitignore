@@ -58,3 +58,6 @@ secrets/
 
 # Data artifacts (never commit — reproduce via pipeline)
 /data/
+
+# Deliverable packs (generated, shared out-of-band)
+/out/

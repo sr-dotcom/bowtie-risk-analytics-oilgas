@@ -65,10 +65,10 @@ class TestParseLlmJson:
 
 
 class TestStubEndToEnd:
-    def test_stub_extract_produces_valid_v2_2(self):
+    def test_stub_extract_produces_valid_schema_v2_3(self):
         provider = get_provider("stub")
         raw = provider.extract("some prompt")
         data = _parse_llm_json(raw)
         assert data["incident_id"] == "STUB-001"
-        assert data["notes"]["schema_version"] == "2.2"
+        assert data["notes"]["schema_version"] == "2.3"
         assert len(data["bowtie"]["controls"]) >= 1
