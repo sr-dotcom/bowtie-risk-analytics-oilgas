@@ -6,7 +6,7 @@ from src.analytics.flatten import flatten_controls, flatten_all
 
 
 def _make_incident(incident_id: str = "TEST-001", n_controls: int = 2) -> dict:
-    """Build a minimal V2.2 incident dict with controls."""
+    """Build a minimal Schema v2.3 incident dict with controls."""
     controls = []
     for i in range(n_controls):
         controls.append({

@@ -1,6 +1,6 @@
-# Incident Schema V2.2
+# Incident Schema v2.3
 
-This directory contains the V2.2 incident schema definition for the Bowtie Risk Analytics pipeline.
+This directory contains the Schema v2.3 incident definition for the Bowtie Risk Analytics pipeline.
 
 ## Files
 

@@ -37,7 +37,7 @@ python -m src.pipeline extract-structured --provider anthropic --model claude-so
 python -m src.pipeline extract-structured --provider stub --limit 3
 
 # Quality gate metrics on extracted JSON
-python -m src.pipeline quality-gate --incident-dir data/structured/incidents/anthropic
+python -m src.pipeline quality-gate --incident-dir data/structured/incidents/schema_v2_3
 
 # Generate Schema v2.3 dataset locally (gitignored output; may be missing in a clean clone)
 python -m src.pipeline convert-schema --incident-dir data/structured/incidents/anthropic --out-dir data/structured/incidents/schema_v2_3
@@ -50,6 +50,27 @@ Use `--help` on any subcommand for full options. Key flags:
 - `--resume` — skip already-extracted files on re-runs
 - `--limit N` — process at most N files
 - `--provider {stub,openai,anthropic,gemini}` — LLM provider selection
+
+## Data / Schema
+
+We produce normalized incident JSON in **Schema v2.3** format. Local outputs are
+stored under `data/structured/incidents/schema_v2_3` (gitignored).
+
+```bash
+python -m src.pipeline schema-check --incident-dir data/structured/incidents/schema_v2_3
+python -m src.pipeline quality-gate --incident-dir data/structured/incidents/schema_v2_3
+```
+
+## Deliverables
+
+To build a shareable deliverable pack locally (not committed), run:
+
+```bash
+bash scripts/make_deliverable_pack.sh --tag schema
+```
+
+The output zip is written under `out/` and uses the naming convention
+`schema_v2.3_dataset_<YYYYMMDD_HHMM>.zip` for distribution outside the repo.
 
 ## Output Directory Contract
 
@@ -64,8 +85,7 @@ data/
     csb/                         # CSB PDFs + text/
     bsee/                        # BSEE PDFs + text/
   structured/
-    incidents/<provider>/        # Validated V2.2 JSON per incident
-    incidents/schema_v2_3/       # Local gitignored Schema v2.3 outputs (generate via convert-schema)
+    incidents/schema_v2_3/       # Validated Schema v2.3 JSON per incident (local)
     raw/<provider>/              # Raw LLM responses
     structured_manifest.csv      # Extraction tracking manifest
     run_reports/                  # Per-run summary reports
@@ -77,7 +97,7 @@ data/
 
 ```
 src/
-  models/          Pydantic v2 data models (Incident, Bowtie, V2.2 schema)
+  models/          Pydantic v2 data models (Incident, Bowtie, Schema v2.3)
   ingestion/       Data acquisition, PDF text extraction, structured LLM extraction
   llm/             LLM provider abstraction (Stub, OpenAI, Anthropic, Gemini)
   prompts/         Extraction prompt templates and loader
@@ -87,7 +107,7 @@ src/
   pipeline.py      CLI entry point
 
 assets/
-  schema/          V2.2 JSON schema and template
+  schema/          Schema v2.3 JSON schema and template
   prompts/         Extraction prompt markdown
 
 docs/

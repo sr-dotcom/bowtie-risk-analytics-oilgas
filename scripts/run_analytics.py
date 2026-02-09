@@ -19,8 +19,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run analytics on structured incidents")
     parser.add_argument(
         "--structured-dir",
-        default="data/structured/incidents",
-        help="Directory containing V2.2 incident JSON files",
+        default="data/structured/incidents/schema_v2_3",
+        help="Directory containing Schema v2.3 incident JSON files",
     )
     parser.add_argument(
         "--out-dir",

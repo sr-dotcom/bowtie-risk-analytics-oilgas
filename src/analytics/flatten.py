@@ -1,4 +1,4 @@
-"""Flatten V2.2 incident controls into a tabular CSV dataset."""
+"""Flatten Schema v2.3 incident controls into a tabular CSV dataset."""
 import csv
 import json
 import logging
@@ -28,10 +28,10 @@ CONTROLS_CSV_COLUMNS = [
 
 
 def flatten_controls(incident: dict[str, Any]) -> list[dict[str, Any]]:
-    """Flatten controls from a single V2.2 incident dict into flat rows.
+    """Flatten controls from a single Schema v2.3 incident dict into flat rows.
 
     Args:
-        incident: Parsed V2.2 incident JSON.
+        incident: Parsed Schema v2.3 incident JSON.
 
     Returns:
         List of flat dicts, one per control.
@@ -68,10 +68,10 @@ def flatten_controls(incident: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def flatten_all(structured_dir: Path, out_path: Path) -> int:
-    """Flatten controls from all V2.2 JSON files into a single CSV.
+    """Flatten controls from all Schema v2.3 JSON files into a single CSV.
 
     Args:
-        structured_dir: Directory containing V2.2 incident JSON files.
+        structured_dir: Directory containing Schema v2.3 incident JSON files.
         out_path: Output CSV path.
 
     Returns:

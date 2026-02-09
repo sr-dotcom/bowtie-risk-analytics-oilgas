@@ -21,7 +21,7 @@ All work builds on existing CLI (`src/pipeline.py`), models (`src/models/`), and
 - `src/validation/schema_validator.py` — Validator utility: loads JSON Schema, validates dicts, returns structured errors
 - `tests/test_schema_validator.py` — Unit tests for validator
 
-### Schema design (based on existing models + team v2.2/v2.3 conventions)
+### Schema design (based on existing models + Schema v2.3 conventions)
 The schema will cover:
 - `incident_id`, `source` (csb/bsee), `title`, `date_occurred`, `location`
 - `facility_type`, `incident_type`, `severity`
@@ -107,7 +107,7 @@ pytest tests/test_prompt_loader.py -v
 ```bash
 python -m src.pipeline extract-structured \
     --text-dir data/interim/text \
-    --out-dir data/structured/incidents \
+    --out-dir data/structured/incidents/schema_v2_3 \
     --provider stub \
     --manifest data/manifests/structured_manifest.csv
 ```
@@ -184,7 +184,7 @@ Each row = one barrier instance from one incident:
 - `baseline_model_summary.json` — Logistic regression placeholder (barrier mentioned ~ severity/injuries)
 
 ### Definition of done
-- `flatten.py` reads from `data/structured/incidents/*.json` and writes `data/derived/barriers.csv`
+- `flatten.py` reads from `data/structured/incidents/schema_v2_3/*.json` and writes `data/derived/barriers.csv`
 - Baseline script runs without errors and produces summary JSONs
 - Works with both real data and stub-generated data
 - All tests pass
@@ -195,7 +195,7 @@ Each row = one barrier instance from one incident:
 pytest tests/test_flatten.py tests/test_baseline.py -v
 
 # End-to-end
-python scripts/run_analytics.py --structured-dir data/structured/incidents --out-dir data/derived
+python scripts/run_analytics.py --structured-dir data/structured/incidents/schema_v2_3 --out-dir data/derived
 ```
 
 ---

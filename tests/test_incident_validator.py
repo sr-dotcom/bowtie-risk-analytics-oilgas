@@ -1,4 +1,4 @@
-"""Tests for the V2.2 incident validator."""
+"""Tests for the Schema v2.3 incident validator."""
 
 import copy
 import json
@@ -12,13 +12,13 @@ TEMPLATE_PATH = Path(__file__).resolve().parent.parent / "assets" / "schema" / "
 
 
 def _load_template() -> dict:
-    """Load the V2.2 template JSON from disk."""
+    """Load the Schema v2.3 template JSON from disk."""
     with open(TEMPLATE_PATH) as f:
         return json.load(f)
 
 
 def _minimal_valid_doc() -> dict:
-    """Build a minimal valid V2.2 document."""
+    """Build a minimal valid Schema v2.3 document."""
     return {
         "incident_id": "INC-TEST-001",
         "source": {
@@ -84,7 +84,7 @@ def _minimal_valid_doc() -> dict:
         },
         "notes": {
             "rules": "JSON output only.",
-            "schema_version": "2.2",
+            "schema_version": "2.3",
         },
     }
 
