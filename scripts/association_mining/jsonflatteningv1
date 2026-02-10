@@ -1,4 +1,5 @@
 import json
+import argparse
 from pathlib import Path
 from typing import Any, Dict, List
 import pandas as pd
@@ -42,13 +43,6 @@ def flatten_incidents_lossless_to_controls_csv(
     """
     Reads an aggregated incidents JSON file (list of incident dicts),
     writes a barrier/control-level CSV with lossless preservation of all fields.
-
-    - All incident-level fields are flattened into columns with prefix 'incident'
-      (excluding bowtie.controls to avoid duplication per control).
-    - Each control is flattened into columns with prefix 'control'.
-    - bowtie hazards/threats/consequences are stored as JSON strings per row
-      so you can join/lookup by IDs later.
-    - Optionally stores raw incident/control JSON blobs as strings for perfect fidelity.
     """
     input_path = Path(input_path)
     output_path = Path(output_path)
@@ -69,17 +63,14 @@ def flatten_incidents_lossless_to_controls_csv(
         if not isinstance(controls, list):
             controls = []
 
-        # ---- Make a copy of incident-level dict WITHOUT bowtie.controls (we’ll add controls per-row) ----
+        # Copy incident-level dict, but remove bowtie.controls (controls are emitted per-row)
         incident_copy = dict(doc)
-        # Keep bowtie but remove controls to avoid repeating bulky control list inside incident columns
         incident_bowtie = dict(bowtie) if isinstance(bowtie, dict) else {}
         incident_bowtie.pop("controls", None)
         incident_copy["bowtie"] = incident_bowtie
 
-        # Flatten incident-level fields (everything)
         incident_cols = _flatten_dict(incident_copy, prefix="incident")
 
-        # Also store hazards/threats/consequences as JSON strings at row level (joinable via IDs)
         hazards = bowtie.get("hazards", [])
         threats = bowtie.get("threats", [])
         consequences = bowtie.get("consequences", [])
@@ -90,8 +81,7 @@ def flatten_incidents_lossless_to_controls_csv(
             "bowtie__consequences_json": _to_json_str(consequences) if consequences is not None else None,
         }
 
-        # If an incident has no controls, still emit one row (optional behavior).
-        # For barrier-level modeling you may prefer to SKIP incidents with 0 controls.
+        # Optionally emit a row even if no controls exist
         if len(controls) == 0:
             row = {}
             row.update(incident_cols)
@@ -103,7 +93,6 @@ def flatten_incidents_lossless_to_controls_csv(
             rows.append(row)
             continue
 
-        # One row per control
         for c in controls:
             if not isinstance(c, dict):
                 continue
@@ -115,7 +104,6 @@ def flatten_incidents_lossless_to_controls_csv(
             row.update(bowtie_cols)
             row.update(control_cols)
 
-            # Optional: perfect-fidelity snapshots
             if keep_raw_json:
                 row["incident_raw_json"] = _to_json_str(doc)
                 row["control_raw_json"] = _to_json_str(c)
@@ -124,7 +112,6 @@ def flatten_incidents_lossless_to_controls_csv(
 
     df = pd.DataFrame(rows)
 
-    # Helpful: ensure a stable column order (IDs and core fields first if present)
     preferred_first = [
         "incident__incident_id",
         "control__control_id",
@@ -143,16 +130,50 @@ def flatten_incidents_lossless_to_controls_csv(
     ordered = [c for c in preferred_first if c in cols] + [c for c in cols if c not in preferred_first]
     df = df[ordered]
 
+    # IMPORTANT: keep utf-8 and no index
     df.to_csv(output_path, index=False, encoding="utf-8")
     print(f"Wrote {len(df)} barrier rows → {output_path}")
 
 
+def parse_args(default_input: Path, default_output: Path):
+    parser = argparse.ArgumentParser(
+        description="Flatten aggregated incidents.json to a lossless barrier/control-level CSV"
+    )
+    parser.add_argument(
+        "--input",
+        type=Path,
+        default=default_input,
+        help=f"Input aggregated incidents.json (default: {default_input})"
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=default_output,
+        help=f"Output CSV path (default: {default_output})"
+    )
+    parser.add_argument(
+        "--no-raw-json",
+        action="store_true",
+        help="Do not include incident_raw_json/control_raw_json columns (smaller CSV)"
+    )
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    input_path = Path(r"C:\Users\pqhun\OneDrive\Practicum\JSONdatav1\incidents.json")        # <- your aggregated JSON list
-    output_path = Path(r"C:\Users\pqhun\OneDrive\Practicum\CSV1\flatincidentsv2.csv") # <- output CSV
+    # ---- Project-relative defaults ----
+    BASE_DIR = Path(__file__).resolve().parent
+    PROJECT_ROOT = BASE_DIR.parent
+
+    DEFAULT_INPUT = PROJECT_ROOT / "data" / "processed" / "incidents.json"
+    DEFAULT_OUTPUT = PROJECT_ROOT / "data" / "processed" / "flatincidents_lossless.csv"
+
+    args = parse_args(DEFAULT_INPUT, DEFAULT_OUTPUT)
+
+    input_path = args.input.resolve()
+    output_path = args.output.resolve()
 
     flatten_incidents_lossless_to_controls_csv(
         input_path=input_path,
         output_path=output_path,
-        keep_raw_json=True
+        keep_raw_json=not args.no_raw_json
     )
