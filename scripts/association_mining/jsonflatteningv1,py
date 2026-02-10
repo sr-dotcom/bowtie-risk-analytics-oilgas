@@ -164,8 +164,8 @@ if __name__ == "__main__":
     BASE_DIR = Path(__file__).resolve().parent
     PROJECT_ROOT = BASE_DIR.parent
 
-    DEFAULT_INPUT = PROJECT_ROOT / "data" / "processed" / "incidents.json"
-    DEFAULT_OUTPUT = PROJECT_ROOT / "data" / "processed" / "flatincidents_lossless.csv"
+    DEFAULT_INPUT = PROJECT_ROOT / "data" / "processed" / "aggregatedjsons" / "filename.json"
+    DEFAULT_OUTPUT = PROJECT_ROOT / "data" / "processed" / "flattenedcsvs" / "filename.csv"
 
     args = parse_args(DEFAULT_INPUT, DEFAULT_OUTPUT)
 
