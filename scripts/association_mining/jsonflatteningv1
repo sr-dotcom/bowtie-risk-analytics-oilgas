@@ -1,0 +1,158 @@
+import json
+from pathlib import Path
+from typing import Any, Dict, List
+import pandas as pd
+
+
+def _to_json_str(x: Any) -> str:
+    """Stable JSON string for nested objects in CSV cells."""
+    return json.dumps(x, ensure_ascii=False, sort_keys=True)
+
+
+def _flatten_dict(
+    obj: Dict[str, Any],
+    prefix: str,
+    sep: str = "__"
+) -> Dict[str, Any]:
+    """
+    Flatten a nested dict into a 1-level dict of columns.
+    Lists are kept losslessly as JSON strings.
+    Dicts recurse; scalars stay as-is.
+    """
+    out: Dict[str, Any] = {}
+
+    def rec(cur: Any, key_prefix: str):
+        if isinstance(cur, dict):
+            for k, v in cur.items():
+                rec(v, f"{key_prefix}{sep}{k}" if key_prefix else k)
+        elif isinstance(cur, list):
+            out[key_prefix] = _to_json_str(cur)
+        else:
+            out[key_prefix] = cur
+
+    rec(obj, prefix)
+    return out
+
+
+def flatten_incidents_lossless_to_controls_csv(
+    input_path: Path,
+    output_path: Path,
+    keep_raw_json: bool = True
+) -> None:
+    """
+    Reads an aggregated incidents JSON file (list of incident dicts),
+    writes a barrier/control-level CSV with lossless preservation of all fields.
+
+    - All incident-level fields are flattened into columns with prefix 'incident'
+      (excluding bowtie.controls to avoid duplication per control).
+    - Each control is flattened into columns with prefix 'control'.
+    - bowtie hazards/threats/consequences are stored as JSON strings per row
+      so you can join/lookup by IDs later.
+    - Optionally stores raw incident/control JSON blobs as strings for perfect fidelity.
+    """
+    input_path = Path(input_path)
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    incidents = json.loads(input_path.read_text(encoding="utf-8"))
+    if not isinstance(incidents, list):
+        raise ValueError("Expected input file to be a JSON list of incident objects.")
+
+    rows: List[Dict[str, Any]] = []
+
+    for doc in incidents:
+        if not isinstance(doc, dict):
+            continue
+
+        bowtie = doc.get("bowtie", {}) or {}
+        controls = bowtie.get("controls", []) or []
+        if not isinstance(controls, list):
+            controls = []
+
+        # ---- Make a copy of incident-level dict WITHOUT bowtie.controls (we’ll add controls per-row) ----
+        incident_copy = dict(doc)
+        # Keep bowtie but remove controls to avoid repeating bulky control list inside incident columns
+        incident_bowtie = dict(bowtie) if isinstance(bowtie, dict) else {}
+        incident_bowtie.pop("controls", None)
+        incident_copy["bowtie"] = incident_bowtie
+
+        # Flatten incident-level fields (everything)
+        incident_cols = _flatten_dict(incident_copy, prefix="incident")
+
+        # Also store hazards/threats/consequences as JSON strings at row level (joinable via IDs)
+        hazards = bowtie.get("hazards", [])
+        threats = bowtie.get("threats", [])
+        consequences = bowtie.get("consequences", [])
+
+        bowtie_cols = {
+            "bowtie__hazards_json": _to_json_str(hazards) if hazards is not None else None,
+            "bowtie__threats_json": _to_json_str(threats) if threats is not None else None,
+            "bowtie__consequences_json": _to_json_str(consequences) if consequences is not None else None,
+        }
+
+        # If an incident has no controls, still emit one row (optional behavior).
+        # For barrier-level modeling you may prefer to SKIP incidents with 0 controls.
+        if len(controls) == 0:
+            row = {}
+            row.update(incident_cols)
+            row.update(bowtie_cols)
+            row["control__control_id"] = None
+            if keep_raw_json:
+                row["incident_raw_json"] = _to_json_str(doc)
+                row["control_raw_json"] = None
+            rows.append(row)
+            continue
+
+        # One row per control
+        for c in controls:
+            if not isinstance(c, dict):
+                continue
+
+            control_cols = _flatten_dict(c, prefix="control")
+
+            row = {}
+            row.update(incident_cols)
+            row.update(bowtie_cols)
+            row.update(control_cols)
+
+            # Optional: perfect-fidelity snapshots
+            if keep_raw_json:
+                row["incident_raw_json"] = _to_json_str(doc)
+                row["control_raw_json"] = _to_json_str(c)
+
+            rows.append(row)
+
+    df = pd.DataFrame(rows)
+
+    # Helpful: ensure a stable column order (IDs and core fields first if present)
+    preferred_first = [
+        "incident__incident_id",
+        "control__control_id",
+        "control__name",
+        "control__side",
+        "control__barrier_type",
+        "control__line_of_defense",
+        "control__performance__barrier_failed",
+        "control__human__barrier_failed_human",
+        "control__human__linked_pif_ids",
+        "bowtie__hazards_json",
+        "bowtie__threats_json",
+        "bowtie__consequences_json",
+    ]
+    cols = list(df.columns)
+    ordered = [c for c in preferred_first if c in cols] + [c for c in cols if c not in preferred_first]
+    df = df[ordered]
+
+    df.to_csv(output_path, index=False, encoding="utf-8")
+    print(f"Wrote {len(df)} barrier rows → {output_path}")
+
+
+if __name__ == "__main__":
+    input_path = Path(r"C:\Users\pqhun\OneDrive\Practicum\JSONdatav1\incidents.json")        # <- your aggregated JSON list
+    output_path = Path(r"C:\Users\pqhun\OneDrive\Practicum\CSV1\flatincidentsv2.csv") # <- output CSV
+
+    flatten_incidents_lossless_to_controls_csv(
+        input_path=input_path,
+        output_path=output_path,
+        keep_raw_json=True
+    )
