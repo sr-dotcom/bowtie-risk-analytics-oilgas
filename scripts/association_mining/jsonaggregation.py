@@ -47,19 +47,20 @@ if __name__ == "__main__":
     BASE_DIR = Path(__file__).resolve().parent
     PROJECT_ROOT = BASE_DIR.parent
 
+#Update input directory as needed
     DEFAULT_INPUT_DIR = (
         PROJECT_ROOT
         / "data"
-        / "structured"
+        / "raw"
         / "incidents"
-        / "schema_v2_3"
     )
 
     DEFAULT_OUTPUT_PATH = (
         PROJECT_ROOT
         / "data"
         / "processed"
-        / "incidents.json"
+        / "aggregatedjsons
+        / "filename.json"
     )
 
     args = parse_args(
