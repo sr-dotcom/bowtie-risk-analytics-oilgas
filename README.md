@@ -66,11 +66,15 @@ python -m src.pipeline quality-gate --incident-dir data/structured/incidents/sch
 To build a shareable deliverable pack locally (not committed), run:
 
 ```bash
+# Quick: just the zip
 bash scripts/make_deliverable_pack.sh --tag schema
+
+# Full audit: validate, convert, bundle with README + inventory
+bash scripts/verify_and_bundle_schema_v2_3.sh --tag schema_v2_3_audit
 ```
 
-The output zip is written under `out/` and uses the naming convention
-`schema_v2.3_dataset_<YYYYMMDD_HHMM>.zip` for distribution outside the repo.
+The output lands in `out/deliverables/` (gitignored) and includes the zip,
+`README.md`, `BUNDLE_INVENTORY.md`, and `FILES.txt`.
 
 ## Output Directory Contract
 

@@ -90,3 +90,21 @@ python -m src.pipeline extract-structured --provider gemini --model gemini-2.0-f
 | Extraction manifest | `data/structured/structured_manifest.csv` |
 
 Use `--resume` to skip already-extracted incidents on re-runs. The manifest is upserted by `incident_id`, so prior rows are preserved across runs.
+
+## 2026-02-09 — Schema v2.3 Normalization (`convert-schema`)
+
+Added a `convert-schema` pipeline subcommand that applies in-memory coercions to LLM extraction outputs before writing normalized Schema v2.3 JSON.
+
+### Coercions applied
+- `event.incident_type`: list→str, empty→"unknown"
+- `bowtie.controls[].side`: left→prevention, right→mitigation
+- `bowtie.controls[].line_of_defense`: int→enum string (1→"1st", etc.)
+- `bowtie.controls[].performance.barrier_status`: synonym mapping (worked→active, etc.)
+- `bowtie.controls[].human.human_contribution_value`: non-str→str
+- Generic `id` keys remapped to `hazard_id`/`threat_id`/`consequence_id`
+
+### Verification
+- `schema-check`: 166/166 valid
+- `quality-gate`: 98.8% controls, 90.4% PIFs
+- `pytest`: 180 passed
+- `verify_and_bundle_schema_v2_3.sh`: produces deliverable zip with README, inventory, file list

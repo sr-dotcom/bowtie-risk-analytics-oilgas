@@ -11,6 +11,7 @@
 - [x] Incident narrative ingestion
 - [ ] Labeling strategy and dataset creation
 - [x] Initial data acquisition (CSB/BSEE discovery + download + PDF→text) — DONE (2026-02-05)
+- [x] Schema v2.3 normalization (`convert-schema` coercion pass) — DONE (2026-02-09)
 
 ## Phase 2: Analytics
 - [x] Control coverage computation
