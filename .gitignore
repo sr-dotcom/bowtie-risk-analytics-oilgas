@@ -61,3 +61,6 @@ secrets/
 
 # Deliverable packs (generated, shared out-of-band)
 /out/
+
+out/
+data/processed/flattenedcsvs/*.xlsx
