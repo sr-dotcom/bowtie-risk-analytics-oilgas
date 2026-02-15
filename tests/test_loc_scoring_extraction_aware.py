@@ -140,3 +140,44 @@ class TestRunWithExtractionManifest:
             assert not (failed_rows["final_label"] == "FALSE").any()
             # They should all be EXTRACTION_FAILED
             assert (failed_rows["final_label"] == "EXTRACTION_FAILED").all()
+
+
+class TestSecondaryTier:
+    def test_secondary_terms_counted(self) -> None:
+        """score_text returns secondary_count and matched_secondary_terms."""
+        text = "The explosion at the chemical gas facility caused a fire."
+        scores = score_text(text)
+        assert scores["secondary_count"] == 2
+        assert "explosion" in scores["matched_secondary_terms"]
+        assert "fire" in scores["matched_secondary_terms"]
+
+    def test_secondary_only_triggers_loc_flag(self) -> None:
+        """LOC flag triggers with secondary >= 1 and hazardous >= 2, no primary."""
+        text = "The explosion destroyed the chemical gas storage area."
+        scores = score_text(text)
+        assert scores["primary_count"] == 0
+        assert scores["secondary_count"] >= 1
+        assert scores["hazardous_count"] >= 2
+        assert scores["loc_flag"] is True
+
+    def test_secondary_alone_insufficient(self) -> None:
+        """Secondary >= 1 but hazardous < 2 does NOT trigger loc_flag."""
+        text = "The explosion was loud."
+        scores = score_text(text)
+        assert scores["secondary_count"] >= 1
+        assert scores["hazardous_count"] < 2
+        assert scores["loc_flag"] is False
+
+    def test_primary_still_works(self) -> None:
+        """Original primary path still triggers loc_flag."""
+        text = "A chemical release occurred at the oil refinery."
+        scores = score_text(text)
+        assert scores["primary_count"] >= 1
+        assert scores["loc_flag"] is True
+
+    def test_score_formula_includes_secondary(self) -> None:
+        """loc_score = (primary * 2) + (secondary * 1) + hazardous."""
+        text = "release explosion chemical"
+        scores = score_text(text)
+        # primary=1 (release), secondary=1 (explosion), hazardous=2 (explosion+chemical)
+        assert scores["loc_score"] == (1 * 2) + (1 * 1) + 2  # = 5

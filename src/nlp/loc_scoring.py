@@ -22,6 +22,11 @@ PRIMARY_LOC_TERMS: list[str] = [
     "blowout",
 ]
 
+SECONDARY_LOC_TERMS: list[str] = [
+    "explosion",
+    "fire",
+]
+
 HAZARDOUS_CONTEXT: list[str] = [
     "chemical",
     "ammonia",
@@ -37,6 +42,7 @@ HAZARDOUS_CONTEXT: list[str] = [
 
 # Pre-compile patterns (word-boundary, case-insensitive)
 _PRIMARY_PATTERNS = [(t, re.compile(rf"\b{re.escape(t)}\b", re.IGNORECASE)) for t in PRIMARY_LOC_TERMS]
+_SECONDARY_PATTERNS = [(t, re.compile(rf"\b{re.escape(t)}\b", re.IGNORECASE)) for t in SECONDARY_LOC_TERMS]
 _HAZARDOUS_PATTERNS = [(t, re.compile(rf"\b{re.escape(t)}\b", re.IGNORECASE)) for t in HAZARDOUS_CONTEXT]
 
 # ---------------------------------------------------------------------------
@@ -68,18 +74,21 @@ def _count_matches(text: str, patterns: list[tuple[str, re.Pattern]]) -> tuple[i
 def score_text(text: str) -> dict:
     """Score a single document's text for LOC relevance."""
     primary_count, matched_primary = _count_matches(text, _PRIMARY_PATTERNS)
+    secondary_count, matched_secondary = _count_matches(text, _SECONDARY_PATTERNS)
     hazardous_count, matched_context = _count_matches(text, _HAZARDOUS_PATTERNS)
 
-    loc_score = (primary_count * 2) + hazardous_count
-    loc_flag = primary_count >= 1 and hazardous_count >= 1
+    loc_score = (primary_count * 2) + (secondary_count * 1) + hazardous_count
+    loc_flag = (primary_count >= 1 and hazardous_count >= 1) or (secondary_count >= 1 and hazardous_count >= 2)
 
     return {
         "loc_score": loc_score,
         "primary_count": primary_count,
+        "secondary_count": secondary_count,
         "hazardous_count": hazardous_count,
         "loc_flag": loc_flag,
         "text_length": len(text),
         "matched_primary_terms": "|".join(matched_primary),
+        "matched_secondary_terms": "|".join(matched_secondary),
         "matched_context_terms": "|".join(matched_context),
     }
 
