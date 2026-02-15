@@ -144,10 +144,12 @@ def run() -> pd.DataFrame:
             "url",
             "loc_score",
             "primary_count",
+            "secondary_count",
             "hazardous_count",
             "loc_flag",
             "text_length",
             "matched_primary_terms",
+            "matched_secondary_terms",
             "matched_context_terms",
         ]
     ]
@@ -208,6 +210,7 @@ def run_with_extraction_manifest(
                 "final_label": "EXTRACTION_FAILED",
                 "loc_score": None,
                 "primary_count": None,
+                "secondary_count": None,
                 "hazardous_count": None,
                 "loc_flag": None,
                 "extraction_status": extraction_status,
@@ -215,6 +218,7 @@ def run_with_extraction_manifest(
                 "extractor_used": row.get("extractor_used", ""),
                 "text_len": row.get("text_len", "0"),
                 "matched_primary_terms": "",
+                "matched_secondary_terms": "",
                 "matched_context_terms": "",
             })
             continue
@@ -227,6 +231,7 @@ def run_with_extraction_manifest(
                 "final_label": "EXTRACTION_FAILED",
                 "loc_score": None,
                 "primary_count": None,
+                "secondary_count": None,
                 "hazardous_count": None,
                 "loc_flag": None,
                 "extraction_status": "EXTRACTION_FAILED",
@@ -234,6 +239,7 @@ def run_with_extraction_manifest(
                 "extractor_used": row.get("extractor_used", ""),
                 "text_len": "0",
                 "matched_primary_terms": "",
+                "matched_secondary_terms": "",
                 "matched_context_terms": "",
             })
             continue
@@ -249,6 +255,7 @@ def run_with_extraction_manifest(
             "final_label": final_label,
             "loc_score": scores["loc_score"],
             "primary_count": scores["primary_count"],
+            "secondary_count": scores["secondary_count"],
             "hazardous_count": scores["hazardous_count"],
             "loc_flag": loc_flag,
             "extraction_status": "OK",
@@ -256,15 +263,17 @@ def run_with_extraction_manifest(
             "extractor_used": row.get("extractor_used", ""),
             "text_len": scores["text_length"],
             "matched_primary_terms": scores["matched_primary_terms"],
+            "matched_secondary_terms": scores["matched_secondary_terms"],
             "matched_context_terms": scores["matched_context_terms"],
         })
 
     df = pd.DataFrame(results)
 
     col_order = [
-        "doc_id", "final_label", "loc_score", "primary_count", "hazardous_count",
-        "loc_flag", "extraction_status", "fail_reason", "extractor_used",
-        "text_len", "matched_primary_terms", "matched_context_terms",
+        "doc_id", "final_label", "loc_score", "primary_count", "secondary_count",
+        "hazardous_count", "loc_flag", "extraction_status", "fail_reason",
+        "extractor_used", "text_len", "matched_primary_terms",
+        "matched_secondary_terms", "matched_context_terms",
     ]
     df = df[[c for c in col_order if c in df.columns]]
 
