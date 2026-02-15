@@ -27,6 +27,23 @@ from src.ingestion.structured import (
     merge_structured_manifests,
     save_structured_manifest,
 )
+from src.ingestion.source_ingest import run_ingest
+from src.extraction.runner import run_extraction_qc
+from src.ingestion.sources.csb_discover import (
+    discover_csb,
+    write_url_list as csb_write_url_list,
+    write_metadata as csb_write_metadata,
+)
+from src.ingestion.sources.bsee_discover import (
+    discover_bsee,
+    write_url_list as bsee_write_url_list,
+    write_metadata as bsee_write_metadata,
+)
+from src.ingestion.sources.phmsa_discover import (
+    discover_phmsa,
+    write_url_list as phmsa_write_url_list,
+    write_metadata as phmsa_write_metadata,
+)
 
 # Configure logging
 logging.basicConfig(
@@ -468,6 +485,79 @@ def cmd_quality_gate(args: argparse.Namespace) -> None:
                 f"{gate.get('has_summary_pct', 0)}% with summary")
 
 
+def cmd_extract_qc(args: argparse.Namespace) -> None:
+    """Run extraction QC: multi-pass PDF extraction with quality gating."""
+    run_extraction_qc(
+        pdf_dir=Path(args.pdf_dir),
+        output_dir=Path(args.output_dir),
+        manifest_path=Path(args.manifest),
+        force=args.force,
+    )
+
+
+_DISCOVER_ADAPTERS: dict[str, tuple] = {
+    "csb": (discover_csb, csb_write_url_list, csb_write_metadata),
+    "bsee": (discover_bsee, bsee_write_url_list, bsee_write_metadata),
+    "phmsa": (discover_phmsa, phmsa_write_url_list, phmsa_write_metadata),
+}
+
+
+def cmd_discover_source(args: argparse.Namespace) -> None:
+    """Discover incident report PDF URLs from a public source."""
+    source = args.source
+    if source not in _DISCOVER_ADAPTERS:
+        logger.error(
+            f"Unknown source: {source}. "
+            f"Available: {', '.join(sorted(_DISCOVER_ADAPTERS))}"
+        )
+        raise SystemExit(1)
+
+    discover_fn, write_urls_fn, write_meta_fn = _DISCOVER_ADAPTERS[source]
+
+    out_path = Path(args.out) if args.out else Path(f"data/sources/{source}/url_list.csv")
+    base_url = args.base_url
+    kwargs: dict = {"timeout": args.timeout, "sleep": args.sleep}
+    if base_url:
+        kwargs["base_url"] = base_url
+    if args.limit is not None:
+        kwargs["limit"] = args.limit
+
+    logger.info(f"Discovering {source} reports...")
+    try:
+        results = discover_fn(**kwargs)
+    except Exception as e:
+        logger.error(f"Discovery failed for {source}: {e}")
+        raise SystemExit(1)
+
+    if not results:
+        logger.info(f"No results found for {source}. URL list will be header-only.")
+
+    write_urls_fn(results, out_path)
+    logger.info(f"Wrote {len(results)} entries to {out_path}")
+
+    meta_path = out_path.parent / f"{out_path.stem}_metadata{out_path.suffix}"
+    write_meta_fn(results, meta_path)
+    logger.info(f"Wrote metadata to {meta_path}")
+
+
+def cmd_ingest_source(args: argparse.Namespace) -> None:
+    """Ingest PDFs from a URL list or local directory."""
+    output_root = Path(args.output_root) if args.output_root else Path(f"data/raw/{args.source}")
+    url_list = Path(args.url_list) if args.url_list else None
+    input_pdf_dir = Path(args.input_pdf_dir) if args.input_pdf_dir else None
+
+    rows = run_ingest(
+        source=args.source,
+        output_root=output_root,
+        url_list=url_list,
+        input_pdf_dir=input_pdf_dir,
+        force=args.force,
+        timeout=args.timeout,
+    )
+    ok = sum(1 for r in rows if r.status == "ok")
+    logger.info(f"Ingestion complete: {ok}/{len(rows)} ok")
+
+
 def main():
     """Main entry point with CLI argument parsing."""
     try:
@@ -614,6 +704,110 @@ def main():
         help="Directory with extracted JSON files",
     )
     p_qg.set_defaults(func=cmd_quality_gate)
+
+    # extract-qc subcommand
+    p_eqc = subparsers.add_parser(
+        "extract-qc",
+        help="Run extraction QC: multi-pass PDF extraction with quality gating",
+    )
+    p_eqc.add_argument(
+        "--pdf-dir",
+        required=True,
+        help="Directory containing PDF files",
+    )
+    p_eqc.add_argument(
+        "--output-dir",
+        default="data/processed/text",
+        help="Output directory for normalized text files",
+    )
+    p_eqc.add_argument(
+        "--manifest",
+        default="data/processed/extraction_manifest.csv",
+        help="Path for extraction manifest CSV",
+    )
+    p_eqc.add_argument(
+        "--force",
+        action="store_true",
+        help="Reprocess all PDFs even if already in manifest",
+    )
+    p_eqc.set_defaults(func=cmd_extract_qc)
+
+    # ingest-source subcommand
+    p_ingest = subparsers.add_parser(
+        "ingest-source",
+        help="Ingest PDFs from URL list or local directory into text + manifest",
+    )
+    p_ingest.add_argument(
+        "--source", required=True, help="Source identifier (e.g. phmsa)"
+    )
+    p_ingest.add_argument(
+        "--url-list",
+        default=None,
+        help="Path to CSV with url,doc_id columns",
+    )
+    p_ingest.add_argument(
+        "--input-pdf-dir",
+        default=None,
+        help="Path to directory containing local PDF files",
+    )
+    p_ingest.add_argument(
+        "--output-root",
+        default=None,
+        help="Output root directory (default: data/raw/<source>/)",
+    )
+    p_ingest.add_argument(
+        "--force",
+        action="store_true",
+        help="Re-process items even if already completed",
+    )
+    p_ingest.add_argument(
+        "--timeout",
+        type=int,
+        default=60,
+        help="Download timeout in seconds (for URL mode)",
+    )
+    p_ingest.set_defaults(func=cmd_ingest_source)
+
+    # discover-source subcommand
+    p_discover = subparsers.add_parser(
+        "discover-source",
+        help="Discover incident report PDF URLs from a public source",
+    )
+    p_discover.add_argument(
+        "--source",
+        required=True,
+        choices=["csb", "bsee", "phmsa"],
+        help="Source to discover (csb, bsee, phmsa)",
+    )
+    p_discover.add_argument(
+        "--out",
+        default=None,
+        help="Output url_list CSV path (default: data/sources/<source>/url_list.csv)",
+    )
+    p_discover.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Max number of reports to discover",
+    )
+    p_discover.add_argument(
+        "--base-url",
+        default=None,
+        help="Override base URL for the source website",
+    )
+    p_discover.add_argument(
+        "--timeout",
+        type=int,
+        default=30,
+        help="HTTP request timeout in seconds",
+    )
+    p_discover.add_argument(
+        "--sleep",
+        type=float,
+        default=0.5,
+        help="Delay between requests in seconds (polite crawling)",
+    )
+    p_discover.set_defaults(func=cmd_discover_source)
 
     args = parser.parse_args()
 
