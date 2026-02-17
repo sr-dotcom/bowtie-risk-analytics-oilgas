@@ -12,6 +12,7 @@
 - [ ] Labeling strategy and dataset creation
 - [x] Initial data acquisition (CSB/BSEE discovery + download + PDF→text) — DONE (2026-02-05)
 - [x] Schema v2.3 normalization (`convert-schema` coercion pass) — DONE (2026-02-09)
+- [x] LOC_v1 freeze (extraction-aware keyword-tier scoring) — DONE (2026-02-17)
 
 ## Phase 2: Analytics
 - [x] Control coverage computation

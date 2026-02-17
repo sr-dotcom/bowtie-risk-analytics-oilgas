@@ -108,3 +108,27 @@ Added a `convert-schema` pipeline subcommand that applies in-memory coercions to
 - `quality-gate`: 98.8% controls, 90.4% PIFs
 - `pytest`: 180 passed
 - `verify_and_bundle_schema_v2_3.sh`: produces deliverable zip with README, inventory, file list
+
+## 2026-02-17 — LOC_v1 Definition Freeze
+
+Froze the Loss of Containment scoring definition as LOC_v1, documented in `docs/loc_definition_v1.md`.
+
+### Implemented
+- Formal definition of the three keyword tiers (primary, secondary, hazardous context) with exact term lists.
+- Extraction gate: documents with `extraction_status != "OK"` are labelled `EXTRACTION_FAILED`, never scored as `LOC=False`.
+- Frozen flag rule: `(primary >= 1 AND hazardous >= 1) OR (secondary >= 1 AND hazardous >= 2)`.
+- `loc_score` documented as audit-only, not authoritative for classification.
+
+### Why
+- Downstream analytics and labeling need a stable, versioned LOC definition.
+- Prevents silent false negatives from failed text extractions.
+- Cosine similarity was evaluated but dropped for MVP due to low recall on this corpus.
+
+### Learned
+- Extraction-awareness is critical: without the gate, failed PDFs silently produce `LOC=False` labels that contaminate downstream metrics.
+- Keyword tiers with hazardous-context gating provide good precision for the MVP scope.
+
+### Validated
+- Flag rule matches the implementation in `src/nlp/loc_scoring.py:81`.
+- All 254 existing tests continue to pass.
+- ADR-004 recorded in `docs/decisions/2026-02-17-freeze-loc-v1.md`.
