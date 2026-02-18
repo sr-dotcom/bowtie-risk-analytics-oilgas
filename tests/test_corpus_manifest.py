@@ -93,11 +93,20 @@ def test_source_agency_bsee_inferred(tmp_path, monkeypatch, tmp_path_factory):
     assert rows["csb-explosion"]["source_agency"] == "CSB"
 
 
+def test_build_manifest_missing_raw_pdfs(tmp_path, monkeypatch):
+    """build_manifest() returns empty list when raw_pdfs dir does not exist."""
+    # Only structured_json exists; raw_pdfs is absent
+    (tmp_path / "structured_json").mkdir()
+    monkeypatch.setattr("src.corpus.manifest.CORPUS_V1_ROOT", tmp_path)
+
+    rows = build_manifest()
+    assert rows == []
+
+
 def test_write_manifest_creates_csv(tmp_path, monkeypatch):
     """write_manifest() writes well-formed CSV with correct columns."""
     (tmp_path / "raw_pdfs").mkdir()
     (tmp_path / "structured_json").mkdir()
-    (tmp_path / "manifests").mkdir()
 
     monkeypatch.setattr("src.corpus.manifest.CORPUS_V1_ROOT", tmp_path)
 

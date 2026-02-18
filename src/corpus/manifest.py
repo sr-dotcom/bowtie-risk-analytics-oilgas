@@ -37,11 +37,14 @@ def build_manifest() -> list[dict[str, Any]]:
     raw_pdfs   = CORPUS_V1_ROOT / "raw_pdfs"
     structured = CORPUS_V1_ROOT / "structured_json"
 
+    if not raw_pdfs.exists():
+        return []
+
     bsee = _bsee_stems()
     json_by_stem = {
         urllib.parse.unquote(f.stem): f
         for f in structured.glob("*.json")
-    }
+    } if structured.exists() else {}
 
     rows: list[dict[str, Any]] = []
     for pdf in sorted(raw_pdfs.glob("*.pdf")):
