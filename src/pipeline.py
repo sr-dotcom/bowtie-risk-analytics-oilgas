@@ -20,6 +20,7 @@ from src.models.incident import Incident
 from src.models.bowtie import Bowtie
 from src.analytics.engine import calculate_barrier_coverage, identify_gaps
 from src.analytics.aggregation import calculate_fleet_metrics
+from src.analytics.build_combined_exports import build_all as build_combined_all
 from src.ingestion.structured import (
     extract_structured,
     generate_run_report,
@@ -43,6 +44,12 @@ from src.ingestion.sources.phmsa_discover import (
     discover_phmsa,
     write_url_list as phmsa_write_url_list,
     write_metadata as phmsa_write_metadata,
+)
+from src.ingestion.sources.phmsa_ingest import ingest_phmsa_csv
+from src.ingestion.sources.tsb_discover import (
+    discover_tsb,
+    write_url_list as tsb_write_url_list,
+    write_metadata as tsb_write_metadata,
 )
 
 # Configure logging
@@ -495,10 +502,35 @@ def cmd_extract_qc(args: argparse.Namespace) -> None:
     )
 
 
+def cmd_ingest_phmsa(args: argparse.Namespace) -> None:
+    """Ingest PHMSA bulk CSV (skeleton: header inspection only)."""
+    rows = ingest_phmsa_csv(
+        csv_path=Path(args.csv_path),
+        output_dir=Path(args.output_dir),
+        manifest_path=Path(args.manifest),
+        limit=args.limit,
+    )
+    logger.info(f"PHMSA ingest: {len(rows)} rows mapped")
+
+
+def cmd_build_combined_exports(args: argparse.Namespace) -> None:
+    """Build combined flat incidents and controls CSVs from all sources."""
+    incidents_dir = Path(args.incidents_dir)
+    output_dir = Path(args.output_dir)
+
+    incident_count, control_count = build_combined_all(incidents_dir, output_dir)
+    logger.info(
+        f"Combined exports complete: {incident_count} incidents → "
+        f"{output_dir / 'flat_incidents_combined.csv'}; "
+        f"{control_count} controls → {output_dir / 'controls_combined.csv'}"
+    )
+
+
 _DISCOVER_ADAPTERS: dict[str, tuple] = {
     "csb": (discover_csb, csb_write_url_list, csb_write_metadata),
     "bsee": (discover_bsee, bsee_write_url_list, bsee_write_metadata),
     "phmsa": (discover_phmsa, phmsa_write_url_list, phmsa_write_metadata),
+    "tsb": (discover_tsb, tsb_write_url_list, tsb_write_metadata),
 }
 
 
@@ -768,6 +800,56 @@ def main():
     )
     p_ingest.set_defaults(func=cmd_ingest_source)
 
+    # ingest-phmsa subcommand
+    p_phmsa = subparsers.add_parser(
+        "ingest-phmsa",
+        help="Ingest PHMSA bulk CSV (skeleton: header inspection only)",
+    )
+    p_phmsa.add_argument(
+        "--csv-path", required=True, help="Path to PHMSA bulk incident CSV"
+    )
+    p_phmsa.add_argument(
+        "--output-dir",
+        default="data/structured/incidents/phmsa",
+        help="Output directory for V2.3 JSON files",
+    )
+    p_phmsa.add_argument(
+        "--manifest",
+        default="data/manifests/structured_manifest_phmsa.csv",
+        help="Path for structured manifest CSV",
+    )
+    p_phmsa.add_argument(
+        "--limit", type=int, default=None, help="Max rows to process"
+    )
+    p_phmsa.set_defaults(func=cmd_ingest_phmsa)
+
+    # build-combined-exports subcommand
+    p_bce = subparsers.add_parser(
+        "build-combined-exports",
+        help="Build flat_incidents_combined.csv and controls_combined.csv across all sources",
+        description=(
+            "Scans all JSON files under --incidents-dir (recursively) and produces:\n"
+            "  flat_incidents_combined.csv  — one row per incident\n"
+            "  controls_combined.csv        — one row per control\n"
+            "Both files are written to --output-dir."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    p_bce.add_argument(
+        "--incidents-dir",
+        default="data/structured/incidents",
+        help="Root directory containing incident JSON files (searched recursively)",
+    )
+    p_bce.add_argument(
+        "--output-dir",
+        default="data/processed",
+        help=(
+            "Output directory for combined CSVs "
+            "(flat_incidents_combined.csv, controls_combined.csv)"
+        ),
+    )
+    p_bce.set_defaults(func=cmd_build_combined_exports)
+
     # discover-source subcommand
     p_discover = subparsers.add_parser(
         "discover-source",
@@ -776,8 +858,8 @@ def main():
     p_discover.add_argument(
         "--source",
         required=True,
-        choices=["csb", "bsee", "phmsa"],
-        help="Source to discover (csb, bsee, phmsa)",
+        choices=["csb", "bsee", "phmsa", "tsb"],
+        help="Source to discover (csb, bsee, phmsa, tsb)",
     )
     p_discover.add_argument(
         "--out",
