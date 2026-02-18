@@ -51,6 +51,7 @@ from src.ingestion.sources.tsb_discover import (
     write_url_list as tsb_write_url_list,
     write_metadata as tsb_write_metadata,
 )
+from src.corpus.manifest import build_manifest, write_manifest, CORPUS_V1_ROOT
 
 # Configure logging
 logging.basicConfig(
@@ -590,6 +591,16 @@ def cmd_ingest_source(args: argparse.Namespace) -> None:
     logger.info(f"Ingestion complete: {ok}/{len(rows)} ok")
 
 
+def cmd_corpus_manifest(args: argparse.Namespace) -> None:
+    """Build or refresh corpus_v1_manifest.csv."""
+    rows = build_manifest()
+    out  = CORPUS_V1_ROOT / "manifests" / "corpus_v1_manifest.csv"
+    write_manifest(rows, out)
+    ready   = sum(1 for r in rows if r["extraction_status"] == "ready")
+    pending = sum(1 for r in rows if r["extraction_status"] == "needs_extraction")
+    logger.info(f"Manifest written → {out}  ({ready} ready, {pending} needs_extraction)")
+
+
 def main():
     """Main entry point with CLI argument parsing."""
     try:
@@ -890,6 +901,12 @@ def main():
         help="Delay between requests in seconds (polite crawling)",
     )
     p_discover.set_defaults(func=cmd_discover_source)
+
+    p_cm = subparsers.add_parser(
+        "corpus-manifest",
+        help="Build/refresh data/corpus_v1/manifests/corpus_v1_manifest.csv",
+    )
+    p_cm.set_defaults(func=cmd_corpus_manifest)
 
     args = parser.parse_args()
 
