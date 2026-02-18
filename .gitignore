@@ -58,9 +58,14 @@ secrets/
 
 # Data artifacts (never commit — reproduce via pipeline)
 /data/
+!/data/sources/**
+!/data/samples/**
 
 # Deliverable packs (generated, shared out-of-band)
 /out/
 
 out/
 data/processed/flattenedcsvs/*.xlsx
+
+# Combined export artifacts
+/data/processed/*combined*.csv
