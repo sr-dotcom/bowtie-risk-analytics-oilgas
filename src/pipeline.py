@@ -52,6 +52,7 @@ from src.ingestion.sources.tsb_discover import (
     write_metadata as tsb_write_metadata,
 )
 from src.corpus.manifest import build_manifest, write_manifest, CORPUS_V1_ROOT
+from src.corpus.clean import move_noise_jsons
 
 # Configure logging
 logging.basicConfig(
@@ -601,6 +602,15 @@ def cmd_corpus_manifest(args: argparse.Namespace) -> None:
     logger.info(f"Manifest written → {out}  ({ready} ready, {pending} needs_extraction)")
 
 
+def cmd_corpus_clean(args: argparse.Namespace) -> None:
+    """Quarantine noise JSONs (no matching PDF) into structured_json_noise/."""
+    moved = move_noise_jsons(dry_run=args.dry_run)
+    action = "Would move" if args.dry_run else "Moved"
+    for name in moved:
+        logger.info(f"  {action}: {name}")
+    logger.info(f"{action} {len(moved)} noise JSON(s).")
+
+
 def main():
     """Main entry point with CLI argument parsing."""
     try:
@@ -907,6 +917,16 @@ def main():
         help="Build/refresh data/corpus_v1/manifests/corpus_v1_manifest.csv",
     )
     p_cm.set_defaults(func=cmd_corpus_manifest)
+
+    p_cc = subparsers.add_parser(
+        "corpus-clean",
+        help="Move no-match JSONs from structured_json/ to structured_json_noise/",
+    )
+    p_cc.add_argument(
+        "--dry-run", action="store_true",
+        help="Print what would be moved without moving anything",
+    )
+    p_cc.set_defaults(func=cmd_corpus_clean)
 
     args = parser.parse_args()
 
