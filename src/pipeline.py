@@ -53,6 +53,7 @@ from src.ingestion.sources.tsb_discover import (
 )
 from src.corpus.manifest import build_manifest, write_manifest, CORPUS_V1_ROOT
 from src.corpus.clean import move_noise_jsons
+from src.corpus.extract import run_corpus_extraction
 
 # Configure logging
 logging.basicConfig(
@@ -611,6 +612,30 @@ def cmd_corpus_clean(args: argparse.Namespace) -> None:
     logger.info(f"{action} {len(moved)} noise JSON(s).")
 
 
+def cmd_corpus_extract(args: argparse.Namespace) -> None:
+    """Extract missing corpus_v1 JSONs using Claude (Anthropic)."""
+    from src.llm.anthropic_provider import AnthropicProvider
+
+    corpus_root   = Path("data/corpus_v1")
+    manifest_path = corpus_root / "manifests" / "corpus_v1_manifest.csv"
+    structured    = corpus_root / "structured_json"
+
+    if not manifest_path.exists():
+        logger.error(
+            f"Manifest not found: {manifest_path}  Run corpus-manifest first."
+        )
+        return
+
+    provider = AnthropicProvider(model=args.model)
+    run_corpus_extraction(
+        manifest_path=manifest_path,
+        structured_dir=structured,
+        text_search_dirs=None,
+        provider=provider,
+    )
+    logger.info("Run corpus-manifest to refresh extraction_status.")
+
+
 def main():
     """Main entry point with CLI argument parsing."""
     try:
@@ -927,6 +952,17 @@ def main():
         help="Print what would be moved without moving anything",
     )
     p_cc.set_defaults(func=cmd_corpus_clean)
+
+    p_ce = subparsers.add_parser(
+        "corpus-extract",
+        help="Extract missing corpus_v1 JSONs using Claude (requires ANTHROPIC_API_KEY)",
+    )
+    p_ce.add_argument(
+        "--model",
+        default="claude-sonnet-4-6",
+        help="Anthropic model ID (default: claude-sonnet-4-6)",
+    )
+    p_ce.set_defaults(func=cmd_corpus_extract)
 
     args = parser.parse_args()
 
