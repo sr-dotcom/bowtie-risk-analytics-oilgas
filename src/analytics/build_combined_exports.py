@@ -3,10 +3,12 @@
 Builds flat_incidents_combined.csv and controls_combined.csv by scanning
 all JSON files under an incidents directory (any subdirectory depth).
 
-source_agency resolution priority:
-  1. data["source"]["agency"]  (JSON field — most authoritative)
-  2. First path segment matching a known source: csb, bsee, tsb, phmsa
-  3. "UNKNOWN"
+source_agency resolution (four-tier priority):
+  1. Explicit JSON field: source.agency / source.publisher / source.report_source
+  2. doc_type / document_type keyword inference (BSEE accident reports, CSB rec reports)
+  3. URL domain (csb.gov / bsee.gov / tsb.gc.ca / phmsa.dot.gov)
+  4. First path segment matching a known source: csb, bsee, tsb, phmsa
+  5. "UNKNOWN"
 
 provider_bucket is always the immediate parent directory name and is written
 as a separate column so provider/format subfolders remain visible.
@@ -21,8 +23,27 @@ from src.analytics.flatten import CONTROLS_CSV_COLUMNS, flatten_controls
 
 logger = logging.getLogger(__name__)
 
-# Canonical source identifiers — only these are valid fallback values.
+# Canonical source identifiers (for path-segment fallback).
 _KNOWN_SOURCES: frozenset[str] = frozenset({"csb", "bsee", "tsb", "phmsa"})
+
+# doc_type substrings → agency (checked in order, case-insensitive).
+# More-specific strings come first to avoid false matches.
+_DOC_TYPE_RULES: list[tuple[str, str]] = [
+    ("bsee", "BSEE"),
+    ("accident investigation", "BSEE"),  # BSEE EV2010R forms
+    ("csb", "CSB"),
+    ("recommendation status change", "CSB"),  # CSB rec-tracking reports
+    ("tsb", "TSB"),
+    ("phmsa", "PHMSA"),
+]
+
+# URL domain substrings → agency.
+_URL_DOMAIN_RULES: list[tuple[str, str]] = [
+    ("csb.gov", "CSB"),
+    ("bsee.gov", "BSEE"),
+    ("tsb.gc.ca", "TSB"),
+    ("phmsa.dot.gov", "PHMSA"),
+]
 
 FLAT_INCIDENT_COLUMNS = [
     "incident_id",
@@ -44,21 +65,65 @@ COMBINED_CONTROLS_COLUMNS = CONTROLS_CSV_COLUMNS + [
 ]
 
 
+def _infer_from_doc_type(doc_type: str) -> str:
+    """Return agency from doc_type string, or empty string if not recognised."""
+    dt = doc_type.lower()
+    for substring, agency in _DOC_TYPE_RULES:
+        if substring in dt:
+            return agency
+    return ""
+
+
+def _infer_from_url(url: str) -> str:
+    """Return agency from a URL string, or empty string if not recognised."""
+    u = url.lower()
+    for domain, agency in _URL_DOMAIN_RULES:
+        if domain in u:
+            return agency
+    return ""
+
+
 def resolve_source_agency(data: dict[str, Any], path_hint: str) -> str:
-    """Resolve source agency with three-tier priority.
+    """Resolve source agency with four-tier priority.
+
+    Tier 1 — explicit JSON fields: source.agency / source.publisher /
+              source.report_source
+    Tier 2 — doc_type / document_type keyword inference
+    Tier 3 — URL domain match (csb.gov, bsee.gov, tsb.gc.ca, phmsa.dot.gov)
+    Tier 4 — path segment matching known sources (csb, bsee, tsb, phmsa)
+    Tier 5 — "UNKNOWN"
 
     Args:
         data: Parsed incident JSON dict.
-        path_hint: Full or partial file path — all segments are scanned for
-                   a known source identifier (csb, bsee, tsb, phmsa).
+        path_hint: Full or partial file path — all segments are scanned in
+                   tier 4.
 
     Returns:
         Agency string in uppercase, or "UNKNOWN".
     """
-    agency = data.get("source", {}).get("agency", "")
-    if agency:
-        return str(agency)
+    src = data.get("source", {})
 
+    # Tier 1: explicit agency fields
+    for field in ("agency", "publisher", "report_source"):
+        val = src.get(field, "")
+        if val:
+            return str(val)
+
+    # Tier 2: doc_type / document_type keyword inference
+    doc_type = src.get("doc_type", "") or src.get("document_type", "")
+    if doc_type:
+        inferred = _infer_from_doc_type(str(doc_type))
+        if inferred:
+            return inferred
+
+    # Tier 3: URL domain
+    url = src.get("url", "") or src.get("document_url", "")
+    if url and str(url).lower() not in ("", "null", "unknown", "none"):
+        inferred = _infer_from_url(str(url))
+        if inferred:
+            return inferred
+
+    # Tier 4: path segment
     for segment in Path(path_hint).parts:
         if segment.lower() in _KNOWN_SOURCES:
             return segment.upper()

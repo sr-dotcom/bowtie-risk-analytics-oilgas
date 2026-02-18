@@ -189,6 +189,70 @@ class TestSourceAgencyPriority:
         ) == "UNKNOWN"
 
 
+class TestDocTypeAndUrlInference:
+    """Verify doc_type keyword inference and URL-domain fallback."""
+
+    def test_bsee_explicit_prefix(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        data = {"source": {"doc_type": "BSEE Accident Investigation Report"}}
+        assert resolve_source_agency(data, "") == "BSEE"
+
+    def test_bsee_accident_investigation_generic(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        # Uppercase variant used by gemini/openai extractions
+        data = {"source": {"doc_type": "ACCIDENT INVESTIGATION REPORT"}}
+        assert resolve_source_agency(data, "") == "BSEE"
+
+    def test_csb_explicit_prefix(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        data = {"source": {"doc_type": "CSB Investigation Report"}}
+        assert resolve_source_agency(data, "") == "CSB"
+
+    def test_csb_recommendation_status_change(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        data = {"source": {"doc_type": "Investigation Report Recommendation Status Change"}}
+        assert resolve_source_agency(data, "") == "CSB"
+
+    def test_document_type_v23_field(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        # V2.3 canary files use document_type instead of doc_type
+        data = {"source": {"document_type": "BSEE Accident Investigation Report"}}
+        assert resolve_source_agency(data, "") == "BSEE"
+
+    def test_url_csb_gov(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        data = {"source": {"url": "https://www.csb.gov/reports/123"}}
+        assert resolve_source_agency(data, "") == "CSB"
+
+    def test_url_bsee_gov(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        data = {"source": {"url": "https://www.bsee.gov/incident/456"}}
+        assert resolve_source_agency(data, "") == "BSEE"
+
+    def test_agency_field_beats_doc_type(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        # Explicit agency field takes priority over doc_type inference
+        data = {"source": {"agency": "TSB", "doc_type": "BSEE Accident Investigation Report"}}
+        assert resolve_source_agency(data, "") == "TSB"
+
+    def test_ambiguous_doc_type_gives_unknown(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        # Generic / stub doc_types must NOT produce a false positive
+        for dt in ("investigation_report", "report", "unknown", "incident report"):
+            data = {"source": {"doc_type": dt}}
+            result = resolve_source_agency(data, "")
+            assert result == "UNKNOWN", f"Expected UNKNOWN for doc_type={dt!r}, got {result!r}"
+
+
 class TestMalformedJsonSkipped:
     def test_corrupt_json_skipped(self, tmp_path: Path, caplog) -> None:
         from src.analytics.build_combined_exports import build_flat_incidents
