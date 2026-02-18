@@ -114,6 +114,7 @@ class TestFlatIncidentsCombined:
         assert "incident__event__incident_type" in reader.fieldnames
         assert "incident__event__summary" in reader.fieldnames
         assert "source_agency" in reader.fieldnames
+        assert "provider_bucket" in reader.fieldnames
         assert "json_path" in reader.fieldnames
 
     def test_source_agency_from_json_field(self, tmp_path: Path) -> None:
@@ -144,8 +145,10 @@ class TestControlsCombined:
             reader = csv.DictReader(f)
             rows = list(reader)
         assert "source_agency" in reader.fieldnames
+        assert "provider_bucket" in reader.fieldnames
         assert "json_path" in reader.fieldnames
         assert rows[0]["source_agency"] == "CSB"
+        assert rows[0]["provider_bucket"] == "csb"
 
 
 class TestSourceAgencyPriority:
@@ -166,6 +169,24 @@ class TestSourceAgencyPriority:
 
         data = {}
         assert resolve_source_agency(data, "") == "UNKNOWN"
+
+    def test_path_segment_wins(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        # known source buried under provider/format subdirs — scanned from path
+        data = {}
+        assert resolve_source_agency(
+            data, "data/structured/incidents/bsee/openai/BSEE-001.json"
+        ) == "BSEE"
+
+    def test_non_source_path_gives_unknown(self) -> None:
+        from src.analytics.build_combined_exports import resolve_source_agency
+
+        # no known source segment — provider/format dirs must NOT become agency
+        data = {}
+        assert resolve_source_agency(
+            data, "data/structured/incidents/anthropic/schema_v2_3/INC-001.json"
+        ) == "UNKNOWN"
 
 
 class TestMalformedJsonSkipped:

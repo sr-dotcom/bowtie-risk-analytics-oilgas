@@ -4,9 +4,12 @@ Builds flat_incidents_combined.csv and controls_combined.csv by scanning
 all JSON files under an incidents directory (any subdirectory depth).
 
 source_agency resolution priority:
-  1. data["source"]["agency"]  (JSON field)
-  2. parent directory name, uppercased
+  1. data["source"]["agency"]  (JSON field — most authoritative)
+  2. First path segment matching a known source: csb, bsee, tsb, phmsa
   3. "UNKNOWN"
+
+provider_bucket is always the immediate parent directory name and is written
+as a separate column so provider/format subfolders remain visible.
 """
 import csv
 import json
@@ -18,9 +21,13 @@ from src.analytics.flatten import CONTROLS_CSV_COLUMNS, flatten_controls
 
 logger = logging.getLogger(__name__)
 
+# Canonical source identifiers — only these are valid fallback values.
+_KNOWN_SOURCES: frozenset[str] = frozenset({"csb", "bsee", "tsb", "phmsa"})
+
 FLAT_INCIDENT_COLUMNS = [
     "incident_id",
     "source_agency",
+    "provider_bucket",
     "incident__source__date_occurred",
     "incident__context__region",
     "incident__context__operator",
@@ -30,24 +37,32 @@ FLAT_INCIDENT_COLUMNS = [
     "json_path",
 ]
 
-COMBINED_CONTROLS_COLUMNS = CONTROLS_CSV_COLUMNS + ["source_agency", "json_path"]
+COMBINED_CONTROLS_COLUMNS = CONTROLS_CSV_COLUMNS + [
+    "source_agency",
+    "provider_bucket",
+    "json_path",
+]
 
 
-def resolve_source_agency(data: dict[str, Any], dir_name: str) -> str:
+def resolve_source_agency(data: dict[str, Any], path_hint: str) -> str:
     """Resolve source agency with three-tier priority.
 
     Args:
         data: Parsed incident JSON dict.
-        dir_name: Name of the parent directory (used as fallback).
+        path_hint: Full or partial file path — all segments are scanned for
+                   a known source identifier (csb, bsee, tsb, phmsa).
 
     Returns:
-        Agency string: JSON field value, uppercased dir name, or "UNKNOWN".
+        Agency string in uppercase, or "UNKNOWN".
     """
     agency = data.get("source", {}).get("agency", "")
     if agency:
-        return agency
-    if dir_name:
-        return dir_name.upper()
+        return str(agency)
+
+    for segment in Path(path_hint).parts:
+        if segment.lower() in _KNOWN_SOURCES:
+            return segment.upper()
+
     return "UNKNOWN"
 
 
@@ -74,7 +89,7 @@ def build_flat_incidents(incidents_dir: Path, out_path: Path) -> int:
             logger.warning(f"Skipping {jf.name}: {e}")
             continue
 
-        agency = resolve_source_agency(data, jf.parent.name)
+        agency = resolve_source_agency(data, str(jf))
         source = data.get("source", {})
         context = data.get("context", {})
         event = data.get("event", {})
@@ -82,6 +97,7 @@ def build_flat_incidents(incidents_dir: Path, out_path: Path) -> int:
         rows.append({
             "incident_id": data.get("incident_id", ""),
             "source_agency": agency,
+            "provider_bucket": jf.parent.name,
             "incident__source__date_occurred": source.get("date_occurred", ""),
             "incident__context__region": context.get("region", ""),
             "incident__context__operator": context.get("operator", ""),
@@ -103,8 +119,8 @@ def build_flat_incidents(incidents_dir: Path, out_path: Path) -> int:
 def build_controls_combined(incidents_dir: Path, out_path: Path) -> int:
     """Build combined controls CSV from all JSON files under incidents_dir.
 
-    Reuses flatten_controls() and appends source_agency + json_path columns.
-    Malformed JSON files are skipped with a WARNING log.
+    Reuses flatten_controls() and appends source_agency, provider_bucket,
+    and json_path columns. Malformed JSON files are skipped with a WARNING log.
 
     Args:
         incidents_dir: Root directory containing incident JSON files.
@@ -123,11 +139,13 @@ def build_controls_combined(incidents_dir: Path, out_path: Path) -> int:
             logger.warning(f"Skipping {jf.name}: {e}")
             continue
 
-        agency = resolve_source_agency(data, jf.parent.name)
+        agency = resolve_source_agency(data, str(jf))
+        bucket = jf.parent.name
         json_path_str = str(jf)
 
         for row in flatten_controls(data):
             row["source_agency"] = agency
+            row["provider_bucket"] = bucket
             row["json_path"] = json_path_str
             all_rows.append(row)
 
