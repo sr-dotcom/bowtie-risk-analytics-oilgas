@@ -626,7 +626,7 @@ def cmd_corpus_extract(args: argparse.Namespace) -> None:
         )
         return
 
-    provider = AnthropicProvider(model=args.model)
+    provider = AnthropicProvider(model=args.model, max_output_tokens=8192)
     run_corpus_extraction(
         manifest_path=manifest_path,
         structured_dir=structured,
