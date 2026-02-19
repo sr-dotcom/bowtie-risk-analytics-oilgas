@@ -14,7 +14,7 @@ By default, aggregation reads normalized Schema v2.3 incidents from:
 Generate that folder first if needed:
 
 ```bash
-python -m src.pipeline convert-schema --incident-dir data/structured/incidents/anthropic --out-dir data/structured/incidents/schema_v2_3
+python -m src.pipeline convert-schema --incident-dir data/structured/incidents/schema_v2_3 --out-dir data/structured/incidents/schema_v2_3
 ```
 
 ## Commands

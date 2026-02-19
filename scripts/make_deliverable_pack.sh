@@ -2,7 +2,7 @@
 set -euo pipefail
 
 TAG="schema"
-SRC_DIR="data/structured/incidents/anthropic"
+SRC_DIR="data/structured/incidents/schema_v2_3"
 V23_DIR="data/structured/incidents/schema_v2_3"
 RUN_REPORTS_DIR="data/structured/incidents/run_reports"
 MANIFEST_CSV="data/structured/structured_manifest.csv"
@@ -45,7 +45,7 @@ mkdir -p "$OUT_DIR"
 
 # Copy data (keep structure predictable for recipients)
 mkdir -p "$OUT_DIR/data/structured/incidents"
-cp -R "$SRC_DIR" "$OUT_DIR/data/structured/incidents/anthropic"
+cp -R "$SRC_DIR" "$OUT_DIR/data/structured/incidents/schema_v2_3"
 cp -R "$V23_DIR" "$OUT_DIR/data/structured/incidents/schema_v2_3"
 
 if [[ -d "$RUN_REPORTS_DIR" ]]; then
@@ -70,7 +70,7 @@ The \`data/structured/incidents/schema_v2_3/\` folder is a local, gitignored out
 **Converted v2.3 set:** \`${V23_DIR}\` (**${V23_COUNT} JSON**)
 
 ## Folder layout
-- \`data/structured/incidents/anthropic/\`
+- \`data/structured/incidents/schema_v2_3/\`
   - Structured outputs from the LLM extraction step (pre-conversion)
 - \`data/structured/incidents/schema_v2_3/\`
   - Converted + normalized **v2.3** incident JSON files
@@ -82,7 +82,7 @@ The \`data/structured/incidents/schema_v2_3/\` folder is a local, gitignored out
 ## Quick verify commands (run from repo root)
 1) Generate Schema v2.3 dataset locally (if missing):
 \`\`\`bash
-python -m src.pipeline convert-schema --incident-dir data/structured/incidents/anthropic --out-dir data/structured/incidents/schema_v2_3
+python -m src.pipeline convert-schema --incident-dir data/structured/incidents/schema_v2_3 --out-dir data/structured/incidents/schema_v2_3
 \`\`\`
 
 2) Strict v2.3 schema validation:
@@ -109,7 +109,7 @@ EOF
     sha256sum $(cat FILES.txt) > SHA256SUMS.txt 2>/dev/null || true
   fi
   echo "Counts:" > COUNTS.txt
-  echo "  anthropic_json: $(find data/structured/incidents/anthropic -type f -name '*.json' | wc -l | tr -d ' ')" >> COUNTS.txt
+  echo "  anthropic_json: $(find data/structured/incidents/schema_v2_3 -type f -name '*.json' | wc -l | tr -d ' ')" >> COUNTS.txt
   echo "  v23_json:       $(find data/structured/incidents/schema_v2_3 -type f -name '*.json' | wc -l | tr -d ' ')" >> COUNTS.txt
 )
 

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 TAG="schema"
-SRC_DIR="data/structured/incidents/anthropic"
+SRC_DIR="data/structured/incidents/schema_v2_3"
 OUT_DIR="data/structured/incidents/schema_v2_3"
 RUN_REPORTS_DIR="data/structured/incidents/run_reports"
 MANIFEST_CSV="data/structured/structured_manifest.csv"
@@ -92,9 +92,9 @@ echo "=== Add: top-level inventory + README additions (inside deliverable folder
 
 ## What’s included
 ### 1) Source structured outputs (pre-normalization)
-- **Path:** \`data/structured/incidents/anthropic/\`
+- **Path:** \`data/structured/incidents/schema_v2_3/\`
 - **What:** Raw structured extraction outputs from the LLM extraction step
-- **Files:** $(find data/structured/incidents/anthropic -type f -name '*.json' | wc -l | tr -d ' ')
+- **Files:** $(find data/structured/incidents/schema_v2_3 -type f -name '*.json' | wc -l | tr -d ' ')
 
 ### 2) Normalized Schema v2.3 outputs
 - **Path:** \`data/structured/incidents/jeffrey_v2_3/\` OR \`data/structured/incidents/schema_v2_3/\`
