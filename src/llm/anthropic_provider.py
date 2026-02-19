@@ -89,6 +89,7 @@ class AnthropicProvider(LLMProvider):
                         "model": self.model,
                         "latency_ms": latency_ms,
                         "usage": data.get("usage"),
+                        "stop_reason": data.get("stop_reason"),
                     }
                     return raw_text
 

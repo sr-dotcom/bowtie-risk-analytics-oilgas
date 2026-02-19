@@ -395,7 +395,7 @@ class NotesInfo(BaseModel):
 # Top-level incident model
 # ---------------------------------------------------------------------------
 
-class IncidentV2_2(BaseModel):
+class IncidentV23(BaseModel):
     """Complete Schema v2.3 incident record."""
 
     model_config = ConfigDict(strict=False)
@@ -421,3 +421,9 @@ class IncidentV2_2(BaseModel):
         elif "controls" in data and "bowtie" not in data:
             data["bowtie"] = {"controls": data.pop("controls")}
         return data
+
+
+# ---------------------------------------------------------------------------
+# Backwards-compat alias — schema is v2.3; old name kept for one release cycle
+# ---------------------------------------------------------------------------
+IncidentV2_2 = IncidentV23
