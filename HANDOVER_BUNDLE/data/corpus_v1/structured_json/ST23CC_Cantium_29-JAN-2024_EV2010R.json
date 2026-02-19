@@ -1,0 +1,425 @@
+{
+  "incident_id": "ST23CC_Cantium_29-JAN-2024_EV2010R",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "BSEE Gulf of Mexico Region Accident Investigation Report - Fire on Glycol Reboiler",
+    "date_published": "2024-06-27",
+    "date_occurred": "2024-01-29",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - South Timbalier Block 23",
+    "operator": "Cantium, LLC",
+    "operating_phase": "production",
+    "materials": [
+      "glycol",
+      "natural gas"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Fire",
+    "costs": "40000",
+    "actions_taken": [
+      "Pumping operations stopped immediately",
+      "Calls made to field Foreman and HSE",
+      "Operators from GI 37 R arrived by boat at 1900 hours",
+      "Water hose with potable water used to extinguish fire at 2000 hours",
+      "Still column to be sent back for thorough cleaning",
+      "Perforated plate to be replaced with expanded metal"
+    ],
+    "summary": "On January 29, 2024 at approximately 1745, a fire occurred on the Glycol Reboiler vent line at Cantium LLC facility South Timbalier Block 23 CC. The facility had shut in due to a Level Safety Low on the Glycol Surge Tank. While operators were pumping glycol into the Surge Vessel, a flame was noticed coming from the Pressure Safety Valve vent line for the Glycol Reboiler when the valve relieved pressure. The fire was extinguished using potable water. Investigation revealed that the packing section was not reinstalled properly in the still column after maintenance in October 2023. Without the packing section, the ability to preheat glycol was removed, allowing entrained gases to be released into the Reboiler, causing the PSV to relieve and ignite.",
+    "recommendations": [],
+    "key_phrases": [
+      "Glycol Reboiler fire",
+      "Pressure Safety Valve vent line",
+      "packing section not reinstalled",
+      "still column clogged with sludge",
+      "ceramic saddles removed",
+      "entrained gases released",
+      "perforated plate restriction"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Flammable gas under pressure in glycol dehydration system",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Improper reassembly of still column after maintenance",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate cleaning of still column during repair",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Pressure buildup in reboiler due to missing packing section",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fire at PSV vent line",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment damage to still column",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Production shutdown",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Packing section installation in still column",
+        "side": "prevention",
+        "barrier_role": "Prevent entrained gases from entering reboiler",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical barrier to prevent hazardous condition",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The probable cause is that the packing section was not reinstalled in the still column",
+            "Cantium crews then proceeded to disassemble the still column and removed the 1\" ceramic saddles that make up the packing section of the still column",
+            "Without the packing section, it removes the ability to preheat the glycol which allows for entrained gases to be released into the Reboiler"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Still column cleaning procedure during maintenance",
+        "side": "prevention",
+        "barrier_role": "Prevent clogging and ensure proper operation",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural control to maintain equipment integrity",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The clog appears to be due to the still column not being cleaned enough",
+            "Immediately after the gas dehydration unit was placed back in service the still column clogged with sludge",
+            "Cantium's path forward is to send the still column back in to be thoroughly cleaned"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Pressure Safety Valve (PSV) on Glycol Reboiler",
+        "side": "prevention",
+        "barrier_role": "Prevent overpressure in reboiler",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary protection against overpressure",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "a flame was noticed coming from the Pressure Safety Valve (PSV) vent line for the Glycol Reboiler (BBC 201) when the valve relieved pressure",
+            "the plate for the packer can cause a sufficient restriction which would allow the PSV to relieve"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Level Safety Low (LSL) on Glycol Surge Tank",
+        "side": "prevention",
+        "barrier_role": "Detect low glycol level and initiate shutdown",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Automated detection and response system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "At approximately 1730, the facility shut in due to a Level Safety Low (LSL) on the Glycol Surge Tank (ABJ 102)"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Operator monitoring and response",
+        "side": "mitigation",
+        "barrier_role": "Detect fire and initiate emergency response",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Human detection and emergency response",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "a flame was noticed coming from the Pressure Safety Valve (PSV) vent line",
+            "At that time pumping operations stopped and calls were made to the field Forman and HSE",
+            "the only 2 personnel on board were at the scene of the incident"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Fire suppression using water",
+        "side": "mitigation",
+        "barrier_role": "Extinguish fire and prevent escalation",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Active fire suppression to recover from incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 2000 hours, a plan was made to put a water hose with potable water in the top of still column to put the fire out which was successful"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Emergency Shutdown (ESD) system",
+        "side": "mitigation",
+        "barrier_role": "Isolate hazard and prevent escalation",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Automated emergency isolation system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "No Emergency Shut Down (ESD) and muster were activated because the facility was already shut in and the only 2 personnel on board were at the scene of the incident"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Perforated plate design in still column",
+        "side": "prevention",
+        "barrier_role": "Control flow through packing section",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Design feature to support packing section operation",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Equipment Failure- Flawed equipment design of perforated plate inside of the still column instead of expanded metal",
+            "Cantium is going to replace the perforated metal plate with expanded metal in order to help with flow through the packing section",
+            "the plate for the packer can cause a sufficient restriction which would allow the PSV to relieve"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "positive",
+      "communication_mentioned": true,
+      "situational_awareness_value": "positive",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

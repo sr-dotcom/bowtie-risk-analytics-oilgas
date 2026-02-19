@@ -1,0 +1,595 @@
+{
+  "incident_id": "CSB-2013-02-I-TX",
+  "source": {
+    "doc_type": "Investigation Report",
+    "url": null,
+    "title": "West Fertilizer Company Fire and Explosion",
+    "date_published": "2016-01-01",
+    "date_occurred": "2013-04-17",
+    "timezone": "CDT"
+  },
+  "context": {
+    "region": "West, Texas, USA",
+    "operator": "West Fertilizer Company",
+    "operating_phase": "storage and distribution",
+    "materials": [
+      "fertilizer grade ammonium nitrate (FGAN)",
+      "anhydrous ammonia",
+      "potash",
+      "diammonium phosphate",
+      "ammonium sulfate",
+      "zinc sulfate"
+    ]
+  },
+  "event": {
+    "top_event": "Fire and Detonation of Ammonium Nitrate",
+    "incident_type": "explosion",
+    "costs": 230000000,
+    "actions_taken": [
+      "Emergency response by West Volunteer Fire Department and surrounding fire departments",
+      "Joint ATF and Texas State Fire Marshal investigation",
+      "CSB investigation and forensic testing",
+      "Facility evacuation and emergency medical response",
+      "Reconstruction and rebuilding of damaged structures"
+    ],
+    "summary": "On April 17, 2013, at approximately 7:51 pm CDT, a fire and explosion occurred at the West Fertilizer Company facility in West, Texas. The facility stored between 40 and 60 tons of fertilizer grade ammonium nitrate (FGAN). The explosion fatally injured 12 emergency responders and 3 members of the public, with more than 260 injured. The blast destroyed the WFC facility and caused widespread damage to over 150 offsite buildings, including schools, a nursing home, and residential structures. Total insurance-related losses were estimated at approximately $230 million.",
+    "recommendations": [
+      "Implement inherently safer technology and alternative FGAN formulations",
+      "Establish automatic sprinkler systems in FGAN storage facilities",
+      "Improve federal and state regulations for FGAN storage and handling",
+      "Enhance emergency response training and pre-incident planning for hazardous materials",
+      "Implement land use planning and zoning regulations to separate hazardous chemical storage from populated areas",
+      "Improve insurance coverage requirements and loss control inspections",
+      "Enhance firefighter training on FGAN hazards and appropriate response procedures"
+    ],
+    "key_phrases": [
+      "fertilizer grade ammonium nitrate detonation",
+      "contamination of FGAN pile",
+      "lack of automatic sprinkler system",
+      "inadequate emergency response training",
+      "insufficient pre-incident planning",
+      "lack of hazmat knowledge among responders",
+      "offsite consequences and land use planning",
+      "inadequate insurance coverage",
+      "faulty electrical wiring as possible ignition source",
+      "heating and ventilation contributing factors"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Fertilizer Grade Ammonium Nitrate (FGAN) Storage"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Electrical System Defects"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Contamination of FGAN"
+      },
+      {
+        "hazard_id": "H-004",
+        "name": "Proximity of Facility to Populated Areas"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Ignition of FGAN pile from electrical fault"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Fire in FGAN storage area"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Heating and decomposition of contaminated FGAN"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Detonation of FGAN under fire conditions"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fatalities among emergency responders"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Fatalities among public"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Mass injuries to public and responders"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Destruction of facility and surrounding structures"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Damage to schools and educational facilities"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "Damage to nursing home and healthcare facilities"
+      },
+      {
+        "consequence_id": "CON-007",
+        "name": "Damage to residential structures"
+      },
+      {
+        "consequence_id": "CON-008",
+        "name": "Infrastructure damage to city"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Electrical System Design and Maintenance",
+        "side": "prevention",
+        "barrier_role": "prevent ignition source",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "primary prevention barrier to eliminate ignition source",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Exposed 440-Volt Electrical Wiring Identified in 2007 Survey",
+            "Damaged Electrical Cord Identified in 2008 Insurance Survey",
+            "Three possible scenarios remain under consideration: (1) faulty electrical wiring, (2) short circuit in an electrical golf cart, and (3) intentional act of arson"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Automatic Sprinkler System",
+        "side": "mitigation",
+        "barrier_role": "suppress fire and prevent detonation",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "fire suppression to prevent escalation to detonation",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "CSB concluded that the construction of the bins and other building materials as well as the lack of an automatic sprinkler system plausibly contributed to the detonation"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "FGAN Pile Contamination Prevention",
+        "side": "prevention",
+        "barrier_role": "prevent contamination that increases detonation sensitivity",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "prevent conditions that increase FGAN reactivity",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Contamination of the FGAN Pile",
+            "Forensic Testing of West Fertilizer Company Samples"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Housekeeping and Facility Maintenance",
+        "side": "prevention",
+        "barrier_role": "prevent accumulation of combustible materials and contamination",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "reduce fuel sources and contamination",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Housekeeping"
+          ],
+          "confidence": "low"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Insurance Loss Control Inspections",
+        "side": "prevention",
+        "barrier_role": "identify and correct safety deficiencies",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "third-party oversight of facility safety",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Triangle Loss Control Surveys That Did Not Include FGAN Hazards",
+            "The company that insured WFC at the time of the incident did not appear to have conducted its own safety inspections of the facility"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Pre-Incident Planning and Emergency Response Training",
+        "side": "mitigation",
+        "barrier_role": "enable effective emergency response to minimize consequences",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "emergency response to mitigate consequences",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "inadequate",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the West Volunteer Fire Department did not conduct pre-incident planning or response training at WFC",
+            "was likely unaware of the potential for FGAN detonation",
+            "did not take recommended incident response actions at the fire scene",
+            "did not have appropriate training in hazardous materials response"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Hazardous Materials (HAZMAT) Training for Emergency Responders",
+        "side": "mitigation",
+        "barrier_role": "enable responders to recognize hazards and take appropriate protective actions",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "emergency response knowledge and situational awareness",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "inadequate",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Firefighter FGAN Knowledge and Lack of HAZMAT Training",
+            "Lack of Situational Awareness and Risk Assessment Knowledge"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Incident Command System (ICS) Implementation",
+        "side": "mitigation",
+        "barrier_role": "coordinate emergency response and ensure appropriate incident management",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "emergency response coordination",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "inadequate",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Lack of Incident Command System",
+            "Lack of Established Incident Management System"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Land Use Planning and Zoning Regulations",
+        "side": "mitigation",
+        "barrier_role": "separate hazardous facilities from populated areas to reduce offsite consequences",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "reduce exposure of public to hazardous facility consequences",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003",
+          "CON-005",
+          "CON-006",
+          "CON-007",
+          "CON-008"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Lack of Zoning Regulations",
+            "The City That 'Came to' the WFC Over the Years",
+            "growth in the city of West led to the development of land closer to the WFC property line, including a park (less than 150 feet), an apartment complex, the nearest aggregation of homes (about 370 feet), West Intermediate School (a little more than 200 feet), and West High School (about 500 feet)"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Regulatory Oversight and Compliance (OSHA PSM, EPA RMP)",
+        "side": "prevention",
+        "barrier_role": "ensure facility compliance with safety management standards",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "regulatory framework for process safety management",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "CSB found several shortcomings in federal and state regulations and standards that could reduce the risk of another incident of this type. These include the Occupational Safety and Health Administration's Explosives and Blasting Agents and Process Safety Management standards, the Environmental Protection Agency's Risk Management Program"
+          ],
+          "confidence": "medium"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "inadequate",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "inadequate",
+      "communication_mentioned": true,
+      "situational_awareness_value": "inadequate",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "inadequate",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "inadequate",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "inadequate",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "inadequate",
+      "supervision_mentioned": true,
+      "training_value": "inadequate",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

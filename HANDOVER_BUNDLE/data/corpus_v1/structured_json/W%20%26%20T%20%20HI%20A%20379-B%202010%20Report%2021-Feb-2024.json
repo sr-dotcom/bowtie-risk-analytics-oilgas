@@ -1,0 +1,462 @@
+{
+  "incident_id": "W%20%26%20T%20%20HI%20A%20379-B%202010%20Report%2021-Feb-2024",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Fire Incident during Construction Operations at HI A 379 B Platform",
+    "date_published": "2024-07-16",
+    "date_occurred": "2024-02-21",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico, HI Area Block A 379",
+    "operator": "W & T Offshore, Inc.",
+    "operating_phase": "production",
+    "materials": [
+      "methanol",
+      "hydrocarbons",
+      "flammable chemicals"
+    ]
+  },
+  "event": {
+    "top_event": "Fire",
+    "incident_type": "Fire during hot work operations",
+    "costs": "5500",
+    "actions_taken": [
+      "Work stopped immediately",
+      "Alarm sounded",
+      "Emergency Shut Down (ESD) initiated",
+      "Fire extinguished using one 125-pound ABC wheeled fire extinguisher, two 30-pound fire extinguishers, and three firewater hose reels",
+      "M/V Melissa directed to return to platform and placed on standby",
+      "BSEE directed platform to remain offline until cause determined and hazards mitigated"
+    ],
+    "summary": "On February 21, 2024, at approximately 1349 hours, a fire occurred at the HI A 379 B platform operated by W&T Offshore during construction operations to replace corroded deck plating. While a construction fitter was grinding freshly laid welds, sparks migrated through two layers of protective fire blanket barriers into a chemical/methanol storage area approximately six feet away, igniting flammable materials. The fire was extinguished using multiple fire extinguishers and hose reels. The facility was shut down via ESD. Investigation revealed that flammable materials should have been removed per JSA requirements rather than relying on fire blanket barriers.",
+    "recommendations": [
+      "All approved welding and burning plans should state the proper Code of Federal Regulations must be followed",
+      "Ensure flammable or combustible items are removed from hot work areas as per JSA requirements",
+      "Improve pre-job safety meetings to ensure all written procedures are discussed and followed",
+      "Resolve contradictions between approved General Welding and Burning Plan and Hot Work Checklist"
+    ],
+    "key_phrases": [
+      "sparks migrated through two layers of protective fire blanket barriers",
+      "chemical/methanol storage area",
+      "Remove all FLAMMABLE OR COMBUSTABLE ITEMS",
+      "failure in site leadership issue",
+      "no discussion or consideration was given to the two written requirements",
+      "swirling winds generated during a helicopter landing operation"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Flammable materials (methanol and hydrocarbons)",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Hot work ignition sources (grinding sparks)",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Sparks from grinding operations migrating to flammable materials",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate separation between hot work and flammable storage",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Helicopter downwash carrying sparks to flammable materials",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Failure to remove flammable materials from hot work area",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fire in chemical/methanol storage area",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment damage (melted poly tanks, electrical cable)",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Production shutdown",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Property damage ($5,500)",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Fire blanket barriers between work area and chemical storage",
+        "side": "prevention",
+        "barrier_role": "Physical barrier to prevent spark migration",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical control to prevent ignition",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "sparks migrated through two (2) layers of protective fire blanket barriers into a chemical/methanol storage area",
+            "The construction crew elected to use the third control measure of the W&T Offshore Hot Work Checklist, which was erecting fire blanket barriers between the work area and the chemical storage area",
+            "Utilizing the mentioned control measure did not eliminate the hazard"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Removal of flammable materials from hot work area (per JSA)",
+        "side": "prevention",
+        "barrier_role": "Elimination of ignition source exposure",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary administrative control to eliminate hazard",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Zealous Job Safety Analysis (JSA) clearly states 'Remove all FLAMMABLE OR COMBUSTABLE ITEMS, Make sure no Hydrocarbons are present.'",
+            "Storage and chemical tote tanks could have been moved to another area",
+            "Written procedures in submitted documents clearly states to remove hydrocarbons prior to hot work commencing",
+            "no discussion or consideration was given to the two written requirements cited in the Zealous JSA"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Hot Work Checklist (W&T Offshore)",
+        "side": "prevention",
+        "barrier_role": "Verification of hot work precautions",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Verification and oversight control",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "line-item number 17 of the W&T Offshore Hot Work Checklist states, 'Equipment containing hydrocarbons or other flammable substances is relocated at least 35 feet horizontally from the welding site... or is otherwise protected with flame-proof covers...' This line item was checked as yes.",
+            "The construction crew elected to use the third control measure of the W&T Offshore Hot Work Checklist",
+            "While reviewing W&T approved General Welding and Burning Plan this document contradicts the W&T Hot Work Checklist"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Pre-job safety meeting",
+        "side": "prevention",
+        "barrier_role": "Communication and verification of safety requirements",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Supervisory verification control",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "communication",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Supervision – Inadequate pre-job safety meeting",
+            "Interviews with both the Zealous Foreman and the W&T PIC found that no discussion or consideration was given to the two written requirements cited in the Zealous JSA and the W&T Hot Work Safety Checklist",
+            "it is the responsibility of the PIC and Task Supervisor (Construction Foreman) to ensure control measures or in place and effective"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Firewatch during hot work",
+        "side": "prevention",
+        "barrier_role": "Early detection of fire initiation",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Monitoring and early detection control",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the Firewatch notified the construction crew, and all work was stopped"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Emergency Shut Down (ESD) system",
+        "side": "mitigation",
+        "barrier_role": "Isolation of hydrocarbon sources during emergency",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The alarm was then sounded and an Emergency Shut Down (ESD) was initiated, which shut-in the facility"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Fire extinguishers and hose reels",
+        "side": "mitigation",
+        "barrier_role": "Fire suppression equipment",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response equipment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The fire was extinguished using one (1) 125-pound (#) ABC wheeled fire extinguisher, two (2) 30 # fire extinguishers, and three (3) firewater hoses reels"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "35-foot separation distance requirement (30 CFR 250.113)",
+        "side": "prevention",
+        "barrier_role": "Regulatory requirement for safe distance",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary regulatory control",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Equipment containing hydrocarbons or other flammable substances is relocated at least 35 feet horizontally from the welding site",
+            "30 CFR 250.113(a) which states in part 'Before you weld, you must move any equipment containing hydrocarbons or other flammable substances at least 35 feet horizontally from the welding area'",
+            "chemical/methanol storage area located just behind the protective barrier, approximately six feet (6') from the grinding area"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "positive",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

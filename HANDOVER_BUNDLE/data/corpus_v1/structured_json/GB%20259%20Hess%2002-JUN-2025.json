@@ -1,0 +1,400 @@
+{
+  "incident_id": "GB%20259%20Hess%2002-JUN-2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - Hand Injury During AHU Belt Inspection",
+    "date_published": "2025-09-09",
+    "date_occurred": "2025-06-02",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America - Garden Banks Block 259",
+    "operator": "Hess Corporation",
+    "operating_phase": "drilling",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Loss of Containment - Human Injury",
+    "incident_type": "Hand injury - partial amputation",
+    "costs": null,
+    "actions_taken": [
+      "Injured worker reported to Rig Medic for treatment",
+      "Worker evacuated by medevac helicopter on 3 June 2025 to East Jefferson Hospital",
+      "Minor surgery performed to close wound",
+      "Worker released to work with light duty restrictions",
+      "BSEE conducted onsite Incident Follow-up Investigation on 4 June 2025",
+      "G-110 (C) Incident of Noncompliance (INC) issued to Hess Corporation"
+    ],
+    "summary": "On 02 June 2025, a Transocean Second Engineer sustained a hand injury during drilling operations at Garden Banks Block 259. While checking the tension on an air handling unit (AHU) belt in the Mud Module Electrical Room, he placed his left hand on a moving belt without proper lockout/tagout isolation. His hand was drawn between the belt and pulley, resulting in partial amputation of the left hand middle and ring fingertips. The engineer had shut off power but did not perform full energy isolation, worked without supervision, and did not communicate his task change to his supervisor. He was evacuated and treated for amputation of distal ends of middle and ring fingers with open non-displaced fractures.",
+    "recommendations": [
+      "Hess must submit a letter of explanation within 14 days to the Lafayette District Well Operations Section Chief on the Incident of Non-Compliance along with plans to prevent future incidents of this nature"
+    ],
+    "key_phrases": [
+      "improper hand placement",
+      "lockout/tagout",
+      "energy isolation",
+      "no supervision",
+      "lone worker",
+      "line of fire hazards",
+      "moving equipment",
+      "Hazard Identification Prompt Card"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Rotating machinery - AHU belt and pulley",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Contact with moving belt while energized",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate energy isolation",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Unauthorized task execution without supervision",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury - partial amputation",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Medical evacuation required",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Lost work time injury (>3 days)",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Lockout/Tagout (LOTO) Energy Isolation System",
+        "side": "prevention",
+        "barrier_role": "Prevent contact with energized equipment",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary procedural control to isolate energy before maintenance",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Transocean Second Engineer did not isolate the energy to the AHU using the lockout/tagout system",
+            "The task of checking the tension on the AHU belt would have required a full energy isolation (LOTO) in place per the requirements of Transocean's Energy Isolation Process",
+            "Prior to checking the AHU belt, he did not communicate his change of plans to anyone about turning off power to the AHU equipment versus the required full isolation by lockout/tagout"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Physical Guard on AHU Belt",
+        "side": "prevention",
+        "barrier_role": "Physical barrier to prevent contact with moving parts",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical barrier to prevent contact with rotating equipment",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "He shut off the power to the AHU and removed the guard over the AHU belt",
+            "When inspecting the tension of the AHU belt, he placed his left hand on the belt while the belt and pully were still in motion"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Supervisory Approval Process for Maintenance Tasks",
+        "side": "prevention",
+        "barrier_role": "Ensure proper authorization and oversight for maintenance work",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary oversight control to verify proper procedures are followed",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "communication",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "would have required a supervisory approval process for the task",
+            "The Transocean Second Engineer had no supervision at the time of the injury, nor did he communicate his decision to check the belt's tension to his supervisor",
+            "No supervision. The Transocean Second Engineer had no supervision at the time of the injury, nor did he communicate his decision to check the belt's tension to his supervisor"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Lone Worker Communication Policy",
+        "side": "prevention",
+        "barrier_role": "Ensure communication when working alone",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary procedural control for lone worker safety",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "while alone in the MMER performing another task",
+            "nor did he communicate his decision to check the belt's tension to his supervisor as required by the Transocean policy for Lone Workers",
+            "Prior to checking the AHU belt, he did not communicate his change of plans to anyone"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Hazard Identification Prompt Card for Line of Fire",
+        "side": "prevention",
+        "barrier_role": "Identify and mitigate line of fire hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary hazard identification tool for task planning",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Transocean Second Engineer did not adhere to a Transocean Hazard Identification Prompt Card that was completed for identifying line of fire hazards where personnel could be caught by moving equipment",
+            "Inadequate hazard analysis. A Transocean Hazard Identification Prompt Card was completed for identifying line of fire hazards where personnel could be caught by moving equipment but was not followed by the Transocean Second Engineer"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Rig Medic and Onsite Medical Treatment",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate medical response to injury",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to mitigate injury consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Transocean Second Engineer reported to the Rig Medic for treatment"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Medical Evacuation (Medevac) Capability",
+        "side": "mitigation",
+        "barrier_role": "Transport injured personnel to advanced medical care",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to enable advanced medical treatment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "On 3 June 2025, he was evacuated by a medevac helicopter to East Jefferson Hospital located in Metairie, Louisiana for a medical evaluation and further treatment"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

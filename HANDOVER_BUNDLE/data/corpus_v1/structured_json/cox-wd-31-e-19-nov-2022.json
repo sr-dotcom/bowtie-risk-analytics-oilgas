@@ -1,0 +1,422 @@
+{
+  "incident_id": "cox-wd-31-e-19-nov-2022",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - West Delta 31 Platform E-DRL Allision",
+    "date_published": "2023-02-14",
+    "date_occurred": "2022-11-19",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - West Delta Block 31",
+    "operator": "Cox Operating, L.L.C.",
+    "operating_phase": "production",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Vessel Allision with Platform",
+    "incident_type": "Allision",
+    "costs": null,
+    "actions_taken": [
+      "Platform shut in",
+      "Production deck area barricaded off",
+      "Production operator transported to onshore medical facility",
+      "M&H engineering commissioned to survey damage",
+      "Structure model analysis performed with 15 support members removed",
+      "Safe Boarding Plan submitted to BSEE",
+      "Platform operating under approved Safe Operations Plan with 20 ft wave height restriction"
+    ],
+    "summary": "On 19 November 2022 at approximately 0430 hours, motor vessel Jacob Gerald allided into West Delta 31 Platform E-DRL while transporting personnel. The captain dozed off before impact. The vessel was traveling at cruising speed of 8 knots when the captain fell asleep. A production operator aboard the vessel reported back soreness and was transported to an onshore medical facility, later released to full duty (first aid case). The allision caused damage to several structural members. The platform was shut in and the damaged area barricaded. Engineering analysis determined the platform was safe to man with wave heights below 20 feet. Total repair costs remain unknown but not expected to exceed $25K.",
+    "recommendations": [],
+    "key_phrases": [
+      "captain dozed off",
+      "fell asleep at the helm",
+      "allision into the platform",
+      "damage to several structural members",
+      "15 support members removed",
+      "safe to man as long as the maximum wave height was below 20 feet",
+      "Human Performance Error - Inattention to task/Fatigue"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Moving Vessel Near Platform",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Loss of Vessel Control Due to Captain Fatigue",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inattention to Navigation Task",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Structural Damage to Platform",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Personnel Injury",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Production Shutdown",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Captain Alertness and Attention to Navigation",
+        "side": "prevention",
+        "barrier_role": "Prevent loss of vessel control",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Direct operational control by vessel captain",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "fatigue",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the captain dozed off sometime before impact",
+            "Captain fell asleep at the helm",
+            "Human Performance Error - Inattention to task/Fatigue"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Vessel Speed Management During Transit",
+        "side": "prevention",
+        "barrier_role": "Control vessel approach speed to platform",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Operational procedure for safe vessel transit",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "fatigue",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The trip was to take about 30 minutes at the M/V's cruising speed of 8 knots",
+            "AIS data shows the vessel going from 8.6 knots to 1.7 knots at 0434 hours"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Automatic Identification System (AIS)",
+        "side": "prevention",
+        "barrier_role": "Monitor and track vessel position and speed",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Independent monitoring system for vessel tracking",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Automatic Identification System (AIS) data obtained by the USCG showing the vessel's transit and speed was shared with BSEE",
+            "The AIS data shows the vessel going from 8.6 knots to 1.7 knots at 0434 hours"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Platform Structural Design and Integrity",
+        "side": "mitigation",
+        "barrier_role": "Withstand impact and maintain structural integrity",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical barrier to prevent structural collapse",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "causing damage to several structural members",
+            "M&H performed a structure model analysis of the structure with 15 support members removed",
+            "It was determined by M&H that the platform was safe to man as long as the maximum wave height was below 20 feet"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Emergency Response and Platform Shutdown",
+        "side": "mitigation",
+        "barrier_role": "Prevent escalation after structural damage",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary response to secure facility after incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The platform was shut in and the area of the production deck, above where the damage occurred from the allision, was barricaded off to prevent anyone from entering",
+            "BSEE requested Cox shut in the facility until a professional engineer could evaluate the damage"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Medical Evaluation and Treatment",
+        "side": "mitigation",
+        "barrier_role": "Assess and treat personnel injuries",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident recovery action for injured personnel",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "A production operator (PO) aboard the M/V at the time of the incident reported having soreness in his back and was taken to an onshore medical facility for further evaluation",
+            "The PO was released back to full duty without restrictions and the injury was classified as a first aid case"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Engineering Assessment and Safe Boarding Plan",
+        "side": "mitigation",
+        "barrier_role": "Verify structural safety and establish safe operating limits",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Independent verification of structural integrity post-incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Cox commissioned M&H engineering and consulting firm to survey the damage",
+            "M&H performed a structure model analysis of the structure with 15 support members removed and various combinations of main deck live load and wave height applied",
+            "Cox submitted a Safe Boarding plan and the third party engineering survey to the Bureau of Safety and Environmental Enforcement (BSEE) on 8 December 2022"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "BSEE Regulatory Oversight and Investigation",
+        "side": "mitigation",
+        "barrier_role": "Independent investigation and regulatory enforcement",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Third-party regulatory oversight and verification",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "On 19 November 2022 at approximately 1000 hours, BSEE received notification from Cox that an allision occurred",
+            "On 22 November 2022, BSEE accompanied the United States Coast Guard (USCG) arriving at WD 31 E and conducted an onsite investigation",
+            "BSEE concurred with the Safe Boarding Plan and Engineering Survey"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": "negative",
+      "fatigue_mentioned": true,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": false,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

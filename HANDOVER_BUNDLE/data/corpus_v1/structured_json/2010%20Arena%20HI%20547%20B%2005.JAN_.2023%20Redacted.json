@@ -1,0 +1,433 @@
+{
+  "incident_id": "2010%20Arena%20HI%20547%20B%2005.JAN_.2023%20Redacted",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Fire at High Island 547 B Platform - Glycol Dehydration Unit",
+    "date_published": "2023-03-15",
+    "date_occurred": "2023-01-05",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - High Island Area Block 547",
+    "operator": "Arena Offshore, LP",
+    "operating_phase": "production",
+    "materials": [
+      "glycol",
+      "natural gas"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Fire",
+    "costs": "100000",
+    "actions_taken": [
+      "Platform emergency shut down device activated",
+      "Fire extinguished using two 150 pound and two 30-pound fire extinguishers",
+      "Fire extinguished in ten minutes",
+      "Glycol Reboiler Dehydration unit removed and transported to Universal Equipment Company for inspection",
+      "Root cause analysis conducted with third-party consultant GIR Solutions"
+    ],
+    "summary": "On January 5, 2023, at 1730 hours, a fire occurred at High Island 547 B platform involving the Glycol Reboiler Dehydration system. The still column vent pipe became plugged, resulting in pressure build up until it ruptured. The rupture caused glycol to spray which contacted the reboiler and exhaust stack (operating at 750-800°F), igniting the glycol mixture. Platform operators activated emergency shutdown and extinguished the fire in ten minutes using fire extinguishers. No injuries or pollution occurred. Fire damage was limited to the Glycol Reboiler and Dehydration unit, totaling over $100,000.",
+    "recommendations": [
+      "Develop a servicing plan to inspect the Still Column Vent piping",
+      "Implement a still column replacement campaign to coincide with the 5-year fire tube inspection requirement",
+      "Perform a condition assessment of all still columns across the gulf by the end of 1st quarter FY 23"
+    ],
+    "key_phrases": [
+      "still column vent pipe became plugged",
+      "pressure build up in the column vent pipe until it ruptured",
+      "glycol to spray which contacted the reboiler and exhaust stack",
+      "operating temperature of 750 to 800 degrees Fahrenheit",
+      "ignited the glycol mixture",
+      "Build up and clogging of the Still Column Vent pipe"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Flammable glycol mixture under pressure and temperature",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Still column vent pipe blockage and plugging",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Pressure build-up in still column vent system",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Vent pipe rupture releasing glycol",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Glycol contact with high temperature ignition sources",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fire on glycol dehydration unit",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment damage exceeding $100,000",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Potential personnel injury",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Still column vent pipe inspection and maintenance program",
+        "side": "prevention",
+        "barrier_role": "Prevent blockage and plugging of vent pipe",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Proactive inspection to prevent initiating event",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "still column vent pipe became plugged",
+            "Build up and clogging of the Still Column Vent pipe",
+            "Develop a servicing plan to inspect the Still Column Vent piping"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Pressure relief system for still column vent",
+        "side": "prevention",
+        "barrier_role": "Prevent pressure build-up leading to rupture",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary protection against overpressure",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "resulting in pressure build up in the column vent pipe until it ruptured"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Vent pipe structural integrity",
+        "side": "prevention",
+        "barrier_role": "Contain pressure and prevent rupture",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Physical barrier to contain process fluids",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "pressure build up in the column vent pipe until it ruptured",
+            "The rupture caused glycol to spray"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Separation of flammable materials from ignition sources",
+        "side": "prevention",
+        "barrier_role": "Prevent contact between glycol and hot surfaces",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Design to prevent ignition scenario",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "glycol to spray which contacted the reboiler and exhaust stack",
+            "Both have an operating temperature of 750 to 800 degrees Fahrenheit which ignited the glycol mixture"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Gas detection system",
+        "side": "mitigation",
+        "barrier_role": "Detect release and enable early response",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Detection and alarm to enable response",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "unknown",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Witnesses reported, while working on deck, hearing a gas igniting loud noise"
+          ],
+          "confidence": "low"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Platform emergency shutdown system",
+        "side": "mitigation",
+        "barrier_role": "Isolate fuel source and limit fire escalation",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Automated or manual shutdown to control event",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "An Arena operator activated the platform emergency shut down device"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Portable fire extinguishers and trained personnel",
+        "side": "mitigation",
+        "barrier_role": "Suppress fire and prevent escalation",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Emergency response to control consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "two Arena operators began extinguishing the fire with two 150 pound and two 30-pound fire extinguishers with assistance from a third",
+            "The fire was extinguished in ten minutes"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "5-year fire tube inspection requirement",
+        "side": "prevention",
+        "barrier_role": "Ensure equipment integrity through periodic inspection",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Regulatory compliance and proactive maintenance",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Arena will implement a still column replacement campaign to coincide with the 5-year fire tube inspection requirement"
+          ],
+          "confidence": "medium"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "positive",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "positive",
+      "communication_mentioned": true,
+      "situational_awareness_value": "positive",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "positive",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "positive",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": "positive",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

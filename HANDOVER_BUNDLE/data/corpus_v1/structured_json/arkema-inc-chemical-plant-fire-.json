@@ -1,0 +1,595 @@
+{
+  "incident_id": "unknown",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": null,
+    "title": "Clima Extremo, Consecuencias Extremas: Investigación de la CSB de las Instalaciones de Arkema en Crosby y el Huracán Harvey",
+    "date_published": "2018",
+    "date_occurred": "2017-08-31",
+    "timezone": "America/Chicago"
+  },
+  "context": {
+    "region": "Crosby, Texas, USA",
+    "operator": "Arkema Inc.",
+    "operating_phase": "storage",
+    "materials": [
+      "organic peroxides",
+      "liquid nitrogen"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Refrigeration Containment Leading to Organic Peroxide Decomposition and Fire",
+    "incident_type": "chemical fire / reactive chemical release",
+    "costs": null,
+    "actions_taken": [
+      "Arkema activated hurricane preparedness plan and evacuation brigade",
+      "Organic peroxides relocated from low-temperature depots to refrigerated trailers",
+      "Refrigerated trailers moved to elevated areas within the facility",
+      "Electrical equipment proactively de-energized to prevent short circuits from floodwater",
+      "Backup generators activated automatically but subsequently shut down due to high water levels",
+      "Arkema alerted local emergency personnel about potential reactive chemical incident",
+      "Evacuation brigade evacuated on 29 August 2017",
+      "1.5-mile evacuation zone established around the facility",
+      "Highway 90 kept open eastbound to allow emergency resource movement",
+      "Voluntary firefighters sent to assess the scene",
+      "Unified Command reviewed telemetry data from refrigerated trailers",
+      "Controlled burn of six remaining refrigerated trailers conducted on 3 September 2017",
+      "Evacuation zone lifted after fires extinguished"
+    ],
+    "summary": "On 31 August 2017, a fire broke out at Arkema's Crosby, Texas facility after Hurricane Harvey caused unprecedented flooding that exceeded the 500-year floodplain elevation. The flooding disabled the facility's primary electrical supply, backup generators, liquid nitrogen cooling system, and refrigerated trailers used to store organic peroxides at low temperatures. As refrigeration was lost, organic peroxides decomposed and ignited. Three separate fire events consumed more than 350,000 pounds of organic peroxide across nine refrigerated trailers over twelve days (24 August to 4 September 2017). Vapors from decomposing product crossed a public highway, resulting in 21 emergency responders seeking medical attention. Over 200 residents within 1.5 miles were evacuated. The incident revealed common-cause failure of all protective layers due to flooding, inadequate flood risk awareness, and gaps in process hazard analysis documentation.",
+    "recommendations": [
+      "Facilities should conduct analysis to determine susceptibility to extreme weather events including evaluation of 100- and 500-year floodplain maps",
+      "Risk assessment and adequacy of safeguards must be evaluated in process safety management programs such as PHAs",
+      "Facilities must ensure critical protections and equipment are not susceptible to common-cause failure and that independent layers of protection exist for high flood scenarios",
+      "More robust industry guidance is needed to help high-risk chemical facilities better prepare for extreme weather events",
+      "Companies should develop systems to retain key summarised incident information documenting historical process safety risks including low-probability, high-consequence flood events",
+      "Emergency responders should not reopen roads near a chemical facility until combustion is confirmed absent, regardless of telemetry indications",
+      "CSB issued safety recommendations to Arkema Crosby management, Arkema Inc., AIChE Center for Chemical Process Safety, and Harris County officials"
+    ],
+    "key_phrases": [
+      "organic peroxide decomposition",
+      "loss of refrigeration",
+      "Hurricane Harvey",
+      "500-year floodplain",
+      "common-cause failure",
+      "self-accelerating decomposition temperature (SADT)",
+      "evacuation brigade",
+      "refrigerated trailers",
+      "low-temperature depots",
+      "process hazard analysis (PHA)",
+      "independent layers of protection",
+      "controlled burn",
+      "21 emergency responders sought medical attention",
+      "350,000 pounds of organic peroxide",
+      "1.5-mile evacuation zone"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Reactive organic peroxides requiring low-temperature storage"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Facility located within 100- and 500-year floodplain"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Extreme flooding from Hurricane Harvey exceeding 500-year floodplain elevation"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Loss of primary electrical power due to floodwater reaching transformers"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Failure of backup generators due to high floodwater levels"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Common-cause failure of all refrigeration layers due to flooding"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Inadequate flood risk awareness and incomplete process hazard analysis"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Organic peroxide decomposition and fire in refrigerated trailers"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Exposure of 21 emergency responders to decomposition vapors and smoke"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Evacuation of 200+ residents within 1.5 miles for more than one week"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Combustion of more than 350,000 pounds of organic peroxide across three fire events"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Public road (Highway 90) closure disrupting Hurricane Harvey emergency response"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Written hurricane preparedness plan",
+        "side": "prevention",
+        "barrier_role": "Procedural framework to protect workers and property before, during and after hurricane",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "First line of defence against hurricane impact through pre-planned procedures",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "La planta de Arkema Crosby tenía un plan escrito de preparación para huracanes que detallaba cómo el sitio planeaba proteger a los trabajadores y la propiedad antes, durante y después del huracán.",
+            "el equipo de la compañía que realizó el PHA del depósito de baja temperatura para las instalaciones de Crosby no documentó ningún riesgo de inundación"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Redundant refrigeration systems in low-temperature depots",
+        "side": "prevention",
+        "barrier_role": "Maintain organic peroxides below SADT through redundant cooling",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary engineering barrier to prevent peroxide decomposition",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "sistemas de refrigeración redundantes en los depósitos de baja temperatura",
+            "Estas capas de protección identificadas en el análisis de riesgos de proceso (PHA) de Arkema fracasaron durante el huracán Harvey debido a un modo común de falla."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Emergency backup generators",
+        "side": "prevention",
+        "barrier_role": "Provide backup power to low-temperature depots in case of primary power loss",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Second line of defence providing power redundancy for refrigeration systems",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "generadores de emergencia para proporcionar energía en caso de que un depósito de baja temperatura perdiera energía",
+            "Los generadores de respaldo se activaron automáticamente, pero los altos niveles de agua obligaron a los trabajadores a apagarlos por su seguridad",
+            "La misma inundación que causó que la instalación perdiera energía eléctrica también comprometió los generadores de emergencia de respaldo"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Liquid nitrogen alternative cooling system",
+        "side": "prevention",
+        "barrier_role": "Alternative cooling for organic peroxides if primary refrigeration fails",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary engineering barrier providing alternative cooling method",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "nitrógeno líquido para enfriamiento alternativo",
+            "La misma inundación que causó que la instalación perdiera energía eléctrica también comprometió... el sistema de nitrógeno líquido"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Refrigerated trailers for temporary organic peroxide storage",
+        "side": "prevention",
+        "barrier_role": "Temporary refrigerated storage to maintain peroxides below SADT when depots are unavailable",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Third line of defence providing mobile refrigerated storage as last resort before decomposition",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "remolques refrigerados para almacenar temporalmente el peróxido orgánico",
+            "La misma inundación que causó que la instalación perdiera energía eléctrica también comprometió... los remolques refrigerados utilizados para albergar temporalmente los productos de peróxido orgánico.",
+            "Tres de esos remolques, que contenían más de 4.000 contenedores, no podían llevarse al área de mayor elevación debido a las inundaciones"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Evacuation brigade and manual relocation of peroxides to elevated areas",
+        "side": "prevention",
+        "barrier_role": "Manual transfer of organic peroxides to higher ground and operational refrigerated trailers to prevent loss of cooling",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Administrative and manual intervention as last prevention layer before top event",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "los trabajadores comenzaron a mover los peróxidos orgánicos a los remolques refrigerados ubicados en el sitio",
+            "la brigada de evacuación no pudo mover los remolques refrigerados a un área de mayor elevación en las instalaciones y ya no pudo levantar las estibas de peróxido orgánico",
+            "Al finalizar el día lunes, los trabajadores trasladaban manualmente los contenedores pequeños de peróxido orgánico restantes"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Process Hazard Analysis (PHA) for low-temperature depots",
+        "side": "prevention",
+        "barrier_role": "Systematic identification and evaluation of process risks including flood scenarios",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational risk management tool to identify hazards and verify adequacy of safeguards",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "el equipo de la compañía que realizó el PHA del depósito de baja temperatura para las instalaciones de Crosby no documentó ningún riesgo de inundación",
+            "ninguna de las medidas preventivas de Arkema para la falla de energía eléctrica cumplió con los estándares de la compañía o la industria para analizar capas de protección independientes para la inundación de nivel Harvey"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Flood risk awareness and flood insurance map review",
+        "side": "prevention",
+        "barrier_role": "Organisational awareness of flood risk to inform facility design and emergency planning",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational organisational knowledge barrier to prevent inadequate risk assessment",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "aparte de un administrador de instalaciones pasado, los empleados de las instalaciones de Arkema Crosby parecían desconocer esta información",
+            "un informe de septiembre de 2016 de la aseguradora de Arkema, FM Global, identificó riesgo de inundación en las instalaciones de Crosby, incluidas estas designaciones de llanuras aluviales"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "1.5-mile evacuation zone around facility",
+        "side": "mitigation",
+        "barrier_role": "Protect public from exposure to decomposition vapors and smoke from burning peroxides",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response mitigation measure to limit public harm after top event",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "los servicios de emergencia implementaron una zona de evacuación de 1.5 millas alrededor de la instalación",
+            "los funcionarios del Condado de Harris mantuvieron abierta la carretera 90 hacia el este, incluso al tiempo que mantenían el resto de la zona de evacuación",
+            "Haber mantenido abierta la carretera 90 permitió que los socorristas pudieran viajar dentro de la proximidad de la planta incluso después de que comenzara el primer incendio. Esta decisión dio como resultado que al menos 21 personas informaron estar expuestas"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Telemetry monitoring of refrigerated trailer temperatures",
+        "side": "mitigation",
+        "barrier_role": "Detect rising temperatures in refrigerated trailers to provide early warning of impending decomposition",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Detection and monitoring control to support emergency response decisions",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "El Comando Unificado también revisó los datos de telemetría provistos por Arkema, incluidas las lecturas de temperatura en algunos de los remolques, mostrando que las temperaturas en tres de los remolques refrigerados estaban por encima de la TDAA estimada.",
+            "no todos los remolques podían proporcionar estos datos, y los remolques que enviaban datos solo medían la temperatura del aire dentro del remolque, no la temperatura de los productos de peróxido orgánico"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Controlled burn of remaining refrigerated trailers",
+        "side": "mitigation",
+        "barrier_role": "Planned ignition of remaining peroxide trailers to control timing and conditions of combustion and reduce prolonged risk",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Last-resort recovery action to eliminate ongoing hazard in a controlled manner",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "el personal de atención de emergencias idearon un plan para realizar una quema controlada del resto de los remolques",
+            "El domingo 3 de septiembre de 2017, los socorristas ingresaron al sitio y realizaron una combustión controlada de los seis remolques refrigerados restantes.",
+            "Una vez que los incendios se extinguieron, los servicios de emergencia levantaron la zona de evacuación"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_ids_referenced": {
+      "PIF-001": "Employee experience-based underestimation of flood severity - employees with decades of experience expected only minor flooding",
+      "PIF-002": "Organisational knowledge gap regarding flood risk - flood insurance maps and FM Global 2016 report not disseminated to facility staff",
+      "PIF-003": "Equipment failure under flood conditions - forklifts and yard mules failed due to electrical component damage from floodwater",
+      "PIF-004": "Situational awareness and decision-making under emergency conditions - decision to keep Highway 90 open despite evacuation zone; reopening road after white smoke report",
+      "PIF-005": "Inadequate procedures for flood risk in PHA - no flood risk documented in low-temperature depot PHA"
+    }
+  }
+}

@@ -1,0 +1,659 @@
+{
+  "incident_id": "2021-04-I-OH",
+  "source": {
+    "doc_type": "Investigation Report",
+    "url": null,
+    "title": "Fatal Vessel Leak, Vapor Cloud Explosion, and Fire at Yenkin-Majestic Resin Plant",
+    "date_published": "2023-11",
+    "date_occurred": "2021-04-08",
+    "timezone": null
+  },
+  "context": {
+    "region": "Columbus, Ohio, USA",
+    "operator": "Yenkin-Majestic Paint Corporation",
+    "operating_phase": "production",
+    "materials": [
+      "VM&P naphtha (solvent)",
+      "alkyd resin",
+      "flammable liquids"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment - Vapor Cloud Explosion and Fire",
+    "incident_type": "Vessel Leak, Vapor Cloud Explosion, and Fire",
+    "costs": 90000000,
+    "actions_taken": [
+      "Employee A attempted to turn off agitator but could not reach emergency stop button due to vapor obscuring visibility",
+      "Employee A evacuated the kettle room approximately 80 seconds after release began",
+      "Employee B assisted Employee A in evacuation",
+      "More than 100 firefighters responded including hazmat teams",
+      "Fire was extinguished after approximately 11 hours",
+      "Firefighters rescued two injured employees trapped in collapsed building",
+      "Ohio EPA responded and contained firefighting water runoff entering Alum Creek",
+      "Yenkin-Majestic demolished the severely damaged resin plant over 19-month period"
+    ],
+    "summary": "On April 8, 2021, at approximately 12:02 a.m., a mixture of flammable naphtha solvent vapors and resin liquid became pressurized and released through the seal of a closed manway on Kettle 3 at the Yenkin-Majestic OPC Polymers resin plant in Columbus, Ohio. The release occurred after the kettle operator turned on the agitator, which caused rapid vaporization of solvent that had been added to the hot resin while the agitator was unexpectedly off. The flammable vapor cloud spread throughout the enclosed building and outside. Approximately two minutes later, at 12:04 a.m., the vapor cloud ignited, causing an explosion and large fire. One employee was fatally injured from thermal injuries and inhalation of combustion products. Eight other employees were transported to hospitals with injuries including third-degree burns and limb fractures, with one requiring leg amputation. Property damage exceeded $90 million.",
+    "recommendations": [
+      "Update mechanical integrity procedures for all process vessels in highly hazardous chemicals service, including pressure vessels not exceeding 15 psig, to adopt alteration guidance in API 510 or National Board Inspection Code Part 3",
+      "Assess and document applicable design, construction, and alteration standards for all pressure vessels in highly hazardous chemicals service, adopting at minimum PIP VESLP001 Low-Pressure Welded Vessel Specification",
+      "Implement program to assess pressure vessels against updated RAGAGEP at least once every five years",
+      "Develop and implement written procedures to document and maintain records of all inspections, alterations, and maintenance/repairs on all pressure vessels in highly hazardous chemicals service",
+      "Demonstrate use of prevention through design using hierarchy of controls in future resin plant designs, prioritizing inherently safer design and engineering controls",
+      "Identify and document all equipment that could release flammable materials and install LEL detectors in accordance with CCPS guidelines",
+      "Ensure detection of hazardous conditions automatically triggers both visual and audible alarms to alert plant personnel",
+      "Develop and implement employee training on actions to take when alarms are activated, such as prompt evacuation",
+      "Develop and implement requirements for personnel to wear flame-resistant uniforms in all operating areas that process flammable chemicals",
+      "Update employee training material to include requirement for and purpose of PPE use",
+      "API to develop specific design, construction, and alteration guidance for low-pressure process vessels in flammable and other highly hazardous chemicals service not exceeding 15 psig",
+      "ASME to assist API in developing design, construction, and alteration guidance for low-pressure vessels in flammable and other highly hazardous chemicals service not exceeding 15 psig"
+    ],
+    "key_phrases": [
+      "mechanical integrity of low-pressure vessels",
+      "pressure vessel not designed or pressure tested to appropriate design pressure",
+      "manway seal failure",
+      "rapid solvent vaporization",
+      "stratified liquid layers",
+      "agitator shutdown",
+      "lack of agitator status alarm",
+      "absence of engineering controls",
+      "overreliance on administrative controls",
+      "inadequate emergency preparedness",
+      "lack of audible alarms for flammable gas detection",
+      "lack of flame-resistant uniforms",
+      "hierarchy of controls",
+      "prevention through design",
+      "lack of hazard recognition training",
+      "vapor cloud explosion",
+      "rupture disk failure to burst"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Flammable solvent vapor release"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Rapid pressure increase in reactor vessel"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Stratified liquid layers in reactor"
+      },
+      {
+        "hazard_id": "H-004",
+        "name": "Hot resin at elevated temperature"
+      },
+      {
+        "hazard_id": "H-005",
+        "name": "Inadequate vessel design pressure"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Agitator shutdown while solvent added to hot resin"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Operator unaware of agitator status"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Manway seal failure due to inadequate design pressure"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Rapid vaporization of solvent upon agitator restart"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Rupture disk failure to relieve pressure"
+      },
+      {
+        "threat_id": "T-006",
+        "name": "Vapor cloud formation and migration"
+      },
+      {
+        "threat_id": "T-007",
+        "name": "Lack of timely evacuation warning"
+      },
+      {
+        "threat_id": "T-008",
+        "name": "Ignition source contact with flammable vapor cloud"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Flammable vapor release into facility"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Vapor cloud explosion"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Large fire in resin plant"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Building collapse"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Fatal injury to employee"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "Multiple serious injuries to employees"
+      },
+      {
+        "consequence_id": "CON-007",
+        "name": "Thermal burns to employees"
+      },
+      {
+        "consequence_id": "CON-008",
+        "name": "Property damage exceeding $90 million"
+      },
+      {
+        "consequence_id": "CON-009",
+        "name": "Environmental contamination of Alum Creek"
+      },
+      {
+        "consequence_id": "CON-010",
+        "name": "Fire in adjacent commercial property"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Mechanical integrity procedures for pressure vessels",
+        "side": "prevention",
+        "barrier_role": "Ensure vessels are designed, constructed, and tested to appropriate design pressure",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Quality assurance and regulatory compliance",
+        "linked_threat_ids": [
+          "T-003",
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Yenkin-Majestic did not adequately ensure the mechanical integrity of a new 20-inch manway that was installed on a process vessel (Kettle 3) approximately three months before the incident",
+            "After the new manway was added, Yenkin-Majestic performed a leak check up to 4 psig and allowed Kettle 3 to continue operating for approximately three months until the incident",
+            "On the day of the incident, Kettle 3's new manway did not withstand more than 9 psig of pressure during a process upset and leaked hot resin and flammable solvent vapor into the facility",
+            "Yenkin-Majestic did not follow basic quality assurance practices, such as adequately pressure testing equipment after alterations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Agitator status indication and alarm system",
+        "side": "prevention",
+        "barrier_role": "Alert operator to agitator status to prevent solvent addition when agitator is off",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Process control and operator awareness",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-SA-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Yenkin-Majestic had not installed or configured interlocks to prevent solvent addition to the kettle when the agitator was off during normal batch operations and relied upon computer panel status indicators, that were not equipped with alarms, to communicate the agitator status to the operator",
+            "At 10:22 p.m. the Kettle 3 agitator unexpectedly shut down. Employee A returned a few minutes later, at 10:25 p.m., and did not realize that the agitator had shut down while he was away; no alarms were active at the time to indicate a process abnormality, either",
+            "Around midnight, about 90 minutes after Employee A pushed the Batch Done button, the kettle temperature was recorded as 424 °F—approximately 100 °F higher than he expected after 90 minutes of cooling. At this time, Employee A began to investigate potential causes for this process abnormality. He looked into the kettle through the glass window of the manway and noticed for the first time that the agitator was off"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Interlocks to prevent solvent addition when agitator is off",
+        "side": "prevention",
+        "barrier_role": "Prevent hazardous process condition by blocking solvent addition during agitator shutdown",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Hierarchy of controls - engineering control preferred over administrative",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Yenkin-Majestic had not installed or configured interlocks to prevent solvent addition to the kettle when the agitator was off during normal batch operations",
+            "The system design allowed an operator to add solvent to the hot-resin-filled kettle while, unknown to the operator, the agitator (which was supposed to mix the liquids in the kettle) was off"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "High-pressure alarm at 2 psig",
+        "side": "mitigation",
+        "barrier_role": "Alert operator to pressure increase for manual intervention",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Process monitoring and operator response",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The kettle was configured with a high-pressure alarm at 2 pounds per square inch gauge (psig)",
+            "During the April 8, 2021, incident, the high-pressure alarm and trip activated after Kettle 3's pressure began to rise"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Automatic high-pressure trip at 4 psig with emergency cooling interlock",
+        "side": "mitigation",
+        "barrier_role": "Automatically shut down furnace and activate cooling water to reduce pressure",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Automatic safety interlock system",
+        "linked_threat_ids": [
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The kettle was configured with an automatic high-pressure trip at 4 psig. The high-pressure trip activated the emergency cooling safety interlock, which was designed to shut down the furnace and turn on cooling water to the coils to aid in reducing the temperature and pressure inside the kettle",
+            "During the April 8, 2021, incident, the high-pressure alarm and trip activated after Kettle 3's pressure began to rise, and the rupture disk did not burst"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Rupture disk pressure relief system",
+        "side": "mitigation",
+        "barrier_role": "Relieve excessive pressure by opening at design burst pressure to prevent vessel rupture",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Pressure relief device for overpressure protection",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Kettle 3 emergency pressure-relief system included one 8-inch rupture disk, used to protect the vessel from high-pressure conditions, which Yenkin-Majestic documented as having a burst pressure between 13.5 and 15 psig",
+            "During the April 8, 2021, incident, the high-pressure alarm and trip activated after Kettle 3's pressure began to rise, and the rupture disk did not burst",
+            "At this peak pressure, Kettle 3's pressure was above the rupture disk's marked pressure setting but still within its burst tolerance range, and it did not burst to relieve Kettle 3's pressure",
+            "The tag on Kettle 3's recovered rupture disk post-incident indicated a marked burst pressure of 16.5 psig. According to purchase records, Yenkin-Majestic had been ordering rupture disks whose marked burst pressure fell within a manufacturing design range of 15.3-17 psig for Kettle 3, which did not match Kettle 3's documented process safety information"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Flammable gas detection system with email notification",
+        "side": "mitigation",
+        "barrier_role": "Detect flammable vapor release and notify personnel",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Gas detection and notification system",
+        "linked_threat_ids": [
+          "T-006"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Multiple flammable gas detectors inside the furnace room on the first floor started detecting an increasing concentration of flammable vapors during the release. The flammable gas detectors triggered automatic furnace shutdowns; however, they were not configured to sound an audible alarm",
+            "Yenkin-Majestic did not effectively utilize flammable gas detection systems and associated alarms to audibly notify onsite personnel of a hazardous gas release and the need to evacuate. During the incident, some of the gas monitors installed within the Yenkin-Majestic facility detected the flammable solvent release approximately one minute after the release began and sent an email to an offsite employee, but the monitors did not sound audible alarms to warn employees of the hazard"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Fire alarm system activation for evacuation",
+        "side": "mitigation",
+        "barrier_role": "Alert all personnel to evacuate facility in emergency",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Emergency notification system",
+        "linked_threat_ids": [
+          "T-007"
+        ],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003",
+          "CON-005",
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-ORG-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "According to witness accounts, no one used the resin plant's intercom communication system to call for an evacuation or otherwise warn workers of the imminent danger. Post-incident, Yenkin-Majestic also confirmed that the fire alarm system had not been activated to warn workers to evacuate prior to the explosion",
+            "Employees working at or near the resin plant that night told CSB investigators that they did not hear any alarms or other warnings before the explosion"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Employee training on flammable vapor hazards and response",
+        "side": "mitigation",
+        "barrier_role": "Ensure employees recognize hazards and evacuate promptly",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Hazard awareness and emergency response training",
+        "linked_threat_ids": [
+          "T-007"
+        ],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003",
+          "CON-005",
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-PEOPLE-001",
+            "PIF-ORG-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Yenkin-Majestic did not specifically train its employees to recognize and respond to the presence of a flammable solvent vapor cloud and its associated hazards. During the incident, this overall lack of hazard recognition led to some personnel approaching the hazardous gas to investigate the release instead of initiating a plant-wide evacuation",
+            "At 12:03:30 a.m., an employee saw the white vapor from the outside of the building and began running into the resin plant to investigate what he thought was a steam leak"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Flame-resistant personal protective equipment (PPE)",
+        "side": "mitigation",
+        "barrier_role": "Protect employees from thermal burns during fire",
+        "barrier_type": "ppe",
+        "line_of_defense": "recovery",
+        "lod_basis": "Personal protection against fire hazards",
+        "linked_threat_ids": [
+          "T-008"
+        ],
+        "linked_consequence_ids": [
+          "CON-007"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Yenkin-Majestic allowed resin plant operators to wear cotton short-sleeved shirts while working in proximity to flammable materials unless they were performing specific tasks. Had the resin plant employees been required to wear flame-resistant personal protective equipment (PPE), multiple employee burn injuries resulting from the explosion and fire may have been reduced or prevented",
+            "Four of the injured employees were burned by the fire, two of whom received third-degree burns"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Process Hazard Analysis (PHA) and risk assessment",
+        "side": "prevention",
+        "barrier_role": "Identify hazards and implement appropriate controls using hierarchy of controls",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Process safety management and design review",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The hierarchy of controls is a risk management principle based on ranking hazard controls from most effective to least effective. On the day of the incident, the system design allowed an operator to add solvent to the hot-resin-filled kettle while, unknown to the operator, the agitator (which was supposed to mix the liquids in the kettle) was off",
+            "Yenkin-Majestic had not installed or configured interlocks to prevent solvent addition to the kettle when the agitator was off during normal batch operations and relied upon computer panel status indicators, that were not equipped with alarms, to communicate the agitator status to the operator",
+            "Although administrative controls are essential for reducing risk, they depend on human actions, perception, and judgment. Administrative controls should not be relied on alone, without additional robust design and engineering controls in highly hazardous chemical processes"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "low",
+      "communication_mentioned": true,
+      "situational_awareness_value": "low",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "low",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "low",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "low",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": "low",
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": "low",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

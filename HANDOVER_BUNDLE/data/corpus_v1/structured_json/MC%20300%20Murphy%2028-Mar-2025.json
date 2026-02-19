@@ -1,0 +1,732 @@
+{
+  "incident_id": "MC%20300%20Murphy%2028-Mar-2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "BSEE Accident Investigation Report - Noble Stanley Lafosse Drillship Blackout and EDS Activation",
+    "date_published": "2025-09-12",
+    "date_occurred": "2025-03-28",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Mississippi Canyon Block 300",
+    "operator": "Murphy Exploration & Production Company",
+    "operating_phase": "drilling",
+    "materials": [
+      "calcium chloride brine",
+      "calcium bromide brine",
+      "diesel fuel"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Loss of station keeping leading to Emergency Disconnect Sequence activation and discharge of drilling fluids",
+    "costs": 2600000,
+    "actions_taken": [
+      "Manual activation of Emergency Disconnect Sequence (EDS)",
+      "Shearing of 5.875 in. drill pipe",
+      "Detachment of Lower Marine Riser Package (LMRP)",
+      "Restoration of diesel generators and thrusters",
+      "Installation of barrier covers over emergency fuel shut off valves",
+      "BSEE and USCG investigation"
+    ],
+    "summary": "On March 28, 2025, an able body seaman (AB1) aboard the Noble Stanley Lafosse drillship mistakenly operated emergency fuel shut off valve switches instead of accommodation fire dampener switches during routine preventative maintenance. This error caused all diesel generators to trip sequentially, resulting in a total blackout and loss of dynamic positioning. The drillship drifted off station, triggering a manual Emergency Disconnect Sequence that sheared the drill pipe and released 2,436 barrels of drilling brine into the Gulf of America. The incident caused $2.6 million in damage to subsea equipment. Contributing factors included failure to conduct a required Task Risk Assessment, AB1 working alone without adequate supervision, self-perceived time pressure, and lack of physical barriers protecting critical emergency fuel shut off valves.",
+    "recommendations": [
+      "Install barrier covers over emergency fuel shut off valves to prevent inadvertent operation",
+      "Ensure Task Risk Assessments are completed prior to all work tasks as per company policy",
+      "Provide adequate supervision and pairing of personnel for critical maintenance tasks",
+      "Reinforce Stop Work Authority culture and procedures"
+    ],
+    "key_phrases": [
+      "mistakenly operating the wrong switch panel",
+      "felt self-perceived pressure and rushed through the task",
+      "TRA was not performed until after the incident occurred",
+      "emergency fuel shut off valves were not protected with barriers or warning signs",
+      "Failure to execute Stop Work Authority",
+      "did not verify dampener line-item numbers"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized drilling fluids in marine riser"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Electrical power generation system"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Human error - incorrect switch operation"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadvertent activation of emergency fuel shut off valves"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Loss of diesel generator fuel supply"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Sequential diesel generator trips"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Total electrical blackout"
+      },
+      {
+        "threat_id": "T-006",
+        "name": "Loss of dynamic positioning capability"
+      },
+      {
+        "threat_id": "T-007",
+        "name": "Drillship drift off station"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Loss of containment - discharge of drilling fluids to sea"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Environmental pollution - 2,436 barrels of brine released"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Equipment damage - BOP stack and PRT equipment"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Financial loss - $2.6 million in damages"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Safety risk to crew at sea"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Task Risk Assessment (TRA) procedure",
+        "side": "prevention",
+        "barrier_role": "Identify hazards and verify work procedures before task execution",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Proactive hazard identification before work begins",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the Task Risk Assessment (TRA), required prior to work, was not performed until after the incident occurred",
+            "Failure to conduct Task Risk Assessment (TRA) prior to commencement of job as per Noble Company policy requirement",
+            "AB1 was not provided with a Task Risk Assessment TRA as required in Noble policy prior to beginning the job",
+            "NSL personnel did not perform a TRA prior to commencement of job task in accordance with Noble company policy"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Stop Work Authority",
+        "side": "prevention",
+        "barrier_role": "Empower workers to halt work when uncertain or unsafe conditions exist",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Worker empowerment to prevent unsafe acts",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "time_pressure",
+            "safety_culture",
+            "training"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Failure to execute Stop Work Authority when AB1 felt uncertainty regarding completing the tasks solo",
+            "AB1 conducted unsafe operations by not verifying dampener line-item numbers or using stop work authority when he felt unsure of required work task",
+            "NSL failed to execute Stop Work Authority as directed within the company policy"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Work instructions and line-item checklist for fire dampers",
+        "side": "prevention",
+        "barrier_role": "Provide clear guidance and verification steps for maintenance tasks",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural guidance to prevent errors",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Work instructions and line-item list of accommodation fire dampers used by AB1",
+            "AB1 conducted unsafe operations by not verifying dampener line-item numbers",
+            "NSL personnel did not verify item numbers at fire dampeners control panel"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Pairing of personnel for maintenance tasks",
+        "side": "prevention",
+        "barrier_role": "Provide peer checking and support during critical maintenance",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Human redundancy and verification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "workload",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the Noble Drilling Company Able Body seaman 1 (AB1), who typically would be paired with another colleague, was tasked with testing the accommodation fire dampeners alone",
+            "No assistance from the NSL Bosun, also described as Marine Department Supervisor on duty"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Radio communication between AB1 and 2nd engineer",
+        "side": "prevention",
+        "barrier_role": "Verify correct operation and position of dampers during testing",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Real-time verification during task execution",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Noble 2nd engineer located in the engine control room was responsible for confirming the closing and opening position of the dampeners through handheld radio communication",
+            "clear communications were not provided to AB1 who was relatively uncertain to work task"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Physical barriers on emergency fuel shut off valves",
+        "side": "prevention",
+        "barrier_role": "Prevent inadvertent operation of critical emergency systems",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical prevention of human error",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the emergency fuel shut off valves were not protected with barriers or warning signs to prevent inadvertent functioning by ship personnel",
+            "rig management had installed barrier covers over the emergency fuel shut off valves, to mitigate future occurrences"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Warning signs on emergency fuel shut off valves",
+        "side": "prevention",
+        "barrier_role": "Alert personnel to critical nature of equipment",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Visual warning to prevent inadvertent operation",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the emergency fuel shut off valves were not protected with barriers or warning signs to prevent inadvertent functioning by ship personnel"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Equipment labeling at control panels",
+        "side": "prevention",
+        "barrier_role": "Enable correct identification of equipment controls",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Design feature to prevent misidentification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Observation of the valves showed clear and legible labeling at each panel for the designated equipment"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Competency training for AB1",
+        "side": "prevention",
+        "barrier_role": "Ensure personnel have knowledge and skills for assigned tasks",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Personnel qualification to prevent errors",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "moderate",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence",
+            "training"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Noble AB1 employee: competency record",
+            "AB2 stated AB1 was knowledgeable in the assigned task of functioning accommodation fire dampeners",
+            "AB2 stated AB1 was familiar with the emergency gear locker room and the panels within for the fire dampeners",
+            "Despite having performed this task before"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Redundant diesel generators",
+        "side": "prevention",
+        "barrier_role": "Maintain power generation capability if one generator fails",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Redundancy to prevent total power loss",
+        "linked_threat_ids": [
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "1634:27: Diesel Generator (DG) #5 in the starboard engine room tripped due to fuel loss",
+            "1634:53: DG #1 in the port engine room tripped",
+            "1635:47: DG #3 tripped shortly after the start attempt",
+            "1636:16: DG #4 tripped, leading to a full blackout"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Dynamic Positioning (DP) system with Yellow Alert",
+        "side": "prevention",
+        "barrier_role": "Detect and alert operators to initial DP system degradation",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Early warning system for position keeping issues",
+        "linked_threat_ids": [
+          "T-006"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "1634:41: A Dynamic Positioning (DP) Yellow Alert was activated, indicating initial operational concerns"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Dynamic Positioning (DP) Red Alert",
+        "side": "prevention",
+        "barrier_role": "Alert operators to critical loss of position keeping requiring immediate action",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Critical alarm triggering emergency response",
+        "linked_threat_ids": [
+          "T-007"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "1636:46: A DP Red Alert activated, with the rig 7.5 meters from the setpoint",
+            "The senior DPO alerts rig floor of Red Zone Panel alert"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Emergency Disconnect Sequence (EDS)",
+        "side": "mitigation",
+        "barrier_role": "Disconnect riser and prevent well control loss during drift-off",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Last line of defense to prevent well control incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the rig floor manually activated the Emergency Disconnect Sequence (EDS)",
+            "which sheared the 5.875 in., Z140, 34.21lb/ft drill pipe and successfully detached the Lower Marine Riser Package (LMRP)",
+            "the EDS was activated by rig floor personnel, unlatching 58 seconds later at 25.6 meters from the setpoint"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Blowout Preventer (BOP) stack",
+        "side": "mitigation",
+        "barrier_role": "Maintain well control and prevent uncontrolled release from well",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Primary well control barrier",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Blow Out Preventer (BOP) Stack equipment damage due on seafloor drift"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Emergency power restoration procedures",
+        "side": "prevention",
+        "barrier_role": "Restore power generation and dynamic positioning capability",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to restore critical systems",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "1711:45: DG #1 (port engine room) restored online",
+            "1735:46: DG #6 (starboard engine room) restored online",
+            "1755:30: DG #4 (center engine room) restored online",
+            "1807:17: All six thrusters and three diesel generators fully operational, restoring DP control"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "degraded",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "inadequate",
+      "communication_mentioned": true,
+      "situational_awareness_value": "poor",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "not_followed",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": "high",
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": "adequate",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "weak",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "inadequate",
+      "supervision_mentioned": true,
+      "training_value": "adequate",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  },
+  "_validation_errors": [
+    "bowtie -> controls -> 14 -> side: Input should be 'prevention' or 'mitigation'"
+  ]
+}

@@ -1,0 +1,809 @@
+{
+  "incident_id": "2021-03-I-GA",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Fuga fatal de nitrógeno líquido en Foundation Food Group",
+    "date_published": "2023-12",
+    "date_occurred": "2021-01-28",
+    "timezone": "America/New_York"
+  },
+  "context": {
+    "region": "Gainesville, Georgia, USA",
+    "operator": "Foundation Food Group (FFG)",
+    "operating_phase": "production",
+    "materials": [
+      "liquid nitrogen",
+      "anhydrous ammonia"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "asphyxiation / toxic atmosphere",
+    "costs": "FFG sued insurer for approximately USD 1.7 million; Messer reported business and property losses of approximately USD 245,000",
+    "actions_taken": [
+      "Maintenance workers troubleshot the immersion freezer without shutting it down and with safety interlocks intentionally bypassed",
+      "Workers discovered the incident approximately 30-60 minutes after the initial release",
+      "Evacuation of approximately 130 workers was initiated",
+      "Maintenance manager manually closed bulk liquid nitrogen storage tank discharge valves outside the building at approximately 10:15 a.m.",
+      "911 was called at 10:11 a.m.",
+      "Building fire alarm was activated",
+      "Hall County Fire Department arrived at approximately 10:18 a.m. using SCBA",
+      "Firefighters activated two emergency stop buttons on the immersion-spiral freezer at 10:36 a.m.",
+      "Victims were removed from the cold room by firefighters using SCBA"
+    ],
+    "summary": "On January 28, 2021, liquid nitrogen overflowed from an immersion freezer located inside the Line 4 building at Foundation Food Group (FFG) in Gainesville, Georgia. The release began while maintenance workers were troubleshooting operational issues with the freezer, which was designed and owned by Messer LLC and leased to FFG. The bubbler-type level gauge in the immersion freezer was bent during maintenance activities, disabling both the liquid level control system and the high-level safety interlock, causing uncontrolled overflow of liquid nitrogen. The vaporized nitrogen accumulated in a partially enclosed, unventilated cold room, creating an oxygen-deficient atmosphere. Six FFG employees died from asphyxiation: the two maintenance workers initially incapacitated, and four additional employees who entered the cold room during response and rescue attempts. Three additional FFG employees and one firefighter suffered serious injuries. The incident was caused by a single point of failure in the freezer design, compounded by the absence of atmospheric monitoring and alarms, inadequate emergency preparedness, lack of a process safety management system at FFG, and inadequate product stewardship by Messer.",
+    "recommendations": [
+      "2021-03-I-GA-R1: Gold Creek Foods to include proactive engagement with local emergency responders in its emergency action program.",
+      "2021-03-I-GA-R2: Messer LLC to update its product stewardship policy to include participation in customer PHAs, verification of hazard signage, and review of emergency shutdown device locations.",
+      "2021-03-I-GA-R3: Messer LLC to create informational materials for customers on process safety management for inert gas asphyxiation risks.",
+      "2021-03-I-GA-R4: OSHA Region 4 to update its Regional Emphasis Program for poultry processing facilities to explicitly cover liquid nitrogen freezing processes.",
+      "2021-03-I-GA-R5: OSHA Region 5 to update its Regional Emphasis Program for food manufacturing to explicitly cover liquid nitrogen freezing processes.",
+      "2021-03-I-GA-R6: OSHA Region 6 to update its Regional Emphasis Program for poultry processing facilities to explicitly cover liquid nitrogen freezing processes.",
+      "2021-03-I-GA-R7: OSHA to promulgate a specific standard for cryogenic asphyxiants covering design, atmospheric monitoring, emergency shutdown, employee training, emergency action plans, and PSM elements.",
+      "2021-03-I-GA-R8: OSHA to develop and publish a guidance document on PSM practices for processes handling compressed gases and cryogenic asphyxiants.",
+      "2021-03-I-GA-R9: CGA to develop a comprehensive standard for the storage, handling, and safe use of liquid nitrogen in fixed facilities.",
+      "2021-03-I-GA-R10: CGA to update P-76 to require atmospheric monitoring systems, visible and audible alarms, ROEIVs, and guidance on safe location of emergency stop devices.",
+      "2021-03-I-GA-R11: NFPA to update NFPA 55 to require atmospheric monitoring with cryogenic asphyxiants and include guidance on safe location of manual shutoff valves and emergency pushbuttons.",
+      "2021-03-I-GA-R12: ICC to update the International Fire Code to require atmospheric monitoring with cryogenic asphyxiants and include guidance on safe location of manual shutoff valves and emergency pushbuttons."
+    ],
+    "key_phrases": [
+      "liquid nitrogen overflow",
+      "bubbler-type level gauge bent",
+      "single point of failure",
+      "oxygen-deficient atmosphere",
+      "asphyxiation",
+      "no atmospheric monitoring",
+      "safety interlocks bypassed",
+      "inadequate emergency preparedness",
+      "lack of process safety management",
+      "inadequate product stewardship",
+      "unventilated cold room",
+      "emergency stop buttons inside hazard zone",
+      "six fatalities",
+      "cryogenic asphyxiant",
+      "immersion-spiral freezer"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Liquid nitrogen stored and used under pressure in immersion freezer system"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Enclosed, partially sunken cold room with no mechanical ventilation"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Failure of bubbler-type level gauge (bent during maintenance), disabling level control and high-level safety interlock"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Maintenance performed on running freezer with safety interlocks intentionally bypassed"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Single-point-of-failure design: one sensor serving both level control and high-level safety interlock"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Missing support clamp on bubbler tube (manufacturing quality control defect) increasing susceptibility to bending"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Oxygen-deficient atmosphere in cold room causing asphyxiation of workers"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Six worker fatalities from nitrogen asphyxiation"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Three serious injuries to FFG employees and one serious injury to a firefighter"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Financial losses: FFG ~USD 1.7M insurance claim; Messer ~USD 245,000 property/business losses"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Bubbler-type liquid level control system and high-level safety interlock",
+        "side": "prevention",
+        "barrier_role": "Automatically detect high liquid nitrogen level and shut off supply to prevent overflow",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary engineered safeguard to prevent liquid nitrogen overflow by measuring level and triggering shutoff",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "el medidor de tipo burbujeo en el congelador por inmersión de alguna manera se dobló, impidiendo así que el sistema de control del nivel de nitrógeno líquido del congelador funcionara correctamente",
+            "el bloqueo de seguridad de alto nivel no habría funcionado correctamente",
+            "La CSB concluye que el congelador por inmersión fue diseñado de manera que la falla de un solo dispositivo de medición de nivel podría desactivar tanto el sistema de control del nivel de nitrógeno como el bloqueo de seguridad de emergencia"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Door and lid proximity safety switches (interlocks) on immersion freezer",
+        "side": "prevention",
+        "barrier_role": "Shut off liquid nitrogen supply and increase exhaust fan speed when freezer door or lid is open during maintenance",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Engineered interlock to prevent nitrogen release when freezer is accessed",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "los trabajadores de mantenimiento realizaron el mantenimiento sin apagar el congelador y con los interruptores de seguridad de la puerta de la caja de transición y de la tapa del congelador por inmersión anulados intencionalmente",
+            "Ese imán fue retirado de la puerta y pegado con cinta adhesiva al interruptor. Alguien quitó el imán de la puerta y lo pegó con cinta adhesiva al interruptor para poder abrir la puerta mientras el congelador está funcionando"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Redundant level sensing / independent high-level detection (not installed)",
+        "side": "prevention",
+        "barrier_role": "Independent backup sensor to detect high liquid nitrogen level independent of the bubbler gauge, preventing single-point-of-failure",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Recommended by industry guidance (CCPS, ISA 61511) to avoid single-point-of-failure; not implemented",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Los sistemas de seguridad redundantes o independientes, como sensores adicionales del medidor de tipo burbujeo u otra tecnología para detectar la presencia de un nivel alto de líquido independiente del medidor de tipo burbujeo, podrían haber evitado la fuga de nitrógeno líquido",
+            "Linde no diseñó el congelador en espiral por inmersión de acuerdo con la orientación para la industria sobre puntos simples de fallo para sistemas instrumentados"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Manufacturing quality control inspection (bubbler clamp verification)",
+        "side": "prevention",
+        "barrier_role": "Detect missing support clamp on bubbler tube during factory inspection to prevent increased susceptibility to bending",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Quality control process intended to verify equipment built to design specification",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "La abrazadera de soporte faltante no se identificó en junio de 2016, cuando se completó la inspección inicial de control de calidad del equipo después de la fabricación",
+            "Los procedimientos y prácticas de control de calidad de Messer fueron ineficaces para garantizar que las dos abrazaderas de soporte en el medidor de tipo burbujeo estuvieran en su lugar en el momento de la inspección"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Process Hazard Analysis (PHA) for immersion-spiral freezer design",
+        "side": "prevention",
+        "barrier_role": "Identify hazard scenarios including bubbler failure modes and specify adequate safeguards to prevent liquid nitrogen overflow",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Industry best practice (CCPS) to identify and control process hazards before equipment is placed in service",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Linde no evaluó escenarios únicos de causa-consecuencia en su PHA de la fase de diseño",
+            "Linde no consideró adecuadamente la falla del sistema de control del nivel de nitrógeno líquido y no identificó salvaguardias apropiadas para mitigar la falla potencial",
+            "FFG no realizó una evaluación de riesgos ni trabajó con Messer para actualizar el PHA sobre el proceso de congelación de nitrógeno líquido"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Written operating and maintenance procedures for liquid nitrogen freezer",
+        "side": "prevention",
+        "barrier_role": "Provide workers with clear instructions on safe operation, critical safety components, and precautions during troubleshooting to prevent unsafe acts",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "CCPS RBPS element: written procedures required for safe operation of hazardous processes",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "FFG no desarrolló procedimientos escritos para la operación o mantenimiento del congelador de nitrógeno líquido",
+            "Messer no proporcionó a FFG ningún manual de funcionamiento del equipo de congelación antes del incidente"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Management of change process for introduction of liquid nitrogen freezer",
+        "side": "prevention",
+        "barrier_role": "Evaluate safety risks introduced by change from ammonia to liquid nitrogen freezing and by placement of freezer in unventilated, partially enclosed room",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "CCPS RBPS management of change element",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "FFG no tenía un proceso de gestión de cambios establecido y no consideró cómo los cambios en el proceso, el edificio y el equipo podrían afectar la seguridad del proceso",
+            "FFG no gestionó los riesgos asociados con el uso de un cuarto mayoritariamente cerrado y parcialmente empotrado sin ventilación mecánica"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Atmospheric oxygen monitoring system with audible and visual alarms in cold room",
+        "side": "mitigation",
+        "barrier_role": "Continuously monitor oxygen concentration in cold room and alert workers to oxygen-deficient atmosphere to prevent entry and trigger emergency shutdown",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Industry guidance (CGA P-12, P-18, P-76; CCPS; CSB Safety Bulletin) requires atmospheric monitoring where oxygen-deficient atmospheres can occur",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "FFG no instaló equipos de monitoreo atmosférico en el cuarto frío",
+            "no se instaló ningún equipo para detectar la atmósfera deficiente en oxígeno en el cuarto frío, cerrar automáticamente el suministro de nitrógeno líquido y notificar al personal para que evacuara el área",
+            "Messer informó a FFG al menos en tres ocasiones de la necesidad de realizar un monitoreo atmosférico de sus procesos de nitrógeno líquido"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Emergency stop buttons located outside the cold room / hazard zone",
+        "side": "mitigation",
+        "barrier_role": "Allow workers to safely shut off liquid nitrogen supply without entering the oxygen-deficient atmosphere",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "ISO 13850 and CGA P-76 guidance on safe location of emergency stop devices",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Los 10 botones estaban ubicados dentro del cuarto frío. El resultado de esta ubicación fue que la activación de cualquiera de los botones de parada de emergencia requería que alguien se acercara a la fuente de fuga para activar una parada de emergencia",
+            "La CSB concluye que la ubicación de los botones de parada de emergencia del congelador en espiral por inmersión de la línea 4 requirió que un empleado o una persona que no se encontrara en el cuarto frío ingresara a una atmósfera con deficiencia de oxígeno durante una fuga de nitrógeno líquido"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Manual closure of bulk liquid nitrogen storage tank discharge valves (outside building)",
+        "side": "mitigation",
+        "barrier_role": "Stop uncontrolled liquid nitrogen flow by manually closing valves at bulk storage tanks located outside the building",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Last resort manual intervention; only safe means available to stop the release during the incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "el gerente de mantenimiento y otros dos empleados de FFG se dirigieron a los tanques de almacenamiento de nitrógeno líquido ubicados en la parte delantera del edificio para cerrar manualmente el suministro de nitrógeno líquido",
+            "La CSB concluye que la fuga incontrolada de nitrógeno líquido probablemente cesó aproximadamente a las 10:15 a.m. cuando se cerraron las válvulas de descarga operadas manualmente del tanque de almacenamiento a granel"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Emergency action plan (EAP) for liquid nitrogen release",
+        "side": "mitigation",
+        "barrier_role": "Provide workers with instructions on how to respond to a liquid nitrogen release, including evacuation, non-entry, and notification of emergency services",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "OSHA 29 CFR 1910.38 and HAZWOPER requirements for emergency response planning",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "El EAP de FFG no mencionó el nitrógeno líquido",
+            "FFG no informó, capacitó, equipó, perforó ni preparó de otro modo a su fuerza laboral para una fuga de nitrógeno líquido",
+            "al menos otros 14 empleados de FFG, incluidos miembros de la administración, respondieron al incidente explorando el cuarto frío o intentando rescatar a sus compañeros de trabajo"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Employee training on liquid nitrogen hazards and asphyxiation risks",
+        "side": "mitigation",
+        "barrier_role": "Ensure workers understand the hazards of liquid nitrogen, can recognize an oxygen-deficient atmosphere, and know not to enter without appropriate equipment",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "CCPS RBPS training element; CGA P-76 requirement for training on inert gas hazards",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-007"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "FFG no capacitó a sus empleados sobre los peligros del nitrógeno líquido, incluido el riesgo de asfixia",
+            "Los empleados de todos los niveles de la organización informaron tener conocimiento limitado o nulo sobre los peligros del nitrógeno líquido o de su uso en las instalaciones",
+            "La fuerza laboral de FFG carecía de conocimiento sobre los peligros del nitrógeno y su capacidad para crear una atmósfera con deficiencia de oxígeno"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Hazard warning signs and labels on freezer equipment and cold room entrances",
+        "side": "mitigation",
+        "barrier_role": "Warn workers of asphyxiation risk from liquid nitrogen before entering the cold room or working on the freezer",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "OSHA HazCom standard (29 CFR 1910.1200); CGA P-76 example warning signage",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Ni FFG ni Messer colocaron señales de advertencia sobre el peligro de asfixia en el cuarto frío de la línea 4",
+            "estas etiquetas se almacenaron dentro de una carpeta dentro de la HMI del congelador y nunca se pegaron al congelador"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Mechanical ventilation (HVAC) in cold room",
+        "side": "mitigation",
+        "barrier_role": "Dilute and remove vaporized nitrogen from the cold room to prevent accumulation of oxygen-deficient atmosphere",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "CGA P-76 requires minimum 6 air changes per hour in enclosed spaces where cryogenic liquids are used",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "El cuarto no tenía ventilación mecánica ni calefacción, ventilación y aire acondicionado (HVAC)",
+            "No existe un sistema HVAC en ese cuarto. Abrimos la pared del área de nuestra bóveda de horno para permitir que el aire fluya a través de nuestro sistema de aire de compensación",
+            "FFG no instaló ventilación después de la instalación del congelador de nitrógeno líquido"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Messer product stewardship / customer safety oversight program",
+        "side": "prevention",
+        "barrier_role": "Identify and address customer safety deficiencies; suspend supply or refuse commissioning if unsafe conditions are not corrected",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "CGA P-86 product stewardship; ACC Responsible Care program",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-008"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Messer estaba al tanto de varios casos de deficiencias de seguridad de procesos y malas prácticas de seguridad de FFG, pero aun así comisionó el congelador a FFG",
+            "Messer continuó suministrando nitrógeno líquido a FFG a pesar de que FFG no pudo corregir los problemas",
+            "Messer no practicó una administración eficaz del producto antes del incidente"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-016",
+        "name": "SCBA-equipped emergency responder entry and victim rescue",
+        "side": "mitigation",
+        "barrier_role": "Safely enter oxygen-deficient atmosphere to rescue victims and activate emergency stops",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response by trained and equipped firefighters using SCBA",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Los miembros del Cuerpo de Bomberos del Condado de Hall llegaron al lugar alrededor de las 10:18 a. m.",
+            "Usando un equipo de respiración autónoma (SCBA), los socorristas ingresaron al cuarto frío de la línea 4",
+            "A las 10:36 a. m., uno de los bomberos activó dos de los botones de parada de emergencia del congelador en espiral por inmersión"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

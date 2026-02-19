@@ -1,0 +1,320 @@
+{
+  "incident_id": "MP%2042%20D%20Cantium%2027-Apr-25",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Nitrogen Bottle Explosion - Main Pass 42 Delta Platform",
+    "date_published": "2025-07-31",
+    "date_occurred": "2025-04-27",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Main Pass Block 42",
+    "operator": "Cantium, LLC",
+    "operating_phase": "production",
+    "materials": [
+      "nitrogen"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Explosion",
+    "costs": "5500",
+    "actions_taken": [
+      "BSEE notified by phone and email at 1611 hours on 27 April 2025",
+      "Incident report submitted to BSEE eWell Incident Reporting System on 06 May 2025",
+      "Seven bottles recovered from top deck and shipped to shore",
+      "Cantium required all nitrogen cylinders on their platforms across the Gulf to be inspected"
+    ],
+    "summary": "On 27 April 2025 at 1520 hours, a nitrogen bottle rack containing 12 bottles (300 cubic feet each) exploded on the top deck of Main Pass 42 Delta platform. One corroded nitrogen bottle ruptured, causing a chain reaction that compromised the aluminum rack and sent bottles flying across the platform. Four bottles went overboard into the Gulf, seven were scattered on deck, and one remained in the damaged rack. No personnel were injured despite being in the vicinity. The bottles were daisy-chained together with 1/4 inch stainless steel tubing, which caused the cascade failure. Investigation revealed the bottles were at least 1 year overdue for inspection.",
+    "recommendations": [],
+    "key_phrases": [
+      "nitrogen bottles explode",
+      "daisy chained together",
+      "corrosion at the base",
+      "1 year overdue for inspection",
+      "cascade failure",
+      "isolation valves knocked off"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized Nitrogen Gas",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Corrosion of nitrogen bottle",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate inspection and maintenance",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Daisy-chain configuration enabling cascade failure",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Equipment damage",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Potential personnel injury",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Items overboard into Gulf waters",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Platform structural damage",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Periodic inspection of nitrogen bottles",
+        "side": "prevention",
+        "barrier_role": "Detect and prevent corrosion-related failures",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Routine inspection program to identify equipment degradation",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "management_of_change"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Cantium personnel stated that the 12 nitrogen bottles involved the incident were at least 1 year overdue for inspection",
+            "Had the bottle been properly inspected, the corrosion may have been noticed before the bottle had a chance to rupture",
+            "there was no maintenance/inspection program to require routine inspection of the nitrogen bottles being used offshore"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Hazard analysis for nitrogen bottle storage configuration",
+        "side": "prevention",
+        "barrier_role": "Identify and mitigate risks of daisy-chain configuration",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task hazard identification and risk assessment",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Had a proper hazard analysis been performed, the corrosion on the base of the bottle may have been noticed prior to the explosion",
+            "No or inadequate hazard analysis/written job procedures"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Physical barriers (storage containers and connex boxes)",
+        "side": "mitigation",
+        "barrier_role": "Shield personnel and equipment from flying debris",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Passive physical barrier between hazard and personnel/equipment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "These witnesses were shielded by several large container toolboxes and Connex storage buildings on the top deck",
+            "The large container/storage boxes near the bottle rack likely prevented the exploding bottles from causing additional damage to the platform and/or injury to personnel"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Aluminum bottle rack containment",
+        "side": "mitigation",
+        "barrier_role": "Contain nitrogen bottles during normal operations",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical containment of pressurized bottles",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the rack became compromised and the explosion sent the nitrogen bottles flying in multiple directions across the platform",
+            "Damage occurred to the bottles and the aluminum bottle rack"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Supplier quality assurance (Air Gas)",
+        "side": "prevention",
+        "barrier_role": "Ensure supplied bottles meet safety standards",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Vendor management and equipment certification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "unknown",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Air Gas is the provider of the nitrogen bottles for Cantium"
+          ],
+          "confidence": "low"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": false
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

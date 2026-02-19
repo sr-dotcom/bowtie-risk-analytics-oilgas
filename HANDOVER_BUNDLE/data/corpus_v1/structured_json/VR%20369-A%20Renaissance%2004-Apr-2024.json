@@ -1,0 +1,616 @@
+{
+  "incident_id": "VR%20369-A%20Renaissance%2004-Apr-2024",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - VR-369 Alpha Platform Pressure Release Injury",
+    "date_published": "2024-07-25",
+    "date_occurred": "2024-04-04",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - Vermilion Area Block 369",
+    "operator": "Renaissance Offshore, LLC",
+    "operating_phase": "production",
+    "materials": [
+      "natural gas",
+      "crude oil"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Uncontrolled pressure release from well tree",
+    "costs": null,
+    "actions_taken": [
+      "First aid provided with eye wash bottles, clean bandages and Advil",
+      "Medevac flight requested and arrived at 1:20 AM",
+      "IP transported to Lafayette General Hospital at 1:34 AM",
+      "BSEE onsite investigation conducted April 12, 2024",
+      "Interviews conducted with personnel and contractor employees"
+    ],
+    "summary": "On April 4, 2024, at approximately 10:30 PM, a Cajun Cutters welder was injured when unexpected gas pressure was released from the top of well A-15 tree during removal of a tree cap adapter flange. The worker was impacted in the left eye and left side of face by the pressure release. The incident occurred during temporary production piping reconfiguration work for pipeline depressurization. The worker had been on duty for 15.5 hours. Lockout/Tagout procedures were not properly implemented to ensure positive isolation of all well tree valves. The injured person required medical evacuation and sustained partial permanent hearing loss and eye injuries requiring ongoing treatment.",
+    "recommendations": [],
+    "key_phrases": [
+      "trapped pressure from the valve cavity was released",
+      "unexpected release of pressure from the top of the well tree",
+      "Lockout/Tagout was not implemented to ensure positive isolation",
+      "no written procedures provided",
+      "operator with no previous platform specific experience",
+      "IP was on duty for 15.5 hours",
+      "No safe working surfaces were provided"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized hydrocarbon gas in well tree",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Inadequate isolation of well tree valves",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Trapped pressure in valve cavity",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Opening well tree without verification of zero energy state",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Inadequate supervision and procedures",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury from pressure release",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Eye injury requiring medical treatment",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Partial permanent hearing loss",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Medical evacuation required",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Lockout/Tagout of well tree valves",
+        "side": "prevention",
+        "barrier_role": "Prevent unauthorized valve operation and ensure isolation",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary isolation control",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Lockout/Tagout was not implemented to ensure positive isolation of all A-15 well tree valves",
+            "According to the paperwork provided, Lockout/Tagout of the A-15 lower manual master valve was not installed until after the incident occurred",
+            "No record of Lockout/Tagout was provided to the BSEE investigators for the automatic surface safety valve"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Written procedures for valve isolation and pressure verification",
+        "side": "prevention",
+        "barrier_role": "Provide clear instructions for safe work execution",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural guidance for hazardous work",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "management_of_change"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Renaissance was not able to provide such documents",
+            "There were no written procedures provided to the BSEE investigators, nor written instructions provided to personnel that would specify which valves had been isolated and ensure all pressure had been removed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Job Safety Analysis (JSA) for well tree work",
+        "side": "prevention",
+        "barrier_role": "Identify and mitigate hazards before work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-job hazard identification",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Cajun Cutters' JSA discussed 'not following procedure and stored energy as potential hazards' and '100% containment and checking for pressure' as steps to eliminate hazards",
+            "The scaffold builder (GSSI), who was assisting with the job, was not listed on the JSA",
+            "No site specific JSA was prepared discussing job steps or body positioning"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Pressure verification before opening well tree",
+        "side": "prevention",
+        "barrier_role": "Verify zero energy state before breaking containment",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Critical verification step",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At approximately 2:27 PM the platform was shut in by the platform operators and pressure from the tie-in points was bled to zero. After verifying the pressure was removed, Cajun Cutters removed a section of pipeline piping",
+            "Witnesses stated that the A-15 well had 800 psig of pressure at the top of the well tree before the pressure was bled to zero above the Surface Safety Valve (SSV)",
+            "Renaissance reported that trapped gas pressure was released from a valve cavity but did not identify which valve the pressure was released from"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Surface Safety Valve (SSV) - automatic",
+        "side": "prevention",
+        "barrier_role": "Automatic isolation of well in emergency conditions",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary well control barrier",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "A recent Surface Controlled Sub-Surface Safety Valve (SCSSV) test was collected indicating the A-15 well had a shut-in tubing pressure of 1195 psig",
+            "Witnesses stated that the A-15 well had 800 psig of pressure at the top of the well tree before the pressure was bled to zero above the Surface Safety Valve (SSV)"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Platform operator supervision and monitoring",
+        "side": "prevention",
+        "barrier_role": "Oversee work activities and ensure safe execution",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Supervisory oversight",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "competence",
+            "training",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Renaissance designated an operator with no previous platform specific experience as the sole operator on duty of the overnight shift",
+            "The night shift operator's duties included routine production operations of the platform, including maintaining the incoming production from VR-408A",
+            "The night operator arrived at VR-369A the morning of the incident",
+            "The IP stated in his interview that he had a conversation with the PIC before removing the tree cap adapter to verify that they would continue working"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Process alarm system",
+        "side": "prevention",
+        "barrier_role": "Alert personnel to abnormal conditions",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Detection and alerting system",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "In more than one statement, personnel claimed to have heard a process alarm moments before the pressure release",
+            "Statements included such comments as 'The tree blew up with pressure,' 'It was so loud,' and 'I heard what sounded like a gas release @~10:30 PM. I got out of bed and got dressed.'"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Safe work platform and access",
+        "side": "prevention",
+        "barrier_role": "Provide safe working position to reduce exposure",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical work environment control",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "tools_equipment"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "No safe working surfaces were provided around the entire A-15 well which contributed to the poor body positioning of the IP and helper",
+            "The IP was standing with one foot on the SSV the other on the moveable platform and the helper was standing on flowline wing valve of the A-15 well",
+            "This position placed the top of the well tree at the IP and helper's midsection with them looking down at the tree cap"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Work hour limits and fatigue management",
+        "side": "prevention",
+        "barrier_role": "Prevent fatigue-related errors",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Human performance management",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "fatigue",
+            "workload"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was on duty for 15.5 hours, from 6:00 AM until the time of the incident at approximately 10:30 PM"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "First aid and emergency response",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate medical care after injury",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was provided first aid with eye wash bottles, clean bandages and Advil",
+            "After first aid, the decision was made to request a medevac flight"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Medical evacuation capability",
+        "side": "mitigation",
+        "barrier_role": "Transport injured personnel to advanced medical care",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency medical transport",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "On April 5, 2024, at approximately 12:20 AM, the platform was notified that the medevac flight would arrive at 1:20 AM",
+            "The Medevac departed VR-369A with the IP at 1:34 AM and was flown to Lafayette General Hospital to receive emergency treatment"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Personal Protective Equipment (PPE) - eye protection",
+        "side": "mitigation",
+        "barrier_role": "Reduce severity of injury from pressure release",
+        "barrier_type": "ppe",
+        "line_of_defense": "1st",
+        "lod_basis": "Last line of defense for personnel",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "unknown",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "an unexpected release of pressure from the top of the well tree contacted the IP's left eye and the left side of the IP's face",
+            "The IP has received treatments to remove foreign substances from the eye"
+          ],
+          "confidence": "low"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": "negative",
+      "fatigue_mentioned": true,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": "negative",
+      "workload_mentioned": true,
+      "time_pressure_value": "negative",
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": "negative",
+      "management_of_change_mentioned": true,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

@@ -1,0 +1,549 @@
+{
+  "incident_id": "EI%20307%20Guardian%2017_MAR_2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Dropped Object Incident - Eugene Island Block 307A",
+    "date_published": "2025-06-11",
+    "date_occurred": "2025-03-17",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Eugene Island Block 307, Area EI",
+    "operator": "Guardian Decommissioning, Inc.",
+    "operating_phase": "decommissioning",
+    "materials": [
+      "3.5-inch pipe"
+    ]
+  },
+  "event": {
+    "top_event": "Dropped Object",
+    "incident_type": "Near Miss - Dropped Object",
+    "costs": "4000",
+    "actions_taken": [
+      "BSEE conducted onsite investigation on 19 March 2025",
+      "Inspected elevators and found them worn and not properly maintained",
+      "Reviewed Daily Work Plan",
+      "Issued G-110 (C) Incident of Non-Compliance to Guardian Decommissioning on 21 March 2025",
+      "Replaced handle on wheel unit fire extinguisher",
+      "Replaced punctured hydraulic hose"
+    ],
+    "summary": "On 17 March 2025 at 2140 hours, during well abandonment operations at Eugene Island Block 307A, a single joint of 3.5-inch pipe fell approximately 40 feet to the deck. The incident occurred when a crane operator, without clear line of sight, lowered the pipe onto a Self-Retracting Lifeline (SRL) Arm in an elevated hydraulic jack basket. When the floor hand pushed the pipe off the SRL arm, the impact caused worn elevator doors to open, releasing the pipe. Two workers in the area moved out of the way before the pipe struck a hydraulic hose and fire extinguisher handle. No injuries or pollution occurred; damages totaled $4,000.",
+    "recommendations": [],
+    "key_phrases": [
+      "blind lift",
+      "inadequate communications",
+      "elevators not properly maintained",
+      "inadequate supervision",
+      "no radio communications",
+      "hand signals inadequate and ignored",
+      "inadequate hazards analysis",
+      "small laydown deck area"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Suspended Load - 3.5-inch Pipe",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Blind lift without clear line of sight",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate communication between floor hand and crane operator",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Pipe contact with SRL Arm during lowering",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Elevator latching mechanism failure",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury from dropped object",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment damage",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Crane operator line of sight",
+        "side": "prevention",
+        "barrier_role": "Prevent blind lifts during crane operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Direct operational control",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "He did not have a clear line of sight of the pin end of the pipe as it came to rest on the Self-Retracting Lifeline (SRL) Arm",
+            "The crane operator was conducting a blind lift and did not have adequate controls in place"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Radio communication between floor hand and crane operator",
+        "side": "prevention",
+        "barrier_role": "Enable effective communication during lifting operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Direct operational control",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "There was no radio communications with the floor hand in the elevated hydraulic jack basket and the crane operator",
+            "there was limited hand communication and no radio communication between the floor hand and crane operator"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Hand signals between banksman and crane operator",
+        "side": "prevention",
+        "barrier_role": "Provide visual communication during crane operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Direct operational control",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The hand signals given by the floor hand in the elevated hydraulic jack basket were inadequate and ignored by crane operator"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Banksman identification (fluorescent green vest or hard hat net)",
+        "side": "prevention",
+        "barrier_role": "Ensure clear identification of banksman during lifting operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Direct operational control",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "moderate",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Supervisor did not ensure that the floor hand acting as the banksman in the elevated hydraulic jack basket was identified with a fluorescent green safety vest or hard had net as stated in the Tubing Pulling Procedures"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Tubing Pulling Procedure",
+        "side": "prevention",
+        "barrier_role": "Define safe work practices for pipe handling operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Management system control",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "management failed to follow the Tubing Pulling Procedure",
+            "The procedure for pulling out of the hole with work string was not followed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Daily Work Plan hazard analysis",
+        "side": "prevention",
+        "barrier_role": "Identify and control hazards associated with pipe laydown operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Management system control",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "moderate",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "BSEE reviewed the Daily Work Plan and found that it did not adequately address the hazards associated with setting down pipe with the crane in a small laydown deck area",
+            "The deck area where the 3.5-inch pipe was been laid down was very small and not clearly defined in the hazard analysis"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Safe zone barriers and hazard identification",
+        "side": "prevention",
+        "barrier_role": "Define safe zones and identify potential hazard locations",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical barrier",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "There were no barriers in place to define a safe zone or identify potential hazard locations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Elevator inspection and maintenance",
+        "side": "prevention",
+        "barrier_role": "Ensure elevator latching mechanism functions properly",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Equipment integrity",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "moderate",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "tools_equipment"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "BSEE inspected the elevators and observed that they were worn and not properly maintained",
+            "The elevators that were being used for the 3.5-inch pipe lift were not properly inspected and maintained",
+            "The elevator's latching mechanism malfunctioned and the manufactured spring that holds the elevator's latch closed was worn and very weak"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Elevator latching mechanism",
+        "side": "prevention",
+        "barrier_role": "Secure pipe during lifting operations",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Equipment integrity",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "minor",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "When the collar end of the pipe hit inside the elevators it caused the elevator door to open unlatching the pipe",
+            "this caused the elevators to open, allowing the 3.5-inch pipe to drop approximately 40 feet to the deck below"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Supervision of lifting operations",
+        "side": "prevention",
+        "barrier_role": "Ensure compliance with procedures and safe work practices",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Management oversight",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "there was inadequate supervision since management failed to follow the Tubing Pulling Procedure",
+            "Inadequate supervision. The Supervisor did not ensure that the floor hand acting as the banksman in the elevated hydraulic jack basket was identified with a fluorescent green safety vest or hard had net"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Worker awareness and positioning",
+        "side": "mitigation",
+        "barrier_role": "Enable workers to avoid dropped objects",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "There were two workers in the area where the 3.5-inch pipe struck, but they were able to move out of the way before the pipe landed on the deck"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

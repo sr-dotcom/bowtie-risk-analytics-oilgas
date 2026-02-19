@@ -1,0 +1,437 @@
+{
+  "incident_id": "MC%20941-A%20Equinor%2019-June-2023",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Mooring Line #9 Failure - Titan SPAR Platform MC 941",
+    "date_published": "2024-01-26",
+    "date_occurred": "2023-06-15",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico, Mississippi Canyon Block 941",
+    "operator": "Equinor USA E&P Inc.",
+    "operating_phase": "production",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Loss of Mooring Line Integrity",
+    "incident_type": "Structural Damage - Mooring Line Failure",
+    "costs": "{\"amount\": 5000000, \"currency\": \"USD\", \"description\": \"Replacement cost estimate including engineering work, vessels, materials\"}",
+    "actions_taken": [
+      "Production shut in and POB reduced to essential personnel only",
+      "Inspection of remaining 3 mooring lines on Port Column",
+      "Attempted to increase tension on ML #9 by hauling in anchor chain",
+      "ROV inspection to locate H-link connector and chain components",
+      "Recovery of anchor chain, H-link, and adjacent links for failure analysis",
+      "Metallurgical failure analysis by Stress Engineering Services Inc.",
+      "Full investigation by Equinor",
+      "Production resumed on 7 July 2023 after BSEE approval"
+    ],
+    "summary": "On 15 June 2023, during a scheduled ABS UWILD inspection at the Titan SPAR platform (MC 941 A), abnormal slack was observed on Mooring Line #9 with a significant length resting on the seabed. The H-link connector was found buried at the seabed. Investigation revealed the 5-inch Grade RQ4 chain link had parted. Metallurgical analysis concluded the failure was most likely due to fatigue initiating at the top of the crown where stresses are high, with corrosion as a contributing factor. Historical data showed ML #9 tension had decreased significantly in March 2022, with low tension alarms noted in September 2022. The remaining 3 mooring lines on the Port Column were inspected and found in good condition, allowing continued manned operations.",
+    "recommendations": [
+      "The BSEE New Orleans District has no recommendations for the Office of Incident Investigations at this time"
+    ],
+    "key_phrases": [
+      "Mooring Line #9 failure",
+      "fatigue initiating at the top of the crown",
+      "abnormal amount of slack",
+      "H-link connector buried at seabed",
+      "5-inch Grade RQ4 chain link",
+      "corrosion contributing factor",
+      "crown cracks",
+      "low tension alarm",
+      "SPAR platform",
+      "station keeping"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Mooring line under cyclic loading and corrosive environment",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Fatigue crack initiation at high stress locations (crown)",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Corrosion of mooring line chain links",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "High stress concentration at crown of chain link",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Loss of mooring line integrity",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Reduced station keeping capability",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Production shutdown",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Financial loss ($5M replacement cost)",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Scheduled ABS UWILD Inspection",
+        "side": "prevention",
+        "barrier_role": "Detection and monitoring of mooring line condition",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Periodic inspection program to detect degradation before failure",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "in accordance with the In-Service Inspection Plan (ISIP), Titan was conducting a scheduled American Bureau of Shipping (ABS) Underwater Inspection in lieu of Drydocking (UWILD)",
+            "an abnormal amount of slack was observed on the ML #9"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Daily Marine Report Tension Monitoring",
+        "side": "prevention",
+        "barrier_role": "Continuous monitoring of mooring line tension",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Real-time monitoring system providing early warning of tension loss",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "on 11 March 2022, Titan operations found a significant decrease in ML #9 tension recorded on the daily marine report",
+            "Six months later on 9 September 2022, low tension and an associated alarm for ML #9 were noted during an internal technical integrity review"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Mooring Line Tension Alarm System",
+        "side": "prevention",
+        "barrier_role": "Automated alarm for low tension conditions",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Automated detection and alerting of abnormal conditions",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "low tension and an associated alarm for ML #9 were noted during an internal technical integrity review"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Post-Hurricane ROV Inspection",
+        "side": "prevention",
+        "barrier_role": "Event-driven inspection following extreme weather",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Verification of integrity after known stress event",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "following Hurricane Ida in August of 2021, an ROV inspection of the mooring lines was completed on 22 December 2021. This report found ML #9 to be in normal condition at that time"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Maintenance Management Program for Mooring System",
+        "side": "prevention",
+        "barrier_role": "Corrective maintenance to address identified degradation",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Systematic approach to maintain equipment integrity",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Management Systems – Weakness in maintenance management program for mooring system: Reliance on third party vendors to conduct corrective maintenance work orders on the mooring system caused delays due to unavailability"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Inspection of Remaining Mooring Lines",
+        "side": "mitigation",
+        "barrier_role": "Verification of remaining station keeping capability",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to assess remaining safety margin",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The other 3 MLs on the Port Column were inspected and found to be in good condition. As such, the platform was allowed to continue manned operations",
+            "All 3 remaining MLs on the Port Column were found to be in good condition, rendering the platform safe to remain manned"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Production Shutdown and POB Reduction",
+        "side": "mitigation",
+        "barrier_role": "Emergency response to reduce personnel risk",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Immediate action to protect personnel following loss of containment boundary",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Equinor shut in production and reduced the number of Personnel on Board (POB) to essential personnel only"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Material Specification (Grade RQ4/R4 Chain)",
+        "side": "prevention",
+        "barrier_role": "Design specification to ensure adequate strength",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Material selection to withstand design loads",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The link most likely failed due to fatigue initiating at the top of the crown where stresses are high",
+            "Tensile properties and chemical composition were acceptable for Grade RQ4/R4 links. Hardness and yield strength were on the high side for Grade R4 and were more typical of Grade R5"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

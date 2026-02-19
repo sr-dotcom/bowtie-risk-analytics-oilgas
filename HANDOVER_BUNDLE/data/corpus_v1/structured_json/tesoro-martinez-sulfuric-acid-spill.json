@@ -1,0 +1,610 @@
+{
+  "incident_id": "2014-02-I-CA and 2014-03-I-CA",
+  "source": {
+    "doc_type": "CSB Case Study",
+    "url": null,
+    "title": "Tesoro Martinez Refinery Process Safety Culture Case Study - February 12, 2014 and March 10, 2014 Sulfuric Acid Release Incidents",
+    "date_published": "2016-07-01",
+    "date_occurred": "2014-02-12",
+    "timezone": "America/Los_Angeles"
+  },
+  "context": {
+    "region": "Martinez, California",
+    "operator": "Tesoro Corporation",
+    "operating_phase": "production",
+    "materials": [
+      "sulfuric acid",
+      "hydrocarbons",
+      "isobutane",
+      "light olefins",
+      "naphtha"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment - Sulfuric Acid Release",
+    "incident_type": "Chemical Release / Worker Injury",
+    "costs": null,
+    "actions_taken": [
+      "Workers immediately went to nearby safety shower",
+      "Emergency responders transferred workers by helicopter and ambulance to UC Davis Regional Burn Center",
+      "Cal/OSHA required process shutdown from February 18, 2014 until February 28, 2014",
+      "Tesoro upgraded PPE requirements to include full acid suit and air-purifying respirator",
+      "Tesoro replaced failed tubing connector and adjacent inadequately tightened compression fitting",
+      "Tesoro commissioned Anamet, Inc. to conduct materials testing on failed tubing"
+    ],
+    "summary": "On February 12, 2014, two Tesoro Martinez refinery employees suffered first and second degree chemical burns while working to return a sulfuric acid sampling system to service following nonroutine maintenance. Concentrated sulfuric acid sprayed the workers following a mechanical integrity failure of a ¾-inch tubing connector adjacent to the acid sampling station. The tubing came apart at the connector when operators opened a valve to return the acid sampling system to service. Acid continued to spray from a nearly 100,000-gallon acid settler for over two hours, resulting in the release of approximately 84,000 pounds of sulfuric acid. Both workers were transported to a burn center and neither returned to work for over 150 days. The incident was classified as a Tier 1 process safety event (loss of primary containment). The CSB investigation found that weak process safety culture at the refinery, including inadequate mechanical integrity practices, insufficient PPE, poor sampling system design, and failure to learn from previous incidents, were causal to the incident.",
+    "recommendations": [
+      "Implement inherently safer sulfuric acid sampling system design with closed-loop systems",
+      "Establish robust mechanical integrity program with mandatory leak-testing of tubing and fittings following repairs",
+      "Provide adequate and functional PPE for all workers exposed to sulfuric acid hazards",
+      "Conduct comprehensive process hazard analysis specifically evaluating sulfuric acid sampling system hazards",
+      "Strengthen process safety culture through management commitment and effective communication of safety lessons",
+      "Implement leading and lagging process safety indicators to identify trends and trigger preventive inspections",
+      "Enhance regulatory oversight through proactive and preventive inspections by state regulators",
+      "Establish effective management of change procedures for all equipment modifications",
+      "Implement corrective actions from previous safety culture assessments",
+      "Ensure effective incorporation and communication of lessons learned from previous incidents"
+    ],
+    "key_phrases": [
+      "weak process safety culture",
+      "mechanical integrity failure",
+      "loss of primary containment",
+      "inherently safer design",
+      "hierarchy of controls",
+      "inadequate PPE",
+      "sampling system design deficiency",
+      "insufficient tightening of compression joint",
+      "failure to learn from previous incidents",
+      "management commitment to safety",
+      "process safety management system deficiencies"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Sulfuric Acid - Corrosive and Reactive Chemical"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Pressurized Acid Settler Vessel"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Sulfuric Acid Vapor and Fumes"
+      },
+      {
+        "hazard_id": "H-004",
+        "name": "Flammable Hydrocarbon Layer in Acid Settler"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Mechanical Integrity Failure of Tubing Connector"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate Tightening of Compression Fitting"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Improper Maintenance and Repair of Sampling System"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Inadequate Leak Testing Following Repairs"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Poor Sampling System Design"
+      },
+      {
+        "threat_id": "T-006",
+        "name": "Weak Process Safety Culture and Management Commitment"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Chemical Burns to Workers"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Loss of Primary Containment - 84,000 pounds of Sulfuric Acid Released"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Worker Incapacity - Extended Time Away from Work (150+ days)"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Potential Escalation to Fire or Explosion from Flammable Hydrocarbon Layer"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Environmental Release of Hazardous Chemical"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "Regulatory Enforcement and Citations"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Mechanical Integrity Program for Tubing and Fittings",
+        "side": "prevention",
+        "barrier_role": "Prevent tubing connector failure through proper installation and maintenance",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary engineering control to prevent loss of containment",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The report concluded that the sulfuric acid release on February 12, 2014 resulted from the failure of a ¾-inch diameter stainless steel tubing connector that came apart due to insufficient tightening between a tube and a compression joint",
+            "The Tesoro Martinez refinery did not require workers to leak-test tubing of this type following repairs",
+            "Following the February 12, 2014 incident, maintenance workers also found an inadequately tightened compression fitting for an adjacent sample station"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Leak Testing Procedure for Repaired Tubing and Fittings",
+        "side": "prevention",
+        "barrier_role": "Detect mechanical integrity failures before system pressurization",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary control to verify integrity of repairs before returning system to service",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Due to maintenance program deficiencies including gaps in planning, documentation, and communication, Tesoro did not effectively repair or leak-test the tubing prior to placing it back in service",
+            "The Tesoro Martinez refinery did not require workers to leak-test tubing of this type following repairs"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Inherently Safer Sampling System Design",
+        "side": "prevention",
+        "barrier_role": "Eliminate or minimize worker exposure to sulfuric acid through superior engineering design",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary control using hierarchy of controls to eliminate hazard at source",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005",
+            "PIF-006",
+            "PIF-007"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "In January 2010, the Tesoro Martinez refinery made a substantial financial investment in what the refinery asserted was a more robust, 'inherently safer' sampling system, which the refinery then failed to make operable and took out of service",
+            "On February 12, 2014, workers were putting the older, poorly designed system back into service when the incident occurred",
+            "Tesoro approved a project to install new closed loop sample systems in June 2009. Tesoro designed these systems to be a significant upgrade to the existing sample stations, with the goal of minimizing operator exposure to the sulfuric acid when sampling"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Personal Protective Equipment (PPE) for Acid Sampling",
+        "side": "mitigation",
+        "barrier_role": "Protect workers from sulfuric acid exposure during sampling operations",
+        "barrier_type": "ppe",
+        "line_of_defense": "3rd",
+        "lod_basis": "Last line of defense to protect workers from chemical exposure",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-008",
+            "PIF-009"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At the time of the incident, the two employees were wearing the personal protective equipment (PPE) required by company policy to put the sample system back in service – hard hat, safety shoes, goggles, flame retardant jacket and coveralls, and gloves. This PPE was, however, insufficient to protect against an acid spray injury",
+            "Tesoro operators informed the CSB that despite the fact that Tesoro Martinez required four items of PPE, the workers only wore the goggles and chemical gloves. The workers did not use the acid suit jacket required by the procedure because Tesoro stopped carrying this item in its PPE inventory",
+            "Failure to provide alkylation unit workers with necessary and functional personal protective equipment (PPE)"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Process Hazard Analysis (PHA) for Sampling System Hazards",
+        "side": "prevention",
+        "barrier_role": "Identify and evaluate hazards associated with sulfuric acid sampling operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational process safety management system to identify hazards and controls",
+        "linked_threat_ids": [
+          "T-005",
+          "T-006"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005",
+            "PIF-006",
+            "PIF-007"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "In its 2009 process hazard analysis (PHA), Tesoro evaluated the hazards of sampling sulfuric acid. Tesoro's PHA documentation indicates that the PHA Team identified the sampling hazard to have a potential severity of a lost workday injury, which they anticipated to be likely to occur within 20 years. Tesoro's PHA risk matrix identifies this combination of severity and frequency to be 'low risk'",
+            "In its 2013 PHA, Tesoro did not specifically evaluate the hazards of the sulfuric acid sample stations. Instead, a human factors checklist was used to cover the sample systems. The checklist questions did not evaluate sampling system hazards",
+            "the report from Contra Costa County's inspection following the February 12, 2014 incident concluded that neither the 2009 nor the 2012 alkylation unit PHAs adequately evaluated the hazards associated with the acid sample stations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Maintenance Planning and Documentation",
+        "side": "prevention",
+        "barrier_role": "Ensure proper planning, documentation, and communication of maintenance activities",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational process safety management system to ensure work is properly planned and executed",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Due to maintenance program deficiencies including gaps in planning, documentation, and communication, Tesoro did not effectively repair or leak-test the tubing prior to placing it back in service"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Management of Change (MOC) Procedure",
+        "side": "prevention",
+        "barrier_role": "Evaluate and control changes to equipment, processes, and procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Process safety management system to ensure changes are properly evaluated and authorized",
+        "linked_threat_ids": [
+          "T-006"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "According to its incident investigation records, Tesoro installed this temporary pump without a Management of Change (MOC) and the pump failed because it was not suitable for sulfuric acid service"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Process Safety Culture and Management Commitment",
+        "side": "prevention",
+        "barrier_role": "Establish organizational culture and management commitment to prioritize worker safety",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational organizational control to ensure safety is prioritized across all operations",
+        "linked_threat_ids": [
+          "T-006"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005",
+            "PIF-006",
+            "PIF-007",
+            "PIF-010",
+            "PIF-011"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The safety culture at the Tesoro Martinez refinery created conditions conducive to the occurrence and recurrence of process safety incidents that caused worker injuries at the refinery over several years",
+            "Minimization of the seriousness of the February 12, 2014 process safety incident involving chemical burns to workers and a loss of primary containment",
+            "Despite the serious nature of the employee injuries and quantity of hazardous chemicals released from the loss of containment, Tesoro challenged the CSB's authority to investigate the incident and failed to preserve key evidence. Tesoro corporate officials characterized the incident as a minor personal safety event rather than a process safety incident"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Incident Investigation and Lessons Learned",
+        "side": "prevention",
+        "barrier_role": "Investigate incidents and implement corrective actions to prevent recurrence",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary control to learn from incidents and prevent recurrence",
+        "linked_threat_ids": [
+          "T-006"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005",
+            "PIF-006",
+            "PIF-007"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CSB found that this second incident shared similar causation with a 1999 incident at the same refinery, then called the Avon refinery, owned by the Tosco Corporation, that resulted in four fatalities. Similarities between the two incidents suggest that the Tesoro Martinez refinery did not effectively continue to implement or communicate important safety lessons from the 1999 Tosco incident",
+            "Ineffective incorporation and communication of lessons learned from previous safety incidents",
+            "Tesoro tolerated numerous sulfuric acid worker injuries during the five-year period of 2010 to 2014. These incidents provide evidence of deficiencies in the refinery's organizational policies and practices governing safe work"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Safety Shower and Emergency Response",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate decontamination and medical response for chemical exposure incidents",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Recovery control to mitigate consequences of chemical exposure",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "medium",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The operators immediately went to a nearby safety shower",
+            "Emergency responders transferred the workers by helicopter and ambulance to the UC Davis Regional Burn Center for evaluation and treatment of their sulfuric acid burn injuries"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "low",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "low",
+      "communication_mentioned": true,
+      "situational_awareness_value": "low",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "low",
+      "procedures_mentioned": true,
+      "workload_value": "low",
+      "workload_mentioned": true,
+      "time_pressure_value": "low",
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": "low",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "low",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": "low",
+      "management_of_change_mentioned": true,
+      "supervision_value": "low",
+      "supervision_mentioned": true,
+      "training_value": "low",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "additional_context": "This incident is part of a pattern of sulfuric acid release incidents at the Tesoro Martinez refinery dating back to 2010. The CSB investigation identified systemic weaknesses in process safety culture, mechanical integrity, maintenance practices, and management commitment to safety. The refinery failed to implement lessons learned from a 1999 incident at the same facility that resulted in four fatalities. The investigation emphasizes the critical importance of strong safety culture and effective process safety management systems in preventing major accidents."
+  }
+}

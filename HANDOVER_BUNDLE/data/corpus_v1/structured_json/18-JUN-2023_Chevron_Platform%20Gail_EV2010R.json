@@ -1,0 +1,744 @@
+{
+  "incident_id": "18-JUN-2023_Chevron_Platform%20Gail_EV2010R",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - Platform Gail Conductor Removal Injury",
+    "date_published": "2024-07-11",
+    "date_occurred": "2023-06-18",
+    "timezone": "Pacific"
+  },
+  "context": {
+    "region": "Pacific OCS Region - Lease P00205, Area/Block LA/6012",
+    "operator": "Chevron U.S.A. Inc.",
+    "operating_phase": "decommissioning",
+    "materials": [
+      "marine growth",
+      "conductor sections"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment of Human Body Part",
+    "incident_type": "Amputation injury during conductor removal",
+    "costs": null,
+    "actions_taken": [
+      "Operations stopped immediately",
+      "First aid administered by medic",
+      "Injured person evacuated by boat to shore",
+      "Amputated digits recovered and transported with injured person",
+      "Ambulance transport to Ventura hospital",
+      "Work placed on stand down immediately after incident",
+      "Incident reported to BSEE Regional Supervisor via email same day",
+      "BSEE onsite investigation conducted June 19, 2023",
+      "Operations recommenced July 7, 2023 using chain-link fence fabric method"
+    ],
+    "summary": "On June 18, 2023, at approximately 18:35, an amputation injury occurred during decommissioning operations at Platform Gail. The injured person was adjusting chains in a marine growth removal system when a conductor began rising unexpectedly. The injured person had requested an 'all stop' and seeing movement stop, placed his left hand fingers under the chain just as the conductor began rising again. This motion caused the chain to tighten, trapping the injured person's left hand and amputating the tips of two fingers (middle and ring finger between fingernail and first knuckle). The incident occurred because the 'all stop' call was not confirmed by the casing jack operator, who was simultaneously checking the conductor's weight. The injured person mistook the brief pause for a confirmed stop and proceeded with chain adjustment.",
+    "recommendations": [
+      "Develop and implement comprehensive risk assessment for marine growth removal activities",
+      "Implement written management of change procedures for equipment and method changes",
+      "Improve radio communication protocols to ensure confirmation of 'all stop' commands",
+      "Evaluate alternative marine growth removal methods that minimize worker proximity to moving equipment",
+      "Submit amended APM to BSEE/BOEM when deviating from approved methods",
+      "Ensure JSAs and work permits adequately address specific task hazards",
+      "Implement positive communication confirmation system for critical operations"
+    ],
+    "key_phrases": [
+      "all stop",
+      "marine growth removal system",
+      "casing jack operator",
+      "conductor removal",
+      "chain adjustment",
+      "amputation injury",
+      "radio communication failure",
+      "management of change",
+      "risk assessment",
+      "decommissioning operations"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Moving conductor under tension with chains",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Heavy equipment operation in confined space",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Unconfirmed 'all stop' command during chain adjustment",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Worker hand placement near moving chain and conductor",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate risk assessment of marine growth removal methods",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Failure to implement management of change procedures",
+        "description": null
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Deviation from approved APM without notification",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Amputation of two finger tips",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Medical evacuation required",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Operations shutdown",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Regulatory violations",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Radio communication system for 'all stop' commands",
+        "side": "prevention",
+        "barrier_role": "Prevent unauthorized movement during maintenance",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Operational control to prevent hazardous movement",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "A call for an 'all stop' came over the radio from the trainee on the +44 level, but no one confirmed it",
+            "According to Chevron's procedures, any station can request an 'all stop,' and the Weatherford Lead will acknowledge the 'all stop' and select a control to stop the casing jack",
+            "The Weatherford Lead reported in his witness statement that the only 'all stop' he heard was from the trainee who had reported that there had been an injury"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Weatherford Lead confirmation of 'all stop' before stopping casing jack",
+        "side": "prevention",
+        "barrier_role": "Ensure safe work authorization before maintenance",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Operational control requiring positive confirmation",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Rep 1 also confirmed that he himself did hear over the radio the 'all stop' intended for the chain adjustment, but did not hear the Weatherford Lead confirm it",
+            "Against Chevron's operating procedures, IP used this pause to adjust the chain without getting 'all stop' confirmation"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Worker verification of confirmed stop before hand placement",
+        "side": "prevention",
+        "barrier_role": "Personal verification before entering hazard zone",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Individual worker safety check",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures",
+            "time_pressure"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "IP used this stop to adjust the chain, neither getting 'all stop' confirmation nor realizing the conductor would start rising again after the weight check",
+            "seeing movement stop, IP placed his left hand fingers under the chain just as the conductor began rising again"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Job Safety Analysis (JSA) for marine growth removal",
+        "side": "prevention",
+        "barrier_role": "Identify and control hazards before work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-job hazard identification and control",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "BSEE reviewed the JSAs and work permits for the task of marine growth removal and determined that the JSAs cautioned workers, including IP, about hand placement and good communication prior to the incident",
+            "BSEE also found that Chevron's reliance on the JSAs and work permits for conductor removal operations was insufficient to identify and evaluate risks and ensure that safeguards were in place for the specific activity of marine growth removal"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Management of Change (MOC) procedures for equipment/method changes",
+        "side": "prevention",
+        "barrier_role": "Ensure changes are properly assessed and controlled",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Management system oversight of operational changes",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "management_of_change",
+            "safety_culture",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Chevron did not produce any MOC records, stating that it did not perform a comprehensive risk analysis of changing from one MGRS method to another",
+            "BSEE concluded that Chevron switched through three different MGRS methods without developing and implementing written MOC procedures, as required by 30 CFR § 250.1912(a)(2)",
+            "Chevron identified two root causes (inadequate verbal communication and no risk assessment) and two contributing factors (MOC inadequate for design change and inadequate written communication)"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Comprehensive risk assessment for marine growth removal methods",
+        "side": "prevention",
+        "barrier_role": "Identify hazards and implement mitigation measures",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Engineering and management review of work methods",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "safety_culture",
+            "management_of_change",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Chevron's report acknowledges that one of the root causes of the incident was the lack of a risk assessment of the marine growth removal activity",
+            "BSEE's investigation found that Chevron did not properly or thoroughly analyze the risks posed by any of the MGRS methods it had used",
+            "Nor did Chevron conduct a risk or hazards analysis on the chain or chain-link fence fabric MGRS methods prior to their use"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "APM approval and notification for method changes",
+        "side": "prevention",
+        "barrier_role": "Regulatory oversight of operational changes",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "External regulatory review and approval",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "management_of_change",
+            "procedures",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At no time prior to or during conductor removal operations did Chevron submit to BOEM or BSEE an amended APM with documentation stating that it was going to use, or was considering using, MGRS methods other than the diver method",
+            "Furthermore, Chevron deviated from its approved APM and failed to provide any notification to BSEE of the amended course of action",
+            "At no time does Chevron indicate any alternative method to be considered for the removal of the marine growth from the conductors"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Safety briefing and pass-over information",
+        "side": "prevention",
+        "barrier_role": "Communicate hazards and operational status to crew",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Operational communication and awareness",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 18:00, the night shift conductor removal crew held a safety meeting and received pass-over information from the day shift",
+            "During the meeting, personnel discussed that a collar was just below the +44 platform level, and all involved will need to be ready for an 'all stop' to make adjustments"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Pre-work equipment inspection",
+        "side": "prevention",
+        "barrier_role": "Verify equipment readiness before operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-operational verification",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Around 18:15, crewmembers inspected their workstation and equipment"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Trainee supervision and experienced worker presence",
+        "side": "prevention",
+        "barrier_role": "Ensure competent personnel perform critical tasks",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Competency assurance through supervision",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "training",
+            "supervision",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CEC contractor at that station called out over the radio that he was not ready. The CEC contractor was a trainee working on the MGRS for the first time and was waiting for the experienced worker (IP) to show up",
+            "At approximately 18:30, IP arrived on station and told the trainee to call out over the radio to the Weatherford Lead that the +44 level was 'all clear'"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Personal protective equipment (rubber gloves)",
+        "side": "mitigation",
+        "barrier_role": "Reduce severity of hand injury",
+        "barrier_type": "ppe",
+        "line_of_defense": "1st",
+        "lod_basis": "Last line of defense at point of contact",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the Chevron representative who was in charge at the time of the incident ('Rep 1') and a platform operator coordinated with the Weatherford Lead, via radio, to lower the conductor three inches, loosening the chain enough to recover the rubber glove with the digits still inside"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Onsite medic and first aid response",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate medical care to injured person",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Operations were stopped and IP was helped to make his way to the medic. After administering first aid and a pain killer, the medic decided to evacuate IP by boat",
+            "An ambulance waiting onshore then transported IP to the Ventura hospital, where his injuries were attended to"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Emergency evacuation procedures and equipment",
+        "side": "mitigation",
+        "barrier_role": "Transport injured person to medical facility",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 19:46, IP was transferred by crane on to the M/V Glenn C and escorted to shore with the medic and IP's supervisor",
+            "An ambulance waiting onshore then transported IP to the Ventura hospital"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Stop work authority and immediate shutdown",
+        "side": "mitigation",
+        "barrier_role": "Prevent further injuries after incident",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to prevent escalation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Operations were stopped and IP was helped to make his way to the medic",
+            "Chevron reported that work on the conductor removal had been placed on a stand down immediately after the incident"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Incident reporting to regulatory authority",
+        "side": "mitigation",
+        "barrier_role": "Ensure regulatory oversight and investigation",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Regulatory notification requirement",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "A Beacon West contractor reported the incident to the BSEE Regional Supervisor via email that same day"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "adequate",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "inadequate",
+      "communication_mentioned": true,
+      "situational_awareness_value": "inadequate",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "inadequate",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": "present",
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": "inadequate",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "inadequate",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": "inadequate",
+      "management_of_change_mentioned": true,
+      "supervision_value": "adequate",
+      "supervision_mentioned": true,
+      "training_value": "adequate",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

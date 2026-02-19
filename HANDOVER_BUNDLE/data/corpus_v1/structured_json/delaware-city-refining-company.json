@@ -1,0 +1,535 @@
+{
+  "incident_id": "2015-01-I-DE",
+  "source": {
+    "doc_type": "CSB Safety Bulletin",
+    "url": "https://www.csb.gov",
+    "title": "Flash Fire at the Delaware City Refinery – Key Lessons for Preventing Incidents When Preparing Process Equipment for Maintenance",
+    "date_published": "2017-05-01",
+    "date_occurred": "2015-11-29",
+    "timezone": "US/Eastern"
+  },
+  "context": {
+    "region": "Delaware City, DE, USA",
+    "operator": "Delaware City Refining Company (DCRC)",
+    "operating_phase": "maintenance preparation",
+    "materials": [
+      "isobutane",
+      "propane",
+      "hydrocarbons",
+      "caustic sodium hydroxide",
+      "condensate water",
+      "sulfuric acid"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Flash Fire",
+    "costs": null,
+    "actions_taken": [
+      "Nightshift operator turned on stationary fire monitors after sustaining burns",
+      "Fellow operator advised injured worker to seek medical attention",
+      "Injured operator transported by ambulance to hospital",
+      "Operator/fire brigade member closed drain valve to OWS to isolate burning hydrocarbon streams",
+      "Operator/fire brigade member extinguished smaller fire at half-inch drain pipe by closing associated valve",
+      "Operator/fire brigade member closed depropanizer pre-heater valve to cut off hydrocarbon supply",
+      "Onsite refinery emergency response teams extinguished fire by isolating fuel source after approximately one hour",
+      "Post-incident: DCRC developed and implemented a standing instruction for operations personnel when preparing process equipment for maintenance",
+      "Post-incident: DCRC established a process requiring risk assessment prior to selecting isolation points and de-inventorying equipment"
+    ],
+    "summary": "On November 29, 2015, a nightshift operator at the Delaware City Refining Company's sulfuric acid alkylation unit suffered second- and third-degree burns from a flash fire. Operations personnel were preparing equipment for maintenance by de-inventorying and draining vessels (caustic settler and coalescer) isolated from the depropanizer column. A single block valve (4-inch coalescer outlet gate valve) was relied upon to isolate the vessels from the pressurized, inventoried depropanizer column. Unknown to operators, this valve had a slow leak, allowing hydrocarbons (primarily isobutane and propane) to backflow from the depropanizer into the vessels. When the nightshift operator opened the drain valve to empty what he believed was condensate water into the oil water sewer (OWS), hydrocarbons also released into the OWS. Vapors travelled approximately 120 feet to an operating furnace, ignited, and the flash fire travelled back toward the operator. Contributing factors included the absence of specific procedures for taking the coalescer and caustic settler out of service, reliance on a single block valve for isolation, no pre-planning hazard identification process, no Management of Change review for the expanded isolation plan, and draining potentially hydrocarbon-containing material into the OWS in proximity to ignition sources.",
+    "recommendations": [
+      "Ensure standard operating procedures include steps for preparing all process equipment for maintenance, covering de-inventorying, decontaminating, washing, steaming, purging, and draining.",
+      "Develop a process requiring pre-planning and hazard identification prior to initiating equipment preparation activities, including proper selection of isolation points and assessment of hazards.",
+      "Avoid reliance on single block valves to control hazardous energy during de-inventorying or decontaminating activities; consider double blocks, blinds, or complete disconnection of hazardous energy sources.",
+      "When an equipment preparation task or isolation plan needs to be modified or expanded, initiate a process (e.g., MOC or risk assessment) to evaluate hazards introduced by the change.",
+      "Use closed systems (tanks, drums, flares, scrubbers) to control draining or relieving of hazardous energy; avoid draining materials potentially containing volatile hydrocarbons into OWS systems not designed for such services, especially near ignition sources."
+    ],
+    "key_phrases": [
+      "flash fire",
+      "single block valve",
+      "leaking valve",
+      "hydrocarbon backflow",
+      "depropanizer column",
+      "caustic settler",
+      "coalescer",
+      "oil water sewer",
+      "non-routine maintenance preparation",
+      "no procedure",
+      "expanded isolation plan",
+      "Management of Change",
+      "isobutane",
+      "ignition source",
+      "furnace",
+      "second-degree burns",
+      "third-degree burns",
+      "de-inventorying",
+      "decontamination",
+      "hazard identification"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurised flammable hydrocarbons (isobutane/propane) in depropanizer column"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Flammable hydrocarbon vapour release to oil water sewer in proximity to ignition sources"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Leaking single block valve allowing hydrocarbon backflow from depropanizer into isolated vessels"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Absence of specific procedures for non-routine equipment preparation (de-inventorying coalescer and caustic settler)"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Expansion of isolation plan without hazard identification or Management of Change review"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Draining potentially hydrocarbon-containing material into oil water sewer near operating furnace"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Flash fire injuring operator (second-degree burns to face and neck, third-degree burns to wrist)"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Fire at multiple OWS drains burning for approximately one hour"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Release of flammable hydrocarbon vapour to atmosphere and sewer system"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Single block valve (4-inch coalescer outlet gate valve) isolating depropanizer from vessels",
+        "side": "prevention",
+        "barrier_role": "Isolate pressurised hydrocarbon source from vessels being de-inventoried",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary isolation barrier between depropanizer column and coalescer/caustic settler",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "A single block valve isolated the vessels being decontaminated from a pressurized and inventoried depropanizer column containing hydrocarbons; unknown to operations personnel, the valve leaked in the closed position, resulting in backflow of flammable material from the depropanizer.",
+            "The four-inch coalescer outlet gate valve was later determined to have a slow leak through the valve seat, and likely allowed hydrocarbons in the depropanizer column to backflow into the caustic settler and coalescer during the equipment preparation activity.",
+            "DCRC relied on an isolation method that used a single closed isolation valve, which was later determined to have a slow leak, to act as a barrier between the hydrocarbons in the depropanizer and the vessels they were draining."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Specific written procedure for taking coalescer and caustic settler out of service",
+        "side": "prevention",
+        "barrier_role": "Ensure correct isolation steps and hazard identification for non-routine equipment preparation",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural control to guide operators through non-routine de-inventorying task",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "An operator looked for a procedure or job aid for the task of taking those vessels out of service; however, no job aid or procedure existed, so the dayshift operator and board operator developed informal instructions for isolating and de-inventorying that equipment.",
+            "After a review of applicable DCRC procedures and job aids for the work being performed on the day of the incident, the CSB concludes that the refinery lacked specific procedures for removing the caustic settler and coalescer from service.",
+            "DCRC also lacked any general procedures to ensure that preparing equipment for maintenance, prior to lockout-tagout (LOTO), was done safely."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Management of Change (MOC) review for expanded isolation plan",
+        "side": "prevention",
+        "barrier_role": "Identify and evaluate hazards introduced by modification of isolation scheme before work proceeds",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Systematic hazard evaluation process required for changes to procedures or isolation plans",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "DCRC stated that an MOC did not apply to the maintenance preparation activity or the expansion of the isolation scheme because there was no standing procedure, job aid, or instruction from which to deviate.",
+            "Had an MOC review been initiated, a hazard evaluation could have identified the potential for backflow and recognized the need for a more protective method of isolation between the coalescer and the depropanizer column.",
+            "The CSB concludes that the new plan should have been considered a change."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Pre-planning and hazard identification process for equipment preparation activities",
+        "side": "prevention",
+        "barrier_role": "Identify hazards and select appropriate isolation methods before initiating maintenance preparation",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Structured risk assessment and pre-planning required prior to non-routine work",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Prior to the incident, DCRC had no procedure or process to ensure that isolation points were holding prior to starting equipment preparation activities.",
+            "Nor was there a process or procedure to require the use of more protective forms of isolation for equipment preparation activities when possible.",
+            "Proper equipment isolation and decontamination begin with effective preplanning and hazard identification."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Double block and bleed or blind flange isolation (more protective isolation method)",
+        "side": "prevention",
+        "barrier_role": "Prevent hydrocarbon backflow from depropanizer into vessels being de-inventoried",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "More protective isolation measure than single block valve to prevent passage of hazardous energy",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "When isolating equipment for de-inventorying or decontaminating activities prior to maintenance work, avoid reliance on single block valves, even when the valves are newly installed, to control the release of hazardous energy such as toxic, flammable or pressurized materials. Valves may fail, leak or be inadvertently closed or open. Always consider more protective measures for isolation, including double blocks, the insertion of blinds, or the complete disconnection of hazardous energy sources.",
+            "In a double block and bleed, a bleed line is located between two closed block valves that vents any material that passes through the first closed valve. A more protective isolation measure is the insertion of a blind or solid metal plate that blocks flow in the line."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Draining to closed systems (tanks, drums, flares, scrubbers) rather than OWS",
+        "side": "prevention",
+        "barrier_role": "Prevent release of flammable hydrocarbons to OWS system near ignition sources",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Engineering control to route hazardous drains to safe closed systems away from ignition sources",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Avoid draining materials containing, or potentially containing, hydrocarbon or flammables into the sewer or other systems not specifically designed for such services, especially when ignition sources are present.",
+            "Use closed systems such as tanks, drums, flares, or scrubbers to control the dissipation, draining, or relieving of hazardous energy in preparation to isolate equipment for maintenance.",
+            "Six-inch collection drains at a number of pump stations are located en route to the OWS collection drum and the pathway for the OWS is located in an orientation that brings it in close proximity to the operating furnace, with the closest drain about 25 feet from a furnace."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Shift handover communication and review of informal task instructions",
+        "side": "prevention",
+        "barrier_role": "Transfer knowledge of equipment preparation status and steps between dayshift and nightshift operators",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Operational communication control to maintain situational awareness across shift change",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Shortly after arriving for his shift on November 29, 2015, the nightshift operator spoke to the dayshift operator about the maintenance preparation task and reviewed the dayshift operator's handwritten list of steps, while also identifying which equipment had been isolated.",
+            "The absence of a step-by-step procedure or job aid may also create the opportunity for operator error as preparation activities may be inconsistent or misunderstood between shifts."
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Stationary fire monitors and onsite emergency response",
+        "side": "mitigation",
+        "barrier_role": "Suppress and extinguish fire following flash fire ignition",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response capability to mitigate consequences of fire event",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "He left the area and turned on stationary fire monitors.",
+            "The fire burned for approximately one hour before onsite refinery emergency response teams extinguished the fire by isolating the fuel source.",
+            "An alkylation unit operator, who was also a fire brigade member, was called to assist. He recalled that the main source of flames came from the 3-inch drain pipe beneath the caustic settler near the drain to the OWS. He isolated the burning hydrocarbon streams by closing the drain valve to the OWS."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Energy isolation (Lockout-Tagout) procedure",
+        "side": "prevention",
+        "barrier_role": "Ensure zero-energy state of equipment prior to maintenance handover",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Formal LOTO procedure to verify isolation and prevent hazardous energy release during maintenance",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Had the incident not occurred, the nightshift operator would have completed the safing activity as planned and then placed tags and locks on valves in accordance with the DCRC energy isolation (LOTO) procedure.",
+            "DCRC's energy isolation procedure states that operators must complete an equipment isolation log to identify which equipment will be worked on, isolate equipment energy sources, and prepare equipment to ensure a state of 'zero energy.'",
+            "Though the energy isolation procedure includes steps for performing safing activities on equipment and ensuring 'zero energy,' the procedure is not referred to until equipment preparation activities are completed and LOTO activities are initiated."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Process monitoring (temperature and level indicators) during condensate fill",
+        "side": "prevention",
+        "barrier_role": "Detect completion of condensate displacement and identify anomalous conditions (e.g. backflow)",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Instrumentation used to monitor process conditions during equipment preparation",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Operators monitored the temperature of the piping downstream of the coalescer, as an increase in temperature would indicate that the process condensate fill had reached the preheater valve and displaced the contents of the settler and coalescer.",
+            "Post-incident analysis of the control system data verified depropanizer backflow and review of the process data revealed that the caustic settler level indicator recorded a slight increase in volume before the dayshift operator began filling the coalescer and caustic settler for the second condensate wash.",
+            "Control system data show a drop in the depropanizer pressure and level indicators starting immediately before the second condensate fill, indicating that the column was depressurizing vapor back to the coalescer and settler."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_references": {
+      "PIF-001": "Absence of specific procedures for non-routine equipment preparation tasks; operators developed informal handwritten instructions",
+      "PIF-002": "No MOC review or pre-planning hazard identification process initiated when isolation plan was expanded",
+      "PIF-003": "Shift handover relied on informal handwritten list of steps rather than formal procedure"
+    }
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "incident_id": "GB-506_Talos_20-MAR-2024_EV2010R",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - Shoulder Injury During Coil Tubing Operations",
+    "date_published": "2024-07-02",
+    "date_occurred": "2024-03-20",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico, Garden Banks Block 506",
+    "operator": "Talos ERT LLC",
+    "operating_phase": "workover",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Personnel Injury",
+    "incident_type": "Fall from Height - Shoulder Injury",
+    "costs": null,
+    "actions_taken": [
+      "IP evacuated via medevac helicopter at 1010 hours",
+      "BSEE conducted onsite investigation on 20 March 2024",
+      "IP diagnosed with dislocated shoulder and torn labrum",
+      "IP released to restricted work duty",
+      "G-110 Incident of Non-Compliance issued to Talos ERT LLC on 2 April 2024"
+    ],
+    "summary": "On 20 March 2024 at approximately 0705 hours, a Schlumberger Pump Operator sustained a left shoulder injury on the Helix Q-4000 semisubmersible vessel during well workover operations. The injured party attempted to jump across a four-foot gap with a one-foot eight-inch rise in elevation from the Coil Tubing Control Cabin to the Coil Tubing Reel Platform to install a Universal Tubing Length Monitor. During the transition, the IP lost his footing and started to fall. He grabbed the Coil Tubing Cabin crash frame with his left hand, injuring his left shoulder. The IP was wearing fall protection harness with self-retracting lanyard. Investigation determined the IP failed to follow the Job Safety Analysis which required use of a ladder for access.",
+    "recommendations": [
+      "Talos ERT LLC must provide a letter of explanation within 14 days to the Lafayette District Well Operations Supervisor along with plans to prevent future incidents"
+    ],
+    "key_phrases": [
+      "failed to follow working at heights Job Safety Analysis",
+      "attempted to jump across a 4-foot gap",
+      "lost his footing",
+      "grabbed the Coil Tubing Cabin crash frame",
+      "dislocated shoulder and torn labrum",
+      "human error/poor judgement",
+      "failed to operate in a safe and workmanlike manner"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Working at Heights - Elevated Platform Access",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Gap Between Elevated Platforms",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Deviation from Job Safety Analysis - Ladder Not Used",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Attempting to Jump Across Gap Between Platforms",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Loss of Footing During Platform Transition",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel Injury - Shoulder Dislocation and Torn Labrum",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Medical Evacuation Required",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Restricted Work Duty",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Regulatory Non-Compliance",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Job Safety Analysis - Working at Heights Requirements",
+        "side": "prevention",
+        "barrier_role": "Procedural control requiring use of ladder for platform access",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary procedural control to prevent unsafe access methods",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The BSEE Incident Investigation Team concluded that the IP failed to follow the Schlumberger working at heights Job Safety Analysis",
+            "The Job Safety Analysis called for the use of a ladder to access the Coil Tubing Guide Counter",
+            "Schlumberger Pump Operator, the IP, failed to follow working at heights requirements as stated in the Working at Heights section of the Job Safety Analysis that included making use of a ladder of adequate height"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Permit to Work System",
+        "side": "prevention",
+        "barrier_role": "Authorization and verification of safe work procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary administrative control for work authorization",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "BSEE met with Talos representatives and gathered incident related documents including Schlumberger Job Safety Analysis, Schlumberger Permit to Work"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Fall Protection Harness with Self-Retracting Lanyard",
+        "side": "mitigation",
+        "barrier_role": "Personal protective equipment to arrest fall",
+        "barrier_type": "ppe",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary protection to mitigate consequences of fall",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "BSEE learned that at the time of the incident, the IP was wearing a fall protection harness attached with a self-retracting lanyard for vertical fall protection",
+            "the Schlumberger Pump Operator, the Injured Person (IP), had stepped outside of the Coil Tubing Cabin crash frame while attached to a fall protection harness with a Self-Retracting Lanyard"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Ladder for Platform Access",
+        "side": "prevention",
+        "barrier_role": "Physical means to safely access elevated platform",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary engineered means of safe access",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Job Safety Analysis called for the use of a ladder to access the Coil Tubing Guide Counter",
+            "The IP made the decision to jump from the Coil Tubing Control Cabin to the Coil Tubing Reel Platform",
+            "Schlumberger Pump Operator injured his left shoulder while attempting to cross over from the Coil Tubing Control Cabin onto the Coil Tubing Reel Platform without the use of a required ladder as stated in the Job Safety Analysis"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Safe and Workmanlike Manner Operations Requirement",
+        "side": "prevention",
+        "barrier_role": "Regulatory requirement for safe operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Regulatory baseline requirement for all operations",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "safety_culture",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "A G-110 Incident of Non-Compliance was issued on 2 April 2024 to document that Talos ERT LLC Corporation (Talos) failed to comply with the regulatory requirement to operate in a safe and workmanlike manner"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

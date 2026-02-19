@@ -1,0 +1,459 @@
+{
+  "incident_id": "AC%20857%20Shell%20Fire%2021-June-2023",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Fire - VFD-A Failure at Perdido Spar",
+    "date_published": "2023-08-16",
+    "date_occurred": "2023-06-21",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - Alaminos Canyon Block 857",
+    "operator": "Shell Offshore Inc.",
+    "operating_phase": "production",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Loss of Containment - Smoke Release",
+    "incident_type": "Fire/Equipment Failure",
+    "costs": "65000",
+    "actions_taken": [
+      "Automated facility shut-in activated",
+      "Personnel muster initiated",
+      "Fire Team dispatched to Subsea MCC room",
+      "Electrician surveyed control cabinets",
+      "Cabinet A isolated, locked, and tagged out",
+      "Fire watch established at MCC room",
+      "Remaining equipment returned to service"
+    ],
+    "summary": "On June 21, 2023, at 0930 hours, a Variable Frequency Device A (VFD-A) failed at the Perdido Spar platform. The B-phase reactor of the VFD-A failed to ground, releasing smoke that activated smoke detectors in the Subsea Motor Control Center room. This triggered an automated facility shut-in and personnel muster. The Fire Team responded but found no active fire, only smoke. Cabinet A reached 350°F and was isolated from service. Estimated damage cost was $65,000. No injuries or pollution occurred.",
+    "recommendations": [
+      "Siemens to investigate why the reactor thermal switch did not trip the drive on over temperature"
+    ],
+    "key_phrases": [
+      "VFD-A failed",
+      "B-phase reactor failed to ground",
+      "smoke detectors activated",
+      "automated facility shut-in",
+      "reactor thermal switch did not trip"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Electrical Energy - High Voltage Equipment",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "VFD reactor component failure (B-phase to ground)",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Thermal protection system failure",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Smoke release in Subsea MCC room",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment damage (VFD-A)",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Production shutdown",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Reactor thermal switch on VFD",
+        "side": "prevention",
+        "barrier_role": "Prevent overheating of VFD reactor",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary protection against thermal runaway",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Siemens to investigate why the reactor thermal switch did not trip the drive on over temperature"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Smoke detectors in Subsea MCC room",
+        "side": "mitigation",
+        "barrier_role": "Detect smoke release and initiate emergency response",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary detection layer for fire/smoke events",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "released smoke and setting off smoke detectors in the Subsea Motor Control Center room",
+            "Smoke was evident in the room"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Automated facility shut-in system",
+        "side": "mitigation",
+        "barrier_role": "Automatically shut down facility upon smoke detection",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Automated response to prevent escalation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "this caused an automated facility shut-in and personnel muster",
+            "the automated system shut-in the facility as designed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Personnel muster procedure",
+        "side": "mitigation",
+        "barrier_role": "Account for personnel safety during emergency",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Emergency response procedure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "this caused an automated facility shut-in and personnel muster",
+            "Facility personnel mustered"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Fire Team response",
+        "side": "mitigation",
+        "barrier_role": "Respond to fire/smoke event and assess situation",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Emergency response team",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "as the Shell Fire Team was sent to the Subsea MCC room",
+            "Smoke was evident in the room, but there was no visible evidence of charring, and the Fire Team did not extinguish any fires"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Electrician assessment and isolation procedure",
+        "side": "mitigation",
+        "barrier_role": "Assess electrical equipment and isolate failed components",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Technical assessment and recovery action",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Electrician was dispatched to the MCC room to begin surveying the control cabinets",
+            "cabinet A had a temperature of 350 F (Fahrenheit), and cabinets B, C and D cabinets 210 F was observed",
+            "The Electrician then isolated, locked, and tagged out cabinet A from the power source and taken out of service"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Lock-out/Tag-out (LOTO) procedure",
+        "side": "mitigation",
+        "barrier_role": "Prevent re-energization of failed equipment",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Energy isolation procedure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Electrician then isolated, locked, and tagged out cabinet A from the power source and taken out of service"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Fire watch establishment",
+        "side": "mitigation",
+        "barrier_role": "Monitor for re-ignition or escalation",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident monitoring",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "A Fire watch was established at the MCC room"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Offshore Installation Manager (OIM) authorization procedure",
+        "side": "mitigation",
+        "barrier_role": "Control access to hazardous areas and authorize recovery actions",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Management oversight and authorization",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "supervision",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Offshore Installation Manager (OIM) gave permission to open cabinets, for further survey"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "positive",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "positive",
+      "communication_mentioned": true,
+      "situational_awareness_value": "positive",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "positive",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "positive",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "positive",
+      "supervision_mentioned": true,
+      "training_value": "positive",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

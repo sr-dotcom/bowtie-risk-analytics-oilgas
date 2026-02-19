@@ -1,0 +1,789 @@
+{
+  "incident_id": "2024-03-I-VA",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Hazardous Ammonia Release at Cuisine Solutions, Inc. Facility",
+    "date_published": "2025-09-01",
+    "date_occurred": "2024-07-31",
+    "timezone": "America/New_York"
+  },
+  "context": {
+    "region": "Sterling, Virginia, USA",
+    "operator": "Cuisine Solutions, Inc.",
+    "operating_phase": "production",
+    "materials": [
+      "anhydrous ammonia"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "toxic gas release",
+    "costs": "$3,000,000 property damage and loss of use (estimated by Cuisine Solutions)",
+    "actions_taken": [
+      "Production manager directed evacuation via radio to east side of building at approximately 8:27 p.m.",
+      "Maintenance employees investigated ammonia odor in parking lot",
+      "Refrigeration technician shut down compressors individually using local control panels at approximately 8:46 p.m.",
+      "Refrigeration manager closed king valve at approximately 8:55 p.m.",
+      "Refrigeration manager switched Heat Exchanger 5 Surge Drum three-way selector valve to isolate the open PRV at approximately 9:29 p.m.",
+      "Loudoun County Fire and Rescue HAZMAT team responded and treated exposed individuals",
+      "Mass Casualty Incident alarm requested by incident commander",
+      "Building ventilated by Loudoun County Fire and Rescue to remove residual ammonia",
+      "After incident: Cuisine Solutions relocated Tank Farm 5 atmospheric relief discharge piping",
+      "After incident: Cuisine Solutions installed additional ammonia sensors including at emergency exit doors",
+      "After incident: Cuisine Solutions installed new windsocks at the Sterling site"
+    ],
+    "summary": "On July 31, 2024, at approximately 8:20 p.m., an emergency pressure relief valve on the Heat Exchanger 5 Surge Drum in Tank Farm 5 opened due to an overpressure event at the Cuisine Solutions food processing facility in Sterling, Virginia. The discharge contained significant liquid aerosol, causing the ammonia cloud to rapidly slump to ground level near the employee parking lot and building. The refrigeration technician was offsite on a meal break when the release began. No ammonia detection alarms inside the production areas activated, and no site-wide evacuation alarm sounded. The production manager initiated evacuation by radio, but communication was delayed and many workers evacuated through or near the toxic cloud. Thirty-three workers were transported to hospitals, four were admitted, and one was placed in intensive care. The CSB estimated approximately 275 pounds of anhydrous ammonia was released. Contributing factors included: discharge of the PRV to an unsafe location adjacent to the employee parking lot; absence of engineering or administrative controls to prevent or mitigate liquid/two-phase relief; an inadequate Emergency Action Plan that did not address outdoor ammonia releases, wind direction, or shelter-in-place; ineffective emergency drills; no site-wide evacuation alarm; and no trained personnel to activate emergency shutdown buttons.",
+    "recommendations": [
+      "2024-03-I-VA-R1: IIAR to update ANSI/IIAR 2 to include guidance for preventing or mitigating liquid or two-phase atmospheric discharges from emergency pressure relief systems, including identifying at-risk scenarios, design considerations, and requiring mitigative safeguards.",
+      "2024-03-I-VA-R2: IIAR to update ANSI/IIAR 2 to include a requirement to assess whether emergency pressure relief devices discharge to a safe location, such as with a dispersion analysis.",
+      "2024-03-I-VA-R3: Cuisine Solutions to reduce likelihood or mitigate consequences of liquid or two-phase atmospheric discharges from the ammonia refrigeration emergency pressure relief system, including identifying scenarios, implementing engineering controls, and contracting a third-party audit.",
+      "2024-03-I-VA-R4: Cuisine Solutions to implement an electronic process data historian and management system for critical refrigeration process parameters.",
+      "2024-03-I-VA-R5: Cuisine Solutions to update the Sterling site Emergency Action Plan using IIAR Critical Task Guidance, addressing indoor/outdoor releases separately, evacuation routes, windsocks, shelter-in-place, and annual ammonia release drills.",
+      "2024-03-I-VA-R6: Cuisine Solutions to add alarm(s) specific to ammonia releases documented in the updated Emergency Action Plan."
+    ],
+    "key_phrases": [
+      "emergency pressure relief valve",
+      "overpressure",
+      "Heat Exchanger 5 Surge Drum",
+      "two-phase atmospheric relief",
+      "liquid aerosol",
+      "IDLH concentrations at ground level",
+      "discharge to a safe location",
+      "building wake effects",
+      "no site-wide evacuation alarm",
+      "emergency shutdown buttons not used",
+      "inadequate Emergency Action Plan",
+      "no ammonia-specific drills",
+      "Tank Farm 5",
+      "anhydrous ammonia",
+      "dispersion analysis",
+      "king valve",
+      "common relief header",
+      "tee diffuser",
+      "refrigeration technician offsite",
+      "process data not recorded"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Stored anhydrous ammonia under pressure in refrigeration system (approximately 21,000 lbs inventory)"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Overpressure in Heat Exchanger 5 Surge Drum due to process upset (closed/restricted vent combined with abnormal heat input)"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Liquid overfill or liquid carryover in surge drum leading to two-phase relief discharge"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Chilled water pump shutdown causing refrigeration process upset"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Toxic ammonia cloud at ground level exposing workers during evacuation"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Worker injuries from ammonia inhalation (33 hospitalised, 4 admitted, 1 in ICU)"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Property damage and production loss (estimated $3 million, production lines shut down 16-38 days)"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Off-site impact to public receptor (Postal Inspection Service across road)"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Emergency Pressure Relief Valves (PRVs) on surge drums",
+        "side": "prevention",
+        "barrier_role": "Protect pressure vessels from exceeding MAWP by venting overpressure to atmosphere",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "ASME Boiler and Pressure Vessel Code requires PRVs on pressure vessels; 18 PRVs installed in Tank Farm 5",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The ASME Boiler and Pressure Vessel Code requires pressure vessels to have emergency pressure relief valves that are designed to open at or below a maximum allowable working pressure (MAWP) to prevent equipment damage and catastrophic failures.",
+            "The CSB concludes that the ammonia release resulted from an emergency pressure relief valve opening on the Heat Exchanger 5 Surge Drum due to an overpressure event, and that the emergency pressure relief valve functioned as designed and intended in this event."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Three-way selector valve with dual PRV arrangement (one in service, one standby)",
+        "side": "prevention",
+        "barrier_role": "Ensure continuous PRV protection by allowing switchover between active and standby PRVs without interrupting protection",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Installed on surge drums in Tank Farm 5 to maintain PRV availability",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The relief system assembly used in the surge drums included a three-way selector valve with two emergency pressure relief valves attached. This type of arrangement ensured that one emergency pressure relief valve was in service, while the standby emergency pressure relief valve was isolated until the three-way selector valve was switched.",
+            "At approximately 9:29 p.m., with the HAZMAT team's guidance and support, the refrigeration manager switched the Heat Exchanger 5 Surge Drum three-way selector valve to isolate the emergency pressure relief valve that had released the ammonia and put the standby emergency pressure relief valve in service."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Pressure control valve / surge drum vapor outlet (vent line) for pressure management",
+        "side": "prevention",
+        "barrier_role": "Prevent overpressure by venting surge drum vapor to the high-temperature accumulator under normal operating conditions",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Normal operating pressure control pathway for surge drum",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CSB found that for any overpressure event to occur in this incident, the pressure control valve or the surge drum vapor outlet piping had to be closed or restricted.",
+            "It is possible that abnormally hot water entered the heat exchanger from the sous vide line, and, with the surge drum vent closed or restricted, the hot water could have provided the energy necessary for the ammonia side of the heat exchanger to reach 126 °F or higher, causing a boiling liquid or two-phase overpressure."
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "King valve (main system shut-off valve on HPR liquid outlet)",
+        "side": "prevention",
+        "barrier_role": "Isolate ammonia inventory from the refrigeration system in an emergency to stop ammonia flow",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Primary emergency isolation valve for the refrigeration system",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The refrigeration manager arrived at the plant and closed the king valve at approximately 8:55 p.m.",
+            "The primary function of the king valve is to stop the flow of ammonia and isolate sections of the refrigeration system in an emergency.",
+            "On the night of the incident, no one used the emergency shutdown buttons... Activating the emergency shutdown buttons early in the ammonia release could have immediately stopped the compressors and closed the king valve, isolating most of the ammonia inventory from the opening emergency pressure relief valve and limiting the release quantity."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Emergency shutdown buttons (remote compressor shutdown and king valve closure)",
+        "side": "prevention",
+        "barrier_role": "Rapidly shut down refrigeration system to limit ammonia release quantity",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Emergency shutdown buttons located outside compressor room, accessible during evacuation",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "On the day of the incident, the onsite maintenance technician did not shut down the refrigeration system using the emergency shutdown buttons.",
+            "On the night of the incident, no one used the emergency shutdown buttons, whose location is shown below in Figure 33, although dozens of people walked past these buttons during the evacuation and the buttons were not near the release.",
+            "The CSB was told during interviews with workers that only the refrigeration manager, who worked a day schedule, was trained to use the emergency shutdown buttons. The Sterling site's EAP did not even mention the emergency shutdown buttons."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Automated emergency shutdown interlock on compressor room common relief header ammonia sensor",
+        "side": "prevention",
+        "barrier_role": "Automatically stop compressors and close king valve upon detection of ammonia in compressor room relief header",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Interlock existed for compressor room but not for Tank Farm 5",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Much like the Tank Farm 5 common relief header design, the common relief header in the compressor room... also included an ammonia sensor in the relief discharge header. However, this alarm also activated interlocks. If the common relief header ammonia sensor detected 10,000 ppm, the control system automatically stopped all compressors and closed the king valve. No such interlock function existed for Tank Farm 5.",
+            "Cuisine Solutions could have tied in the Tank Farm 5 common relief header ammonia sensor to the emergency shutdown function, automating the emergency shutdown."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Ammonia sensor in Tank Farm 5 common relief header (alarm at HMI)",
+        "side": "prevention",
+        "barrier_role": "Detect ammonia in relief header to alert refrigeration technicians of PRV activation or leakage",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Sensor installed in Tank Farm 5 common relief header discharge piping",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The common relief header also included a sensor to detect ammonia inside the piping. This would alert refrigeration technicians when an emergency pressure relief valve was leaking and required maintenance or had been activated in an overpressure event.",
+            "When this sensor detected high ammonia concentrations, an alarm sounded at the HMI in the refrigeration control room, but there was no planned corrective action in response to this alarm, either by automatic control or in an operating procedure for human intervention.",
+            "When the alarm initially sounded, no one was in the refrigeration control room to hear the alarm or respond to it."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Indoor ammonia detection sensors (29 sensors in production areas)",
+        "side": "mitigation",
+        "barrier_role": "Detect indoor ammonia leaks and activate local alarms to alert workers",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "29 sensors installed in 2019 near indoor potential ammonia leak sources",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Throughout the incident, none of the alarms from the ammonia detection sensor system inside the production areas activated, and no site-wide evacuation alarm sounded.",
+            "No atmospheric ammonia sensors existed outside the building, where the release occurred.",
+            "The 29 indoor ammonia sensors were each designed to activate a local alarm and warning light to alert workers of an indoor ammonia leak. However, no such equipment was configured to alert workers of an ammonia release outside the building."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Emergency Action Plan (EAP) for ammonia releases",
+        "side": "mitigation",
+        "barrier_role": "Provide structured procedures for evacuation and emergency response to ammonia releases",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Required by OSHA PSM standard and EPA RMP rule; Sterling site had EAP since 2013",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CSB identified several gaps in the EAP as written, and in Cuisine Solutions' emergency planning in general, including: (i) not accounting for wind direction, (ii) not differentiating between indoor and outdoor ammonia releases, (iii) ineffective communication of the decision to evacuate, and (iv) not providing specific procedures for employees to follow before or during evacuation.",
+            "The Sterling site's Emergency Action Plan did not follow IIAR guidance and did not adequately address possible ammonia releases outside the building, including alternate evacuation routes and muster points based on wind direction, visible windsocks, adequate distance to ensure muster points are safe, consideration of a possible shelter-in-place strategy, or emergency escape protective equipment for evacuation.",
+            "The Sterling site's EAP did not even mention the emergency shutdown buttons."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Site-wide evacuation alarm system",
+        "side": "mitigation",
+        "barrier_role": "Alert all onsite personnel simultaneously to initiate evacuation in an ammonia release event",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Required by OSHA for facilities with EAP; site had fire alarm but no ammonia-specific evacuation alarm",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Throughout the incident, none of the alarms from the ammonia detection sensor system inside the production areas activated, and no site-wide evacuation alarm sounded.",
+            "Although the Sterling site had a fire alarm system, it did not have a specific site-wide evacuation alarm tone for ammonia releases. Instead, the EAP simply directed workers to use 'cell phones and voice communications to signal that an evacuation is needed.'",
+            "it took fully 10 to 16 minutes to communicate the evacuation throughout the plant. In fact, supervisors and other employees and contractors had to walk room-to-room to communicate the evacuation to their fellow workers, further putting themselves at risk."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Emergency drills for ammonia releases",
+        "side": "mitigation",
+        "barrier_role": "Prepare personnel to respond safely and effectively to ammonia release scenarios including outdoor releases",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Required by OSHA PSM and EPA RMP; Sterling site conducted fire drills but not ammonia-specific drills",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Sterling site's EAP mentioned drills in the 'fire prevention plan' portion of the document but it did not call for drills for ammonia releases. Accordingly, the Sterling plant conducted annual fire drills, but it did not conduct emergency drills for indoor or outdoor ammonia releases.",
+            "The Sterling site did not perform effective emergency drills to prepare its personnel to respond to an outdoor ammonia release.",
+            "On the day of the incident, the behaviors learned in fire drills were likely repeated based on the previous drills. As a result, multiple workers inhaled toxic ammonia when they evacuated, likely either because of the exit door used or the first muster point, or both."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Relief discharge piping design (location, orientation, elevation, tee diffuser)",
+        "side": "mitigation",
+        "barrier_role": "Disperse atmospheric PRV discharge to a safe location away from personnel and building openings",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "ANSI/IIAR 2 requirements for atmospheric termination of ammonia vapor relief systems",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "During this incident, the atmospheric discharge was vented next to the employee parking lot and the building, which restricted the ability to safely evacuate, caused harm to people, and affected a nearby public receptor.",
+            "The Tank Farm 5 common relief header terminated in a 3-inch tee diffuser cut at a 60-degree bevel... This configuration likely contributed to the ammonia cloud slumping and reaching the evacuees in several ways.",
+            "The CSB concludes that on the night of the incident, liquid in the relief discharge was the most critical factor in IDLH conditions on the ground, and feasible changes in discharge velocity, orientation, and elevation likely would not have prevented IDLH concentrations from reaching ground level."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Process data historian / HMI monitoring of refrigeration system parameters",
+        "side": "prevention",
+        "barrier_role": "Enable refrigeration technicians to monitor process parameters, detect upsets early, and respond before overpressure occurs",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "HMI existed for monitoring but historical process data for refrigeration system was not recorded",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Cuisine Solutions did not record historical process data for the ammonia refrigeration system beyond food storage, chiller, or freezer temperatures required for food safety concerns.",
+            "The Sterling plant's HMI included an alarm summary page, but any record of the alarms that occurred during the incident was lost, according to Cuisine Solutions. This lack of process historical data and alarm history for the refrigeration process hampered the CSB's investigation.",
+            "Without more extensive refrigeration system process data in a process data historian, the Sterling plant could experience an undetected process upset, similar to the events leading up to the incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "PRV testing and replacement program (5-year interval per ANSI/IIAR 6)",
+        "side": "prevention",
+        "barrier_role": "Ensure PRVs function correctly at set pressure to protect vessels from overpressure",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "ANSI/IIAR 6 requires PRVs be tested or replaced every 5 years",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Tags on the emergency pressure relief valves indicated that the valves had likely been in service for approximately seven years and were two years overdue for replacement or testing.",
+            "The CSB concludes that although the Tank Farm 5 emergency pressure relief valves were likely beyond the 5-year replacement or testing frequency, failure to test or replace them on time was not causal to the incident.",
+            "All 15 emergency pressure relief valves functioned as designed, and none opened prematurely."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Refrigeration technician on-site monitoring and response",
+        "side": "prevention",
+        "barrier_role": "Monitor refrigeration system, identify process upsets, and take corrective action to prevent overpressure",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Refrigeration technician responsible for refrigeration system during second shift",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The refrigeration technician then left the Sterling site for a meal break at approximately 8:19 p.m.",
+            "At approximately 8:17 p.m., the refrigeration technician returned to Tank Farm 5 and looked at all three heat exchangers in the refrigeration loop. The technician later told the CSB that, at that time, the ammonia pressures were in the normal operating range.",
+            "The refrigeration technician returned to the employee parking from his off-site meal break lot at approximately 8:40 p.m., by which time the evacuation was virtually complete."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-016",
+        "name": "OSHA PSM and EPA RMP compliance program",
+        "side": "prevention",
+        "barrier_role": "Systematic management of process hazards including hazard analysis, operating procedures, training, mechanical integrity, and emergency planning",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Sterling plant subject to OSHA PSM and EPA RMP Program 3 due to ammonia inventory exceeding 10,000 lb threshold",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "OSHA cited Cuisine Solutions for ten violations of the PSM standard and other OSHA requirements and fined the company $131,535 in connection with the July 31, 2024 incident.",
+            "Companies should ensure that they fully implement all PSM elements and requirements in their programs, and make sure any gaps are addressed.",
+            "The Sterling plant did not have a system-wide shutdown procedure for the ammonia refrigeration system in the event of an indoor or outdoor ammonia release."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_detail": {
+      "PIF-001": "Only refrigeration manager trained to use emergency shutdown buttons; refrigeration technician was offsite at meal break when incident began",
+      "PIF-002": "EAP did not include emergency shutdown procedures, wind direction guidance, or ammonia-specific evacuation procedures; workers trained only in fire drill procedures",
+      "PIF-003": "No process data historian; refrigeration technician had no visibility into developing process upset; alarm history lost",
+      "PIF-004": "Insufficient training on ammonia-specific emergency response; no ammonia release drills conducted; only fire drills performed",
+      "PIF-005": "Refrigeration technician left site for meal break at 8:19 p.m., approximately 4 minutes before release began at 8:23 p.m."
+    }
+  }
+}

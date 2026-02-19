@@ -1,0 +1,435 @@
+{
+  "incident_id": "EI%20259%20White%20Fleet%2003_OCT_2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - White Fleet Operating, LLC - Eugene Island 259 C Facility",
+    "date_published": "2026-01-22",
+    "date_occurred": "2025-10-03",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America - Eugene Island Block 259",
+    "operator": "White Fleet Operating, LLC",
+    "operating_phase": "decommissioning",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Loss of Containment - Pipe Movement",
+    "incident_type": "Personnel Injury - Pinch Point",
+    "costs": null,
+    "actions_taken": [
+      "CF evacuated via medivac helicopter to onshore medical facility",
+      "Welder and three construction employees moved pipe and lowered CF to deck",
+      "White Fleet developed Lessons Learned Report reviewed with all offshore employees",
+      "Coaching session developed for contract superintendent",
+      "Formalized coaching session to be presented to all contract superintendents and foreman"
+    ],
+    "summary": "On October 3, 2025, at approximately 1230 hours, a contract fitter sustained a severe injury to his right leg during decommissioning operations on the White Fleet Operating OCS-G00985 Eugene Island 259 C Facility. While attempting to install stabilizing brackets to support piping during platform removal operations, a section of 8-inch pipe was cut approximately 20 feet away from the CF. Once the section was cut, the remaining pipe shifted and slid towards the CF, pinning his right leg between a flange on the cut pipe and the piping the CF's leg was draped across. The CF suffered multiple fractures of the right femur. The incident was caused by inadequate job instructions and failure to communicate crew locations, and inadequate hazard analysis that failed to address potential pipe movement due to stored energy.",
+    "recommendations": [
+      "Review locations of where crews will be located during decommissioning operations in pre-job safety meetings",
+      "Ensure JSA addresses hazards of potential pipe movement due to stored energy",
+      "Ensure piping being cut is secured to prevent shifting once cut is made"
+    ],
+    "key_phrases": [
+      "pipe shifted making contact",
+      "pinned his right leg between a flange",
+      "multiple fractures of the right femur",
+      "no communication of what pipe the crews were cutting",
+      "JSA does not identify the hazard that piping being cut needs to be secured",
+      "pipe movement due to stored energy",
+      "no or inadequate job instructions provided",
+      "failed to review the locations of where the crews would be located"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Stored Energy in Piping System",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Cutting pipe without securing against movement",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Personnel positioned in pinch point area",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate crew coordination and communication",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury - leg pinned by shifting pipe",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Multiple fractures requiring medical evacuation",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Lost time accident (>3 days)",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Pre-job safety meeting with crew location review",
+        "side": "prevention",
+        "barrier_role": "Prevent inadequate crew coordination",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Planning and communication control before work begins",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "During the morning Job Planning meeting, there was discussion of cutting pipe for future decommissioning of the facility however, there was no discussion of what areas other crews would be located",
+            "The lessee conducted a pre-job safety meeting with the operators and the construction crew but failed to review the locations of where the crews would be located during the decommissioning operations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Job Safety Analysis (JSA) for pipe cutting operations",
+        "side": "prevention",
+        "barrier_role": "Identify and mitigate hazards of pipe movement",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Hazard identification and risk assessment before work",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the JSA identified 'pinch points by material shifting' with the hazard mitigation being 'keep body parts away from hazardous areas before moving.' However, the JSA does not identify the hazard that piping being cut needs to be secured so that it doesn't shift once the cut is made (pipe movement due to stored energy)",
+            "Management Systems, no or inadequate hazard analysis/written job procedures. The Job Safety Analysis (JSA) failed to address the hazards of the potential for pipe movement due to stored energy"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Pipe securing/restraint system before cutting",
+        "side": "prevention",
+        "barrier_role": "Prevent pipe movement when cut",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Physical control to prevent hazard realization",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Once the pipe was cut, it began to slide towards the CF",
+            "the remaining 8-inch pipe shifted approximately 2 feet within the P-trap on the opposite end",
+            "the JSA does not identify the hazard that piping being cut needs to be secured so that it doesn't shift once the cut is made"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Communication between work crews",
+        "side": "prevention",
+        "barrier_role": "Coordinate activities to prevent simultaneous hazardous work",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Operational communication to prevent conflicting activities",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CF and the crew cutting pipe were only 20 feet away from each other but there was no communication of what pipe the crews were cutting",
+            "Having knowledge of where the crews were located would have prevented the contractors from cutting the pipe that caused the injury"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Work positioning and body placement awareness",
+        "side": "prevention",
+        "barrier_role": "Keep personnel clear of pinch points",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Worker behavior to avoid hazard zone",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CF was sitting on a piece of pipe with his right leg draped across a different section of pipe",
+            "the JSA identified 'pinch points by material shifting' with the hazard mitigation being 'keep body parts away from hazardous areas before moving'",
+            "Due to working on the piping in a harness, the CF had limited mobility and positioning"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Fall protection harness",
+        "side": "mitigation",
+        "barrier_role": "Prevent fall injury during elevated work",
+        "barrier_type": "ppe",
+        "line_of_defense": "2nd",
+        "lod_basis": "Personal protective equipment for fall hazard",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CF was working at a height that required a fall protection harness with no scaffolding or other work platforms available"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Emergency response and evacuation",
+        "side": "mitigation",
+        "barrier_role": "Minimize injury severity through rapid medical response",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident response to limit consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The welder and the three construction employees were able to move the pipe and lower the CF to the deck",
+            "The CF was evacuated via medivac helicopter to an onshore medical facility where he was treated for multiple fractures of the right femur"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Supervision and oversight of decommissioning operations",
+        "side": "prevention",
+        "barrier_role": "Ensure safe work practices and coordination",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Management oversight to verify controls are in place",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "A coaching session with the contract superintendent was developed and a formalized version of the session will be developed and presented to all contract superintendents and foreman",
+            "No or inadequate job instructions provided"
+          ],
+          "confidence": "medium"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

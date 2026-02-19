@@ -1,0 +1,599 @@
+{
+  "incident_id": "HI%20A%20379%20W%26T%20Offshore%2004-Sep-2023",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - High Island A 379 B Platform Confined Space Entry Incident",
+    "date_published": "2023-12-15",
+    "date_occurred": "2023-09-04",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - High Island Area Block A 379",
+    "operator": "W & T Offshore, Inc.",
+    "operating_phase": "production",
+    "materials": [
+      "crude oil",
+      "production fluids",
+      "sludge",
+      "hydrocarbon vapors"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Confined Space Entry - Toxic Exposure",
+    "costs": null,
+    "actions_taken": [
+      "CPR administered for approximately 20 minutes",
+      "IP evacuated by Medivac helicopter to Galveston hospital",
+      "IP placed in Intensive Care Unit for 3 days",
+      "BSEE on-site investigation conducted September 8, 2023"
+    ],
+    "summary": "On September 4, 2023, at approximately 09:15 hours on High Island A 379 B platform, an injured person (IP) entered a Heater Treater vessel (NBK-1070) to clean it while wearing only an Air Purifying Respirator instead of a Supplied Air Respirator. The IP was overcome by fumes and found face down in fluids/sludge, not breathing with no pulse. Two supervisors entered without respirators to rescue the IP. CPR was administered for 20 minutes before the IP was revived. The incident resulted from multiple failures to follow the confined space entry plan including: no tri-gas monitoring, no hole watch, no rescue equipment setup, improper PPE, no entry permit, and inadequate training. The operator also failed to accurately report the severity of the incident to BSEE.",
+    "recommendations": [
+      "Ensure all Subcontractors adhere to work plans",
+      "Ensure all Company and Subcontracted personnel are properly trained before prior to task/work is started",
+      "Ensure accurate incident reporting is made, to include follow up reports"
+    ],
+    "key_phrases": [
+      "confined space entry",
+      "heater treater vessel",
+      "overcome by fumes",
+      "face down in fluids and sludge",
+      "no pulse not breathing",
+      "CPR for 20 minutes",
+      "failed to follow confined space entry plan",
+      "no tri-gas monitoring",
+      "no hole watch",
+      "improper respiratory protection",
+      "Air Purifying Respirator instead of Supplied Air Respirator",
+      "no rescue equipment setup",
+      "stop work authority not used",
+      "misleading incident reporting"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Toxic hydrocarbon vapors and oxygen deficiency in heater treater vessel",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Unauthorized entry into confined space without proper controls",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate atmospheric monitoring of confined space",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Use of inadequate respiratory protection for confined space",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Failure to establish hole watch during confined space entry",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Worker exposure to toxic atmosphere causing loss of consciousness",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Cardiac and respiratory arrest requiring CPR",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Secondary exposure of rescue personnel during unplanned rescue",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Serious injury requiring intensive care hospitalization",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Confined Space Entry Plan and Procedures",
+        "side": "prevention",
+        "barrier_role": "Prevent unauthorized or unsafe entry into confined space",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary procedural control to prevent unsafe entry",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "training",
+            "supervision",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Investigation revealed the Lessee and their subcontractor Zealous Energy Services, failed to follow their confined space entry plan",
+            "Lessee and Subcontractor failure to follow Confined Space Entry Plan"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Confined Space Entry Permit System",
+        "side": "prevention",
+        "barrier_role": "Authorize and document safe entry conditions",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary administrative authorization control",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence",
+            "training"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP made the vessel entry without the proper permit",
+            "Crew member making entry into vessel without permit",
+            "PIC not trained in Confined Space Entry yet is responsible issuing the permit"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Tri-Gas Atmospheric Monitoring (O2, H2S, LEL)",
+        "side": "prevention",
+        "barrier_role": "Detect hazardous atmosphere before and during entry",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary detection system for atmospheric hazards",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "No Tri-gas survey was conducted when the Heater Treater vessel hatch was initially opened, and to continuous monitoring for Tri-gas readings",
+            "Failure to conduct Tri-Gas testing and continuous monitoring",
+            "No Tri-Gas (O2, H2S, LEL) initial and continuous monitoring conducted"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Supplied Air Respirator (SAR) for Confined Space Entry",
+        "side": "prevention",
+        "barrier_role": "Protect worker from toxic atmosphere during entry",
+        "barrier_type": "ppe",
+        "line_of_defense": "2nd",
+        "lod_basis": "Last line of defense for worker protection",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "procedures",
+            "tools_equipment"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the IP entered the vessel without a Supplied Air Respirator (SAR), and only wearing an Air Purifying Respirator (APR)",
+            "Improper Personal Protective Equipment",
+            "Personal Protective Equipment was not used properly or appropriate for task being conducted"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Hole Watch Personnel at Confined Space Opening",
+        "side": "prevention",
+        "barrier_role": "Monitor entrant and initiate rescue if needed",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary monitoring and emergency response initiation",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the Lessee failed to designate an individual for Hole Watch at hatch opening",
+            "No Hole Watch identified and posted at hatch opening",
+            "No Hole watch individual identified as assigned at hatch opening"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Rescue Equipment Setup at Confined Space Location",
+        "side": "mitigation",
+        "barrier_role": "Enable rapid rescue of incapacitated entrant",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response and rescue capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "have rescue equipment set up at the location of the vessel before and during the cleaning operation",
+            "Failed to have rescue equipment set up and at the location of the vessel before and during the cleaning operation",
+            "The two Supervisors made entry to rescue the IP without proper respiratory equipment, because of the equipment not being set up prior to the beginning of vessel cleaning operation"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Stop Work Authority",
+        "side": "prevention",
+        "barrier_role": "Empower workers to halt unsafe operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary human intervention to prevent unsafe acts",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "safety_culture",
+            "situational_awareness",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Stop Work Authority not used",
+            "Stop work authority was not used"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Confined Space Entry Training and Competency Verification",
+        "side": "prevention",
+        "barrier_role": "Ensure personnel understand and can execute safe entry procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational competency requirement",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "training",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "PIC not trained in Confined Space Entry yet is responsible issuing the permit",
+            "No vetting of personnel for specific job qualifications",
+            "Ensure all Company and Subcontracted personnel are properly trained before prior to task/work is started",
+            "Vetting of personnel for specific job qualifications was not conducted appropriately"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "CPR and Emergency Medical Response",
+        "side": "mitigation",
+        "barrier_role": "Restore vital functions and stabilize injured worker",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency medical intervention",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence",
+            "training"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the crew members found the IP not breathing, with no pulse, and began cardiopulmonary resuscitation (CPR) on the IP",
+            "After approximately 20 minutes of CPR, the IP began to breath on his own",
+            "CPR was administered for approximately 20 minutes to revive the IP"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Medical Evacuation (Medivac) Capability",
+        "side": "mitigation",
+        "barrier_role": "Transport critically injured worker to advanced medical care",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency transport and escalation of care",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was flown to the hospital in Galveston, Texas by Medivac helicopter for treatment",
+            "awaiting medivac aircraft to take him in for medical evaluation"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Incident Reporting to Regulatory Authority (BSEE)",
+        "side": "mitigation",
+        "barrier_role": "Enable regulatory oversight and investigation of serious incidents",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Regulatory notification and oversight",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the Lessee's initial reporting at 12:15 hours on September 4, 2023, was misleading as to the seriousness of this incident",
+            "The Lessee never stated the seriousness of the IP's condition, and failed to mention the IP was in the Intensive Care Unit for a period of three (3) days",
+            "Lessee failed to verbally notify the Lake Jackson District immediately following incidents involving all injuries requiring evacuation",
+            "Lessee's initial and update reporting on the day of the incident, failed to report the severity of the incident to Lake Jackson District in accurate and timely manner"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

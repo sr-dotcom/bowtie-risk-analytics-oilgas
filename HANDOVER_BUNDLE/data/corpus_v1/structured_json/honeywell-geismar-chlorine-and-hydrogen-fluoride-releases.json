@@ -1,0 +1,888 @@
+{
+  "incident_id": "2023-02-I-LA",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Three Catastrophic Hydrogen Fluoride Incidents at Honeywell Geismar",
+    "date_published": "2025-05-01",
+    "date_occurred": "2021-10-21",
+    "timezone": "US/Central"
+  },
+  "context": {
+    "region": "Geismar, Louisiana, USA",
+    "operator": "Honeywell Performance Materials and Technologies",
+    "operating_phase": "production",
+    "materials": [
+      "anhydrous hydrogen fluoride",
+      "chlorine",
+      "HFC-245fa",
+      "process intermediates"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment of Toxic Hydrogen Fluoride",
+    "incident_type": "toxic release",
+    "costs": "$18000000",
+    "actions_taken": [
+      "Honeywell shut down 245 unit after October 2021 incident and replaced spiral wound gaskets in recycle, fresh, and recovered HF service",
+      "Honeywell revised visual inspection and LDAR procedures to include additional HF leak detection techniques",
+      "Honeywell applied acid indicating paint to flanges and pipes in the 245 unit",
+      "Honeywell installed area atmospheric HF monitors throughout the 245 unit",
+      "Honeywell made changes to operating procedures, employee training, and shift communication practices",
+      "Honeywell revised PPE matrix to require elevated PPE including respiratory protection when assessing incipient HF leaks",
+      "After January 2023 incident, Honeywell purchased and installed a new reboiler shell constructed of Alloy 825",
+      "Honeywell created an asset integrity dashboard interfacing with Meridium and SAP, accessible to all corporate personnel",
+      "Honeywell modified MOOC policy to more clearly include management of personnel change and active projects",
+      "After June 2024 incident, Honeywell modified line and equipment clearing procedures to require verification of absence of stored energy downstream of bleed valves",
+      "Honeywell revised procedures to require all flanges be identified with tags and signed by operations and maintenance prior to opening",
+      "OSHA cited Honeywell for PSM standard violations after October 2021 incident",
+      "OSHA cited Honeywell and Turner for PSM lockout/tagout and Control of Hazardous Energy violations after June 2024 incident",
+      "Complex-wide shelter-in-place order initiated after January 2023 explosion",
+      "Local officials temporarily closed nearby highways after January 2023 explosion"
+    ],
+    "summary": "Within less than three years (October 2021 to June 2024), three separate serious process safety incidents involving toxic anhydrous hydrogen fluoride (HF) occurred at the Honeywell Performance Materials and Technologies facility in Geismar, Louisiana, all within the HFC-245fa unit. The first incident (October 21, 2021) involved the catastrophic failure of a corroded spiral wound gasket in a flanged piping connection during a reactor startup, releasing approximately 39 pounds of anhydrous HF and fatally injuring one operator (Field Operator 2). Contributing factors included failure to fully implement a 2007 gasket technology change, inadequate mechanical integrity inspection, absence of acid indicating paint and HF atmospheric monitors, failure to follow startup procedures, and use of inadequate PPE. The second incident (January 23, 2023) involved the catastrophic rupture of a reboiler shell that had thinned due to HF corrosion, releasing over 800 pounds of HF and over 1,600 pounds of chlorine in a BLEVE, causing approximately $4 million in property damage but no injuries. Contributing factors included failure to replace the reboiler shell despite known deficiency, loss of critical knowledge when the responsible engineer departed without MOOC being applied, failure to fund the replacement capital project, and organizational resilience failures. The third incident (June 7, 2024) involved the release of less than one pound of HF from a valve not adequately cleared of HF during maintenance, seriously injuring a contract worker. Contributing factors included inadequate preparation of equipment for maintenance, failure to identify the hazard of a closed valve, and inadequate PPE at the time of exposure. All three incidents resulted from ineffective implementation of Honeywell's existing safety management systems.",
+    "recommendations": [
+      "2023-02-I-LA-R1: Honeywell to perform a comprehensive third-party audit of the Geismar facility's process safety and allied management systems as soon as practicable",
+      "2023-02-I-LA-R2: Honeywell to require periodic reporting updates from the Geismar site regarding closure of audit findings until all findings are fully closed",
+      "2023-02-I-LA-R3: Honeywell to perform a Safer Technologies and Alternatives Analysis (STAA) for the Honeywell Geismar HFC-245fa unit",
+      "2023-02-I-LA-R4: EPA to initiate TSCA prioritization to evaluate whether hydrogen fluoride (anhydrous and aqueous acid forms) is a High-Priority Substance for risk evaluation",
+      "2005-4-I-TX-R9 (reiterated): OSHA to amend PSM standard to require MOC review for organizational changes impacting process safety, including major organizational changes, personnel changes, and policy changes such as budget cutting"
+    ],
+    "key_phrases": [
+      "spiral wound gasket failure",
+      "stress corrosion cracking",
+      "HF corrosion",
+      "reboiler BLEVE",
+      "mechanical integrity",
+      "management of organizational change (MOOC)",
+      "capital project management",
+      "organizational resilience",
+      "safe work practices",
+      "acid indicating paint",
+      "HF atmospheric monitors",
+      "PPE inadequacy",
+      "loss of containment",
+      "attrition-based gasket replacement",
+      "siloed organization",
+      "deficiency management",
+      "line break safety",
+      "hazard identification",
+      "contractor management",
+      "process safety management systems"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Toxic Anhydrous Hydrogen Fluoride Under Pressure in Process Piping and Equipment"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Corrosive Process Environment Causing Degradation of Carbon Steel and Stainless Steel Components"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Pressurized HF-Containing Reboiler Shell Subject to Uniform Corrosion Thinning"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Stress Corrosion Cracking and HF Acid Corrosion of Spiral Wound Gasket and Flange Studs (2021)"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Failure to Fully Implement Gasket Technology Change (Attrition-Based Replacement) (2021)"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Failure to Follow Startup Procedures Causing Operators to be Present Near Leaking Flange (2021)"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "HF Corrosion Thinning of Carbon Steel Reboiler Shell to Below Minimum Thickness (2023)"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Failure to Fund and Complete Reboiler Shell Replacement Capital Project (2023)"
+      },
+      {
+        "threat_id": "T-006",
+        "name": "Loss of Critical Knowledge Due to Unmanaged Personnel Change (2023)"
+      },
+      {
+        "threat_id": "T-007",
+        "name": "Inadequate Preparation of HF Piping for Maintenance Leaving Trapped HF in Valve (2024)"
+      },
+      {
+        "threat_id": "T-008",
+        "name": "Failure to Identify Hazard of Closed Valve Containing HF During Pre-Job Hazard Assessment (2024)"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fatality of Field Operator 2 Due to HF Exposure (October 2021)"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Release of 39 Pounds of Anhydrous HF and $14 Million Property Damage (October 2021)"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Catastrophic Reboiler BLEVE Releasing 871 lbs HF and 1,684 lbs Chlorine (January 2023)"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "$4 Million Property Damage and Complex-Wide Shelter-in-Place (January 2023)"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Serious Injury to Contract Worker from HF Facial Exposure (June 2024)"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "Toxic HF Release to Atmosphere Posing Risk to Surrounding Community"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Gasket Technology Change MOC (2007) - Replacement of 304 SS Spiral Wound Gaskets with PTFE-Encapsulated Gaskets",
+        "side": "prevention",
+        "barrier_role": "Eliminate corrosion-susceptible gasket material in recycle HF service to prevent gasket failure",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Inherent design change to eliminate corrosion mechanism",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "In 2007, 14 years before the 2021 fatal incident, Honeywell identified a different gasket technology and initiated a Management of Change (MOC) analysis for recycle HF service.",
+            "The MOC documented that Honeywell planned to implement this change on an attrition basis.",
+            "In 2021, 14 years after documenting the need to change the gasket technology, Honeywell still had not fully implemented the change.",
+            "Had Honeywell fully implemented the gasket technology change, the loss of containment of HF may not have occurred, and the incident and the fatal injury may have been prevented."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Periodic Mechanical Integrity Inspection of HF Piping (Visual Inspection and LDAR)",
+        "side": "prevention",
+        "barrier_role": "Detect corrosion damage, leaks, and gasket degradation before catastrophic failure",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Scheduled inspection program to identify deficiencies before failure",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Honeywell Geismar personnel inspected the D reactor recycle HF feed station on September 15, 2021, just 36 days before the fatal incident. In the inspection report, the inspector noted 'no leaks observed on line at time of inspection.'",
+            "On September 27, 2021, only 15 days before the incident, Honeywell again inspected the same piping circuit as part of its Leak Detection and Repair (LDAR) program. Honeywell identified no nonconformities or problems during the LDAR inspection.",
+            "Honeywell concluded in its investigation report that the incident gasket and flange 'had been leaking [...] for a period of time prior to the gasket failure.' Honeywell also concluded that its piping inspection techniques were likely not robust enough to detect the problem prior to the incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Acid Indicating Paint on HF Flanges and Piping",
+        "side": "prevention",
+        "barrier_role": "Provide visual indication of HF leaks at flanges before they grow to critical size",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Passive engineering indicator to detect incipient leaks",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Acid indicating paint was notably absent from the incident flange assembly at the time of the incident.",
+            "Despite marketing itself as a leader in the safe use of HF, and despite advocating for practices such as the use of acid indicating paint to its customers and to the CSB, Honeywell did not use acid indicating paint in its own 245 unit.",
+            "Acid indicating paint could have, and likely would have, helped the Honeywell inspectors or operators detect the leaking incident flange and take corrective action prior to the gasket's catastrophic failure."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "HF Atmospheric Monitors in the 245 Unit",
+        "side": "prevention",
+        "barrier_role": "Remotely detect HF releases in the unit without requiring human exposure",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Automated detection system to identify HF releases",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At the time of the incident, Honeywell Geismar was not using atmospheric monitors capable of indicating HF releases in the 245 unit.",
+            "Honeywell was aware of and has previously advocated for the use of technologies such as acid indicating paint and remote HF monitors. Despite Honeywell's awareness of and advocation for such technologies in HF processes, Honeywell did not use such technology in its own 245 unit prior to the October 2021 fatal incident.",
+            "OSHA cited Honeywell for violations of the PSM standard (29 C.F.R. 1910.119), including for the lack of HF atmospheric monitors."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Unit Startup Procedures and Pre-Startup Checklist",
+        "side": "prevention",
+        "barrier_role": "Ensure equipment is ready for operation before startup to prevent abnormal process conditions and unnecessary operator exposure",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Written procedure and checklist to verify equipment readiness",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Honeywell Geismar had a standard operating procedure that it used to start up the HF vaporizers, as well as a pre-startup checklist. The startup procedure directed operators to verify that the manual valve on the HF inlet to the vaporizer was open.",
+            "The Board Operator reported that his understanding of the practice was to not use the pre-startup checklist when the process being started 'had not been worked on.'",
+            "The CSB concludes that Honeywell attempted to place equipment into service that was not properly prepared for startup.",
+            "OSHA cited Honeywell for the lack of effectively implemented written procedures for equipment startup."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Personal Protective Equipment (PPE) Requirements for HF Operations",
+        "side": "mitigation",
+        "barrier_role": "Protect operators from HF exposure during routine and non-routine operations including leak response",
+        "barrier_type": "ppe",
+        "line_of_defense": "3rd",
+        "lod_basis": "PPE matrix specifying required protection levels for different HF tasks",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Field Operators 1 and 2 were both wearing Level D PPE (the least protective level prescribed by Honeywell) during their troubleshooting efforts.",
+            "For situations involving 'local operation of valves,' Honeywell's PPE matrix required 'Stepped Down C' level PPE. This level of PPE required 'HF-resistant chemical PPE,' goggles, and a face shield.",
+            "Had Honeywell ensured that more protective PPE was used, Field Operator 2's exposure to HF would have been reduced, and his fatal injury could have been prevented.",
+            "The Turner worker was not wearing face or respiratory protection, and the released HF contacted him in the face, causing serious injuries."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Reboiler Shell Thickness Inspection Program (Ultrasonic Testing)",
+        "side": "prevention",
+        "barrier_role": "Monitor reboiler shell wall thickness to detect corrosion thinning before failure",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Scheduled UT inspection program with acceptance criteria based on remaining life",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-007"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "In October 2021, the Honeywell Geismar reliability organization inspected the reboiler and determined that the shell was approaching Tmin and required replacement.",
+            "Site inspectors documented 'signs of wall loss in shell, low UT reading found, recommended replacing shell,' and 'sealing area [across] the middle of the head in poor condition.' On the same inspection form, the inspector wrote that the shell was 'fit for service.'",
+            "Honeywell never inspected the reboiler again after the October 2021 inspection.",
+            "The reliability organization did not document the deficiency as required by its own procedure."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Deficiency Management Documentation in SAP and DMAPS",
+        "side": "prevention",
+        "barrier_role": "Ensure identified equipment deficiencies are formally tracked, communicated, and resolved to prevent run-to-failure",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Management system requiring formal documentation and tracking of MI deficiencies",
+        "linked_threat_ids": [
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-007",
+            "PIF-008"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Site policy required the reliability organization to report any inspection deficiencies through the site's maintenance management software, SAP, and to maintain an ongoing record of corrective actions in the site's asset integrity management software, DMAPS.",
+            "The reliability organization did not take any of these actions after the October 2021 inspection.",
+            "Neither the reliability group nor the maintenance group created a deficiency notification in the site's maintenance management software, SAP.",
+            "No DMAPS action item was created, which would have enabled the reliability group to track the issue to successful closure."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Management of Organizational Change (MOOC) Procedure",
+        "side": "prevention",
+        "barrier_role": "Ensure safety-related tasks and knowledge are preserved and reassigned when personnel changes occur",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Formal procedure requiring evaluation and reassignment of key safety tasks during personnel changes",
+        "linked_threat_ids": [
+          "T-005",
+          "T-006"
+        ],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-008",
+            "PIF-009"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Honeywell Geismar had a procedure called 'Management of Organizational Change' (MOOC). The procedure directed users to initiate an MOOC when there was 'change in personnel who have key safety job functions or tasks.'",
+            "The maintenance supervisor told the CSB that he did not perform an MOOC analysis when the 245 unit maintenance engineer departed the company.",
+            "Honeywell Geismar was unable to produce any MOOCs completed for the site during the time period of January 2020 to January 2023.",
+            "Honeywell also did not apply its MOOC system to the extended vacancies in the maintenance and reliability manager positions, the reassignment of those management duties to other employees, or to the 2020 reduction in force."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Capital Project Management and Funding Process (Blanket AR Process)",
+        "side": "prevention",
+        "barrier_role": "Ensure safety-critical capital projects such as reboiler shell replacement are funded and completed in a timely manner",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Formal capital project approval and funding process with priority rating methodology",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-008",
+            "PIF-009"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The project was approved by site management in February 2022. By April 2022, the project had not been funded.",
+            "The reboiler project was left unfunded while at least 78 other unrated or lower rated projects were funded instead.",
+            "Honeywell Geismar's project management systems could not appropriately accommodate periods of time during which project cost demand temporarily exceeded funding availability.",
+            "Honeywell moved the reboiler project to the site's 2023 capital budget request to the corporation, a decision that further delayed the reboiler project."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Organizational Resilience Program",
+        "side": "prevention",
+        "barrier_role": "Recognize and address disruptions to normal process safety management systems to prevent one incident from causing another",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Corporate policy for business resilience, crisis management, and disaster recovery",
+        "linked_threat_ids": [
+          "T-005",
+          "T-006"
+        ],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-008"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Honeywell's organizational resilience policies were first issued in January 2022, after the 2021 fatal incident had already occurred. As a result, Honeywell Geismar did not apply these new corporate policies to the aftermath of the 2021 incident.",
+            "Honeywell never convened a corporate-level crisis management team and therefore never developed or implemented a formal action plan.",
+            "Had Honeywell's resilience systems been mature and fully implemented prior to the 2021 fatal incident, Honeywell may have been able to identify and effectively resolve the conditions that led to the 2023 reboiler incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Preparation of HF Piping for Maintenance (Nitrogen Purge and Vacuum Scrubber Procedure)",
+        "side": "prevention",
+        "barrier_role": "Ensure all HF is removed from piping and equipment before maintenance work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Written procedure for clearing HF from piping prior to maintenance",
+        "linked_threat_ids": [
+          "T-007"
+        ],
+        "linked_consequence_ids": [
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-010"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Honeywell did not adequately prepare the HF piping for maintenance, leaving a small amount of HF trapped between the incident valve plug and blind flange.",
+            "Leaving the incident valve closed prevented it from being cleared during the nitrogen purge and vacuum steps of the clearing procedure.",
+            "Honeywell Geismar had a policy that governed line breaking and equipment opening. In a section of the policy that prescribed preparation for line breaking and 'draining, purging, and cleaning,' the policy stated: 'Low points, dead legs, closed valves, or installed blinds in piping or vessel design may trap materials and prevent complete flushing/draining of the line or equipment.'"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Pre-Job Hazard Identification and Line Break Risk Assessment",
+        "side": "prevention",
+        "barrier_role": "Identify and mitigate hazards including trapped HF in valves before maintenance work commences",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Pre-job walkthrough and risk assessment form requiring identification of hazardous energy sources",
+        "linked_threat_ids": [
+          "T-008"
+        ],
+        "linked_consequence_ids": [
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-010",
+            "PIF-011"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Neither the Turner workers nor the Honeywell operator were aware that the valve had not been cleared of HF prior to the work.",
+            "On their line opening risk assessment, the workers and their supervisor documented that 'drains and bleeder valves [were] clear and open.' It is evident that they did not evaluate or consider the incident valve during this risk assessment.",
+            "The Turner workers and supervisor did not consider or otherwise account for the potential hazard of the closed incident valve during their pre-job risk assessment, despite the Turner risk assessment form clearly prompting them to do so.",
+            "The Honeywell operator was not provided with the annotated version [of the P&ID] that was prepared as part of the job package. He was also not provided with the annotated piping isometrics."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Line Break Permit and Safe Work Permit System",
+        "side": "prevention",
+        "barrier_role": "Formally authorize line breaking activities and verify safe conditions before and during maintenance",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Permit-to-work system requiring verification of hazardous energy removal before work proceeds",
+        "linked_threat_ids": [
+          "T-007",
+          "T-008"
+        ],
+        "linked_consequence_ids": [
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-010"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The two Turner workers obtained a safe work permit and a line break permit from a Honeywell operator to conduct the planned gasket change work.",
+            "The Honeywell operator monitored the piping for any signs of residual HF, such as fuming or trapped pressure. He observed none and believed that the piping was sufficiently clear of trapped HF. He then closed out the line break permit.",
+            "Because Honeywell and Turner closed out the line break permit, the two Turner workers removed their Level B PPE once they believed the piping segment was free of hazardous energy."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Emergency Response and Site Medical Response",
+        "side": "mitigation",
+        "barrier_role": "Minimize consequences of HF exposure through rapid medical treatment and isolation of release",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response procedures and on-site medical team",
+        "linked_threat_ids": [
+          "T-001",
+          "T-007"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 10:54 a.m., site medical responders arrived and began treating Field Operator 2.",
+            "Field Operators 3 and 4 subsequently arrived wearing Level C PPE. At 11:07 a.m., Field Operators 3 and 4 closed the manual valve downstream of the recycle HF feed station, and the leak stopped.",
+            "The Turner worker was treated with nebulized calcium gluconate and was transported to a local hospital."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-016",
+        "name": "Process Safety Management System Auditing (Triennial Compliance Audits)",
+        "side": "prevention",
+        "barrier_role": "Verify effective implementation of process safety management systems and identify gaps before incidents occur",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Regulatory and corporate requirement for periodic PSM compliance audits",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-004",
+          "T-005",
+          "T-006",
+          "T-007",
+          "T-008"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-008"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Honeywell records show that it audited the Geismar site in 2014, 2017, 2020, and 2023. Honeywell identified findings and implemented corrective actions as a result of those audits, but none of the previous audits identified or effectively addressed the implementation problems that led to the three incidents discussed in this report.",
+            "All three incidents resulted from the ineffective implementation of Honeywell's existing safety management systems. Had Honeywell followed its existing normal procedures, policies, and practices, it could have, and likely would have, prevented each of the three incidents."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": true,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

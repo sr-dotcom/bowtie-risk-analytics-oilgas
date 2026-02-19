@@ -1,0 +1,558 @@
+{
+  "incident_id": "22-Apr-2024_GC%20389_%20Murphy%20EV2010R",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - Hand Injury During Wireline Operations",
+    "date_published": "2024-08-08",
+    "date_occurred": "2024-04-22",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico, Green Canyon Block 389",
+    "operator": "Murphy Exploration & Production Company - USA",
+    "operating_phase": "completion",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Hand Caught Between C-Plates",
+    "incident_type": "Personnel Injury - Caught Between",
+    "costs": null,
+    "actions_taken": [
+      "Job stopped and worksite secured",
+      "IP evaluated by rig medic",
+      "IP evacuated to onshore facility",
+      "IP received 14 stitches and treatment for broken finger",
+      "IP released to light duty on 4/22/24",
+      "IP released to full duty on 5/22/24"
+    ],
+    "summary": "On April 22, 2024, a hand injury occurred on the drillship Noble Stanley Lafosse during wireline completion operations at Green Canyon Block 389. The injured person (IP) was assisting the wireline helper disconnect wireline tools when his right hand was caught between the upper C-plate with tools weighing 175 lbs and lower C-plate. The helper had raised the tool string approximately 4 inches above the bottom C-plate. The IP placed his right hand under the upper C-plate to stabilize the tool string. When the helper released the tools, they fell 4 inches, smashing the IP's right hand between the C-plates, causing lacerations to the right hand ring and middle fingertips and a broken finger tip. The IP required evacuation and 14 stitches. Investigation revealed the helper lacked deepwater experience, the IP was not properly trained on wireline tools, the JSEA was inadequate, communication was poor, and Stop Work Authority was not used.",
+    "recommendations": [
+      "BSEE Houma District has no recommendations for the Office of Incident Investigations at this time"
+    ],
+    "key_phrases": [
+      "hand caught between C-plates",
+      "wireline tools weighing 175 lbs",
+      "tools fell 4 inches",
+      "lack of deepwater experience",
+      "not properly trained on wireline tools",
+      "inadequate communication",
+      "Stop Work Authority not used",
+      "failed to identify pinch point hazard",
+      "lack of situational awareness"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Suspended Load - Wireline Tools (175 lbs)",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Pinch Point Between C-Plates",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Excessive Slack in Wireline Causing Tool String to be Raised Too High",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Hand Placement in Pinch Point Zone",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Uncontrolled Release of Tool String",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Hand Laceration and Fracture",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Personnel Injury Requiring Evacuation",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Lost Work Time",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Job Safety and Environmental Analysis (JSEA)",
+        "side": "prevention",
+        "barrier_role": "Identify and assess hazards before work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-job planning and hazard identification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP did not sign the JSEA",
+            "Although the JSEA did address disassembling tools, hand placement, and pinch points, it failed to address the possibility of lifting the tool string too high and it failed to address how to handle the C-plates safely and the existing hazard of caught between C-plates"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Permit to Work (PTW) for Working at Heights",
+        "side": "prevention",
+        "barrier_role": "Authorization and control of high-risk work",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-job authorization system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The drill crew secured a rescue plan and a Permit to Work (PTW) for working at heights"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Transition to Work Meeting",
+        "side": "prevention",
+        "barrier_role": "Communication and coordination between crews",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-job communication and coordination",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Also, a transition to work meeting was conducted with the wireline crew and the drill crew prior to starting operations",
+            "There was inadequate communication between the helper and the IP about the hazard of lifting the tools too high and the pinch point between the C-plates"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Personnel Training on Wireline Tools",
+        "side": "prevention",
+        "barrier_role": "Ensure competence for task execution",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Competency assurance",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "training",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "It was discovered that this was the helper's first deepwater wireline run and the IP was not properly trained on disassembling wireline tools",
+            "Personnel training – The IP was not properly trained on wireline tools",
+            "Human performance error - The helper was not experienced in deepwater operations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Stop Work Authority (SWA)",
+        "side": "prevention",
+        "barrier_role": "Empower workers to stop unsafe work",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Real-time hazard recognition and intervention",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "communication",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Stop Work Authority (SWA) was not used by the helper or IP",
+            "The helper noticed the wireline operator slacked off too much",
+            "Neither the helper nor the IP communicated the hazard of lifting the tools too high and the fact that the IP's hand was in a pinch point"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Situational Awareness During Operations",
+        "side": "prevention",
+        "barrier_role": "Continuous hazard recognition during task execution",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Real-time awareness and decision-making",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Neither the helper nor the IP maintained situational awareness during the operation",
+            "The helper did not realize the tools would fall 4 inches once released and the IP failed to see his right hand was in a pinch point",
+            "The IP placed his right hand under the upper C-plate to stabilize the tool string"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Communication Between Helper and IP",
+        "side": "prevention",
+        "barrier_role": "Coordinate actions and share hazard information",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Real-time coordination during task execution",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Communication – There was inadequate communication between the helper and the IP about the hazard of lifting the tools too high and the pinch point between the C-plates",
+            "Neither the helper nor the IP communicated the hazard of lifting the tools too high and the fact that the IP's hand was in a pinch point",
+            "The investigation also showed there was poor communication between the helper and IP when the hazard of lifting the tool string too high was brought into the operation"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Work Basket for Working at Heights",
+        "side": "prevention",
+        "barrier_role": "Provide safe working platform",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical protection system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The helper and IP got in the work basket and ascended to the wireline tools once the sheaves and lubricator were set in place"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Onsite Medical Treatment",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate medical response",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Next, he walked to the treatment room to be evaluated by the rig medic",
+            "The initial evaluation confirmed the IP sustained lacerations to his right hand ring and middle fingertips"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Medical Evacuation Capability",
+        "side": "mitigation",
+        "barrier_role": "Transport injured personnel to advanced medical care",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was evacuated from the rig to an onshore facility for further evaluation",
+            "There it was discovered that the IP broke the tip of his right ring finger and he needed 14 stiches for the cuts sustained in the incident"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Rescue Plan",
+        "side": "mitigation",
+        "barrier_role": "Provide emergency response procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency preparedness",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The drill crew secured a rescue plan and a Permit to Work (PTW) for working at heights"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

@@ -1,0 +1,436 @@
+{
+  "incident_id": "AC%20735%20Shell%2008-Dec-2023",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "BSEE Accident Investigation Report - Top Drive Contact Injury",
+    "date_published": "2024-01-23",
+    "date_occurred": "2023-12-08",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - Alaminos Canyon Block 735",
+    "operator": "Shell Offshore Inc.",
+    "operating_phase": "drilling",
+    "materials": [
+      "drill pipe"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment - Personnel in Line of Fire",
+    "incident_type": "Personnel Injury - Caught Between",
+    "costs": null,
+    "actions_taken": [
+      "Job stopped immediately",
+      "IP escorted to onboard medical facility",
+      "IP evacuated to UTMB Galveston, Texas",
+      "All stop and safety stand down with all crews",
+      "Added red barricade chain and sign for permit to work on ladder leading down to carousel upper platform",
+      "Sent alert to all rigs with multipurpose tower configuration"
+    ],
+    "summary": "On December 8, 2023, at approximately 08:30 am, a Floorhand (IP) sustained a lost time injury when contacted by the Top Drive System (TDS) while positioned on the port pipe racker upper access platform approximately 80 feet above the drill floor on the Noble Globetrotter II drilling rig. The IP had moved to the platform to troubleshoot a 'slack rope detected' alarm without notifying the Driller. As the Driller lowered the TDS during tripping operations, the lower port TDS roller assembly contacted the IP, folding his upper torso around the outside handrail. The IP sustained a punctured lung, fractured ribs, and a fractured scapula. The incident resulted from inadequate communication, failure to identify the moving equipment hazard in the JSA, lack of warning signage, and absence of engineered barriers despite only 3 inches clearance between the TDS and platform handrail.",
+    "recommendations": [
+      "BSEE Lake Jackson District has no recommendations at this time"
+    ],
+    "key_phrases": [
+      "slack rope detected alarm",
+      "Top Drive System",
+      "port pipe racker upper access platform",
+      "line of fire",
+      "3-inch clearance",
+      "moving equipment hazard",
+      "inadequate communication",
+      "inadequate hazard analysis"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Moving Top Drive System with inadequate clearance",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Personnel entering line of fire without notification",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Driller operating TDS without awareness of personnel location",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate hazard identification in JSA",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury - caught between moving equipment",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Potential fatality",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Lost time injury requiring medical evacuation",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Communication protocol between IP and Driller",
+        "side": "prevention",
+        "barrier_role": "Prevent personnel entering hazard zone without notification",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "First line of defense - operational communication procedure",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Inadequate communication between IP and Driller, Driller was not aware of the IP's position on the port pipe racker upper access platform",
+            "IP failed to notify the drill floor that they were moving from the port carousel access platform (IP's expected location) back to the port pipe racker upper access platform",
+            "The IP overheard the 'slack rope detected' alarm and returned to the port pipe racker upper access platform without notifying the Driller"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Job Safety Analysis (JSA) for drifting drill pipe",
+        "side": "prevention",
+        "barrier_role": "Identify moving equipment hazards before work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "First line of defense - pre-job hazard identification",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "BSEE investigators noted the TDS moving equipment hazard was not identified on the JSA (Job Safety Analysis) used for verifying drill pipe internal diameter",
+            "The only moving equipment hazards identified on the JSA were for the pipe racker and the pipe storage carousel",
+            "Inadequate hazard analysis and engineering control"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Warning signage and cautions for moving equipment hazard",
+        "side": "prevention",
+        "barrier_role": "Alert personnel to moving equipment hazard",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "First line of defense - hazard awareness signage",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "BSEE investigators noticed there were no warnings or cautions identifying the moving equipment hazard on or around the port pipe racker upper access platform",
+            "There was no posted or visible warning, caution or moving equipment advisories on the port pipe racker upper access platform identifying the moving equipment hazard",
+            "This may have given the IP a false sense of safety while on the port pipe racker upper access platform"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Engineered barrier preventing access during TDS operations",
+        "side": "prevention",
+        "barrier_role": "Physically prevent access to hazard zone during operations",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Second line of defense - physical barrier to prevent access",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "An engineered barrier preventing access to the port pipe racker upper access platform during operations or until safe clearance is granted would have prevented the injury from occurring",
+            "The TDS has a 3-inch clearance between TDS and the handrail of the port pipe racker upper access platform",
+            "Lessee failed to identify the moving top drive assembly as a safety hazard while personnel are accessing the port pipe handler access platform. There was no engineering barrier to prevent or alert personnel of the hazard",
+            "Added red barricade chain and sign for permit to work on ladder leading down to carrousel upper platform"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Driller awareness of personnel locations",
+        "side": "prevention",
+        "barrier_role": "Ensure operator awareness before moving equipment",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "First line of defense - operational awareness procedure",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Driller was not aware of the IP's position on the port pipe racker upper access platform",
+            "Communication breakdown prevented all crew members from knowing the safe location of each member during operations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Handrails on port pipe racker upper access platform",
+        "side": "mitigation",
+        "barrier_role": "Prevent fall from height",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Second line of defense - physical fall protection",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was not required to don a safety harness since the port pipe racker upper access platform is protected by handrails",
+            "the lower port TDS roller assembly contacted the IP folding his upper torso around the outside handrail while the IP's legs remained stationary and inside the port pipe racker upper access platform",
+            "Once the TDS passed the IP, the IP fell back onto the port pipe racker upper access platform"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Onboard medical facility and evacuation capability",
+        "side": "mitigation",
+        "barrier_role": "Provide emergency medical response",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Recovery - emergency response after incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Tool-pusher and both ADs escorted the IP down the elevator and to the onboard medical facility",
+            "After consultation with the medic the IP was evacuated to UTMB Galveston, Texas and diagnosed with a punctured lung, fractured ribs, and a fractured scapula"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Handheld radio communication system",
+        "side": "prevention",
+        "barrier_role": "Enable communication between crew members",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "First line of defense - communication equipment",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Next, the Driller used a handheld radio to request the IP's assistance with trouble shooting the 'slack rope detected' alarm",
+            "The IP used their handheld radio to request assistance"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

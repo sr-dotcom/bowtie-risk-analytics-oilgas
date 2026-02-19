@@ -1,0 +1,938 @@
+{
+  "incident_id": "2022-01-I-OH",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Fatal Naphtha Release and Fire at BP-Husky Toledo Refinery",
+    "date_published": "2024-06",
+    "date_occurred": "2022-09-20",
+    "timezone": "US/Eastern"
+  },
+  "context": {
+    "region": "Oregon, Ohio, USA",
+    "operator": "BP Products North America Inc. (BP)",
+    "operating_phase": "production",
+    "materials": [
+      "naphtha",
+      "fuel gas",
+      "hydrogen sulfide",
+      "amine-water solution",
+      "crude oil",
+      "coker wet gas"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "flash fire",
+    "costs": 597000000,
+    "actions_taken": [
+      "Emergency Response Team (ERT) deployed at 6:54 p.m.",
+      "Board operator closed naphtha flow control valve to Coker Gas Plant at 7:04 p.m.",
+      "ERT closed all open drain valves on Fuel Gas Mix Drum",
+      "Fire extinguished by 10:10 p.m.",
+      "NHT unit emergency shutdown initiated",
+      "Outside operators directed water onto NHT Preheat naphtha release to prevent ignition",
+      "Night shift refinery coordinator initiated refinery-wide shutdown at 6:27 p.m.",
+      "Post-incident: automated draining system installed on Fuel Gas Mix Drum",
+      "Post-incident: level deviation alarm added to Fuel Gas Mix Drum",
+      "Post-incident: new Fuel Gas Mix Drum procedures established",
+      "Post-incident: control-based maximum stop added to naphtha flow control valve to Coker Gas Plant"
+    ],
+    "summary": "On September 20, 2022, at approximately 6:46 p.m., a vapor cloud ignited causing a fatal flash fire at the BP-Husky Toledo Refinery in Oregon, Ohio. Two BP employees (brothers) released flammable liquid naphtha from the pressurized Fuel Gas Mix Drum to the ground while attempting to drain it during an overfill event. The vapor cloud reached the nearby Crude 1 Furnace ignition source. Both employees were fatally injured. The incident resulted from a cascade of abnormal situations over approximately 24 hours, including water carryover from the Crude 1 Overhead Accumulator Drum, NHT Preheat pressure relief valve chatter and pipe failure, NHT unit emergency shutdown, Coker Gas Plant bypass, Crude 1 Tower instability, crude slate change, and ultimately naphtha overflowing through the Coker Gas Plant bypass line into the Fuel Gas Mix Drum and downstream furnaces. Contributing factors included ineffective preventive safeguards, over-reliance on human intervention, inadequate abnormal situation management, alarm flood (3,712 alarms in 12 hours), and failure to learn from a similar 2019 incident. Approximately 23,502 pounds of naphtha and 66,889 pounds of fuel gas were released. Property damage was approximately $597 million.",
+    "recommendations": [
+      "2022-01-I-OH-R1: Revise PHA safeguards for high level and overflow scenarios; establish engineered controls to prevent liquid overfill without sole reliance on human intervention.",
+      "2022-01-I-OH-R2: Revise Abnormal Situation Management policy to incorporate ASM Consortium and CCPS guidance, including broader definition of abnormal situations and corrective procedures.",
+      "2022-01-I-OH-R3: Develop/revise Stop Work Authority policy with detailed procedures and regular training, emphasizing use during abnormal situations and alarm floods.",
+      "2022-01-I-OH-R4: Revise Toledo Alarm Philosophy to incorporate EEMUA guidance for alarm rate following upsets and include short-term alarm flood analysis.",
+      "2022-01-I-OH-R5: API to develop/revise publication to incorporate process hazards associated with Fuel Gas Mix Drum overflow.",
+      "2022-01-I-OH-R6: API to develop publication addressing prevention of overflow of pressure vessels such as towers and drums.",
+      "2022-01-I-OH-R7: ISA to revise ANSI/ISA 18.2-2016 to include performance targets for short-term alarm flood analysis."
+    ],
+    "key_phrases": [
+      "naphtha release",
+      "flash fire",
+      "Fuel Gas Mix Drum overflow",
+      "Absorber Stripper Tower overflow",
+      "alarm flood",
+      "abnormal situation management",
+      "liquid overflow prevention",
+      "human intervention reliance",
+      "cascading process upsets",
+      "Stop Work Authority",
+      "loss of containment",
+      "vapor cloud ignition",
+      "process hazard analysis",
+      "safety instrumented system",
+      "learning from incidents",
+      "crude slate change",
+      "NHT unit shutdown",
+      "Coker Gas Plant bypass"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Flammable liquid naphtha in pressurized process vessels and fuel gas system"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Liquid overflow potential in interconnected refinery vessels and towers"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Water carryover from Crude 1 Overhead Accumulator Drum initiating cascade"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "NHT Preheat pressure relief valve chatter causing pipe failure and NHT shutdown"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Crude 1 Tower instability due to NHT shutdown and crude slate change"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Board operator opening naphtha flow control valve to bypassed Coker Gas Plant"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Absorber Stripper Tower overflow through open Coker Gas Plant bypass line to Fuel Gas Mix Drum"
+      },
+      {
+        "threat_id": "T-006",
+        "name": "Alarm flood overwhelming board operators and causing delayed/incorrect responses"
+      },
+      {
+        "threat_id": "T-007",
+        "name": "Inadequate abnormal situation management and shift communication"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fatal flash fire killing two BP employees"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Vapor cloud formation from naphtha released to ground"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Naphtha overflow to downstream furnaces and boilers causing smoke and furnace fires"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Approximately $597 million property damage"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Release of approximately 23,502 pounds of naphtha and 66,889 pounds of fuel gas"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Fuel Gas Mix Drum high level alarm (DCS)",
+        "side": "prevention",
+        "barrier_role": "Detect high liquid level in Fuel Gas Mix Drum and prompt operator response",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "High level alarm coupled with operator response identified as safeguard in PHA",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The board operator noticed the Fuel Gas Mix Drum level alarm on the Distributed Control System (DCS) alarm screen and radioed the outside operators to check the level in the Fuel Gas Mix Drum at 6:16 p.m.",
+            "From 6:10 p.m. through 6:17 p.m., the DCS console had 55 alarms, the equivalent of approximately one alarm every nine seconds. Managing the alarm flood during this time likely created a delayed response to the Fuel Gas Mix Drum high level.",
+            "The high level alarm was a high priority alarm and was color coded to indicate its high priority status, but alarm prioritization can be ineffective if the board operator is simply overwhelmed in an extreme alarm flood situation."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Absorber Stripper Tower high level alarm and operator response",
+        "side": "prevention",
+        "barrier_role": "Detect high liquid level in Absorber Stripper Tower and prompt operator to stop naphtha inflow",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human intervention response to alarms identified as safeguard in PHA for AST overflow to FGMD",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "A third type of safeguard identified during the PHAs relied on human intervention response to address alarms from the Absorber Stripper Tower level and differential pressure instrumentation to mitigate the potential for naphtha overflow of the Absorber Stripper Tower into the Fuel Gas Mix Drum and furnaces.",
+            "A board operator shelved Coker Gas Plant Absorber Stripper Tower high level alarms for the level controller and independent level transmitter.",
+            "human intervention can be unreliable depending on the workload of the operator. As such, in certain situations, human intervention as a safeguard can prove to be ineffective."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Absorber Stripper Tower emergency pressure-relief valves",
+        "side": "prevention",
+        "barrier_role": "Protect Absorber Stripper Tower against overpressure during overflow scenario",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Identified as safeguard in 2020 Coker Gas Plant PHA for AST overflow to FGMD",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Emergency pressure-relief valves are a second type of safeguard the PHA identified. Emergency pressure-relief valves are safeguards designed to protect process equipment during a process overpressure. The identified emergency pressure-relief valve safeguards at the BP Toledo Refinery were intended to protect the Absorber Stripper Tower against potential overpressure. These emergency pressure-relief valves were installed on the overhead line exiting the top of the Absorber Stripper Tower. As such, the Absorber Stripper Tower emergency pressure-relief valves were not designed to prevent the process overflow into the bypass line, just the hazard of potential overpressure arising from an overflow scenario.",
+            "The CSB concludes that the Absorber Stripper Tower emergency pressure-relief valves and the refinery furnaces' safety instrumented systems would not prevent a vessel overflow event. Instead, they just protected equipment after an overflow has already occurred."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Furnace safety instrumented systems (SIS)",
+        "side": "mitigation",
+        "barrier_role": "Protect downstream furnaces from liquid in fuel gas system",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Identified as safeguard in 2020 Coker Gas Plant PHA to prevent consequences of liquid overflow into furnaces",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the SISs identified in the 2020 Coker Gas Plant PHA to prevent the consequences of liquid overflow into furnaces were all downstream of the Fuel Gas Mix Drum and could not take action until liquid was already inside the fuel gas piping downstream of the Fuel Gas Mix Drum",
+            "No SIS prevented the Absorber Stripper Tower overflow to the Fuel Gas Mix Drum by stopping naphtha flow into the tower once a high level of liquid in the tower was detected."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Fuel Gas Mix Drum level instrumentation (guided wave radar and differential pressure)",
+        "side": "prevention",
+        "barrier_role": "Measure and indicate liquid level in Fuel Gas Mix Drum to enable operator response",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Level instrumentation used to detect liquid accumulation in FGMD",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Fuel Gas Mix Drum differential pressure level indication plateaued at around 67 percent of the six-foot span even though the guided wave radar level instrument and sight glass showed the Fuel Gas Mix Drum at capacity. This incorrect indication was due to the density of naphtha being less than the density of the typical amine-water solution used to calibrate the differential pressure level meter.",
+            "As the liquid continued to fill the Fuel Gas Mix Drum, these instruments could not provide any indication that the drum was overflowing liquid into the fuel gas piping.",
+            "When outside operators opened the bleed at the differential pressure level transmitter, the opened bleed altered the pressure differential, causing the level measurement to indicate zero percent. This gave the false impression that the Fuel Gas Mix Drum was emptying, when in fact it was still full."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Fuel Gas Mix Drum draining to Flare Knockout Drum (closed system)",
+        "side": "mitigation",
+        "barrier_role": "Remove accumulated liquid from Fuel Gas Mix Drum to closed system",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Designed drain path for liquid removal from FGMD",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CSB concludes that the Fuel Gas Mix Drum drain piping did not have enough capacity to drain naphtha overflowing from the open Coker Gas Plant in a closed system to the Flare Knockout Drum.",
+            "The volume of the naphtha flow into the Fuel Gas Mix Drum exceeded the capacity out of the Fuel Gas Mix Drum to the Flare Knockout Drum, a closed system.",
+            "The measured naphtha flow rate to the Coker Gas Plant exceeded 18,700 barrels per day after the naphtha flow control valve to the Coker Gas Plant was opened to lower the liquid level in the drum. This flow rate into the Fuel Gas Mix Drum was more than the 9,800 barrels per day estimated to be draining from the Fuel Gas Mix Drum to the Flare Knockout Drum."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Process Hazard Analysis (HAZOP/LOPA) for overflow scenarios",
+        "side": "prevention",
+        "barrier_role": "Identify overflow hazards and establish adequate safeguards",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Regulatory requirement and BP practice for PSM-covered processes",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003",
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Although the BP Toledo Refinery conducted PHAs to analyze liquid overflow events and LOPAs to determine the effectiveness of identified safeguards, the refinery's safeguards were not effective in preventing liquid naphtha from overflowing the Coker Gas Plant Absorber Stripper Tower to the Fuel Gas Mix Drum and into the fuel gas piping.",
+            "these PHAs did not identify any potential scenario in which liquid naphtha in the Absorber Stripper Tower would overflow into the Fuel Gas Mix Drum.",
+            "During the September 2016 Coker Gas Plant LOPA, a decision was made to delete the following safeguard: 'the DCS to command FV3816 to close, based on a high level in the CGP Absorber Stripper using independent transmitter.'"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Abnormal Situation Management (ASM) policy and procedures",
+        "side": "prevention",
+        "barrier_role": "Provide framework for recognizing and responding to abnormal process situations",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "BP Toledo Refinery ASM policy created 2015",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004",
+          "T-006",
+          "T-007"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CSB concludes that the BP Toledo Refinery Abnormal Situation Management policy was not effective for proactive recognition of abnormal situations. The policy narrowly defined abnormal situations such that process disturbances that occurred before the incident did not fit the policy's definition, even though the basic process control system was unable to cope with these situations.",
+            "On the day of the incident, the BP Toledo Refinery did not provide effective guidance for managing abnormal situations. The lack of effective guidance required operations personnel to make improvised real-time decisions.",
+            "the night shift refinery coordinator told the CSB that with 'the crude tower on, sat gas plant, coker gas plant, NHT down,' he had 'never seen it operate like that' and 'had no technical guidance on how to operate it.'"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Alarm management system (DCS alarm system)",
+        "side": "prevention",
+        "barrier_role": "Alert board operators to process deviations requiring response",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "DCS alarm system as primary operator alert mechanism",
+        "linked_threat_ids": [
+          "T-005",
+          "T-006"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "board operators at the BP Toledo Refinery were receiving far more than 10 alarms in 10 minutes on average, a situation in which more alarms were annunciating than a human can effectively respond to, for nearly 12 hours preceding the incident. Between 6:50 a.m. and 6:49 p.m. September 20, 2022, a total of 3,712 alarms were recorded.",
+            "Continued operation in an alarm flood state contributed to the incident by causing delays and errors in responding to critical alarms and shift-to-shift communications.",
+            "There was no LFL alarm in the control room as the alarm was set to 'Disabled' due to an Alarm Configuration Manager (ACM) enforcement configuration error that was enforcing the alarm into the 'disabled' state."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Stop Work Authority program",
+        "side": "prevention",
+        "barrier_role": "Empower employees to halt unsafe operations before catastrophic incident",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "BP Toledo Refinery procedure 'Handling Employee Health/Safety Concerns of Assigned Work'",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004",
+          "T-007"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "no one invoked Stop Work Authority in time to prevent the occurrence of the catastrophic incident on September 20, 2022.",
+            "the board operator's statement illustrates that key personnel at the BP Toledo Refinery did not understand the dire nature of the events that were rapidly unfolding",
+            "it was viewed as just a 'normal upset', despite the cascading process upsets and rapidly deteriorating conditions, and he thought at the time that 'we can get this.'"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Operating procedures for Fuel Gas Mix Drum high level and draining",
+        "side": "mitigation",
+        "barrier_role": "Provide operators with instructions for safely responding to high liquid level in FGMD",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Expected administrative control for process upset response",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the BP Toledo Refinery did not have any procedures, written instructions, or documented corrective actions for board operators or outside operators to respond to or troubleshoot a high liquid level in the Fuel Gas Mix Drum, during either normal operations or process upsets, if liquid entered the drum.",
+            "Because the BP Toledo Refinery lacked established corrective actions for the situation, the two BP employees may have improvised a solution in real time without being aware of the consequences of releasing to the ground.",
+            "the refinery did not have adequate consideration of potential hazards that could exist if the drum contained high levels of flammable liquid (such as naphtha) and needed to be drained."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Shift handover and communication of operational status",
+        "side": "prevention",
+        "barrier_role": "Communicate abnormal conditions, decisions, and guidance from day shift to night shift",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Standard refinery shift handover practice",
+        "linked_threat_ids": [
+          "T-003",
+          "T-007"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the CSB found no evidence that the actions agreed upon in the meeting were ever conveyed to the night shift refinery coordinator or board operators, either verbally or in writing.",
+            "the night shift operators did not indicate to the CSB that they were aware of these options as possible corrective actions.",
+            "BP Toledo Refinery personnel involved in the afternoon meeting regarding Crude 1 Tower instability did not adequately communicate the guidance to safely operate the Crude 1 Tower from that meeting to the oncoming night shift personnel."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Management of Change (MOC) process for level instrument replacement",
+        "side": "prevention",
+        "barrier_role": "Evaluate and communicate operational impacts of equipment changes to operators",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "OSHA PSM MOC requirement; BP MOC procedure",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the new device was calibrated differently from the previous one. This change meant that water would overflow the naphtha standpipe at 69 percent indicated level, rather than at an indicated 100 percent level, with the original level device. This change in level indication had not been communicated to operators.",
+            "While the Management of Change (MOC) itself was communicated to operators before starting up after the change, the communication did not include that this level would read differently than it did before."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Learning from incidents program (2019 near-miss investigation)",
+        "side": "prevention",
+        "barrier_role": "Identify and implement corrective actions from prior similar overflow events",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "BP incident investigation process; OSHA PSM incident investigation requirement",
+        "linked_threat_ids": [
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "After the 2019 incident, the BP Toledo Refinery did not identify or implement any new engineering controls as preventive safeguards for a process upset in which naphtha overflowed into the Fuel Gas Mix Drum.",
+            "The BP Toledo Refinery 2019 Five Whys incident investigation focused only on action items to prevent plugging in the Lean Oil Stripper overhead system, failing to learn important safety lessons from the 2019 incident.",
+            "The CSB found that the BP Toledo Refinery had investigated a previous incident of naphtha back flowing through a Coker Gas Plant bypass line in 2019."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Personal Protective Equipment (SCBA and H2S detector)",
+        "side": "mitigation",
+        "barrier_role": "Protect workers from hydrogen sulfide inhalation during draining operations",
+        "barrier_type": "ppe",
+        "line_of_defense": "recovery",
+        "lod_basis": "Standard PPE for refinery process areas; additional SCBA for H2S risk",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the two BP employees who released the Fuel Gas Mix Drum to the ground may have believed that the material was amine-water solution, rather than naphtha, just as other operations personnel did.",
+            "Both BP employees, an outside operator and operator trainee who were brothers, drained the Fuel Gas Mix Drum to the Flare Knockout Drum and the Oily Water Sewer. They were both observed to be wearing an SCBA prior to the incident.",
+            "Hydrogen sulfide (H2S) monitors were standard PPE in the refinery process areas."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-016",
+        "name": "Emergency Response Team (ERT) and emergency response procedures",
+        "side": "mitigation",
+        "barrier_role": "Respond to fire and close open drain points to extinguish fire",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Refinery emergency response plan",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "unknown"
+        }
+      },
+      {
+        "control_id": "C-016",
+        "name": "Emergency Response Team (ERT) and emergency response procedures",
+        "side": "mitigation",
+        "barrier_role": "Respond to fire and close open drain points to extinguish fire",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Refinery emergency response plan",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "After the vapor cloud ignited at 6:46 p.m., the BP Toledo Refinery Emergency Response Team (ERT) reported to the scene at 6:54 p.m.",
+            "The ERT assembled three separate teams to approach the Fuel Gas Mix Drum and close the open drain points where fire was emanating from the drum.",
+            "The fire was extinguished by 10:10 p.m."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-017",
+        "name": "Remotely Operated Emergency Isolation Valve (ROEIV) on Absorber Stripper Tower bottoms",
+        "side": "prevention",
+        "barrier_role": "Isolate Absorber Stripper Tower bottoms flow to prevent overflow escalation",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Engineering isolation valve on AST bottoms piping",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The night shift board operators were unaware that earlier that day, the day shift had closed a valve on the Coker Gas Plant Absorber Stripper Tower bottoms piping, known as a Remotely Operated Emergency Isolation Valve (ROEIV). This closed valve prevented flow through the Absorber Stripper Tower bottoms into the NHT Feed Surge Drum, so the liquid naphtha began to fill the Coker Gas Plant Absorber Stripper Tower more quickly than if the ROEIV had remained open.",
+            "The closed ROEIV hastened the overflow into the Fuel Gas Mix Drum through the open bypass line."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-018",
+        "name": "Flammable gas detector (LFL detector) near Fuel Gas Mix Drum",
+        "side": "mitigation",
+        "barrier_role": "Detect flammable vapor cloud formation and alert personnel",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Area flammable gas detection system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "This detector only alarmed locally, not in the control room. The CSB determined that the alarm had been inadvertently disabled to the DCS, and therefore only the local alarm horn and lights were functional at the time of the incident.",
+            "At 6:39 p.m., likely as a result of naphtha releasing to the ground and vaporizing, a flammable gas detector near the Fuel Gas Mix Drum indicated 100 percent of the lower flammability limit (LFL).",
+            "there was no evidence that anyone inside the control room was aware that the two BP employees were releasing liquid from the Fuel Gas Mix Drum to the ground."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-019",
+        "name": "Operator training on process upset response and Fuel Gas Mix Drum operations",
+        "side": "prevention",
+        "barrier_role": "Ensure operators are competent to recognize and respond to high liquid level in FGMD",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "OSHA PSM training requirement; BP operator qualification program",
+        "linked_threat_ids": [
+          "T-004",
+          "T-005",
+          "T-006"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Had the BP Toledo Refinery 1) conducted a thorough risk assessment of the operational task of draining or addressing high level in the Fuel Gas Mix Drum, 2) provided its operators with the necessary written instructions and consistent training, and 3) ensured the competency of operations personnel to perform the task safely, BP employees may have made different decisions on September 20, 2022.",
+            "Board operators were often qualified on the Crude 1 job with minimal, if any, experience in managing process upsets. This experience was learned on the job, in real time.",
+            "The regularly scheduled board operator had been only recently qualified as a board operator and had worked in the control room alone for less than a month."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": true,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

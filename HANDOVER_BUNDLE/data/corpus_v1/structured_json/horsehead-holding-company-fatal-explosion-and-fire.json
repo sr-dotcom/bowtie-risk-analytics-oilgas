@@ -1,0 +1,756 @@
+{
+  "incident_id": "unknown",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": null,
+    "title": "Monaca Fatal Explosion and Fire",
+    "date_published": "2015-03-09",
+    "date_occurred": "2010-07-22",
+    "timezone": "America/New_York"
+  },
+  "context": {
+    "region": "Monaca, Pennsylvania, USA",
+    "operator": "Horsehead Corporation",
+    "operating_phase": "production",
+    "materials": [
+      "liquid zinc",
+      "zinc vapour",
+      "zinc oxide",
+      "cadmium",
+      "lead",
+      "iron",
+      "hard zinc",
+      "dross"
+    ]
+  },
+  "event": {
+    "top_event": "Explosive Decompression and Conflagration (Column Backfill and Tray Wall Failure)",
+    "incident_type": "explosion_and_fire",
+    "costs": "$15M invested in rebuilding and safety improvements post-incident",
+    "actions_taken": [
+      "Operator cut gas input flow following high rate-of-change temperature alarm approximately 10 minutes before explosion",
+      "Operator cut gas further following a second alarm",
+      "Post-explosion: walls installed between columns",
+      "Post-explosion: flame guards installed",
+      "Post-explosion: explosion doors installed",
+      "Post-explosion: access restrictions imposed on floors 2 and 3 requiring foreman notification and column shutdown",
+      "Plant restarted in January 2011 following $15M investment in rebuilding and safety improvements",
+      "Complete Monaca smelter permanently closed in April 2014"
+    ],
+    "summary": "On 22 July 2010, a zinc distillation column (Column B) at the Horsehead Corporation zinc smelter in Monaca, PA, suffered a fatal explosive decompression and fire. The column sump partially blocked, causing liquid zinc to back-fill the column trays. The flooded column acted as a pressure cooker, raising the boiling point of zinc and creating superheated liquid zinc under elevated pressure. Eventually one or more tray walls failed, releasing a surge of zinc vapour and superheated liquid zinc that blew out the combustion chamber wall, ignited in workplace air, and threw a massive flame across the workplace. Key contributing factors included an undersized sump underflow clearance ('1 brick'/65mm), a poorly executed column commissioning with inadequate sump heating, persistent sump blockage problems prior to the explosion, a high and increasing feed rate, normalisation of hazardous conditions by process management, absence of functioning paper chart recorders, inadequate operator training to recognise backfilling symptoms, and a key reflux thermocouple that was non-functional for days prior to the explosion.",
+    "recommendations": [
+      "Increase sump underflow clearance to at least '2 bricks' (approximately 130mm)",
+      "Install vibration meters on columns",
+      "Install load cells under columns to enable immediate determination of backfilling",
+      "Install temperature measurement of run-off",
+      "Install dust load monitoring in waste gases",
+      "Install vibration monitors in three directions on sumps",
+      "Install oxygen analysis on waste gases",
+      "Implement modern SIS safety instrumented system with predictive algorithms to warn of hazardous temperature trends",
+      "Ensure all operators are exceptionally well trained to recognise symptoms of sump blockage and backfilling",
+      "Redesign needle valve feed arrangement to 'bottom up' flow to minimise dross and air entrainment",
+      "Ensure sump is fully cleared and verified before column recommissioning",
+      "Issue general warnings to employees when column is functioning abnormally",
+      "Implement permit-to-work system for access to combustion chamber wall platforms",
+      "Maintain constant calorific value of fuel gas through modern calorimetric control",
+      "Control column firing on target fuel input rather than temperature",
+      "Ensure liquation pot temperatures are controlled to target maximum 450 degrees C",
+      "Restore or replace paper chart recorders for main column temperatures",
+      "Ensure emergency procedures explicitly address sump blockages on cadmium columns as well as zinc oxide columns"
+    ],
+    "key_phrases": [
+      "pressure cooker explosion",
+      "sump blockage",
+      "backfilling",
+      "explosive decompression",
+      "normalisation of hazardous conditions",
+      "1 brick underflow",
+      "hard zinc",
+      "zinc oxide dross",
+      "superheated zinc",
+      "tray wall failure",
+      "combustion chamber wall blown out",
+      "rate-of-change alarm",
+      "reflux temperature fallaway",
+      "rising bottom temperatures",
+      "column commissioning",
+      "sump strapping",
+      "human factors"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "High-temperature liquid zinc and zinc vapour under pressure in distillation column"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Zinc oxide dross accumulation causing sump blockage"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Sump underflow partial blockage due to inadequate clearance ('1 brick'/65mm design)"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Zinc oxide dross and hard zinc formation from air ingress and iron impurities"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Poor column commissioning - inadequate sump heating and residual blockage material"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "High and increasing zinc feed rate exceeding sump clearance capacity"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Normalisation of hazardous conditions - failure to recognise and act on warning signs"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fatalities and serious injuries from zinc vapour explosion and fire in workplace"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Destruction of combustion chamber wall and column structure"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Major conflagration across workplace from ignition of zinc vapour and superheated liquid zinc"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Plant shutdown and significant financial loss"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Sump underflow clearance design ('2 bricks' / 130mm minimum)",
+        "side": "prevention",
+        "barrier_role": "Prevent sump blockage by providing adequate clearance for zinc, dross and debris passage",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical design barrier against sump restriction",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "One important dimension is the clearance under the underflow, the point of greatest restriction to the passage of zinc, dross and any debris. The dimension is shown as 25/8 inches ('1 brick'), about 65 mm. This was far less than most, if not all, zinc refineries. Many plants increased the dimension to '2 bricks' after the Australian fatality in 1973.",
+            "The most important factor in avoiding blockages is a sump design that allows liquid zinc and other inevitable materials like dross and pieces of brick and mortar to exit easily. Column B had a small underflow depth ('1 brick') that had proved to be too small in accidents around the world going back to 1973."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Sump strapping (manual rodding to clear blockages)",
+        "side": "prevention",
+        "barrier_role": "Manually clear partial sump blockages before backfilling occurs",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Operational intervention to restore sump flow when blockage detected",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The timeline shows B sump leaking (suggesting blockage) being strapped on 14 July and an air lance being applied to the sump. Leaks occurred again on 15 July. Further strapping took place on 19 July when the sump leaked.",
+            "It is worth noting the distance of the underflow to the external point on the sump of some 150 inches (3.8 m). This is what must be traversed by a rod or strap worked remotely by an operator, or as described by an operator 'No one has X-ray vision.' It is therefore a skilled task to find and clear the underflow slot."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Column commissioning procedure - sump burner heat-up and drying",
+        "side": "prevention",
+        "barrier_role": "Ensure sump and column internals are properly dried and cleared before feed introduction to prevent dross formation",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural control to prevent introduction of moisture and residual blockage material",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Column Heat-Up log shows the sump temperature well below target; this continued right through the warm-up with the highest temperature recorded being 380ºC on 6 July; temperatures well below the target of 650ºC continued for the last few days before feed.",
+            "Witness interviews referred to bricklayers 'working in the sump' and to the sump burner not being present. One of the operators referred specifically to the fact that the sump burner flame (when the burner was present) was not being pulled into the sump, even with the cover tiles off, and thought that there was a problem with the sump.",
+            "The warm-up for column B was unsatisfactory. The sump burner was not operating properly, yet this is so important. The only way that any new sump brickwork or the mortar for the bottom tray can be dried properly is from hot sump burner gases passing inside the column and up to the top by natural draft. Any moisture left when metal was fed would react and create thick pasty dross."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Feed rate control and management",
+        "side": "prevention",
+        "barrier_role": "Maintain feed rate within safe limits to avoid overloading sump clearance capacity",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Operational control to prevent excessive zinc throughput overwhelming a partially restricted sump",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The ladle log shows a steadily increasing feed to B column which is perfectly normal for the commissioning of a new column but, if the sump was partly restricted, it represents an increasing possibility that it might not cope with the flow of liquid zinc. At its peak shortly before the explosion it would appear that the column was operating at approximately 110 st/d, a high rate compared to standards within the industry.",
+            "The column was not operating normally but there was no general warning to employees to that effect. Yet the feed rate was steadily being increased, placing a progressively higher volume load on the sump."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Liquation pot temperature control (target maximum 450°C)",
+        "side": "prevention",
+        "barrier_role": "Control iron content in recycled run-off to prevent hard zinc deposition in column sump",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Process control to limit iron concentration and hard zinc formation",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "It is of concern that the logged temperatures for liquation pots are frequently considerably higher than the target of not more than 450ºC. For example, column 25 evening shift shows 550ºC and 530ºC for the night of 21 July 2010 and following morning.",
+            "If, for example, the liquation pot was being operated at an excessive 550ºC, the run-off recycle would contain 0.3% Fe. The subsequent run-off could then, with the 'new' iron from new strip metal, contain 0.34% Fe. The sump temperature could now easily be low enough to allow clogging with hard metal."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Needle valve feed arrangement (bottom-up flow design)",
+        "side": "prevention",
+        "barrier_role": "Minimise dross and air entrainment in liquid zinc entering the column",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Engineering design to reduce dross ingress into column",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The valve, although at an angle, was 'top down' through the valve, allowing dross and air to be more easily drawn down through the needle valve with the liquid zinc. Although the feed box is designed to settle out dross, some dross and air may still be entrained in the liquid zinc flowing to the column. The conclusion from the Noyelles-Godault investigation was that the flow should be 'bottom up.'"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Process temperature monitoring and operator surveillance (DCS computer screens and paper chart recorders)",
+        "side": "prevention",
+        "barrier_role": "Enable early detection of rising bottom temperatures and falling reflux temperature indicative of column backfilling",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Monitoring and detection barrier to identify developing backfill condition",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The absence of paper chart recorders for the main temperatures of each column meant that the subtle changes taking place may not have been observed on the computer screens by operators.",
+            "It is not clear as to why this was not observed on the control room computer screen – it is understood that the paper chart recorders for the main column temperatures no longer worked, but that the charts were on the bottom of the computer screen.",
+            "The first time that the reflux temperature (the control point for condensate) showed correctly in the life of the column was 12.10 on July 22 2010, just four hours before the explosion. In my professional opinion, for a key control thermocouple not to be available for a matter of days is not acceptable and is an example of inadequate attention to process control and safety.",
+            "There is a worrying upwards trend in combustion chamber bottom and waste gas inlet temperatures from at least an hour before the explosion... This still raises the question as to what training operators had been given to recognise these temperature trends as indicating possible blockage and backfilling."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "High rate-of-change temperature alarm",
+        "side": "prevention",
+        "barrier_role": "Alert operator to rapidly developing dangerous temperature excursion in column",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Automated alarm as last prevention barrier before explosion",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Approximately 10 minutes before the explosion there was an alarm indicating a high rate of temperature change covering the column waste gas temperature, and the operator cut the gas input flow. Following a further alarm he cut gas further, and shortly afterwards the column exploded. The operator actions were exactly those required by the procedure.",
+            "The high rate–of-change alarm warned that the column was in imminent danger 10 minutes before it exploded, but there appears to have been no specific alarm to draw attention of the operator to the subtle but dangerous temperature changes that were taking place much (i.e. hours) earlier."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Emergency operating procedure for column upset conditions",
+        "side": "prevention",
+        "barrier_role": "Provide operators with defined response actions for column upset including gas input reduction and inspection",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Procedural last line of prevention before explosion",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The operator actions were exactly those required by the procedure. The action was to 'Item 1 – Waste Gas Temperatures Rapidly Rising.' Had it been to 'Item 2 – Oxide Combustion Unit (Down Draft), Flickering of Vapour,' the procedure would have required the operator to inspect the column through nostril boxes (peepholes next to the column burners) for 'dark trays' – a sign of zinc backfilling the column. As a result no one inspected the nostril boxes.",
+            "The emergency procedure mentioned above clearly associates sump blockages with zinc oxide columns only."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Nostril box inspection for dark trays (visual backfill detection)",
+        "side": "prevention",
+        "barrier_role": "Visual detection of zinc backfilling in column trays through peepholes",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Operational detection method for backfilling condition",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "As a result no one inspected the nostril boxes. In my professional opinion it was almost certainly too late to do anything anyway, but I suspect that an inspection would have shown 'black trays' and probably intensive zinc combustion.",
+            "Showing through the nostril boxes were 'black trays' and a 'ring of fire' [in the previous B column premature shutdown]."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Liquid zinc metal seals at column orifices",
+        "side": "prevention",
+        "barrier_role": "Prevent air ingress into column and maintain internal pressure integrity",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Engineering barrier to prevent air ingress and dross formation",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "A column is designed to be air tight, having liquid zinc metal seals at its three orifices, feed box, sump (and condenser sump on a lead or cadmium column). These consist of an underflow/overflow, like a drain trap, and would have a seal of around 3-4 inches (75-100 mm) of liquid zinc.",
+            "Under suction, which is hard to detect, air may be drawn in if the cover tile seal is not absolutely perfect. Any leakage here renders the liquid metal seal ineffective, and air ingress will be a cause of dross (zinc oxide) formation."
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Combustion chamber blast/explosion relief panels",
+        "side": "mitigation",
+        "barrier_role": "Provide controlled pressure relief to direct explosion energy away from workers",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Passive mitigation engineering barrier to limit consequence severity",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "This photograph shows the combustion chamber wall of column B, and the site of the explosion, the pressure relief panels being blown out into the workplace.",
+            "The combustion chamber wall will explode due to the increased pressure, the explosion panels not taking much over-pressure to blow them out."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Post-explosion physical barriers between columns and flame guards",
+        "side": "mitigation",
+        "barrier_role": "Limit propagation of explosion and fire effects to adjacent columns and workers",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident mitigation engineering improvement",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "After the explosion, the company did make some improvements to the area. They put up wall between the columns. They put in flame guards. Put in explosion doors. Nobody was allowed to go on the floors of 2 and 3. If you went to that level you had to notify the foreman and they would shut down the column."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Operator training on backfilling symptoms and process hazard awareness",
+        "side": "prevention",
+        "barrier_role": "Ensure operators can recognise early warning signs of sump blockage and column backfilling and respond appropriately",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human performance barrier dependent on competence and training",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "This still raises the question as to what training operators had been given to recognise these temperature trends as indicating possible blockage and backfilling.",
+            "Training is critical. Operators are more than capable of understanding the process and its hazards and the symptoms that signal enhanced risk. It is disturbing that the ground- and first-floor operators such as those tending the sumps can be the least-well trained, yet the sump itself is a hazardous place.",
+            "In large measure, hazardous conditions at Monaca had been 'normalised' and that process management had become desensitised to what was going on."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Management general warning system for abnormal column operation",
+        "side": "prevention",
+        "barrier_role": "Alert all relevant personnel to known abnormal or hazardous column conditions requiring extra caution",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Organisational communication barrier to prevent normalisation of hazardous conditions",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Given this history, Horsehead Monaca management should have put out a general warning that B column was functioning abnormally, that there was a potentially hazardous condition at the sump and that extra care should be taken.",
+            "The column was not operating normally but there was no general warning to employees to that effect.",
+            "Prior to the explosion, many workers reported that everything appeared to be normal."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_ids_referenced": {
+      "PIF-001": "Operator/management competence and knowledge of process hazards",
+      "PIF-002": "Situational awareness - failure to observe and interpret temperature trend warnings",
+      "PIF-003": "Training adequacy - operators not trained to recognise backfilling symptoms",
+      "PIF-004": "Safety culture - normalisation of hazardous conditions",
+      "PIF-005": "Supervision and management communication of abnormal conditions"
+    }
+  }
+}

@@ -1,0 +1,744 @@
+{
+  "incident_id": "EV2010R%20-%20VR%2038",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Crane Lifting Pin Failure Incident - Vermilion Block 38M",
+    "date_published": "2025-10-17",
+    "date_occurred": "2025-07-12",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Vermilion Block 38, Lease 00204",
+    "operator": "Chevron U.S.A. Inc.",
+    "operating_phase": "decommissioning",
+    "materials": [
+      "7-inch casing"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Structural Integrity",
+    "incident_type": "Equipment Failure - Crane Lifting Pin",
+    "costs": "38841",
+    "actions_taken": [
+      "Medic called immediately to scene",
+      "IP placed in personnel basket and lifted to liftboat",
+      "Medevac helicopter called at 3:36 p.m.",
+      "IP transported to Lafayette General Hospital at 6:00 p.m.",
+      "Crane main hoist line inspected on July 13, 2025 and put out of service",
+      "Main hoist line replaced on July 20, 2025",
+      "BSEE preservation order issued July 15, 2025",
+      "Independent third party pull testing conducted July 23, 2025",
+      "Casing jacks used to remove stuck casing on July 29, 2025"
+    ],
+    "summary": "On July 12, 2025, at approximately 3:30 p.m., a casing lifting pin failed during well abandonment operations on the VR-38M platform. The 2-inch diameter lifting pin bent into a U-shape under excessive load and struck a Supreme Services employee in the face, causing severe injuries including subdural hematoma, skull fracture, and facial bone fractures. The incident occurred when the crane operator attempted to lift stuck 7-inch casing using the main hoist. Investigation revealed the casing became stuck because a spool riser with 11.00-inch inside diameter was installed over a seal ring with 11.44-inch outside diameter. The lifting pin failed at an estimated load exceeding 102,000 pounds, well above its 60,000-pound safe working load limit. Contributing factors included improper sling installation with D-rings not adjacent to the casing, exceeding the approved lift plan's maximum weight capacity of 24,255 pounds, and failure to call an all-stop when the casing became stuck.",
+    "recommendations": [
+      "BSEE Lake Charles District recommends Office of Incident Investigations issue a Safety Alert/Bulletin regarding this incident"
+    ],
+    "key_phrases": [
+      "casing lifting pin failure",
+      "exceeded safe working load limit",
+      "spool riser dimensional incompatibility",
+      "D-rings not adjacent to casing",
+      "stuck casing",
+      "shock loaded crane",
+      "inattention to task"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Stored Energy in Suspended Load",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Mechanical Energy from Crane Lifting Operations",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Dimensional incompatibility between spool riser and seal ring",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Exceeding safe working load limit of lifting equipment",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Improper rigging installation (D-rings not adjacent to casing)",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Failure to stop operations when casing became stuck",
+        "description": null
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Use of incorrect hoist (main vs auxiliary) without plan revision",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury - severe facial and skull trauma",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment damage - crane main hoist wire rope",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Equipment damage - casing lifting pin destroyed",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Equipment damage - two-part sling damaged",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Operations shutdown and evacuation required",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Crane Lifting Plan approval by Ultimate Work Authority",
+        "side": "prevention",
+        "barrier_role": "Prevent exceeding safe lifting capacity",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task planning and authorization",
+        "linked_threat_ids": [
+          "T-002",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The plan was approved by the UWA on July 12, 2025, using the main hoist line, at 12:00 p.m.",
+            "the Max Weight Capacity to be pulled could not exceed 24,255 pounds",
+            "the operator exceeded the plan's maximum weight capacity of 24,255 pounds"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Job Safety & Environmental Analysis (JSEA) for crane operations",
+        "side": "prevention",
+        "barrier_role": "Identify and control lifting hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task hazard identification",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Helix personnel completed and signed a Job Safety & Environmental Analysis (JSEA) for the crane operations",
+            "The Helix crane operations JSEA and Supreme's pulling casing with crane BJSEA did not mention the maximum lifting weight capacity of 24,255 pounds"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Behavioral Job Safety & Environmental Analysis (BJSEA)",
+        "side": "prevention",
+        "barrier_role": "Identify behavioral hazards in crane operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task behavioral hazard identification",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Supreme personnel completed and signed a Behavioral Job Safety & Environmental Analysis (BJSEA) for crane operations",
+            "The Helix crane operations JSEA and Supreme's pulling casing with crane BJSEA did not mention the maximum lifting weight capacity of 24,255 pounds"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "NNW procedure for casing cut and retrieve (NNW-PRO-SOP.140)",
+        "side": "prevention",
+        "barrier_role": "Provide safe work instructions for casing operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural guidance for task execution",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "tools_equipment"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "NNW-PRO-SOP.140 Single String Casing Cut and Retrieve, was written for a drilling rig utilizing a Top Drive with Bails, not a crane on a liftboat",
+            "the procedure incorrectly states that the lifting capacity for 2-inch casing pins is 67,000 pounds; whereas, a certified two-inch pin pull analysis dated October 25, 2019, provided by NNW, states the safe working load limit is 60,000 pounds",
+            "In the certified pull pin analysis, there is a note that states, 'the pull linkages (D-rings) are required to be adjacent to the caisson in order to minimize bending load on the pin'"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Certified casing lifting pin with 60,000 lb safe working load",
+        "side": "prevention",
+        "barrier_role": "Provide adequate lifting capacity for casing operations",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Engineered equipment with rated capacity",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "OII investigators inspected the failed casing lifting pin with a safe working load limit of 60,000 pounds",
+            "The lifting pin was bent into a U-shape and had gouges where it contacted the 7-inch casing",
+            "The casing pin failed at 102,500 pounds",
+            "the operator exceeded the manufacturer's safe working load limit of the casing lifting pin of 60,000 pounds"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Two-part sling rated for 52,000 pounds",
+        "side": "prevention",
+        "barrier_role": "Provide adequate rigging capacity",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Certified rigging equipment",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The sling is rated for 52,000 pounds at a length of 4 feet with a cable diameter of 1.25 inches and D-rings installed in the thimble eye",
+            "The sling was recertified on November 4, 2024, and showed signs of wear including small separations in the strands",
+            "The two-part sling was not installed correctly onto the casing lifting pin. The D-rings were not placed directly adjacent to the casing",
+            "The pictures taken by OII at the NNW yard at the NNW shop in Carrier, Mississippi, show markings on the pin indicating the D-rings were not adjacent to the casing. It was estimated that the D-rings were approximately two inches from the casing"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Crane load monitoring system with audible alarms",
+        "side": "prevention",
+        "barrier_role": "Alert operator when maximum lifting capacity reached",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Automated monitoring and alarm system",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the auxiliary hoist and main hoist lines are monitored by an onboard display",
+            "both hoists have audible alarms that sound when reaching the maximum lifting point, which is determined by the crane's radius and boom angle",
+            "When the maximum weight limit is reached, the hoists are locked out from lifting a heavier weight",
+            "the weight indicator had an approximate one second delay from the sensor to the onboard display"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Dimensional verification of wellhead components",
+        "side": "prevention",
+        "barrier_role": "Ensure component compatibility before installation",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-installation verification",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "competence",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "They installed a spool riser onto the wellhead, which had an inside diameter of 11.00 inches, on top of the exposed seal ring, which had a diameter of 11.44 inches",
+            "the seal ring, which was approximately .44 inches larger than the 11-inch 3M by 11-inch 5M riser spool, could not drift through the spool riser at the time of the incident",
+            "the operator installed a spool riser with an inside diameter of 11.00 inches above a wellhead seal ring with an outside diameter of 11.44 inches. This dimensional incompatibility caused the seal ring to become stuck inside the spool riser"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "All-stop procedure when abnormal conditions encountered",
+        "side": "prevention",
+        "barrier_role": "Stop operations when unexpected resistance encountered",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural stop-work authority",
+        "linked_threat_ids": [
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "An all-stop was also not called to address the stuck casing",
+            "The crane lifted the casing until it became stuck in the well",
+            "Casing pipe got stuck in hole while using the AUX line block! So, I was ask to bring down big blk to hook up slings and pull casing pipe up"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Crane operator competency and certification",
+        "side": "prevention",
+        "barrier_role": "Ensure qualified personnel operate crane safely",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Personnel qualification",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the field for the name of the crane operator was left blank",
+            "the crane operator was listed as the supervisor of the lift",
+            "The crane operator attempted to lift the second section of stuck casing with the main hoist, which was not free to be lifted"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Crane quarterly inspection and maintenance",
+        "side": "prevention",
+        "barrier_role": "Ensure crane mechanical integrity",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Preventive maintenance program",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The crane operated as designed and no failures were noted that contributed to the incident",
+            "on July 20, 2025, an S&A Services crane technician at the Helix yard in Fourchon, Louisiana, replaced the damaged main hoist line on the liftboat Dallas's crane. The technician also completed a quarterly inspection"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Medic on-site for emergency response",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate medical care following injury",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The medic was called to scene immediately following the incident",
+            "The medic evaluated the IP and prepared him to be moved",
+            "While waiting on the helicopter, the IP was moved to the liftboat TV room for observation and first aid"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Medevac helicopter emergency evacuation",
+        "side": "mitigation",
+        "barrier_role": "Rapidly transport injured personnel to hospital",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency evacuation capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "A medevac helicopter was called at 3:36 p.m.",
+            "The medevac helicopter landed on the liftboat at 5:45 p.m. and departed with the IP for Lafayette General Hospital at 6:00 p.m."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Personnel basket for safe transfer of injured worker",
+        "side": "mitigation",
+        "barrier_role": "Safely move injured personnel between platform and liftboat",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency transfer equipment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was then placed in a personnel basket to be lifted from the platform to the liftboat"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Crane post-incident inspection",
+        "side": "mitigation",
+        "barrier_role": "Detect equipment damage after shock loading",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident equipment verification",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "on July 13, 2025, the liftboat Dallas's crane was inspected due to being shock loaded during the incident",
+            "The crane technician inspected the main hoist line and stated that he 'found 1 strand damaged and 3 other strands with damaged wires'",
+            "The main hoist line was put out of service"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": "negative",
+      "management_of_change_mentioned": true,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

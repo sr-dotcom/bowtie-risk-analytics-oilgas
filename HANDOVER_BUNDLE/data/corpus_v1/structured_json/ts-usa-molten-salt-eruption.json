@@ -1,0 +1,593 @@
+{
+  "incident_id": "2024-01-I-TN",
+  "source": {
+    "doc_type": "CSB Investigation Report",
+    "url": null,
+    "title": "Explosion, Molten Salt Eruption, and Fatal Injury at TS USA Liquid Nitriding Facility",
+    "date_published": "2025-06",
+    "date_occurred": "2024-05-30",
+    "timezone": null
+  },
+  "context": {
+    "region": "Chattanooga, Tennessee, USA",
+    "operator": "Techniques Surfaces USA (TS USA), subsidiary of HEF Groupe",
+    "operating_phase": "production",
+    "materials": [
+      "sodium hydroxide",
+      "sodium nitrate",
+      "molten salt",
+      "water",
+      "stainless steel"
+    ]
+  },
+  "event": {
+    "top_event": "Molten salt eruption and steam explosion",
+    "incident_type": "Explosion with fatal injury",
+    "costs": 1300000,
+    "actions_taken": [
+      "Facility shut down for approximately eight months",
+      "Protective enclosure installed at oxidizer bath after incident",
+      "Employee treated on-site by Chattanooga Fire Department",
+      "Multiple fires extinguished by TS USA employees and CFD personnel",
+      "TOSHA investigation conducted"
+    ],
+    "summary": "On May 30, 2024, at 8:58 a.m., an explosion occurred at the TS USA Chattanooga liquid nitriding facility while processing five rollers with internal cavities. The rollers had been submerged in molten salt baths during the nitriding process. Due to small drain holes (0.2 inches diameter), molten salt was unable to fully drain from one roller and solidified into a plug. During a subsequent hot water rinse, water became trapped in the cavity behind the salt plug. When the rollers were reintroduced into the 800°F oxidizer bath to clear the obstruction, the trapped water boiled and rapidly expanded as steam, creating overpressure inside the roller cavity. The press fit end of the roller dislodged, ejecting water into the molten salt and causing a steam explosion. The explosion erupted approximately 4,500 pounds of molten sodium hydroxide and sodium nitrate from the oxidizer bath, engulfing a line operator and causing second- and third-degree chemical and thermal burns over 95 percent of his body. The operator died later that day at the hospital. Three other employees suffered minor burns. The incident caused approximately $1.3 million in property damage and multiple fires throughout the facility.",
+    "recommendations": [
+      "Implement physical protective barriers around molten salt baths to isolate employees from hazardous releases",
+      "Develop comprehensive safety management system including hazard analysis program, written operating procedures, training program, and incident investigation program",
+      "Establish position with specific expertise in safety management systems at each TS USA facility",
+      "Include physical protective barriers as standard design for liquid nitriding processes at HEF Groupe",
+      "Develop knowledge management program for sharing information from audits, hazard analyses, and incident investigations throughout HEF Groupe",
+      "Develop and implement comprehensive corporate governance program with regular audits of subordinate facilities"
+    ],
+    "key_phrases": [
+      "accumulation hazard",
+      "sealed cavity",
+      "drain hole obstruction",
+      "water entrapment",
+      "steam explosion",
+      "overpressure",
+      "molten salt eruption",
+      "process safety management",
+      "hazard analysis",
+      "corporate governance",
+      "knowledge management"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Molten salt at high temperature (800°F)"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Water or moisture in process equipment"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Cavities and internal voids in metal parts"
+      },
+      {
+        "hazard_id": "H-004",
+        "name": "Inadequate drainage design (small drain holes)"
+      },
+      {
+        "hazard_id": "H-005",
+        "name": "Sodium hydroxide and sodium nitrate (oxidizing salts)"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Accumulation of molten salt in roller cavity"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Solidification of salt plug blocking drain hole"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Water retention in roller cavity due to blocked drain"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Reintroduction of water-containing roller into hot salt bath"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Boiling and vaporization of trapped water"
+      },
+      {
+        "threat_id": "T-006",
+        "name": "Overpressure buildup in sealed roller cavity"
+      },
+      {
+        "threat_id": "T-007",
+        "name": "Failure of roller press fit end due to overpressure"
+      },
+      {
+        "threat_id": "T-008",
+        "name": "Contact of water with molten salt causing steam explosion"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Molten salt eruption from oxidizer bath"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Exposure of personnel to molten salt"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Severe thermal and chemical burns to line operator"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Fatal injury to line operator"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Minor burns to three other employees"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "Multiple fires throughout facility"
+      },
+      {
+        "consequence_id": "CON-007",
+        "name": "Property damage ($1.3 million)"
+      },
+      {
+        "consequence_id": "CON-008",
+        "name": "Facility shutdown for eight months"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Hazard analysis program for nitriding process",
+        "side": "prevention",
+        "barrier_role": "Identify accumulation hazards and sealed cavity risks before processing",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Prevent hazardous conditions from developing",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "TS USA lacked hazard analyses on processing new parts, on the liquid nitriding line, and for reprocessing parts",
+            "Due to the lack of these programs, on the day of the incident, TS USA employees were unprotected from and unaware of the hazards presented by the nitriding line, entrapment of materials in the parts, and reprocessing the rollers"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Written operating procedures for nitriding process",
+        "side": "prevention",
+        "barrier_role": "Establish safe work practices and prevent unsafe reprocessing decisions",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Prevent unsafe operational decisions",
+        "linked_threat_ids": [
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "TS USA lacked procedures for reprocessing parts in the oxidizer bath",
+            "The plant manager contacted the process engineer for guidance on how to clear the obstruction. The process engineer recommended reintroducing the rollers directly into the oxidizing bath"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Training program on nitriding process hazards",
+        "side": "prevention",
+        "barrier_role": "Ensure personnel understand accumulation hazards and proper handling procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Build competence to recognize and avoid hazards",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "TS USA did not have training on the hazards present in the nitriding line",
+            "TS USA employees were unprotected from and unaware of the hazards presented by the nitriding line, entrapment of materials in the parts, and reprocessing the rollers"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Part design review and acceptance criteria",
+        "side": "prevention",
+        "barrier_role": "Reject parts with unsuitable cavity designs before processing",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Prevent unsuitable parts from entering the process",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Before accepting the rollers for processing in the nitriding line, the process engineer had asked the customer whether the main body of the roller had a sealed cavity",
+            "The customer confirmed that the rollers had cavities and through-holes on each end, which were plugged with set screws. At TS USA's request, the set screws were removed by the customer from the through-holes to open the sealed cavity",
+            "With the drain holes opened, TS USA did not consider the rollers to be sealed and, therefore, safe to process in the liquid nitriding line. However, due to the configuration of the cavity and the small size of the drain hole, the rollers still presented an accumulation hazard. This hazard was not recognized by TS USA's management systems and reviewers",
+            "The CSB concludes that the rollers were not suitable for processing through the liquid nitriding process. The drain holes were not large enough to ensure the rollers fully drained the molten salts"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Verification that parts are fully drained before cooling",
+        "side": "prevention",
+        "barrier_role": "Detect and prevent water/salt retention in cavities",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Detect accumulation before it becomes hazardous",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 7:09 a.m., on May 30, 2024, a TS USA line operator removed the rollers from the rinse bath containing 160–180℉ water. The rollers were suspended over the rinse tank to allow water to drain from the parts and then moved to the end of the production line to cool down. However, the water was unable to drain out of the one roller with the solidified salt plug blocking its drain hole",
+            "Although some of the water drained from the roller, it stopped draining before the cavity was empty. Due to the lack of any additional water draining from the parts, the plant manager believed that the part only contained solidified oxidizer salt and no water. No further actions, such as turning the rollers over, were taken to verify that there were no other materials in the roller"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Protective barrier around oxidizer bath",
+        "side": "mitigation",
+        "barrier_role": "Isolate personnel from molten salt eruption",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Prevent personnel exposure to released molten salt",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The line operator was standing behind the protective shielding, less than three feet from the opening of the oxidizer bath, while reintroducing the rollers to the bath",
+            "Implement physical, protective barriers around the molten salt baths that isolate employees from hazardous releases at all locations that perform liquid nitriding"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Incident investigation and knowledge sharing program",
+        "side": "prevention",
+        "barrier_role": "Learn from past incidents and prevent recurrence",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Prevent similar incidents through organizational learning",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Before the 2024 fatal eruption in Chattanooga, HEF Groupe had at least three similar incidents involving the processing of parts with accumulation hazards or sealed cavities",
+            "TS USA and HEF Groupe did not ensure that these safety incidents were investigated or that lessons learned from events were shared and incorporated across the organization to prevent future incidents",
+            "2018 Event in Mexico",
+            "2020 Event in France",
+            "2023 Event in Chattanooga"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Corporate governance and knowledge management",
+        "side": "prevention",
+        "barrier_role": "Ensure safety information and hazard analyses are communicated to all facilities",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Prevent organizational knowledge gaps",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "HEF Groupe developed hazard analyses for the nitriding process. However, the details of these analyses and the safeguards were not communicated to HEF Groupe's subsidiary companies, including TS USA",
+            "HEF Groupe did not ensure that its subsidiaries were following the company's guidance, such as the risk assessments and safety alert letters, developed at the corporate level to ensure the safety of the operations",
+            "HEF Groupe did not ensure that the safety knowledge maintained at the corporate level was communicated to its subsidiary companies to promote the safe operation of the liquid nitriding line"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Drain hole design standards",
+        "side": "prevention",
+        "barrier_role": "Ensure adequate drainage of molten salt from part cavities",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Prevent salt accumulation and plug formation",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The drain holes were very small—0.03 square inches, or just 0.25 percent of the cross-sectional area of the cavities, which resulted in slow drain times",
+            "As a result, the molten salt was unable to fully drain out of one of the rollers before it cooled and solidified, likely as a thick disk or plug",
+            "The CSB concludes that the rollers were not suitable for processing through the liquid nitriding process. The drain holes were not large enough to ensure the rollers fully drained the molten salts"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Detection of water retention in parts",
+        "side": "mitigation",
+        "barrier_role": "Identify water-containing parts before reintroduction to hot salt bath",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Detect hazardous condition before escalation",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "After the rollers had cooled for over an hour, the plant manager and supervisor observed that at least one roller was too hot to continuously touch",
+            "Additionally, water was still slowly draining from the one roller that was too hot to touch. The drain hole appeared to be clogged, which the plant manager and supervisor believed to be due to oxidizer salt",
+            "Although some of the water drained from the roller, it stopped draining before the cavity was empty. Due to the lack of any additional water draining from the parts, the plant manager believed that the part only contained solidified oxidizer salt and no water. No further actions, such as turning the rollers over, were taken to verify that there were no other materials in the roller"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "low",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "low",
+      "communication_mentioned": true,
+      "situational_awareness_value": "low",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "low",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "low",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "low",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": "low",
+      "management_of_change_mentioned": true,
+      "supervision_value": "low",
+      "supervision_mentioned": true,
+      "training_value": "low",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_evidence": {
+      "people_competence": "TS USA employees were unaware of accumulation hazards and did not recognize the danger of water retention in the roller cavity. The approximate average tenure of employees was 2.5 years with no employee having more than five years of experience.",
+      "people_communication": "The plant manager contacted the process engineer for guidance, but the process engineer recommended reintroducing the rollers into the oxidizing bath without adequate hazard analysis or consideration of water retention risks.",
+      "people_situational_awareness": "The plant manager and supervisor believed the roller contained only solidified salt and no water, despite evidence of water draining from the roller and the roller being too hot to touch.",
+      "work_procedures": "TS USA lacked written operating procedures for the nitriding process and specifically lacked procedures for reprocessing parts in the oxidizer bath.",
+      "work_tools_equipment": "The plant manager and supervisor attempted to clear the obstruction using a piece of wire but were unsuccessful. No other tools or methods were employed to verify the contents of the roller cavity.",
+      "organisation_safety_culture": "TS USA did not have an adequate process safety management system in place at its Chattanooga facility. The company lacked hazard analyses, training programs, and incident investigation procedures.",
+      "organisation_management_of_change": "TS USA accepted new parts (rollers with cavities) without conducting adequate hazard analysis or assessing the suitability of the parts for the nitriding process.",
+      "organisation_supervision": "The plant manager made the decision to reintroduce the rollers into the oxidizing bath based on guidance from a remote process engineer without adequate hazard analysis or verification of the roller contents.",
+      "organisation_training": "TS USA did not have training on the hazards present in the nitriding line. Employees were unaware of accumulation hazards and the dangers of water in molten salt baths."
+    }
+  }
+}

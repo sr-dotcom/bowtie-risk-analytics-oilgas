@@ -1,0 +1,551 @@
+{
+  "incident_id": "2014-01-I-WV",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": null,
+    "title": "Freedom Industries, Inc. Investigation Report – Chemical Spill Contaminates Public Water Supply in Charleston, West Virginia",
+    "date_published": "2017-02-01",
+    "date_occurred": "2014-01-09",
+    "timezone": "America/New_York"
+  },
+  "context": {
+    "region": "Charleston, West Virginia, USA",
+    "operator": "Freedom Industries, Inc.",
+    "operating_phase": "storage and distribution",
+    "materials": [
+      "Crude MCHM (methylcyclohexanemethanol)",
+      "PPH stripped (polyglycol ethers)",
+      "Shurflot 944"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "chemical spill",
+    "costs": null,
+    "actions_taken": [
+      "WVDEP ordered Freedom to remediate the site",
+      "Vacuum trucks deployed to recover pooled liquid and remaining tank contents",
+      "Powder activated carbon (PAC) and potassium permanganate feed increased at WVAW treatment plant",
+      "Do Not Use (DNU) order issued for 93,000 customer accounts",
+      "FEMA, West Virginia National Guard and state agencies distributed bottled water",
+      "WVAW developed systematic distribution system flushing program",
+      "Freedom filed for bankruptcy on January 17, 2014",
+      "Tanks demolished and site remediated under WVDEP consent orders",
+      "CDC established 1 ppm short-term screening level for 4-MCHM",
+      "WVAW installed new GC-MS laboratory and source water monitoring equipment post-incident"
+    ],
+    "summary": "On January 9, 2014, approximately 11,000 gallons of a mixture containing Crude MCHM and PPH, stripped leaked from aboveground storage tank 396 at Freedom Industries in Charleston, West Virginia. The leak occurred through two holes (0.75 and 0.4 inches in diameter) caused by internal pitting corrosion. The chemical mixture escaped through a deteriorated secondary containment wall and an underground culvert, reaching the Elk River and flowing 1.5 miles downstream to the West Virginia American Water (WVAW) Kanawha Valley Treatment Plant intake. The water treatment process could not fully remove the chemicals, resulting in contamination of the drinking water distribution system. WVAW issued a Do Not Use order affecting approximately 300,000 residents across nine counties. Over 300 people sought medical treatment. Freedom had no tank inspection program, no leak detection system, and failed to maintain secondary containment despite knowing it was in poor condition.",
+    "recommendations": [
+      "AWWA-R1: Communicate findings, lessons learned and recommendations to all AWWA members, emphasising source water protection planning and emergency coordination.",
+      "AW-R2: Establish requirements for all American Water state utilities' surface water treatment plants to inventory hazardous chemicals in the zone of critical concern, assess treatment capability, and develop contingency plans.",
+      "Eastman-R3: Update Crude MCHM SDS with toxicological and ecological information from the June 2016 NTP evaluation and distribute to all customers."
+    ],
+    "key_phrases": [
+      "pitting corrosion",
+      "aboveground storage tank",
+      "secondary containment failure",
+      "loss of containment",
+      "Elk River contamination",
+      "Do Not Use order",
+      "Crude MCHM",
+      "PPH stripped",
+      "Shurflot 944",
+      "no leak detection system",
+      "no tank inspection program",
+      "drinking water contamination",
+      "source water protection",
+      "risk communication deficiency",
+      "frost heave"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Large inventory of hazardous chemical mixture (Crude MCHM / PPH stripped) stored in aged aboveground storage tank adjacent to public water supply intake"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Internal pitting corrosion of tank floor leading to through-wall holes"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Absence of tank inspection and maintenance program allowing corrosion to progress undetected"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Frost heave effect potentially dislodging temporary PVA patch and initiating sudden release"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Contamination of Elk River and WVAW drinking water distribution system"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Do Not Use order affecting approximately 300,000 residents across nine counties for up to nine days"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Public health impact – over 300 emergency department visits with symptoms including nausea, rash, vomiting and abdominal pain"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Business, school and public office closures and widespread economic disruption"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Prolonged public distrust of drinking water safety"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Tank integrity inspection program (API 653 / STI SP001)",
+        "side": "prevention",
+        "barrier_role": "Periodic internal and external inspection to detect corrosion and structural defects before failure",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary prevention barrier – would have identified pitting corrosion and holes before loss of containment",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "CSB found no documentation of prior inspections or maintenance conducted by Freedom or the prior facility owner, Etowah River Terminal (ERT), which would have identified and addressed internal corrosion in tank 396.",
+            "Freedom indicated that the three tanks were not inspected at least ten years before the January 2014 incident.",
+            "Freedom and ERT did not have a program in place to ensure that the ASTs and associated equipment were properly maintained with regular inspection and testing programs."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Corrosion prevention measures (cathodic protection, internal lining / coating)",
+        "side": "prevention",
+        "barrier_role": "Prevent or retard internal pitting corrosion of tank floor",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Engineering barrier to prevent corrosion initiation and propagation",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Remnants of what could have been a flexible organic liner or patch, adhered to the interior surface of the tank floor, likely applied sometime before the leak occurred.",
+            "Although the PVA material could have originally been applied to prevent corrosion or leaks in the tank, it was evident upon visual inspections of the tank bottom post-incident that the PVA liner or patch was not inspected or maintained.",
+            "Leak prevention systems may include cathodic protection to reduce the likelihood of corrosion (in accordance with API Recommended Practice 651) and a thick film liner (in accordance with API Recommended Practice 652)."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Leak detection system (LDS)",
+        "side": "prevention",
+        "barrier_role": "Detect tank leaks promptly to enable early intervention before significant release",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Detection barrier – would have provided early notification of tank leak",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Freedom did not have any leak prevention or leak detection system in place to immediately provide notification of tank leaks.",
+            "Freedom did not have any level indication device, gauge system or measurement to capture the actual amount of the leak, which contributed to the changing estimates of the spill amount.",
+            "There was no West Virginia state or federal requirement that would have made the installation of an LDS mandatory for ASTs."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Secondary containment (dike walls)",
+        "side": "prevention",
+        "barrier_role": "Contain released chemical within the diked area and prevent it from reaching the Elk River",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Physical containment barrier between tank and receiving water",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The secondary containment or dike wall, originally designed to control leaks, had cracks and holes from disrepair that allowed the mixture, containing Crude MCHM and PPH, stripped, to escape the containment.",
+            "Freedom was aware of the deteriorated secondary containment wall but did not repair it prior to the incident.",
+            "A 2013 estimate to repair the degraded dike walls included digging a new footer 3 feet deep alongside the existing block walls, replacing or shoring approximately 1,000 feet of existing dike wall… The estimated cost was $225,000, and the need to upgrade the dike walls was clearly recognized by management; however, the walls were not repaired prior to the incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Stormwater Pollution Prevention Plan (SWPPP) and Groundwater Protection Plan (GPP)",
+        "side": "prevention",
+        "barrier_role": "Systematic pollution prevention planning including tank and containment inspections, spill prevention and response procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Regulatory administrative barrier required under NPDES permit",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "CSB found no evidence that Freedom or ERT implemented a Stormwater Pollution Prevention Plan or Groundwater Protection Plan.",
+            "WVDEP did not inspect the site for compliance with these programs due to resource constraints.",
+            "Freedom's failure to develop, maintain and implement a SWPPP and GPP as required by its General WV/NPDES Water Pollution Control Permit for stormwater discharges resulted in Freedom's failure to analyze the spill potential of all substances stored at its facility, maintain the containment area… inspect and maintain its storage tanks."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "WVAW water intake closure / source water protection plan",
+        "side": "mitigation",
+        "barrier_role": "Shut down or divert water intake upon detection of upstream contamination to prevent chemicals entering the distribution system",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Mitigation barrier at water utility – prevent contaminated water reaching consumers",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "WVAW and WVBPH decided WVAW could not shut down its drinking water treatment system because there was no alternative raw water supply and doing so could have compromised fire protection and sanitation.",
+            "The DNU order was not issued immediately because WVAW was mistakenly informed that Crude MCHM was a flocculant, rather than a frothing agent, and that only 1,000 gallons was released. WVAW assumed its water treatment and filtration system was capable of fully treating and removing the chemicals from the water.",
+            "WVAW did not voluntarily request and review publicly available information, such as the Freedom site's Tier II Emergency and Hazardous Chemical Inventory forms, to understand what chemicals were stored onsite."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Water treatment process (PAC, GAC, KMnO4, coagulation/filtration)",
+        "side": "mitigation",
+        "barrier_role": "Remove or neutralise chemical contaminants from raw water before distribution",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Treatment barrier at water utility",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "WVAW's water treatment and filtration methods were unable to treat and remove all of the chemical mixture in its water treatment process and as a result, it contaminated the drinking water within WVAW's distribution system.",
+            "At 4:05 PM, the WVAW Manager for Water Quality and Environmental Compliance reported receiving a cup of the filtered water that had an odor, chemical taste and slight beige tint.",
+            "WVAW reviewed the toxicological information available on the Crude MCHM SDS and concluded that the listed acute toxicity was significantly lower than other chemicals that typically concern the facility."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Do Not Use (DNU) order and public notification",
+        "side": "mitigation",
+        "barrier_role": "Restrict public use of contaminated water and communicate risk to limit health consequences",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response mitigation barrier",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "That evening, WVAW issued a Do Not Use (DNU) order for 93,000 customer accounts (approximately 300,000 residents) across portions of nine counties.",
+            "Freedom's communication to the public, state and federal agencies, WVAW and first responders regarding the chemicals and quantity of chemicals involved in the leak was deficient.",
+            "In the days following the spill, local residents were given many instructions: a DNU order issued on January 9, which was lifted for some areas on January 13 with an advisory to flush their pipes; and then, on January 15, a drinking water advisory issued by WVBPH, in consultation with CDC, cautioning pregnant women to drink bottled water."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Emergency chemical information disclosure and risk communication by Freedom Industries",
+        "side": "mitigation",
+        "barrier_role": "Provide accurate and timely information about spilled chemicals and quantities to enable effective emergency response and public health communication",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Information management barrier during emergency response",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Freedom failed to immediately communicate information about all the chemicals present inside tank 396 and did not inform the public that the second chemical, a mixture of polyglycol ethers, (PPH, stripped), was also present in tank 396 until 12 days after leak discovery.",
+            "Freedom continued to revise its estimate of the quantity released, which increased from about 1,000 to 10,000 gallons over the course of 12 days.",
+            "One of the most challenging aspects of the spill from a response and public notification perspective was that Freedom did not provide reliable information during the first week of the incident in reporting the correct amount of chemical released from the tank."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "WVDEP regulatory inspection and enforcement of AST and secondary containment requirements",
+        "side": "prevention",
+        "barrier_role": "Regulatory oversight to ensure compliance with secondary containment and pollution prevention requirements",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Independent regulatory oversight barrier",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "WVDEP did not inspect the site for compliance with these programs due to resource constraints.",
+            "Freedom was never included on the list of facilities to be inspected when WVDEP began receiving this grant in 2007.",
+            "The lack of WVDEP inspections allowed Freedom to continue to operate with deteriorated and inadequate secondary containment."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

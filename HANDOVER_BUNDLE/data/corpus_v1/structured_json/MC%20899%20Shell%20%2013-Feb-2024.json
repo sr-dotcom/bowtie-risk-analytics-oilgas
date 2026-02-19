@@ -1,0 +1,513 @@
+{
+  "incident_id": "MC%20899%20Shell%20%2013-Feb-2024",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "BSEE Gulf of Mexico Region Accident Investigation Report - Shell Offshore Inc. - MC 899",
+    "date_published": "2024-05-17",
+    "date_occurred": "2024-02-13",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico, Mississippi Canyon Block 899",
+    "operator": "Shell Offshore Inc.",
+    "operating_phase": "completion",
+    "materials": [
+      "drill water",
+      "completion fluid",
+      "calcium chloride-calcium bromide solution"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Pressurized hose release causing personnel injury",
+    "costs": null,
+    "actions_taken": [
+      "Two injured personnel medevaced to New Orleans University Hospital",
+      "Both injured personnel released from hospital on Feb 14 and returned to work on Feb 19",
+      "Extra whip check installed after incident beneath deck penetration valve and to hose"
+    ],
+    "summary": "On February 13, 2024, at approximately 22:35 hours on the Transocean Deepwater Proteus drillship at Mississippi Canyon 899, two Tetra filtration crew members were injured when a 6-inch camlock hose connection released under pressure during a leak repair. The crew was flushing deck penetration lines for completion operations. After flushing was completed, a Tetra employee attempted to repair a small leak by releasing the camlock connection levers. Trapped pressure in the line caused the hose to blow off, striking one worker in the face (fractured tooth) and knocking another worker into a pipe (thigh bruising and chemical exposure). Investigation found that the deck valve was closed immediately after pumping stopped, trapping pressure in the line. Proper PPE was not worn, whip checks were not positioned around the camlock connection, and lines were not properly drained before disconnection.",
+    "recommendations": [
+      "The BSEE New Orleans District has no recommendations for the Office of Incident Investigations at this time"
+    ],
+    "key_phrases": [
+      "trapped pressure in the line",
+      "hose blew off the deck flange",
+      "deck valve was immediately closed once pumping was finished",
+      "wait for the fluid pressure to leave the lines before closing the valves",
+      "whip checks on the 6 inch hoses, but not around the camlock connection",
+      "Drain lines before opening camlock connections and bleed off lines before removing hoses",
+      "short service employee",
+      "not wearing the proper PPE"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized completion fluid in hoses",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Trapped pressure not relieved before disconnection",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Premature closure of deck valve trapping pressure",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate hazard identification during flushing operations",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury from hose whip",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Chemical exposure to personnel",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Medical evacuation required",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Procedure to wait for fluid pressure to leave lines before closing valves",
+        "side": "prevention",
+        "barrier_role": "Prevent trapped pressure in lines",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Operational procedure to prevent pressure buildup",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "it is common practice when flushing deck penetration lines, and the pump shuts off, that you wait for the fluid pressure to leave the lines before closing the valves. In this case, that didn't happen, and the deck valve was immediately closed once pumping was finished."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "JSEA requirement to drain lines before opening camlock connections",
+        "side": "prevention",
+        "barrier_role": "Ensure pressure is relieved before disconnection",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Work procedure checklist",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The JSEA collected states: Drain lines before opening camlock connections and bleed off lines before removing hoses.",
+            "The deck penetration lines that were flushed were not completely drained and the pressure was not bled before being disconnected."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Whip checks positioned around camlock connections",
+        "side": "mitigation",
+        "barrier_role": "Prevent hose whip from injuring personnel",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Physical restraint to contain hose movement",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "There were whip checks on the 6 inch hoses, but not around the camlock connection being disconnected, to prevent the hose that was being removed from knocking the two injured employees down.",
+            "After the incident concluded, and the 6 inch camlock hose was reconnected, there was an extra whip installed. This whip check was attached beneath the deck penetration valve and to the hose."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Personal Protective Equipment (PPE) - Chemical resistant clothing and gloves",
+        "side": "mitigation",
+        "barrier_role": "Protect personnel from chemical exposure",
+        "barrier_type": "ppe",
+        "line_of_defense": "3rd",
+        "lod_basis": "Last line of defense for personnel protection",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The appropriate PPE referenced in the MSDS states requirement of eye protection: wear safety glasses with splash shield or safety goggles/shield and Clothing: wear appropriate chemical resistant clothing and gloves. It was found that only safety glasses were worn during this operation and the chemical resistant clothing or gloves were not worn.",
+            "Not wearing the proper PPE (The MSDS states; Eye Protection: wear safety glasses with splash shield or safety goggles/shield and Clothing: wear appropriate chemical resistant clothing and gloves). Only safety glasses were worn during this operation."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Personal Protective Equipment (PPE) - Eye protection with splash shield",
+        "side": "mitigation",
+        "barrier_role": "Protect personnel from facial impact and chemical splash",
+        "barrier_type": "ppe",
+        "line_of_defense": "3rd",
+        "lod_basis": "Last line of defense for personnel protection",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The appropriate PPE referenced in the MSDS states requirement of eye protection: wear safety glasses with splash shield or safety goggles/shield",
+            "It was found that only safety glasses were worn during this operation"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Job Safety and Environmental Analysis (JSEA)",
+        "side": "prevention",
+        "barrier_role": "Identify hazards and control measures before work",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-job planning and hazard identification",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "There was a Job Safety and Environmental Analysis (JSEA) used for this operation, and it was signed off by the Tetra filtration employees. In the JSEA, there was a checklist of items checked off that referenced: chemical exposure and PPE pressure, and whip checks, bleed off lines before removing, and reviewing the MSDS.",
+            "Hazard identification was not appropriately done, hazards with the flushing operations and trapped pressured were not identified or followed."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Supervision of PPE compliance",
+        "side": "prevention",
+        "barrier_role": "Ensure proper PPE is worn per JSEA and MSDS",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Supervisory oversight of work execution",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Supervision: Not ensuring the use of the proper PPE. The JSEA reviewed for this operation specified the use of PPE for chemical exposure."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Radio communication between Derrick hand and Tetra crew",
+        "side": "prevention",
+        "barrier_role": "Coordinate operations and confirm line-ups",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Operational communication protocol",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "He then communicated with the Tetra crew by radio that the valves were lined up.",
+            "The Tetra crew informed the Derrick hand by radio they were ready to receive drill water on the out-board side",
+            "The Derrick hand then received a phone call and was asked if he had a pump running"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Double verification of valve line-ups",
+        "side": "prevention",
+        "barrier_role": "Ensure correct valve configuration before operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Verification step in operational procedure",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Transocean Derrick hand stated the valves were lined up to send drill water to the Tetra filter unit, and that he double verified the line-ups."
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Check valve on discharge side of pump",
+        "side": "prevention",
+        "barrier_role": "Prevent backflow and maintain system integrity",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Passive engineered control",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "At no time was there any pressure on the mix pump once it was shut off. The Derrick hand cannot read pressures above the deck due to a check valve on the discharge side of the pump."
+          ],
+          "confidence": "medium"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

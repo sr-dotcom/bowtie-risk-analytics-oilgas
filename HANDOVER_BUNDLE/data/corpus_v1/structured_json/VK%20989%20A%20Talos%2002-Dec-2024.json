@@ -1,0 +1,384 @@
+{
+  "incident_id": "VK%20989%20A%20Talos%2002-Dec-2024",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - VK 989 Platform A Gas Release",
+    "date_published": "2025-07-23",
+    "date_occurred": "2024-12-02",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Viosca Knoll Block 989",
+    "operator": "Talos Petroleum LLC",
+    "operating_phase": "production",
+    "materials": [
+      "natural gas"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Gas Release from Subsea Pipeline",
+    "costs": "5000000",
+    "actions_taken": [
+      "ROV deployed to investigate suspected gas release",
+      "Gas release confirmed at 90-degree bend in flowline",
+      "Pressure testing suspended",
+      "Pipeline segment isolated to prevent further releases",
+      "Engineering evaluations initiated for repair options",
+      "Repair plan to be submitted to BSEE pipeline division for approval"
+    ],
+    "summary": "On December 2, 2024, at approximately 0830 hours, a gas release was discovered from subsea flowline pipeline segment 10688 at VK 989 Platform A during pressure testing of a newly replaced Subsea Control Module (SCM) pod. The gas release was detected by control room operators during testing, confirmed by ROV investigation showing gas bubbles at a 90-degree bend in the flowline. The operator immediately suspended testing and isolated the pipeline segment. The suspected cause is corrosion at a previous field repair weld that may have had imperfections. Repair options include installing an engineered clamp or replacing the damaged section with flexible pipe.",
+    "recommendations": [
+      "BSEE New Orleans District has no recommendations for Office of Incident Investigations at this time"
+    ],
+    "key_phrases": [
+      "gas release",
+      "subsea flowline",
+      "pressure testing",
+      "SCM pod replacement",
+      "field weld imperfections",
+      "corrosion",
+      "ROV investigation",
+      "pipeline isolation"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized Natural Gas in Subsea Pipeline",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Corrosion of Field Weld",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Imperfections in Field Repair Weld",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Uncontrolled Field Repair Environment",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Gas Release to Environment",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Loss of Production",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Equipment Damage",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Pipeline Integrity Management and Inspection",
+        "side": "prevention",
+        "barrier_role": "Prevent corrosion and weld degradation",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical barrier to prevent pipeline failure",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Talos believes that there might have been a repair in the flowline at some point in the past and the field weld that would have been made to repair the flowline could have possibly had imperfections leading to corrosion in the repaired area",
+            "The corrosion could have led to the weakening of the flowline, allowing the flowline to crack and release the gas inside the flowline"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Controlled Environment for Pipeline Repairs",
+        "side": "prevention",
+        "barrier_role": "Ensure quality of field repairs",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural control to prevent defective repairs",
+        "linked_threat_ids": [
+          "T-003",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Suspected repair being performed in an uncontrolled environment allowing for environmental condition to affect the repair that may have been performed",
+            "field welds being more susceptible to imperfections"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Field Weld Quality Control and Testing",
+        "side": "prevention",
+        "barrier_role": "Verify integrity of field welds",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Verification barrier to detect defects before service",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Equipment failure: Flawed equipment design or construction- Suspected flaw in the field weld and testing of the weld during suspected past field flowline repair"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Pressure Testing and Monitoring During Commissioning",
+        "side": "prevention",
+        "barrier_role": "Detect leaks before full operation",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Detection system to identify failures during testing",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "During testing of the control pod, the control room operators received data that indicated there was a possible gas release coming from the flowline",
+            "The flowline was being pressurized for testing and commissioning of a Subsea Control Module (SCM) pod"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "ROV Investigation and Leak Detection",
+        "side": "mitigation",
+        "barrier_role": "Confirm and locate gas release",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Emergency response to confirm and assess incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The suspected gas release resulted in the use of a ROV that was currently on-site to investigate the location and source of the suspected gas release",
+            "The ROV was able to identify gas bubbles coming from the flowline at a 90-degree bend segment in the flowline"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Pipeline Isolation System",
+        "side": "mitigation",
+        "barrier_role": "Stop gas release and prevent escalation",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Emergency isolation to limit consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Once the source of the release was identified by the ROV, VK-989 A suspended all pressure testing",
+            "VK-989 A operators were able to isolate the pipeline segment to mitigate the possibility of further gas leaks occurring from the subsea pipeline segment"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Emergency Response Procedures",
+        "side": "mitigation",
+        "barrier_role": "Coordinate response to gas release",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Procedural response to manage emergency",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Talos took action to confirm there was a gas release by deploying a ROV to investigate",
+            "Once the gas release was confirmed by the ROV, Talos then shut down the testing operations and isolated the pipeline segment",
+            "Talos communicated with their engineering team and project managers to implement a plan of action to repair the leaking pipeline segment"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "positive",
+      "communication_mentioned": true,
+      "situational_awareness_value": "positive",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "positive",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "positive",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "positive",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

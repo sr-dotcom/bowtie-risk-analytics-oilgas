@@ -1,0 +1,584 @@
+{
+  "incident_id": "2019-03-I-IL",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Chemical Reaction, Hydrogen Release, Explosion, and Fire at AB Specialty Silicones",
+    "date_published": "2021-09-24",
+    "date_occurred": "2019-05-03",
+    "timezone": "America/Chicago"
+  },
+  "context": {
+    "region": "Waukegan, Illinois, USA",
+    "operator": "AB Specialty Silicones, LLC",
+    "operating_phase": "production",
+    "materials": [
+      "Andisil XL 10 (methylhydrogensiloxane dimethylsiloxane copolymer)",
+      "TD 6/12 Blend (ethoxylated tridecyl alcohol surfactant)",
+      "10% potassium hydroxide (KOH) solution",
+      "hydrogen gas",
+      "glacial acetic acid",
+      "Pel Alc 738B",
+      "137 Silane",
+      "water"
+    ]
+  },
+  "event": {
+    "top_event": "Uncontrolled Chemical Reaction Producing Hydrogen Gas Release",
+    "incident_type": "chemical reaction / explosion / fire",
+    "costs": "OSHA proposed penalty of approximately $1.6 million; production building destroyed; company ceased and relocated some operations",
+    "actions_taken": [
+      "Waukegan Fire Department and mutual aid from surrounding areas responded to the incident",
+      "Illinois Environmental Protection Agency (IEPA) investigated",
+      "EPA investigated",
+      "OSHA investigated and issued multiple willful violations; placed company in Severe Violator Enforcement Program (SVEP)",
+      "CSB investigated",
+      "AB Specialty hired a full-time EHS professional with reactivity safety management experience post-incident",
+      "AB Specialty utilized an outside firm to conduct reactivity analyses post-incident",
+      "AB Specialty achieved ISO 45001 certification in March 2021",
+      "AB Specialty rebuilt the production building"
+    ],
+    "summary": "On May 3, 2019, during a batch manufacturing operation at AB Specialty Silicones in Waukegan, Illinois, an operator (Operator 1) mistakenly pumped 10% potassium hydroxide (KOH) solution into a batch tank already containing Andisil XL 10 and TD 6/12 Blend. The KOH was stored in nearly identical 55-gallon blue plastic drums to the XL 10. The incompatible chemicals reacted rapidly, causing the tank contents to foam and overflow, and generating a large quantity of hydrogen gas that released directly into the production building. The building lacked a hydrogen or flammable gas detection and alarm system. Workers recognised a process upset but did not evacuate. At approximately 9:35 p.m., the hydrogen gas ignited, causing a massive explosion and fire that destroyed the production building, fatally injured four employees (Byron Biehn, Jeffrey Cummings, Daniel Nicklas, Allen Stevens), and injured one other. The CSB determined that deficiencies in AB Specialty's hazard analysis program, incompatible material storage and handling practices, double initial procedure program, process safety culture, and lack of a process safety management system were causal. Contributing factors included inadequate batch equipment and ventilation system design, absence of gas detection and alarm systems, and ineffective emergency preparedness.",
+    "recommendations": [
+      "2019-03-I-IL-R1: Develop hazardous gas detection and alarm programs and associated procedures based on manufacturer specifications, current codes, standards, and industry good practice guidance for all hazardous gases that could be released near workers, including hydrogen.",
+      "2019-03-I-IL-R2: Establish a safety management system that addresses process safety at the AB Specialty Waukegan, Illinois facility, including elements from CCPS Guidelines for Risk Based Process Safety and Guidelines for Implementing Process Safety Management.",
+      "2019-03-I-IL-R3: Incorporate into operations and activities the specific elements recommended in CCPS Essential Practices for Managing Chemical Reactivity Hazards.",
+      "2001-01-H-R1 (reiterated to OSHA): Amend the PSM Standard (29 CFR 1910.119) to achieve more comprehensive control of reactive hazards that could have catastrophic consequences.",
+      "2001-01-H-R3 (reiterated to EPA): Revise the Accidental Release Prevention Requirements (40 CFR 68) to explicitly cover catastrophic reactive hazards."
+    ],
+    "key_phrases": [
+      "incompatible materials",
+      "silicon hydride (SiH) reactivity",
+      "hydrogen gas release",
+      "explosion and fire",
+      "batch operation",
+      "double initial procedure",
+      "gas detection and alarm system",
+      "process hazard analysis",
+      "process safety culture",
+      "hierarchy of controls",
+      "similar drum appearance",
+      "co-location of incompatible chemicals",
+      "open hatch-type lid",
+      "ventilation system design",
+      "emergency preparedness",
+      "reactive hazard regulatory gap",
+      "OSHA PSM",
+      "EPA RMP"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Silicon hydride (SiH) compound (XL 10) reactive with aqueous bases stored and processed in proximity to potassium hydroxide solution"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Flammable hydrogen gas generation potential during EM 652 batch process"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Operator misidentification of incompatible chemical drum (10% KOH mistaken for XL 10) due to near-identical drum appearance"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Co-location of incompatible chemicals (XL 10 and 10% KOH) in the same process area without segregation procedures"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate hazard analysis failing to identify reactive chemical hazards and establish safeguards"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Failure of double initial procedure to prevent wrong material addition"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Uncontrolled chemical reaction producing hydrogen gas release inside production building"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Hydrogen gas ignition causing massive explosion and destruction of production building"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Four employee fatalities and one injury"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Destruction of production facility and cessation/relocation of operations"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Damage to nearby business properties"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Double Initial Procedure Program",
+        "side": "prevention",
+        "barrier_role": "Procedural verification requiring two employees to confirm and initial batch ticket before charging chemicals to batch",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary procedural safeguard intended to prevent wrong material addition",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "AB Specialty developed a double initial procedure practice in 2014 in an effort to prevent employees from charging the wrong materials to batch processes.",
+            "The occurrence of the May 3 incident indicates that AB Specialty's double initial procedure program did not prevent a wrong material from being added to the tank.",
+            "Numerous safety gaps could have caused or contributed to the mixing of the incompatible chemicals, including insufficient guidance for operators and supervisors for all phases necessary to prevent known catastrophic chemical reactions; insufficient or incomplete training for operators and supervisors on the existing procedures."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Chemical Drum Labelling and Visual Identification",
+        "side": "prevention",
+        "barrier_role": "Labels affixed to drums to allow operators to confirm drum contents before use",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Sole visual differentiation method between incompatible chemicals stored in near-identical drums",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "AB Specialty relied on its operators to confirm drum content based on the label affixed to the side of the drum, which used small text for the chemical name.",
+            "The similar appearance of the XL 10 and 10% KOH drums likely contributed to Operator 1 adding the incorrect chemical to the EM 652 batch process.",
+            "Once these bung caps were removed, the drums looked nearly identical."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Incompatible Chemical Storage Segregation Procedures",
+        "side": "prevention",
+        "barrier_role": "Written procedures requiring segregation of incompatible chemical drums and removal of leftover containers after use",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Should have prevented co-location of incompatible chemicals in process area",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "AB Specialty did not have a written procedure requiring employees to segregate the 10% KOH and XL 10 drums in the emulsions area or to remove ingredient containers after use.",
+            "AB Specialty's lack of procedures likely led to incompatible 10% KOH and XL 10 remaining in the emulsions area after their use in the first batch, contributing to the mixing of these two chemicals on the night of the incident.",
+            "Up to eleven nearly identical drums containing incompatible chemicals were in the immediate process area at the start of the second batch."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Process Hazard Analysis (PHA) / Technical Service Request (TSR) Program",
+        "side": "prevention",
+        "barrier_role": "Systematic evaluation of process hazards and establishment of safeguards to reduce risk",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Should have identified reactive chemical hazards and driven implementation of engineering and procedural controls",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "AB Specialty's technical service request process did not and was not intended to assess the hazards of performing a process operation or to establish safeguards to reduce risk.",
+            "No hazards or safeguards were documented on either TSR spreadsheet.",
+            "AB Specialty did not perform a thorough hazard analysis of the EM 652 batch process despite known associated hazards and likelihood for the product and individual chemical component(s) to produce hydrogen.",
+            "Due to the lack of an effective hazard analysis program, AB Specialty did not identify the hazards associated with (1) storing reactive chemicals in similar containers, (2) the practice of allowing incompatible materials to be stored near each other, (3) the ventilation system and batch tank design, (4) the lack of a gas detection system, or (5) its insufficient emergency preparedness."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Batch Tank Vent Pipe to Safe Location",
+        "side": "prevention",
+        "barrier_role": "Engineering design feature to direct gases produced in batch tank to a safe location outside the building rather than releasing into the production building",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Would have prevented hydrogen gas from accumulating inside the production building",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The tank in which the reaction occurred on the night of the incident was not equipped with a vent pipe.",
+            "As a result of the tank having an open hatch-type lid and no vent pipe to vent gases to a safe location, the hydrogen gas produced during the incident vented directly into the production building, where workers were located.",
+            "While some of the tanks used for the emulsion processes were equipped with vent pipes to divert any produced gases outside the building or to a process ventilation system, most of the tanks were not designed with this feature."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Hydrogen / Flammable Gas Detection and Alarm System",
+        "side": "mitigation",
+        "barrier_role": "Fixed gas detection system to detect hydrogen or flammable gas accumulation and automatically activate alarm to warn employees and prompt evacuation",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Would have detected hydrogen release and triggered alarm enabling evacuation before ignition",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The AB Specialty production building did not have a hydrogen gas or flammable gas detection and alarm system to warn employees of a hazardous atmosphere.",
+            "The lack of a system to detect hydrogen gas and automatically activate an alarm contributed to personnel remaining inside the production building between the start of the hydrogen release and the time of ignition, thereby contributing to the severity of the event.",
+            "Around March 2019, during a scheduled maintenance activity, AB Specialty employees found that the two gas detectors had failed; they had unresponsive sensors.",
+            "AB Specialty did not establish a sensor maintenance program, did not implement design changes to prevent silicone contact with the sensors, and did not replace the sensors by the time of the May 3, 2019, incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Emergency Preparedness Training and Evacuation Procedures",
+        "side": "mitigation",
+        "barrier_role": "Training and procedures enabling workers to recognise hazardous conditions and evacuate promptly during a process upset",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Should have enabled workers to recognise hydrogen hazard and evacuate before ignition",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Despite recognising the process upset, the workers did not recognize the immediate hydrogen hazard created by the upset.",
+            "Without gas detectors and alarms alerting of the hazardous conditions, or effective training, the workers did not realize the necessity to evacuate.",
+            "The workers interviewed by the CSB did not realize that material releasing during the upset was hazardous.",
+            "Shift Supervisor 1 directed workers to take action to ventilate the hazy vapor from the building."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Ventilation System Design (Local Exhaust / Extraction)",
+        "side": "mitigation",
+        "barrier_role": "Ventilation system designed to extract hazardous gases from the process area and discharge them safely outside the building",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Adequate local exhaust ventilation could have reduced hydrogen accumulation and explosive gas cloud formation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The ventilation system, including an air mover—designed to introduce outside air to the building and which was positioned near the location where the batch operation was being performed—may have helped distribute the hydrogen in the production building and mix it with air, creating a large and explosive gas cloud.",
+            "An alternative ventilation design, such as local exhaust ventilation or an extraction system, in which building air discharge fans and vents are located in the process area could have vented released hazardous gases to a safe location, and in this case could have reduced the severity of the explosion.",
+            "The High Bay exhaust fans did not run continuously and had to be manually activated by a switch located in the maintenance area."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Process Safety Management System",
+        "side": "prevention",
+        "barrier_role": "Comprehensive management system addressing process safety including hazard identification, risk analysis, operating procedures, training, management of change, and incident investigation",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Overarching system that should have driven identification and control of all process hazards",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "AB Specialty did not have a safety management system that addressed process safety in place at the time of the incident.",
+            "Effective safety management systems that address process safety are critical to prevent future reactive chemical incidents.",
+            "The cause of the incident were deficiencies in AB Specialty's operations, policies, and practices including its hazard analysis program, methods used to store and handle incompatible materials, its double initial procedure program, process safety culture weaknesses, and the lack of a safety management system addressing process safety."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Batch Ticket Completeness (Listing All Possible Chemical Additions)",
+        "side": "prevention",
+        "barrier_role": "Batch ticket listing all chemicals that could be added to the batch, including pH adjustment chemicals, to support hazard identification and operator awareness",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Complete batch ticket would have flagged 10% KOH as a potential addition and enabled hazard recognition",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The EM 652 batch ticket did not list 10% KOH as an ingredient that may be added to the final EM 652 product for pH adjustment.",
+            "All chemicals that could be added to a batch must be listed on the batch ticket.",
+            "The batch ticket in use at the time of the incident was not found after the incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Ignition Source Control",
+        "side": "mitigation",
+        "barrier_role": "Elimination or control of ignition sources in areas where flammable gases may be present",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Removal of ignition sources would have prevented hydrogen ignition even after release",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Multiple potential ignition sources were present in the production building, including electrical equipment, wiring, and installation methods that were not intrinsically safe.",
+            "It was not possible to identify the specific ignition source that initiated the explosion.",
+            "All of the OSHA citations issued to AB Specialty after the incident related only to controlling ignition sources."
+          ],
+          "confidence": "medium"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

@@ -1,0 +1,502 @@
+{
+  "incident_id": "SP%2049-C%20W%26%20T%20Offshore%2030-Jul-2025_0",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Structural Damage - Mechanical Casing Cutter Bowl Separation Incident",
+    "date_published": "2025-12-02",
+    "date_occurred": "2025-07-30",
+    "timezone": "CDT"
+  },
+  "context": {
+    "region": "Gulf of America, South Pass Block 49, Lease G02177",
+    "operator": "W & T Offshore, Inc.",
+    "operating_phase": "decommissioning",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Loss of Containment of Mechanical Energy",
+    "incident_type": "Caught Between - Mechanical Energy Release",
+    "costs": null,
+    "actions_taken": [
+      "Immediate first aid administered to control bleeding",
+      "Severed finger retrieved for possible reattachment",
+      "IP evacuated via Motor Vessel to A platform",
+      "Medic stabilized injury and preserved severed tissue",
+      "IP airlifted via helicopter to Venice, LA",
+      "Ground ambulance transport to University Medical Center New Orleans",
+      "Safety standdown conducted on platform",
+      "All operations halted for the day",
+      "Crew subsequently procured slings for future operations"
+    ],
+    "summary": "On July 30, 2025, during plug and abandonment operations on Well C005 at the South Pass 49 C platform, a Supreme Services crew was laying down a 12-inch mechanical casing cutter into a shipping basket. While guiding the tool, the outermost slip bowl (approximately 250 pounds) unexpectedly separated due to grease lock and slid down the tool. A Supreme operator's left hand was caught between the bowl and tool, resulting in traumatic amputation of one finger and crush injuries to two others, which were later permanently amputated. Investigation revealed that the operator's no hands policy was not effectively communicated or enforced, hands-free tools were not provided, no task-specific risk assessment was conducted, and the hazard of bowl separation was not identified.",
+    "recommendations": [
+      "Implement and enforce no-hands policy with documented training for all crew members",
+      "Provide hands-free tools (push poles, mechanical handling aids) for all lifting operations",
+      "Implement permit process for manual tool handling",
+      "Conduct task-specific pre-job safety meetings and risk assessments",
+      "Mechanically restrain heavy components before changing tool orientation",
+      "Improve hazard recognition training for stored mechanical energy",
+      "Implement stop work authority training and enforcement"
+    ],
+    "key_phrases": [
+      "grease lock",
+      "vacuum-like seal",
+      "outermost bowl separated unexpectedly",
+      "no hands policy",
+      "hands-free tools were not provided",
+      "task-specific pre-job safety meeting",
+      "stored mechanical energy",
+      "pinch point",
+      "procedural drift",
+      "complacency"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Stored Mechanical Energy in Casing Cutter Assembly",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Grease lock creating vacuum seal between slip bowls",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Change in tool orientation releasing pressure differential",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Unsecured heavy component (250 lb bowl) during lifting",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Manual handling with hands in pinch points",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury - caught between bowl and tool",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Traumatic amputation and permanent dismemberment",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Lost time accident (>3 days)",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "No Hands Policy",
+        "side": "prevention",
+        "barrier_role": "Prevent manual contact with moving/suspended loads",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control to prevent exposure",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "training",
+            "communication",
+            "procedures",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Supreme maintained a formal no hands policy (Dated: 11/30/2022), the policy was not effectively communicated to or enforced among the crew",
+            "crew members interviewed on location were either unaware of the policy or unfamiliar with its requirements",
+            "The operator failed to implement and enforce its service providers established no-hands policy"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Hands-Free Tools (Push Poles/Mechanical Handling Aids)",
+        "side": "prevention",
+        "barrier_role": "Eliminate manual contact during tool handling",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Engineering control to eliminate hazard exposure",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "tools_equipment"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "hands-free tools were not provided until after the incident",
+            "The absence of push poles or other approved hands-free safety devices increased the likelihood of manual handling"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Permit Process for Manual Tool Handling",
+        "side": "prevention",
+        "barrier_role": "Authorize and control manual handling activities",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative verification before hazardous work",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the permit process authorizing manual tool handling was not implemented",
+            "The required permit process for manual tool handling was not followed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Pre-Job Safety Meeting and Risk Assessment",
+        "side": "prevention",
+        "barrier_role": "Identify and communicate hazards before task execution",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Proactive hazard identification before work begins",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The crew relied on an unsupported assumption that the bowls would remain attached while being lifted from the casing jack to the shipping basket, with the potential hazard not identified due to the absence of a task-specific pre-job safety meeting or risk assessment",
+            "The potential for stored mechanical energy and the ability for the bowls to separate was not identified during pre-task hazard analysis or communicated in the Job Safety Analysis (JSA)",
+            "The operator failed to conduct a task-specific pre-job safety meeting and risk assessment to identify the hazard of the bowls slipping past the centralizer"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Mechanical Restraint of Heavy Components",
+        "side": "prevention",
+        "barrier_role": "Prevent uncontrolled movement of suspended components",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical barrier to prevent component separation",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "moderate",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The outermost bowl was not mechanically restrained prior to changing the cutter's orientation (moving it from the vertical position to the horizontal position in the basket), allowing it to slide under gravity when separation occurred",
+            "While there is no specific procedural requirement to mechanically restrain the bowls, this incident demonstrated the need to implement such restraints, and the crew subsequently procured slings for use in future operations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Hazard Recognition Training for Stored Mechanical Energy",
+        "side": "prevention",
+        "barrier_role": "Enable personnel to identify mechanical energy hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Competency development for hazard identification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "training",
+            "competence",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Insufficient hazard recognition during rig down: The potential for stored mechanical energy and the ability for the bowls to separate was not identified",
+            "Crew familiarity and procedural drift: Routine handling of similar assemblies and lack of training may have contributed to complacency",
+            "The ability for the bowls to slip past the centralizer with the grease lock keeping them together was not recognized or mitigated prior to movement"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Stop Work Authority",
+        "side": "prevention",
+        "barrier_role": "Enable intervention when unsafe conditions are observed",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Last-minute risk assessment and intervention",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "safety_culture",
+            "situational_awareness",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "No stop work intervention: The hazardous hand positioning was not corrected prior to movement, indicating an opportunity for improved hazard oversight"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "First Aid and Emergency Response",
+        "side": "mitigation",
+        "barrier_role": "Minimize injury severity through immediate medical intervention",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident response to limit consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The crew immediately halted operations, administered first aid to control the bleeding and retrieved the severed finger for possible reattachment",
+            "The IP was transferred to the A platform, where a medic stabilized the injury and prepared the severed finger and other dismembered tissue for perseveration"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Medical Evacuation Procedures",
+        "side": "mitigation",
+        "barrier_role": "Facilitate rapid transport to definitive medical care",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident response to access advanced medical treatment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The attending vessel was notified and moved into position alongside the platform to facilitate medical evacuation",
+            "The IP was subsequently airlifted via field helicopter to the RLC base in Venice, LA, and then transported by ground ambulance to University Medical Center New Orleans"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

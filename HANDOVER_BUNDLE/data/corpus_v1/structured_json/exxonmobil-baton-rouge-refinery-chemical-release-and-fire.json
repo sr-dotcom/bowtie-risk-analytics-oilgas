@@ -1,0 +1,485 @@
+{
+  "incident_id": "2016-02-I-LA",
+  "source": {
+    "doc_type": "CSB Safety Bulletin",
+    "url": "https://www.csb.gov",
+    "title": "Key Lessons from the ExxonMobil Baton Rouge Refinery Isobutane Release and Fire",
+    "date_published": null,
+    "date_occurred": "2016-11-22",
+    "timezone": "US/Central"
+  },
+  "context": {
+    "region": "Baton Rouge, Louisiana, USA",
+    "operator": "ExxonMobil",
+    "operating_phase": "production",
+    "materials": [
+      "isobutane",
+      "sulfuric acid"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "fire",
+    "costs": null,
+    "actions_taken": [
+      "Operators shouted warnings and ordered evacuation of nearby workers",
+      "Board operator alerted by radio and told to shut down the unit",
+      "Emergency responders isolated the release and extinguished the fire approximately 25 minutes after ignition",
+      "Post-incident survey identified 15 susceptible plug valves in the alkylation unit",
+      "Mitigation strategy implemented to replace older plug valve design or install manual levers",
+      "Warning signs installed on susceptible valves prior to modifications",
+      "Incident learnings communicated to other ExxonMobil sites",
+      "Presentation made to petroleum refining industry at API conference in May 2017",
+      "Other ExxonMobil refineries required to conduct plug valve surveys"
+    ],
+    "summary": "On November 22, 2016, an isobutane release and fire seriously injured four workers in the sulfuric acid alkylation unit at the ExxonMobil Refinery in Baton Rouge, Louisiana. An operator removing an inoperable gearbox from a plug valve incorrectly removed four vertical bolts that secured the pressure-retaining top-cap rather than the two horizontal bolts needed to safely detach the gearbox. When the operator then attempted to open the valve with a pipe wrench, the valve came apart, releasing approximately 2,000 pounds of pressurized isobutane. The vapor cloud ignited within 30 seconds from an energized welding machine approximately 70 feet away, causing a fire that severely burned one ExxonMobil employee and three contractors. Contributing factors included an older plug valve design that made incorrect gearbox removal likely, long-standing gearbox reliability issues, absence of written procedures for gearbox removal, inadequate worker training, and an organisational culture that accepted gearbox removal without formal procedures or training.",
+    "recommendations": [
+      "Evaluate human factors associated with operational difficulties in machinery and equipment covered by PSM standard and apply the hierarchy of controls to mitigate identified hazards",
+      "Establish detailed and accurate written procedures for workers performing potentially hazardous work including removing inoperable gearboxes",
+      "Provide training to ensure workers can perform all anticipated job tasks safely with focus on hazard awareness",
+      "Survey valves to identify gear-operated plug valves with gearbox support brackets attached to pressure-retaining components",
+      "Perform a hazard analysis and risk assessment on susceptible valves using the hierarchy of controls",
+      "Consider upgrading to newer plug valve design with gearbox support bracket attached to valve flanges",
+      "Develop interim hazard mitigation plans for susceptible valves identified for future upgrades",
+      "Consider expanding guidance to evaluate other devices such as motors or actuators that may attach to pressure-retaining valve components"
+    ],
+    "key_phrases": [
+      "isobutane release and fire",
+      "plug valve gearbox removal",
+      "pressure-retaining top-cap",
+      "flammable vapor cloud",
+      "hierarchy of controls",
+      "human factors",
+      "written procedures",
+      "organizational culture",
+      "gearbox reliability",
+      "accepted practice",
+      "process hazard analysis",
+      "process safety management"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurised isobutane in alkylation unit plug valve"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Incorrect gearbox removal causing inadvertent disassembly of pressure-retaining top-cap"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Long-standing plug valve gearbox reliability failures requiring manual intervention"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Absence of written procedures for safe gearbox removal"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Inadequate worker training on gearbox removal hazards"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Organisational culture accepting gearbox removal without procedures or training"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Isobutane vapor cloud formation and ignition causing fire"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Serious burn injuries to four workers (third degree burns)"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Release of approximately 2,000 pounds of isobutane to atmosphere"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Improved plug valve design (post-1984) with gearbox support bracket attached to non-pressure-retaining valve flanges",
+        "side": "prevention",
+        "barrier_role": "Eliminate the possibility of inadvertent removal of pressure-retaining top-cap bolts during gearbox removal",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Inherently safer design removing the hazardous condition at source",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "15 (approximately three percent) of the roughly 500 plug valves with manually operated gearboxes in the refinery's alkylation unit were an older design that required attaching the gearbox support bracket to pressure-retaining valve components.",
+            "The improved valve design involves attaching the gearbox support bracket without connecting to pressure-retaining parts of the valve, allowing for safer gearbox removal.",
+            "upgrading these valves to the improved design is high on the hierarchy of controls and would have likely prevented the incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Process Hazard Analysis (PHA) including human factors evaluation",
+        "side": "prevention",
+        "barrier_role": "Identify and control hazards associated with plug valve gearbox removal operations before an incident occurs",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Systematic hazard identification and risk assessment required by OSHA PSM standard",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "In its most recent alkylation unit PHA, the Baton Rouge refinery did not document any consideration of human factors related to valve operational issues.",
+            "Had the PHA human factors analysis prompted workers to discuss the removal of these gearboxes, the company could have identified the potential hazard of inadvertently taking the valve apart during gearbox removal.",
+            "The OSHA PSM Standard requires companies to perform a detailed process hazard analysis (PHA) under 29 C.F.R. § 1910.119(e)(1) on covered processes that identifies, evaluates, and controls the hazards involved in the process. This analysis includes evaluating human factors."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Written procedures for plug valve gearbox removal",
+        "side": "prevention",
+        "barrier_role": "Provide step-by-step guidance to workers on safe gearbox removal, identifying correct bolts and hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control specifying correct task execution to prevent incorrect bolt removal",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Baton Rouge refinery management did not, however, provide alkylation unit workers performing this operations activity with a written procedure or training on safe gearbox removal from plug valves and its associated hazards.",
+            "No written procedures detailing the steps needed to remove different models of gearboxes from plug valves to manually open or close the valve safely.",
+            "the Baton Rouge refinery should have developed written procedures detailing the appropriate steps for safely removing its various types of plug valve gearboxes."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Worker training on plug valve gearbox removal and associated hazards",
+        "side": "prevention",
+        "barrier_role": "Ensure workers understand correct gearbox removal method and hazards of removing pressure-retaining bolts",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control building worker competence and hazard awareness",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Not training workers to safely remove the various plug valve gearbox models in the alkylation unit and the hazards associated with this type of work.",
+            "operators consistently stated they had not received formal training on how to remove a gearbox from a plug valve.",
+            "ExxonMobil did not adequately prepare alkylation unit operators at the refinery to remove a gearbox attached to the top-cap of a plug valve safely.",
+            "This warning, however, was not communicated to Baton Rouge refinery workers."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Organisational safety culture and management oversight of non-procedurised tasks",
+        "side": "prevention",
+        "barrier_role": "Prevent acceptance of hazardous practices performed without adequate procedures and training",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Organisational-level control to identify and challenge unsafe accepted practices",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "An organizational culture that accepted operators removing malfunctioning plug valve gearboxes despite the lack of detailed procedures and training for safe removal.",
+            "ExxonMobil even acknowledged that it was 'accepted practice' at the refinery alkylation unit for operators to remove malfunctioning gearboxes from plug valves and manually rotate the valve stem with a pipe wrench.",
+            "The long-standing gearbox reliability issues were never investigated or corrected."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Emergency evacuation and radio communication to board operator",
+        "side": "mitigation",
+        "barrier_role": "Limit personnel exposure to vapor cloud and initiate unit shutdown following release",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response action to mitigate consequences after loss of containment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Following the release, the operators shouted to others in the area, including workers on the scaffolding above, warning them of the immediate danger and ordering them to evacuate.",
+            "One of the operators alerted the board operator of the emergency by radio and told him to shut down the unit."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Flame-resistant personal protective equipment (PPE)",
+        "side": "mitigation",
+        "barrier_role": "Reduce severity of burn injuries to workers exposed to fire",
+        "barrier_type": "ppe",
+        "line_of_defense": "recovery",
+        "lod_basis": "Last line of defence reducing injury severity for personnel caught in fire",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Each worker was wearing refinery-required personal protective equipment including flame-resistant clothing."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Emergency responder fire suppression and release isolation",
+        "side": "mitigation",
+        "barrier_role": "Extinguish fire and isolate isobutane release to prevent escalation",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to contain and extinguish fire after ignition",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Emergency responders isolated the release and extinguished the fire about 25 minutes after the initial ignition."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Warning signs on susceptible plug valves (post-incident)",
+        "side": "prevention",
+        "barrier_role": "Alert workers that bolts secure support brackets to pressure-retaining components before gearbox removal",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Visual warning at point of work to prevent incorrect bolt removal",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Prior to plug valve modifications, refinery personnel installed warning signs on the susceptible valves to alert workers that bolts were used to secure the support brackets to pressure-retaining components."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

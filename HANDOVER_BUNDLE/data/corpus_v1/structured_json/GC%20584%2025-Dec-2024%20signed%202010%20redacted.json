@@ -1,0 +1,487 @@
+{
+  "incident_id": "GC%20584%2025-Dec-2024%20signed%202010%20redacted",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Lifting Incident - Noble Drillship Blackhornet - Green Canyon Block 584",
+    "date_published": "2025-03-24",
+    "date_occurred": "2024-12-25",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America - Green Canyon Block 584",
+    "operator": "BP Exploration & Production Inc.",
+    "operating_phase": "drilling",
+    "materials": [
+      "steel plate"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Control - Dropped Object",
+    "incident_type": "Lifting Equipment Failure",
+    "costs": null,
+    "actions_taken": [
+      "Both injured personnel evacuated to University Hospital in New Orleans",
+      "BSEE Houma District office notified orally and written report submitted within 15 days",
+      "Onsite investigation conducted on January 3, 2025",
+      "Multiple tests conducted with magnetic lifting device and plate",
+      "Manufacturer testing conducted on magnetic lifting device"
+    ],
+    "summary": "On December 25, 2024, a 340 lbs steel plate fell from a defective magnetic heavy lifting device on the Noble Drillship Blackhornet, striking two workers on their left feet. The welder (IP1) and roustabout (IP2) were lowering the plate when it prematurely disengaged from the magnetic lifting device, falling 47 inches. Both workers suffered swelling and contusions and were evacuated to hospital. Investigation revealed the magnetic lifting device had damaged pole shoes creating air gaps that reduced lifting capacity. Contributing factors included inadequate JSA, failure to conduct timeout for safety, employee perceived haste, and inadequate hazard identification.",
+    "recommendations": [
+      "BSEE Houma District recommends the Office of Incident Investigations issue a safety alert/bulletin regarding this incident"
+    ],
+    "key_phrases": [
+      "magnetic heavy lifting device",
+      "plate disengaged",
+      "timeout for safety (TOFS) was not called",
+      "pole shoes are in rough shape",
+      "air gaps between the pole shoe and part being lifted",
+      "employee perceived haste",
+      "JSA did not have a proper hazard analysis",
+      "inadequate stop work authority"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Suspended Load - Steel Plate",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Defective magnetic lifting device - damaged pole shoes",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate job safety analysis",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Failure to conduct timeout for safety",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Personnel working under suspended load",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury - struck by falling object",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Medical evacuation required",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Potential for catastrophic injury or death",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Annual lifting gear inspection and certification",
+        "side": "prevention",
+        "barrier_role": "Verify lifting equipment integrity",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Periodic inspection program",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The magnetic heavy lifting device was certified on March 19, 2024, by a 3rd party company, as part of an annual lifting gear inspection",
+            "at the time of that inspection, the equipment was documented to be in good working order",
+            "Pole shoes are in rough shape, whenever a big ding or hard landing causing dents on pole shoes allows air gaps between the pole shoe and part being lifted"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Job Safety Analysis (JSA) for lifting operations",
+        "side": "prevention",
+        "barrier_role": "Identify and control lifting hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-job hazard identification",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "While this work order covered the hazards associated with the hot work being performed, it did not adequately cover the specific hazards associated with the lifting equipment",
+            "BSEE Investigators found the JSA to be inadequate. While the JSA did note Pinch, Caught Between, and Struck by as a hazard, it did not specifically identify the magnetic heavy lifting device prematurely releasing the plate as a hazard",
+            "Management systems – The JSA did not have a proper hazard analysis"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Timeout for Safety (TOFS) procedure",
+        "side": "prevention",
+        "barrier_role": "Stop work and reassess hazards when conditions change",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Real-time hazard reassessment",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "time_pressure",
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The job was not stopped, a timeout for safety (TOFS) was not called, and the potential hazards of the job were not discussed",
+            "IP2 made a personal decision to help IP1 without stopping the job, calling a TOFS, or reviewing the JSA that was in place",
+            "IP1 and IP2 exhibited employee perceived haste by not stopping the job and reviewing the JSA"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Stop Work Authority",
+        "side": "prevention",
+        "barrier_role": "Empower workers to stop unsafe work",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Worker empowerment to intervene",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "safety_culture",
+            "time_pressure"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "There was inadequate stop work authority",
+            "The job was not stopped, a timeout for safety (TOFS) was not called",
+            "IP2 made a personal decision to help IP1 without stopping the job"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Operational work order for welding and cutting",
+        "side": "prevention",
+        "barrier_role": "Define scope and hazards of work",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Work planning and authorization",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "management_of_change"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "IP1 opened an operational work order for welding and cutting in all areas at the start of his shift",
+            "While this work order covered the hazards associated with the hot work being performed, it did not adequately cover the specific hazards associated with the lifting equipment that would be required to lift the sheet of 3/8 plate",
+            "The JSA did not have a proper management of change"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Supervision and work review",
+        "side": "prevention",
+        "barrier_role": "Ensure proper work execution and hazard control",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Supervisory oversight",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Supervision – IP1 did not take the time to review the JSA with IP2",
+            "IP2 inserted himself into the job by moving the stands after the plate was lifted. The job was not stopped, a timeout for safety (TOFS) was not called"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Exclusion zone around suspended loads",
+        "side": "prevention",
+        "barrier_role": "Prevent personnel from being struck by dropped objects",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical separation of personnel from hazard",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "IP1 began lowering the plate while both were in proximity of the suspended plate",
+            "The plate landed on the left foot of each injured person (IP)",
+            "it did not specifically identify the magnetic heavy lifting device prematurely releasing the plate as a hazard"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Personal Protective Equipment - Safety footwear",
+        "side": "mitigation",
+        "barrier_role": "Reduce severity of foot injuries",
+        "barrier_type": "ppe",
+        "line_of_defense": "3rd",
+        "lod_basis": "Last line of defense - personal protection",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Both IP1 and IP2 had swelling and contusions because of the incident"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Medical response and evacuation capability",
+        "side": "mitigation",
+        "barrier_role": "Provide medical treatment and evacuation",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response after incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Both personnel reported to the medic and were evacuated to University Hospital in New Orleans, LA"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": "negative",
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": "negative",
+      "management_of_change_mentioned": true,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

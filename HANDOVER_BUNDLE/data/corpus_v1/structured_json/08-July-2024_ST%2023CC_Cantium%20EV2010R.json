@@ -1,0 +1,529 @@
+{
+  "incident_id": "08-July-2024_ST%2023CC_Cantium%20EV2010R",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Structural Damage - Traveling Block Strike on Crown Saver Assembly",
+    "date_published": "2024-09-18",
+    "date_occurred": "2024-07-08",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - South Timbalier Block 23",
+    "operator": "Cantium, LLC",
+    "operating_phase": "drilling",
+    "materials": [
+      "drill pipe",
+      "drilling fluid"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Control - Lifting Operations",
+    "incident_type": "Structural Damage - Lifting Equipment",
+    "costs": "11210",
+    "actions_taken": [
+      "Driller disengaged drawworks clutch stopping upward movement",
+      "Traveling block slacked off approximately 10 feet",
+      "Brake locked down and incident reported",
+      "Crown block inspected for damage",
+      "Well operations suspended until inspectors could check condition of block, wire rope, and crown",
+      "Root Cause Investigation conducted by contractor and operator"
+    ],
+    "summary": "On July 8, 2024, while pulling out of the hole with drill pipe on the jack-up rig Enterprise 205, the traveling block struck the crown saver assembly with approximately 117,000 lbs overpull, resulting in $11,210 in damages. The driller lost situational awareness while checking the pipe tally, and the crown-o-matic (COM) failed to trip when contacted by the drill line because the barrel wasn't set properly. Contributing factors included inadequate hazard analysis in the JSA, lack of rig-specific procedures for checking the COM, and failure of floorhand to count tool joints during the operation.",
+    "recommendations": [],
+    "key_phrases": [
+      "traveling block struck crown saver assembly",
+      "117,000 lbs overpull",
+      "crown-o-matic failed to trip",
+      "barrel wasn't set properly",
+      "lost situational awareness",
+      "checking pipe tally",
+      "inadequate hazard analysis",
+      "no rig specific procedure"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Stored Energy in Drilling System",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Loss of situational awareness during pulling out of hole",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Crown-o-matic safety device failure",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate hazard identification in JSA",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Lack of crew member monitoring wire rope during COM check",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Structural damage to crown saver assembly",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment overpull (117,000 lbs)",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Well operations suspension",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Financial loss ($11,210)",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Crown-o-matic (COM) safety device",
+        "side": "prevention",
+        "barrier_role": "Automatic stop system to prevent traveling block from striking crown",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary automated protection against over-travel",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "tools_equipment"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the drill line contacted the COM, but it did not move the barrel enough to trip the COM",
+            "the COM failed to trip when contacted by the wire rope because the barrel wasn't set properly",
+            "Equipment failure - The barrel of the COM was not set properly. This allowed the drill line to move past the COM resulting in the the traveling block striking the crown block"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Job Safety Analysis (JSA) for pulling out of hole",
+        "side": "prevention",
+        "barrier_role": "Identify hazards and control measures before task execution",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task hazard identification and planning",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "A Job Safety Analysis (JSA) was completed for the task",
+            "Although a JSA was used for pulling out of the hole, it did not state the hazard of the traveling block striking the crown block assembly",
+            "Management system – Inadequate hazard analysis of the traveling block contacting the crown block"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Driller monitoring of traveling block position",
+        "side": "prevention",
+        "barrier_role": "Continuous visual monitoring to prevent over-travel",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human backup to automated system",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "With the drawworks still engaged, the DR1 decided to focus his attention on the pipe tally",
+            "DR1 lost situational awareness by checking the pipe tally while pulling out of the hole",
+            "While picking up to check the crown-o-matic and rack back stand, I looked at the pipe tally to count stands to top of liner",
+            "Human Performance Error – DR1 and FH1 were not paying attention to the task of POOH with drill pipe to check the COM and rack back the stand"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Floorhand counting tool joints during POOH",
+        "side": "prevention",
+        "barrier_role": "Independent verification of pipe position and travel distance",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary human verification",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "FH1, who was wiping the ascending drill pipe, was not counting tool joints as the drill pipe was being pulled",
+            "Human Performance Error – DR1 and FH1 were not paying attention to the task of POOH with drill pipe to check the COM and rack back the stand"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Crew member posted to watch wire rope during COM check",
+        "side": "prevention",
+        "barrier_role": "Dedicated observer to monitor wire rope and COM activation",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Independent human monitoring",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "DR1 also failed to have a drill crew member watch the wire rope as he was checking the COM",
+            "post a crew member to count the wraps on the drum until the COM trips",
+            "post a crew member to count the wraps until the drill line trips the COM"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Rig-specific procedure for checking crown-o-matic",
+        "side": "prevention",
+        "barrier_role": "Standardized step-by-step instructions for COM verification",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural guidance for critical safety system",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "management_of_change"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "When asked for a copy of the rig specific procedure for checking the (COM), the operator could not provide it",
+            "the Offshore Installation Manager OIM was asked for a rig specific procedure for checking the COM, he stated they did not have a step-by-step procedure for checking the COM",
+            "Management System – Inadequate fleetwide procedure for checking the COM and no rig specific procedure for checking the (COM)",
+            "Communication – Inadequate job instructions were provided for POOH with drill pipe and checking the COM"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Weight indicator monitoring",
+        "side": "prevention",
+        "barrier_role": "Real-time indication of overpull condition",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary indication system",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Saw weight indicator jump up so I slacked off",
+            "DR1 heard a change in sound as the traveling block struck the crown saver assembly with 117,000 lbs overpull. He disengaged the drawworks clutch stopping the upward movement"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Drawworks emergency stop (clutch disengagement)",
+        "side": "mitigation",
+        "barrier_role": "Immediate cessation of upward movement to limit damage",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to stop escalation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "He disengaged the drawworks clutch stopping the upward movement",
+            "DR1 heard a change in sound as the traveling block struck the crown saver assembly with 117,000 lbs overpull. He disengaged the drawworks clutch stopping the upward movement"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Crown saver assembly",
+        "side": "mitigation",
+        "barrier_role": "Physical barrier to absorb impact and prevent catastrophic crown block damage",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Last physical defense to limit consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the traveling block to strike the crown saver assembly",
+            "The only damage noted on the inspection was to the crown saver assembly",
+            "Crown saver damaged. Needed replacement"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Post-incident inspection and well suspension protocol",
+        "side": "mitigation",
+        "barrier_role": "Verification of equipment integrity before resuming operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-event safety verification",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Well operations were suspended until inspectors could check the condition of the block, wire rope, and crown",
+            "The crown block was then inspected for damage"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

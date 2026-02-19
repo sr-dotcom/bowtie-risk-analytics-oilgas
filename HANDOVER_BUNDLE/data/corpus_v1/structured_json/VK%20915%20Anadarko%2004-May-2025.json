@@ -1,0 +1,570 @@
+{
+  "incident_id": "VK%20915%20Anadarko%2004-May-2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Structural Damage - Vessel Allision with Marlin TLP",
+    "date_published": "2025-09-22",
+    "date_occurred": "2025-05-04",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Viosca Knoll Block 915",
+    "operator": "Anadarko Petroleum Corporation",
+    "operating_phase": "production",
+    "materials": [
+      "crude oil",
+      "natural gas"
+    ]
+  },
+  "event": {
+    "top_event": "Vessel Allision with Platform",
+    "incident_type": "Structural Damage",
+    "costs": "10000000",
+    "actions_taken": [
+      "Manual Emergency Shut Down (ESD) initiated by control room operators",
+      "Platform bleed down performed",
+      "Personnel mustered",
+      "Wells shut in and facility made safe",
+      "Firewater piping section isolated",
+      "USCG, NRC, and BSEE notified",
+      "Dorado flowline and internal gas lift repaired and returned to production",
+      "Platform firewater piping repaired and returned to service"
+    ],
+    "summary": "On 04 May 2025 at 0445 hours, the 178-foot supply vessel M/V Adriatic struck the Marlin Tension Leg Platform (VK 915 A) operated by Anadarko Petroleum Corporation. The vessel's captain was preparing paperwork for a drift test and not focused on navigation. The second captain had been given permission to leave the bridge, leaving no one actively steering the vessel. The bow contacted the Northwest pontoon and the right stern contacted the Southwest pontoon, damaging two production risers (Dorado and Crown and Anchor), a gas lift line, and firewater piping. The platform was manually ESD'd and production was shut in. No injuries or pollution occurred. Estimated damage exceeded $10 million.",
+    "recommendations": [
+      "BSEE NOD recommends the Office of Incident Investigation (OII) issue a Safety Alert on this incident",
+      "Safety Alert should reach personnel who work on boats/vessels that service facilities, not just operators on the facility"
+    ],
+    "key_phrases": [
+      "allision",
+      "inattention to task",
+      "not following proper procedures",
+      "multi-tasking",
+      "no one steering the motor vessel",
+      "captain not paying attention to navigating",
+      "drift test",
+      "administrative tasks"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Vessel Traffic Near Platform",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Vessel collision/allision with platform structure",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Loss of situational awareness during vessel approach",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate bridge manning during vessel operations",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Structural damage to platform",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Damage to production risers and flowlines",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Damage to safety systems (firewater)",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Loss of production",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "500-meter exclusion zone protocol",
+        "side": "prevention",
+        "barrier_role": "Prevent unauthorized vessel approach",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural control to manage vessel traffic",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "bypassed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CRO directed the M/V's captain to remain outside of the 500-meter zone until the Anadarko Balast Control Operator (BCO) was on tower",
+            "The M/V captain asked the CRO if he could perform a drift test. The CRO advised that the captain could perform his drift test as requested"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Vessel captain navigation and attention",
+        "side": "prevention",
+        "barrier_role": "Maintain safe vessel navigation near platform",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Human performance barrier - active navigation",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "workload",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the M/V Captain was not paying attention to navigating the vessel as he should have been at the time of the incident",
+            "the captain focused his attention on administrative tasks instead of navigation of the vessel",
+            "the captain was preparing paperwork for the upcoming dynamic positioning drift test and turned his attention away from captaining the vessel",
+            "captain not being aware of his surroundings, and the captain not having his full attention on navigating the vessel near the platform"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Minimum two-person bridge watch requirement",
+        "side": "prevention",
+        "barrier_role": "Ensure continuous vessel navigation oversight",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural requirement for redundant bridge manning",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the requirement there will always be a minimum of one other watch stander in the bridge during periods when the vessel is underway",
+            "The captain should not have allowed the 2nd captain to leave the bridge while underway",
+            "the 2nd captain on the bridge was given permission by the captain to step away from the bridge to meet with the vessel's unlicensed engineer in the galley",
+            "neither of the captains were focused on navigating the vessel at the time of the incident"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Radio communication between vessel and platform",
+        "side": "prevention",
+        "barrier_role": "Coordinate vessel approach and maintain awareness",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Communication protocol for vessel operations",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the M/V Adriatic was 22 minutes away from the Marlin Platform when they contacted the control room by radio and informed them that the boat would be in the field soon to pick up a passenger"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Platform surveillance camera system",
+        "side": "prevention",
+        "barrier_role": "Detect approaching vessels",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Detection system for vessel traffic monitoring",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "a video from a platform surveillance camera capturing the moments leading up to the allision, as well as when the M/V Adriatic allided with the platform was also provided to the investigators",
+            "The video of the allision clearly shows the vessel approaching the facility at speed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Manual Emergency Shutdown (ESD) system",
+        "side": "mitigation",
+        "barrier_role": "Isolate hydrocarbon inventory and prevent escalation",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Emergency response system to mitigate consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "which resulted in a manual Emergency Shut Down (ESD) and bleed down of the platform by nighttime control room operators",
+            "the CRO ESD'd the platform"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Control room operator assessment and response",
+        "side": "mitigation",
+        "barrier_role": "Assess damage and initiate emergency response",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human response to emergency situation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Immediately following the allision, the CROs performed a quick assessment of the platform and surrounding areas",
+            "the CROs quickly went to the handrails and observed the M/V backing away from the platform, with damage to the bow of the vessel"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Well shut-in procedures",
+        "side": "mitigation",
+        "barrier_role": "Isolate production and make facility safe",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Emergency procedure to control hydrocarbon sources",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Personnel mustered while production personnel began shutting in wells, making the facility safe"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Firewater system isolation capability",
+        "side": "mitigation",
+        "barrier_role": "Isolate damaged firewater piping to maintain system integrity",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Engineering control to isolate damaged sections",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "isolating a small section of firewater piping"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Emergency notification procedures",
+        "side": "mitigation",
+        "barrier_role": "Notify authorities and initiate external response",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Regulatory and emergency response communication",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Anadarko personnel contacted their management and notified the United States Coast Guard (USCG), the National Response Center (NRC) via NRC# 1430144, and the Bureau of Safety and Environmental Enforcement (BSEE)"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Muster system",
+        "side": "mitigation",
+        "barrier_role": "Account for personnel safety",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Emergency response procedure for personnel accountability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Personnel mustered while production personnel began shutting in wells"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "neutral",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": "negative",
+      "workload_mentioned": true,
+      "time_pressure_value": "negative",
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

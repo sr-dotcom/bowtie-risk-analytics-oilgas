@@ -1,0 +1,785 @@
+{
+  "incident_id": "2019-02-I-TX",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Fatal Equipment Rupture, Explosion, and Fire at the KMCO Chemical Facility",
+    "date_published": "2023-12",
+    "date_occurred": "2019-04-02",
+    "timezone": "US/Central"
+  },
+  "context": {
+    "region": "Crosby, Texas, USA",
+    "operator": "KMCO, LLC",
+    "operating_phase": "production",
+    "materials": [
+      "isobutylene",
+      "sulfurized isobutylene"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "equipment rupture, vapor cloud explosion, and fire",
+    "costs": null,
+    "actions_taken": [
+      "Board Operator 1 manually closed isolation valve to stop isobutylene release",
+      "Field Operator 1 and senior field operator activated firewater monitors",
+      "Workers instructed motorized equipment operators to shut down and evacuate",
+      "Vehicle gates closed to prevent workers from driving into vapor cloud",
+      "Shift Supervisor activated firewater monitors and shut down boiler",
+      "Plant-wide evacuation ordered via radio",
+      "Emergency response teams (KMCO ERT, Crosby Volunteer Fire Department, Harris County) responded",
+      "Shelter-in-place order issued for residents within 1-mile radius",
+      "Injured workers transported by helicopter to Houston hospital"
+    ],
+    "summary": "On April 2, 2019, at 10:51 a.m., a flammable isobutylene vapor cloud exploded at the KMCO facility in Crosby, Texas. A 3-inch cast iron y-strainer on the inlet piping to the isobutylene charge pump failed catastrophically due to a brittle overload fracture driven by internal pressure, most likely from liquid thermal expansion. More than 10,000 pounds of isobutylene were released. The vapor cloud was most likely ignited by electrical equipment within the poorly sealed R2 Building. One KMCO employee (Board Operator 2) was fatally injured, two others suffered serious burn injuries, and at least 28 additional workers were injured. Contributing factors included: use of cast iron (a brittle material) in a hazardous isobutylene application contrary to industry standards; absence of pressure-relief protection on the charge pump inlet piping; lack of remote isolation capability for the isobutylene system; inadequate facility alarm system training and activation; and deficient emergency response procedures and training that led operators to enter the vapor cloud to manually stop the release.",
+    "recommendations": [
+      "CSB urges Altivia Oxide Chemicals to read the report and understand factors that led to the incident",
+      "If Altivia reinitiates the process or equipment involved, ensure causal factors are not repeated",
+      "Cast iron should not be used in hazardous applications involving flammable or toxic chemicals",
+      "Piping systems should be equipped with pressure-relief protection where liquid thermal expansion is a credible hazard",
+      "Reliable facility alarm systems should be maintained and all personnel trained to use them",
+      "Remote isolation capability should be provided for high-hazard flammable systems",
+      "Emergency response plans must clearly distinguish incidents operators should handle from those requiring the ERT",
+      "Previous incidents should be investigated and acted upon as warning signs"
+    ],
+    "key_phrases": [
+      "brittle overload fracture",
+      "cast iron y-strainer",
+      "liquid thermal expansion",
+      "isobutylene vapor cloud explosion",
+      "remote isolation",
+      "facility alarm system not activated",
+      "emergency response deficiencies",
+      "process hazard analysis failures",
+      "management of change",
+      "pre-startup safety review",
+      "HAZWOPER",
+      "loss of containment",
+      "remotely operated emergency isolation valve",
+      "plant culture",
+      "warning signs overlooked"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Stored liquid isobutylene under pressure in piping and storage system"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Cast iron y-strainer in hazardous flammable service susceptible to brittle fracture"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Liquid thermal expansion in isolated charge pump inlet piping without pressure relief"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Brittle overload fracture of cast iron y-strainer driven by internal overpressure"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Liquid thermal expansion generating high pressure in isolated charge pump inlet piping"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate material selection: cast iron y-strainer installed in flammable hydrocarbon service"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Failed hazard evaluations (PHA, MOC, PSSR) not identifying y-strainer material or thermal expansion hazard"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fatality: Board Operator 2 killed by explosion"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Serious burn injuries to Board Operator 1 and Shift Supervisor"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "At least 28 additional workers injured"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Substantial property damage to KMCO facility from explosion and fire"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Community shelter-in-place order within 1-mile radius for over four hours"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "KMCO bankruptcy and facility closure"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Material selection standards prohibiting cast iron in flammable hydrocarbon service",
+        "side": "prevention",
+        "barrier_role": "Ensure y-strainer and piping components are constructed from ductile materials suitable for flammable LPG service",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Industry standards (NFPA 58, API 574, API 2510) prohibit or warn against cast iron in hazardous flammable service",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "KMCO's hazard evaluations consistently overlooked or misunderstood that its y-strainer was made from cast iron, a brittle material that existing industry standards and good practice guidance documents either prohibit or warn against using in hazardous applications",
+            "NFPA 58, Liquefied Petroleum Gas Code: 'Cast iron shall not be used as the material of construction for strainers'",
+            "the CSB purchased an exemplar y-strainer for $171 that was the same make and model as the incident y-strainer... confirmed that the exemplar y-strainer had a gray iron (cast iron) body"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Process Hazard Analysis (PHA) program",
+        "side": "prevention",
+        "barrier_role": "Identify hazards including cast iron material risk, liquid thermal expansion, and need for pressure relief or remote isolation in isobutylene system",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "OSHA PSM standard requires PHA for covered processes; CCPS identifies hazard evaluation as cornerstone of PSM",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "none of KMCO's hazard evaluations identified the potential for liquid thermal expansion or other possible scenarios to develop high-pressure conditions within the piping system that included the y-strainer",
+            "KMCO's hazard evaluations consistently overlooked or misunderstood that its y-strainer was made from cast iron",
+            "the 2018 re-do PHA used drawings showing the y-strainer, these drawings showed it to be made from stainless steel",
+            "KMCO's PHA did not address the hazards of the y-strainer that failed or the hazards of an isobutylene release without installing remote emergency isolation valves"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Management of Change (MOC) process",
+        "side": "prevention",
+        "barrier_role": "Ensure changes to isobutylene system (including installation of y-strainer) are reviewed for hazards and documented accurately",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "OSHA PSM standard requires MOC for modifications to covered processes",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "KMCO did not have written procedures to manage changes for the reactor system piping and instrumentation diagrams or for the y-strainer that failed",
+            "The MOC package included the same piping and instrumentation diagram (P&ID) that was used in the 2014 PHA, which did not show a check valve, y-strainer, or manual isolation valves on the inlet piping to the charge pump",
+            "KMCO's hazard evaluation programs, including process hazard analysis, pre-startup safety review, and management of change, also contributed to the incident"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Pre-Startup Safety Review (PSSR)",
+        "side": "prevention",
+        "barrier_role": "Verify construction materials and equipment comply with design specifications before introducing isobutylene into new system",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "OSHA PSM standard requires PSSR for new or modified facilities before introducing highly hazardous chemicals",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Nothing in the PSSR discussed the y-strainer or identified that it was not constructed from 304 stainless steel",
+            "Nothing in the PSSR identified that the check valve or y-strainer had been installed in the charge pump's inlet piping",
+            "One item on the PSSR checklist addressed the construction material. This item indicated that the piping system was constructed of 304 stainless steel"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Pressure-relief device on charge pump inlet piping",
+        "side": "prevention",
+        "barrier_role": "Protect charge pump inlet piping and y-strainer from overpressure due to liquid thermal expansion or other high-pressure scenarios",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "API Standard 521 recommends installing a pressure-relief device if liquid thermal expansion is a credible hazard; KMCO equipped circulation pump piping with relief valves but not charge pump inlet piping",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "unlike other portions of KMCO's isobutylene piping, this piping section was not equipped with a pressure-relief device or otherwise protected from potential high-pressure conditions",
+            "KMCO did equip portions of the circulation pump piping, which could be isolated, with pressure-relief valves to protect from liquid thermal expansion",
+            "KMCO's process safety information did not include the pressure relief valve design and design basis for certain safety relief valves that provide equipment overpressure protection"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Mechanical integrity inspection and testing of y-strainer",
+        "side": "prevention",
+        "barrier_role": "Detect degradation or cracking of y-strainer body before catastrophic failure",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "OSHA PSM standard requires inspection and testing of process equipment; prior 2015 crack was a warning sign",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "KMCO did not perform inspections and testing of the y-strainer that failed",
+            "The y-strainer that failed in December 2015 was later leak-tested with water and found to have a crack through a wall of the body in the same general area where the April 2019 strainer ruptured",
+            "KMCO did not provide the CSB with an investigation report or corrective actions that addressed the causes of the 2015 incident",
+            "after the isobutylene system y-strainer failed in 2015, KMCO's investigation did not result in any significant changes or obvious improvements specifically intended to prevent a future y-strainer failure"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Remotely operated emergency isolation valve (ROEIV) on isobutylene system",
+        "side": "mitigation",
+        "barrier_role": "Allow operators to isolate isobutylene release from a safe location (blast-resistant control room) without entering the vapor cloud",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "API RP 553 states remote isolation is 'needed' for vessels containing isobutylene; HSG244 and CCPS guidance require remote isolation for large flammable inventories; 2010 insurance recommendation called for remote isolation on isobutylene system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "KMCO's workers lacked the safety equipment they needed to stop (isolate) the isobutylene release from a safe location, such as from within the blast-resistant control room",
+            "KMCO did not provide safety equipment that its workers could have used to remotely stop (isolate) the isobutylene release from a safe location, which contributed to the severity of the incident",
+            "KMCO did not complete the implementation of the 2010 insurance recommendation to provide remote isolation capability in strategic process areas, including the isobutylene system",
+            "API RP 553 states that remote isolation is 'needed' for vessels containing isobutylene"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Facility alarm system for emergency notification",
+        "side": "mitigation",
+        "barrier_role": "Alert all personnel on site to the isobutylene release emergency and communicate evacuation order",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "OSHA 29 CFR 1910.165 requires employee alarm systems; KMCO ERP required use of facility alarm system during emergencies",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "KMCO never activated its plant alarm system during the isobutylene release, explosion, or subsequent fires",
+            "Because KMCO's board operators were not yet fully trained to use the facility alarm system",
+            "The employee alarm system at KMCO did not provide a warning for necessary emergency action when the alarm system was not activated by the incident commander. In addition, training and drills required by the emergency action plan were not performed",
+            "some injured workers were nearer to the explosion than they should have been"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Emergency Response Plan (ERP) with clear operator role delineation",
+        "side": "mitigation",
+        "barrier_role": "Prevent operators from entering hazardous vapor cloud by clearly defining which incidents operators handle versus ERT; ensure life safety is prioritized",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "OSHA HAZWOPER standard; CCPS Guidelines for Risk Based Process Safety; OSHA 29 CFR 1910.120(q)",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "KMCO's emergency response procedures and training did not properly limit the role of its operators during the emergency response",
+            "KMCO did not establish procedures or provide training that effectively distinguished the incidents that its operators should respond to from the emergency events that the site's emergency response team must respond to",
+            "KMCO's plant culture relied on unit operators taking quick actions to stop a release before the site's emergency response team assembled",
+            "workers who were in a safe location moved toward the flammable isobutylene vapor cloud, which put them in harm's way",
+            "Board Operator 1 and Board Operator 2 were 'doing what they were trained to do'"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Emergency Response Team (ERT) with HAZMAT training",
+        "side": "mitigation",
+        "barrier_role": "Provide trained and equipped responders to handle hazardous material releases, including closing valves to stop releases, without exposing untrained operators to danger",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "OSHA HAZWOPER standard requires trained hazardous materials technicians to approach releases and close valves",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The first member of KMCO's emergency response team (ERT) to put on their protective equipment and head toward the unit did so at about 10:54 a.m., about three minutes after the explosion",
+            "The three KMCO workers who were fatally or seriously injured had approached or entered the isobutylene vapor cloud in response to the release, but they were not formal members of the site's ERT",
+            "we had to build [the emergency response program] from the ground up",
+            "the ERT's lack of operating experience and their slow response to incidents resulted in site management continually relying on KMCO's operators to react quickly to stop the leak or problem"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Blast-resistant Reaction Control Room as safe refuge",
+        "side": "mitigation",
+        "barrier_role": "Provide a safe location for board operators and supervisors during a chemical release event",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Facility siting study led to construction of blast-resistant control room in 2013 to improve safety",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "When the y-strainer ruptured, the three KMCO workers who were fatally or seriously injured were all in a safe location. The two board operators were working inside the blast-resistant Reaction Control Room",
+            "KMCO could have reduced the severity of its April 2, 2019, incident if the company had provided its Board Operators with the capability to remotely isolate the isobutylene release from within the blast-resistant Reaction Control Room—a safe location",
+            "workers who were in a safe location moved toward the flammable isobutylene vapor cloud, which put them in harm's way"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Firewater deluge and monitor systems",
+        "side": "mitigation",
+        "barrier_role": "Suppress and disperse flammable isobutylene vapor cloud to reduce explosion risk and fire severity",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "KMCO invested in firewater system as part of facility improvements; operators activated deluge systems during incident",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The operations team members also opened other valves, allowing firewater to spray throughout the batch reactor area",
+            "Board Operator 1 had also manually closed valves to stop the isobutylene release. The Shift Supervisor then went to another nearby firewater monitor and turned it on",
+            "Field Operator 1 then teamed up with a senior field operator to turn on firewater monitors"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "R2 Building electrical equipment classification and sealing",
+        "side": "mitigation",
+        "barrier_role": "Prevent flammable vapor ingress into building containing ignition sources in Class 1 Division 2 hazardous area",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "NFPA 70 National Electrical Code requirements for Class 1 Division 2 locations; 2013 insurance recommendation to harden or relocate electrical equipment in R2 Building",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the R2 Building likely did not meet the NFPA's requirements because it contained unclassified electrical equipment, such as motor starters, and the building was not pressurized to prevent flammable vapor from entering the building",
+            "KMCO had not implemented its insurance underwriting recommendation from 2013 to 'harden' certain electrical equipment inside the R2 Building or relocate this electrical equipment to the new blast-resistant Reaction Control Room",
+            "the source of ignition that triggered the isobutylene explosion was most likely located within the R2 Building",
+            "the building was generally understood to be consistent with the construction of the PPE Room, which contained multiple doors, windows, and other obvious potential entry points for flammable isobutylene vapor, including a poorly sealed wall-mounted air conditioner"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Accurate Piping and Instrumentation Diagrams (P&IDs) reflecting actual materials of construction",
+        "side": "prevention",
+        "barrier_role": "Ensure PHA teams and engineers have accurate information about y-strainer material (cast iron vs stainless steel) to identify hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "OSHA PSM standard requires accurate process safety information; CCPS states P&IDs serve as road map for PHA study sessions",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Material of construction information was not maintained for the y-strainer that failed or the isobutylene piping from the storage tank to the reactor system",
+            "One of these P&IDs showed 'SS,' a common abbreviation for stainless steel, directly above the y-strainer symbol",
+            "Since the P&ID did not indicate a piping specification break at the y-strainer, a reviewer of this drawing would likely conclude that the y-strainer material of construction was stainless steel",
+            "KMCO's P&IDs did not specifically identify that this y-strainer was constructed from cast iron"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "Incident investigation and corrective action program",
+        "side": "prevention",
+        "barrier_role": "Investigate the 2015 y-strainer crack/leak event and implement corrective actions to prevent recurrence",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "OSHA PSM standard requires incident investigation; CCPS guidance on recognizing and acting on warning signs",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "KMCO did not provide the CSB with an investigation report or corrective actions that addressed the causes of the 2015 incident",
+            "after the isobutylene system y-strainer failed in 2015, KMCO's investigation did not result in any significant changes or obvious improvements specifically intended to prevent a future y-strainer failure",
+            "KMCO's 2018 PHA team did not evaluate the incident on December 10, 2015, in which a crack developed in the body of the y-strainer, releasing isobutylene",
+            "KMCO's y-strainer failure in 2015 should have served as a warning sign of the potential for liquid thermal expansion or other high-pressure scenarios within the charge pump's inlet piping"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_ids_referenced": {
+      "PIF-001": "Competence/knowledge gaps in PHA teams regarding cast iron material properties and thermal expansion hazards",
+      "PIF-002": "Inadequate material selection knowledge during isobutylene system project design",
+      "PIF-003": "Inadequate procedures for hazard evaluation, incident investigation, and corrective action follow-through",
+      "PIF-004": "Training deficiencies: operators not trained to HAZWOPER hazardous materials technician level; board operators not trained on facility alarm system",
+      "PIF-005": "Safety culture: unwritten plant culture relied on operators taking offensive actions to stop releases quickly",
+      "PIF-006": "Situational awareness: operators and supervisors moved from safe locations toward vapor cloud without recognising full extent of hazard"
+    }
+  }
+}

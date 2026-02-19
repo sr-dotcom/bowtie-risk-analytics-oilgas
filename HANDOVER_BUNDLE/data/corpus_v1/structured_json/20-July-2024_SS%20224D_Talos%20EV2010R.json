@@ -1,0 +1,485 @@
+{
+  "incident_id": "20-July-2024_SS%20224D_Talos%20EV2010R",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - Ship Shoal 224 D Platform Hand Injury",
+    "date_published": "2024-12-09",
+    "date_occurred": "2024-07-20",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - Ship Shoal Area Block 224",
+    "operator": "Talos ERT LLC",
+    "operating_phase": "decommissioning",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Loss of Containment - Personnel Injury",
+    "incident_type": "Personnel Injury - Hand Caught in Crane Equipment",
+    "costs": null,
+    "actions_taken": [
+      "IP evacuated for medical treatment",
+      "All operations shut down for investigation",
+      "Stand-down held focusing on line of fire and hand placement during crane operations",
+      "Additional wire rope slings added to rigging to prevent crane block from being lowered through deck opening",
+      "Personnel reminded to keep radio communications clear and use buddy system"
+    ],
+    "summary": "On July 20, 2024, at approximately 2200 hours, a rigger suffered lacerations to his ring finger and partial amputation of his pinky finger when his right hand was caught between the crane cable and crane block sheave while guiding a casing cutter tool through deck openings during abandonment operations at Ship Shoal 224 D platform. The injured person was using his hands to guide the crane block instead of push poles as required by company policy. The incident occurred during a blind lift operation where the crane operator could not see the load due to the lift boat being jacked up above the platform deck level.",
+    "recommendations": [],
+    "key_phrases": [
+      "hand caught between crane cable and crane block sheave",
+      "guiding load with hands instead of push poles",
+      "blind lifts",
+      "pinch point hazard",
+      "Stop Work Authority not used",
+      "JSA did not identify hazard",
+      "partial amputation of pinky finger"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Suspended Load with Moving Crane Components",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Personnel hand placement in pinch point between crane cable and sheave",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Blind lift operations without adequate visibility",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Non-compliance with material handling procedures",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury - hand laceration and partial amputation",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Medical evacuation required",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Operations shutdown",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Safe Operating Practices (TSOP-PCD-50) Material Handling - Use of Push Poles",
+        "side": "prevention",
+        "barrier_role": "Prevent personnel contact with suspended loads and pinch points",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural control to prevent direct hand contact with hazardous areas",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The operator did not enforce its Safe Operating Practices (TSOP-PCD-50) Material Handling and the IP did not follow this policy.",
+            "The operator's Material Handling policy specifies using push poles to guide suspended loads.",
+            "IP used his hands to guide the load instead of using push poles."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Job Safety Analysis (JSA) for Crane Operations",
+        "side": "prevention",
+        "barrier_role": "Identify and communicate hazards before work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-job hazard identification and planning",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "JSA's were completed for Abrasive Cutting Operations, Crane Ops for night shift 1800-0600, General Work on Deck, and Removing Conductors.",
+            "Although blind lifts and hand placement was discussed in the pre-tour meeting, these hazards were not identified in any JSA used that night.",
+            "The JSA's were inadequate because they did not identify the hazard of blind lifts or the pinch point between the crane's cable and sheave."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Stop Work Authority (SWA)",
+        "side": "prevention",
+        "barrier_role": "Empower workers to stop unsafe work",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Real-time intervention to prevent unsafe conditions",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Stop Work Authority (SWA) was not used when the IP started guiding the load with his hands instead of a push pole.",
+            "SWA was used, but only after the IP's hand was caught between the crane's cable and sheave."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Radio Communication for Blind Lifts",
+        "side": "prevention",
+        "barrier_role": "Enable coordination during operations with limited visibility",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Communication control for coordinated operations",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "All lifts were blind lifts due to the lift boat being jacked-up to the top of its legs. The top deck of the platform was higher than the crane cab on the lift boat's crane, therefore all lifts required the use of radios.",
+            "Once the IP realized his fingers were caught in the sheave and cable of the crane, he called for the crane to stop.",
+            "When he noticed the IP's hand caught in the sheave, he ran over to another team member with a radio and called for an all stop."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Rigger Certification and Training",
+        "side": "prevention",
+        "barrier_role": "Ensure competency in safe rigging practices",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Competency assurance through training and certification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "training",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "It was also noted that the IP is a certified rigger.",
+            "Human error performance - IP was not aware of the pinch between the crane's cable and sheave."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Buddy System",
+        "side": "prevention",
+        "barrier_role": "Provide peer observation and intervention",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Peer monitoring for unsafe acts",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Personnel were reminded to keep radio communications clear and to use the buddy system.",
+            "The IP and R1 were posted in these positions to keep the crane cable, crane block, wire rope slings and umbilical from rubbing on the grating and I-beams on each deck."
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Emergency Response - Crane Stop and Rescue",
+        "side": "mitigation",
+        "barrier_role": "Minimize injury severity through rapid response",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to limit consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Once the IP realized his fingers were caught in the sheave and cable of the crane, he called for the crane to stop.",
+            "Another member of the casing cutting team heard the IP yell out in pain. When he noticed the IP's hand caught in the sheave, he ran over to another team member with a radio and called for an all stop.",
+            "He then instructed the crane operator (CO) to lower the block until the IP's hand was free from the block."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Medical Evacuation Capability",
+        "side": "mitigation",
+        "barrier_role": "Provide timely medical treatment to minimize injury impact",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency medical response capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was taken to the galley for evaluation.",
+            "The decision was made to evacuate him for further medical treatment."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Post-Incident Investigation and Stand-Down",
+        "side": "mitigation",
+        "barrier_role": "Prevent recurrence through learning and corrective actions",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Organizational learning and corrective action",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "safety_culture",
+            "training"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "All operations were shut down for investigation and a stand-down was held.",
+            "The focus of the stand-down was line of fire and hand placement during crane operations.",
+            "Additional wire rope slings were added to the rigging to prevent the crane block from having to be lowered through the opening in the deck."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "mixed",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "positive",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

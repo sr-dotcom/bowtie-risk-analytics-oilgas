@@ -1,0 +1,691 @@
+{
+  "incident_id": "2020-05-I-LA",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Chemical Reaction, Decomposition, and Toxic Gas Release at Bio-Lab, Inc.",
+    "date_published": "2023-04-24",
+    "date_occurred": "2020-08-27",
+    "timezone": "CDT"
+  },
+  "context": {
+    "region": "Westlake, Louisiana, USA",
+    "operator": "Bio-Lab, Inc. (KIK Custom Products subsidiary)",
+    "operating_phase": "storage",
+    "materials": [
+      "trichloroisocyanuric acid (TCCA)",
+      "TCCA-based formulation",
+      "chlorine gas",
+      "nitrogen trichloride"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "chemical reaction, decomposition, and toxic gas release",
+    "costs": "$250 million facility reconstruction; approximately $10 billion insured damages in Louisiana from Hurricane Laura",
+    "actions_taken": [
+      "Bio-Lab employees obtained SCBAs and attempted to assess the situation",
+      "Employees attempted to start rental backup generator to power electric fire water pumps",
+      "One diesel fire water pump was manually started",
+      "Employees identified and stopped a water leak at adjacent Lonza facility",
+      "Lake Charles Fire Department arrived and attempted to draft water from Bio-Lab freshwater reservoir",
+      "Third-party responders (US Fire Pump, SRS, Haz Mat Special Services) contracted and deployed",
+      "Emergency responders demolished Plant 4 Low Bay west wall and roof to access decomposing chemicals",
+      "Copious amounts of water applied to saturate decomposing TCCA-based formulation",
+      "Calcasieu Parish issued shelter-in-place order for nearby community",
+      "Louisiana State Police closed portion of Interstate 10 for over 28 hours",
+      "LDEQ and EPA conducted air monitoring",
+      "Finished Goods Warehouse back wall removed to spray water on decomposing super sacks",
+      "Decomposing super sacks removed from Finished Goods Warehouse and saturated with water",
+      "Bio-Lab invested approximately $250 million to reconstruct the damaged facility with enhanced safety features"
+    ],
+    "summary": "On August 27, 2020, Category 4 Hurricane Laura winds damaged the roofs of Bio-Lab Plant 4 and the Finished Goods Warehouse in Westlake, Louisiana. Rainwater contacted stored TCCA-based formulation, initiating a chemical reaction and decomposition that released a large plume of toxic chlorine gas and caused a fire. The incident destroyed Plant 4 and damaged additional structures. Emergency response was severely delayed (~5.5 hours) due to an inadequate and largely nonfunctional fire protection system, inability to operate the rental backup generator, and absence of automated sprinkler systems. A shelter-in-place order was issued and Interstate 10 was closed for over 28 hours. There were no reported injuries. Contributing factors included Bio-Lab's inadequate extreme weather preparation, deficient PHA action item management, absence of automated fire suppression, and insufficient regulatory coverage of reactive chemical hazards.",
+    "recommendations": [
+      "2020-05-I-LA-R1: Bio-Lab to evaluate hurricane hazards and implement safeguards including building to current wind design requirements and following CCPS Monograph on Natural Hazards",
+      "2020-05-I-LA-R2: Bio-Lab to develop and implement improved PHA action item management system with assignment, documentation, and tracking requirements",
+      "2020-05-I-LA-R3: Bio-Lab to perform PHAs on all TCCA processing/storage buildings, revalidated every five years, including building design basis as process safety information",
+      "2020-05-I-LA-R4: Bio-Lab to revise emergency response plan to require proper fire protection system maintenance, pre-hurricane equipment checks, and personnel training on emergency generators",
+      "2020-05-I-LA-R5: Louisiana Governor/Legislature/LDEQ to require existing chemical facilities in hurricane-prone regions to evaluate and protect against hurricane hazards",
+      "2020-05-I-LA-R6: EPA to implement five open GAO recommendations on climate change risks at RMP facilities",
+      "2001-01-H-R1 (reiterated): OSHA to amend PSM Standard to achieve more comprehensive control of reactive hazards",
+      "2001-01-H-R3 (reiterated): EPA to revise Accidental Release Prevention Requirements to explicitly cover catastrophic reactive hazards"
+    ],
+    "key_phrases": [
+      "Hurricane Laura Category 4",
+      "trichloroisocyanuric acid decomposition",
+      "rainwater contact with TCCA",
+      "toxic chlorine gas release",
+      "nonfunctional fire protection system",
+      "absence of automatic sprinkler system",
+      "PHA action item management deficiency",
+      "extreme weather preparation",
+      "reactive chemical hazard regulatory gap",
+      "OSHA PSM Standard",
+      "EPA RMP Rule",
+      "NFPA 101 Life Safety Code",
+      "NFPA 400 Hazardous Materials Code",
+      "shelter-in-place order",
+      "five-and-a-half hour response delay",
+      "backup generator unfamiliarity",
+      "CCPS Monograph Assessment of and Planning for Natural Hazards"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Large inventory of water-reactive TCCA-based formulation stored in buildings susceptible to hurricane wind damage"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Hurricane-force winds and associated rainfall in a hurricane-prone region"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Hurricane Laura winds damaging building roofs, allowing rainwater intrusion into TCCA storage areas"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Buildings not constructed to current wind design requirements (built to 1974 Standard Building Code, not 2015 IBC)"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate extreme weather preparation and failure to implement CCPS natural hazard guidance"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Unimplemented 2010 PHA recommendation to evaluate warehouse roof structure for hurricane conditions"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Release of large toxic chlorine gas plume into surrounding community"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Fire and destruction of Plant 4 production building and damage to additional structures"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Shelter-in-place order issued for nearby community"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Interstate 10 closure for over 28 hours"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Approximately $250 million facility reconstruction cost"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "Increased quantity of TCCA decomposed and chlorine released due to ~5.5-hour emergency response delay"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Hurricane Plan (pre-hurricane preparation procedures)",
+        "side": "prevention",
+        "barrier_role": "Procedural controls to protect chemicals from hurricane rainwater and floodwater",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Bio-Lab Hurricane Plan defining six preparation phases including sandbagging, raising materials on pallets, securing warehouse doors",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "To protect chemicals from hurricane rainwater and floodwater, the plan requires employees to 'sandbag identified entrances to prevent floodwater entry,' 'move finished product… to higher storage or place empty pallet under the product'",
+            "These actions could not protect chemicals from any unintentional movement from hurricane winds or exposure to rainwater in the event hurricane-force winds damaged the buildings.",
+            "Bio-Lab did not learn the importance of preparing for extreme weather after the 2017 Arkema incident, did not adequately implement industry guidance for preparing for extreme weather, and, as a result, was unprepared for the winds produced by Category 4 Hurricane Laura."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Building structural integrity (wind-resistant construction)",
+        "side": "prevention",
+        "barrier_role": "Physical barrier preventing rainwater intrusion into chemical storage areas during hurricane",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Buildings designed to 1974 Standard Building Code wind requirements; not meeting 2015 IBC Risk Category IV requirements of 145 mph",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "winds from Hurricane Laura caused portions of the roof of Bio-Lab Plant 4, which housed an estimated 70,000-100,000 pounds of TCCA-based formulation material, to be torn off the building",
+            "The CSB-commissioned analysis determined that buildings meeting 2015 International Building Code requirements are significantly stronger and better able to survive high wind events than those meeting the 1974 Standard Building Code requirements.",
+            "the cause of the accidental release of chlorine gas from the Bio-Lab Lake Charles facility was rainwater contacting stored trichloroisocyanuric acid-based formulation, which initiated a chemical reaction, decomposition, and fire after Category 4 Hurricane Laura winds damaged portions of the facility's building roofs that were not built to current wind design requirements."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Process Hazard Analysis (PHA) program",
+        "side": "prevention",
+        "barrier_role": "Systematic identification of hazards and implementation of corrective actions to prevent chemical releases",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Bio-Lab voluntarily conducted PHAs; 2010 PHA identified warehouse roof hurricane vulnerability but recommendation was not implemented",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Bio-Lab's 2010 Process Hazard Analysis recommended the Lake Charles facility to 'consider evaluating warehouse roof structure for hurricane conditions; verify warehouse is built to withstand high winds,' but the company did not implement the recommendation.",
+            "Bio-Lab has no documentation that this 2010 PHA recommendation was ever implemented.",
+            "The lack of close-out documentation for the 2010 PHA recommendation points to deficiencies in Bio-Lab's PHA action item management system.",
+            "Bio-Lab communicated that it does not have a PHA action item management system."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Pre-hurricane chemical removal/transport from facility",
+        "side": "prevention",
+        "barrier_role": "Reduce on-site inventory of water-reactive TCCA to limit exposure and consequence magnitude",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Bio-Lab transported approximately 825,000 pounds of TCCA-based formulation to Conyers, Georgia before hurricane landfall; two additional scheduled trucks never arrived",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Bio-Lab successfully transported about 825,000 pounds of TCCA-based formulation from the Finished Goods Warehouse to the Bio-Lab facility in Conyers, Georgia. However, two additional scheduled trucks never arrived at the facility, leaving over one million pounds of TCCA-based formulation product on-site as the hurricane approached."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Fire protection system (fire water pumps, monitors, hydrants)",
+        "side": "mitigation",
+        "barrier_role": "Apply water to decomposing TCCA to suppress chemical reaction, fire, and toxic gas release",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Four fire water pumps (two electric, two diesel) with total capacity of 8,000 gpm; fire monitors, hose stations, hydrants",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Bio-Lab experienced serious delays in responding to the TCCA-based formulation decomposition and fire due to an inadequate and largely nonfunctional fire protection system and the absence of automated sprinkler systems.",
+            "one of the diesel pumps was nonfunctional before the hurricane made landfall, resulting in only one fire water pump—a diesel pump—available for use",
+            "The diesel fire water pump that was not functional at the time of the incident had failed its annual performance test in 2015, 2016, 2017, and 2020. A Bio-Lab manager communicated to the CSB that the pump 'didn't work and it hasn't for some years.'",
+            "With only one fire water pump, the facility could not achieve adequate pressure to apply water to the decomposing TCCA-based formulation.",
+            "The problems with the Bio-Lab fire protection system resulted in a lengthy delay of around five and a half hours before productive emergency response operations began."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Backup generator for electric fire water pumps",
+        "side": "mitigation",
+        "barrier_role": "Provide electrical power to operate electric fire water pumps during power outage",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Rental backup generator acquired during hurricane preparation; Bio-Lab's own backup generator was not functional before the hurricane",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "One of the employees attempted to turn on a rental backup generator secured during the site's preparation for Hurricane Laura to energize the large electric fire water pump. The employee, who was unfamiliar with the rental generator, was unable to start it.",
+            "Bio-Lab's backup emergency generator was not functional.",
+            "The employees did not have a manual or operating procedure to reference for the rental generator.",
+            "Bio-Lab also did not ensure that enough of its staff, including its assigned hurricane crew, knew how to activate the rental backup generator, which was necessary to operate electrically powered fire protection equipment during the power outage caused by Hurricane Laura."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Automatic fire sprinkler system",
+        "side": "mitigation",
+        "barrier_role": "Automatically apply water to suppress fire and chemical decomposition upon detection",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Required by NFPA 101 for high-hazard industrial occupancies and NFPA 400 for facilities exceeding MAQ; not installed in Plant 4 or Finished Goods Warehouse",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Bio-Lab did not have automated fire sprinklers in Plant 4 or the Finished Goods Warehouse, which stored TCCA-based formulation and experienced decomposition events due to the hurricane.",
+            "Bio-Lab also did not conform to NFPA 400 Hazardous Materials Code, which required a fire detection system and an automatic fire sprinkler system.",
+            "Had the Bio-Lab buildings involved in the incident been equipped with automatic extinguishing systems, it is likely that Bio-Lab would have begun applying large amounts of water to the decomposing TCCA-based formulation earlier in the incident.",
+            "The approximately five-and-a-half hour delay in responding to the decomposition likely led to an unnecessary increase in (1) the amount of TCCA-based formulation that decomposed, (2) the quantity of toxic chlorine released, and (3) the extent of the facility damage."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Fire detection system",
+        "side": "mitigation",
+        "barrier_role": "Detect fire or decomposition event early to trigger timely emergency response",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Required by NFPA 400 for facilities storing hazardous materials exceeding MAQ; not installed in Plant 4 or Finished Goods Warehouse",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Bio-Lab had neither a fire detection system nor an automatic fire sprinkler system in either Plant 4 or the Finished Goods Warehouse, where the decompositions occurred.",
+            "NFPA 400 Hazardous Materials Code, which required a fire detection system and an automatic fire sprinkler system"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Emergency response plan and trained hurricane crew",
+        "side": "mitigation",
+        "barrier_role": "Coordinate and execute emergency response to chemical decomposition and fire events",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Bio-Lab Hurricane Plan and designated Hurricane Crew; crew members had specific job assignments but lacked training on rental generator operation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Bio-Lab did not ensure that enough of its staff, including its assigned hurricane crew, knew how to activate the rental backup generator, which was necessary to operate electrically powered fire protection equipment during the power outage caused by Hurricane Laura.",
+            "The employees did not have a manual or operating procedure to reference for the rental generator.",
+            "Bio-Lab experienced serious delays in responding to the TCCA-based formulation decomposition and fire (roughly five and a half hours), due to an inadequate and largely nonfunctional fire protection system and the absence of automated extinguishing systems."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Third-party emergency responders (US Fire Pump, SRS, Haz Mat Special Services)",
+        "side": "mitigation",
+        "barrier_role": "Provide firefighting equipment, water application, and hazmat response to control decomposition and release",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "External contractors and fire department deployed after Bio-Lab's internal response failed; US Fire Pump flowing fire water by approximately 3:21 p.m.",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "By approximately 3:21 p.m., US Fire Pump was on-site and flowing fire water to Plant 4 with its firefighting equipment.",
+            "The incident could not be controlled until the contracted third-party emergency responders arrived, set up their equipment, and successfully flowed sufficient water to the decomposing TCCA-based formulation.",
+            "Once Haz Mat Special Services demolished the wall and roof, they accessed the chemical and saturated it with water, significantly reducing the visible white cloud emitting from the building."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Air monitoring program (LDEQ, EPA, Center for Toxicology & Environmental Health)",
+        "side": "mitigation",
+        "barrier_role": "Monitor community and work area chlorine concentrations to inform protective actions",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "LDEQ arrived ~12:05 p.m.; EPA ASPECT aircraft at ~2:00 p.m.; ground monitoring at 41+ locations; chlorine measured at up to 0.9 ppm in community",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Louisiana Department of Environmental Quality (LDEQ) arrived at the facility around 12:05 p.m. on August 27, 2020, and began coordinating air monitoring efforts.",
+            "The EPA conducted handheld air monitoring for chlorine gas in multiple ground locations.",
+            "The EPA measured chlorine gas 'slightly' exceeding the EPA Acute Exposure Guideline Level (AEGL-1) of 0.5 ppm in two locations on August 27, 2020: 0.9 ppm of chlorine measured at 5:38 p.m., and 0.7 ppm of chlorine measured at 9:54 p.m."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Shelter-in-place order and Interstate 10 closure",
+        "side": "mitigation",
+        "barrier_role": "Protect community members from toxic chlorine gas exposure",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Shelter-in-place issued at ~10:15 a.m.; I-10 closed at 9:54 a.m.; both lifted after incident controlled on August 28",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 9:54 a.m., the Louisiana State Police closed a portion of the nearby Interstate 10.",
+            "At about 10:15 a.m., a shelter-in-place order was issued for the nearby community.",
+            "On August 28, 2020, at approximately 2:30 p.m., the incident was sufficiently controlled, and the Louisiana State Police reopened Interstate 10 after it had been closed for 28 hours and lifted the shelter-in-place order.",
+            "There were no reported injuries from this event."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "OSHA PSM Standard and EPA RMP Rule regulatory coverage",
+        "side": "prevention",
+        "barrier_role": "Require facilities to implement process safety management elements including PHAs and action item resolution for reactive chemical hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "TCCA and TCCA-based formulations not covered by OSHA PSM or EPA RMP regulations; regulatory gap contributed to incident",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "TCCA and TCCA-based formulations are not regulated under the OSHA PSM Standard or the U.S. Environmental Protection Agency (EPA) Risk Management Program (RMP) Rule.",
+            "As such, Bio-Lab was not required to implement baseline process safety management system elements to manage the safety of its TCCA-based formulation related operations under these regulations.",
+            "Also contributing to the incident was insufficient regulatory coverage of chemicals with reactive hazards.",
+            "This regulatory coverage gap relating to reactive chemicals and their hazards (1) points to a weakness in relying on fixed chemical lists to determine regulatory coverage, (2) contributed to this incident, and (3) contributed to many other reactive chemical incidents over the past three decades."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

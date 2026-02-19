@@ -1,0 +1,461 @@
+{
+  "incident_id": "unknown",
+  "source": {
+    "doc_type": "safety_spotlight",
+    "url": null,
+    "title": "CSB Safety Spotlight: Implementation of a Safety Management System is Key to a Safer Chemical Industry",
+    "date_published": "2019",
+    "date_occurred": "2016-08-28",
+    "timezone": null
+  },
+  "context": {
+    "region": "Cantonment, Florida, USA",
+    "operator": "Airgas, Inc., an Air Liquide Company",
+    "operating_phase": "production",
+    "materials": [
+      "nitrous oxide"
+    ]
+  },
+  "event": {
+    "top_event": "Nitrous Oxide Decomposition and Explosion",
+    "incident_type": "explosion",
+    "costs": null,
+    "actions_taken": [
+      "Developed and implemented Industrial Risk Management Program",
+      "Created process hazard analysis methodology",
+      "Established management of change procedure",
+      "Created project design authority within the company",
+      "Initiated project risk identification process",
+      "Added technical and hourly staffing",
+      "Applied more appropriate transfer pumps for nitrous oxide service",
+      "Upgraded maintenance requirements for flame arrestors following technical review",
+      "Updated procedures and training for drivers and operators during transfer operations",
+      "Issued personal gas monitors to personnel",
+      "Initiated literature reviews and third-party engineering assessments",
+      "Increased lessons learned and good safety practices sharing internally and with compressed gas industry",
+      "Implemented new information-sharing practices internally"
+    ],
+    "summary": "On August 28, 2016, a nitrous oxide trailer truck exploded at the Airgas manufacturing facility in Cantonment, Florida. The explosion fatally injured the only Airgas employee on site and heavily damaged the facility. The most probable cause was that, during initial loading of a trailer truck, a pump heated nitrous oxide above its safe operating limits, initiating a decomposition reaction that propagated from the pump into the trailer truck and caused the explosion. The CSB investigation found that Airgas lacked an effective safety management system to identify, evaluate, and control process safety-related hazards. Following the incident, Airgas undertook a comprehensive initiative covering 17 areas of process safety improvement and rapidly implemented PSM components for its nitrous oxide operations.",
+    "recommendations": [
+      "CSB issued a single recommendation to Airgas to complete its in-progress post-incident actions and continue safety initiatives for its nitrous oxide operations",
+      "Develop and implement PSM components including hazard analysis, management of change, and inherently safer design",
+      "Share lessons learned and good safety practices with the broader compressed gas industry"
+    ],
+    "key_phrases": [
+      "nitrous oxide trailer truck exploded",
+      "pump heated nitrous oxide above its safe operating limits",
+      "nitrous oxide decomposition reaction",
+      "did not have an effective safety management system",
+      "17 different areas for process safety improvements",
+      "inherently safer design",
+      "hazard analysis",
+      "management of change",
+      "hierarchy of controls",
+      "flame arrestors",
+      "personal gas monitors",
+      "process safety management"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Nitrous oxide under pressure in transfer/storage system with decomposition potential"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Pump overheating nitrous oxide above safe operating limits during trailer loading"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Absence of effective process safety management system"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Nitrous oxide decomposition reaction propagating into trailer truck"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Fatal explosion killing Airgas employee"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Heavy facility damage"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Appropriate transfer pumps for nitrous oxide service",
+        "side": "prevention",
+        "barrier_role": "Prevent pump from overheating nitrous oxide above safe operating limits",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary engineering control to prevent thermal exceedance in pump",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "a pump heated nitrous oxide above its safe operating limits",
+            "applying more appropriate transfer pumps for nitrous oxide service"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Flame arrestors on nitrous oxide transfer system",
+        "side": "prevention",
+        "barrier_role": "Prevent propagation of decomposition reaction from pump to trailer",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary engineering barrier to arrest flame/decomposition propagation",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "upgrading maintenance requirements for flame arrestors (this followed a significant technical review of existing flame arrestor technology)",
+            "decomposition reaction that propagated from the pump into the trailer truck, causing the explosion"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Process Safety Management System (hazard identification, evaluation, and control)",
+        "side": "prevention",
+        "barrier_role": "Identify, evaluate, and control process safety-related hazards before incident occurs",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational administrative barrier for hazard management",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Airgas did not have an effective safety management system that identifies, evaluates, and controls process safety-related hazards like those that led to the explosion"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Process Hazard Analysis (PHA) methodology",
+        "side": "prevention",
+        "barrier_role": "Systematically identify and evaluate process hazards in nitrous oxide operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Structured hazard identification and risk assessment process",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Airgas developed and implemented recommended PSM components for its nitrous oxide business by creating a new Industrial Risk Management Program, a process hazard analysis methodology",
+            "hazard analysis"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Management of Change (MOC) procedure",
+        "side": "prevention",
+        "barrier_role": "Control changes to process equipment and operations to prevent introduction of new hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control to manage process and equipment changes safely",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "a management of change procedure",
+            "management of change (MOC)"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Operator and driver procedures and training for transfer operations",
+        "side": "prevention",
+        "barrier_role": "Ensure personnel follow safe operating practices during nitrous oxide transfer",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human performance barrier through training and procedural compliance",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "updating procedures and training for drivers and operators during transfer operations",
+            "training for operations personnel"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Personal gas monitors for nitrous oxide exposure detection",
+        "side": "mitigation",
+        "barrier_role": "Detect nitrous oxide exposure and alert personnel to mitigate harm",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Detection and warning device to protect personnel from gas exposure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "issuing personal gas monitors to personnel to help eliminate or mitigate potential exposure to nitrous oxide"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Inherently safer design initiatives",
+        "side": "prevention",
+        "barrier_role": "Reduce or eliminate hazards through design rather than relying on controls",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Highest order of hazard control through elimination or substitution at design stage",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "inherently safer design",
+            "initiatives typically associated with the most effective and preventive efforts found in the hierarchy of controls, inherently safer design, engineering solutions"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Audit practices for nitrous oxide operations",
+        "side": "prevention",
+        "barrier_role": "Verify and assure effectiveness of safety controls and compliance with procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Independent verification layer to confirm barriers are functioning",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "improved audit practices",
+            "connected to ongoing engineering assessments, audits, and training for operations personnel"
+          ],
+          "confidence": "medium"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": false
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

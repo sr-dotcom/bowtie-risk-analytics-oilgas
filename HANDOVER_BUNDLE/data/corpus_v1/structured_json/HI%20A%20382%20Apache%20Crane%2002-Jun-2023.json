@@ -1,0 +1,388 @@
+{
+  "incident_id": "HI%20A%20382%20Apache%20Crane%2002-Jun-2023",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Crane Boom Damage Incident - High Island A 382 F",
+    "date_published": "2023-08-14",
+    "date_occurred": "2023-06-02",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - High Island Area Block A 382",
+    "operator": "Apache Corporation",
+    "operating_phase": "production",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Structural Damage to Crane Boom",
+    "incident_type": "Crane Incident - Equipment Damage",
+    "costs": "50000",
+    "actions_taken": [
+      "Crane Operator immediately shut the crane down",
+      "Crane Mechanic was informed",
+      "Crane was taken out of service",
+      "Apache Corporation retraining Crane Operator"
+    ],
+    "summary": "On June 2, 2023, at 12:30 hours, during crane operations at High Island A 382 F facility, the crane boom contacted the boom stop when raised to too high an angle, causing damage to the boom heel section cords. The Crane Operator was focusing on booming up and holding the ball level when the load block swung into the crane boom. The High Angle Kick Out limit switch failed to stop the boom from booming up too far. The incident resulted in $50,000 in estimated replacement costs with no injuries or pollution. The investigation concluded that Crane Operator inattentiveness of the boom angle was the primary cause, with the failure of the high angle kick out safety system as a contributing factor.",
+    "recommendations": [
+      "Apache Corporation is Retraining Crane Operator"
+    ],
+    "key_phrases": [
+      "crane boom contacted with the boom stop",
+      "damage to the boom heal section cords",
+      "Crane Operator was focusing on booming up and holding the ball level",
+      "loud bang was the load block that swung into the crane boom",
+      "boom being raised too high of an angle",
+      "relied on the High Angle Kick Out limit switch",
+      "lack of operational awareness of the angle of the crane boom",
+      "Crane Operator inattentiveness of the crane boom angle",
+      "failure of the high angle kick out safety system"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Kinetic Energy from Crane Operations",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Crane boom raised to excessive angle",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Operator inattentiveness to boom angle",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "High Angle Kick Out limit switch failure",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Structural damage to crane boom",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment out of service",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Financial loss",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "High Angle Kick Out Limit Switch",
+        "side": "prevention",
+        "barrier_role": "Automatic shutdown to prevent boom over-angle",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Automated safety system designed to stop hazardous condition",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Crane Operator stated, he relied on the High Angle Kick Out limit switch to stop the boom from booming up too far.",
+            "the failure of the high angle kick out safety system contributed to this incident.",
+            "Failure of High Angle Kick Out safety system, attributed to this incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Crane Operator Visual Monitoring of Boom Angle",
+        "side": "prevention",
+        "barrier_role": "Human monitoring and control of crane boom position",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary operational control by trained operator",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "competence",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Crane Operator was focusing on booming up and holding the ball level, and heard a loud bang.",
+            "The Crane Operator displayed a lack of operational awareness of the angle of the crane boom",
+            "Crane Operator inattentiveness of the crane boom angle, was the cause of this incident"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Rigger Hand Signals and Communication",
+        "side": "prevention",
+        "barrier_role": "Communication and coordination between rigger and crane operator",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary operational communication protocol",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "after the Rigger unhooked the personnel basket, he gave the standard hand signal to lower the fast line, hold the ball level, and raise the boom at the same time to the Crane Operator."
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Crane Pre-use and Annual Inspections",
+        "side": "prevention",
+        "barrier_role": "Verification of crane equipment integrity and safety systems",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Periodic verification and maintenance program",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "They collected documentation, maintenance records, Crane pre-use and annual inspection records"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Job Safety Analysis (JSA)",
+        "side": "prevention",
+        "barrier_role": "Pre-task hazard identification and risk assessment",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task planning and hazard identification",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "G 110 (C) Lessee failed to ensure all JSA's are properly filled out and signed."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Immediate Crane Shutdown by Operator",
+        "side": "mitigation",
+        "barrier_role": "Prevent escalation after initial contact",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Immediate response to prevent further damage",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Crane Operator immediately let go of control leavers after realizing that the loud bang was the load block that swung into the crane boom",
+            "The Crane Operator immediately shut the crane down, informed the Crane Mechanic, and the crane was taken out of service."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Crane Out of Service Protocol",
+        "side": "mitigation",
+        "barrier_role": "Prevent continued use of damaged equipment",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident equipment isolation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the crane was taken out of service"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

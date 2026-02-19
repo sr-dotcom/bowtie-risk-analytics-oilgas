@@ -1,0 +1,670 @@
+{
+  "incident_id": "2016-03-I-TX",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Flash Fire and Explosion at Sunoco Partners Nederland Terminal",
+    "date_published": "2022-09-27",
+    "date_occurred": "2016-08-12",
+    "timezone": "CDT"
+  },
+  "context": {
+    "region": "Nederland, Texas, USA",
+    "operator": "Sunoco Partners Marketing and Terminals (SPMT) / Energy Transfer",
+    "operating_phase": "maintenance",
+    "materials": [
+      "crude oil",
+      "butane",
+      "propane"
+    ]
+  },
+  "event": {
+    "top_event": "Ignition of Explosive Atmosphere Inside Pipe During Hot Work",
+    "incident_type": "Flash Fire and Explosion",
+    "costs": null,
+    "actions_taken": [
+      "Jefferson County Sheriff's Office responded to control the scene",
+      "Nederland Fire Department responded and established triage area",
+      "Air Rescue and Acadian EMS transported injured workers",
+      "OSHA cited L-Con and CARBER in February 2017",
+      "PHMSA cited Sunoco for failure to report the incident",
+      "Sunoco updated procedures post-incident to prohibit hot work on equipment containing flammable atmosphere and require inert gas purging"
+    ],
+    "summary": "On August 12, 2016, at approximately 8:15 p.m. CDT, a flash fire and explosion occurred at the Sunoco Nederland crude oil terminal while contractor L-Con, Inc. was performing arc welding on a 30-inch diameter piping segment containing residual crude oil. CARBER isolation tools had been installed at both ends of the pipe section to isolate residual crude oil from the hot work area. During internal welding of a flange, vapors inside the piping ignited, causing a pressure spike that ejected the CARBER isolation tools from both ends of the pipe. Seven contractor workers were injured, four seriously. The probable cause was Sunoco approving and L-Con conducting hot work on equipment containing an explosive atmosphere. The pipe had not been cleaned, inerted, or decontaminated prior to hot work, in violation of OSHA 29 CFR 1910.252 and NFPA 51B.",
+    "recommendations": [
+      "Ensure the internal atmosphere of equipment is not flammable before conducting hot work; use cleaning, inert gas purging (e.g., nitrogen), or water filling as mitigation",
+      "Conduct thorough identification and assessment of all flammables and combustibles in hot work zones to develop a robust mitigation plan",
+      "Use alternative methods to hot work where possible; analyze and control hazards; conduct effective atmospheric monitoring including inside equipment; use written permits specifying hazards and precautions; train workforce thoroughly; provide adequate contractor supervision"
+    ],
+    "key_phrases": [
+      "flash fire and explosion",
+      "hot work",
+      "residual crude oil",
+      "CARBER isolation tool",
+      "explosive atmosphere",
+      "arc welding",
+      "inert gas purging",
+      "LEL monitoring",
+      "hot work permit",
+      "pipe not cleaned",
+      "pipe not inerted",
+      "flammable vapors",
+      "confined explosive atmosphere",
+      "isolation tool ejected",
+      "OSHA 29 CFR 1910.252",
+      "NFPA 51B"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Residual Crude Oil (Flammable Liquid/Vapor) in Piping Undergoing Hot Work"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Pipe Not Cleaned or Decontaminated Prior to Hot Work"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Pipe Not Inerted Prior to Hot Work"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate Hot Work Procedures and Permitting"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Failure of CARBER Isolation Tool to Prevent Explosive Atmosphere"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Ambient Temperature Above Crude Oil Flashpoint (84°F > 73.4°F)"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Flash Fire and Explosion Injuring Seven Workers"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Ejection of CARBER Isolation Tools and Residual Crude Oil from Pipe Ends"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Burn Injuries, Bone Fractures, and Blast-Related Injuries to Contractor Personnel"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "OSHA Citations and Regulatory Penalties to L-Con, CARBER, and Sunoco"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "CARBER Isolation Tool (Mechanical Pipe Isolation Device)",
+        "side": "prevention",
+        "barrier_role": "Physical barrier between residual crude oil/vapors inside pipe and external hot work ignition source",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary engineered barrier intended to isolate flammable pipe contents from hot work area",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "CARBER used their company-specific isolation tools to isolate the pipe section, which contained residual crude oil, from workers and the hot work that would take place.",
+            "The atmosphere inside the pipe at the time of the incident was explosive, due to confinement of the flammable atmosphere by the CARBER isolation tools and ignited when exposed to an ignition source.",
+            "The ignition initiated a pressure spike that, in turn, caused the isolation tools at flanges A and B to blow out of the open pipe at the north and south ends.",
+            "The Isolation Tool provides a means to monitor the seal integrity using a pressure gauge attached to the water outlet."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Vent Hose on Top of Pipe (Pressure Relief Vent)",
+        "side": "prevention",
+        "barrier_role": "Limited pressure relief to route vapors away from hot work area",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Supplementary engineering control to vent vapors at minimum 50 feet from hot work per CARBER procedures",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Once the seals are proven, CARBER procedures call for installing a central vent pipe, fittings, a 0-15 psig vent gauge and vent hose to safely route vapors away (at a minimum 50 feet) from the hot work.",
+            "The flammable atmosphere inside the pipe was confined due to plugging both ends with CARBER isolation tools (with only the vent hose on top of the pipe providing limited pressure relief)."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Pipe Draining and Cold Cutting Prior to Hot Work",
+        "side": "prevention",
+        "barrier_role": "Reduce quantity of residual crude oil in pipe before hot work commences",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural step to drain piping and cold cut to minimise flammable material prior to hot work",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Sunoco operators ceased crude oil flow and drained the piping through that piping segment.",
+            "L-Con and Sunoco workers determined there was approximately one-and-a-half-inches to two-inches deep level of crude oil that remained.",
+            "Lines will be drained but not hydrocarbon free therefore a 'CARBER plug' will need to be utilized to allow welding of the first flange.",
+            "Sunoco left residual crude oil (which was previously established as being flammable) in the pipe, as specified in the Scope of Work document."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Inert Gas Purging of Pipe Prior to Hot Work",
+        "side": "prevention",
+        "barrier_role": "Eliminate explosive atmosphere inside pipe by displacing flammable vapors and air with inert gas (e.g., nitrogen)",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Required alternative precaution per Sunoco Hot Work procedure when equipment cannot be fully decontaminated",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Purging with an inert gas, such as nitrogen, would have reduced the levels of flammable vapors and air inside the pipe, rendering the atmosphere inside the pipe non-flammable.",
+            "The CSB concludes that purging the pipe with an inert gas, such as nitrogen, would have prevented the incident from occurring by eliminating the flammable atmosphere inside the pipe.",
+            "In situations where piping systems or other process equipment cannot be isolated or fully decontaminated, alternative precautions, such as purging with inert gases, must be established to ensure that welding and cutting can be conducted safely.",
+            "Sunoco did not take measures to decontaminate the equipment prior to conducting hot work."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Hot Work Permit System",
+        "side": "prevention",
+        "barrier_role": "Administrative authorisation control to verify safe conditions before hot work commences",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Permit-to-work system requiring verification of hazard controls before issuing authorisation to weld",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "A CIS employee, on behalf of Sunoco, then issued a hot work permit to L-Con, permitting them to start welding.",
+            "The issued hot work permit required a fire watch, fire extinguisher, and a continuous flammable gas monitor for the job.",
+            "Sections 8 & 9 of the hot work permit were labeled 'Not Applicable' (N/A).",
+            "Sunoco approving, and L-Con conducting, hot work activities on equipment that contained an explosive atmosphere.",
+            "The permitting authority prior to permit approval shall verify isolation and/or decontamination measures taken to assure safety of the operation."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Job Hazard Analysis (JHA)",
+        "side": "prevention",
+        "barrier_role": "Systematic identification of hazards and required controls before commencing hot work",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Pre-job hazard identification and control planning document completed by L-Con prior to welding",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Prior to starting the hot work the day of the incident, L-Con conducted a JHA (Job Hazard Analysis).",
+            "L-Con identified a variety of hazards on the JHA checklist for the welding work planned at the Nederland terminal, including: Hot work (burns, fire, explosion).",
+            "A JHA shall be used to identify and communicate the potential hazards and required safety controls associated with all welding and cutting operations.",
+            "Contributing to the incident was the ineffective implementation and execution of policies and procedures by Sunoco, L-Con, and CARBER."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Continuous Atmospheric/LEL Monitoring at Hot Work Location",
+        "side": "prevention",
+        "barrier_role": "Detect presence of flammable vapors in the hot work area and trigger work stoppage",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Continuous gas monitor mounted near welding location to detect LEL exceedances",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The issued hot work permit required a fire watch, fire extinguisher, and a continuous flammable gas monitor for the job.",
+            "A continuous monitor was mounted on the railing close to where welding was occurring.",
+            "There were no accounts from the welders that the continuous monitor alarmed at any time during welding activities, which would be indicative of flammable vapors in the area.",
+            "According to the work permit issued the night of the incident, atmospheric testing was conducted at 7:00 p.m. and did not detect any flammable vapors.",
+            "There were no accounts of the specifics on the exact location(s) of where atmospheric testing was conducted.",
+            "The contractor shall provide continuous air monitoring and LEL monitoring during all hot work activities."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Fire Watch",
+        "side": "mitigation",
+        "barrier_role": "Observe hot work area for fire ignition and initiate emergency response",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Dedicated fire watch personnel required to remain at post during and 30 minutes after welding",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Additional labor shall include fire watch personnel at the site. Firewatch must remain at post, until 30 minutes after all welding has been completed.",
+            "The issued hot work permit required a fire watch, fire extinguisher, and a continuous flammable gas monitor for the job.",
+            "The forced ejection of the isolation tools and the flash fire from the pipe section injured seven contractors, including four welders, one fire watch, and two other contractors."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Fire Extinguisher at Hot Work Location",
+        "side": "mitigation",
+        "barrier_role": "Suppress incipient fire at hot work location",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Fire extinguisher required by hot work permit as immediate fire suppression resource",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "unknown",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The issued hot work permit required a fire watch, fire extinguisher, and a continuous flammable gas monitor for the job.",
+            "Required Controls: Fire extinguishers or blankets."
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Emergency Response (Fire Department, EMS, Sheriff)",
+        "side": "mitigation",
+        "barrier_role": "Control scene, provide medical triage, and transport injured workers following explosion",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "External emergency services activated post-incident to manage consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "L-Con and CIS employees called 911 at approximately 8:40pm CST and dispatched the Nederland fire and police departments, the Jefferson County Emergency Response Sheriff's office, and the USCG.",
+            "Nederland Fire Department also arrived at approximately 8:54pm. While heading to Sunoco, they contacted Acadian, an EMS service, and Air Rescue, a life flight service, to transport injured workers.",
+            "The fire department team established a triage area to begin monitoring and caring for the injured workers until the EMS services reached the site.",
+            "The four of the seven injured were transported to the hospital (via helicopter and ambulance) and treated for burns, bone fractures, and other blast related injuries."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Sunoco Hot Work Procedure (Written Policy)",
+        "side": "prevention",
+        "barrier_role": "Define requirements for safe hot work including equipment decontamination, purging, and atmospheric monitoring",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Documented procedure governing hot work safety requirements at Sunoco facilities",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Sunoco's Hot Work procedure did not adequately state that hot work on equipment that contained or previously contained flammable material, was not permitted by OSHA or NFPA 51B, nor did the procedure clearly explain how to ensure equipment shall be cleaned or decontaminated to safely conduct hot work.",
+            "Equipment that has been in flammable or combustible service or may be contaminated with hazardous materials shall be purged, made safe, or decontaminated prior to conducting hot work on the equipment.",
+            "The 'made safe' provision was interpreted by Sunoco staff as allowing the use of the CARBER isolation tool.",
+            "Contributing to the incident was the ineffective implementation and execution of policies and procedures by Sunoco, L-Con, and CARBER."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "L-Con Welding and Cutting Safety Procedure and Pipe Mechanical Seal Guideline",
+        "side": "prevention",
+        "barrier_role": "Define engineering controls and limitations for hot work on piping containing flammable materials",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "L-Con internal safety procedure specifying requirements for use of mechanical seals and isolation during hot work",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "A piping mechanical seal device may be used only in the following situations for lines which have contained hydrocarbons or other flammable materials: Liquid is not present in the line within six (6) feet of the hot work to be performed.",
+            "Only CARBER testing services, or equivalent, or better methods may be considered for situations when the line to be sealed normally contains or might reasonably have contained free hydrocarbon with a flash temperature below 140°F.",
+            "Contributing to the incident was the ineffective implementation and execution of policies and procedures by Sunoco, L-Con, and CARBER.",
+            "In February 2017, L-Con was cited and issued fines by OSHA for multiple violations of OSHA regulations, including not utilizing their company's procedures to control potentially hazardous energy."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "CARBER Isolation Tool Seal Integrity Monitoring",
+        "side": "prevention",
+        "barrier_role": "Verify and continuously monitor integrity of isolation tool seals to confirm barrier effectiveness",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Pressure gauge monitoring of CARBER isolation tool water outlet to verify seal integrity per CARBER procedures",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Isolation Tool provides a means to monitor the seal integrity using a pressure gauge attached to the water outlet. If no leaks are found and the water pressure holds steady, the isolation tool seals are proven (or verified).",
+            "According to CARBER, the ability to monitor the seal's integrity is essential to the CARBER isolation tool, especially since it intended to provide a barrier to hazardous conditions inside the pipe.",
+            "L-Con received one other than serious violation of 29 CFR 1910.147(d)(5)(ii) for failing to ensure its subcontractor continuously monitored the isolation devices the subcontractor installed until the servicing work was completed."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_notes": {
+      "competence_mentioned_basis": "OSHA cited L-Con for lack of training of employees on recognizing and controlling hazardous energy sources; CSB noted ineffective implementation and execution of policies and procedures by all parties.",
+      "situational_awareness_mentioned_basis": "Workers and permit issuers did not recognise the explosive atmosphere inside the pipe; continuous monitor did not alarm; atmospheric testing location unspecified.",
+      "procedures_mentioned_basis": "Sunoco Hot Work procedure was inadequate and ambiguous; L-Con Pipe Mechanical Seal Guideline was not properly followed; CARBER procedures for continuous monitoring were not followed.",
+      "tools_equipment_mentioned_basis": "CARBER isolation tool was the primary engineered control and failed to prevent the explosive atmosphere from being ignited; vent hose provided only limited pressure relief.",
+      "safety_culture_mentioned_basis": "CSB found ineffective implementation and execution of policies and procedures by Sunoco, L-Con, and CARBER; similar prior incidents at both Sunoco and L-Con had not driven adequate corrective action.",
+      "supervision_mentioned_basis": "CIS provided oversight and issued permits on behalf of Sunoco; a supervisor checked on work around flange A shortly before the explosion; CSB key lesson references adequate contractor supervision.",
+      "training_mentioned_basis": "OSHA cited L-Con for lack of training of employees on recognizing and controlling hazardous energy sources; CSB key lesson references training the workforce thoroughly on hot work policies and procedures."
+    }
+  }
+}

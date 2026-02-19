@@ -1,0 +1,538 @@
+{
+  "incident_id": "EB%20602-A%20%20Anadarko%20%2021-May-2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Crane Incident - Nansen Spar Platform",
+    "date_published": "2025-08-27",
+    "date_occurred": "2025-05-21",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, East Breaks Block 602",
+    "operator": "Anadarko Petroleum Corporation",
+    "operating_phase": "production",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Structural Damage - Crane Equipment Failure",
+    "incident_type": "Crane incident with dropped object",
+    "costs": "500",
+    "actions_taken": [
+      "All stop declared",
+      "Inspection of crane boom performed - no damage found",
+      "Onsite investigation performed on 22-May-2025 by BSEE",
+      "Pictures taken of broken lever hoist and chain",
+      "Statements collected from personnel"
+    ],
+    "summary": "On 21-May-2025 at approximately 1:45 p.m., a crane incident occurred on the Nansen Spar platform. Contract scaffold builders attached multiple 1/4-ton lever hoists to the crane boom for scaffolding stabilization without notifying the Lifting Authority. When the crane operator lifted the boom out of its rest after lunch break without conducting a pre-use inspection, one lever hoist broke and fell approximately 30 feet to the flare boom mezzanine deck. No injuries occurred. The incident resulted from communication failures, inadequate supervision, and simultaneous operations in a confined area.",
+    "recommendations": [
+      "Verification of Temporary Anchor Points: The Lifting Authority will verify all temporary anchor points used for rigging prior to lifting operations",
+      "Control of Work Update: The control of work procedures will be updated for the lifting and rigging section, requiring the Lifting Authority to sign off on the approval of anchor points",
+      "Development of HSE Alert: An HSE alert will be developed to outline the failures that contributed to the incident, along with the corrective actions taken",
+      "Policy Update for Rigging and Lifting: The rigging and lifting policy will be updated to mandate inspections of the crane whenever the boom is placed into the boom rest"
+    ],
+    "key_phrases": [
+      "failed to notify the Anadarko Lifting Authority",
+      "resumed lifting operations without conducting another pre-use inspection",
+      "before the Crane Operator could react, a 1/4-ton lever hoist broke",
+      "Should have been locked out and tagged out",
+      "Simultaneous Operations (SIMOPS)",
+      "Insufficient knowledge and training among third-party personnel"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Crane boom movement with attached equipment",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Unauthorized attachment of equipment to crane boom",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Crane operation without adequate pre-use inspection",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Simultaneous operations in confined area",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Failure to communicate work activities between contractors",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Equipment failure - lever hoist breakage",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Dropped object from height (30 feet)",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Potential personnel injury",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Property damage",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Lifting Authority notification and approval for anchor points",
+        "side": "prevention",
+        "barrier_role": "Administrative control requiring approval before attaching equipment to crane",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural requirement to prevent unauthorized modifications",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "procedures",
+            "training"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "contract scaffolding builders failed to notify the Anadarko Lifting Authority of the installed equipment",
+            "Contract scaffold builder supervisor should have notified the lifting authority of its intention to use the crane boom as a connection point",
+            "According to lessee policy, permission is required before attaching any items to the crane boom"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Pre-use crane inspection after breaks/interruptions",
+        "side": "prevention",
+        "barrier_role": "Inspection to identify hazards before crane operation",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Operational check before equipment use",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the Crane Operator resumed lifting operations without conducting another pre-use inspection or checking the crane and boom for any factors that could affect performance",
+            "According to Anadarko policy the crane operator is only required to perform a pre-use once a day",
+            "There is no requirement to perform additional pre-use inspections if the crane is left unattended"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Pre-job safety meeting and JSP/JSEA documentation",
+        "side": "prevention",
+        "barrier_role": "Communication and planning to identify hazards and work methods",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Planning and hazard identification before work",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "procedures",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Pre-job safety meeting with all personnel should have mentioned the use of the 1/4-ton lever hoist and the intention to use the crane boom as an anchor point",
+            "The contract scaffold builder's JSP mentions the use of a 'come along for cantilever for scaffolding,' but it is unclear where or how this would be used",
+            "Toolbox table talk, JSP, and JSEA's does not mention the use of a lever hoist to be used as a cantilever"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "SIMOPS coordination and management",
+        "side": "prevention",
+        "barrier_role": "Coordination of simultaneous operations to prevent conflicts",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Supervisory oversight of multiple concurrent activities",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "communication",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Simultaneous Operations (SIMOPS) - Contract scaffold builder, crane operations, and rigging operations were ongoing in a relatively small area",
+            "The Scaffolding Supervisor monitoring the work at that time also recalled seeing the scaffolding move and before he could call for an all stop, the lever hoist broke"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Lockout/Tagout procedures for crane boom",
+        "side": "prevention",
+        "barrier_role": "Physical isolation to prevent equipment operation during work",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Energy isolation before work on equipment",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "training",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Should have been locked out and tagged out"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Third-party personnel training on operator SOPs",
+        "side": "prevention",
+        "barrier_role": "Competency assurance for contractor personnel",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Training and qualification before work",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "training",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Third party personnel are unfamiliar with lessee standard operating procedures",
+            "Insufficient knowledge and training among third-party personnel resulted in a failure to understand established standard operating procedures"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Visual communication and hand signals during crane operations",
+        "side": "prevention",
+        "barrier_role": "Real-time communication to stop unsafe operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Active monitoring and intervention during operations",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "communication",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "As soon as personnel on the deck and the scaffolding crew realized the crane boom was moving, they tried to stop the crane operation using hand signals (waving of the hands), but before the Crane Operator could react, a 1/4-ton lever hoist broke",
+            "The crane operator who seen personnel working under the crane boom should have mentioned to them he was going to lift the boom out of the cradle"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Equipment capacity and load rating compliance",
+        "side": "mitigation",
+        "barrier_role": "Equipment design to withstand expected loads",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Inherent equipment design capacity",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "significant",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the contract scaffold builders used multiple 1/4-ton lever hoists as bracing, angled at 90 degrees to the crane boom for the 45-degree scaffolding supports",
+            "causing one of the 1/4-ton lever hoists to break",
+            "At the time of the incident a 1/4-ton lever hoist was damaged, the load chain broke approximately 2-3 foot up from the load hook"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Personnel positioning and exclusion zones",
+        "side": "mitigation",
+        "barrier_role": "Physical separation of personnel from dropped object hazard",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control to limit exposure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "workers were near the lever hoist when it broke",
+            "part of the 1/4-ton lever hoist fell approximately 30 feet to the flare boom mezzanine deck",
+            "we entered the data into a Dropped Object Consequences calculator, which indicated a slight potential consequence"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Emergency stop procedures and all-stop declaration",
+        "side": "mitigation",
+        "barrier_role": "Immediate cessation of operations to prevent escalation",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response to stop further damage",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Eventually, the Crane Operator halted crane operations, and an all stop was declared",
+            "An inspection of the crane boom was performed and no damage was found"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

@@ -1,0 +1,472 @@
+{
+  "incident_id": "MC%20300%20Murphy%20Exploration%2029-May-2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Emergency Disconnect Sequence - Noble Stanley Lafosse Drillship",
+    "date_published": "2026-01-15",
+    "date_occurred": "2025-05-29",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Mississippi Canyon Block 300",
+    "operator": "Murphy Exploration & Production",
+    "operating_phase": "drilling",
+    "materials": [
+      "calcium chloride brine",
+      "10.9 ppg CaCl2"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Station-Keeping",
+    "incident_type": "Emergency Disconnect Sequence",
+    "costs": "$5,000",
+    "actions_taken": [
+      "Yellow alert status declared due to excursion greater than 5 meters",
+      "Red alert declared when K-POSS panel indicated critical status change",
+      "Emergency Disconnect Sequence 3 activated from bridge",
+      "Upper and lower blind shear rams closed",
+      "Rig relocated to safe location",
+      "ROV deployed to assess LMRP and LBOP condition",
+      "Red watch circle of 48 meters established"
+    ],
+    "summary": "On May 29, 2025, at approximately 10:46 a.m., the Noble Stanley Lafosse Drillship experienced an unexpected change in wind speed and direction due to strong thunderstorms while preparing for cementing operations at Mississippi Canyon Block 300. Wind gusts reached 60 knots with waterspouts impacting the vessel, causing a 14-meter excursion while hanging off 5-7/8 inch drill pipe. The crew initiated an Emergency Disconnect Sequence, successfully closing blind shear rams and securing the well. The incident resulted in the discharge of 417 barrels of 10.9 ppg calcium chloride brine to the sea. No injuries were reported.",
+    "recommendations": [
+      "Enhance weather detection capabilities",
+      "Refine operational readiness during critical phases",
+      "Continuously improve emergency response protocols"
+    ],
+    "key_phrases": [
+      "Emergency Disconnect Sequence",
+      "loss of station-keeping",
+      "60 knot wind gusts",
+      "waterspouts",
+      "blind shear rams",
+      "14-meter excursion",
+      "red watch circle",
+      "inaccurate weather forecasting"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized Well",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Drilling Fluids in Riser",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Severe Weather Event - Rapid Wind Changes",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inaccurate Weather Forecasting",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Loss of Dynamic Positioning Capability",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Discharge of Drilling Fluids to Sea",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Damage to Drill Pipe",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Potential Damage to Subsea Equipment",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Weather Monitoring and Forecasting System",
+        "side": "prevention",
+        "barrier_role": "Detection and early warning of severe weather conditions",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "First line of defense against weather-related threats through monitoring and prediction",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Weather monitoring tools were in use, and radar did indicate nearby storm activity; however, the most recent forecast did not predict the severity of the conditions encountered",
+            "the latest weather report received from DTN at 6:14 AM on May 29th did not indicate the potential for 60 knot winds",
+            "Forecasts had indicated winds not exceeding 10 knots; however, a storm developed, producing a sudden wind gust of 60 knots"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Dynamic Positioning System",
+        "side": "prevention",
+        "barrier_role": "Maintain vessel position within operational limits",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary system to prevent loss of station-keeping",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "rapid and variable wind conditions that exceeded the rig's maneuvering and station-keeping capacity",
+            "Multiple changes in wind direction caused the wind to impact the beam of the vessel, generating significant lateral forces that exceeded the rig's station-keeping capability",
+            "the rig was experiencing a 14-meter excursion while hanging off 5-7/8 inch drill pipe"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "K-POSS Position Monitoring System",
+        "side": "prevention",
+        "barrier_role": "Monitor vessel position and alert crew to excursions",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary monitoring and alarm system to detect position deviations",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the rig entered yellow alert status due to an excursion greater than 5 meters",
+            "a red alert was declared when the K-POSS panel indicated a critical status change"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Well-Specific Operating Guidelines",
+        "side": "prevention",
+        "barrier_role": "Define operational limits and response procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary procedural control defining safe operating envelope",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Well-Specific Operating Guidelines",
+            "the crew responded swiftly and in full compliance with established procedures"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Emergency Disconnect Sequence Procedure",
+        "side": "mitigation",
+        "barrier_role": "Safely disconnect riser and secure well when position limits exceeded",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Last line of defense to prevent well control loss and major environmental damage",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the command to disconnect was issued from the bridge and promptly executed on the rig floor",
+            "Emergency Disconnect Sequence 3 was activated, successfully closing both the upper and lower blind shear rams",
+            "the SDPO demonstrated sound judgment by escalating the vessel's status to DP Red Alert and initiating the EDS before breaching the red watch circle"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Blind Shear Rams (Upper and Lower)",
+        "side": "mitigation",
+        "barrier_role": "Physically sever drill pipe and seal wellbore to prevent well control loss",
+        "barrier_type": "engineering",
+        "line_of_defense": "3rd",
+        "lod_basis": "Ultimate physical barrier to secure well and prevent blowout",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Emergency Disconnect Sequence 3 was activated, successfully closing both the upper and lower blind shear rams",
+            "The well is secured with appropriate barriers in place"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Cement Isolation Barrier Plug",
+        "side": "mitigation",
+        "barrier_role": "Provide well barrier to prevent flow from formation",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary well barrier independent of surface equipment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "while the Noble Stanley Lafosse was preparing to pump cement after successfully setting a Cement Isolation Barrier Plug (CIBP) at 20,602 feet RKB"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Red Watch Circle",
+        "side": "prevention",
+        "barrier_role": "Define maximum allowable vessel excursion before mandatory disconnect",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary procedural limit to trigger emergency response",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "A red watch circle of 48 meters was established for the SS003 well",
+            "initiating the EDS before breaching the red watch circle"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "ROV Inspection of Subsea Equipment",
+        "side": "mitigation",
+        "barrier_role": "Assess integrity of subsea equipment after incident",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident recovery action to verify equipment integrity",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "a Remotely Operated Vehicle (ROV) was deployed to assess the condition of the Lower Marine Riser Package (LMRP) and Lower Blowout Preventer (LBOP)"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "positive",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "positive",
+      "communication_mentioned": true,
+      "situational_awareness_value": "positive",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "positive",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": "negative",
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": "mixed",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "positive",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "positive",
+      "supervision_mentioned": true,
+      "training_value": "positive",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

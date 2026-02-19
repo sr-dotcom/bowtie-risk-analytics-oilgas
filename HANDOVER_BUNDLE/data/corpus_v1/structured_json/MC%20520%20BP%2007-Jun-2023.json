@@ -1,0 +1,535 @@
+{
+  "incident_id": "MC%20520%20BP%2007-Jun-2023",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Dropped Cleanout Assembly - Diamond Ocean BlackHornet",
+    "date_published": "2024-03-07",
+    "date_occurred": "2023-06-07",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - Mississippi Canyon Block 520",
+    "operator": "BP Exploration & Production Inc.",
+    "operating_phase": "drilling",
+    "materials": [
+      "4-1/2 inch drill pipe",
+      "cleanout assembly"
+    ]
+  },
+  "event": {
+    "top_event": "Dropped Object",
+    "incident_type": "Dropped Object - Equipment Handling Failure",
+    "costs": "500",
+    "actions_taken": [
+      "Safety stand down ordered at 11:20 hours",
+      "Safety meeting held with drill and crane crews",
+      "BSEE onsite investigation conducted June 8, 2023",
+      "Incident of Noncompliance issued"
+    ],
+    "summary": "On June 7, 2023, at 11:00 hours, a 43-foot cleanout assembly fell approximately 40 feet onto the pipe skate on the Diamond Ocean BlackHornet Drillship during drilling operations. The incident occurred because incorrect elevator inserts (4.5 inch EU instead of 4.5 inch IEU) were installed and the Driller and Assistant Driller failed to follow procedures and complete the Elevator Pre-use Checklist. A floor hand was in the red zone operating the pipe skate remotely at the time of the incident but was not injured. The incorrect inserts initially held hard-banded pipe successfully but failed when lifting non-hard-banded pipe.",
+    "recommendations": [],
+    "key_phrases": [
+      "incorrect elevator inserts",
+      "Elevator Pre-use Checklist not completed",
+      "dropped 43-foot cleanout assembly",
+      "floor hand in red zone",
+      "procedures not followed",
+      "4.5 inch EU vs IEU pipe",
+      "hard-banded pipe",
+      "could have caused a fatality"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Suspended Load - 43-foot Cleanout Assembly",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Incorrect elevator insert size installed",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Failure to complete pre-use inspection checklist",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate verification of equipment configuration",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Dropped object - 43-foot assembly falling 40 feet",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Personnel injury or fatality - floor hand in red zone",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Equipment damage - hoses and portable ladder",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Elevator Pre-Use Checklist (CHKL/001)",
+        "side": "prevention",
+        "barrier_role": "Verification of correct elevator insert size before lifting operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary procedural control to verify equipment configuration before use",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Elevator Pre-Use Checklist (ref# CHKL/001) was not filled out for this operation",
+            "This checklist had two items to verify the correct inserts are used: 1) Verify the size of the pipe that the elevators are to be used with. 2) Physically measure the internal bore of the elevators",
+            "Due to the Driller and Assistant Driller not following the guidelines and procedures and not filling out the checklist...the incorrect inserts were installed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Assistant Driller Visual Inspection of Elevator Inserts",
+        "side": "prevention",
+        "barrier_role": "Physical verification of correct insert installation and size",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Designated responsible person for carrying out equipment checks",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Assistant Driller conducted a visual inspection of the insert change and verified the installation was done correctly",
+            "The Assistant Driller took a glance at the size and observed 4-1/2 inch stamped on the inserts",
+            "Drill Pipe Elevators Guideline (5.1.4.8.a) Designate the Assistant Driller as the responsible person to carry out the checks",
+            "The Assistant Driller was not aware of his responsibility to ensure that the Elevator Pre-use Checklist was completed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Driller Verification of Assistant Driller Checks",
+        "side": "prevention",
+        "barrier_role": "Independent verification and oversight of equipment inspection",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Supervisory verification to confirm first-line checks completed",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "supervision",
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "These checks are to be verified by the Driller",
+            "It is the Driller's responsibility to verify that the above checks have been carried out to his satisfaction",
+            "The Driller did not verify that the Elevator Pre-use Checklist was carried out to his satisfaction",
+            "The Driller and Assistant Driller did not follow the guidelines and procedures"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Drill Pipe Elevators Guideline (5.1.4.8.a)",
+        "side": "prevention",
+        "barrier_role": "Procedural requirement for positive checks including actual measurements",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary procedure defining inspection requirements",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Drill Pipe Elevators Guideline (5.1.4.8.a) Develop a specific procedure for inspecting elevators prior to use",
+            "Procedures will include positive checks, i.e., actual measurements, which override any temporary marks on equipment",
+            "The Driller and Assistant Driller did not follow the guidelines and procedures"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Change Inserts in Elevators Procedure (SSP180-DRL-13)",
+        "side": "prevention",
+        "barrier_role": "Specific procedure for verifying correct insert size during change-out",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Task-specific procedure for critical equipment change",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Change Inserts in Elevators Procedure (SSP180-DRL-13) Driller or Assistant Driller will verify the correct size inserts are installed",
+            "The floor hands were instructed to change the elevator inserts from 5-7/8 inch to 4-1/2 inch inserts",
+            "The incorrect inserts were installed which resulted in dropping the 43-foot cleanout assembly"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Toolbox Talk - Lifting Operations Planning",
+        "side": "prevention",
+        "barrier_role": "Pre-job safety discussion and planning for lifting operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task communication and hazard identification",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "partial",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 07:00 hours, a toolbox talk was held with the Diamond drill crew, crane crew, and Schlumberger service hand for picking up the cleanout assembly",
+            "The drill crew discussed what would be picked up and how it would be racked in the derrick"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Tour Handover and Work Order Review",
+        "side": "prevention",
+        "barrier_role": "Communication of upcoming operations and review of work procedures",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Shift handover communication process",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "neutral",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication",
+            "fatigue"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Diamond drill crew...came on tour at 02:00 hours after shortchanging (crew change mid hitch from days to nights)",
+            "As the crews exchanged, they discussed upcoming operations during the tour",
+            "Operational work orders that would be used that day were reviewed and signed by the drill crew"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Red Zone Access Control",
+        "side": "mitigation",
+        "barrier_role": "Prevent personnel from being in hazardous areas during lifting operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control to limit exposure to dropped object consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "critical",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "There was one floor hand in the red zone at the time of the incident",
+            "This employee was operating the pipe skate with a remote which allowed this employee to walk into the red zone to get a better line of site",
+            "The floor hand stepped closer to the pipe skate to get a better line of site of the cleanout assembly being lifted",
+            "Given the weight and force of the 43 foot assembly falling from such a height, this incident could have caused a fatality"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Remote Operation of Pipe Skate",
+        "side": "mitigation",
+        "barrier_role": "Allow equipment operation from safe distance",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Engineering control to enable distance from hazard zone",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "This employee was operating the pipe skate with a remote which allowed this employee to walk into the red zone",
+            "The floor hand quickly moved away and ran to a safe location"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Safety Stand Down and Incident Response",
+        "side": "mitigation",
+        "barrier_role": "Emergency response and learning from incident",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident response to prevent escalation and recurrence",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "safety_culture",
+            "supervision"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 11:20 hours, a safety stand down was ordered by the Diamond Captain",
+            "Both drill and crane crews had a safety meeting in the Driller's shack regarding on the incident and about moving forward"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": "neutral",
+      "fatigue_mentioned": true,
+      "communication_value": "neutral",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

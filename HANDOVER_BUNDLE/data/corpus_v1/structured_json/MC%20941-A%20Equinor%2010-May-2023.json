@@ -1,0 +1,623 @@
+{
+  "incident_id": "MC%20941-A%20Equinor%2010-May-2023",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - MC 941 Platform A Hydrocarbon Release",
+    "date_published": "2023-08-03",
+    "date_occurred": "2023-05-10",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico, Mississippi Canyon Block 941",
+    "operator": "Equinor USA E&P Inc.",
+    "operating_phase": "production",
+    "materials": [
+      "hydrocarbon fluid",
+      "crude oil"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Hydrocarbon Release",
+    "costs": null,
+    "actions_taken": [
+      "Gas detector activated and platform alarm sounded",
+      "Personnel mustered at muster station",
+      "Production Supervisor and Day Lead Operator responded to assess leak",
+      "All clear given at 0941 hours",
+      "Workers showered and reported to sickbay",
+      "Medical examination via telemedicine",
+      "Both workers cleared and released to full duty",
+      "Safety stand-down ordered"
+    ],
+    "summary": "On 10 May 2023 at approximately 0930 hours, two Grand Isle Shipyard workers were removing bolts from a flange on a 2-inch Well Equalization Header line during a scheduled shut-in at MC 941 Platform A (Titan spar). When loosening the last bolt, trapped pressure from residual fluids in a dog leg bend above the flange was released, spraying both workers in the face with hydrocarbon fluid. A nearby gas detector activated at 0933 hours, triggering platform alarm and muster. No injuries, pollution, or equipment damage occurred. Workers were wearing safety glasses and face shields which prevented injury. Investigation found that the possibility of residual fluids/trapped pressure in the dog leg bend was overlooked despite completion of Simple Isolation Certificate and zero pressure indication on gauge.",
+    "recommendations": [
+      "Review isolations to look for any possibility of hydrocarbon release from doglegs or dead-legs due to residual fluid static pressure remaining after lockout/tagout is completed, even if zero pressure is indicated on the gauge",
+      "Implement engineering controls for residual fluids or static pressure release",
+      "Review isolations for potential hydrocarbon release from dog-legs or dead-legs even when gauge indicates zero pressure",
+      "Utilize appropriate engineering controls for personnel safety"
+    ],
+    "key_phrases": [
+      "trapped pressure",
+      "residual fluids",
+      "dog leg bend",
+      "overlooked",
+      "zero pressure indicated on gauge",
+      "Simple Isolation Certificate",
+      "lockout/tagout",
+      "hydrocarbon release"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized Hydrocarbon Fluid",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Trapped pressure in dog leg bend not identified during isolation",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Residual fluids remaining after lockout/tagout",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Flange bolts removed while pressure present",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel exposure to hydrocarbon spray",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Gas detector activation and platform alarm",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Emergency muster and production disruption",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Simple Isolation Certificate",
+        "side": "prevention",
+        "barrier_role": "Verify isolation points before work",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural verification before hazardous work",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Platform personnel did complete a Simple Isolation Certificate prior to the work being done",
+            "the possibility of residual fluids and/or trapped pressure in the dog leg bend above the flange was overlooked"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Physical verification of isolation points",
+        "side": "prevention",
+        "barrier_role": "Confirm isolation by physical inspection",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Field verification of isolation",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "This entailed of personnel going over drawings and identifying isolation points as well as designated personnel physically verifying the isolation points",
+            "the possibility of residual fluids and/or trapped pressure in the dog leg bend above the flange was overlooked"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Pressure gauge indication",
+        "side": "prevention",
+        "barrier_role": "Indicate system pressure before opening",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Direct measurement of hazardous condition",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "even if zero pressure is indicated on the gauge",
+            "the possibility of residual fluids and/or trapped pressure in the dog leg bend above the flange was overlooked"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Lockout/Tagout procedure",
+        "side": "prevention",
+        "barrier_role": "Isolate energy sources before maintenance",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural control of hazardous energy",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "residual fluid static pressure remaining after lockout/tagout is completed",
+            "the Well Equalization Header line the workers were working on was isolated, but the possibility of residual fluids contained in the dog leg bend above the flange was overlooked"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Job Safety Environmental Analysis (JSEA)",
+        "side": "prevention",
+        "barrier_role": "Identify hazards before work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Pre-job hazard identification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Equinor provided the Job Safety Environmental Analysis (JSEA)",
+            "Human performance Error - Not aware of hazards: The possibility of residual fluids and/or trapped pressure in the dog leg bend above the flange was overlooked"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Safety glasses",
+        "side": "mitigation",
+        "barrier_role": "Protect eyes from hydrocarbon exposure",
+        "barrier_type": "ppe",
+        "line_of_defense": "1st",
+        "lod_basis": "Last line of defense - personal protection",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Both workers were wearing safety glasses and face shields at the time of the incident, which likely prevented the workers from being injured when the hydrocarbons released near their face"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Face shields",
+        "side": "mitigation",
+        "barrier_role": "Protect face from hydrocarbon exposure",
+        "barrier_type": "ppe",
+        "line_of_defense": "1st",
+        "lod_basis": "Last line of defense - personal protection",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Both workers were wearing safety glasses and face shields at the time of the incident, which likely prevented the workers from being injured when the hydrocarbons released near their face"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Gas detector ASH 0500",
+        "side": "mitigation",
+        "barrier_role": "Detect hydrocarbon release",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Detection and alarm system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The release activated a nearby gas detector at 0933 hours",
+            "the Equinor Control Room Operator (CRO) radioed that gas detector ASH 0500 located near the Headers had been tripped"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Platform alarm system",
+        "side": "mitigation",
+        "barrier_role": "Alert personnel to muster",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Emergency notification system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "sounding the platform alarm for personnel to report to their muster station",
+            "sounding the platform alarm for all personnel to report to their muster station"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Emergency muster procedure",
+        "side": "mitigation",
+        "barrier_role": "Account for personnel during emergency",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Emergency response procedure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "By 0940 hours, full accountability of all personnel was reported at the muster station"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Emergency response team",
+        "side": "mitigation",
+        "barrier_role": "Assess and respond to gas leak",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Emergency response capability",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Equinor Production Supervisor and Day Lead Operator responded to the area of the suspected gas leak at approximately 0936 hours to assess the leak",
+            "at 0939 hours the Production Supervisor radioed to the Incident Command that no gas leak has been detected"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Eyewash/Shower station",
+        "side": "mitigation",
+        "barrier_role": "Decontaminate personnel exposed to hydrocarbons",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-exposure treatment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "neutral",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Despite the presence of a nearby Eyewash/Shower station, the workers opted to clean the hydrocarbons off their face shields and hard hats using the eyewash bottles that were within reach",
+            "After the 'all clear' was given, the two workers showered"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Medical examination and telemedicine",
+        "side": "mitigation",
+        "barrier_role": "Assess worker health after exposure",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Post-incident medical evaluation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The workers were examined individually by the medic and a medical control physician who conducted an evaluation via telemedicine webcam",
+            "Both workers were cleared by the medic and physician of any injury and released back to full duty without any restrictions"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": false
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

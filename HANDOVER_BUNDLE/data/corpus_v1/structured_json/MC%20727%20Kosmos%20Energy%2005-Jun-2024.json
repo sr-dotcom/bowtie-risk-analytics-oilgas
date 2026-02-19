@@ -1,0 +1,503 @@
+{
+  "incident_id": "MC%20727%20Kosmos%20Energy%2005-Jun-2024",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Nitrogen Bottle Rupture - Helix Q5000",
+    "date_published": "2024-12-05",
+    "date_occurred": "2024-06-05",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - Mississippi Canyon Block 727",
+    "operator": "Kosmos Energy Gulf of Mexico Operations",
+    "operating_phase": "workover",
+    "materials": [
+      "nitrogen"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment - Pressure Vessel Rupture",
+    "incident_type": "Explosion",
+    "costs": "29000",
+    "actions_taken": [
+      "Safety standdown initiated at 16:14",
+      "General alarm sounded at 16:41",
+      "Full muster completed at 16:54",
+      "Airgas HAZMAT response team vented cylinders starting at 22:16",
+      "Three injured personnel evaluated by rig medic and cleared to return to work",
+      "Operator plans to install nitrogen generation system in 2025 budget",
+      "Helix plans to install physical barrier and hard piping",
+      "Vendor change implemented"
+    ],
+    "summary": "On June 5, 2024, at approximately 15:38 hours, a nitrogen cylinder ruptured inside a twelve-cylinder bottle rack onboard the Helix Q5000 during workover operations. The rupture was caused by severe corrosion that reduced wall thickness from 0.25 inches to 0.075 inches at the bottom of the bottle, which contained approximately 2,400 psi. The rupture damaged other cylinders in the rack and scattered them across the main deck. Three personnel staging equipment nearby sustained minor injuries from shrapnel. The incident resulted in $29,000 in damage to 2 nitrogen racks and an umbilical. Investigation revealed inadequate corrosion protection from water-based paint coating, insufficient inspection protocols that did not include disassembly for thorough examination, poor rack design allowing metal-to-metal contact, and lack of drainage causing prolonged exposure to corrosive marine environment.",
+    "recommendations": [
+      "BSEE New Orleans District recommends Office of Incident Investigations consider a Safety Alert to warn industry about the risk that these bottle racks pose",
+      "Install nitrogen generation system to eliminate reliance on external rental systems",
+      "Install physical barrier and hard piping to mitigate exposure to personnel and equipment during potential future failures",
+      "Change vendor and adhere to elevated inspection process",
+      "Implement inspection protocols that include disassembly for thorough examination of individual cylinders and manifold components",
+      "Use corrosion-resistant coatings suitable for marine environment",
+      "Design racks with proper drainage and material barriers between cylinders and rack structure"
+    ],
+    "key_phrases": [
+      "nitrogen bottle rupture",
+      "corrosion led to wall loss",
+      "wall thickness as thin as 0.075 in",
+      "water-based paint coating failed",
+      "metal-to-metal contact",
+      "lack of drainage",
+      "visual pre-fill inspections",
+      "rack was not disassembled",
+      "marine environment",
+      "DOT special permit regulations"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized nitrogen gas (2,400 psi)",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Corrosion of pressure vessel wall",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Mechanical damage from metal-to-metal contact",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Prolonged exposure to corrosive marine environment",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury from shrapnel",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Equipment damage",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Operational disruption",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Water-based paint coating on cylinders",
+        "side": "prevention",
+        "barrier_role": "Corrosion protection",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical barrier against corrosion",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The water-based paint coating on the cylinders failed to provide adequate corrosion protection in the marine environment",
+            "The water-based paint coating on the cylinders did not effectively prevent corrosion in the marine environment"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "DOT 10-year hydrostatic or ultrasonic examination",
+        "side": "prevention",
+        "barrier_role": "Periodic integrity verification",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Independent verification and inspection",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the nitrogen cylinder rack adhered to Department of Transportation (DOT) special permit regulations, which mandate a 10-year hydrostatic or ultrasonic examination. However, these inspections failed to identify critical issues such as excessive corrosion with the internal cylinders"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Visual pre-fill inspections prior to offshore deployment",
+        "side": "prevention",
+        "barrier_role": "Pre-operational integrity check",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Verification before use",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "visual pre-fill inspections were performed prior to deployment of the bottles to offshore locations, they did not involve disassembly of the rack for a comprehensive evaluation of the individual cylinders and manifold components",
+            "Visual pre-fill inspections were conducted prior to mobilization offshore, but the rack was not disassembled for a thorough inspection of the individual cylinders or manifold components. This type of inspection did not allow for the bottom of the cylinders to be inspected for corrosion"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Protective barrier between cylinders and rack",
+        "side": "prevention",
+        "barrier_role": "Mechanical damage prevention",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary physical protection against damage",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the absence of a material barrier between the cylinders and the rack presents several significant safety concerns. This can include dents, scratches, or other forms of wear that may compromise the integrity of the cylinder",
+            "the lack of a protective barrier in the rack's design allowed for metal-to-metal contact between the bottles and the rack, increasing the risk of damage and eventually failure"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Rack drainage system",
+        "side": "prevention",
+        "barrier_role": "Corrosive environment mitigation",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary design feature to reduce corrosion exposure",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The rack does not allow for proper drainage, which caused prolonged exposure of the cylinders to corrosive elements",
+            "The lack of drainage in the rack's design left the cylinders exposed to an even greater corrosive environment than the already corrosive marine environment the bottles routinely experienced"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Toolbox talk and risk assessment",
+        "side": "prevention",
+        "barrier_role": "Hazard identification and communication",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Pre-task planning and awareness",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "12:00 – 12:15: Subsea and Helix Control System (HCS) conducted toolbox talk and risk assessment"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Safety standdown procedure",
+        "side": "mitigation",
+        "barrier_role": "Immediate hazard response",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response action",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "16:14: Safety Standdown initiated; all operations suspended",
+            "Following the incident, a safety stand-down was promptly initiated, halting all operations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "General alarm and muster system",
+        "side": "mitigation",
+        "barrier_role": "Personnel accountability and evacuation",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "16:41: General Alarm was sounded; a public announcement was made for personnel to muster at the designated muster point. Full muster recorded at 16:54",
+            "The general alarm was activated, and personnel were instructed to muster at the designated area. A complete muster was recorded by 16:54 hours"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Rig medic evaluation",
+        "side": "mitigation",
+        "barrier_role": "Medical response and injury assessment",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency medical response",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Three personnel in the area, staging equipment in preparation for pre-charging, sustained minor injuries from the shrapnel produced by the rupturing of the nitrogen bottle; all three personnel were evaluated by the rig medic and subsequently cleared to return to work"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "HAZMAT response team with JSA",
+        "side": "mitigation",
+        "barrier_role": "Hazardous material emergency response",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Specialized emergency response",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "22:16: After risk assessments and job safety analysis (JSA) were completed, the Airgas HAZMAT response team began venting cylinders"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": false
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

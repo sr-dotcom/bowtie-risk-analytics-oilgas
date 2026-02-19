@@ -1,0 +1,361 @@
+{
+  "incident_id": "EV2010R%20-%20GB%20215",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Structural Damage - High Pressure Hose Rupture",
+    "date_published": "2025-11-10",
+    "date_occurred": "2025-07-17",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America - Garden Banks Block 215",
+    "operator": "Anadarko Petroleum Corporation",
+    "operating_phase": "workover",
+    "materials": [
+      "nitrogen",
+      "coil tubing"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Equipment Failure - Hose Rupture",
+    "costs": "1500",
+    "actions_taken": [
+      "Three injured personnel evaluated by Rig Medic",
+      "Two personnel evacuated for further medical evaluation on 17 July 2025",
+      "Third personnel evacuated for further medical evaluation on 18 July 2025",
+      "Failed hose submitted to laboratory for forensic analysis",
+      "BSEE conducted onsite investigation on 21 July 2025"
+    ],
+    "summary": "On 17 July 2025 at 0752 hours, during workover operations at Garden Banks Block 215, a 0.375-inch high-pressure hose ruptured while blowing down a coil tubing reel with nitrogen. The ruptured hose struck a Noble Assistant Driller on his left arm and an Oil States employee on the left side of his face. A Schlumberger Operator injured his knee while moving to avoid being struck. All three injuries were classified as First Aid Only. Laboratory analysis determined the hose failed due to chlorides corrosion coupled with rapid oxidation of wire reinforcement strands. The 3000 psi rated hose had only been in use for approximately 6 months and was pressurized to 2400 psi when it ruptured. Investigation found no safety restraints were installed on the manifold as recommended in Oil States Standard Operating Procedure, and there was no established hose inspection procedure or preventative maintenance program in place.",
+    "recommendations": [],
+    "key_phrases": [
+      "high pressure hose ruptured",
+      "chlorides corrosion",
+      "rapid oxidation of wire reinforcement strands",
+      "no safety restraints connected to the manifold",
+      "no established hose inspection procedure",
+      "no preventative maintenance program"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized nitrogen in coil tubing system",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Internal corrosion of high-pressure hose",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Rapid oxidation of wire reinforcement strands",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate hose inspection",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Lack of preventative maintenance",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel struck by whipping hose",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Personnel injury from evasive movement",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Equipment damage",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Hose pressure rating design margin",
+        "side": "prevention",
+        "barrier_role": "Prevent hose rupture under normal operating conditions",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary design control to prevent failure",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the 3000 per square inch (psi) pressure rated hose was only in use for approximately 6 months and it was only pressurized up to 2400 psi when it ruptured",
+            "the hose ruptured due to chlorides corrosion coupled with rapid oxidation of wire reinforcement strands"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Hose inspection procedure",
+        "side": "prevention",
+        "barrier_role": "Detect hose degradation before failure",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Verification and monitoring control",
+        "linked_threat_ids": [
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "there was no established hose inspection procedure or maintenance program in place",
+            "Inadequate equipment inspection. There is no formal hose inspection procedure in place"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Preventative maintenance program for hoses",
+        "side": "prevention",
+        "barrier_role": "Maintain hose integrity through scheduled replacement and maintenance",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Verification and monitoring control",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "There was no preventative maintenance program to evaluate the hose's operational condition",
+            "there was no established hose inspection procedure or maintenance program in place"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Safety restraints and whip checks on high-pressure hoses",
+        "side": "mitigation",
+        "barrier_role": "Prevent hose whipping and striking personnel upon rupture",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary protective barrier to mitigate consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "there being no safety restraints connected to the manifold as recommended in Oil States Standard Operation Procedure for Flow Iron and Restraint Installation",
+            "Not aware of hazards. There were no safety restraints or whip checks installed on the high-pressure hose as recommended in Oil States Standard Operation Procedure",
+            "when the 0.375-inch high-pressure hose ruptured, it struck and injured two of the three employees"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Personnel positioning and exclusion zones",
+        "side": "mitigation",
+        "barrier_role": "Keep personnel clear of potential hose whip zones",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control to reduce exposure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "unknown",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "a 0.375-inch-high pressure hose ruptured, struck and injured a Noble Assistant Driller on his left arm and an Oil States employee on the left side of his face",
+            "a Schlumberger (SLB) Operator injured his knee when moving to avoid being struck by the hose"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Rig Medic evaluation and medical response",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate medical assessment and treatment",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response and recovery control",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "All personnel reported to the Rig Medic for evaluation",
+            "After the medical evaluations, the decision was made to send the Noble Assistant Driller and SLB Operator in for further evaluation",
+            "All parties received a full return to work release, and this incident was classified as First Aid Only"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

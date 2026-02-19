@@ -1,0 +1,467 @@
+{
+  "incident_id": "AC%20337%20LLOG%2027-SEP-2024",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Structural Damage - Slip Trip Fall Incident on M/V Harvey Freedom",
+    "date_published": "2024-11-20",
+    "date_occurred": "2024-09-27",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - Alaminos Canyon Block 337",
+    "operator": "LLOG Exploration Offshore, L.L.C.",
+    "operating_phase": "drilling",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Personnel Injury During Lifting Operations",
+    "incident_type": "Slip/Trip/Fall",
+    "costs": null,
+    "actions_taken": [
+      "IP evacuated to Noble Valiant drillship for medical examination",
+      "IP evacuated to shore for further evaluation after consultation with onshore medical personnel",
+      "IP underwent surgery"
+    ],
+    "summary": "On 27 September 2024, a Deckhand on the M/V Harvey Freedom support vessel injured his leg during equipment back-loading operations from the Noble Valiant drillship. While attempting to steady a 50-foot basket with a tagline as it was being landed, the support vessel rolled causing the IP to lose footing and injure his left leg. The IP was evacuated to the drillship, then to shore, required surgery, and resulted in more than 3-days lost time.",
+    "recommendations": [],
+    "key_phrases": [
+      "back-loading operations",
+      "50 foot basket",
+      "tagline",
+      "support vessel rolled",
+      "lost footing",
+      "left leg injury",
+      "human performance error",
+      "body position and grip",
+      "wet deck"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Suspended Load During Marine Lifting Operations",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Vessel Motion in Sea Conditions",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Vessel rolling during load landing",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Loss of footing on wet deck",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate body position and grip while handling tagline",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Kinetic energy transfer from suspended load",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury requiring surgery",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Lost time injury (>3 days)",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Medical evacuation",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Personal Protective Equipment (PPE)",
+        "side": "prevention",
+        "barrier_role": "Protect personnel from injury",
+        "barrier_type": "ppe",
+        "line_of_defense": "1st",
+        "lod_basis": "Direct personal protection",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the IP was working with the required PPE from the safe setback area",
+            "IP's boots appeared to be in serviceable condition and have sufficient tread"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Safe Setback Area Positioning",
+        "side": "prevention",
+        "barrier_role": "Position personnel away from hazard zone",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Procedural control for safe work positioning",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the IP was working with the required PPE from the safe setback area",
+            "The IP was positioned in the aft setback area of the support vessel"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Job Safety Analysis (JSA) / Toolbox Talk",
+        "side": "prevention",
+        "barrier_role": "Identify hazards and plan safe work execution",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task planning and hazard identification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Investigator reviewed Noble Valiant JSA/toolbox talk",
+            "IP was not involved with the drillship's JSA but did complete the JSA for the back loading operations on the support vessel separately"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Tagline Use for Load Control",
+        "side": "prevention",
+        "barrier_role": "Control suspended load movement",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical control of load",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was positioned in the aft setback area of the support vessel attempting to steady the load with a tagline",
+            "the IP was trying to steady the basket with a tagline when the support vessel rolled causing the load to jerk the IP towards the load",
+            "IP's body position and grip did not allow him to compensate for the rolling of the vessel while landing the load"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Deck Housekeeping and Slip Hazard Management",
+        "side": "prevention",
+        "barrier_role": "Maintain safe walking/working surfaces",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Workplace condition management",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The support vessel's deck was wet but was clear of any other trip and slip hazards",
+            "The deck of the support vessel was wet which is common during back-loading operations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Weather and Sea State Assessment",
+        "side": "prevention",
+        "barrier_role": "Evaluate environmental conditions for safe operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task environmental assessment",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Sea conditions were (2-3) feet with occasional swells of (5-7) feet. Winds were approximately (14) knots"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Onboard Medical Examination",
+        "side": "mitigation",
+        "barrier_role": "Initial medical assessment and triage",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Secondary response to injury",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The IP was first evacuated to the Noble Valiant drillship where he was examined by the Medic"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Medical Evacuation Procedure",
+        "side": "mitigation",
+        "barrier_role": "Transport injured personnel to advanced medical care",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Emergency response procedure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "after consultation with onshore medical personnel, the IP was evacuated to shore for further evaluation",
+            "a Deckhand injured his leg requiring evacuation"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Onshore Medical Consultation",
+        "side": "mitigation",
+        "barrier_role": "Remote medical expertise for decision support",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Expert medical consultation",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "after consultation with onshore medical personnel, the IP was evacuated to shore for further evaluation"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "positive",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "positive",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

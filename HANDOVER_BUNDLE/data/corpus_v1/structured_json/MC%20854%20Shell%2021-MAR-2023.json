@@ -1,0 +1,666 @@
+{
+  "incident_id": "MC%20854%20Shell%2021-MAR-2023",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Accident Investigation Report - Structural Damage/Material Handling Incident",
+    "date_published": "2023-07-20",
+    "date_occurred": "2023-03-21",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of Mexico - Mississippi Canyon Block 854",
+    "operator": "Shell Offshore Inc.",
+    "operating_phase": "production",
+    "materials": []
+  },
+  "event": {
+    "top_event": "Loss of Containment of Personnel Safety Zone",
+    "incident_type": "Material Handling - Crane Operation Injury",
+    "costs": null,
+    "actions_taken": [
+      "All stop called by riggers",
+      "Tag lines pulled to lift assembly off injured person",
+      "Medical evacuation initiated via Search and Rescue helicopter",
+      "Incident Command System response activated",
+      "IP transported to University Medical Center New Orleans"
+    ],
+    "summary": "On March 21, 2023, at approximately 16:45 hours, a rigger was injured during crane operations on the H&P 204 platform rig at Mississippi Canyon 809. The crew was staging a wireline riser (approximately 19 feet in length) with a red gate valve assembly into a transfer basket on the plus 50 level. During a blind lift using radio communication, as the upper end of the assembly was lowered, the lower end shifted and caught the rigger between the pipe and an adjacent basket. The rigger sustained a nondisplaced L4 fracture, traumatic hernia, and pelvic muscle tear. The incident occurred because the Designated Signal Person and rigging crew did not identify the pinch point hazard and the rigger positioned himself in a pinch point location between baskets in a congested workspace.",
+    "recommendations": [],
+    "key_phrases": [
+      "blind lift",
+      "pinch point",
+      "congested workspace",
+      "Stop work Authority",
+      "line of fire",
+      "Designated Signal Person",
+      "tag lines",
+      "hard barricades"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Suspended Load - Wireline Riser and Gate Valve Assembly",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Moving Equipment - Crane Operations",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Personnel positioned in pinch point during crane operations",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Uncontrolled movement of suspended load",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate workspace barricading",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Loss of situational awareness during blind lift",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Personnel injury - crush/pinch injury",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Lost Time Accident (>3 days)",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Hard Barricades Around Work Area",
+        "side": "prevention",
+        "barrier_role": "Prevent personnel access to hazard zone",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical barrier to prevent entry",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The area where the riser was being landed into the cargo basket was not barricaded. The only barricade used was on the top deck around the A-4 well where the riser was being lifted from.",
+            "The Shell Work Permit (URSA-00-5195079) states hard barricades will be installed around the well and hatch, so no barricade was needed in the area where the incident occurred."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Designated Signal Person (DSP) Hazard Identification",
+        "side": "prevention",
+        "barrier_role": "Identify and communicate hazards during lift operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human verification and communication",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "competence",
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "BSEE reviewed the documentation and concludes that due to the Designated Signal Person (DSP) and other members of the H&P rigging crew not identifying the hazard of a pinch point and not calling an 'All Stop'",
+            "DSP did not identify individual was in a pinch point"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Stop Work Authority",
+        "side": "prevention",
+        "barrier_role": "Empower personnel to halt unsafe operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human intervention authority",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "not calling an 'All Stop' or using their Stop work Authority when someone was in a pinch point location resulted in an injury",
+            "Everyone has the authority and responsibility to stop work they believe is unsafe"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Job Safety Analysis (JSA) - Pinch Point Identification",
+        "side": "prevention",
+        "barrier_role": "Pre-job hazard identification and safe practice planning",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Planning and preparation phase control",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The H&P JSA in the Recommended Safe Practice section states to 'Have a planned escape route and do not stand in a pinch and/or crush points,' and was not followed.",
+            "On March 28, 2023, the BSEE Accident Investigator requested and received pictures of the relevant equipment involved in the incident, a Job Safety Analysis (JSA) for the job being performed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "H&P Compass Card Pre-Job Questions",
+        "side": "prevention",
+        "barrier_role": "Systematic hazard identification through structured questions",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-task planning tool",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The H&P Compass card that was used for this operation had several questions that when asked, would have helped identify the hazards with this operation. The crew members did not follow the recommended Compass card questions/advisories as follows: 1) What are the recommended safe practices to eliminate/safeguard the potential hazards, 2) Everyone has the authority and responsibility to stop work they believe is unsafe and 3) What are the potential hazards?"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Lifebelt Rules to Live By - Keep Out of Path of Moving Equipment",
+        "side": "prevention",
+        "barrier_role": "Behavioral rule to prevent personnel exposure",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Personal safety rule compliance",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Lifebelt Rules to Live By card has a statement that says 'Keep Out of The Path of Moving Equipment' that was not followed."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Shell Life Saving Rule - Keep Out of Line of Fire",
+        "side": "prevention",
+        "barrier_role": "Critical safety rule to prevent fatal/serious injury",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Life-critical safety rule",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "procedures",
+            "situational_awareness",
+            "safety_culture"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The work permit also has a selected Life Saving Rule which states 'Keep yourself and others out of the line of fire'."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Radio Communication for Blind Lift",
+        "side": "prevention",
+        "barrier_role": "Enable coordination and control during non-visual crane operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Communication system for operational control",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "neutral",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "communication"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "This was a blind lift and radio communication was being used to guide the Crane Operator."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Tag Lines for Load Control",
+        "side": "prevention",
+        "barrier_role": "Manual control of suspended load positioning",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Physical control device operated by personnel",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Tag lines were attached to the riser and were being held at the time by the crane crew.",
+            "Riggers called all stop to the Crane Operator and immediately pulled the tag lines so the riser and gate valve assembly would lift off the rigger."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Crane Operator Certification",
+        "side": "prevention",
+        "barrier_role": "Ensure competency of crane operator",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Competency assurance through certification",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "neutral",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence",
+            "training"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the BSEE Accident Investigator requested and received pictures of the relevant equipment involved in the incident, a Job Safety Analysis (JSA) for the job being performed, a diagram of the platform with the location of the incident, the job permit, the Crane Operator certification, and Rigger certifications"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Rigger Certification",
+        "side": "prevention",
+        "barrier_role": "Ensure competency of rigging crew",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Competency assurance through certification",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "neutral",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "competence",
+            "training"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "the BSEE Accident Investigator requested and received pictures of the relevant equipment involved in the incident, a Job Safety Analysis (JSA) for the job being performed, a diagram of the platform with the location of the incident, the job permit, the Crane Operator certification, and Rigger certifications"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Emergency Response - All Stop and Load Repositioning",
+        "side": "mitigation",
+        "barrier_role": "Immediate response to minimize injury severity",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response action",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Riggers called all stop to the Crane Operator and immediately pulled the tag lines so the riser and gate valve assembly would lift off the rigger."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Medical Response and Evacuation",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate medical care and transport",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency medical response",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The injured rigger (Injured Person (IP)) was assisted by the crane crew to the platform Medic. The Shell Medic/H&P Medic called the Shell Offshore Installation Manager immediately for a medical evacuation and an Incident Command System response was initiated to gather first responders to assist with the Medic.",
+            "The IP received medicine onboard the rig/platform then was flown in via a Search and Rescue helicopter for further evaluation. He was admitted to University Medical Center in New Orleans."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Incident Command System (ICS) Activation",
+        "side": "mitigation",
+        "barrier_role": "Coordinate emergency response resources",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency management system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "an Incident Command System response was initiated to gather first responders to assist with the Medic"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "negative",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

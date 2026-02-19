@@ -1,0 +1,870 @@
+{
+  "incident_id": "2017-07-I-WI",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Fatal Combustible Dust Explosions at Didion Milling Inc.",
+    "date_published": "2023-12-01",
+    "date_occurred": "2017-05-31",
+    "timezone": "America/Chicago"
+  },
+  "context": {
+    "region": "Cambria, Wisconsin, USA",
+    "operator": "Didion Milling Inc.",
+    "operating_phase": "production",
+    "materials": [
+      "combustible corn dust",
+      "corn bran",
+      "corn flour",
+      "corn grit"
+    ]
+  },
+  "event": {
+    "top_event": "Ignition of Combustible Corn Dust Inside Process Equipment Transitioning to Multiple Explosions",
+    "incident_type": "combustible dust explosion and fire",
+    "costs": 15375959,
+    "actions_taken": [
+      "Employees searched for smoke source for approximately 15-25 minutes before explosion",
+      "Employee A radioed control room to shut down South BM after observing fire",
+      "Employees A and B evacuated 1B upon seeing flames and dust cloud",
+      "Employee B attempted evacuation announcement on radio but was interrupted by explosion",
+      "Local fire department responded and extinguished fires",
+      "OSHA conducted post-incident inspection and issued 19 citations",
+      "CSB commissioned teardown inspection of North and South BMs",
+      "CSB commissioned forensic structural evaluation of mill buildings",
+      "Facility was reconstructed and production restarted in 2019",
+      "Post-incident dust hazard analyses performed during reconstruction"
+    ],
+    "summary": "On May 31, 2017, at approximately 11:00 p.m., multiple combustible dust explosions occurred at the Didion Milling dry corn milling facility in Cambria, Wisconsin. A smoldering nest developed downstream of the South Bauermeister gap mill, transitioning to a primary explosion in 1B that propagated through interconnected process equipment and dust collection systems. The deflagration reached the Dry Grit Filter, causing a secondary explosion and further propagation throughout the facility. Secondary explosions fueled by fugitive dust caused multiple building collapses. Five employees were fatally injured and 14 others were injured. The Multipurpose Building, F Mill, and Boiler House suffered complete collapses. Estimated property damage was $15,375,959. Contributing factors included lack of engineering controls for combustible dust, inadequate fugitive dust management, poor management of change, failure to conduct dust hazard analyses, inadequate emergency preparedness, lack of flame-resistant PPE, poor process safety leadership, and failure to address hazards identified in prior inspections and incidents.",
+    "recommendations": [
+      "2017-07-I-WI-R1: Didion to develop comprehensive combustible dust process safety management system",
+      "2017-07-I-WI-R2: Didion to modify pneumatic conveying and dust collector ductwork systems to maintain minimum transport velocity and implement periodic inspection program",
+      "2017-07-I-WI-R3: Didion to perform dust hazard analyses on all buildings and implement deflagration engineering controls",
+      "2017-07-I-WI-R4: Didion to assess and implement structural design and venting requirements per NFPA 68",
+      "2017-07-I-WI-R5: Didion to incorporate paper-based PSI into electronic records management system",
+      "2017-07-I-WI-R6: Didion to perform PPE hazard analyses and require flame-resistant garments",
+      "2017-07-I-WI-R7: Didion to update emergency response plan and train all employees",
+      "2017-07-I-WI-R8: Didion to assess and update pre-deflagration detection and suppression engineering controls",
+      "2017-07-I-WI-R9: Didion to develop and implement process safety leadership and culture program",
+      "2017-07-I-WI-R10: OSHA to promulgate a combustible dust standard for all industries",
+      "2017-07-I-WI-R11: OSHA to update Grain Handling Facilities Standard following implementation of new combustible dust standard",
+      "2017-07-I-WI-R12: OSHA to develop program for follow-up inspections when hazard alert letters are issued for combustible dust hazards",
+      "2017-07-I-WI-R13: NFPA to update NFPA 61 to incorporate comprehensive DHA requirements, MOC requirements, and incident investigation management system requirements"
+    ],
+    "key_phrases": [
+      "combustible dust explosion",
+      "smoldering nest",
+      "deflagration propagation",
+      "Dry Grit Filter",
+      "Bauermeister gap mill",
+      "fugitive dust",
+      "secondary explosions",
+      "building collapse",
+      "dust hazard analysis",
+      "deflagration isolation",
+      "deflagration venting",
+      "deflagration suppression",
+      "management of change",
+      "process safety leadership",
+      "normalization of deviance",
+      "flame-resistant PPE",
+      "emergency response plan",
+      "transport velocity",
+      "dust collector",
+      "interconnected process equipment"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Combustible Corn Dust in Process Equipment and Buildings"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Interconnected Dust Collection Systems Creating Propagation Pathways"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Fugitive Combustible Dust Accumulation in Mill Buildings"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Smoldering Nest Developing Downstream of Gap Mills Due to Material Plugging and Heat Buildup"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Inadequate Transport Velocity Causing Combustible Dust Accumulation in Ductwork"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Temporary Process Change Increasing Solid Loading on Single Blower Transport System"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Ignition Source from Frictional Heating in Milling Equipment"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Fugitive Dust Accumulation from Inadequate Housekeeping"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Five Employee Fatalities"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Fourteen Employee Injuries (Burns, Crush, Blunt Force, Amputation)"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Collapse of Multiple Mill Buildings (Multipurpose Building, F Mill, Boiler House)"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Severe Structural Damage to A Mill, B Mill, D Mill"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Property Damage Estimated at $15,375,959"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "Propagation of Deflagration Throughout Interconnected Process Equipment and Buildings"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Pre-Deflagration Detection Systems (Spark/Ember Detectors, Gas Detection)",
+        "side": "prevention",
+        "barrier_role": "Detect smoldering nests or ignition sources early to allow intervention before deflagration",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Active engineering control - detects incipient ignition and triggers alarm or suppression",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion did not use pre-deflagration detection systems that could have detected a smoldering nest or smoke.",
+            "The CSB found no evidence that Didion used such equipment throughout the facility.",
+            "Had Didion employed the use of optical or thermal detection safety systems within the ducting or process equipment, the initial ignition source could have been detected quicker and more accurately to allow the smolder fire to be addressed and could have prevented the incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Deflagration Isolation Systems (Active and Passive)",
+        "side": "prevention",
+        "barrier_role": "Interrupt propagation of deflagration flame front through interconnected ductwork and equipment",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Active/passive engineering control - prevents flame front from propagating past isolation point",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion did not have active deflagration isolation systems within any of the vent systems that could prevent the propagation of a deflagration occurring within the system.",
+            "The lack of deflagration isolation engineering controls allowed the flame front to propagate from the initial fire location throughout the mill facility via the interconnected systems, contributing to the widespread damage in the mill.",
+            "The explosion protection provided for the Grit dust collector did not include elements of deflagration isolation protection to prevent a potential deflagration occurring within the collector from returning back into the facility and upstream processes through the 'dirty air' ducting."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Rotary Airlocks as Passive Isolation Devices",
+        "side": "prevention",
+        "barrier_role": "Prevent flame front propagation through material transfer points between equipment",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Passive engineering control - material choke designed to prevent flame propagation",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "While Didion utilized rotary airlocks, these valves did not meet the design and maintenance requirements of NFPA 69, chapter 12, and therefore could not prevent the propagation of the flame front within the process.",
+            "Flame propagation through rotary airlocks is a known phenomenon in combustible dust applications where the rotary airlocks are not specifically maintained to prevent propagation.",
+            "Rotary airlocks can prevent a combustible dust flame front propagation through them but must be specially designed and maintained with a designated maximum clearance to do so."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Deflagration Suppression Systems",
+        "side": "prevention",
+        "barrier_role": "Detect and extinguish deflagration in incipient stages before destructive pressures develop",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Active engineering control - detects explosion and suppresses before pressure buildup",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Had Didion employed the use of deflagration suppression systems, in conjunction with isolation engineering controls, the initial deflagration event could have been limited to the equipment and ducting around the ignition site.",
+            "Didion was unable to provide evidence of the presence or use of any such systems.",
+            "When the flame front propagated to the Dry Grit Filter, the lack of deflagration suppression systems allowed subsequent explosions to occur within the Dry Grit Filter and propagate back into the facility."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Deflagration Venting on Process Equipment",
+        "side": "mitigation",
+        "barrier_role": "Relieve pressure from deflagration to prevent equipment rupture and reduce explosion severity",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Passive engineering control - opens at predetermined pressure to relieve deflagration pressure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-004",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion did not have adequate deflagration venting systems to prevent equipment rupture that experienced overpressure, such as the South BM Cyclone and dust collector ducting.",
+            "The Dry Grit Filter had deflagration venting installed on the filter housing. The deflagration vents did open as part of the incident when the pressure exceeded the opening pressure for the panels.",
+            "Didion's deflagration venting systems were inadequate; despite the presence of these vents in conjunction with the lack of isolation controls, some equipment still ruptured from the overpressure.",
+            "A deflagration vent on the dust collection equipment opened during the incident and directed flames at an evacuating employee who sustained significant burn injuries."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Deflagration Venting on Buildings (Structural Relief Panels)",
+        "side": "mitigation",
+        "barrier_role": "Relieve pressure from secondary explosions to prevent structural collapse",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Passive engineering control - structural panels designed to relieve explosion pressure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The mill buildings lacked deflagration vents that could relieve pressure and mitigate the damage that occurred due to the propagation of the pressure wave through the mill from secondary dust explosions.",
+            "The lack of deflagration venting for the facility structures likely contributed to the building collapses due to the combustible dust explosions.",
+            "A review of the drawings and design documentation did not show any design considerations for overpressure or indicate any deflagration venting to mitigate dust explosion hazards."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Fugitive Dust Housekeeping Program (Master Sanitation Program)",
+        "side": "prevention",
+        "barrier_role": "Minimize fugitive combustible dust accumulation to reduce fuel available for secondary explosions",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control - written program and scheduled cleaning activities",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-006"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion's Monthly Sanitation Inspection had ineffective housekeeping practices to fully address fugitive combustible dust hazards and allowed unacceptable levels of combustible dust to accumulate in some areas.",
+            "All but two monthly inspection reports indicated heavy dust accumulation in 1B, and all were identified as a 'medium' risk.",
+            "The Master Sanitation Schedule did not mention areas that could harbor combustible dust hazards but were not perceived as a food safety concern. The dust collector ductwork systems were examples of this.",
+            "Didion's Master Sanitation Program's purpose was 'to define the processes used for cleaning the mill facility and equipment to ensure food safety.'"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Management of Change (MOC) Program",
+        "side": "prevention",
+        "barrier_role": "Evaluate process changes for combustible dust hazards before implementation",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control - written procedure requiring hazard review before implementing changes",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion's MOC program did not effectively address known combustible dust hazards and was insufficiently designed to identify or address them.",
+            "The temporary change documentation did not mention either this consequence, or the higher risk of product plugging the transfer line, backing up into the cyclones, or disrupting the airflow pattern inside the cyclones.",
+            "The MOC form contained questions and checklists for food safety and product quality: 18 fields dealt with food safety and quality, and 23 questions covered all other topics.",
+            "Combustible dust, housekeeping issues as they related to combustible dust hazards, and fire hazards, for example, were not addressed."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Dust Hazard Analysis (DHA)",
+        "side": "prevention",
+        "barrier_role": "Systematically identify combustible dust hazards and determine required engineering controls",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Administrative control - systematic hazard assessment process",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003",
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion had not performed any DHAs to identify or address potential combustible dust hazards when the incident occurred.",
+            "Didion's delayed implementation of Dust Hazard Analyses (DHAs) prevented the assessment of the mill processes for potential combustible dust hazards in a timely manner.",
+            "In April 2017, Didion began to search for a third party to assist with DHAs; however, no party had been selected at the time of the incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Incident Investigation Program",
+        "side": "prevention",
+        "barrier_role": "Identify root causes of prior incidents and implement corrective actions to prevent recurrence",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Administrative control - systematic investigation and corrective action tracking",
+        "linked_threat_ids": [
+          "T-001",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion's investigation of prior incidents was severely inadequate. Didion experienced incidents that were similar to or nearly identical to the May 31, 2017, incident at least six times in the previous five years, but Didion never took appropriate action to prevent recurrence.",
+            "Didion's Incident Management procedure lacked guidance and a system to track and resolve incident investigation findings and recommendations.",
+            "After a 2012 South BM fire, Didion did not recognize the significant hazard that smoldering material reaching a downstream dust collector posed, and consequently did not recommend or take corrective actions to prevent it.",
+            "Process fires became normalized at Didion, which contributed to the response during the night of the incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Emergency Response Plan and Facility-Wide Alarm System",
+        "side": "mitigation",
+        "barrier_role": "Notify all employees of emergency and trigger timely evacuation to prevent casualties",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Administrative control - written emergency procedures and communication system",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-003",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion lacked a facility-wide notification system that could immediately notify all employees of the need to evacuate or of an ongoing emergency.",
+            "Conflicting radio traffic caused confusion with the intended message.",
+            "Employee B could not interject on the Miller radio channel to tell people to evacuate due to the amount of radio traffic.",
+            "The Didion emergency response plan did not specify when a situation should be considered an emergency or what the acceptable operating margin is for troubleshooting prior to triggering an emergency response.",
+            "Didion did not have a communication method to immediately notify all employees of upset conditions or emergency situations to trigger an evacuation."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Flame-Resistant Personal Protective Equipment (PPE)",
+        "side": "mitigation",
+        "barrier_role": "Protect employees from burn injuries during flash fires and explosions",
+        "barrier_type": "ppe",
+        "line_of_defense": "recovery",
+        "lod_basis": "PPE - last line of defense protecting employees from thermal exposure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion did not require the use of fire-resistant clothing within the milling facility, although Didion previously experienced a combustible dust flash fire that resulted in an employee suffering burn injuries.",
+            "Didion did not require its employees to use flame-resistant garments for protection against potential thermal injuries from combustible dust flash fire events that contributed to the severity of the injuries in the incident.",
+            "Also contributing to at least one fatality and three serious injuries was Didion's lack of flame-resistant personal protective equipment that could have protected employees from exposure to the flash fires."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Ductwork and Dust Collector Inspection and Cleaning Program",
+        "side": "prevention",
+        "barrier_role": "Remove combustible dust accumulations from ductwork to prevent fuel buildup for propagation",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Administrative control - periodic inspection and cleaning schedule",
+        "linked_threat_ids": [
+          "T-002",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Despite guidance to the contrary, Didion had no cleaning or inspection program to remove combustible dust accumulations from dust collectors or pneumatic conveying systems.",
+            "The CSB received thousands of work order records from Didion but could not identify any work orders as PM tasks that concerned inspection for accumulation or cleaning dust collectors or associated ductwork.",
+            "After the incident, the CSB observed evidence of accumulated material in ductwork supplying the Dry Grit Filter and the Torit Filter, and inside the Torit Filter chamber.",
+            "In some areas the accumulations inside ductwork were several inches thick."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Process Safety Information Management",
+        "side": "prevention",
+        "barrier_role": "Maintain accurate process documentation to support hazard identification and safe operating decisions",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Administrative control - documentation system for process safety data",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion did not maintain key process safety information, such as deflagration engineering control design documentation, dust collector design information, or dust explosibility data.",
+            "Didion was unable to provide evidence of the presence or use of any such systems.",
+            "Didion reported to the CSB that some records existed, but only in hard copy, and were destroyed in the explosions and building collapses.",
+            "Didion did not maintain adequate Process Safety Information, which contributed to Didion's failure to identify, evaluate, and adequately address process hazards."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-015",
+        "name": "External Audit and Inspection Follow-Up Program",
+        "side": "prevention",
+        "barrier_role": "Ensure hazards identified by external auditors are addressed and corrective actions tracked",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Administrative control - audit management and corrective action tracking system",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Didion did not have an adequate audit and inspection program to address the findings and recommendations that were generated from these actions.",
+            "The findings had not been addressed at the time of the incident. Didion had not installed engineering controls to manage combustible dust hazards throughout the mill facility.",
+            "Following multiple changes in the mill facility safety and operating management, the findings and recommendations were not disseminated to new management employees.",
+            "Contributing to all five fatalities and all 14 serious injuries was Didion management's failure to abate combustible dust hazards identified during external inspections."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-016",
+        "name": "Choke Sensors on Size Reduction Equipment Discharge Lines",
+        "side": "prevention",
+        "barrier_role": "Detect plugging in discharge lines to prevent material backup and smoldering nest development",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Active engineering control - detects plugging condition and triggers alarm",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "No choke sensors alarmed in the South BM or anywhere else in the Bran system on the night of the incident.",
+            "Didion was unable to provide any choke sensor data for the South BM and its discharge line, despite the control computer graphic indicating that four choke sensors existed in the South BM and its discharge line.",
+            "Each incident had corrective actions involving adding or calibrating choke sensors, or ensuring that choke sensor alarms were functional. Yet even in the May 31, 2017 incident, choke sensor data were not available because it appears the choke sensors were nonfunctional."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-017",
+        "name": "Pressure-Resistant and Explosion-Relieving Building Construction",
+        "side": "mitigation",
+        "barrier_role": "Withstand or relieve deflagration pressures to prevent structural collapse",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Passive engineering control - structural design to resist or relieve explosion overpressure",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The mill buildings were not designed to relieve the pressure generated from a combustible dust explosion that could occur within the milling facility during an upset condition.",
+            "Furthermore, the mill buildings were not designed to withstand deflagration pressures which exacerbated the facility damage and injuries due to the collapse of the buildings.",
+            "Didion did not design the mill buildings to withstand overpressure events, construct its mill buildings in accordance with industry guidance to mitigate the damage during a combustible dust explosion."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

@@ -1,0 +1,728 @@
+{
+  "incident_id": "2020-07-I-NC",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": "https://www.csb.gov",
+    "title": "Fire During Hot Work at Evergreen Packaging Paper Mill",
+    "date_published": "2021-09-24",
+    "date_occurred": "2020-09-21",
+    "timezone": "US/Eastern"
+  },
+  "context": {
+    "region": "Canton, North Carolina, USA",
+    "operator": "Evergreen Packaging",
+    "operating_phase": "maintenance_shutdown",
+    "materials": [
+      "epoxy vinyl ester resin (Derakane 510N)",
+      "fiberglass matting",
+      "methyl ethyl ketone peroxide (MEKP)",
+      "N,N-Dimethyl Aniline (DMA)",
+      "cobalt promoter"
+    ]
+  },
+  "event": {
+    "top_event": "Fire Ignition in Confined Space",
+    "incident_type": "fire",
+    "costs": null,
+    "actions_taken": [
+      "Blastco workers evacuated the upflow tower after fire started",
+      "Blastco worker attempted to smother fire with plastic lid and fiberglass mat",
+      "Blastco foreman notified Evergreen contact via cell phone at 5:18 a.m.",
+      "Evergreen safety office activated Emergency Response Team (ERT) at approximately 5:20 a.m.",
+      "911 called at approximately 5:22 a.m.",
+      "Evergreen night shift safety manager assumed incident commander role and requested all county mutual aid fire resources",
+      "Canton Fire Department and mutual aid from surrounding areas responded",
+      "Evergreen ERT and area fire departments fought fire for approximately two hours",
+      "OSHNC investigated the incident and issued citations to Blastco",
+      "CSB investigated the incident"
+    ],
+    "summary": "On September 21, 2020, during a planned mill-wide shutdown at Evergreen Packaging's paper mill in Canton, North Carolina, two contractor companies (Universal Blastco and Rimcor) were performing simultaneous maintenance work inside connected process vessels (upflow and downflow towers). Blastco workers were applying flammable epoxy vinyl ester resin and fiberglass to the inside of the FRP upflow tower. Cold ambient temperatures caused the resin to harden too slowly, and after failing to locate drum warming bands, Blastco workers used a portable electric heat gun to warm the resin. The heat gun was not recognised as hot work, no hot work permit was obtained, and neither Evergreen nor Rimcor was informed of its use. At approximately 5:15 a.m., the heat gun fell into a five-gallon bucket of flammable resin, igniting a fire. Blastco workers escaped, but smoke and flames spread through the crossover line to the connected downflow tower, where two Rimcor workers (Brett Burgueno and Curtis Butler) were fatally injured by carbon monoxide poisoning due to smoke inhalation. The combustible FRP construction of the upflow tower and crossover line contributed to the rapid spread of fire. Poor confined space safety practices, lack of simultaneous operations coordination, inadequate communication, and absence of immediately available emergency services contributed to the severity of the incident.",
+    "recommendations": [
+      "2008-01-I-CO-R2 (reiterated): OSHA to publish a Safety and Health Information Bulletin addressing hazards and controls when using flammable materials in confined spaces.",
+      "2020-07-I-NC-R1: OSHA to issue a safety information product addressing analysis and control of hazards not pre-existing but resulting from work activities inside permit-required confined spaces.",
+      "2020-07-I-NC-R2: OSHA to require Owner/Operators to ensure coordination of simultaneous operations involving multiple work groups including contractors.",
+      "2020-07-I-NC-R3: Evergreen Packaging to update all contractor documentation, training, and orientation materials pertaining to hot work to reflect Evergreen's internal definition of hot work.",
+      "2020-07-I-NC-R4: Evergreen Packaging to develop and implement a formalized and comprehensive Simultaneous Operations (SIMOPs) program.",
+      "2020-07-I-NC-R5: Evergreen Packaging to develop and implement a policy requiring involvement of emergency response personnel in planning and coordination of activities involving flammable materials in confined spaces.",
+      "2020-07-I-NC-R6: Universal Blastco to update its hot work policy and employee training program to specifically identify heat guns as hot work.",
+      "2020-07-I-NC-R7: Universal Blastco to develop a formalized troubleshooting guide and/or SOP for usage of resin and fiberglass matting in FRP operations addressing cold-weather resin performance.",
+      "2020-07-I-NC-R8: Universal Blastco to develop a policy and SOPs for the proper use of heat guns in FRP operations."
+    ],
+    "key_phrases": [
+      "hot work",
+      "heat gun",
+      "flammable resin",
+      "confined space",
+      "fiber-reinforced plastic (FRP)",
+      "simultaneous operations (SIMOPs)",
+      "upflow tower",
+      "downflow tower",
+      "crossover line",
+      "gel time",
+      "cold ambient temperatures",
+      "drum warming bands",
+      "permit-required confined space",
+      "ignition source",
+      "flash point",
+      "emergency response team",
+      "contractor management",
+      "pre-job planning",
+      "entry termination",
+      "atmospheric monitoring"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Flammable liquid (epoxy vinyl ester resin) present in confined space during maintenance"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Combustible FRP construction of upflow tower and crossover line"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Introduction of ignition source (heat gun) into confined space containing flammable resin"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Cold ambient temperatures causing extended resin gel time and inadequate pre-job planning"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Failure to recognise heat gun as hot work requiring permit and controls"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Simultaneous operations in connected confined spaces without coordination"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Fire ignition inside upflow tower"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Fire and smoke spread to connected downflow tower via FRP crossover line"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Fatal injuries to two Rimcor workers (carbon monoxide poisoning/smoke inhalation)"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Extensive fire damage to upflow tower and crossover line"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Hot Work Permit System",
+        "side": "prevention",
+        "barrier_role": "Require identification and authorisation of ignition sources before work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "NFPA 51B and Evergreen/Blastco hot work policies require hot work permits for any activity that could serve as a source of ignition",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Blastco did not request, and Evergreen did not issue, a hot work permit on the night of the incident.",
+            "The Safe Work Permit for the night shift beginning Sunday, September 20 … indicates that no hot work was to be performed.",
+            "Blastco workers told the CSB that they were not performing any hot work on the morning of the incident, and that hot work permits are used when a tool produces sparks or open flames."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Hot Work Hazard Recognition and Training",
+        "side": "prevention",
+        "barrier_role": "Ensure workers and supervisors identify all ignition sources including heat guns as hot work",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Evergreen internal hot work policy defines hot work as 'any activity that could serve as a source of ignition'; Blastco confined space policy similarly defines hot work",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Blastco did not produce any documentation showing any training related to the acceptable use of heat guns or their qualification as a form of hot work, and employees told the CSB they did not receive any such training by Blastco.",
+            "Evergreen's contractor safety handbook and site orientation program only define hot work as 'burning, cutting, brazing or welding.' This is not in alignment with Evergreen's own internal hot work policy.",
+            "Blastco workers' narrow understanding of types of ignition sources and hot work was not in alignment with the broader definition of hot work in Blastco's own confined space policy."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Pre-Job Planning for Cold Weather Resin Performance",
+        "side": "prevention",
+        "barrier_role": "Identify cold-weather resin performance risks and specify safe alternatives (drum heaters, day-shift scheduling) before work commences",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "NFPA 51B decision tree encourages seeking acceptable alternatives to hot work; Blastco had drum heaters available and could have scheduled work during warmer daytime temperatures",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Drum heaters, which might have prevented this incident by warming the resin in a drum outside the upflow tower, were not identified in pre-job planning efforts, and Blastco workers were unable to locate them on Blastco's job trailer.",
+            "The work also was not performed during the day when temperatures were warmer, which may have eliminated the need to warm the resin.",
+            "Effective pre-job planning, such as taking into account the potential for poor performance of the resin in cold temperatures and identifying solutions to avoid or correct the problem, could have prevented this incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Drum Heating Bands (Cold-Weather Resin Warming Alternative)",
+        "side": "prevention",
+        "barrier_role": "Warm resin in drum outside confined space to achieve adequate gel time without introducing ignition source inside vessel",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Blastco had used drum warming bands on other jobs; Evergreen confirmed another contractor used similar method",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Blastco performed a post-incident inventory of its two job trailers and located two drum warmers … the bands were not in their normal location and he could not locate them on the trailers.",
+            "Blastco workers informed the CSB that they had successfully used drum warming bands in the past to address cold temperatures.",
+            "The drum heaters may have provided enough heat to the resin to eliminate the need for the heat gun."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Confined Space Entry Permit (including hazard documentation and entry supervisor designation)",
+        "side": "prevention",
+        "barrier_role": "Formally document confined space hazards including flammable materials, designate entry supervisor and attendant, and specify conditions for entry termination",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "29 CFR 1910.146 requires permit-required confined space entry permits to document hazards, designate entry supervisor and attendant, and specify emergency services",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Blastco did not designate an entry supervisor or an attendant on the permit, and never completed the permit.",
+            "The citations included Blastco's failure to document the hazards of the space, such as the presence of the flammable resin, Blastco's failure to designate an entry supervisor on the permit, and the entry supervisor's failure to sign the permit authorizing entry.",
+            "Blastco's confined space permit required the use of continuous ventilation for the duration of Blastco's work. However, a witness stated that at some point during the night shift, the ventilation fan was turned off."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Confined Space Entry Termination on New Hazard Introduction",
+        "side": "prevention",
+        "barrier_role": "Terminate confined space entry and evacuate when a new unauthorised hazard (heat gun) is introduced into the space",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "29 CFR 1910.146(e)(5)(ii) and Blastco's own confined space policy require entry termination when a condition not allowed under the entry permit arises",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Blastco crew did not terminate the entry when the new hazard presented by the heat gun was introduced into the space.",
+            "Blastco should have terminated its confined space entry when the heat gun was introduced into the space, and its failure to do so resulted from Blastco's failure to recognize the ignition hazard presented by the heat gun."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Continuous Atmospheric Monitoring at Work Location",
+        "side": "prevention",
+        "barrier_role": "Continuously monitor flammable vapour concentrations at the work location inside the confined space to detect hazardous atmosphere",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "29 CFR 1910.146 and Blastco's confined space permit required continuous atmospheric monitoring; OSHA prohibits entry above 10% LEL",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Blastco used continuous atmospheric monitoring, but only at the entrance to the upflow tower and not at the work location inside the vessel, where the potential for a hazardous flammable atmosphere existed.",
+            "Blastco's confined space permit required the use of continuous ventilation for the duration of Blastco's work. However, a witness stated that at some point during the night shift, the ventilation fan was turned off.",
+            "Blastco left blank the sections [of the confined space permit] that would have required continuous atmospheric monitoring."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Simultaneous Operations (SIMOPs) Coordination Program",
+        "side": "prevention",
+        "barrier_role": "Identify, evaluate, and control hazardous interactions between simultaneous work activities in connected confined spaces",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "29 CFR 1910.146(d)(11) requires employers to develop procedures to coordinate entry operations when employees of more than one employer work simultaneously in a permit space; NFPA 350 places responsibility on Owner/Operators",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Evergreen did not have a SIMOPs program in place at the time of the incident to facilitate coordination between parties performing work close together in time and place.",
+            "Blastco and Rimcor did not effectively coordinate simultaneous entry operations based on evidence that Blastco and Rimcor workers did not communicate with each other prior to the fire, that Blastco and Rimcor did not have a shared communication method (e.g., radios), and that Blastco and Rimcor had separate entry supervisors.",
+            "Witnesses confirmed to the CSB that there was no communication between the two attendants prior to the fire, and that the two crews operated throughout the night totally independent of each other."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Contractor Management and Oversight by Owner/Operator",
+        "side": "prevention",
+        "barrier_role": "Ensure contractors are trained on site-specific hot work definitions, hazards, and safe work practices; verify contractor compliance",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "CCPS Guidelines for Risk Based Process Safety state ultimate responsibility for ensuring safety of the facility rests with the company; Evergreen had contractor management policy",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-003",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Evergreen's contractor safety handbook and site orientation program only define hot work as 'burning, cutting, brazing or welding.' This is not in alignment with Evergreen's own internal hot work policy.",
+            "Evergreen did not follow existing guidance available to industry in NFPA 350 that recommends that Owners/Operators should coordinate activities between multiple employers working on the same job or on other nearby jobs that could affect the confined space operations.",
+            "Evergreen's failure to ensure coordination and the integrity of pre-planning between the two contract companies."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Immediate Fire Extinguisher Availability Inside Confined Space",
+        "side": "mitigation",
+        "barrier_role": "Enable rapid suppression of incipient fire before it spreads",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Heat gun manufacturer warnings state 'Keep multiple class ABC fire extinguishers readily accessible while working'",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Blastco crew did not have a fire extinguisher immediately available, and Evergreen did not require Blastco to have one available.",
+            "One of the Blastco workers inside the tower removed the heat gun from the bucket and alerted the rest of the crew to the fire."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Emergency Response Team (ERT) on Standby During Flammable Material Operations",
+        "side": "mitigation",
+        "barrier_role": "Provide immediate emergency response capability to suppress fire and rescue confined space entrants when flammable materials are in use",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "OSHA confined space standard requires rescue services to be available; CSB recommends ERT stationed directly outside confined space when flammable materials are used",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Evergreen did not ensure its emergency response team was on standby outside the upflow tower while flammable materials were used inside the confined space.",
+            "At approximately 5:20 a.m., the safety office activated the Evergreen site emergency response team (ERT).",
+            "Had the ERT been on standby in the vicinity, they may have been able to respond to the incident immediately, potentially by extinguishing the fire before it could spread to the downflow tower.",
+            "The lack of immediately available emergency services during the hazardous operation involving flammable materials in a confined space."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Emergency Communication and Alarm Activation by Confined Space Attendant",
+        "side": "mitigation",
+        "barrier_role": "Attendant summons emergency services immediately upon detecting emergency condition in confined space",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "29 CFR 1910.146(i) requires attendant to summon rescue and emergency services as soon as entrants may need assistance",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-007"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Blastco attendant did not summon emergency services when the fire started and did not notify the Rimcor attendant of the emergency until some or all of the Blastco workers had evacuated the upflow tower.",
+            "Instead of summoning the Evergreen fire control center or ERT directly, the Blastco foreman contacted his Evergreen contact, who contacted the operations foreman, who contacted the fire control center, who summoned the ERT.",
+            "Blastco did not properly activate emergency services when it did not directly call the Evergreen emergency phone number listed on the permit when the fire started."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Isolation of Connected Confined Spaces (Upflow and Downflow Towers)",
+        "side": "mitigation",
+        "barrier_role": "Physically isolate connected vessels to prevent fire, smoke, and toxic gases from spreading between spaces occupied by different work crews",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "29 CFR 1910.146(d)(3)(iii) requires isolation of confined spaces; upflow and downflow towers were connected by crossover line and not isolated from each other",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Evergreen, Blastco and Rimcor treated the upflow and downflow towers as separate and independent confined spaces, even though the towers were connected by a crossover pipe.",
+            "Evergreen did not isolate the upflow tower from the downflow tower, but instead isolated them together as a single space from upstream and downstream processes.",
+            "Given that the upflow and downflow towers were not isolated from each other, and were connected by the crossover line, the towers and crossover line constituted a single confined space."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Continuous Ventilation of Confined Space During Flammable Material Use",
+        "side": "prevention",
+        "barrier_role": "Maintain continuous ventilation to prevent accumulation of flammable vapours above LEL inside confined space",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Evergreen required continuous ventilation on Blastco's confined space permit; 29 CFR 1910.146 requires control of hazardous atmospheres",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Blastco's confined space permit required the use of continuous ventilation for the duration of Blastco's work. However, a witness stated that at some point during the night shift, the ventilation fan was turned off.",
+            "A worker communicated to the CSB that Blastco also turned off the continuous ventilation, which Evergreen required on Blastco's confined space permit."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": false,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_ids_referenced": {
+      "PIF-001": "Competence/knowledge gap - Blastco workers did not recognise heat gun as ignition source or hot work",
+      "PIF-002": "Situational awareness - failure to recognise new hazard introduced into confined space and failure to terminate entry",
+      "PIF-003": "Training - inadequate contractor training on hot work definitions by Evergreen; no heat gun hot work training by Blastco",
+      "PIF-004": "Tools/equipment - drum warming bands not located due to disorganised job trailer",
+      "PIF-005": "Procedures - absence of SIMOPs program; incomplete confined space permit; no troubleshooting SOP for cold-weather resin",
+      "PIF-006": "Supervision/management - Evergreen failed to ensure coordination between simultaneous contractor operations",
+      "PIF-007": "Communication - no shared communication method between Blastco and Rimcor crews; protracted emergency notification chain"
+    }
+  }
+}

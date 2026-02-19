@@ -1,0 +1,503 @@
+{
+  "incident_id": "2020-04-I-TX",
+  "source": {
+    "doc_type": "CSB Investigation Report",
+    "url": null,
+    "title": "Fatal Well Blowout at Daniel H. Wendland 1-H Well",
+    "date_published": "2023-12",
+    "date_occurred": "2020-01-29",
+    "timezone": "US/Central"
+  },
+  "context": {
+    "region": "Burleson County, Texas, USA",
+    "operator": "Chesapeake Operating, L.L.C.",
+    "operating_phase": "workover",
+    "materials": [
+      "crude oil",
+      "natural gas",
+      "brine",
+      "treated water"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Well Control / Blowout",
+    "incident_type": "Well Blowout and Fire",
+    "costs": 1000000,
+    "actions_taken": [
+      "Emergency response by Caldwell Volunteer Fire Department and Texas Department of Public Safety",
+      "Evacuation of personnel from well area",
+      "Fire suppression operations",
+      "Search and rescue operations",
+      "Well shut-in operations by Halliburton Boots & Coots on January 31, 2020",
+      "Well plugged and abandoned on April 5, 2021"
+    ],
+    "summary": "On January 29, 2020, at approximately 3:00 p.m., the Daniel H. Wendland 1-H well in Burleson County, Texas experienced a loss of well control during a workover operation. The well blowout released oil and gas that ignited within seconds, resulting in a flash fire. Three contract workers were fatally injured and one was seriously injured. The incident resulted in an estimated $1 million in property damage. The root cause was inadequate well planning and ineffective well control barriers for a completed well in an underpressured reservoir.",
+    "recommendations": [
+      "Chesapeake Operating, L.L.C. should develop or revise policies incorporating API RP 59 recommendations regarding well planning, specifically including well history review in conjunction with workover well control planning",
+      "American Petroleum Institute should publish focused guidance on workover operations including completed wells in underpressured reservoirs, clarify that stabbing valves should not be considered as well control barriers, and emphasize that every well should have two well control barriers with one being preventative",
+      "OSHA should remove the exemption for oil and gas drilling and well servicing from the Control of Hazardous Energy standard (29 CFR 1910.147)",
+      "OSHA should promulgate a new standard with prescriptive requirements for primary and secondary barriers, detailed written procedures, management of change requirements, risk assessments, RAGAGEP compliance, Well Construction Interface Documents, flow checks, employee participation, critical well information maintenance, and hazard analysis for onshore oil and gas drilling, production, and servicing/workover activities"
+    ],
+    "key_phrases": [
+      "well control failure",
+      "underpressured reservoir",
+      "ineffective hydrostatic barrier",
+      "inadequate well planning",
+      "ignition source management",
+      "stabbing valve",
+      "casing valve",
+      "brine injection",
+      "tubing head replacement",
+      "flash fire",
+      "regulatory gap",
+      "OSHA exemption"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Hydrocarbon Reservoir Pressure"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Flammable Hydrocarbon Vapors and Liquids"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Underpressured Reservoir Conditions"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Inadequate Hydrostatic Pressure in Wellbore"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Failure of Mechanical Well Control Barriers"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Influx of Formation Fluids into Wellbore"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Presence of Ignition Sources Near Release Point"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Uncontrolled Release of Oil and Gas"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Flash Fire and Thermal Injuries"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Fatalities"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Serious Burn Injuries"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Property Damage"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Hydrostatic Pressure Barrier via Brine Injection",
+        "side": "prevention",
+        "barrier_role": "Primary barrier to prevent formation fluid influx",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Intended as primary well control barrier for underpressured reservoir",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Onsite Supervisor instructed A&L, the hot oil contractor, to pump an additional 50 bbls of 10-pound-per-gallon (ppg) brine into the casing before removing the existing tubing head to establish a hydrostatic barrier.",
+            "The 50 bbls of brine temporarily added 1,270 feet, resulting in an overbalance against the formation face of 660 psi, providing sufficient hydrostatic pressure to prevent formation fluids from entering the wellbore.",
+            "The intended well control barriers were ineffective in preventing the loss of well control and subsequent blowout.",
+            "At about 3:00 p.m. on Wednesday, January 29, 2020, the installation crew from Eagle was in the process of torquing the bolts attaching the tubing head to the top casing flange when the well began releasing oil and gas through the open stabbing valve and casing valves."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Stabbing Valve as Mechanical Barrier",
+        "side": "prevention",
+        "barrier_role": "Secondary mechanical barrier to isolate wellbore",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Mechanical isolation device installed on wellhead",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The new casing valves and the stabbing valve were left open throughout the installation and bolt-up. These valves were intentionally left open due to concerns about experiencing well pressure while the tubing head was being installed.",
+            "At about 3:00 p.m. on Wednesday, January 29, 2020, the installation crew from Eagle was in the process of torquing the bolts attaching the tubing head to the top casing flange when the well began releasing oil and gas through the open stabbing valve and casing valves.",
+            "Stabbing valves should not be considered as well control barriers for workover operations"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Casing Valves as Mechanical Barriers",
+        "side": "prevention",
+        "barrier_role": "Secondary mechanical barrier to isolate casing annulus",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Mechanical isolation devices on wellhead casing connections",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The new casing valves and the stabbing valve were left open throughout the installation and bolt-up. These valves were intentionally left open due to concerns about experiencing well pressure while the tubing head was being installed.",
+            "At about 3:00 p.m. on Wednesday, January 29, 2020, the installation crew from Eagle was in the process of torquing the bolts attaching the tubing head to the top casing flange when the well began releasing oil and gas through the open stabbing valve and casing valves.",
+            "One of the casing valves was plugged at the time of the incident. Although the casing valve was open, the plug prevented the flow of hydrocarbons through the valve."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Well Planning and Risk Assessment",
+        "side": "prevention",
+        "barrier_role": "Administrative control to identify hazards and plan well control",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Industry guidance (API RP 59) recommends well planning prior to workover operations",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-003",
+            "PIF-005",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At the time of the incident, industry guidance stated that companies should plan for well control prior to performing workover operations. Well planning procedures from industry guidance included gathering well information, analyzing the information to predict potential hazards, and formulating contingency plans to address these hazards.",
+            "Chesapeake's well control policies did not incorporate this guidance, and Chesapeake did not adequately review the past history of the Wendland 1-H well, which would have indicated previous well control issues.",
+            "The CSB determined that the cause of the Wendland 1-H well blowout was the lack of well planning regarding the implementation of well control."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Ignition Source Management and Hazard Assessment",
+        "side": "mitigation",
+        "barrier_role": "Administrative control to prevent ignition of released hydrocarbons",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Industry guidance recommends hazard assessments for ignition sources near flammable atmospheres",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003",
+          "CON-004",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-005"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At the time of the incident, a mixture of flammable hydrocarbons released from the well and found an ignition source.",
+            "Multiple potential ignition sources were identified in the vicinity of the open wellbore.",
+            "Chesapeake's policies did not incorporate industry guidance recommending that companies should perform hazard assessments when locating ignition sources and atmospheric monitors near potentially flammable atmospheres.",
+            "The CSB also determined that ineffective ignition source management contributed to the fire, resulting in three fatal injuries and one serious injury."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Federal Regulatory Framework for Well Control",
+        "side": "prevention",
+        "barrier_role": "Regulatory control to mandate well control practices",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "OSHA regulations and industry standards",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The Occupational Safety and Health Administration (OSHA) has historically exempted onshore oil and gas well drilling and servicing from its Control of Hazardous Energy regulation at 29 Code of Federal Regulations (CFR) 1910.147 as well as its Process Safety Management (PSM) standard requirements under 29 CFR 1910.119.",
+            "In addition, OSHA has not developed a separate standard to cover onshore oil and gas drilling and servicing operations.",
+            "As a result, there are minimal regulations that govern onshore oil and gas drilling and servicing operations despite prior attempts to promulgate special rules for this industry.",
+            "The absence of regulations governing onshore oil and gas operations contributed to the incident, resulting in the failure to both effectively control hazardous energy and implement essential risk assessments that could have prevented this incident."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Pre-Job Safety Assessment",
+        "side": "prevention",
+        "barrier_role": "Administrative control to identify hazards before work begins",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Standard industry practice for workover operations",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "medium",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Just before 10:00 a.m., after the workover rig arrived, the Onsite Supervisor held a Pre-Job Safety Assessment and reported a shut-in tubing pressure and shut-in casing pressure of 80 pounds per square inch gauge (psig) on the well."
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Pressure Monitoring and Well Status Assessment",
+        "side": "prevention",
+        "barrier_role": "Detection control to identify well conditions and potential hazards",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Standard well monitoring practice",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "high",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "On Wednesday morning, January 29, 2020, the day of the incident, the shut-in pressure read 50 psig. The wellbore fluid level was approximately 4,850 feet below the ground level based on a recent survey. The pressure measured at the surface indicated that gas had evolved from the wellbore fluid column and the well was not dead.",
+            "When the crew arrived at the well, they opened up the well, and bled off the pressure, but gas continued to evolve, rise up the wellbore, and exit the well from surface valves open to the atmosphere.",
+            "About 15 minutes after pumping the brine into the well, a 'little puff' of gas came out of the well, after which the Onsite Supervisor believed the well to be static, or non-flowing."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "low",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "medium",
+      "communication_mentioned": true,
+      "situational_awareness_value": "low",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "low",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": "medium",
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": "medium",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": "low",
+      "safety_culture_mentioned": true,
+      "management_of_change_value": "low",
+      "management_of_change_mentioned": true,
+      "supervision_value": "medium",
+      "supervision_mentioned": true,
+      "training_value": "low",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}

@@ -1,0 +1,532 @@
+{
+  "incident_id": "MC%20474%20BP%2008-FEB-2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Pollution Event - Na Kika Platform MC 474-A",
+    "date_published": "2025-06-12",
+    "date_occurred": "2025-02-08",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Mississippi Canyon Block 474",
+    "operator": "BP Exploration & Production Inc.",
+    "operating_phase": "production",
+    "materials": [
+      "crude oil",
+      "produced water",
+      "emulsion breaker chemical"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Pollution - Oil Discharge",
+    "costs": null,
+    "actions_taken": [
+      "Chemical trial halted on 14 February 2025",
+      "Reverted to original emulsion breaker formula",
+      "Protocol sampling initiated",
+      "Incident reported to BSEE on 20 February 2025"
+    ],
+    "summary": "On 08 February 2025, a pollution event occurred at the Na Kika platform when a trial emulsion breaker chemical caused frothing/foaming in the produced water treatment system. This led to faulty level readings, liquid carryover in vessels, and discharge of approximately 89 barrels of oil into Gulf of America waters over a 7-day period (08-15 February 2025). The discharge exceeded the daily maximum limit of 42 mg/l. BP personnel did not immediately realize the oil discharge was occurring. Once identified, the chemical trial was stopped and the original emulsion breaker formula was reinstated, successfully ending the sheening.",
+    "recommendations": [
+      "BSEE Production Operations Support Section should reach out to industry to require additional safeguards to improve detection time when system upsets occur",
+      "Operators should have methods in place to detect pollution events besides visual observation, given that produced water outlets are located well below the water surface"
+    ],
+    "key_phrases": [
+      "emulsion breaker chemical trial",
+      "produced water system upset",
+      "frothing/foaming within production vessels",
+      "faulty level readings",
+      "liquid carryover",
+      "89 barrels oil discharged",
+      "outlet 80 feet below water surface",
+      "pollution event went unnoticed for 7 days"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Hydrocarbon in produced water system",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Incompatible chemical introduction causing process upset",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Frothing/foaming in production vessels",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Faulty level readings due to foam",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Liquid carryover in separation vessels",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Oil discharge to Gulf of America waters",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Exceedance of NPDES permit limits",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Environmental pollution (89 barrels oil)",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Production system shut-ins",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Chemical trial approval process",
+        "side": "prevention",
+        "barrier_role": "Prevent incompatible chemical introduction",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-operational approval and planning",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Although the chemical trial was approved by BSEE, the trial chemical proved to be non-compatible in the produced water system",
+            "No or inadequate hazard analysis"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Hazard analysis for chemical compatibility",
+        "side": "prevention",
+        "barrier_role": "Identify incompatibility risks before trial",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Pre-operational risk assessment",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "No or inadequate hazard analysis: BP personnel were not trained properly on what to look for during this chemical trial"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Control room monitoring of separator pressures and levels",
+        "side": "prevention",
+        "barrier_role": "Detect process upsets during chemical trial",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Active monitoring and detection during operations",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "training",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CRO began monitoring the results displayed on the control room monitors while production operators physically monitored the topside vessels",
+            "The separator pressures, levels and upsets were documented, and the system trends were being recorded and analyzed throughout the chemical trial",
+            "Strong currents, foaming within vessels caused by the trial chemical leading to topside vessel upsets, facility shut-ins, etc. made it difficult for control room operators to quickly identify and determine the unfavorable results"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Physical monitoring of topside vessels by production operators",
+        "side": "prevention",
+        "barrier_role": "Detect frothing/foaming and vessel upsets",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Active monitoring during operations",
+        "linked_threat_ids": [
+          "T-002",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "competence",
+            "training",
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "production operators physically monitored the topside vessels",
+            "BP personnel were not trained properly on what to look for during this chemical trial. They failed to identify issues with the chemical trial"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Level instrumentation in separation vessels",
+        "side": "prevention",
+        "barrier_role": "Prevent liquid carryover by accurate level control",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Automated process control",
+        "linked_threat_ids": [
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "This eventually led to faulty level readings, which caused liquid carryover in the vessels",
+            "The chemical trials hindered the typical production process by causing frothing/foaming within the production vessels. This eventually led to faulty level readings"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Produced water treatment system (FWKO and separators)",
+        "side": "prevention",
+        "barrier_role": "Separate oil from produced water before discharge",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary barrier to prevent oil in discharge",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "liquid carryover in the vessels, leading to oil discharging out of the produced overboard water discharge point",
+            "The trial chemical caused frothing/foaming which eventually led to upsets within the production vessels"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Visual observation for sheen from platform",
+        "side": "mitigation",
+        "barrier_role": "Detect oil discharge to enable response",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Detection after loss of containment",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Unfortunately, the oil discharge was not immediately realized",
+            "the pollution event went unnoticed for 7 days before being stopped",
+            "The produced water outlet is located 80 feet below the water surface",
+            "operators should have other methods in place to detect pollution events, besides looking over the side of the platform for a sheen"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "NPDES permit limits monitoring and compliance",
+        "side": "mitigation",
+        "barrier_role": "Detect exceedance of discharge limits",
+        "barrier_type": "administrative",
+        "line_of_defense": "3rd",
+        "lod_basis": "Regulatory compliance monitoring",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "situational_awareness",
+            "procedures"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Produced water discharges must be under the daily maximum of 42 mg/l and under the monthly average of 29 mg/l. In this case, BP exceeded the daily maximum of 42 mg/l",
+            "produced water effluent violations for February 2025"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Personnel training on chemical trial monitoring",
+        "side": "prevention",
+        "barrier_role": "Enable personnel to identify chemical trial issues",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational competence requirement",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "training",
+            "competence"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Personnel Training: Personnel poorly trained",
+            "BP personnel were not trained properly on what to look for during this chemical trial. They failed to identify issues with the chemical trial"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Emergency response - halt chemical trial",
+        "side": "mitigation",
+        "barrier_role": "Stop pollution event once identified",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Recovery action to limit consequences",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Once the chemical trial was determined to be the cause for the sheening and discharging of oil through the overboard water system, BP began returning to the original EB chemical formula and was successful in ending the sheening",
+            "The oil discharge ended once BP realized that the chemical trial was causing the pollution, and reverted to the original EB formulation"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": "negative",
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

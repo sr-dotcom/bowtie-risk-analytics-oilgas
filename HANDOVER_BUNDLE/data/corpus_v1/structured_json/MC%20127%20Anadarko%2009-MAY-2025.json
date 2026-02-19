@@ -1,0 +1,621 @@
+{
+  "incident_id": "MC%20127%20Anadarko%2009-MAY-2025",
+  "source": {
+    "doc_type": "BSEE Accident Investigation Report",
+    "url": null,
+    "title": "Structural Damage - Firewater System Failure - Horn Mountain Platform",
+    "date_published": "2025-09-08",
+    "date_occurred": "2025-05-09",
+    "timezone": "CST"
+  },
+  "context": {
+    "region": "Gulf of America, Mississippi Canyon Block 127",
+    "operator": "Occidental Petroleum (operated for Anadarko Petroleum Corporation)",
+    "operating_phase": "production",
+    "materials": [
+      "seawater",
+      "diesel fuel"
+    ]
+  },
+  "event": {
+    "top_event": "Loss of Containment",
+    "incident_type": "Firewater System Rupture with Dropped Object",
+    "costs": "250000",
+    "actions_taken": [
+      "Emergency shutdown initiated automatically",
+      "Fire water pumps A and B automatically started",
+      "Personnel mustered at designated locations",
+      "Emergency generator loaded",
+      "Fire water pumps shut down after ESD event",
+      "Jockey water pump manually started by CRO",
+      "Fire water pumps restarted causing water hammer",
+      "Fire water pumps shut down after rupture"
+    ],
+    "summary": "On May 9, 2025, at approximately 1530 hours, a water hammer event occurred in the firewater system piping at the Horn Mountain SPAR platform in Mississippi Canyon Block 127. The incident began when an EnerMech technician accidentally initiated an ESD while troubleshooting an air compressor by turning the Bypass Rig Air switch, causing the TSE system to lose pressure. Following the ESD, multiple procedural failures and equipment issues occurred: the jockey water pump failed to automatically restart due to breaker issues, the T-gen ran out of fuel because SDV 2082 was not opened, and a suspected leaking check valve allowed the firewater main pressure to drop. When the main fire water pumps were restarted without first bleeding air from the system through helideck hose reels, a water hammer effect ruptured the FiberBond piping in multiple locations. A 1.5-pound metal support clamp broke loose and fell 30 feet, landing 5-6 feet from a worker near Lifeboat 4. The incident resulted in $250,000 in damage to the firewater system, including 3 failed gaskets, 2 piping joint leaks, 3 piping elbow leaks, 2 T-piping leaks, 3 piping spool leaks, and 1 wear at spool. No injuries occurred.",
+    "recommendations": [
+      "Update Power Generation System Procedure to include opening SDV 2082 after ESD events",
+      "Correct Firewater System Operating Procedure to reference PCV 6650 instead of non-existent Sea Chest Valve",
+      "Update Power Protection and Life Support Systems Procedures to reflect current JWP configuration",
+      "Ensure helideck hose reels are opened to bleed air before restarting fire water pumps",
+      "Replace or repair leaking check valve FSV 6650-004",
+      "Review all operating procedures to ensure alignment with current platform configuration",
+      "Add additional equipment to prevent similar incidents"
+    ],
+    "key_phrases": [
+      "water hammer effect",
+      "FiberBond piping rupture",
+      "dropped object hazard",
+      "ESD event",
+      "TSE loop pressure loss",
+      "jockey water pump failure",
+      "leaking check valve",
+      "procedures not followed",
+      "inadequate written job procedures",
+      "lack of communication"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Pressurized Seawater in Firewater System",
+        "description": null
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Elevated Equipment and Components",
+        "description": null
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Accidental ESD Initiation",
+        "description": null
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Loss of Firewater System Pressure",
+        "description": null
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Air Ingress into Firewater System",
+        "description": null
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Water Hammer Event",
+        "description": null
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Equipment Failure - Leaking Check Valve",
+        "description": null
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Firewater Piping Rupture",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Dropped Object Hazard",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Loss of Firefighting Capability",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Equipment Damage",
+        "description": null,
+        "severity": null
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Seawater Release to Gulf",
+        "description": null,
+        "severity": null
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Temperature Safety Element (TSE) Loop Monitoring",
+        "side": "prevention",
+        "barrier_role": "Detection and alarm system for abnormal conditions",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Automatic detection system designed to identify loss of pressure and initiate protective actions",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 1455 hours, an ESD was initiated in Zone 14 of the platform due to the Temperature Safety Element (TSE) loop losing pressure"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Automatic Fire Water Pump Startup on ESD",
+        "side": "prevention",
+        "barrier_role": "Automatic response to maintain firefighting capability during emergency",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Automatic system response without human intervention",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Simultaneously, at 1455 hours, the Fire Water Pumps (FWP) A and B along with the Emergency Generator (E-Gen) automatically started, as designed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Jockey Water Pump Automatic Startup",
+        "side": "prevention",
+        "barrier_role": "Maintain firewater system pressure automatically",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Automatic pressure maintenance system",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "After the FWPs were shut off, the Jockey Water Pump (JWP) did not automatically start to maintain firewater main pressure due to the 2E-52 Breaker not being closed to power the AMCC 2001 Buss",
+            "At 1514 hours, an Occidental platform mechanic discovered that the firewater main had low pressure. The Mechanic stated that the JWP should have already been running"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Check Valve FSV 6650-004",
+        "side": "prevention",
+        "barrier_role": "Prevent backflow and maintain system pressure",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Passive mechanical device to prevent reverse flow",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "This caused the JWP to lose power once again, causing the water pressure to drop, likely due to a leaking check valve (FSV 6650-004). This check valve was stated in Anadarko's internal investigation as having a history of leaks",
+            "EQUIPMENT FAILURE: Inadequate equipment repair- Suspected leaking check valve. Anadarko states that in their internal investigation report that there is history of leaking check valves in the FW Main"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Firewater System Operating Procedure",
+        "side": "prevention",
+        "barrier_role": "Provide correct instructions for safe firewater system operation",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural guidance requiring human interpretation and execution",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The current firewater startup procedure references opening a Sea Chest Valve which does not exist. As such, the FWP startup procedure should have referenced opening the PCV 6650, not the Sea Chest Valve",
+            "The firewater hose reels were never opened to allow an escape route for the air that was trapped in the system. Had the firewater hose reels been opened, as called for in the procedures, it would have allowed the air to be purged out of the system",
+            "Lastly, the CRO did not follow the Firewater System Operating procedure in place and failed to request the opening of the helideck hose reels to bleed the air from the system prior to starting the FWPs",
+            "MANAGEMENT SYSTEM: Inadequate written job procedures- Incorrect/ inaccurate operating procedures in place for the specific ESD event",
+            "COMMUNICATION: Instructions not understood and not followed- Correct Fire Water system procedure was not followed"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Power Generation System Procedure",
+        "side": "prevention",
+        "barrier_role": "Ensure proper power restoration after ESD events",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural guidance for power system recovery",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 1524 hours, the T-gen ran out of diesel due to the Shut Down Valve (SDV) 2082 being in the closed position, as the SDV 2082 valve was never opened after the ESD event to supply the T-gen with fuel",
+            "One of the procedures that was not properly identified included not opening the SDV 2082 valve for the T-gen after the ESD event, which caused the T-gen to lose power due to lack of fuel at an important time during the event. This step was not listed in the procedure"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Power Protection and Life Support Systems Procedures",
+        "side": "prevention",
+        "barrier_role": "Guide proper operation of jockey water pump system",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural guidance for critical life support systems",
+        "linked_threat_ids": [
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "There was also a failure to restart the JWP in order to provide a prime for the water main system. This occurred due to the Power Protection and Life Support System procedures not being updated to reflect the use of a JWP that the platform is equipped with currently"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Control Room Operator Oversight",
+        "side": "prevention",
+        "barrier_role": "Monitor and control firewater system operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human supervision and decision-making during operations",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-002",
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 1512 hours, the Occidental Control Room Operator (CRO) requested that both FWPs be shut down because the ESD event was over",
+            "At 1530 hours, the Mechanic that originally noticed the low water main pressure received a call from the CRO requesting him to start the FWPs",
+            "The CRO concurred and the JWP was started by the CRO",
+            "Lastly, the CRO did not follow the Firewater System Operating procedure in place and failed to request the opening of the helideck hose reels to bleed the air from the system prior to starting the FWPs"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Contractor Work Permit and Supervision",
+        "side": "prevention",
+        "barrier_role": "Control and supervise contractor activities to prevent inadvertent system impacts",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural control over third-party work activities",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "negative",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005",
+            "PIF-006",
+            "PIF-007"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At 1132 hours, the Rig Up/Rig down Pre-test Sub-Sea Commissioning Spread permit was approved and the permit state was live",
+            "An internal investigation revealed that during troubleshooting of the air compressor, an EnerMech technician accidentally turned the Bypass Rig Air switch on the compressor which caused the TSE system to lose pressure, initiating the ESD event",
+            "HUMAN ERROR: Inexperience knowledge of equipment operation- EnerMech not familiar with the operations of the air compressor system installed on the facility"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Piping Support Clamps",
+        "side": "mitigation",
+        "barrier_role": "Secure piping to prevent dropped objects",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Physical restraint system to prevent equipment falling",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Due to the piping rupturing and releasing seawater into the Gulf of America, a metal clamp, weighing approximately 1.5 pounds, that was supporting the piping broke loose and fell to the main deck",
+            "The metal clamp fell 30 feet and landed approximately 5-6 feet from an individual who was near the lifeboat"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Muster System and Personnel Accountability",
+        "side": "mitigation",
+        "barrier_role": "Ensure personnel safety during emergency events",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Procedural response to emergency requiring human action",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "During troubleshooting, the Technician noticed that the air from the platform air system was bypassing the starter for the compressor. The Technician and his supervisor then heard the platform muster alarm sound and the platform's flare ignited. They both went to their appropriate muster locations and stood by for further instructions",
+            "The metal clamp fell 30 feet and landed approximately 5-6 feet from an individual who was near the lifeboat"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Emergency Generator Auto-Start",
+        "side": "mitigation",
+        "barrier_role": "Provide backup power during emergency shutdown",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Automatic backup system without human intervention",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-003"
+        ],
+        "performance": {
+          "barrier_status": "active",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "positive",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Simultaneously, at 1455 hours, the Fire Water Pumps (FWP) A and B along with the Emergency Generator (E-Gen) automatically started, as designed",
+            "Personnel were then dispatched to load the E-Gen and get the Air Compressors started on the platform. The E-Gen was successfully loaded"
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": "negative",
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": "negative",
+      "communication_mentioned": true,
+      "situational_awareness_value": "negative",
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": "negative",
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "negative",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": "negative",
+      "management_of_change_mentioned": true,
+      "supervision_value": "negative",
+      "supervision_mentioned": true,
+      "training_value": "negative",
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.2"
+  }
+}

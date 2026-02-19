@@ -1,0 +1,761 @@
+{
+  "incident_id": "2010-02-I-PR",
+  "source": {
+    "doc_type": "investigation_report",
+    "url": null,
+    "title": "Caribbean Petroleum Tank Terminal Explosion and Multiple Tank Fires - Final Investigation Report",
+    "date_published": "2015-10-01",
+    "date_occurred": "2009-10-23",
+    "timezone": "America/Puerto_Rico"
+  },
+  "context": {
+    "region": "Bayamón, Puerto Rico, USA",
+    "operator": "Caribbean Petroleum Corporation (CAPECO)",
+    "operating_phase": "product transfer / tank filling",
+    "materials": [
+      "unleaded gasoline",
+      "jet fuel",
+      "diesel fuel",
+      "fuel oil"
+    ]
+  },
+  "event": {
+    "top_event": "Tank Overfill / Loss of Containment",
+    "incident_type": "vapor cloud explosion and multiple tank fires",
+    "costs": "CAPECO paid more than $8.2 million in environmental liabilities; Fort Buchanan suffered over $5 million in damages; FEMA provided over $3.4 million to 27 entities; total economic impact undetermined",
+    "actions_taken": [
+      "Dock operator instructed to halt gasoline flow to Tank 409 after vapor cloud observed",
+      "Supervisor and operators attempted to locate source of vapor cloud by driving around facility",
+      "One operator sent to security gate",
+      "43 federal, commonwealth, and nongovernmental organizations responded to incident",
+      "530 firefighters and approximately 900 National Guard personnel deployed",
+      "Industrial firefighting company contracted to suppress tank fires",
+      "President Obama signed emergency declaration for affected municipalities",
+      "FEMA activated 17 Emergency Support Function Annexes",
+      "EPA and CAPECO collected and shipped offsite approximately 171,000 gallons of oil and 22 million gallons of contact water",
+      "PR OSHA issued serious violations and fines to CAPECO post-incident",
+      "Puma Energy Caribe LLC acquired CAPECO facility under EPA settlement in May 2010"
+    ],
+    "summary": "On the night of October 23, 2009, during offloading of gasoline from the tanker ship Cape Bruny to the CAPECO tank farm in Bayamón, Puerto Rico, a 5-million gallon aboveground storage tank (Tank 409) overflowed with approximately 200,000 gallons of gasoline. The gasoline aerosolized and formed a large vapor cloud encompassing approximately 107 acres. Open dike drain valves allowed gasoline to migrate to the storm water retention pond in the wastewater treatment area, where the vapor cloud ignited at 12:23 a.m. on October 23, 2009. The resulting explosion registered 2.9 on the Richter scale, damaged approximately 300 homes and businesses up to 1.25 miles away, and caused fires that burned for nearly 60 hours, destroying or damaging 17 of 48 tanks. There were no fatalities; three people suffered minor injuries. The incident was caused by multiple systemic failures including unreliable tank gauging equipment, absence of independent high-level alarms, absence of an automatic overfill prevention system, inadequate procedures, poor maintenance, insufficient lighting, and open dike drain valves.",
+    "recommendations": [
+      "EPA to revise SPCC, FRP, and Accidental Release Prevention Program rules to require risk assessments and automatic overfill prevention systems for bulk aboveground storage facilities storing flammable liquids with NFPA 704 flammability rating of 3 or higher (R1)",
+      "EPA to conduct a survey of randomly selected bulk aboveground storage containers at high-risk terminals to assess safety management systems and overfill prevention measures (R2)",
+      "EPA to issue interim guidance or chemical safety alert on hazards of overfilling bulk aboveground storage containers storing flammable liquids (R3)",
+      "OSHA to revise Flammable and Combustible Liquids standard (29 CFR 1910.106) to require high-integrity automatic overfill prevention systems and incorporate PSM-like hazard analysis and mechanical integrity elements (R4)",
+      "ICC to revise IFC Section 5704.2.7.5.8 to require automatic overfill prevention systems for bulk aboveground storage tank terminals storing flammable liquids with NFPA 704 flammability rating of 3 or higher (R5)",
+      "NFPA to revise NFPA 30 Section 21.7.1.1 to require more than one safeguard within an automatic overfill prevention system including an independent level alarm and documented risk assessment (R6)",
+      "API to revise ANSI/API 2350 to require installation of automatic overfill prevention systems for existing and new facilities at bulk aboveground storage tanks storing flammable liquids with NFPA 704 flammability rating of 3 or higher (R7)",
+      "API to develop detailed guidance on conducting risk assessments for onsite and offsite impacts of potential tank overfill and for determining Safety Integrity Level of required overfill prevention safeguard (R8)",
+      "API to develop a single publication describing all relevant standards and codes for filling operations of aboveground storage tanks in petroleum facilities (R9)"
+    ],
+    "key_phrases": [
+      "tank overfill",
+      "vapor cloud explosion",
+      "multiple tank fires",
+      "loss of containment",
+      "automatic overfill prevention system",
+      "independent high-level alarm",
+      "float and tape gauge failure",
+      "unreliable level control and monitoring system",
+      "open dike drain valves",
+      "inadequate safety management system",
+      "RAGAGEP",
+      "Swiss Cheese Model",
+      "layers of protection",
+      "secondary containment",
+      "gasoline aerosolization",
+      "insufficient lighting",
+      "valve cracking",
+      "lack of formal procedures",
+      "preventive maintenance failure",
+      "community impact"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Large inventory of flammable liquid (gasoline) stored in aboveground storage tanks adjacent to populated communities"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Tank overfill during ship-to-tank transfer operations due to unreliable level monitoring and control"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Malfunctioning float and tape gauge / ATG transmitter providing inaccurate or no tank level data"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Variable and unmonitored gasoline flow rate from Cape Bruny tanker ship"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Potential internal floating roof failure due to turbulence during high-rate filling"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Open dike drain valves allowing gasoline to migrate beyond secondary containment to WWT area"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Vapor cloud formation encompassing approximately 107 acres of tank farm"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Vapor cloud explosion registering 2.9 on Richter scale damaging approximately 300 homes and businesses up to 1.25 miles"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Multiple tank fires burning for approximately 60 hours destroying or damaging 17 of 48 tanks"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Environmental contamination - release of approximately 30 million gallons of petroleum to soil, wetlands, and navigable waterways"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Community impact - injuries to three people, damage to approximately 300 homes and businesses, evacuation of approximately 3,000 people, disruption to transportation and commerce"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Automatic Tank Gauge (ATG) / Float and Tape Side Gauge with Computer Monitoring",
+        "side": "prevention",
+        "barrier_role": "Detect rising tank level during filling operations and provide real-time data to operators and supervisors to enable timely intervention",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Primary level detection system; first means by which operators could identify impending overfill",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "On the night of the incident, the transmitter on Tank 409 was not sending level data measurements to the computer.",
+            "CAPECO operators found the computer monitoring system to be unreliable.",
+            "The float and tape device inside Tank 504 became stuck and the transmitters for Tanks 107 and 409 were not receiving data from the side gauge on Tank 409.",
+            "The automatic gauging system at CAPECO had a history of repeated failures and prolonged out-of-service periods.",
+            "During October 2009, the level transmitter for Tank 409 was out of service from the week prior, and maintenance personnel were waiting for repair parts."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Manual Hourly Tank Level Readings by Operators",
+        "side": "prevention",
+        "barrier_role": "Operators manually read side gauge hourly and report to supervisor who calculates fill time to detect approaching maximum fill level",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Relied upon as primary operational control when ATG computer data unavailable; operators performed hourly rounds",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-001",
+            "PIF-002",
+            "PIF-003",
+            "PIF-004"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "At the 11 p.m. walk-around, the tank farm operator observed the side gauge on Tank 409 during his hourly check. The operator called the level into the supervisor who calculated once again that the tank should be full at 1 a.m.; however, between the 11 p.m. and 12 a.m. check, Tank 409 began to overflow.",
+            "CAPECO operators had been calculating the tank levels by hand for decades. This method of monitoring the level in the tanks was unreliable given the 15 prior tank spill incidents at the facility.",
+            "Malfunctioning of the tank side gauge or the float and tape apparatus during filling operations led to recording of inaccurate tank levels."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Independent High-Level Alarm System",
+        "side": "prevention",
+        "barrier_role": "Provide independent audible or visual alarm when tank level reaches high-high set point to alert operators and enable timely shutdown or diversion of flow before overfill",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Would serve as independent second layer of protection separate from ATG; not installed at CAPECO",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": true,
+          "alarm_mentioned": true,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Tank 409 lacked an independent high level alarm.",
+            "Tanks were not equipped with an independent high-level alarm system.",
+            "Without safety alarms and associated critical response procedures, CAPECO tank farm operators were left with a faulty level control and monitoring system to detect an overfill in Tank 409.",
+            "Insufficient independent and separate safeguards to prevent overfill, such as a high-level alarm and an automatic overfill prevention system (AOPS) compromised facility safety."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Automatic Overfill Prevention System (AOPS) with Automatic Shutdown or Flow Diversion",
+        "side": "prevention",
+        "barrier_role": "Automatically terminate or divert gasoline flow into tank upon reaching critical high level without requiring operator intervention",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Would serve as independent engineered safeguard to stop overfill automatically; not installed at CAPECO",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Tanks were not equipped with an independent Automatic Overfill Prevention System for terminating transfer operations.",
+            "A nonexistent automatic overfill prevention system and the inability to rapidly stop transfer operations or divert flow before an overfill weakened CAPECO's safety program.",
+            "Had CAPECO been required to use a functioning independent high-level alarm and automatic overfill prevention system, surpassing the Category 3 requirements, notification of the overflow would have sounded, and automatic termination of the transfer would have occurred prior to the tank overfill."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Formal Written Tank Filling Procedures (Standard Operating Procedures)",
+        "side": "prevention",
+        "barrier_role": "Provide operators with clear step-by-step instructions for tank filling, level monitoring, flow rate management, multi-tank switching, and emergency response during transfer operations",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Administrative control governing operator behaviour during filling; absent at CAPECO for terminal operations",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-005",
+            "PIF-006"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "CAPECO's standard operating procedures only addressed activities requiring a permit to work and did not cover terminal operations.",
+            "The terminal often had activity outlines and checklists, but it did not have SOPs to instruct employees how to perform daily activities, such as discharging from a vessel or barge, gauging tanks, or operating dike drain valves.",
+            "CAPECO lacked procedures dictating how to load multiple tanks at the same time.",
+            "PR OSHA issued a serious violation to CAPECO for lacking tank filling procedures during transfer operations.",
+            "Inadequate formal tank filling procedures were restricted to a list of equipment to be manipulated."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Preventive Maintenance Program for Safety-Critical Level Gauging Equipment",
+        "side": "prevention",
+        "barrier_role": "Ensure float and tape gauges, ATG transmitters, and computer monitoring systems are maintained in reliable working condition to provide accurate tank level data",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Maintenance of primary level detection equipment; programme was inadequate at CAPECO",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-007"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The CSB found CAPECO's lack of preventative maintenance resulted in the failure to repair the tank gauging system.",
+            "A review of CAPECO maintenance logs found no status update on maintenance activities addressing a broken float tension on Tank 411 in July 2009, or on fixing strapping problems with Tanks 405 or 411 in early October 2009.",
+            "Records show, CAPECO took weeks to replace the faulty transmitters.",
+            "Installed in February 2004, the float and tape gauges were frequently out of service for multiple tanks at the same time.",
+            "CAPECO management did not replace the level transmitter on any of the tanks and relied only on the float and tape gauge located on the side of the tank to obtain tank levels."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Real-Time Flow Rate Monitoring from Ship to Terminal",
+        "side": "prevention",
+        "barrier_role": "Enable CAPECO operators to obtain accurate real-time gasoline flow rate from Cape Bruny to adjust fill time calculations and prevent overfill",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Would have provided critical input to fill time calculations; absent at CAPECO",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "CAPECO lacked the ability to obtain product line flow rate information from the Cape Bruny to the CAPECO tank terminal via real time flow monitors, thus preventing CAPECO staff from accurately calculating the tank fill time and likely contributing to the overfill of Tank 409.",
+            "Normal variations in the gasoline flow rate and pressure from the Cape Bruny without the facility's ability to identify and incorporate the flow rate change in real time into tank fill time calculations may have contributed to the overfill.",
+            "The lack of flow indicators coupled with various pipe diameters, the tank-switching process, and an unreliable gauging system all contributed to the overfilling of Tank 409."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Secondary Containment Dike System",
+        "side": "mitigation",
+        "barrier_role": "Contain gasoline overflow from Tank 409 within the dike to prevent migration of liquid and vapors beyond the immediate tank area",
+        "barrier_type": "engineering",
+        "line_of_defense": "recovery",
+        "lod_basis": "Physical barrier to contain spilled product after overfill occurs; partially effective but compromised by open drain valves",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-003",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-008"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Although the October 22, 2009, secondary containment valve inspection log indicated that the dike valve for Tank 409 was closed, the CSB determined that the valve was open after the incident.",
+            "The open dike valve directed gasoline to the storm water retention pond located in the WWT area where the large surface area pond provided a second location for gasoline to collect and vaporize.",
+            "Although the secondary containment captured the gasoline from Tank 409, the open dike valves allowed oil, fire suppression foam, and an oily-water mixture to migrate to the storm water retention pond in the WWT area."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Dike Drain Valve Inspection and Closure Procedure",
+        "side": "mitigation",
+        "barrier_role": "Ensure dike drain valves are closed and verified closed to prevent gasoline from migrating from secondary containment to storm water system and WWT area",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Operational procedure to maintain integrity of secondary containment; failed due to valve design and human factors",
+        "linked_threat_ids": [
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002",
+          "CON-004"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-008",
+            "PIF-009"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The use of multiple types of manual valves coupled with poor lighting made it impossible for operators to visually observe whether the dike valves were open or closed on the night of the incident.",
+            "CAPECO operators failed to determine whether the dike drain valve for Tank 409 was properly shut.",
+            "The fixed stem valve on the dike drain for Tank 409 made it difficult for tank farm operators to observe its position without physically turning it.",
+            "Operators customarily inspected whether the dike drain valves were open or closed from their vehicles as they drove by.",
+            "The design of the dike valve system made it difficult to distinguish between open and closed valve positions."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Facility Lighting in Tank Farm Area",
+        "side": "prevention",
+        "barrier_role": "Provide adequate illumination for operators to visually detect tank overflow, vapor cloud formation, and verify valve positions during night operations",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Enables operator visual detection of abnormal conditions; inadequate at CAPECO",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-009"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Insufficient lighting in the tank farm areas hindered operators from observing the overfilling of Tank 409 and the subsequent vapor cloud formation.",
+            "Lighting in the tank farm area was limited; therefore, operators used flashlights to monitor tank farm activity and read liquid levels from the tank side gauges.",
+            "A 1999 EPA inspection found insufficient lighting at the CAPECO tank farm to 'detect spills and prevent vandalism.'",
+            "Despite the lack of illumination, they observed a white fog approximately three feet above the ground but could not hear or see gasoline overflowing from the vents on Tank 409 due to lack of lighting and the topography of the tank farm."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Adequate Staffing During Offloading Operations",
+        "side": "prevention",
+        "barrier_role": "Ensure sufficient personnel are available to safely monitor tank levels, operate valves, and manage multi-tank filling operations simultaneously",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Human resource control; insufficient staffing contributed to reliance on valve cracking and reduced monitoring effectiveness",
+        "linked_threat_ids": [
+          "T-001",
+          "T-003"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-010",
+            "PIF-011"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "The management decision to staff each fuel offloading shift with two operators at the tank farm and one operator at the dock provided insufficient staffing resources during filling operations.",
+            "CAPECO often offloaded inventory into multiple tanks, which required manually switching fuel flow between tanks. This task often required two people due to the increased pressure of the fuel on the valve.",
+            "Operators addressed this lack of staffing by cracking the valves of the next tank in line to fill.",
+            "When the operator needed to change the line from the pipeline to fill another tank, he had to call the WWT operator for help, leaving the WWT area unattended."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Emergency Response Planning and Firefighting Capability for Multiple Tank Fires",
+        "side": "mitigation",
+        "barrier_role": "Enable rapid and effective suppression of tank fires and vapor cloud explosions through pre-planned response, adequate equipment, and trained personnel",
+        "barrier_type": "administrative",
+        "line_of_defense": "recovery",
+        "lod_basis": "Emergency response as final mitigation layer; inadequate at CAPECO and local fire departments",
+        "linked_threat_ids": [],
+        "linked_consequence_ids": [
+          "CON-002",
+          "CON-003",
+          "CON-004",
+          "CON-005"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": true
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": true,
+          "linked_pif_ids": [
+            "PIF-012"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "CAPECO and the local fire department lacked the appropriate equipment or training to extinguish multiple tank fires, prolonging the environmental effects of the incident.",
+            "CAPECO personnel and local firefighters were trained only for a worst-case scenario involving one tank on fire, rather than 11 tank fires at the same time caused by a vapor cloud explosion.",
+            "Upon entering the facility, firefighters discovered that CAPECO lacked the necessary firefighting equipment to fight multiple tank fires at once. They found worn or missing fire hoses, stationary fire monitors without sufficient pressure to reach the tops of tanks, and insufficient equipment to provide the large quantities of foam necessary to control a fire of this magnitude.",
+            "CAPECO did not preplan with local emergency responders or adequately train facility personnel to deal with a fire involving multiple tanks."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Process Hazard Analysis (PHA) / Risk Assessment",
+        "side": "prevention",
+        "barrier_role": "Systematically identify hazards, evaluate risks of tank overfill and vapor cloud explosion, and determine necessary safeguards including proximity to communities",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Foundational risk management control; not required for or conducted at CAPECO as a tank terminal",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002",
+          "T-003",
+          "T-004",
+          "T-005"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "CAPECO was not required to use a risk-based approach to determine the level of risk posed by facility operations to the nearby community and to mitigate those risks accordingly.",
+            "Due to a lack of regulatory coverage under the Occupational Safety and Health Administration's (OSHA) Process Safety Management (PSM) standard and the Environmental Protection Agency's (EPA) Risk Management Plan (RMP), tank terminal facilities are not required to conduct risk assessments to address flammable hazards on site or to follow Recognized and Generally Accepted Good Engineering Practices (RAGAGEP).",
+            "A PHA, which might have identified additional engineering controls to prevent the vapor cloud formation.",
+            "Had CAPECO been required to conduct a hazard assessment that evaluated the quantity of flammable products stored at the terminal and their proximity to the neighboring community, the facility may have had to address the risk of a vapor cloud explosion and resulting multiple tank fires."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-014",
+        "name": "Independent Inspector Manual Tank Gauging Before and After Filling",
+        "side": "prevention",
+        "barrier_role": "Provide independent verification of tank levels before and after filling operations through manual gauging to confirm accurate volume transfer",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Third-party verification of tank levels; conducted at start and end of operations but not continuously during filling",
+        "linked_threat_ids": [
+          "T-001",
+          "T-002"
+        ],
+        "linked_consequence_ids": [],
+        "performance": {
+          "barrier_status": "degraded",
+          "barrier_failed": true,
+          "detection_applicable": true,
+          "detection_mentioned": true,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": true,
+          "barrier_failed_human": false,
+          "linked_pif_ids": [
+            "PIF-001"
+          ]
+        },
+        "evidence": {
+          "supporting_text": [
+            "Prior to the start and end of filling operations, the independent inspector manually measured the fuel tank levels by lowering a gauging tape into the tank.",
+            "The independent inspector and the operator placed car seals on various block valves of receiving tanks to prevent flow into or out of the tank before measuring the level in the tank.",
+            "CAPECO's many of tank gauging practices were contrary to the recommended practices in API Manual of Petroleum Measurement Standards (MPMS) Chapter 3.1A, which might have contributed to inaccurately calculating liquid levels in Tank 409."
+          ],
+          "confidence": "medium"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": true,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": true,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": true
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": true,
+      "workload_value": null,
+      "workload_mentioned": true,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": true,
+      "tools_equipment_value": null,
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": true,
+      "management_of_change_value": null,
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": true,
+      "training_value": null,
+      "training_mentioned": true
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3",
+    "pif_index": {
+      "PIF-001": "Competence - operators relied on manual calculation methods for decades; gauging practices contrary to API MPMS Ch. 3.1A recommendations",
+      "PIF-002": "Situational awareness - operators unaware of actual tank level due to failed ATG transmitter; could not see overflow or vapor cloud due to lighting and topography",
+      "PIF-003": "Situational awareness - supervisor calculated fill time as 1 a.m. based on 11 p.m. reading but tank overflowed before next check",
+      "PIF-004": "Communication - radio communication between dock operator, tank farm operator, and supervisor required for tank switching; communication chain relied upon for emergency shutdown",
+      "PIF-005": "Procedures - no formal SOPs for terminal operations including tank filling, multi-tank loading, or emergency response",
+      "PIF-006": "Procedures - valve cracking practice not addressed in any procedure; influenced fill rate calculations without documented guidance",
+      "PIF-007": "Tools/equipment - float and tape gauges poorly maintained; transmitters frequently out of service; no preventive maintenance programme",
+      "PIF-008": "Situational awareness / tools - fixed stem dike drain valve design made it impossible to visually determine open/closed position without physical manipulation",
+      "PIF-009": "Tools/equipment - insufficient lighting required operators to use flashlights; hindered detection of overflow and vapor cloud",
+      "PIF-010": "Workload - two tank farm operators and one dock operator insufficient for multi-tank offloading requiring simultaneous valve operations",
+      "PIF-011": "Workload - valve cracking practice adopted as workaround for understaffing and high line pressure on large manual valves",
+      "PIF-012": "Training - CAPECO personnel and local fire departments trained only for single-tank fire scenario; not prepared for vapor cloud explosion and multiple simultaneous tank fires",
+      "PIF-013": "Time pressure / safety culture - contractual obligation to fill tanks within allotted time or face financial penalty was at odds with safe filling operations; Planning Department instructed operators to fill to maximum levels"
+    }
+  }
+}

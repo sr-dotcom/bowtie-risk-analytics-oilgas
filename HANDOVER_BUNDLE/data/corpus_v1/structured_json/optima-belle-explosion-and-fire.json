@@ -1,0 +1,720 @@
+{
+  "incident_id": "2021-02-I-WV",
+  "source": {
+    "doc_type": "CSB Investigation Report",
+    "url": null,
+    "title": "Fatal Chemical Decomposition Reaction and Explosion at Optima Belle LLC",
+    "date_published": "2023-07-06",
+    "date_occurred": "2020-12-08",
+    "timezone": null
+  },
+  "context": {
+    "region": "Belle, West Virginia, USA",
+    "operator": "Optima Belle LLC",
+    "operating_phase": "toll manufacturing / dehydration",
+    "materials": [
+      "sodium dichloroisocyanurate dihydrate (NaDCC dihydrate, CDB-56®)",
+      "sodium dichloroisocyanurate (NaDCC, CDB-63®)",
+      "chlorine gas",
+      "nitrogen trichloride",
+      "methanol"
+    ]
+  },
+  "event": {
+    "top_event": "Rotary dryer over-pressurization and explosion",
+    "incident_type": "Chemical decomposition reaction and explosion",
+    "costs": 33100000,
+    "actions_taken": [
+      "Local authorities issued shelter-in-place order for region within two miles for over four hours",
+      "Chemours Belle site fire brigade responded",
+      "Belle Volunteer Fire Department responded",
+      "Kanawha County Emergency Management responded",
+      "West Virginia Emergency Management responded",
+      "Post-incident chemical reaction hazard testing conducted",
+      "Clearon post-incident actions implemented"
+    ],
+    "summary": "On December 8, 2020, at approximately 10:00 p.m., a pressure-rated rotary double cone dryer containing sodium dichloroisocyanurate dihydrate (NaDCC dihydrate, CDB-56®) exploded at Optima Belle LLC in Belle, West Virginia. The explosion occurred during a toll manufacturing operation in which Optima Belle was dehydrating CDB-56® to produce anhydrous sodium dichloroisocyanurate (CDB-63®) on behalf of Clearon Corporation through a contractual agreement with tolling outsourcing partner Richman Chemical Inc. (RCI). The chlorinated isocyanurate compound underwent an unexpected self-accelerating decomposition reaction inside the dryer, releasing gases that increased internal pressure above the design pressure, causing the dryer to explode. Metal debris and dryer fragments propelled off-site and within the facility, striking a methanol pipe that subsequently caught fire. One Optima Belle employee (John Mark Gillenwater II) was fatally injured, two others were evaluated for respiratory irritation, and one Kanawha County resident reported a minor leg injury. Debris was found almost a half mile from the site. Estimated property damage was $33.1 million.",
+    "recommendations": [
+      "Optima Belle: Develop and implement a written thermal and reactive hazards evaluation and management program adhering to CCPS Essential Practices for Managing Chemical Reactivity Hazards",
+      "Optima Belle: Develop and implement a written program for tolling process design and equipment selection using CCPS Guidelines for Risk Based Process Safety and Guidelines for Process Safety in Outsourced Manufacturing Operations",
+      "Optima Belle: Develop and implement a formalized program for the development of toll manufacturing agreements using CCPS resources",
+      "Optima Belle: Develop and implement a process safety management system consistent with CCPS Guidelines for Risk Based Process Safety",
+      "Clearon: Develop and implement a comprehensive process knowledge management program consistent with CCPS Guidelines for Risk Based Process Safety",
+      "Clearon: Update the sodium dichloroisocyanurate dihydrate (CDB-56®) safety data sheet to include decomposition temperature reasoning, SADT information, and exothermic decomposition energy",
+      "Clearon: Develop and implement a written program for tolling process design and equipment selection",
+      "Clearon: Develop and implement a formalized program for the development of toll manufacturing agreements",
+      "Clearon: Develop and implement a process safety management system consistent with CCPS Guidelines for Risk Based Process Safety",
+      "RCI: Develop and implement a formalized program for the development of toll manufacturing agreements",
+      "OSHA: Update the Chemical Reactivity Hazards website to include various reactivity assessment tools developed since 2002",
+      "OSHA: Develop and implement a comprehensive outreach plan to ensure chemical industry awareness of the Chemical Reactivity Hazards website",
+      "OSHA: Amend the Process Safety Management (PSM) Standard (29 CFR 1910.119) to achieve more comprehensive control of reactive hazards",
+      "NCBI: Update safety information in PubChem for sodium dichloroisocyanurate (NaDCC) dihydrate to include reactivity and decomposition information",
+      "CCPS: Update Guidelines for Process Safety in Outsourced Manufacturing Operations or develop new tolling guidance document"
+    ],
+    "key_phrases": [
+      "self-accelerating decomposition",
+      "thermal hazard assessment",
+      "process knowledge management",
+      "toll manufacturing",
+      "reactive hazards",
+      "equipment design and selection",
+      "tolling of hazardous materials",
+      "regulatory coverage of reactive hazards",
+      "chlorinated isocyanurate",
+      "decomposition temperature",
+      "self-accelerating decomposition temperature (SADT)",
+      "runaway reaction",
+      "pressure relief",
+      "process safety management",
+      "technology package inadequacy"
+    ]
+  },
+  "bowtie": {
+    "hazards": [
+      {
+        "hazard_id": "H-001",
+        "name": "Thermal decomposition of sodium dichloroisocyanurate dihydrate (NaDCC dihydrate)"
+      },
+      {
+        "hazard_id": "H-002",
+        "name": "Exothermic chemical reaction in closed pressure vessel"
+      },
+      {
+        "hazard_id": "H-003",
+        "name": "Chlorine gas and toxic byproduct generation"
+      },
+      {
+        "hazard_id": "H-004",
+        "name": "Pressure vessel over-pressurization"
+      },
+      {
+        "hazard_id": "H-005",
+        "name": "Inadequate equipment design for reactive chemical processing"
+      }
+    ],
+    "threats": [
+      {
+        "threat_id": "T-001",
+        "name": "Uncontrolled heating of NaDCC dihydrate in dryer"
+      },
+      {
+        "threat_id": "T-002",
+        "name": "Failure to identify decomposition initiation conditions"
+      },
+      {
+        "threat_id": "T-003",
+        "name": "Inadequate thermal hazard assessment"
+      },
+      {
+        "threat_id": "T-004",
+        "name": "Insufficient process knowledge transmission in tolling arrangement"
+      },
+      {
+        "threat_id": "T-005",
+        "name": "Lack of adequate cooling capacity in dryer design"
+      },
+      {
+        "threat_id": "T-006",
+        "name": "Inadequate pressure relief design"
+      },
+      {
+        "threat_id": "T-007",
+        "name": "Production-scale operation without laboratory or pilot-scale testing"
+      },
+      {
+        "threat_id": "T-008",
+        "name": "Inadequate process safety management systems"
+      }
+    ],
+    "consequences": [
+      {
+        "consequence_id": "CON-001",
+        "name": "Dryer over-pressurization"
+      },
+      {
+        "consequence_id": "CON-002",
+        "name": "Dryer explosion"
+      },
+      {
+        "consequence_id": "CON-003",
+        "name": "Release of toxic chlorine gas and nitrogen trichloride"
+      },
+      {
+        "consequence_id": "CON-004",
+        "name": "Projectile debris and metal fragments"
+      },
+      {
+        "consequence_id": "CON-005",
+        "name": "Methanol pipe rupture and fire"
+      },
+      {
+        "consequence_id": "CON-006",
+        "name": "Fatality (one employee)"
+      },
+      {
+        "consequence_id": "CON-007",
+        "name": "Respiratory injuries (two employees)"
+      },
+      {
+        "consequence_id": "CON-008",
+        "name": "Off-site injury (one community resident)"
+      },
+      {
+        "consequence_id": "CON-009",
+        "name": "Property damage ($33.1 million)"
+      },
+      {
+        "consequence_id": "CON-010",
+        "name": "Shelter-in-place order for surrounding community"
+      }
+    ],
+    "controls": [
+      {
+        "control_id": "C-001",
+        "name": "Thermal hazard assessment and evaluation",
+        "side": "prevention",
+        "barrier_role": "Identify decomposition hazards and safe operating temperatures",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Process hazard identification and risk analysis",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "None of the parties involved in the tolling operation effectively assessed the hazards of the NaDCC dihydrate or operation.",
+            "failure to identify the initiation of a NaDCC dihydrate decomposition as a credible scenario, except as a result of a decomposition temperature greater than 240°C",
+            "During the incident, a runaway decomposition reaction had begun in the dryer by the time the dryer temperature reached 83°C—a temperature significantly lower than the identified decomposition temperature of 240°C"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-002",
+        "name": "Literature search and data review for reactive hazards",
+        "side": "prevention",
+        "barrier_role": "Identify publicly available hazard information on NaDCC dihydrate",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Process safety information compilation",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003",
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "inadequate literature searches for publicly available or internal Clearon-owned NaDCC dihydrate data",
+            "Olin, a Clearon predecessor, performed similar testing on the decomposition of NaDCC dihydrate in the 1970s and 1980s. In the 1990s, further industry studies estimated a self-accelerating decomposition temperature (SADT) for NaDCC dihydrate between 45°C to 65°C"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-003",
+        "name": "Reactive hazard screening and testing methods",
+        "side": "prevention",
+        "barrier_role": "Assess reactivity and explosivity of heated NaDCC dihydrate",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Thermal stability evaluation",
+        "linked_threat_ids": [
+          "T-002",
+          "T-003"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "failure to utilize available reactive hazard screening methods to assess the potential reactivity or explosivity of heated NaDCC dihydrate inside a metal pressure vessel",
+            "Post-incident testing results found that NaDCC dihydrate begins a runaway exotherm at approximately 81℃ when heated in a closed container."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-004",
+        "name": "Process knowledge management and technology package",
+        "side": "prevention",
+        "barrier_role": "Communicate hazards and safe operating conditions to toll manufacturer",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Process safety information transmission",
+        "linked_threat_ids": [
+          "T-004"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Clearon lacked effective process knowledge management systems, and as a result the Technology Package that Clearon delivered to Optima Belle as part of the tolling arrangement did not adequately communicate the circumstances and temperatures that could lead to the hazardous decomposition of CDB-56®.",
+            "At the time of the incident, Clearon's NaDCC dihydrate (CDB-56®) safety data sheet (SDS) listed a NaDCC decomposition temperature of 240°C to 250°C."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-005",
+        "name": "Equipment design and sizing for reactive chemical processing",
+        "side": "prevention",
+        "barrier_role": "Ensure dryer is designed and sized for CDB-56® dehydration hazards",
+        "barrier_type": "engineering",
+        "line_of_defense": "1st",
+        "lod_basis": "Equipment design basis and process requirements",
+        "linked_threat_ids": [
+          "T-005",
+          "T-006",
+          "T-007"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Optima Belle used its existing production equipment for the CDB-56® dehydration, but this equipment was not designed, sized, or re-engineered for CDB-56® dehydration.",
+            "the equipment was not designed to quickly cool the dryer contents or to relieve the excess pressure generated during the decomposition reaction",
+            "Clearon and Optima Belle essentially conducted an experiment on a new method to remove water of hydration from the CDB-56® at full production scale (involving over 8,000 pounds) without first experimenting at the laboratory and pilot scales."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-006",
+        "name": "Laboratory and pilot-scale testing before production scale",
+        "side": "prevention",
+        "barrier_role": "Identify hazards and gain process knowledge before full-scale operation",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Process development and risk reduction",
+        "linked_threat_ids": [
+          "T-007"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Had scaled studies been conducted, Optima Belle, Clearon, and RCI likely would have gained additional NaDCC dihydrate thermal stability data, reactivity information, and process knowledge before running the first production-scale batch, which might have led to changes in the process and potentially prevented the decomposition reaction and the explosion."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-007",
+        "name": "Tolling agreement and role definition",
+        "side": "prevention",
+        "barrier_role": "Establish clear responsibilities and hazard management in tolling arrangement",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Tolling contract and process safety management",
+        "linked_threat_ids": [
+          "T-004",
+          "T-008"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "The dryer explosion might have been prevented had Clearon and Optima Belle applied the suggested industry guidance.",
+            "The CSB does not have evidence that a comprehensive evaluation was conducted to identify the potential hazards of using an alternate dryer, excluding equipment material of construction."
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-008",
+        "name": "Process safety management system",
+        "side": "prevention",
+        "barrier_role": "Implement comprehensive PSM covering hazard identification and risk analysis",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Organizational process safety management",
+        "linked_threat_ids": [
+          "T-008"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Clearon's and Optima Belle's ineffective process safety management systems, poor knowledge management, failure to follow existing industry guidance for toll manufacturing"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-009",
+        "name": "Jacket cooling system design and capacity",
+        "side": "mitigation",
+        "barrier_role": "Rapidly cool dryer contents if decomposition begins",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Thermal management and runaway reaction control",
+        "linked_threat_ids": [
+          "T-001",
+          "T-005"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the equipment was not designed to quickly cool the dryer contents or to relieve the excess pressure generated during the decomposition reaction"
+          ],
+          "confidence": "high"
+        }
+      },
+      {
+        "control_id": "C-010",
+        "name": "Pressure relief device and overpressure protection",
+        "side": "mitigation",
+        "barrier_role": "Relieve excess pressure from decomposition reaction",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Pressure vessel safety and overpressure protection",
+        "linked_threat_ids": [
+          "T-001",
+          "T-006"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "failed",
+          "barrier_failed": true,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "the dryer internal pressure above its design pressure, and the dryer exploded"
+          ],
+          "confidence": "medium"
+        }
+      },
+      {
+        "control_id": "C-011",
+        "name": "Temperature monitoring and alarm system",
+        "side": "mitigation",
+        "barrier_role": "Detect abnormal temperature rise indicating decomposition",
+        "barrier_type": "engineering",
+        "line_of_defense": "2nd",
+        "lod_basis": "Process monitoring and early warning",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "unknown",
+          "barrier_failed": false,
+          "detection_applicable": true,
+          "detection_mentioned": false,
+          "alarm_applicable": true,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "Process Monitoring and Troubleshooting"
+          ],
+          "confidence": "low"
+        }
+      },
+      {
+        "control_id": "C-012",
+        "name": "Operator training on reactive hazards and emergency procedures",
+        "side": "mitigation",
+        "barrier_role": "Enable operator recognition and response to decomposition hazards",
+        "barrier_type": "administrative",
+        "line_of_defense": "2nd",
+        "lod_basis": "Human factors and emergency response",
+        "linked_threat_ids": [
+          "T-001"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "unknown",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": true,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [],
+          "confidence": "low"
+        }
+      },
+      {
+        "control_id": "C-013",
+        "name": "Regulatory coverage under OSHA PSM or EPA RMP",
+        "side": "prevention",
+        "barrier_role": "Mandate comprehensive process safety management for reactive chemicals",
+        "barrier_type": "administrative",
+        "line_of_defense": "1st",
+        "lod_basis": "Regulatory requirement and compliance",
+        "linked_threat_ids": [
+          "T-008"
+        ],
+        "linked_consequence_ids": [
+          "CON-001",
+          "CON-002"
+        ],
+        "performance": {
+          "barrier_status": "not_installed",
+          "barrier_failed": false,
+          "detection_applicable": false,
+          "detection_mentioned": false,
+          "alarm_applicable": false,
+          "alarm_mentioned": false,
+          "manual_intervention_applicable": false,
+          "manual_intervention_mentioned": false
+        },
+        "human": {
+          "human_contribution_value": "unknown",
+          "human_contribution_mentioned": false,
+          "barrier_failed_human": false,
+          "linked_pif_ids": []
+        },
+        "evidence": {
+          "supporting_text": [
+            "NaDCC dihydrate and NaDCC are chlorinated isocyanurate compounds that can undergo self-accelerating decomposition when heated. These reactions may lead to explosions, fires, and toxic emissions with severe impacts to people, property, and the environment. Yet, many such reactive chemicals are not regulated under the Occupational Safety and Health Administration's (OSHA's) Process Safety Management (PSM) standard or the U.S. Environmental Protection Agency's Risk Management Program (RMP) rule.",
+            "Had NaDCC dihydrate been covered under the PSM standard or RMP rule, Optima Belle would have been required to implement risk mitigation and management systems that could have prevented this incident."
+          ],
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  "pifs": {
+    "people": {
+      "competence_value": null,
+      "competence_mentioned": false,
+      "fatigue_value": null,
+      "fatigue_mentioned": false,
+      "communication_value": null,
+      "communication_mentioned": false,
+      "situational_awareness_value": null,
+      "situational_awareness_mentioned": false
+    },
+    "work": {
+      "procedures_value": null,
+      "procedures_mentioned": false,
+      "workload_value": null,
+      "workload_mentioned": false,
+      "time_pressure_value": null,
+      "time_pressure_mentioned": false,
+      "tools_equipment_value": "inadequate",
+      "tools_equipment_mentioned": true
+    },
+    "organisation": {
+      "safety_culture_value": null,
+      "safety_culture_mentioned": false,
+      "management_of_change_value": "inadequate",
+      "management_of_change_mentioned": true,
+      "supervision_value": null,
+      "supervision_mentioned": false,
+      "training_value": null,
+      "training_mentioned": false
+    }
+  },
+  "notes": {
+    "rules": "JSON output only. mentioned fields must be evidence-based. Use null for unknown values.",
+    "schema_version": "2.3"
+  }
+}
