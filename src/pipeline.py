@@ -635,7 +635,7 @@ def main():
     )
     p_struct.add_argument(
         "--provider",
-        default="stub",
+        default="anthropic",
         choices=["stub", "anthropic"],
         help="LLM provider to use",
     )
