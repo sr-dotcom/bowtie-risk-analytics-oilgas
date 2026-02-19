@@ -902,3 +902,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def get_sources_root() -> Path:
+    """Prefer tracked configs/ sources; fall back to local data/ sources."""
+    cfg = Path("configs/sources")
+    return cfg if cfg.exists() else get_sources_root()
