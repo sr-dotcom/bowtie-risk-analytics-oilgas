@@ -8,7 +8,7 @@ import pytest
 
 from src.corpus.extract import run_corpus_extraction, _load_incident_text
 from src.llm.stub import StubProvider
-from src.validation.incident_validator import validate_incident_v2_2
+from src.validation.incident_validator import validate_incident_v23
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
@@ -338,7 +338,7 @@ def test_run_corpus_extraction_error_logged(tmp_path, caplog):
 
 
 def test_extracted_json_validates_as_v23(tmp_path):
-    """Written JSON must pass validate_incident_v2_2 (canonical V2.3 check)."""
+    """Written JSON must pass validate_incident_v23 (canonical V2.3 check)."""
     raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
     structured = tmp_path / "structured_json"; structured.mkdir()
     manifests  = tmp_path / "manifests";       manifests.mkdir()
@@ -368,7 +368,7 @@ def test_extracted_json_validates_as_v23(tmp_path):
     out_json = structured / "csb-validate.json"
     assert out_json.exists(), "JSON not written"
     data = json.loads(out_json.read_text(encoding="utf-8"))
-    is_valid, errors = validate_incident_v2_2(data)
+    is_valid, errors = validate_incident_v23(data)
     assert is_valid, f"Written JSON failed V2.3 validation: {errors[:3]}"
 
 
@@ -424,5 +424,5 @@ def test_normalization_applied_to_v23_wire_values(tmp_path):
         f"barrier_status not normalised: {ctrl['performance']['barrier_status']}"
     )
     # And the whole payload must still validate
-    is_valid, errors = validate_incident_v2_2(data)
+    is_valid, errors = validate_incident_v23(data)
     assert is_valid, f"Normalised JSON failed V2.3 validation: {errors[:3]}"

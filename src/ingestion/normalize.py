@@ -1,6 +1,6 @@
 """In-memory coercions to normalise raw LLM output to canonical Schema v2.3.
 
-Canonical V2.3 field values (as validated by IncidentV2_2):
+Canonical V2.3 field values (as validated by IncidentV23):
   control.side            : "prevention" | "mitigation"
   control.line_of_defense : "1st" | "2nd" | "3rd" | "recovery" | "unknown"
   control.performance.barrier_status : "active" | "degraded" | "failed" |

@@ -328,7 +328,7 @@ def cmd_convert_schema(args: argparse.Namespace) -> None:
 
 def cmd_schema_check(args: argparse.Namespace) -> None:
     """Validate extracted JSON files against Schema v2.3."""
-    from src.validation.incident_validator import validate_incident_v2_2
+    from src.validation.incident_validator import validate_incident_v23
 
     incident_dir = Path(args.incident_dir)
     if not incident_dir.exists():
@@ -348,7 +348,7 @@ def cmd_schema_check(args: argparse.Namespace) -> None:
             invalid_files.append((json_path, [f"JSON decode error: {exc}"]))
             continue
 
-        is_valid, errors = validate_incident_v2_2(payload)
+        is_valid, errors = validate_incident_v23(payload)
         if not is_valid:
             invalid_files.append((json_path, errors))
 
