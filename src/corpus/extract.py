@@ -3,14 +3,16 @@
 Reads corpus_v1_manifest.csv, skips entries with extraction_status=ready,
 loads incident text, calls the provider, writes JSON to structured_json/.
 
-Retry / escalation strategy
-----------------------------
-1. Primary provider (haiku, 8192 output tokens) — up to ``primary_retries`` attempts.
-   If stop_reason is "max_tokens" OR JSON parsing fails, the attempt is considered
-   incomplete and retried.
-2. Escalated provider (same model, 16000 output tokens) — if all primary attempts
-   fail or are truncated.
-3. Fallback provider (sonnet, 16000 output tokens) — if escalated also fails.
+Model selection policy
+----------------------
+Extraction uses a deterministic, policy-driven Claude ladder loaded from:
+  configs/model_policy.yaml
+
+The ladder controls:
+- default_model (primary)
+- fallback_models (ordered list)
+- retries_per_model
+- promote_on triggers (e.g., timeout, invalid_json, schema_validation_failed)
 """
 import csv
 import json
