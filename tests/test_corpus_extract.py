@@ -8,6 +8,7 @@ import pytest
 
 from src.corpus.extract import run_corpus_extraction, _load_incident_text
 from src.llm.stub import StubProvider
+from src.validation.incident_validator import validate_incident_v2_2
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
@@ -331,3 +332,97 @@ def test_run_corpus_extraction_error_logged(tmp_path, caplog):
 
     assert any("missing-text-file" in r.message for r in caplog.records)
     assert list(structured.glob("*.json")) == []
+
+
+# ── V2.3 normalisation guardrail tests ────────────────────────────────────────
+
+
+def test_extracted_json_validates_as_v23(tmp_path):
+    """Written JSON must pass validate_incident_v2_2 (canonical V2.3 check)."""
+    raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
+    structured = tmp_path / "structured_json"; structured.mkdir()
+    manifests  = tmp_path / "manifests";       manifests.mkdir()
+    txt_dir    = tmp_path / "csb_text";        txt_dir.mkdir()
+
+    _make_pdf(raw_pdfs, "csb-validate")
+    _make_txt(txt_dir,  "csb-validate", content="Explosion at chemical plant.")
+
+    rows = [{
+        "incident_id":       "csb-validate",
+        "source_agency":     "CSB",
+        "pdf_filename":      "csb-validate.pdf",
+        "pdf_path":          str(raw_pdfs / "csb-validate.pdf"),
+        "json_path":         "PENDING",
+        "extraction_status": "needs_extraction",
+    }]
+    manifest_path = _write_manifest(manifests, rows)
+
+    run_corpus_extraction(
+        manifest_path=manifest_path,
+        structured_dir=structured,
+        text_search_dirs=[txt_dir],
+        provider=StubProvider(),
+        delay_seconds=0,
+    )
+
+    out_json = structured / "csb-validate.json"
+    assert out_json.exists(), "JSON not written"
+    data = json.loads(out_json.read_text(encoding="utf-8"))
+    is_valid, errors = validate_incident_v2_2(data)
+    assert is_valid, f"Written JSON failed V2.3 validation: {errors[:3]}"
+
+
+def test_normalization_applied_to_v23_wire_values(tmp_path):
+    """LLM output using V2.3 wire values (side=left, lod=int) is normalised."""
+    raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
+    structured = tmp_path / "structured_json"; structured.mkdir()
+    manifests  = tmp_path / "manifests";       manifests.mkdir()
+    txt_dir    = tmp_path / "csb_text";        txt_dir.mkdir()
+
+    _make_pdf(raw_pdfs, "csb-wire")
+    _make_txt(txt_dir,  "csb-wire", content="Pipeline rupture incident.")
+
+    class WireFormatProvider(StubProvider):
+        """Returns JSON with V2.3 wire names: side=left, lod=int, status=worked."""
+        def extract(self, prompt: str) -> str:
+            import copy, json as _json
+            sample = _json.loads(super().extract(prompt))
+            for ctrl in sample.get("bowtie", {}).get("controls", []):
+                ctrl["side"] = "left"
+                ctrl["line_of_defense"] = 1
+                ctrl.setdefault("performance", {})["barrier_status"] = "worked"
+            return _json.dumps(sample)
+
+    rows = [{
+        "incident_id":       "csb-wire",
+        "source_agency":     "CSB",
+        "pdf_filename":      "csb-wire.pdf",
+        "pdf_path":          str(raw_pdfs / "csb-wire.pdf"),
+        "json_path":         "PENDING",
+        "extraction_status": "needs_extraction",
+    }]
+    manifest_path = _write_manifest(manifests, rows)
+
+    run_corpus_extraction(
+        manifest_path=manifest_path,
+        structured_dir=structured,
+        text_search_dirs=[txt_dir],
+        provider=WireFormatProvider(),
+        delay_seconds=0,
+    )
+
+    out_json = structured / "csb-wire.json"
+    assert out_json.exists()
+    data = json.loads(out_json.read_text(encoding="utf-8"))
+
+    controls = data.get("bowtie", {}).get("controls", [])
+    assert len(controls) >= 1, "Expected at least one control"
+    ctrl = controls[0]
+    assert ctrl["side"] == "prevention",   f"side not normalised: {ctrl['side']}"
+    assert ctrl["line_of_defense"] == "1st", f"lod not normalised: {ctrl['line_of_defense']}"
+    assert ctrl["performance"]["barrier_status"] == "active", (
+        f"barrier_status not normalised: {ctrl['performance']['barrier_status']}"
+    )
+    # And the whole payload must still validate
+    is_valid, errors = validate_incident_v2_2(data)
+    assert is_valid, f"Normalised JSON failed V2.3 validation: {errors[:3]}"

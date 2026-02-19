@@ -19,9 +19,11 @@ import pathlib
 import time
 from typing import Sequence
 
+from src.ingestion.normalize import normalize_v23_payload
 from src.ingestion.structured import _parse_llm_json
 from src.llm.base import LLMProvider
 from src.prompts.loader import load_prompt
+from src.validation.incident_validator import validate_incident_v2_2
 
 logger = logging.getLogger(__name__)
 
@@ -196,6 +198,17 @@ def run_corpus_extraction(
                 f"  {incident_id}: extraction failed after all retries/fallbacks"
             )
             continue
+
+        # ── normalise to canonical V2.3 before writing ─────────────────────
+        data["incident_id"] = incident_id
+        normalize_v23_payload(data)
+        is_valid, val_errors = validate_incident_v2_2(data)
+        if not is_valid:
+            logger.warning(
+                f"  {incident_id}: schema validation failed after normalisation "
+                f"({len(val_errors)} error(s)); writing anyway. "
+                f"First error: {val_errors[0] if val_errors else 'unknown'}"
+            )
 
         out_path.write_text(
             json.dumps(data, indent=2, ensure_ascii=False),
