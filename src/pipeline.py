@@ -626,13 +626,38 @@ def cmd_corpus_extract(args: argparse.Namespace) -> None:
         )
         return
 
-    provider = AnthropicProvider(model=args.model, max_output_tokens=16000, timeout=300)
+    # Primary: Haiku (cheap), 8192 output tokens, 300 s timeout
+    primary = AnthropicProvider(
+        model=args.model,
+        max_output_tokens=8192,
+        timeout=300,
+        retries=3,
+    )
+    # Escalated: same model, 16000 output tokens (for complex JSON responses)
+    escalated = AnthropicProvider(
+        model=args.model,
+        max_output_tokens=16000,
+        timeout=300,
+        retries=2,
+    )
+    # Fallback: Sonnet (only if haiku fails completely)
+    fallback = AnthropicProvider(
+        model=args.fallback_model,
+        max_output_tokens=16000,
+        timeout=300,
+        retries=2,
+    )
+
     run_corpus_extraction(
         manifest_path=manifest_path,
         structured_dir=structured,
         text_search_dirs=None,
-        provider=provider,
+        provider=primary,
         delay_seconds=args.delay,
+        text_limit=args.text_limit,
+        primary_retries=3,
+        escalated_provider=escalated,
+        fallback_provider=fallback,
     )
     logger.info("Run corpus-manifest to refresh extraction_status.")
 
@@ -960,14 +985,27 @@ def main():
     )
     p_ce.add_argument(
         "--model",
+        default="claude-haiku-4-5-20251001",
+        help="Primary Anthropic model ID (default: claude-haiku-4-5-20251001)",
+    )
+    p_ce.add_argument(
+        "--fallback-model",
         default="claude-sonnet-4-6",
-        help="Anthropic model ID (default: claude-sonnet-4-6)",
+        dest="fallback_model",
+        help="Fallback model when primary fails (default: claude-sonnet-4-6)",
     )
     p_ce.add_argument(
         "--delay",
         type=float,
-        default=15.0,
-        help="Seconds between API calls (default: 15.0)",
+        default=30.0,
+        help="Minimum seconds between API calls (default: 30.0)",
+    )
+    p_ce.add_argument(
+        "--text-limit",
+        type=int,
+        default=50_000,
+        dest="text_limit",
+        help="Truncate incident text to this many chars before sending (default: 50000, 0=no limit)",
     )
     p_ce.set_defaults(func=cmd_corpus_extract)
 

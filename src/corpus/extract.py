@@ -2,6 +2,15 @@
 
 Reads corpus_v1_manifest.csv, skips entries with extraction_status=ready,
 loads incident text, calls the provider, writes JSON to structured_json/.
+
+Retry / escalation strategy
+----------------------------
+1. Primary provider (haiku, 8192 output tokens) — up to ``primary_retries`` attempts.
+   If stop_reason is "max_tokens" OR JSON parsing fails, the attempt is considered
+   incomplete and retried.
+2. Escalated provider (same model, 16000 output tokens) — if all primary attempts
+   fail or are truncated.
+3. Fallback provider (sonnet, 16000 output tokens) — if escalated also fails.
 """
 import csv
 import json
@@ -41,23 +50,70 @@ def _load_incident_text(
     )
 
 
+def _attempt_extraction(
+    incident_id: str,
+    prompt: str,
+    provider: LLMProvider,
+) -> tuple[dict | None, bool]:
+    """Single extraction attempt against one provider.
+
+    Returns:
+        (data, was_truncated): data is None on API/parse failure;
+        was_truncated is True when stop_reason == "max_tokens".
+    """
+    try:
+        raw = provider.extract(prompt)
+    except Exception as exc:
+        logger.warning(f"  {incident_id}: API call failed — {exc}")
+        return None, False
+
+    stop_reason = getattr(provider, "last_meta", {}).get("stop_reason", "end_turn")
+    truncated = stop_reason == "max_tokens"
+
+    try:
+        data = _parse_llm_json(raw)
+        if truncated:
+            logger.warning(
+                f"  {incident_id}: output hit max_tokens limit — response incomplete"
+            )
+        return data, truncated
+    except Exception as exc:
+        logger.warning(f"  {incident_id}: JSON parse failed — {exc}")
+        return None, truncated
+
+
 def run_corpus_extraction(
     manifest_path: pathlib.Path,
     structured_dir: pathlib.Path,
     text_search_dirs: Sequence[pathlib.Path] | None,
     provider: LLMProvider,
-    delay_seconds: float = 15.0,
+    delay_seconds: float = 30.0,
+    text_limit: int = 50_000,
+    primary_retries: int = 3,
+    escalated_provider: LLMProvider | None = None,
+    fallback_provider: LLMProvider | None = None,
 ) -> int:
     """Extract JSONs for all needs_extraction rows in the manifest.
 
     Args:
-        manifest_path: Path to corpus_v1_manifest.csv.
-        structured_dir: Where to write output JSON files.
-        text_search_dirs: Ordered list of dirs to search for .txt files.
-                          Defaults to CSB then BSEE text dirs.
-        provider: LLM provider to call.
-        delay_seconds: Seconds to sleep between API calls (rate limit guard).
-                       Default 15 s keeps well within 30 k tokens/min.
+        manifest_path:       Path to corpus_v1_manifest.csv.
+        structured_dir:      Where to write output JSON files.
+        text_search_dirs:    Ordered list of dirs to search for .txt files.
+                             Defaults to CSB then BSEE text dirs.
+        provider:            Primary LLM provider (e.g. Haiku, 8192 tokens).
+        delay_seconds:       Minimum seconds to sleep after each successful
+                             API call.  The actual wait is max(delay_seconds,
+                             rate_limit_wait) based on estimated input tokens.
+                             Default 30 s.
+        text_limit:          Truncate incident text to this many characters
+                             before building the prompt.  0 = no limit.
+                             Default 50 000 chars (~12 500 tokens).
+        primary_retries:     Attempts with the primary provider before
+                             escalating.  Default 3.
+        escalated_provider:  Provider with higher max_output_tokens (e.g.
+                             Haiku, 16000).  Used when primary is truncated.
+        fallback_provider:   Provider to use when primary + escalated both
+                             fail (e.g. Sonnet, 16000).
 
     Returns:
         Number of incidents successfully extracted.
@@ -82,6 +138,7 @@ def run_corpus_extraction(
             logger.info(f"  {incident_id}: already present, skipping.")
             continue
 
+        # ── load text ──────────────────────────────────────────────────────
         try:
             text = _load_incident_text(incident_id, text_search_dirs)
         except Exception as exc:
@@ -92,12 +149,52 @@ def run_corpus_extraction(
             logger.warning(f"  {incident_id}: text file is blank, skipping.")
             continue
 
+        original_len = len(text)
+        if text_limit > 0 and original_len > text_limit:
+            text = text[:text_limit]
+            logger.info(
+                f"  {incident_id}: text truncated {original_len} → {text_limit} chars"
+            )
+
+        # ── build prompt ───────────────────────────────────────────────────
         try:
             prompt = load_prompt(incident_text=text)
-            raw    = provider.extract(prompt)
-            data   = _parse_llm_json(raw)
         except Exception as exc:
-            logger.error(f"  {incident_id}: extraction failed — {exc}")
+            logger.error(f"  {incident_id}: prompt build failed — {exc}")
+            continue
+
+        # ── Phase 1: primary provider (haiku, 8192 tokens) ────────────────
+        data: dict | None = None
+        for attempt in range(1, primary_retries + 1):
+            data, truncated = _attempt_extraction(incident_id, prompt, provider)
+            if data is not None and not truncated:
+                break
+            logger.warning(
+                f"  {incident_id}: primary attempt {attempt}/{primary_retries} "
+                f"incomplete (truncated={truncated})"
+            )
+            data = None  # discard truncated partial JSON; force retry
+
+        # ── Phase 2: escalated provider (haiku, 16000 tokens) ─────────────
+        if data is None and escalated_provider is not None:
+            logger.info(f"  {incident_id}: escalating to higher output tokens")
+            for attempt in range(1, primary_retries + 1):
+                data, truncated = _attempt_extraction(
+                    incident_id, prompt, escalated_provider
+                )
+                if data is not None and not truncated:
+                    break
+                data = None
+
+        # ── Phase 3: fallback provider (sonnet, 16000 tokens) ─────────────
+        if data is None and fallback_provider is not None:
+            logger.info(f"  {incident_id}: falling back to Sonnet")
+            data, _ = _attempt_extraction(incident_id, prompt, fallback_provider)
+
+        if data is None:
+            logger.error(
+                f"  {incident_id}: extraction failed after all retries/fallbacks"
+            )
             continue
 
         out_path.write_text(
@@ -108,8 +205,8 @@ def run_corpus_extraction(
         extracted += 1
 
         if delay_seconds > 0:
-            # Dynamic wait: rate limit is 30k input tokens/min.
-            # Estimate ~4 chars per token; budget 65 s per 30k-token window.
+            # Dynamic wait based on the TRUNCATED text length (reflects actual
+            # tokens sent).  Rate limit: 30 k input tokens/min → 65 s/window.
             text_tokens_est = len(text) / 4
             rate_limit_wait = (text_tokens_est / 30_000) * 65
             actual_wait = max(delay_seconds, rate_limit_wait)
