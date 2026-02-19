@@ -13,6 +13,8 @@
 - [x] Initial data acquisition (CSB/BSEE discovery + download + PDF→text) — DONE (2026-02-05)
 - [x] Schema v2.3 normalization (`convert-schema` coercion pass) — DONE (2026-02-09)
 - [x] LOC_v1 freeze (extraction-aware keyword-tier scoring) — DONE (2026-02-17)
+- [x] PHMSA + TSB ingestion + combined cross-source exports — DONE (2026-02-18)
+- [x] corpus_v1 build (148 PDFs, 147 Claude JSONs, cheaper Haiku extraction protocol) — DONE (2026-02-18)
 
 ## Phase 2: Analytics
 - [x] Control coverage computation
