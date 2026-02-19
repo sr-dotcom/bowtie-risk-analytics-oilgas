@@ -2,6 +2,14 @@ import argparse
 import json
 import logging
 from pathlib import Path
+
+def get_sources_root() -> Path:
+    """Prefer tracked configs/sources; fall back to local data/sources."""
+    cfg = Path("configs/sources")
+    return cfg if cfg.exists() else Path("data/sources")
+
+
+
 from typing import List, Optional
 
 import requests
@@ -432,6 +440,8 @@ def cmd_discover_source(args: argparse.Namespace) -> None:
     discover_fn, write_urls_fn, write_meta_fn = _DISCOVER_ADAPTERS[source]
 
     out_path = Path(args.out) if args.out else (get_sources_root() / source / "url_list.csv")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     base_url = args.base_url
     kwargs: dict = {"timeout": args.timeout, "sleep": args.sleep}
     if base_url:
