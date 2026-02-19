@@ -871,15 +871,9 @@ def main():
         help="Extract missing corpus_v1 JSONs using Claude (requires ANTHROPIC_API_KEY)",
     )
     p_ce.add_argument(
-        "--model",
-        default="claude-haiku-4-5-20251001",
-        help="Primary Anthropic model ID (default: claude-haiku-4-5-20251001)",
-    )
-    p_ce.add_argument(
-        "--fallback-model",
-        default="claude-sonnet-4-6",
-        dest="fallback_model",
-        help="Fallback model when primary fails (default: claude-sonnet-4-6)",
+        "--policy",
+        default="configs/model_policy.yaml",
+        help="Path to model_policy.yaml (controls Claude ladder + retries).",
     )
     p_ce.add_argument(
         "--delay",

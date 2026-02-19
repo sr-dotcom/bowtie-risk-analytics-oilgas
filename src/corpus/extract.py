@@ -150,7 +150,7 @@ def run_corpus_extraction(
     text_search_dirs: Sequence[pathlib.Path] | None,
     delay_seconds: float = 30.0,
     text_limit: int = 50_000,
-    policy_path: str = \"configs/model_policy.yaml\",
+    policy_path: str = "configs/model_policy.yaml",
 ) -> int:
     """Extract JSONs for all needs_extraction rows in the manifest.
 
