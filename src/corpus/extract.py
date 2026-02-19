@@ -83,7 +83,16 @@ def run_corpus_extraction(
             continue
 
         try:
-            text   = _load_incident_text(incident_id, text_search_dirs)
+            text = _load_incident_text(incident_id, text_search_dirs)
+        except Exception as exc:
+            logger.error(f"  {incident_id}: extraction failed — {exc}")
+            continue
+
+        if not text.strip():
+            logger.warning(f"  {incident_id}: text file is blank, skipping.")
+            continue
+
+        try:
             prompt = load_prompt(incident_text=text)
             raw    = provider.extract(prompt)
             data   = _parse_llm_json(raw)
@@ -97,8 +106,17 @@ def run_corpus_extraction(
         )
         logger.info(f"  {incident_id}: extracted OK → {out_path.name}")
         extracted += 1
+
         if delay_seconds > 0:
-            time.sleep(delay_seconds)
+            # Dynamic wait: rate limit is 30k input tokens/min.
+            # Estimate ~4 chars per token; budget 65 s per 30k-token window.
+            text_tokens_est = len(text) / 4
+            rate_limit_wait = (text_tokens_est / 30_000) * 65
+            actual_wait = max(delay_seconds, rate_limit_wait)
+            logger.info(
+                f"  Waiting {actual_wait:.0f}s (est. {text_tokens_est:.0f} tokens)."
+            )
+            time.sleep(actual_wait)
 
     logger.info(f"corpus-extract: done. {extracted}/{len(pending)} extracted.")
     return extracted
