@@ -69,3 +69,4 @@ data/processed/flattenedcsvs/*.xlsx
 
 # Combined export artifacts
 /data/processed/*combined*.csv
+docs/plans/
