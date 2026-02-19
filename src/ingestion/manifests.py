@@ -169,6 +169,63 @@ def save_text_manifest(rows: list[TextManifestRow], path: Path) -> None:
             writer.writerow(row_dict)
 
 
+class SourceManifestRow(BaseModel):
+    """Generic row for source-based ingestion manifests."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    source: str
+    doc_id: str
+    pdf_path: str = ""
+    text_path: str = ""
+    url: Optional[str] = None
+    downloaded_at: Optional[datetime] = None
+    sha256: Optional[str] = None
+    status: Literal["ok", "error", "skipped"] = "skipped"
+    error: Optional[str] = None
+
+
+def load_source_manifest(path: Path) -> list[SourceManifestRow]:
+    """Load source manifest from CSV file."""
+    if not path.exists():
+        return []
+
+    rows: list[SourceManifestRow] = []
+    with open(path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for row_dict in reader:
+            # Parse datetime
+            if "downloaded_at" in row_dict and row_dict["downloaded_at"]:
+                row_dict["downloaded_at"] = datetime.fromisoformat(
+                    row_dict["downloaded_at"]
+                )
+            elif "downloaded_at" in row_dict:
+                row_dict["downloaded_at"] = None
+            # Handle empty optional strings
+            for key in ["url", "sha256", "error"]:
+                if key in row_dict and row_dict[key] == "":
+                    row_dict[key] = None
+            rows.append(SourceManifestRow(**row_dict))
+    return rows
+
+
+def save_source_manifest(rows: list[SourceManifestRow], path: Path) -> None:
+    """Save source manifest to CSV file."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    fieldnames = list(SourceManifestRow.model_fields.keys())
+
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in rows:
+            row_dict = row.model_dump()
+            if row_dict["downloaded_at"]:
+                row_dict["downloaded_at"] = row_dict["downloaded_at"].isoformat()
+            row_dict = {k: ("" if v is None else v) for k, v in row_dict.items()}
+            writer.writerow(row_dict)
+
+
 def _get_merge_key(row: IncidentManifestRow) -> tuple[str, str]:
     """
     Get the merge key for deduplication.
