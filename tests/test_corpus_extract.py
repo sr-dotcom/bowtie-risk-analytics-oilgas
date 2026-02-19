@@ -78,6 +78,7 @@ def test_run_corpus_extraction_writes_json(tmp_path):
         structured_dir=structured,
         text_search_dirs=[txt_dir],
         provider=StubProvider(),
+        delay_seconds=0,
     )
 
     out_json = structured / "csb-explosion.json"
@@ -117,6 +118,7 @@ def test_run_corpus_extraction_skips_ready(tmp_path):
         structured_dir=structured,
         text_search_dirs=[],
         provider=CountingProvider(),
+        delay_seconds=0,
     )
     assert call_count["n"] == 0, "Provider should not be called for ready entries"
 
@@ -145,6 +147,7 @@ def test_run_corpus_extraction_error_logged(tmp_path, caplog):
             structured_dir=structured,
             text_search_dirs=[],
             provider=StubProvider(),
+            delay_seconds=0,
         )
 
     assert any("missing-text-file" in r.message for r in caplog.records)

@@ -632,6 +632,7 @@ def cmd_corpus_extract(args: argparse.Namespace) -> None:
         structured_dir=structured,
         text_search_dirs=None,
         provider=provider,
+        delay_seconds=args.delay,
     )
     logger.info("Run corpus-manifest to refresh extraction_status.")
 
@@ -961,6 +962,12 @@ def main():
         "--model",
         default="claude-sonnet-4-6",
         help="Anthropic model ID (default: claude-sonnet-4-6)",
+    )
+    p_ce.add_argument(
+        "--delay",
+        type=float,
+        default=15.0,
+        help="Seconds between API calls (default: 15.0)",
     )
     p_ce.set_defaults(func=cmd_corpus_extract)
 

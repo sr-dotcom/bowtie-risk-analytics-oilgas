@@ -7,6 +7,7 @@ import csv
 import json
 import logging
 import pathlib
+import time
 from typing import Sequence
 
 from src.ingestion.structured import _parse_llm_json
@@ -45,6 +46,7 @@ def run_corpus_extraction(
     structured_dir: pathlib.Path,
     text_search_dirs: Sequence[pathlib.Path] | None,
     provider: LLMProvider,
+    delay_seconds: float = 15.0,
 ) -> int:
     """Extract JSONs for all needs_extraction rows in the manifest.
 
@@ -54,6 +56,8 @@ def run_corpus_extraction(
         text_search_dirs: Ordered list of dirs to search for .txt files.
                           Defaults to CSB then BSEE text dirs.
         provider: LLM provider to call.
+        delay_seconds: Seconds to sleep between API calls (rate limit guard).
+                       Default 15 s keeps well within 30 k tokens/min.
 
     Returns:
         Number of incidents successfully extracted.
@@ -93,6 +97,8 @@ def run_corpus_extraction(
         )
         logger.info(f"  {incident_id}: extracted OK → {out_path.name}")
         extracted += 1
+        if delay_seconds > 0:
+            time.sleep(delay_seconds)
 
     logger.info(f"corpus-extract: done. {extracted}/{len(pending)} extracted.")
     return extracted
