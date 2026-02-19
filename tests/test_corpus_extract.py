@@ -123,6 +123,40 @@ def test_run_corpus_extraction_skips_ready(tmp_path):
     assert call_count["n"] == 0, "Provider should not be called for ready entries"
 
 
+def test_run_corpus_extraction_skips_blank_text(tmp_path, caplog):
+    """An all-whitespace text file is skipped with a warning (not an error)."""
+    raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
+    structured = tmp_path / "structured_json"; structured.mkdir()
+    manifests  = tmp_path / "manifests";       manifests.mkdir()
+    txt_dir    = tmp_path / "csb_text";        txt_dir.mkdir()
+
+    _make_pdf(raw_pdfs, "blank-incident")
+    _make_txt(txt_dir, "blank-incident", content="\n  \n")  # only whitespace
+
+    rows = [{
+        "incident_id":       "blank-incident",
+        "source_agency":     "CSB",
+        "pdf_filename":      "blank-incident.pdf",
+        "pdf_path":          str(raw_pdfs / "blank-incident.pdf"),
+        "json_path":         "PENDING",
+        "extraction_status": "needs_extraction",
+    }]
+    manifest_path = _write_manifest(manifests, rows)
+
+    with caplog.at_level(logging.WARNING):
+        count = run_corpus_extraction(
+            manifest_path=manifest_path,
+            structured_dir=structured,
+            text_search_dirs=[txt_dir],
+            provider=StubProvider(),
+            delay_seconds=0,
+        )
+
+    assert count == 0
+    assert list(structured.glob("*.json")) == []
+    assert any("blank-incident" in r.message for r in caplog.records)
+
+
 def test_run_corpus_extraction_error_logged(tmp_path, caplog):
     """Extraction errors are logged and do not abort the loop."""
     raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
