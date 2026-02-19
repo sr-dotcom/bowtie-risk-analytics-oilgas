@@ -70,3 +70,19 @@ data/processed/flattenedcsvs/*.xlsx
 # Combined export artifacts
 /data/processed/*combined*.csv
 docs/plans/
+
+# --- handover / exports / zips ---
+HANDOVER_BUNDLE/
+HANDOVER_BUNDLE.zip
+bowtie_handover_bundle_*.zip
+FETCH_HEAD
+*.zip
+
+# --- local work / quarantine ---
+_quarantine/
+
+# --- data (keep repo light) ---
+data/raw/
+data/processed/
+data/text/
+data/derived/
