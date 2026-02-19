@@ -431,7 +431,7 @@ def cmd_discover_source(args: argparse.Namespace) -> None:
 
     discover_fn, write_urls_fn, write_meta_fn = _DISCOVER_ADAPTERS[source]
 
-    out_path = Path(args.out) if args.out else Path(f"data/sources/{source}/url_list.csv")
+    out_path = Path(args.out) if args.out else (get_sources_root() / source / "url_list.csv")
     base_url = args.base_url
     kwargs: dict = {"timeout": args.timeout, "sleep": args.sleep}
     if base_url:
@@ -818,7 +818,7 @@ def main():
     p_discover.add_argument(
         "--out",
         default=None,
-        help="Output url_list CSV path (default: data/sources/<source>/url_list.csv)",
+        help="Output url_list CSV path (default: configs/sources/<source>/url_list.csv; falls back to data/sources/...)",
     )
     p_discover.add_argument(
         "--limit",
