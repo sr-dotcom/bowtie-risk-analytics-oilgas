@@ -30,3 +30,4 @@
 - [x] Streamlit interface (Dashboard KPIs + Incident Explorer)
 - [ ] Export functionality
 - [ ] Final documentation and demo
+- 2026-02-18 — Step 1.3 DONE: corpus_v1 finalized (147/148 extracted; macondo permanent skip), schema v2.3 canonical enforced, main merged/pushed (5bfd2c2), pytest 327/327, manifest clean (147 ready / 1 needs_extraction), noise clean (0 moves). Source ingest import gap fixed by committing SourceManifestRow (629db79) and verified import path `src.ingestion.manifests.SourceManifestRow`.

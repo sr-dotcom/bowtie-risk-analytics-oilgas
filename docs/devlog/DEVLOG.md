@@ -1,5 +1,29 @@
 # Dev Log
 
+## 2026-02-18 — corpus_v1 extraction finalized + main merge hardening
+
+### Implemented
+- Finalized corpus_v1: 148 public incident PDFs (CSB+BSEE) with 147 Schema v2.3 canonical structured JSON outputs; macondo remains a permanent skip due to blank/scanned text.
+- Stabilized and reduced extraction cost via cheap default protocol (Haiku primary, `--text-limit 50000`, retry + escalation to 16000 only when needed; Sonnet fallback reserved), plus blank-text guard, throttling, and higher timeout.
+- Enforced normalize-to-v2.3 before write, and verified convert-schema is idempotent across corpus_v1.
+- Removed schema naming drift (`IncidentV2_2` → `IncidentV23`) while keeping compatibility aliases.
+
+### Why
+- Needed a reproducible, canonical evaluation corpus and a stable extraction pipeline that avoids silent failures, schema drift, and unnecessary spend.
+
+### Learned
+- Token limits and rate limits are the dominant batch failure modes; deterministic guards and escalation paths make extraction predictable.
+- Normalizing to the canonical schema at write-time prevents recurring conversion debt.
+- Merge-time import resolution can reveal hidden local WIP; missing types must be committed to keep main reliable.
+
+### Went wrong + fix
+- During merge, `source_ingest.py` imported `SourceManifestRow` that only existed in a local stash (uncommitted WIP). Recovered stash and committed `SourceManifestRow` to main to resolve the import cleanly.
+
+### Validated
+- pytest green (327/327); corpus-manifest shows 147 ready / 1 permanent skip (macondo); corpus-clean `--dry-run` shows 0 moves; origin/main pushed.
+
+---
+
 ## 2026-02-18 — Schema V2.3 Canonicalisation + Identifier Rename
 
 Hardened the pipeline so all stored JSON is always canonical Schema v2.3.
@@ -239,3 +263,5 @@ Froze the Loss of Containment scoring definition as LOC_v1, documented in `docs/
 - Flag rule matches the implementation in `src/nlp/loc_scoring.py:81`.
 - All 254 existing tests continue to pass.
 - ADR-004 recorded in `docs/decisions/2026-02-17-freeze-loc-v1.md`.
+
+> **Note:** Pipeline commands are run via `python -m src.pipeline <command>` in this environment because console entrypoints (e.g., `corpus-manifest`) are not installed into the venv. Source manifest typing lives in `src/ingestion/manifests.py` (`SourceManifestRow`).
