@@ -35,6 +35,65 @@ _DEFAULT_TEXT_DIRS: list[pathlib.Path] = [
 ]
 
 
+def _run_model_ladder(
+    incident_id: str,
+    prompt: str,
+    policy_path: str = "configs/model_policy.yaml",
+) -> tuple[dict | None, bool, str | None]:
+    """
+    Deterministic Claude-only ladder driven by configs/model_policy.yaml.
+
+    Returns:
+      (data_or_none, truncated_flag, model_used_or_none)
+    """
+    policy = ModelPolicy.load(policy_path)
+
+    # Hard lock: Claude-only
+    if policy.provider != "anthropic":
+        raise ValueError(f"Only anthropic provider is allowed. Got: {policy.provider}")
+
+    from src.llm.anthropic_provider import AnthropicProvider
+
+    models = list(policy.fallback_models) if policy.fallback_models else [policy.default_model]
+
+    # Ensure default_model is present in ladder
+    if policy.default_model and policy.default_model not in models:
+        models.insert(0, policy.default_model)
+
+    for model_id in models:
+        prov = AnthropicProvider(model=model_id)
+
+        for attempt in range(max(1, policy.retries_per_model)):
+            data, truncated = _attempt_extraction(incident_id, prompt, prov)
+
+            if data is not None:
+                return data, truncated, model_id
+
+            # promote triggers (best-effort mapping from provider meta)
+            meta = getattr(prov, "last_meta", {}) or {}
+            stop_reason = (meta.get("stop_reason") or "").lower()
+            err = (meta.get("error") or meta.get("error_type") or "").lower()
+
+            kind = None
+            if "rate" in err or "rate" in stop_reason:
+                kind = "rate_limit"
+            elif "timeout" in err or "timeout" in stop_reason:
+                kind = "timeout"
+            elif "schema" in err:
+                kind = "schema_validation_failed"
+            elif "json" in err:
+                kind = "invalid_json"
+            else:
+                kind = "empty_output"
+
+            if kind in policy.promote_on:
+                break
+
+        # next model
+
+    return None, False, None
+
+
 def _load_incident_text(
     incident_id: str,
     text_search_dirs: Sequence[pathlib.Path],
