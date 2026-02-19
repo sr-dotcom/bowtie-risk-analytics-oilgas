@@ -101,8 +101,12 @@ def normalize_v23_payload(payload: dict[str, Any]) -> dict[str, int]:
             ctrl["line_of_defense"] = "unknown"
             counts["lod_missing"] += 1
 
-        # performance.barrier_status
+        # performance.barrier_status  (create default dict if null/missing)
         perf = ctrl.get("performance")
+        if not isinstance(perf, dict):
+            ctrl["performance"] = {}
+            perf = ctrl["performance"]
+            counts["performance_created"] += 1
         if isinstance(perf, dict):
             raw_bs = perf.get("barrier_status")
             if isinstance(raw_bs, str):
