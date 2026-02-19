@@ -1,5 +1,48 @@
 # Dev Log
 
+## 2026-02-18 — Schema V2.3 Canonicalisation + Identifier Rename
+
+Hardened the pipeline so all stored JSON is always canonical Schema v2.3.
+
+### Normalise-before-write (corpus-extract)
+- `src/ingestion/normalize.py` (new): `normalize_v23_payload()` extracted from
+  `pipeline.py` into its own importable module; also fixes `performance: null`
+  controls (previously silently skipped).
+- `corpus/extract.py` now calls `normalize_v23_payload()` + `validate_incident_v23()`
+  after every LLM extraction, before writing to disk. Validation failure logs a
+  WARNING but does not discard the file.
+- `convert-schema` remains available for backfills of older corpora.
+
+### Corpus backfill
+- `data/corpus_v1/structured_json/` (147 files): 1 file fixed (bp-husky C-016
+  had `performance: null`; normalised to `barrier_status: "unknown"`).
+- `data/structured/incidents/anthropic/` (166 files): 3 files fixed (side field
+  was missing/unknown, defaulted to `"prevention"`).
+- All other provider buckets (gemini, openai, schema_v2_3, stub): already canonical.
+
+### Identifier rename (pure mechanical, no behaviour change)
+The Python schema is **v2.3**. Legacy `v2_2` identifiers were renamed:
+
+| Old name | New name | Location |
+|---|---|---|
+| `IncidentV2_2` | `IncidentV23` | `src/models/incident_v23.py` |
+| `validate_incident_v2_2` | `validate_incident_v23` | `src/validation/incident_validator.py` |
+
+**Backwards-compat aliases kept for one release cycle:**
+```python
+# src/models/incident_v23.py
+IncidentV2_2 = IncidentV23
+
+# src/validation/incident_validator.py
+validate_incident_v2_2 = validate_incident_v23
+```
+The asset file `assets/schema/incident_v2_2_template.json` is intentionally
+unchanged (filename is not a Python identifier).
+
+**327 tests passing.**
+
+---
+
 ## 2026-02-18 — corpus_v1 Complete
 
 Built and extracted the `corpus_v1` evaluation corpus:
