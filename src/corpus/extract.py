@@ -148,12 +148,9 @@ def run_corpus_extraction(
     manifest_path: pathlib.Path,
     structured_dir: pathlib.Path,
     text_search_dirs: Sequence[pathlib.Path] | None,
-    provider: LLMProvider,
     delay_seconds: float = 30.0,
     text_limit: int = 50_000,
-    primary_retries: int = 3,
-    escalated_provider: LLMProvider | None = None,
-    fallback_provider: LLMProvider | None = None,
+    policy_path: str = \"configs/model_policy.yaml\",
 ) -> int:
     """Extract JSONs for all needs_extraction rows in the manifest.
 
@@ -162,7 +159,7 @@ def run_corpus_extraction(
         structured_dir:      Where to write output JSON files.
         text_search_dirs:    Ordered list of dirs to search for .txt files.
                              Defaults to CSB then BSEE text dirs.
-        provider:            Primary LLM provider (e.g. Haiku, 8192 tokens).
+        
         delay_seconds:       Minimum seconds to sleep after each successful
                              API call.  The actual wait is max(delay_seconds,
                              rate_limit_wait) based on estimated input tokens.
@@ -170,11 +167,11 @@ def run_corpus_extraction(
         text_limit:          Truncate incident text to this many characters
                              before building the prompt.  0 = no limit.
                              Default 50 000 chars (~12 500 tokens).
-        primary_retries:     Attempts with the primary provider before
+        
                              escalating.  Default 3.
-        escalated_provider:  Provider with higher max_output_tokens (e.g.
+        
                              Haiku, 16000).  Used when primary is truncated.
-        fallback_provider:   Provider to use when primary + escalated both
+        
                              fail (e.g. Sonnet, 16000).
 
     Returns:
@@ -225,33 +222,9 @@ def run_corpus_extraction(
             logger.error(f"  {incident_id}: prompt build failed — {exc}")
             continue
 
-        # ── Phase 1: primary provider (haiku, 8192 tokens) ────────────────
-        data: dict | None = None
-        for attempt in range(1, primary_retries + 1):
-            data, truncated = _attempt_extraction(incident_id, prompt, provider)
-            if data is not None and not truncated:
-                break
-            logger.warning(
-                f"  {incident_id}: primary attempt {attempt}/{primary_retries} "
-                f"incomplete (truncated={truncated})"
-            )
-            data = None  # discard truncated partial JSON; force retry
+        # Model ladder (policy-driven)
+        data, truncated, model_used = _run_model_ladder(incident_id, prompt, policy_path=policy_path)
 
-        # ── Phase 2: escalated provider (haiku, 16000 tokens) ─────────────
-        if data is None and escalated_provider is not None:
-            logger.info(f"  {incident_id}: escalating to higher output tokens")
-            for attempt in range(1, primary_retries + 1):
-                data, truncated = _attempt_extraction(
-                    incident_id, prompt, escalated_provider
-                )
-                if data is not None and not truncated:
-                    break
-                data = None
-
-        # ── Phase 3: fallback provider (sonnet, 16000 tokens) ─────────────
-        if data is None and fallback_provider is not None:
-            logger.info(f"  {incident_id}: falling back to Sonnet")
-            data, _ = _attempt_extraction(incident_id, prompt, fallback_provider)
 
         if data is None:
             logger.error(
