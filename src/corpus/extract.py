@@ -22,6 +22,7 @@ from typing import Sequence
 from src.ingestion.normalize import normalize_v23_payload
 from src.ingestion.structured import _parse_llm_json
 from src.llm.base import LLMProvider
+from src.llm.model_policy import ModelPolicy
 from src.prompts.loader import load_prompt
 from src.validation.incident_validator import validate_incident_v23
 
