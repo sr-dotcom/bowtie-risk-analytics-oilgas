@@ -157,6 +157,151 @@ def test_run_corpus_extraction_skips_blank_text(tmp_path, caplog):
     assert any("blank-incident" in r.message for r in caplog.records)
 
 
+# ── New cheaper-protocol tests ─────────────────────────────────────────────────
+
+
+def test_text_limit_truncates_long_text(tmp_path, caplog):
+    """Text longer than text_limit is truncated; truncation is logged."""
+    raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
+    structured = tmp_path / "structured_json"; structured.mkdir()
+    manifests  = tmp_path / "manifests";       manifests.mkdir()
+    txt_dir    = tmp_path / "csb_text";        txt_dir.mkdir()
+
+    long_text = "A" * 60_000  # 60 k chars, over the 50 k default
+    _make_pdf(raw_pdfs, "long-incident")
+    _make_txt(txt_dir, "long-incident", content=long_text)
+
+    received: list[str] = []
+
+    class CapturingProvider(StubProvider):
+        def extract(self, prompt: str) -> str:
+            received.append(prompt)
+            return super().extract(prompt)
+
+    rows = [{
+        "incident_id":       "long-incident",
+        "source_agency":     "CSB",
+        "pdf_filename":      "long-incident.pdf",
+        "pdf_path":          str(raw_pdfs / "long-incident.pdf"),
+        "json_path":         "PENDING",
+        "extraction_status": "needs_extraction",
+    }]
+    manifest_path = _write_manifest(manifests, rows)
+
+    with caplog.at_level(logging.INFO):
+        count = run_corpus_extraction(
+            manifest_path=manifest_path,
+            structured_dir=structured,
+            text_search_dirs=[txt_dir],
+            provider=CapturingProvider(),
+            delay_seconds=0,
+            text_limit=50_000,
+        )
+
+    assert count == 1
+    assert len(received) == 1
+    # The 60 k 'A' chars must not appear in the prompt — only 50 k of them do
+    assert "A" * 60_000 not in received[0]
+    assert any("truncated" in r.message for r in caplog.records)
+
+
+def test_escalated_provider_used_on_max_tokens(tmp_path):
+    """escalated_provider is invoked when primary returns stop_reason=max_tokens."""
+    raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
+    structured = tmp_path / "structured_json"; structured.mkdir()
+    manifests  = tmp_path / "manifests";       manifests.mkdir()
+    txt_dir    = tmp_path / "csb_text";        txt_dir.mkdir()
+
+    _make_pdf(raw_pdfs, "csb-truncated")
+    _make_txt(txt_dir, "csb-truncated", content="Explosion at plant.")
+
+    class TruncatingProvider(StubProvider):
+        """Always reports stop_reason=max_tokens (simulates truncated output)."""
+        last_meta: dict = {}
+
+        def extract(self, prompt: str) -> str:
+            self.last_meta = {"stop_reason": "max_tokens"}
+            return super().extract(prompt)
+
+    escalated_calls: list[int] = []
+
+    class EscalatedProvider(StubProvider):
+        def extract(self, prompt: str) -> str:
+            escalated_calls.append(1)
+            return super().extract(prompt)
+
+    rows = [{
+        "incident_id":       "csb-truncated",
+        "source_agency":     "CSB",
+        "pdf_filename":      "csb-truncated.pdf",
+        "pdf_path":          str(raw_pdfs / "csb-truncated.pdf"),
+        "json_path":         "PENDING",
+        "extraction_status": "needs_extraction",
+    }]
+    manifest_path = _write_manifest(manifests, rows)
+
+    count = run_corpus_extraction(
+        manifest_path=manifest_path,
+        structured_dir=structured,
+        text_search_dirs=[txt_dir],
+        provider=TruncatingProvider(),
+        escalated_provider=EscalatedProvider(),
+        delay_seconds=0,
+        primary_retries=1,
+    )
+
+    assert count == 1
+    assert len(escalated_calls) >= 1, "escalated_provider should have been called"
+    assert (structured / "csb-truncated.json").exists()
+
+
+def test_fallback_provider_used_after_primary_and_escalated_fail(tmp_path):
+    """fallback_provider is used when primary and escalated both raise errors."""
+    raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
+    structured = tmp_path / "structured_json"; structured.mkdir()
+    manifests  = tmp_path / "manifests";       manifests.mkdir()
+    txt_dir    = tmp_path / "csb_text";        txt_dir.mkdir()
+
+    _make_pdf(raw_pdfs, "csb-hard")
+    _make_txt(txt_dir, "csb-hard", content="Big complex incident.")
+
+    class FailingProvider(StubProvider):
+        def extract(self, prompt: str) -> str:
+            raise RuntimeError("API error")
+
+    fallback_calls: list[int] = []
+
+    class FallbackProvider(StubProvider):
+        def extract(self, prompt: str) -> str:
+            fallback_calls.append(1)
+            return super().extract(prompt)
+
+    rows = [{
+        "incident_id":       "csb-hard",
+        "source_agency":     "CSB",
+        "pdf_filename":      "csb-hard.pdf",
+        "pdf_path":          str(raw_pdfs / "csb-hard.pdf"),
+        "json_path":         "PENDING",
+        "extraction_status": "needs_extraction",
+    }]
+    manifest_path = _write_manifest(manifests, rows)
+
+    count = run_corpus_extraction(
+        manifest_path=manifest_path,
+        structured_dir=structured,
+        text_search_dirs=[txt_dir],
+        provider=FailingProvider(),
+        escalated_provider=FailingProvider(),
+        fallback_provider=FallbackProvider(),
+        delay_seconds=0,
+        primary_retries=1,
+    )
+
+    assert count == 1
+    assert len(fallback_calls) >= 1, "fallback_provider should have been called"
+    assert (structured / "csb-hard.json").exists()
+
+
 def test_run_corpus_extraction_error_logged(tmp_path, caplog):
     """Extraction errors are logged and do not abort the loop."""
     raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
