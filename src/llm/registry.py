@@ -4,13 +4,11 @@ from typing import Any, Optional
 
 from src.llm.base import LLMProvider
 
-SUPPORTED_PROVIDERS = ("stub", "openai", "anthropic", "gemini")
+SUPPORTED_PROVIDERS = ("stub", "anthropic")
 
 _ENV_KEY_MAP = {
-    "openai": "OPENAI_API_KEY",
-    "anthropic": "ANTHROPIC_API_KEY",
-    "gemini": "GEMINI_API_KEY",
-}
+        "anthropic": "ANTHROPIC_API_KEY",
+    }
 
 
 def get_provider(name: str, model: Optional[str] = None, **kwargs: Any) -> LLMProvider:
@@ -46,18 +44,7 @@ def get_provider(name: str, model: Optional[str] = None, **kwargs: Any) -> LLMPr
         raise RuntimeError(
             f"Provider {name!r} requires env var {env_var} but it is not set."
         )
-
-    if name == "openai":
-        from src.llm.openai_provider import OpenAIProvider
-        return OpenAIProvider(api_key=api_key, model=model, **kwargs)
-
     if name == "anthropic":
         from src.llm.anthropic_provider import AnthropicProvider
         return AnthropicProvider(api_key=api_key, model=model, **kwargs)
-
-    if name == "gemini":
-        from src.llm.gemini_provider import GeminiProvider
-        return GeminiProvider(api_key=api_key, model=model, **kwargs)
-
-    # Should be unreachable given SUPPORTED_PROVIDERS check above
     raise ValueError(f"Unknown provider: {name!r}")
