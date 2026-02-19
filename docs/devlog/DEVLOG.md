@@ -1,5 +1,28 @@
 # Dev Log
 
+## 2026-02-18 — corpus_v1 Complete
+
+Built and extracted the `corpus_v1` evaluation corpus:
+
+- **148 PDFs** in `data/corpus_v1/raw_pdfs/` (100 BSEE + 48 CSB)
+- **147 Claude JSONs** in `data/corpus_v1/structured_json/` (V2.2 schema via `extract_incident.md` prompt)
+- **1 permanent skip**: `macondo-blowout-and-explosion` — scanned image PDF, pdfplumber extracts nothing
+- **66 noise JSONs** quarantined to `structured_json_noise/` (Status_Change_Summary, sample stubs, etc.)
+- **Manifest**: `data/corpus_v1/manifests/corpus_v1_manifest.csv` — 147 ready, 1 needs_extraction
+
+**Cheaper extraction protocol implemented** (`corpus-extract` v2):
+- Primary: `claude-haiku-4-5-20251001` (8192 output tokens) — ~5× cheaper than Sonnet
+- Escalation: same model, 16000 output tokens — triggered for complex JSON responses
+- Fallback: `claude-sonnet-4-6` (16000 tokens) — never needed; Haiku handled all 19 PDFs
+- Input truncation: 50k char default (~12.5k tokens) — applied to 15/20 large PDFs
+- Dynamic rate-limit delay based on truncated text size; 30s floor
+- Retry up to 3× within primary before escalating
+- Run 4 cost estimate: ~$0.45 for 19 PDFs (28 minutes total)
+
+**New CLI commands**: `corpus-manifest`, `corpus-clean`, `corpus-extract --model --fallback-model --delay --text-limit`
+
+**325 tests passing.**
+
 ## 2026-02-01 - Initial Setup
 Set up the project structure with `src/`, `tests/`, and `data/` directories.
 Added Pydantic models for incident data and basic tests.
@@ -108,6 +131,47 @@ Added a `convert-schema` pipeline subcommand that applies in-memory coercions to
 - `quality-gate`: 98.8% controls, 90.4% PIFs
 - `pytest`: 180 passed
 - `verify_and_bundle_schema_v2_3.sh`: produces deliverable zip with README, inventory, file list
+
+## 2026-02-18 — PHMSA + TSB Ingestion + Combined Exports
+
+Extended ingestion to two new sources and added cross-source aggregation exports.
+
+### Implemented
+- **PHMSA skeleton** (`src/ingestion/sources/phmsa_ingest.py`): header inspection of bulk CSV,
+  graceful no-op with WARNING on unrecognised columns; wired as `ingest-phmsa` CLI subcommand.
+- **TSB Canada discovery** (`src/ingestion/sources/tsb_discover.py`): scrapes pipeline listing page,
+  deterministic `doc_id` via regex `/(p\d{2}[a-z]\d{4})/`; HTML narrative extraction with
+  BeautifulSoup `<main>` → body fallback; `discover-source --source tsb` CLI wiring.
+- **TSB ingest** (`src/ingestion/sources/tsb_ingest.py`): resumable manifest-driven HTML download,
+  always stores raw HTML for audit, lazy session init.
+- **Combined exports** (`src/analytics/build_combined_exports.py`):
+  `flat_incidents_combined.csv` (one row per incident) and `controls_combined.csv` (one row per
+  control) across all sources; `build-combined-exports` CLI subcommand.
+- **Four-tier `source_agency` resolution**: explicit JSON field → `doc_type`/`document_type`
+  keyword inference → URL domain → path segment → `UNKNOWN`.
+- **`provider_bucket` column**: preserves immediate parent directory (anthropic/gemini/openai/etc.)
+  as a separate column alongside `source_agency`.
+
+### Why
+- Extends data coverage beyond CSB/BSEE to PHMSA (pipeline) and TSB Canada (pipeline) incidents.
+- Combined exports enable cross-source fleet analytics without manual merging or re-running
+  per-provider flatten passes.
+- `source_agency` inference from `doc_type` was required because LLM-extracted JSONs store source
+  identity in `doc_type`, not `agency`; `source.agency` is absent from all 514 real files.
+
+### Learned
+- `doc_type` is the reliable source-identity field in current extractions. Key discriminators:
+  `"accident investigation"` → BSEE; `"recommendation status change"` → CSB; `"csb"` prefix → CSB.
+- Provider bucket subdirs (anthropic/gemini/openai/schema_v2_3) must never be promoted to
+  `source_agency`; path-segment fallback is limited to the canonical set {csb, bsee, tsb, phmsa}.
+- BeautifulSoup4 was missing from `requirements.txt` — added (`beautifulsoup4>=4.12.0`).
+- TSB mock tests must patch `src.ingestion.sources.tsb_ingest.requests.Session` (full module path).
+
+### Validated
+- 306 tests passing, no regressions.
+- `build-combined-exports` on 517 incidents: BSEE=324 (62.7%), CSB=101 (19.5%), UNKNOWN=92 (17.8%).
+- UNKNOWN rows are genuine stubs/test files with generic `doc_type` values; no false positives.
+- PR merged to main.
 
 ## 2026-02-17 — LOC_v1 Definition Freeze
 
