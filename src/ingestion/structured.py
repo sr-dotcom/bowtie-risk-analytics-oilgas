@@ -11,9 +11,9 @@ from typing import Any, Optional
 from pydantic import BaseModel, ConfigDict
 
 from src.llm.base import LLMProvider
-from src.models.incident_v2_2 import IncidentV2_2
+from src.models.incident_v23 import IncidentV23
 from src.prompts.loader import load_prompt
-from src.validation.incident_validator import validate_incident_v2_2
+from src.validation.incident_validator import validate_incident_v23
 
 logger = logging.getLogger(__name__)
 
@@ -280,7 +280,7 @@ def extract_structured(
             payload["incident_id"] = incident_id
 
             # Validate
-            is_valid, errors = validate_incident_v2_2(payload)
+            is_valid, errors = validate_incident_v23(payload)
             row.valid = is_valid
             row.extracted = True
             row.extracted_at = datetime.now(timezone.utc)
@@ -292,7 +292,7 @@ def extract_structured(
 
             # Round-trip through model to fill in all defaults/missing sections
             try:
-                model = IncidentV2_2.model_validate(payload)
+                model = IncidentV23.model_validate(payload)
                 out_payload = model.model_dump(mode="json")
             except Exception:
                 # If model_validate fails, fall back to raw payload

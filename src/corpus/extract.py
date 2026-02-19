@@ -23,7 +23,7 @@ from src.ingestion.normalize import normalize_v23_payload
 from src.ingestion.structured import _parse_llm_json
 from src.llm.base import LLMProvider
 from src.prompts.loader import load_prompt
-from src.validation.incident_validator import validate_incident_v2_2
+from src.validation.incident_validator import validate_incident_v23
 
 logger = logging.getLogger(__name__)
 
@@ -202,7 +202,7 @@ def run_corpus_extraction(
         # ── normalise to canonical V2.3 before writing ─────────────────────
         data["incident_id"] = incident_id
         normalize_v23_payload(data)
-        is_valid, val_errors = validate_incident_v2_2(data)
+        is_valid, val_errors = validate_incident_v23(data)
         if not is_valid:
             logger.warning(
                 f"  {incident_id}: schema validation failed after normalisation "
