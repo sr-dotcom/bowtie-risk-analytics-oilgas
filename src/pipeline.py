@@ -544,13 +544,8 @@ def cmd_corpus_extract(args: argparse.Namespace) -> None:
         manifest_path=manifest_path,
         structured_dir=structured,
         text_search_dirs=None,
-        provider=primary,
         delay_seconds=args.delay,
-        text_limit=args.text_limit,
-        primary_retries=3,
-        escalated_provider=escalated,
-        fallback_provider=fallback,
-    )
+        text_limit=args.text_limit, policy_path=args.policy)
     logger.info("Run corpus-manifest to refresh extraction_status.")
 
 
