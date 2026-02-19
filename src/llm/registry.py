@@ -15,7 +15,7 @@ def get_provider(name: str, model: Optional[str] = None, **kwargs: Any) -> LLMPr
     """Return an LLMProvider instance for *name*.
 
     Args:
-        name: One of ``stub``, ``openai``, ``anthropic``, ``gemini``.
+        name: One of ``stub``, ``anthropic``.
         model: Model identifier passed to non-stub providers (ignored by stub).
         **kwargs: Extra keyword arguments forwarded to the provider constructor
             (e.g. ``max_output_tokens``, ``temperature``, ``timeout``, ``retries``).
