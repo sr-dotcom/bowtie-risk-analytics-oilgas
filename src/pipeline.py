@@ -247,21 +247,35 @@ def cmd_extract_structured(args: argparse.Namespace) -> None:
     out_dir = Path(args.out_dir)
     manifest_path = Path(args.manifest)
 
-    # Load model policy and build provider from default_model
+    # Load policy + build per-file model ladder
     from src.llm.model_policy import ModelPolicy
-    from src.llm.registry import get_provider
+    from src.corpus.extract import _run_model_ladder
     policy = ModelPolicy.load(args.policy)
-    provider = get_provider(policy.provider, model=policy.default_model)
+
+    # Resolve effective ladder (haiku → sonnet → opus → …)
+    eff_models = list(policy.fallback_models) or [policy.default_model]
+    if policy.default_model not in eff_models:
+        eff_models.insert(0, policy.default_model)
+    logger.info(
+        f"[extract-structured] policy loaded: provider={policy.provider} "
+        f"default={policy.default_model} ladder={eff_models}"
+    )
+
+    def _ladder(incident_id: str, prompt: str, *, policy_path: str = "") -> tuple:
+        return _run_model_ladder(incident_id, prompt, policy_path=args.policy)
+
     provider_name = "schema_v2_3"
 
     rows = extract_structured(
         text_dir,
         out_dir,
-        provider,
+        provider=None,
         provider_name=provider_name,
         model_name=policy.default_model,
         limit=args.limit,
         resume=args.resume,
+        text_limit=args.text_limit,
+        _ladder_fn=_ladder,
     )
 
     # Merge with existing manifest so prior rows are not dropped
@@ -604,6 +618,13 @@ def main():
         "--policy",
         default="configs/model_policy.yaml",
         help="Path to model_policy.yaml (controls Claude model selection).",
+    )
+    p_struct.add_argument(
+        "--text-limit",
+        type=int,
+        default=50_000,
+        dest="text_limit",
+        help="Truncate incident text to this many chars before sending (default: 50000, 0=no limit)",
     )
     p_struct.add_argument(
         "--limit", type=int, default=None, help="Max number of files to process"

@@ -6,7 +6,7 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter
-from typing import Any, Optional
+from typing import Any, Callable, Optional
 
 from pydantic import BaseModel, ConfigDict
 
@@ -156,22 +156,30 @@ def _save_raw_response(
 def extract_structured(
     text_dir: Path,
     out_dir: Path,
-    provider: LLMProvider,
+    provider: Optional[LLMProvider] = None,
     provider_name: str = "unknown",
     model_name: Optional[str] = None,
     limit: Optional[int] = None,
     resume: bool = False,
+    text_limit: int = 0,
+    _ladder_fn: Optional[Callable] = None,
 ) -> list[StructuredManifestRow]:
     """Run structured extraction on all .txt files in text_dir.
 
     Args:
         text_dir: Directory containing extracted text files.
         out_dir: Directory to write validated JSON files.
-        provider: LLM provider instance.
+        provider: LLM provider instance (ignored when _ladder_fn is set).
         provider_name: Name of the provider for manifest tracking.
         model_name: Model identifier for manifest tracking.
         limit: Max number of files to process (None = all).
         resume: If True, skip files that already have output JSON.
+        text_limit: Truncate text to this many chars before building the prompt
+            (0 = no limit).  Matches corpus-extract --text-limit behaviour.
+        _ladder_fn: Optional policy-driven ladder callable
+            ``(incident_id, prompt, *, policy_path) -> (dict|None, bool, str|None)``.
+            When set, replaces the single-provider extraction path with a
+            multi-model ladder; every file still produces a manifest row.
 
     Returns:
         List of manifest rows tracking extraction results.
@@ -219,63 +227,105 @@ def extract_structured(
                 processed += 1
                 continue
 
-            # Assemble prompt and call LLM
-            prompt = load_prompt(text)
-            raw_response = provider.extract(prompt)
-
-            # Save raw response
-            raw_path = _save_raw_response(
-                raw_response, provider_name, incident_id, out_dir.parent,
-            )
-            row.raw_response_path = str(raw_path)
-
-            # Parse JSON from response (with one retry on parse failure)
-            payload = None
-            parse_err = None
-            for _parse_attempt in range(2):
-                try:
-                    payload = _parse_llm_json(raw_response)
-                    break
-                except json.JSONDecodeError as e:
-                    parse_err = e
-                    if _parse_attempt == 0:
-                        logger.warning(
-                            f"{incident_id}: JSON parse failed, retrying with full prompt"
-                        )
-                        _STRICT_SUFFIX = (
-                            "\n\nCRITICAL: Return ONLY a single valid JSON object. "
-                            "No prose, no markdown fences, no explanation."
-                        )
-                        try:
-                            raw_response = provider.extract(prompt + _STRICT_SUFFIX)
-                            # Save updated raw response
-                            raw_path = _save_raw_response(
-                                raw_response, provider_name, incident_id,
-                                out_dir.parent,
-                            )
-                            row.raw_response_path = str(raw_path)
-                        except Exception:
-                            break  # retry failed, fall through
-
-            if payload is None:
-                # Write error JSON preserving identifiers
-                error_payload = {
-                    "incident_id": incident_id,
-                    "errors": [f"JSON parse error: {parse_err}"],
-                    "raw": raw_response[:2000],
-                }
-                json_path.write_text(
-                    json.dumps(error_payload, indent=2), encoding="utf-8",
+            # Optional text truncation (mirrors corpus-extract --text-limit)
+            if text_limit > 0 and len(text) > text_limit:
+                logger.info(
+                    f"{incident_id}: text truncated {len(text)} → {text_limit} chars"
                 )
-                row.extracted = True
-                row.extracted_at = datetime.now(timezone.utc)
-                row.valid = False
-                row.validation_errors = f"JSON parse error: {parse_err}"
-                rows.append(row)
-                processed += 1
-                logger.warning(f"{incident_id}: JSON parse failed: {parse_err}")
-                continue
+                text = text[:text_limit]
 
+            # Assemble prompt
+            prompt = load_prompt(text)
+
+            # ── Extraction: ladder path or single-provider path ───────────────
+            payload: Optional[dict] = None
+
+            if _ladder_fn is not None:
+                # Policy-driven model ladder — hard safety net, never raises
+                try:
+                    data, _truncated, model_used = _ladder_fn(incident_id, prompt)
+                    row.model = model_used
+                    payload = data
+                except Exception as exc:
+                    logger.error(
+                        f"{incident_id}: ladder raised unexpected error — {exc}"
+                    )
+                    payload = None
+
+                if payload is None:
+                    error_payload = {
+                        "incident_id": incident_id,
+                        "errors": ["ladder: all models failed or raised error"],
+                    }
+                    json_path.write_text(
+                        json.dumps(error_payload, indent=2), encoding="utf-8"
+                    )
+                    row.extracted = True
+                    row.extracted_at = datetime.now(timezone.utc)
+                    row.valid = False
+                    row.validation_errors = "ladder: all models failed"
+                    rows.append(row)
+                    processed += 1
+                    logger.warning(f"{incident_id}: ladder failed — recorded in manifest")
+                    continue
+
+            else:
+                # Single-provider path (backward-compatible)
+                raw_response = provider.extract(prompt)  # type: ignore[union-attr]
+
+                # Save raw response
+                raw_path = _save_raw_response(
+                    raw_response, provider_name, incident_id, out_dir.parent,
+                )
+                row.raw_response_path = str(raw_path)
+
+                # Parse JSON from response (with one retry on parse failure)
+                parse_err = None
+                for _parse_attempt in range(2):
+                    try:
+                        payload = _parse_llm_json(raw_response)
+                        break
+                    except json.JSONDecodeError as e:
+                        parse_err = e
+                        if _parse_attempt == 0:
+                            logger.warning(
+                                f"{incident_id}: JSON parse failed, retrying with full prompt"
+                            )
+                            _STRICT_SUFFIX = (
+                                "\n\nCRITICAL: Return ONLY a single valid JSON object. "
+                                "No prose, no markdown fences, no explanation."
+                            )
+                            try:
+                                raw_response = provider.extract(  # type: ignore[union-attr]
+                                    prompt + _STRICT_SUFFIX
+                                )
+                                raw_path = _save_raw_response(
+                                    raw_response, provider_name, incident_id,
+                                    out_dir.parent,
+                                )
+                                row.raw_response_path = str(raw_path)
+                            except Exception:
+                                break  # retry failed, fall through
+
+                if payload is None:
+                    error_payload = {
+                        "incident_id": incident_id,
+                        "errors": [f"JSON parse error: {parse_err}"],
+                        "raw": raw_response[:2000],
+                    }
+                    json_path.write_text(
+                        json.dumps(error_payload, indent=2), encoding="utf-8",
+                    )
+                    row.extracted = True
+                    row.extracted_at = datetime.now(timezone.utc)
+                    row.valid = False
+                    row.validation_errors = f"JSON parse error: {parse_err}"
+                    rows.append(row)
+                    processed += 1
+                    logger.warning(f"{incident_id}: JSON parse failed: {parse_err}")
+                    continue
+
+            # ── Both paths converge here with payload set ─────────────────────
             # Override incident_id with filename-based ID
             payload["incident_id"] = incident_id
 

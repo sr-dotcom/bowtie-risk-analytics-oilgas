@@ -62,13 +62,19 @@ def _run_model_ladder(
     if policy.default_model and policy.default_model not in models:
         models.insert(0, policy.default_model)
 
+    retries = max(1, policy.retries_per_model)
+
     for model_id in models:
         prov = AnthropicProvider(model=model_id)
 
-        for attempt in range(max(1, policy.retries_per_model)):
+        for attempt in range(retries):
+            logger.info(
+                f"[{incident_id}] ladder: attempt={attempt + 1}/{retries} model={model_id}"
+            )
             data, truncated = _attempt_extraction(incident_id, prompt, prov)
 
             if data is not None:
+                logger.info(f"[{incident_id}] ladder: OK model={model_id}")
                 return data, truncated, model_id
 
             # promote triggers (best-effort mapping from provider meta)
@@ -89,10 +95,15 @@ def _run_model_ladder(
                 kind = "empty_output"
 
             if kind in policy.promote_on:
+                logger.warning(
+                    f"[{incident_id}] ladder: promote model={model_id} reason={kind}"
+                )
                 break
+            # else: retry same model
 
         # next model
 
+    logger.error(f"[{incident_id}] ladder: FAILED — all models exhausted")
     return None, False, None
 
 

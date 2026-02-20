@@ -1,5 +1,5 @@
 provider: anthropic
-default_model: claude-sonnet-4-6
+default_model: claude-haiku-4-5-20251001
 
 # Ladder: start cheap/small, then stronger, final best.
 fallback_models:
