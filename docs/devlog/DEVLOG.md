@@ -265,3 +265,9 @@ Froze the Loss of Containment scoring definition as LOC_v1, documented in `docs/
 - ADR-004 recorded in `docs/decisions/2026-02-17-freeze-loc-v1.md`.
 
 > **Note:** Pipeline commands are run via `python -m src.pipeline <command>` in this environment because console entrypoints (e.g., `corpus-manifest`) are not installed into the venv. Source manifest typing lives in `src/ingestion/manifests.py` (`SourceManifestRow`).
+
+- Fixed schema_v2_3 validation failures in Anthropic BSEE full run caused by bowtie.controls[].side enum drift.
+  - Patched 3 incident JSONs where side was non-enum (e.g., "recovery") and revalidated with IncidentV23.
+  - Refreshed anthropic_bsee_full_manifest.csv validity ledger after patch (invalid rows now 0).
+  - Hardened ingestion normalization SIDE_MAP to coerce "recovery" -> "mitigation" to prevent recurrence.
+  - Validation: IncidentV23.model_validate() passes; manifest invalid count confirmed 0.

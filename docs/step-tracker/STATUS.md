@@ -15,6 +15,8 @@
 - [x] LOC_v1 freeze (extraction-aware keyword-tier scoring) — DONE (2026-02-17)
 - [x] PHMSA + TSB ingestion + combined cross-source exports — DONE (2026-02-18)
 - [x] corpus_v1 build (148 PDFs, 147 Claude JSONs, cheaper Haiku extraction protocol) — DONE (2026-02-18)
+- Anthropic BSEE full run (schema_v2_3): validation clean (0 invalid) after patch + manifest refresh.
+- Systemic fix: normalize SIDE_MAP updated to map "recovery" -> "mitigation"; sanity-validated with IncidentV23.
 
 ## Phase 2: Analytics
 - [x] Control coverage computation
