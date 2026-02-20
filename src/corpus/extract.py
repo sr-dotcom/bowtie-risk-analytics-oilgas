@@ -65,7 +65,7 @@ def _run_model_ladder(
     retries = max(1, policy.retries_per_model)
 
     for model_id in models:
-        prov = AnthropicProvider(model=model_id)
+        prov = AnthropicProvider(model=model_id, max_output_tokens=8192)
 
         for attempt in range(retries):
             logger.info(
