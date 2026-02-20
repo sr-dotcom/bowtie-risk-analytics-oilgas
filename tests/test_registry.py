@@ -20,22 +20,21 @@ class TestGetProvider:
             get_provider("nonexistent")
 
     def test_non_stub_missing_key_raises_runtime_error(self):
-        # Ensure the env var is unset
-        for name in ("openai", "anthropic", "gemini"):
-            env_var = f"{name.upper()}_API_KEY"
-            env_backup = os.environ.pop(env_var, None)
-            try:
-                with pytest.raises(RuntimeError, match="not set"):
-                    get_provider(name)
-            finally:
-                if env_backup is not None:
-                    os.environ[env_var] = env_backup
+        # Ensure the env var is unset for the anthropic provider
+        env_var = "ANTHROPIC_API_KEY"
+        env_backup = os.environ.pop(env_var, None)
+        try:
+            with pytest.raises(RuntimeError, match="not set"):
+                get_provider("anthropic")
+        finally:
+            if env_backup is not None:
+                os.environ[env_var] = env_backup
 
     def test_supported_providers_tuple(self):
         assert "stub" in SUPPORTED_PROVIDERS
-        assert "openai" in SUPPORTED_PROVIDERS
         assert "anthropic" in SUPPORTED_PROVIDERS
-        assert "gemini" in SUPPORTED_PROVIDERS
+        assert "openai" not in SUPPORTED_PROVIDERS
+        assert "gemini" not in SUPPORTED_PROVIDERS
 
 
 class TestParseLlmJson:

@@ -19,7 +19,7 @@ import json
 import logging
 import pathlib
 import time
-from typing import Sequence
+from typing import Callable, Optional, Sequence
 
 from src.ingestion.normalize import normalize_v23_payload
 from src.ingestion.structured import _parse_llm_json
@@ -153,6 +153,7 @@ def run_corpus_extraction(
     delay_seconds: float = 30.0,
     text_limit: int = 50_000,
     policy_path: str = "configs/model_policy.yaml",
+    _ladder_fn: Optional[Callable] = None,
 ) -> int:
     """Extract JSONs for all needs_extraction rows in the manifest.
 
@@ -161,20 +162,15 @@ def run_corpus_extraction(
         structured_dir:      Where to write output JSON files.
         text_search_dirs:    Ordered list of dirs to search for .txt files.
                              Defaults to CSB then BSEE text dirs.
-        
         delay_seconds:       Minimum seconds to sleep after each successful
-                             API call.  The actual wait is max(delay_seconds,
-                             rate_limit_wait) based on estimated input tokens.
-                             Default 30 s.
+                             API call.  Default 30 s.
         text_limit:          Truncate incident text to this many characters
                              before building the prompt.  0 = no limit.
                              Default 50 000 chars (~12 500 tokens).
-        
-                             escalating.  Default 3.
-        
-                             Haiku, 16000).  Used when primary is truncated.
-        
-                             fail (e.g. Sonnet, 16000).
+        policy_path:         Path to model_policy.yaml controlling the Claude
+                             model ladder.
+        _ladder_fn:          Internal seam for tests — override ``_run_model_ladder``
+                             with a stub.  Production code leaves this as None.
 
     Returns:
         Number of incidents successfully extracted.
@@ -182,6 +178,7 @@ def run_corpus_extraction(
     if text_search_dirs is None:
         text_search_dirs = _DEFAULT_TEXT_DIRS
 
+    ladder = _ladder_fn if _ladder_fn is not None else _run_model_ladder
     structured_dir.mkdir(parents=True, exist_ok=True)
 
     with manifest_path.open(newline="", encoding="utf-8") as f:
@@ -225,8 +222,7 @@ def run_corpus_extraction(
             continue
 
         # Model ladder (policy-driven)
-        data, truncated, model_used = _run_model_ladder(incident_id, prompt, policy_path=policy_path)
-
+        data, truncated, model_used = ladder(incident_id, prompt, policy_path=policy_path)
 
         if data is None:
             logger.error(

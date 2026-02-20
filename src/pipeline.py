@@ -247,23 +247,19 @@ def cmd_extract_structured(args: argparse.Namespace) -> None:
     out_dir = Path(args.out_dir)
     manifest_path = Path(args.manifest)
 
-    # Select provider via registry
+    # Load model policy and build provider from default_model
+    from src.llm.model_policy import ModelPolicy
     from src.llm.registry import get_provider
-    provider = get_provider(
-        args.provider,
-        model=args.model,
-        max_output_tokens=args.max_output_tokens,
-        temperature=args.temperature,
-        timeout=args.timeout,
-        retries=args.retries,
-    )
+    policy = ModelPolicy.load(args.policy)
+    provider = get_provider(policy.provider, model=policy.default_model)
+    provider_name = "schema_v2_3"
 
     rows = extract_structured(
         text_dir,
         out_dir,
         provider,
-        provider_name=args.provider,
-        model_name=args.model,
+        provider_name=provider_name,
+        model_name=policy.default_model,
         limit=args.limit,
         resume=args.resume,
     )
@@ -281,11 +277,11 @@ def cmd_extract_structured(args: argparse.Namespace) -> None:
 
     # Write run report
     if rows:
-        report = generate_run_report(rows, args.provider, args.model)
+        report = generate_run_report(rows, policy.provider, policy.default_model)
         report_dir = Path(args.out_dir).parent / "run_reports"
         report_dir.mkdir(parents=True, exist_ok=True)
         ts = report["generated_at"].replace(":", "-").replace("+", "")
-        report_path = report_dir / f"{args.provider}_{ts}.json"
+        report_path = report_dir / f"{policy.provider}_{ts}.json"
         report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
         logger.info(f"Run report: {report_path} "
                      f"(valid_rate={report['valid_rate']:.1%})")
@@ -506,8 +502,6 @@ def cmd_corpus_clean(args: argparse.Namespace) -> None:
 
 def cmd_corpus_extract(args: argparse.Namespace) -> None:
     """Extract missing corpus_v1 JSONs using Claude (Anthropic)."""
-    from src.llm.anthropic_provider import AnthropicProvider
-
     corpus_root   = Path("data/corpus_v1")
     manifest_path = corpus_root / "manifests" / "corpus_v1_manifest.csv"
     structured    = corpus_root / "structured_json"
@@ -517,28 +511,6 @@ def cmd_corpus_extract(args: argparse.Namespace) -> None:
             f"Manifest not found: {manifest_path}  Run corpus-manifest first."
         )
         return
-
-    # Primary: Haiku (cheap), 8192 output tokens, 300 s timeout
-    primary = AnthropicProvider(
-        model=args.model,
-        max_output_tokens=8192,
-        timeout=300,
-        retries=3,
-    )
-    # Escalated: same model, 16000 output tokens (for complex JSON responses)
-    escalated = AnthropicProvider(
-        model=args.model,
-        max_output_tokens=16000,
-        timeout=300,
-        retries=2,
-    )
-    # Fallback: Sonnet (only if haiku fails completely)
-    fallback = AnthropicProvider(
-        model=args.fallback_model,
-        max_output_tokens=16000,
-        timeout=300,
-        retries=2,
-    )
 
     run_corpus_extraction(
         manifest_path=manifest_path,
@@ -629,25 +601,9 @@ def main():
         help="Output manifest path",
     )
     p_struct.add_argument(
-        "--provider",
-        default="anthropic",
-        choices=["stub", "anthropic"],
-        help="LLM provider to use",
-    )
-    p_struct.add_argument(
-        "--model", default=None, help="Model identifier (e.g. gpt-4o, claude-sonnet-4-5-20250929)"
-    )
-    p_struct.add_argument(
-        "--max-output-tokens", type=int, default=4096, help="Max output tokens for LLM"
-    )
-    p_struct.add_argument(
-        "--temperature", type=float, default=0.0, help="Sampling temperature"
-    )
-    p_struct.add_argument(
-        "--timeout", type=int, default=120, help="LLM request timeout in seconds"
-    )
-    p_struct.add_argument(
-        "--retries", type=int, default=2, help="Retry count on transient failures"
+        "--policy",
+        default="configs/model_policy.yaml",
+        help="Path to model_policy.yaml (controls Claude model selection).",
     )
     p_struct.add_argument(
         "--limit", type=int, default=None, help="Max number of files to process"

@@ -1,4 +1,4 @@
-"""Tests for corpus_v1 Claude extraction (offline, uses StubProvider)."""
+"""Tests for corpus_v1 Claude extraction (offline, uses StubProvider via _ladder_fn)."""
 import csv
 import json
 import logging
@@ -7,6 +7,7 @@ import pathlib
 import pytest
 
 from src.corpus.extract import run_corpus_extraction, _load_incident_text
+from src.ingestion.structured import _parse_llm_json
 from src.llm.stub import StubProvider
 from src.validation.incident_validator import validate_incident_v23
 
@@ -36,6 +37,21 @@ def _write_manifest(manifests_dir: pathlib.Path, rows: list[dict]) -> pathlib.Pa
     return out
 
 
+def _make_stub_ladder(provider: StubProvider):
+    """Return a _ladder_fn that drives the given stub provider (no real API)."""
+    def _ladder(incident_id: str, prompt: str, *, policy_path: str = "") -> tuple:
+        try:
+            raw = provider.extract(prompt)
+            data = _parse_llm_json(raw)
+            truncated = bool(
+                getattr(provider, "last_meta", {}).get("stop_reason") == "max_tokens"
+            )
+            return data, truncated, "stub-model"
+        except Exception:
+            return None, False, None
+    return _ladder
+
+
 # ── tests ─────────────────────────────────────────────────────────────────────
 
 def test_load_incident_text_from_text_dir(tmp_path):
@@ -55,7 +71,7 @@ def test_load_incident_text_missing_raises(tmp_path):
 
 
 def test_run_corpus_extraction_writes_json(tmp_path):
-    """run_corpus_extraction() calls provider and writes JSON to structured_json/."""
+    """run_corpus_extraction() calls ladder and writes JSON to structured_json/."""
     raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
     structured = tmp_path / "structured_json"; structured.mkdir()
     manifests  = tmp_path / "manifests";       manifests.mkdir()
@@ -78,7 +94,7 @@ def test_run_corpus_extraction_writes_json(tmp_path):
         manifest_path=manifest_path,
         structured_dir=structured,
         text_search_dirs=[txt_dir],
-        provider=StubProvider(),
+        _ladder_fn=_make_stub_ladder(StubProvider()),
         delay_seconds=0,
     )
 
@@ -109,19 +125,18 @@ def test_run_corpus_extraction_skips_ready(tmp_path):
 
     call_count = {"n": 0}
 
-    class CountingProvider(StubProvider):
-        def extract(self, prompt: str) -> str:
-            call_count["n"] += 1
-            return super().extract(prompt)
+    def counting_ladder(incident_id, prompt, *, policy_path=""):
+        call_count["n"] += 1
+        return _make_stub_ladder(StubProvider())(incident_id, prompt)
 
     run_corpus_extraction(
         manifest_path=manifest_path,
         structured_dir=structured,
         text_search_dirs=[],
-        provider=CountingProvider(),
+        _ladder_fn=counting_ladder,
         delay_seconds=0,
     )
-    assert call_count["n"] == 0, "Provider should not be called for ready entries"
+    assert call_count["n"] == 0, "Ladder should not be called for ready entries"
 
 
 def test_run_corpus_extraction_skips_blank_text(tmp_path, caplog):
@@ -149,16 +164,13 @@ def test_run_corpus_extraction_skips_blank_text(tmp_path, caplog):
             manifest_path=manifest_path,
             structured_dir=structured,
             text_search_dirs=[txt_dir],
-            provider=StubProvider(),
+            _ladder_fn=_make_stub_ladder(StubProvider()),
             delay_seconds=0,
         )
 
     assert count == 0
     assert list(structured.glob("*.json")) == []
     assert any("blank-incident" in r.message for r in caplog.records)
-
-
-# ── New cheaper-protocol tests ─────────────────────────────────────────────────
 
 
 def test_text_limit_truncates_long_text(tmp_path, caplog):
@@ -174,10 +186,10 @@ def test_text_limit_truncates_long_text(tmp_path, caplog):
 
     received: list[str] = []
 
-    class CapturingProvider(StubProvider):
-        def extract(self, prompt: str) -> str:
-            received.append(prompt)
-            return super().extract(prompt)
+    def capturing_ladder(incident_id: str, prompt: str, *, policy_path: str = "") -> tuple:
+        received.append(prompt)
+        raw = StubProvider().extract(prompt)
+        return _parse_llm_json(raw), False, "stub-model"
 
     rows = [{
         "incident_id":       "long-incident",
@@ -194,7 +206,7 @@ def test_text_limit_truncates_long_text(tmp_path, caplog):
             manifest_path=manifest_path,
             structured_dir=structured,
             text_search_dirs=[txt_dir],
-            provider=CapturingProvider(),
+            _ladder_fn=capturing_ladder,
             delay_seconds=0,
             text_limit=50_000,
         )
@@ -206,58 +218,8 @@ def test_text_limit_truncates_long_text(tmp_path, caplog):
     assert any("truncated" in r.message for r in caplog.records)
 
 
-def test_escalated_provider_used_on_max_tokens(tmp_path):
-    """escalated_provider is invoked when primary returns stop_reason=max_tokens."""
-    raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
-    structured = tmp_path / "structured_json"; structured.mkdir()
-    manifests  = tmp_path / "manifests";       manifests.mkdir()
-    txt_dir    = tmp_path / "csb_text";        txt_dir.mkdir()
-
-    _make_pdf(raw_pdfs, "csb-truncated")
-    _make_txt(txt_dir, "csb-truncated", content="Explosion at plant.")
-
-    class TruncatingProvider(StubProvider):
-        """Always reports stop_reason=max_tokens (simulates truncated output)."""
-        last_meta: dict = {}
-
-        def extract(self, prompt: str) -> str:
-            self.last_meta = {"stop_reason": "max_tokens"}
-            return super().extract(prompt)
-
-    escalated_calls: list[int] = []
-
-    class EscalatedProvider(StubProvider):
-        def extract(self, prompt: str) -> str:
-            escalated_calls.append(1)
-            return super().extract(prompt)
-
-    rows = [{
-        "incident_id":       "csb-truncated",
-        "source_agency":     "CSB",
-        "pdf_filename":      "csb-truncated.pdf",
-        "pdf_path":          str(raw_pdfs / "csb-truncated.pdf"),
-        "json_path":         "PENDING",
-        "extraction_status": "needs_extraction",
-    }]
-    manifest_path = _write_manifest(manifests, rows)
-
-    count = run_corpus_extraction(
-        manifest_path=manifest_path,
-        structured_dir=structured,
-        text_search_dirs=[txt_dir],
-        provider=TruncatingProvider(),
-        escalated_provider=EscalatedProvider(),
-        delay_seconds=0,
-        primary_retries=1,
-    )
-
-    assert count == 1
-    assert len(escalated_calls) >= 1, "escalated_provider should have been called"
-    assert (structured / "csb-truncated.json").exists()
-
-
-def test_fallback_provider_used_after_primary_and_escalated_fail(tmp_path):
-    """fallback_provider is used when primary and escalated both raise errors."""
+def test_ladder_failure_skips_incident(tmp_path, caplog):
+    """When the model ladder returns None, the incident is skipped and error logged."""
     raw_pdfs   = tmp_path / "raw_pdfs";       raw_pdfs.mkdir()
     structured = tmp_path / "structured_json"; structured.mkdir()
     manifests  = tmp_path / "manifests";       manifests.mkdir()
@@ -266,16 +228,8 @@ def test_fallback_provider_used_after_primary_and_escalated_fail(tmp_path):
     _make_pdf(raw_pdfs, "csb-hard")
     _make_txt(txt_dir, "csb-hard", content="Big complex incident.")
 
-    class FailingProvider(StubProvider):
-        def extract(self, prompt: str) -> str:
-            raise RuntimeError("API error")
-
-    fallback_calls: list[int] = []
-
-    class FallbackProvider(StubProvider):
-        def extract(self, prompt: str) -> str:
-            fallback_calls.append(1)
-            return super().extract(prompt)
+    def failing_ladder(incident_id, prompt, *, policy_path=""):
+        return None, False, None
 
     rows = [{
         "incident_id":       "csb-hard",
@@ -287,20 +241,18 @@ def test_fallback_provider_used_after_primary_and_escalated_fail(tmp_path):
     }]
     manifest_path = _write_manifest(manifests, rows)
 
-    count = run_corpus_extraction(
-        manifest_path=manifest_path,
-        structured_dir=structured,
-        text_search_dirs=[txt_dir],
-        provider=FailingProvider(),
-        escalated_provider=FailingProvider(),
-        fallback_provider=FallbackProvider(),
-        delay_seconds=0,
-        primary_retries=1,
-    )
+    with caplog.at_level(logging.ERROR):
+        count = run_corpus_extraction(
+            manifest_path=manifest_path,
+            structured_dir=structured,
+            text_search_dirs=[txt_dir],
+            _ladder_fn=failing_ladder,
+            delay_seconds=0,
+        )
 
-    assert count == 1
-    assert len(fallback_calls) >= 1, "fallback_provider should have been called"
-    assert (structured / "csb-hard.json").exists()
+    assert count == 0
+    assert not (structured / "csb-hard.json").exists()
+    assert any("csb-hard" in r.message for r in caplog.records)
 
 
 def test_run_corpus_extraction_error_logged(tmp_path, caplog):
@@ -326,7 +278,7 @@ def test_run_corpus_extraction_error_logged(tmp_path, caplog):
             manifest_path=manifest_path,
             structured_dir=structured,
             text_search_dirs=[],
-            provider=StubProvider(),
+            _ladder_fn=_make_stub_ladder(StubProvider()),
             delay_seconds=0,
         )
 
@@ -361,7 +313,7 @@ def test_extracted_json_validates_as_v23(tmp_path):
         manifest_path=manifest_path,
         structured_dir=structured,
         text_search_dirs=[txt_dir],
-        provider=StubProvider(),
+        _ladder_fn=_make_stub_ladder(StubProvider()),
         delay_seconds=0,
     )
 
@@ -407,7 +359,7 @@ def test_normalization_applied_to_v23_wire_values(tmp_path):
         manifest_path=manifest_path,
         structured_dir=structured,
         text_search_dirs=[txt_dir],
-        provider=WireFormatProvider(),
+        _ladder_fn=_make_stub_ladder(WireFormatProvider()),
         delay_seconds=0,
     )
 
