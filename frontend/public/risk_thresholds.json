@@ -1,0 +1,6 @@
+{
+  "p80": 0.9358451962471008,
+  "p60": 0.8576339483261108,
+  "total_predictions": 4688,
+  "description": "Percentile cutoffs from model1 training predictions. Top 20% (>=p80) = red, middle 40% (p60..p80) = amber, bottom 40% (<p60) = green."
+}

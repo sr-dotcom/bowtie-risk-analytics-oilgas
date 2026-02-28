@@ -1,0 +1,74 @@
+[
+  {
+    "name": "side",
+    "category": "barrier"
+  },
+  {
+    "name": "barrier_type",
+    "category": "barrier"
+  },
+  {
+    "name": "line_of_defense",
+    "category": "barrier"
+  },
+  {
+    "name": "barrier_family",
+    "category": "barrier"
+  },
+  {
+    "name": "source_agency",
+    "category": "barrier"
+  },
+  {
+    "name": "pif_competence",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_fatigue",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_communication",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_situational_awareness",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_procedures",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_workload",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_time_pressure",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_tools_equipment",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_safety_culture",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_management_of_change",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_supervision",
+    "category": "incident_context"
+  },
+  {
+    "name": "pif_training",
+    "category": "incident_context"
+  },
+  {
+    "name": "supporting_text_count",
+    "category": "barrier"
+  }
+]
