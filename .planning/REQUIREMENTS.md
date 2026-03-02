@@ -61,24 +61,24 @@ Deferred to next milestone. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ENC-01 | — | Pending |
-| ENC-02 | — | Pending |
-| ENC-03 | — | Pending |
-| SCH-01 | — | Pending |
-| SCH-02 | — | Pending |
-| SCH-03 | — | Pending |
-| SCH-04 | — | Pending |
-| SCH-05 | — | Pending |
-| TST-01 | — | Pending |
-| TST-02 | — | Pending |
-| TST-03 | — | Pending |
-| TST-04 | — | Pending |
+| ENC-01 | Phase 1 | Pending |
+| ENC-02 | Phase 1 | Pending |
+| ENC-03 | Phase 1 | Pending |
+| SCH-01 | Phase 2 | Pending |
+| SCH-02 | Phase 2 | Pending |
+| SCH-03 | Phase 2 | Pending |
+| SCH-04 | Phase 2 | Pending |
+| SCH-05 | Phase 2 | Pending |
+| TST-01 | Phase 3 | Pending |
+| TST-02 | Phase 3 | Pending |
+| TST-03 | Phase 3 | Pending |
+| TST-04 | Phase 3 | Pending |
 
 **Coverage:**
 - v1.0 requirements: 12 total
-- Mapped to phases: 0
-- Unmapped: 12 ⚠️
+- Mapped to phases: 12
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-01*
-*Last updated: 2026-03-01 after initial definition*
+*Last updated: 2026-03-01 — traceability mapped after roadmap creation*
