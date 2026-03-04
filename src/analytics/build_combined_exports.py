@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any
 
 from src.analytics.flatten import CONTROLS_CSV_COLUMNS, flatten_controls
+from src.models.incident_v23 import PeoplePifs, WorkPifs, OrganisationPifs
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +56,12 @@ FLAT_INCIDENT_COLUMNS = [
     "incident__event__top_event",
     "incident__event__incident_type",
     "incident__event__summary",
+    # PIF columns (flattened from schema v2.3)
+    *[f"incident__pifs__people__{k}" for k in PeoplePifs.model_fields.keys()],
+    *[f"incident__pifs__work__{k}" for k in WorkPifs.model_fields.keys()],
+    *[f"incident__pifs__organisation__{k}" for k in OrganisationPifs.model_fields.keys()],
     "json_path",
+
 ]
 
 COMBINED_CONTROLS_COLUMNS = CONTROLS_CSV_COLUMNS + [
@@ -158,8 +164,12 @@ def build_flat_incidents(incidents_dir: Path, out_path: Path) -> int:
         source = data.get("source", {})
         context = data.get("context", {})
         event = data.get("event", {})
+        pifs = data.get("pifs", {}) or {}
+        people = pifs.get("people", {}) or {}
+        work = pifs.get("work", {}) or {}
+        org = pifs.get("organisation", {}) or {}
 
-        rows.append({
+        row = {
             "incident_id": data.get("incident_id", ""),
             "source_agency": agency,
             "provider_bucket": jf.parent.name,
@@ -170,7 +180,16 @@ def build_flat_incidents(incidents_dir: Path, out_path: Path) -> int:
             "incident__event__incident_type": event.get("incident_type", ""),
             "incident__event__summary": event.get("summary", ""),
             "json_path": str(jf),
-        })
+            }
+
+        for k in PeoplePifs.model_fields.keys():
+            row[f"incident__pifs__people__{k}"] = people.get(k, "")
+        for k in WorkPifs.model_fields.keys():
+            row[f"incident__pifs__work__{k}"] = work.get(k, "")
+        for k in OrganisationPifs.model_fields.keys():
+            row[f"incident__pifs__organisation__{k}"] = org.get(k, "")
+
+        rows.append(row)
 
     with open(out_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=FLAT_INCIDENT_COLUMNS)

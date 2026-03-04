@@ -4,7 +4,7 @@ This directory contains the Schema v2.3 incident definition for the Bowtie Risk 
 
 ## Files
 
-- `incident_v2_2_template.json` -- Full JSON template with safe defaults for all fields.
+- `incident_schema_v2_3_template.json` -- Full JSON template with safe defaults for all fields.
 
 ## Top-Level Sections
 

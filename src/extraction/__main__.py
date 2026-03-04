@@ -22,7 +22,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--output-dir",
-        default="data/processed/text",
+        default="archive/data/experimental_qc_extraction",
         help="Output directory for normalized text files",
     )
     parser.add_argument(

@@ -9,7 +9,7 @@ import urllib.parse
 from typing import Any
 
 CORPUS_V1_ROOT = pathlib.Path("data/corpus_v1")
-BSEE_PDFS_DIR  = pathlib.Path("data/raw/bsee/pdfs")
+BSEE_PDFS_DIR  = pathlib.Path("data/raw/bsee/pdf")
 
 _MANIFEST_COLUMNS = [
     "incident_id",

@@ -5,7 +5,7 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 _DEFAULT_PROMPT_PATH = Path(__file__).resolve().parent.parent.parent / "assets" / "prompts" / "extract_incident.md"
-_DEFAULT_SCHEMA_PATH = Path(__file__).resolve().parent.parent.parent / "assets" / "schema" / "incident_v2_2_template.json"
+_DEFAULT_SCHEMA_PATH = Path(__file__).resolve().parent.parent.parent / "assets" / "schema" / "incident_schema_v2_3_template.json"
 
 
 def load_prompt(
@@ -17,7 +17,7 @@ def load_prompt(
 
     Args:
         incident_text: Raw incident narrative text.
-        schema_path: Path to JSON schema template. Defaults to assets/schema/incident_v2_2_template.json.
+        schema_path: Path to JSON schema template. Defaults to assets/schema/incident_schema_v2_3_template.json.
         prompt_path: Path to prompt template. Defaults to assets/prompts/extract_incident.md.
 
     Returns:

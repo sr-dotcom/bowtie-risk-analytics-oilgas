@@ -78,8 +78,9 @@ bowtie_handover_bundle_*.zip
 FETCH_HEAD
 *.zip
 
-# --- local work / quarantine ---
+# --- local work / quarantine / archive ---
 _quarantine/
+archive/
 
 # --- data (keep repo light) ---
 data/raw/

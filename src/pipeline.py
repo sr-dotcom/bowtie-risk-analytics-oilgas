@@ -685,7 +685,7 @@ def main():
     )
     p_eqc.add_argument(
         "--output-dir",
-        default="data/processed/text",
+        default="archive/data/experimental_qc_extraction",
         help="Output directory for normalized text files",
     )
     p_eqc.add_argument(
@@ -751,7 +751,7 @@ def main():
     )
     p_phmsa.add_argument(
         "--manifest",
-        default="data/manifests/structured_manifest_phmsa.csv",
+        default="archive/data/phmsa_placeholder/structured_manifest_phmsa.csv",
         help="Path for structured manifest CSV",
     )
     p_phmsa.add_argument(
@@ -773,7 +773,7 @@ def main():
     )
     p_bce.add_argument(
         "--incidents-dir",
-        default="data/structured/incidents",
+        default="data/structured/incidents/schema_v2_3",
         help="Root directory containing incident JSON files (searched recursively)",
     )
     p_bce.add_argument(

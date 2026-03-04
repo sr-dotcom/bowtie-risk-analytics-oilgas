@@ -217,9 +217,9 @@ class TestManifestPersistence:
                 assert len(rows) == 1
                 rp = rows[0].raw_response_path
                 assert rp is not None
-                # Path must contain /raw/<provider>/ (or backslash on Windows)
-                assert f"raw/{pname}/" in rp.replace("\\", "/"), (
-                    f"Expected 'raw/{pname}/' in {rp}"
+                # Path must contain /debug_llm_responses/<provider>/ (or backslash on Windows)
+                assert f"debug_llm_responses/{pname}/" in rp.replace("\\", "/"), (
+                    f"Expected 'debug_llm_responses/{pname}/' in {rp}"
                 )
                 assert Path(rp).exists()
 

@@ -60,8 +60,8 @@ IncidentV2_2 = IncidentV23
 # src/validation/incident_validator.py
 validate_incident_v2_2 = validate_incident_v23
 ```
-The asset file `assets/schema/incident_v2_2_template.json` is intentionally
-unchanged (filename is not a Python identifier).
+The asset file was renamed from `incident_v2_2_template.json` to
+`incident_schema_v2_3_template.json` during architecture freeze v1 (2026-03-04).
 
 **327 tests passing.**
 

@@ -8,7 +8,7 @@ import pytest
 
 from src.validation.incident_validator import validate_incident_v23
 
-TEMPLATE_PATH = Path(__file__).resolve().parent.parent / "assets" / "schema" / "incident_v2_2_template.json"
+TEMPLATE_PATH = Path(__file__).resolve().parent.parent / "assets" / "schema" / "incident_schema_v2_3_template.json"
 
 
 def _load_template() -> dict:

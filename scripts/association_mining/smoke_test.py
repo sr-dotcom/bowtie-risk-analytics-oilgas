@@ -78,6 +78,40 @@ def main() -> None:
             rows = list(csv.reader(handle))
         assert len(rows) >= 2, "CSV should include header and at least one data row"
 
+        # --- Step 3: Normalize barrier families ---
+        norm_csv = tmp_path / "normalized_df.csv"
+
+        subprocess.run(
+            [
+                sys.executable,
+                "scripts/association_mining/event_barrier_normalization.py",
+                "--input-csv",
+                str(flat_csv),
+                "--output-csv",
+                str(norm_csv),
+            ],
+            check=True,
+        )
+
+        assert norm_csv.exists(), "normalized_df.csv should be created"
+
+        with norm_csv.open("r", encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            norm_header = reader.fieldnames
+            norm_rows = list(reader)
+
+        assert norm_header is not None, "normalized CSV should have a header"
+        assert "barrier_family" in norm_header, "barrier_family column must exist"
+        assert "barrier_level" in norm_header, "barrier_level column must exist"
+
+        assert len(norm_rows) >= 1, "normalized CSV should have at least one data row"
+
+        allowed_levels = {"prevention", "mitigation"}
+        for row in norm_rows:
+            assert row["barrier_level"] in allowed_levels, (
+                f"barrier_level must be prevention or mitigation, got {row['barrier_level']!r}"
+            )
+
     print("association_mining smoke test passed")
 
 

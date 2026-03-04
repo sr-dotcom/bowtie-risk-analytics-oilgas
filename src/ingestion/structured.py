@@ -146,7 +146,7 @@ def _save_raw_response(
     raw: str, provider_name: str, incident_id: str, base_dir: Path,
 ) -> Path:
     """Persist the raw LLM response text and return the path."""
-    raw_dir = base_dir / "raw" / provider_name
+    raw_dir = base_dir / "debug_llm_responses" / provider_name
     raw_dir.mkdir(parents=True, exist_ok=True)
     raw_path = raw_dir / f"{incident_id}.txt"
     raw_path.write_text(raw, encoding="utf-8")
