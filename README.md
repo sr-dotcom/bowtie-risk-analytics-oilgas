@@ -76,26 +76,30 @@ bash scripts/verify_and_bundle_schema_v2_3.sh --tag schema_v2_3_audit
 The output lands in `out/deliverables/` (gitignored) and includes the zip,
 `README.md`, `BUNDLE_INVENTORY.md`, and `FILES.txt`.
 
-## Output Directory Contract
+## Output Directory Contract (Architecture Freeze v1)
 
 All data artifacts are produced locally and **not committed to the repository**.
-Reproduce them by running the pipeline commands above.
-The `data/structured/incidents/schema_v2_3` folder is a local, gitignored output directory and may be absent in a clean clone; generate it with the convert-schema command above.
+Reproduce them by running the pipeline commands above. Tag: `pipeline-freeze-v1`.
+
+**Canonical dataset:** 739 incidents (Schema v2.3), 4,776 controls. Deterministic exports.
 
 ```
 data/
-  raw/
-    incidents_manifest_v0.csv    # Acquisition manifest
-    csb/                         # CSB PDFs + text/
-    bsee/                        # BSEE PDFs + text/
+  raw/<source>/                    # L0: Ingested PDFs + extracted text
+    pdf/                           #   Source PDFs (bsee, csb, phmsa, tsb)
+    text/                          #   Extracted text
+    manifest.csv                   #   Per-source tracking manifest
   structured/
-    incidents/schema_v2_3/       # Validated Schema v2.3 JSON per incident (local)
-    raw/<provider>/              # Raw LLM responses
-    structured_manifest.csv      # Extraction tracking manifest
-    run_reports/                  # Per-run summary reports
-  processed/                     # Legacy pipeline output
-  derived/                       # Flattened controls CSV + baseline analytics
+    incidents/schema_v2_3/         # L1: 739 canonical V2.3 JSONs (SINGLE SOURCE OF TRUTH)
+    debug_llm_responses/           #   Raw LLM text (forensic only)
+    structured_manifest.csv        #   Extraction tracking manifest
+    run_reports/                   #   Per-run summary reports
+  processed/                       # L2: Analytics-ready flat exports
+    flat_incidents_combined.csv    #   739 incident rows
+    controls_combined.csv          #   4,776 control rows
 ```
+
+See `docs/architecture/ARCHITECTURE_FREEZE_v1.md` for full contracts, invariants, and extension rules for RAG/modeling.
 
 ## Project Structure
 
