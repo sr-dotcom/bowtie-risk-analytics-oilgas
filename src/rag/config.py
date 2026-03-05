@@ -14,3 +14,11 @@ RRF_K = 60
 
 # Context builder
 MAX_CONTEXT_CHARS = 8000
+
+# Reranker (Phase-2)
+RERANKER_ENABLED = True
+RERANKER_MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+RERANKER_MAX_LENGTH = 512
+RERANKER_BATCH_SIZE = 32
+TOP_K_RERANK = 30
+FINAL_TOP_K = 10
