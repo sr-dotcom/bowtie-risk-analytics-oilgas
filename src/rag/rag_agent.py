@@ -9,6 +9,7 @@ from typing import Any
 
 import numpy as np
 
+from src.rag.config import TOP_K_RERANK
 from src.rag.context_builder import ContextEntry, build_context
 from src.rag.embeddings.base import EmbeddingProvider
 from src.rag.retriever import HybridRetriever, RetrievalResult
@@ -43,18 +44,21 @@ class RAGAgent:
         retriever: HybridRetriever,
         barrier_metadata: list[dict[str, Any]],
         incident_metadata: list[dict[str, Any]],
+        reranker: Any | None = None,
     ) -> None:
         self._retriever = retriever
         self._barrier_meta = barrier_metadata
         self._incident_meta = {
             row["incident_id"]: row for row in incident_metadata
         }
+        self._reranker = reranker
 
     @classmethod
     def from_directory(
         cls,
         rag_dir: Path,
         embedding_provider: EmbeddingProvider,
+        reranker: Any | None = None,
     ) -> RAGAgent:
         """Load RAG agent from a directory.
 
@@ -104,7 +108,7 @@ class RAGAgent:
             embedding_provider=embedding_provider,
         )
 
-        return cls(retriever, barrier_meta, incident_meta)
+        return cls(retriever, barrier_meta, incident_meta, reranker=reranker)
 
     def explain(
         self,
@@ -121,14 +125,27 @@ class RAGAgent:
 
         Does NOT call an LLM. Returns structured context for downstream use.
         """
+        # Determine retrieval depth
+        retrieve_top_k = TOP_K_RERANK if self._reranker is not None else top_k
+
         results = self._retriever.retrieve(
             barrier_query=barrier_query,
             incident_query=incident_query,
             barrier_family=barrier_family,
             barrier_failed_human=barrier_failed_human,
             pif_filters=pif_filters,
-            top_k=top_k,
+            top_k=retrieve_top_k,
         )
+
+        # Phase-2: Cross-encoder reranking
+        if self._reranker is not None and results:
+            results = self._reranker.rerank(
+                barrier_query=barrier_query,
+                incident_query=incident_query,
+                candidates=results,
+                barrier_metadata=self._barrier_meta,
+                top_k=top_k,
+            )
 
         # Build context entries with full metadata
         entries: list[ContextEntry] = []
