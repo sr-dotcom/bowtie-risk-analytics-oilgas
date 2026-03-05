@@ -121,3 +121,72 @@ class TestRAGIntegration:
         assert "Similar Barrier Failures" in result.context_text
         assert result.metadata["result_count"] >= 0
         assert result.metadata["top_k"] == 3
+
+
+class TestRAGIntegrationWithReranker:
+    def test_end_to_end_with_reranker(self, tmp_path):
+        # 1. Create JSON incidents (reuse helper)
+        json_dir = tmp_path / "incidents"
+        json_dir.mkdir()
+        for i, (event, barrier) in enumerate([
+            ("Pressure vessel rupture", "Pressure Safety Valve"),
+            ("Gas leak from flange", "Flange Inspection Program"),
+            ("Crane dropped load", "Lift Plan Procedure"),
+        ]):
+            path = json_dir / f"inc_{i}.json"
+            path.write_text(json.dumps(_make_incident(f"INC-{i}", event, barrier)))
+
+        # 2. Build corpus
+        rag_dir = tmp_path / "rag"
+        datasets_dir = rag_dir / "datasets"
+        datasets_dir.mkdir(parents=True)
+        b_count = build_barrier_documents(json_dir, datasets_dir / "barrier_documents.csv")
+        i_count = build_incident_documents(json_dir, datasets_dir / "incident_documents.csv")
+
+        # 3. Generate mock embeddings
+        rng = np.random.default_rng(42)
+        dim = 8
+        barrier_emb = rng.standard_normal((b_count, dim)).astype(np.float32)
+        barrier_emb /= np.linalg.norm(barrier_emb, axis=1, keepdims=True)
+        incident_emb = rng.standard_normal((i_count, dim)).astype(np.float32)
+        incident_emb /= np.linalg.norm(incident_emb, axis=1, keepdims=True)
+
+        emb_dir = rag_dir / "embeddings"
+        emb_dir.mkdir()
+        np.save(emb_dir / "barrier_embeddings.npy", barrier_emb)
+        np.save(emb_dir / "incident_embeddings.npy", incident_emb)
+
+        # 4. Mock embedding provider
+        mock_provider = MagicMock()
+        mock_provider.embed.return_value = barrier_emb[0]
+        mock_provider.dimension = dim
+
+        # 5. Mock reranker
+        from src.rag.reranker import CrossEncoderReranker
+        mock_reranker = MagicMock(spec=CrossEncoderReranker)
+
+        def mock_rerank(barrier_query, incident_query, candidates, barrier_metadata, top_k=10):
+            for i, c in enumerate(candidates):
+                c.rerank_score = 1.0 - i * 0.1
+            candidates.sort(key=lambda r: (-r.rerank_score, -r.rrf_score))
+            return candidates[:top_k]
+        mock_reranker.rerank.side_effect = mock_rerank
+
+        # 6. Create agent with reranker
+        agent = RAGAgent.from_directory(
+            rag_dir, embedding_provider=mock_provider, reranker=mock_reranker
+        )
+
+        # 7. Run explain
+        result = agent.explain(
+            barrier_query="pressure safety valve",
+            incident_query="vessel rupture",
+            top_k=3,
+        )
+
+        assert isinstance(result, ExplanationResult)
+        assert len(result.context_text) > 0
+        mock_reranker.rerank.assert_called_once()
+        # Results should have rerank_score set
+        for r in result.results:
+            assert r.rerank_score is not None
