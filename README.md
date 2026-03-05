@@ -1,6 +1,98 @@
 # Bowtie Risk Analytics
 
-Python pipeline and Streamlit dashboard for analyzing oil & gas incidents using the Bowtie risk methodology. Ingests public incident reports (CSB, BSEE), extracts structured risk data via LLM, and calculates barrier coverage metrics. Current scope: **Loss of Containment** scenarios.
+Python pipeline, RAG retrieval system, and Streamlit dashboard for analyzing oil & gas incidents using the Bowtie risk methodology. Ingests public incident reports (CSB, BSEE), extracts structured risk data via LLM, retrieves similar barrier failures via hybrid semantic search, and calculates barrier coverage metrics. Current scope: **Loss of Containment** scenarios.
+
+## RAG Retrieval System
+
+A hybrid retrieval pipeline that finds similar barrier controls and incidents from the V2.3 corpus. Combines bi-encoder vector search with metadata filtering and Reciprocal Rank Fusion (RRF) ranking, with an optional cross-encoder reranker.
+
+```
+Query (barrier + incident)
+         |
+    Embed queries (all-mpnet-base-v2, 768-dim)
+         |
+    +----+----+
+    |         |
+Barrier     Incident
+FAISS       FAISS
+top-50      top-20
+    |         |
+    +----+----+
+         |
+    Intersection filter
+    (dual relevance)
+         |
+    RRF ranking
+    score = 1/(k+r1) + 1/(k+r2)
+         |
+    Optional: CrossEncoder rerank
+    (ms-marco-MiniLM-L-6-v2)
+         |
+    Context builder
+    (structured text, 8000 char max)
+         |
+    ExplanationResult
+```
+
+**Corpus:** 526 incidents, 3,253 barrier controls, 25 barrier families
+
+**Baseline performance (50-query benchmark):**
+
+| Metric | Baseline | With Reranker |
+|--------|----------|---------------|
+| Top-1  | 0.30     | 0.30          |
+| Top-5  | 0.56     | 0.56          |
+| Top-10 | 0.62     | 0.60          |
+| MRR    | 0.40     | 0.42          |
+
+The cross-encoder reranker is kept **optional** (disabled by default) — the recall bottleneck at the retrieval stage dominates ranking improvements. See [RAG System Overview](docs/rag_system_overview.md) for full architecture details.
+
+### Running the Retrieval System
+
+```python
+from src.rag.rag_agent import RAGAgent
+from src.rag.embeddings.sentence_transformers_provider import SentenceTransformerProvider
+
+provider = SentenceTransformerProvider()
+agent = RAGAgent.from_directory(rag_dir, provider)
+
+result = agent.explain(
+    barrier_query="pressure relief valve failed to activate",
+    incident_query="gas release during well intervention",
+    barrier_family="pressure_safety",      # optional filter
+    barrier_failed_human=True,             # optional filter
+    pif_filters={"competence": True},      # optional filter
+)
+
+print(result.context_text)    # Structured markdown for LLM context
+print(result.results)         # Ranked RetrievalResult list
+```
+
+To enable the cross-encoder reranker:
+
+```python
+from src.rag.reranker import CrossEncoderReranker
+
+reranker = CrossEncoderReranker()
+agent = RAGAgent.from_directory(rag_dir, provider, reranker=reranker)
+```
+
+### Running the Retrieval Benchmark
+
+```bash
+python scripts/evaluate_retrieval.py
+```
+
+Results are written to `data/evaluation/results/evaluation_results.json`. See the [Experiment History](docs/rag_experiment_history.md) for methodology and analysis.
+
+### RAG Documentation
+
+| Document | Description |
+|----------|-------------|
+| [RAG System Overview](docs/rag_system_overview.md) | Full architecture, components, and data requirements |
+| [Experiment History](docs/rag_experiment_history.md) | Research evolution across 3 experiments |
+| [Phase-2 Evaluation Report](docs/reports/rag_phase2_evaluation.md) | Quantitative results and recommendation |
+| [Implementation Audit](docs/reports/rag_phase2_implementation_audit.md) | Design compliance and code quality review |
 
 ## Quickstart
 
@@ -111,6 +203,15 @@ src/
   prompts/         Extraction prompt templates and loader
   validation/      Pydantic-based schema validation
   analytics/       Coverage calculation, gap analysis, flattening, baseline
+  rag/             RAG retrieval system
+    config.py          Pipeline constants
+    embeddings/        EmbeddingProvider ABC + SentenceTransformer impl
+    vector_index.py    FAISS IndexFlatIP wrapper with mask support
+    corpus_builder.py  V2.3 JSON -> barrier/incident document CSVs
+    retriever.py       4-stage hybrid retrieval + RRF ranking
+    reranker.py        Optional cross-encoder reranker
+    context_builder.py Structured context text assembly
+    rag_agent.py       Orchestrator (from_directory, explain)
   app/             Streamlit dashboard
   pipeline.py      CLI entry point
 
@@ -118,15 +219,19 @@ assets/
   schema/          Schema v2.3 JSON schema and template
   prompts/         Extraction prompt markdown
 
+data/
+  evaluation/      RAG evaluation dataset and results (committed)
+
 docs/
   decisions/       Architecture Decision Records (ADRs)
+  reports/         Evaluation and audit reports
   devlog/          Development log
   step-tracker/    Phase-by-phase project status
   meetings/        Meeting notes
   handoff/         Historical planning documents
 
-tests/             Unit tests (pytest)
-scripts/           Standalone analytics CLI
+tests/             Unit tests (pytest, 362 passing)
+scripts/           Standalone analytics CLI + evaluation harness
 ```
 
 ## LLM Provider Policy
@@ -152,6 +257,19 @@ require any LLM API key.
 | `GEMINI_API_KEY` | Optional | Only needed with `--provider gemini` |
 
 See `.env.example` for the template.
+
+## Future Improvements
+
+| Priority | Area | Improvement |
+|----------|------|-------------|
+| 1 | Retrieval recall | BM25 hybrid search (sparse + dense) to capture exact keyword matches |
+| 1 | Retrieval recall | Query expansion for oil & gas terminology variants |
+| 2 | Corpus growth | Ingest PHMSA pipeline and TSB transportation incidents |
+| 2 | Retrieval recall | Domain-tuned embedding model (fine-tune on incident/barrier pairs) |
+| 3 | Reranker | Re-evaluate cross-encoder impact at 1000+ incidents |
+| 3 | Hardening | Graceful fallback if cross-encoder model fails to load |
+
+See the [Experiment History](docs/rag_experiment_history.md) for the full research context behind these priorities.
 
 ## Development
 
