@@ -1,4 +1,5 @@
 import pytest
+from src.rag.corpus_builder import assign_barrier_family, compose_barrier_text
 from scripts.association_mining.event_barrier_normalization import (
     normalize_control_name,
     normalize_for_family,
@@ -59,3 +60,82 @@ class TestBarrierFamilyNormalization:
         text = normalize_for_family("completely unrelated concept xyz")
         family = _match_family(text, PREVENTION_ADMIN_FAMILIES, "other_admin")
         assert family == "other_admin"
+
+
+class TestAssignBarrierFamily:
+    def test_prevention_admin(self):
+        result = assign_barrier_family(
+            name="Safety Training Program",
+            barrier_role="Train operators on procedures",
+            side="prevention",
+            barrier_type="administrative",
+        )
+        assert result == "training"
+
+    def test_prevention_engineering(self):
+        result = assign_barrier_family(
+            name="Pressure Safety Valve",
+            barrier_role="Prevent overpressure",
+            side="prevention",
+            barrier_type="engineering",
+        )
+        assert result == "overpressurization_gas_discharge_gas_isolation"
+
+    def test_mitigation_engineering(self):
+        result = assign_barrier_family(
+            name="Deluge System",
+            barrier_role="Suppress fire",
+            side="mitigation",
+            barrier_type="engineering",
+        )
+        assert result == "active_fire_protection_firefighting"
+
+    def test_ppe_gets_other_ppe(self):
+        result = assign_barrier_family(
+            name="Hard Hat",
+            barrier_role="Protect head",
+            side="prevention",
+            barrier_type="ppe",
+        )
+        assert result == "other_ppe"
+
+    def test_unknown_type_gets_other_unknown(self):
+        result = assign_barrier_family(
+            name="Mystery Barrier",
+            barrier_role="Unknown role",
+            side="prevention",
+            barrier_type="unknown",
+        )
+        assert result == "other_unknown"
+
+
+class TestComposeBarrierText:
+    def test_all_fields_present(self):
+        result = compose_barrier_text(
+            name="ESD Valve",
+            barrier_role="Emergency isolation",
+            lod_basis="First line automated shutdown",
+        )
+        assert result == (
+            "Barrier: ESD Valve\n"
+            "Role: Emergency isolation\n"
+            "LOD Basis: First line automated shutdown"
+        )
+
+    def test_missing_lod_basis(self):
+        result = compose_barrier_text(
+            name="ESD Valve",
+            barrier_role="Emergency isolation",
+            lod_basis=None,
+        )
+        assert result == (
+            "Barrier: ESD Valve\n"
+            "Role: Emergency isolation\n"
+            "LOD Basis: N/A"
+        )
+
+    def test_empty_strings(self):
+        result = compose_barrier_text(name="", barrier_role="", lod_basis="")
+        assert "Barrier: " in result
+        assert "Role: " in result
+        assert "LOD Basis: " in result
