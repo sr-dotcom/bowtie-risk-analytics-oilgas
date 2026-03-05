@@ -60,6 +60,7 @@ secrets/
 /data/
 !/data/sources/**
 !/data/samples/**
+!/data/evaluation/
 
 # Deliverable packs (generated, shared out-of-band)
 /out/
