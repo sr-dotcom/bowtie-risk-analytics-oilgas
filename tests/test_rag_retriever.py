@@ -129,3 +129,34 @@ class TestHybridRetriever:
             top_k=5,
         )
         assert isinstance(results, list)
+
+
+class TestRetrievalResultRerankScore:
+    def test_default_rerank_score_is_none(self):
+        r = RetrievalResult(
+            incident_id="INC-1",
+            control_id="C-1",
+            barrier_family="training",
+            barrier_failed_human=False,
+            rrf_score=0.03,
+            barrier_rank=1,
+            incident_rank=1,
+            barrier_sim_score=0.9,
+            incident_sim_score=0.8,
+        )
+        assert r.rerank_score is None
+
+    def test_rerank_score_can_be_set(self):
+        r = RetrievalResult(
+            incident_id="INC-1",
+            control_id="C-1",
+            barrier_family="training",
+            barrier_failed_human=False,
+            rrf_score=0.03,
+            barrier_rank=1,
+            incident_rank=1,
+            barrier_sim_score=0.9,
+            incident_sim_score=0.8,
+            rerank_score=0.95,
+        )
+        assert r.rerank_score == 0.95

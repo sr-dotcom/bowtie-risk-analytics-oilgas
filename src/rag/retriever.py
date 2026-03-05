@@ -22,6 +22,7 @@ class RetrievalResult:
     incident_rank: int
     barrier_sim_score: float
     incident_sim_score: float
+    rerank_score: float | None = None
 
 
 def rrf_score(barrier_rank: int, incident_rank: int, k: int = 60) -> float:
