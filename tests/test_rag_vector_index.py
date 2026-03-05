@@ -60,3 +60,8 @@ class TestVectorIndex:
         mask = np.zeros(5, dtype=bool)  # all False
         scores, indices = index.search(embeddings[0], top_k=3, mask=mask)
         assert len(indices) == 0
+
+    def test_build_raises_on_unnormalized(self):
+        vecs = np.array([[1.0, 2.0, 3.0]], dtype=np.float32)  # not unit length
+        with pytest.raises(ValueError, match="L2-normalized"):
+            VectorIndex.build(vecs)
