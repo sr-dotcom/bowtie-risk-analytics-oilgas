@@ -139,3 +139,212 @@ class TestComposeBarrierText:
         assert "Barrier: " in result
         assert "Role: " in result
         assert "LOD Basis: " in result
+
+
+# ── Builder tests ─────────────────────────────────────────────────
+
+import json
+import tempfile
+from src.rag.corpus_builder import build_barrier_documents, build_incident_documents
+
+
+def _make_v23_incident(incident_id: str = "TEST-001") -> dict:
+    """Build a minimal V2.3 incident dict for testing."""
+    return {
+        "incident_id": incident_id,
+        "source": {
+            "doc_type": "Accident Investigation Report",
+            "url": None,
+            "title": "Test Report",
+            "date_published": "2024-01-01",
+            "date_occurred": "2024-01-01",
+            "timezone": None,
+        },
+        "context": {
+            "region": "Gulf of Mexico",
+            "operator": "Test Operator",
+            "operating_phase": "production",
+            "materials": ["crude oil", "gas"],
+        },
+        "event": {
+            "top_event": "Loss of Containment",
+            "incident_type": "Equipment Failure",
+            "costs": None,
+            "actions_taken": [],
+            "summary": "A valve failed causing a release of crude oil.",
+            "recommendations": ["Replace valve", "Update procedure"],
+            "key_phrases": [],
+        },
+        "bowtie": {
+            "hazards": [{"hazard_id": "H-001", "name": "Pressurized system", "description": None}],
+            "threats": [{"threat_id": "T-001", "name": "Valve failure", "description": None}],
+            "consequences": [{"consequence_id": "CON-001", "name": "Oil spill", "description": None, "severity": None}],
+            "controls": [
+                {
+                    "control_id": "C-001",
+                    "name": "Pressure Safety Valve",
+                    "side": "prevention",
+                    "barrier_role": "Prevent overpressure",
+                    "barrier_type": "engineering",
+                    "line_of_defense": "1st",
+                    "lod_basis": "Primary pressure protection",
+                    "linked_threat_ids": ["T-001"],
+                    "linked_consequence_ids": ["CON-001"],
+                    "performance": {
+                        "barrier_status": "failed",
+                        "barrier_failed": True,
+                        "detection_applicable": True,
+                        "detection_mentioned": True,
+                        "alarm_applicable": False,
+                        "alarm_mentioned": False,
+                        "manual_intervention_applicable": False,
+                        "manual_intervention_mentioned": False,
+                    },
+                    "human": {
+                        "human_contribution_value": "high",
+                        "human_contribution_mentioned": True,
+                        "barrier_failed_human": True,
+                        "linked_pif_ids": ["PIF-001"],
+                    },
+                    "evidence": {
+                        "supporting_text": ["The PSV was not tested", "Maintenance overdue"],
+                        "confidence": "high",
+                    },
+                },
+                {
+                    "control_id": "C-002",
+                    "name": "Training Program",
+                    "side": "prevention",
+                    "barrier_role": "Train operators on valve inspection",
+                    "barrier_type": "administrative",
+                    "line_of_defense": "2nd",
+                    "lod_basis": "Competence assurance for maintenance",
+                    "linked_threat_ids": ["T-001"],
+                    "linked_consequence_ids": [],
+                    "performance": {
+                        "barrier_status": "degraded",
+                        "barrier_failed": False,
+                        "detection_applicable": False,
+                        "detection_mentioned": False,
+                        "alarm_applicable": False,
+                        "alarm_mentioned": False,
+                        "manual_intervention_applicable": False,
+                        "manual_intervention_mentioned": False,
+                    },
+                    "human": {
+                        "human_contribution_value": None,
+                        "human_contribution_mentioned": False,
+                        "barrier_failed_human": False,
+                        "linked_pif_ids": [],
+                    },
+                    "evidence": {
+                        "supporting_text": [],
+                        "confidence": "low",
+                    },
+                },
+            ],
+        },
+        "pifs": {
+            "people": {
+                "competence_value": "low",
+                "competence_mentioned": True,
+                "fatigue_value": None,
+                "fatigue_mentioned": False,
+                "communication_value": "poor",
+                "communication_mentioned": True,
+                "situational_awareness_value": None,
+                "situational_awareness_mentioned": False,
+            },
+            "work": {
+                "procedures_value": "inadequate",
+                "procedures_mentioned": True,
+                "workload_value": None,
+                "workload_mentioned": False,
+                "time_pressure_value": None,
+                "time_pressure_mentioned": False,
+                "tools_equipment_value": None,
+                "tools_equipment_mentioned": False,
+            },
+            "organisation": {
+                "safety_culture_value": None,
+                "safety_culture_mentioned": False,
+                "management_of_change_value": None,
+                "management_of_change_mentioned": False,
+                "supervision_value": None,
+                "supervision_mentioned": False,
+                "training_value": "inadequate",
+                "training_mentioned": True,
+            },
+        },
+        "notes": {"rules": "JSON output only.", "schema_version": "2.3"},
+    }
+
+
+class TestBuildBarrierDocuments:
+    def test_builds_from_json_dir(self, tmp_path):
+        json_dir = tmp_path / "incidents"
+        json_dir.mkdir()
+        incident = _make_v23_incident()
+        (json_dir / "test.json").write_text(json.dumps(incident), encoding="utf-8")
+
+        out_csv = tmp_path / "barrier_documents.csv"
+        count = build_barrier_documents(json_dir, out_csv)
+
+        assert count == 2
+        assert out_csv.exists()
+
+        import csv as csv_mod
+        with open(out_csv, encoding="utf-8") as f:
+            reader = csv_mod.DictReader(f)
+            rows = list(reader)
+
+        assert len(rows) == 2
+        assert rows[0]["incident_id"] == "TEST-001"
+        assert rows[0]["control_id"] == "C-001"
+        assert "Barrier: Pressure Safety Valve" in rows[0]["barrier_role_match_text"]
+        assert "Role: Prevent overpressure" in rows[0]["barrier_role_match_text"]
+        assert rows[0]["barrier_family"] != ""
+        assert rows[0]["barrier_failed"] == "True"
+        assert rows[0]["barrier_failed_human"] == "True"
+        assert rows[0]["pif_competence"] == "True"
+        assert rows[0]["pif_communication"] == "True"
+        assert rows[0]["pif_fatigue"] == "False"
+        assert rows[0]["pif_procedures"] == "True"
+        assert rows[0]["pif_training"] == "True"
+        assert "The PSV was not tested" in rows[0]["supporting_text"]
+        assert "A valve failed" in rows[0]["incident_summary"]
+
+    def test_empty_dir_returns_zero(self, tmp_path):
+        json_dir = tmp_path / "empty"
+        json_dir.mkdir()
+        out_csv = tmp_path / "barrier_documents.csv"
+        count = build_barrier_documents(json_dir, out_csv)
+        assert count == 0
+
+
+class TestBuildIncidentDocuments:
+    def test_builds_from_json_dir(self, tmp_path):
+        json_dir = tmp_path / "incidents"
+        json_dir.mkdir()
+        incident = _make_v23_incident()
+        (json_dir / "test.json").write_text(json.dumps(incident), encoding="utf-8")
+
+        out_csv = tmp_path / "incident_documents.csv"
+        count = build_incident_documents(json_dir, out_csv)
+
+        assert count == 1
+        assert out_csv.exists()
+
+        import csv as csv_mod
+        with open(out_csv, encoding="utf-8") as f:
+            reader = csv_mod.DictReader(f)
+            rows = list(reader)
+
+        assert len(rows) == 1
+        assert rows[0]["incident_id"] == "TEST-001"
+        assert "Top Event: Loss of Containment" in rows[0]["incident_embed_text"]
+        assert "Operating Phase: production" in rows[0]["incident_embed_text"]
+        assert "Materials: crude oil, gas" in rows[0]["incident_embed_text"]
+        assert rows[0]["top_event"] == "Loss of Containment"
+        assert rows[0]["operating_phase"] == "production"
+        assert "A valve failed" in rows[0]["summary"]
