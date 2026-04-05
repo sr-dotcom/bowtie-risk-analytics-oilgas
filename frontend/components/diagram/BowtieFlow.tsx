@@ -11,9 +11,11 @@ import {
 import '@xyflow/react/dist/style.css'
 
 import { useBowtieContext } from '@/context/BowtieContext'
-import { buildDagreLayout } from './layout'
+import { buildBowtieLayout } from './layout'
 import BarrierNode from './BarrierNode'
 import TopEventNode from './TopEventNode'
+import ThreatNode from './ThreatNode'
+import ConsequenceNode from './ConsequenceNode'
 import PathwayView from './PathwayView'
 
 // ---------------------------------------------------------------------------
@@ -24,6 +26,8 @@ import PathwayView from './PathwayView'
 const nodeTypes = {
   barrier: BarrierNode,
   topEvent: TopEventNode,
+  threat: ThreatNode,
+  consequence: ConsequenceNode,
 }
 
 // ---------------------------------------------------------------------------
@@ -40,9 +44,9 @@ export default function BowtieFlow() {
   // Demo badge dismissal state
   const [showDemoBanner, setShowDemoBanner] = useState(true)
 
-  // Build dagre layout and overlay predictions onto node data
+  // Build BowTieXP layout and overlay predictions onto node data
   const { nodes, edges } = useMemo(() => {
-    const layout = buildDagreLayout(barriers, eventDescription)
+    const layout = buildBowtieLayout(barriers, eventDescription)
 
     // Overlay prediction results onto barrier nodes
     const nodesWithPredictions = layout.nodes.map((node) => {

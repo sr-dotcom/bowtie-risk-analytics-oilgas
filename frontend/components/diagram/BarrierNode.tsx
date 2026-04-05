@@ -43,51 +43,44 @@ const RISK_COLORS: Record<string, string> = {
 // Component
 // ---------------------------------------------------------------------------
 
+const HIDDEN_HANDLE = { opacity: 0, width: 1, height: 1 } as const
+
 export default function BarrierNode({ data }: NodeProps<BarrierNodeType>) {
   const analyzed = data.riskLevel && data.riskLevel !== 'unanalyzed'
   const riskColor = RISK_COLORS[data.riskLevel] ?? RISK_COLORS.unanalyzed
 
-  const borderStyle = data.selected
-    ? '3px solid #3B82F6'
-    : analyzed
-      ? `1px solid ${riskColor}`
-      : '1px solid #2E3348'
-
-  const leftBorder = analyzed && !data.selected
-    ? `3px solid ${riskColor}`
-    : undefined
+  const leftColor = data.selected ? '#3B82F6' : riskColor
 
   return (
     <div
-      className="rounded-md p-3 w-[160px] cursor-pointer nodrag hover:brightness-110 transition-all duration-150"
+      className="cursor-pointer nodrag hover:brightness-125 transition-all duration-150"
       style={{
         backgroundColor: '#1A1D27',
-        border: borderStyle,
-        borderLeft: leftBorder ?? (data.selected ? '3px solid #3B82F6' : borderStyle),
+        borderLeft: `2px solid ${leftColor}`,
+        borderTop: '1px solid #2E3348',
+        borderRight: '1px solid #2E3348',
+        borderBottom: '1px solid #2E3348',
+        borderRadius: 2,
+        padding: '4px 8px',
+        minWidth: 120,
+        maxWidth: 160,
         boxShadow: data.selected
-          ? '0 0 0 2px rgba(59,130,246,0.3)'
-          : '0 2px 4px rgba(0,0,0,0.3)',
+          ? '0 0 0 1px rgba(59,130,246,0.4)'
+          : 'none',
       }}
     >
-      {/* Barrier name */}
-      <p className="text-sm font-semibold truncate" style={{ color: '#E8ECF4' }}>
+      <p className="font-medium leading-snug" style={{ color: '#E8ECF4', fontSize: 11 }}>
         {data.label}
       </p>
 
-      {/* Risk level badge — shows Low/Medium/High after analysis */}
-      {analyzed ? (
-        <p className="text-xs font-medium" style={{ color: riskColor }}>
+      {analyzed && (
+        <p className="font-medium" style={{ color: riskColor, fontSize: 10, lineHeight: 1.2 }}>
           {RISK_LEVEL_LABELS[data.riskLevel] ?? ''}
-        </p>
-      ) : (
-        <p className="text-xs select-none" style={{ color: '#5A6178' }}>
-          Not analyzed
         </p>
       )}
 
-      {/* React Flow handles */}
-      <Handle type="target" position={Position.Left} className="!bg-[#4A5178]" />
-      <Handle type="source" position={Position.Right} className="!bg-[#4A5178]" />
+      <Handle type="target" position={Position.Left} style={HIDDEN_HANDLE} />
+      <Handle type="source" position={Position.Right} style={HIDDEN_HANDLE} />
     </div>
   )
 }
