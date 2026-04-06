@@ -5,6 +5,7 @@ import { Loader2, AlertCircle } from 'lucide-react'
 import { explain } from '@/lib/api'
 import { useBowtieContext } from '@/context/BowtieContext'
 import type { Barrier, ExplainRequest, ExplainResponse, PredictResponse } from '@/lib/types'
+import SimpleMarkdown from '@/components/ui/SimpleMarkdown'
 
 // ---------------------------------------------------------------------------
 // Component
@@ -112,7 +113,7 @@ export default function EvidenceSection({
           barrier.
         </p>
       ) : (
-        <p className="text-sm text-[#8B93A8] leading-relaxed mb-3">{ev.narrative}</p>
+        <SimpleMarkdown content={ev.narrative} className="text-sm text-[#8B93A8] leading-relaxed mb-3" />
       )}
 
       {/* Recommendations (D-12, Fidel-#2) */}
@@ -120,9 +121,7 @@ export default function EvidenceSection({
         <div className="mt-3">
           <h4 className="text-sm font-semibold mb-1 text-[#E8ECF4]">Recommendations</h4>
           <div className="text-sm text-[#8B93A8] bg-[#242836] border-l-2 border-blue-500 rounded-md p-3 space-y-1">
-            {ev.recommendations.split('\n').filter(line => line.trim()).map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
+            <SimpleMarkdown content={ev.recommendations} className="text-sm text-[#8B93A8]" />
           </div>
         </div>
       )}
