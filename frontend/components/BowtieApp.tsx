@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { BowtieProvider, useBowtieContext } from '@/context/BowtieContext'
 import BarrierForm from './sidebar/BarrierForm'
 import BowtieSVG from './diagram/BowtieSVG'
@@ -49,9 +49,9 @@ function BowtieAppInner() {
     selectedBarrierId,
     setSelectedBarrierId,
     isAnalyzing,
+    viewMode,
+    setViewMode,
   } = useBowtieContext()
-
-  const [viewMode, setViewMode] = useState<'diagram' | 'pathway' | 'dashboard'>('diagram')
 
   // Load demo scenario on first mount.
   // Ref guard prevents React 18 StrictMode double-invocation from adding duplicates.

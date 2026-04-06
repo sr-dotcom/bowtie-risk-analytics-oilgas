@@ -18,6 +18,9 @@ interface BowtieState {
   isAnalyzing: boolean
   analysisError: string | null
   pifFlags: PifFlags
+  /** viewMode controls which top-level view is rendered */
+  viewMode: 'diagram' | 'pathway' | 'dashboard'
+  dashboardTab: string | null
   // Methods
   setEventDescription: (v: string) => void
   addBarrier: (b: Omit<Barrier, 'id' | 'riskLevel'>) => void
@@ -30,6 +33,8 @@ interface BowtieState {
   setAnalysisError: (v: string | null) => void
   setPifFlags: (flags: PifFlags) => void
   togglePif: (key: keyof PifFlags) => void
+  setViewMode: (v: 'diagram' | 'pathway' | 'dashboard') => void
+  setDashboardTab: (tab: string | null) => void
 }
 
 const BowtieContext = createContext<BowtieState | null>(null)
@@ -42,10 +47,14 @@ export function BowtieProvider({
   children,
   initialBarriers = [],
   initialPredictions = {},
+  initialViewMode = 'diagram',
+  initialDashboardTab = null,
 }: {
   children: ReactNode
   initialBarriers?: Barrier[]
   initialPredictions?: Record<string, PredictResponse>
+  initialViewMode?: 'diagram' | 'pathway' | 'dashboard'
+  initialDashboardTab?: string | null
 }) {
   const [eventDescription, setEventDescription] = useState<string>('')
   const [barriers, setBarriers] = useState<Barrier[]>(initialBarriers)
@@ -55,6 +64,8 @@ export function BowtieProvider({
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false)
   const [analysisError, setAnalysisError] = useState<string | null>(null)
   const [pifFlags, setPifFlags] = useState<PifFlags>({ ...DEFAULT_PIF_FLAGS })
+  const [viewMode, setViewMode] = useState<'diagram' | 'pathway' | 'dashboard'>(initialViewMode)
+  const [dashboardTab, setDashboardTab] = useState<string | null>(initialDashboardTab)
 
   function togglePif(key: keyof PifFlags): void {
     setPifFlags((prev) => ({ ...prev, [key]: prev[key] === 1 ? 0 : 1 }))
@@ -111,6 +122,8 @@ export function BowtieProvider({
         isAnalyzing,
         analysisError,
         pifFlags,
+        viewMode,
+        dashboardTab,
         setEventDescription,
         addBarrier,
         removeBarrier,
@@ -122,6 +135,8 @@ export function BowtieProvider({
         setAnalysisError,
         setPifFlags,
         togglePif,
+        setViewMode,
+        setDashboardTab,
       }}
     >
       {children}
