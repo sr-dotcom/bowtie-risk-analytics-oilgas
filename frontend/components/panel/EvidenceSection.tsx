@@ -103,9 +103,31 @@ export default function EvidenceSection({
     ev.retrieval_confidence < 0.4 ||
     ev.narrative.toLowerCase().includes('no matching incidents found')
 
+  // Derive confidence dot color from retrieval_confidence threshold
+  const confidenceDotClass =
+    ev.retrieval_confidence >= 0.7
+      ? 'bg-green-400'
+      : ev.retrieval_confidence >= 0.4
+        ? 'bg-amber-400'
+        : 'bg-red-400'
+
+  // Parse recommendations string into individual cards
+  const recommendationCards = ev.recommendations
+    ? ev.recommendations
+        .split('\n')
+        .map((line) => line.replace(/^[-*] /, '').trim())
+        .filter((line) => line.length > 0)
+    : []
+
   return (
     <div className="space-y-3">
-      <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">Evidence</h3>
+      <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">
+        Evidence
+        <span
+          data-testid="confidence-dot"
+          className={`w-2.5 h-2.5 rounded-full inline-block ml-2 ${confidenceDotClass}`}
+        />
+      </h3>
 
       {isLowConfidence ? (
         <p className="text-sm text-amber-400 bg-amber-950/30 border border-amber-800/40 rounded-md p-2">
@@ -116,12 +138,19 @@ export default function EvidenceSection({
         <SimpleMarkdown content={ev.narrative} className="text-sm text-[#8B93A8] leading-relaxed mb-3" />
       )}
 
-      {/* Recommendations (D-12, Fidel-#2) */}
-      {ev.recommendations && ev.recommendations.length > 0 && (
+      {/* Recommendations (D-12, Fidel-#2) — per-card rendering */}
+      {recommendationCards.length > 0 && (
         <div className="mt-3">
           <h4 className="text-sm font-semibold mb-1 text-[#E8ECF4]">Recommendations</h4>
-          <div className="text-sm text-[#8B93A8] bg-[#242836] border-l-2 border-blue-500 rounded-md p-3 space-y-1">
-            <SimpleMarkdown content={ev.recommendations} className="text-sm text-[#8B93A8]" />
+          <div className="space-y-2">
+            {recommendationCards.map((card, idx) => (
+              <div
+                key={idx}
+                className="bg-[#242836] border-l-2 border-blue-500 rounded-md p-3"
+              >
+                <SimpleMarkdown content={card} className="text-sm text-[#8B93A8]" />
+              </div>
+            ))}
           </div>
         </div>
       )}
