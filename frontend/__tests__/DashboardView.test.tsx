@@ -311,7 +311,7 @@ describe('DashboardView auto-batch', () => {
         </BowtieProvider>,
       )
     })
-    expect(screen.getByText('Analyzing barriers...')).toBeTruthy()
+    expect(screen.getByTestId('analyzing-skeleton')).toBeTruthy()
   })
 })
 

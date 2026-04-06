@@ -75,8 +75,9 @@ export default function DashboardView() {
 
       {/* Loading indicator — visible while batch /predict is running */}
       {isAnalyzing && (
-        <div className="px-8 pt-4">
-          <div className="text-sm text-[#8B93A8] animate-pulse">Analyzing barriers...</div>
+        <div data-testid="analyzing-skeleton" className="px-8 pt-4 space-y-2">
+          <div className="h-2 bg-[#242836] rounded animate-pulse w-3/4" />
+          <div className="h-2 bg-[#242836] rounded animate-pulse w-1/2" />
         </div>
       )}
 
@@ -110,9 +111,11 @@ export default function DashboardView() {
         {activeTab === 'ranked-barriers' && <RankedBarriers />}
         {activeTab !== 'executive-summary' && activeTab !== 'drivers-hf' && activeTab !== 'ranked-barriers' && (
           <div className="flex items-center justify-center h-full">
-            <p className="text-sm text-[#5A6178]">
-              {TABS.find((t) => t.id === activeTab)?.label} coming soon
-            </p>
+            <div className="rounded-lg border border-dashed border-[#2E3348] p-8 text-center">
+              <p className="text-sm text-[#5A6178]">
+                {TABS.find((t) => t.id === activeTab)?.label} coming soon
+              </p>
+            </div>
           </div>
         )}
       </div>
