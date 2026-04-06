@@ -7,6 +7,7 @@ import BowtieSVG from './diagram/BowtieSVG'
 import PathwayView from './diagram/PathwayView'
 import DetailPanel from './panel/DetailPanel'
 import { DEMO_SCENARIO } from './sidebar/constants'
+import DashboardView from './dashboard/DashboardView'
 
 // ---------------------------------------------------------------------------
 // Demo threats and consequences (hardcoded — will be user-enterable later)
@@ -50,7 +51,7 @@ function BowtieAppInner() {
     isAnalyzing,
   } = useBowtieContext()
 
-  const [viewMode, setViewMode] = useState<'diagram' | 'pathway'>('diagram')
+  const [viewMode, setViewMode] = useState<'diagram' | 'pathway' | 'dashboard'>('diagram')
 
   // Load demo scenario on first mount.
   // Ref guard prevents React 18 StrictMode double-invocation from adding duplicates.
@@ -85,6 +86,39 @@ function BowtieAppInner() {
     }
   })
 
+  if (viewMode === 'dashboard') {
+    return (
+      <div className="flex h-screen min-w-[1280px] bg-[#0F1117] flex-col">
+        {/* Toggle bar */}
+        <div className="flex-shrink-0 flex items-center px-4 py-2 border-b border-[#2E3348] bg-[#1A1D27]">
+          <div className="flex rounded-lg overflow-hidden border border-[#2E3348] bg-[#242836]">
+            <button
+              onClick={() => setViewMode('diagram')}
+              className="px-3 py-1 text-xs font-medium transition-colors text-[#8B93A8] hover:text-[#E8ECF4]"
+            >
+              Diagram View
+            </button>
+            <button
+              onClick={() => setViewMode('pathway')}
+              className="px-3 py-1 text-xs font-medium transition-colors text-[#8B93A8] hover:text-[#E8ECF4]"
+            >
+              Pathway View
+            </button>
+            <button
+              className="px-3 py-1 text-xs font-medium transition-colors bg-[#3B82F6] text-white"
+            >
+              Analytics
+            </button>
+          </div>
+        </div>
+        {/* Dashboard content */}
+        <div className="flex-1 overflow-auto">
+          <DashboardView />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="flex h-screen min-w-[1280px] bg-[#0F1117]">
       {/* Left panel: barrier input form */}
@@ -115,6 +149,12 @@ function BowtieAppInner() {
             }`}
           >
             Pathway View
+          </button>
+          <button
+            onClick={() => setViewMode('dashboard')}
+            className="px-3 py-1 text-xs font-medium transition-colors text-[#8B93A8] hover:text-[#E8ECF4]"
+          >
+            Analytics
           </button>
         </div>
 
