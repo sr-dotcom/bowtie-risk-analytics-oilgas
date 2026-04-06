@@ -486,3 +486,100 @@ describe('RankedBarriers — initialBarriers/initialPredictions + sub-component 
     expect(screen.queryByText('High reliability concern')).toBeNull()
   })
 })
+
+// ---------------------------------------------------------------------------
+// Component tests: Filter bar — side, risk level, barrier type, result count
+// ---------------------------------------------------------------------------
+
+describe('RankedBarriers — filter bar', () => {
+  beforeEach(() => {
+    mockExplain.mockClear()
+    mockExplain.mockResolvedValue(MOCK_EXPLAIN_RESPONSE)
+  })
+
+  // (a) Default state: all three selects render with value 'all'
+  it('renders three filter selects with default all value', () => {
+    renderWithInitial(
+      [BARRIER_WITH_ID, SECOND_BARRIER],
+      { 'b-001': HIGH_RISK_PREDICTION, 'b-002': MEDIUM_RISK_PREDICTION },
+    )
+    expect((screen.getByTestId('filter-side') as HTMLSelectElement).value).toBe('all')
+    expect((screen.getByTestId('filter-risk-level') as HTMLSelectElement).value).toBe('all')
+    expect((screen.getByTestId('filter-type') as HTMLSelectElement).value).toBe('all')
+  })
+
+  // (b) Selecting side='prevention' hides mitigation rows
+  it('filtering by side=prevention shows prevention barrier and hides mitigation barrier', () => {
+    renderWithInitial(
+      [BARRIER_WITH_ID, SECOND_BARRIER],
+      { 'b-001': HIGH_RISK_PREDICTION, 'b-002': MEDIUM_RISK_PREDICTION },
+    )
+    fireEvent.change(screen.getByTestId('filter-side'), { target: { value: 'prevention' } })
+    expect(screen.getByText('Pressure Relief Valve')).toBeTruthy()
+    expect(screen.queryByText('Emergency Shutdown Valve')).toBeNull()
+  })
+
+  // (c) Selecting riskLevel='red' shows only high-risk rows
+  it('filtering by riskLevel=red shows high-risk barrier and hides medium-risk barrier', () => {
+    renderWithInitial(
+      [BARRIER_WITH_ID, SECOND_BARRIER],
+      { 'b-001': HIGH_RISK_PREDICTION, 'b-002': MEDIUM_RISK_PREDICTION },
+    )
+    fireEvent.change(screen.getByTestId('filter-risk-level'), { target: { value: 'red' } })
+    expect(screen.getByText('Pressure Relief Valve')).toBeTruthy()
+    expect(screen.queryByText('Emergency Shutdown Valve')).toBeNull()
+  })
+
+  // (d) Selecting barrierType narrows by type — using a distinct type for SECOND_BARRIER
+  it('filtering by barrierType=Administrative hides Engineering-type barriers', () => {
+    const ADMIN_PREDICTION: PredictResponse = {
+      ...MEDIUM_RISK_PREDICTION,
+      barrier_type_display: 'Administrative',
+    }
+    renderWithInitial(
+      [BARRIER_WITH_ID, SECOND_BARRIER],
+      { 'b-001': HIGH_RISK_PREDICTION, 'b-002': ADMIN_PREDICTION },
+    )
+    fireEvent.change(screen.getByTestId('filter-type'), { target: { value: 'Engineering' } })
+    expect(screen.getByText('Pressure Relief Valve')).toBeTruthy()
+    expect(screen.queryByText('Emergency Shutdown Valve')).toBeNull()
+  })
+
+  // (e) Result count updates after filtering
+  it('result count shows "Showing 1 of 2 barriers" after filtering by side=prevention', () => {
+    renderWithInitial(
+      [BARRIER_WITH_ID, SECOND_BARRIER],
+      { 'b-001': HIGH_RISK_PREDICTION, 'b-002': MEDIUM_RISK_PREDICTION },
+    )
+    fireEvent.change(screen.getByTestId('filter-side'), { target: { value: 'prevention' } })
+    expect(screen.getByTestId('filter-result-count').textContent).toContain('Showing 1 of 2 barriers')
+  })
+
+  // (f) Resetting filter to 'all' restores all rows
+  it('resetting side filter back to all restores both rows', () => {
+    renderWithInitial(
+      [BARRIER_WITH_ID, SECOND_BARRIER],
+      { 'b-001': HIGH_RISK_PREDICTION, 'b-002': MEDIUM_RISK_PREDICTION },
+    )
+    // First hide mitigation row
+    fireEvent.change(screen.getByTestId('filter-side'), { target: { value: 'prevention' } })
+    expect(screen.queryByText('Emergency Shutdown Valve')).toBeNull()
+    // Reset to all
+    fireEvent.change(screen.getByTestId('filter-side'), { target: { value: 'all' } })
+    expect(screen.getByText('Pressure Relief Valve')).toBeTruthy()
+    expect(screen.getByText('Emergency Shutdown Valve')).toBeTruthy()
+  })
+
+  // (g) Two filters combined — AND logic
+  it('combining side=prevention and riskLevel=red shows only the row matching both criteria', () => {
+    renderWithInitial(
+      [BARRIER_WITH_ID, SECOND_BARRIER],
+      { 'b-001': HIGH_RISK_PREDICTION, 'b-002': MEDIUM_RISK_PREDICTION },
+    )
+    fireEvent.change(screen.getByTestId('filter-side'), { target: { value: 'prevention' } })
+    fireEvent.change(screen.getByTestId('filter-risk-level'), { target: { value: 'red' } })
+    expect(screen.getByText('Pressure Relief Valve')).toBeTruthy()
+    expect(screen.queryByText('Emergency Shutdown Valve')).toBeNull()
+    expect(screen.getByTestId('filter-result-count').textContent).toContain('Showing 1 of 2 barriers')
+  })
+})
