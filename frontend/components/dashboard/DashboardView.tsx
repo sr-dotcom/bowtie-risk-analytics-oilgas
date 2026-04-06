@@ -8,6 +8,7 @@ import TopAtRiskBarriers from './TopAtRiskBarriers'
 import ModelKPIs from './ModelKPIs'
 import ScenarioContext from './ScenarioContext'
 import GlobalShapChart, { PifPrevalenceChart, AprioriRulesTable } from './DriversHF'
+import RankedBarriers from './RankedBarriers'
 
 // ---------------------------------------------------------------------------
 // Tabs
@@ -19,6 +20,7 @@ const TABS = [
   { id: 'incident-trends', label: 'Incident Trends' },
   { id: 'risk-matrix', label: 'Risk Matrix' },
   { id: 'drivers-hf', label: 'Drivers & HF' },
+  { id: 'ranked-barriers', label: 'Ranked Barriers' },
 ] as const
 
 type TabId = (typeof TABS)[number]['id']
@@ -97,7 +99,8 @@ export default function DashboardView() {
             </div>
           </>
         )}
-        {activeTab !== 'executive-summary' && activeTab !== 'drivers-hf' && (
+        {activeTab === 'ranked-barriers' && <RankedBarriers />}
+        {activeTab !== 'executive-summary' && activeTab !== 'drivers-hf' && activeTab !== 'ranked-barriers' && (
           <div className="flex items-center justify-center h-full">
             <p className="text-sm text-[#5A6178]">
               {TABS.find((t) => t.id === activeTab)?.label} coming soon

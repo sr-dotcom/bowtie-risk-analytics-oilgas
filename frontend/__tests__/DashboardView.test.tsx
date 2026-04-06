@@ -29,7 +29,7 @@ import DashboardView from '@/components/dashboard/DashboardView'
 // Test helpers
 // ---------------------------------------------------------------------------
 
-const TAB_LABELS = ['Executive Summary', 'Barrier Coverage', 'Incident Trends', 'Risk Matrix', 'Drivers & HF']
+const TAB_LABELS = ['Executive Summary', 'Barrier Coverage', 'Incident Trends', 'Risk Matrix', 'Drivers & HF', 'Ranked Barriers']
 
 type BarrierDef = Omit<Barrier, 'id' | 'riskLevel'>
 
@@ -119,10 +119,10 @@ describe('DashboardView', () => {
     mockFetchAprioriRules.mockResolvedValue([])
   })
 
-  it('renders all 5 tab buttons with correct labels', () => {
+  it('renders all 6 tab buttons with correct labels', () => {
     renderDashboard()
     const buttons = screen.getAllByRole('button')
-    expect(buttons).toHaveLength(5)
+    expect(buttons).toHaveLength(6)
     for (const label of TAB_LABELS) {
       expect(screen.getByRole('button', { name: label })).toBeTruthy()
     }
@@ -150,7 +150,7 @@ describe('DashboardView', () => {
 
   it('each non-Executive-Summary, non-DriversHF tab shows the correct coming soon content', () => {
     renderDashboard()
-    const comingSoonTabs = TAB_LABELS.filter((l) => l !== 'Executive Summary' && l !== 'Drivers & HF')
+    const comingSoonTabs = TAB_LABELS.filter((l) => l !== 'Executive Summary' && l !== 'Drivers & HF' && l !== 'Ranked Barriers')
     for (const label of comingSoonTabs) {
       fireEvent.click(screen.getByRole('button', { name: label }))
       expect(screen.getByText(`${label} coming soon`)).toBeTruthy()
@@ -192,6 +192,12 @@ describe('DashboardView', () => {
     })
     fireEvent.click(screen.getByRole('button', { name: 'Drivers & HF' }))
     expect(screen.queryByText('Drivers & HF coming soon')).toBeNull()
+  })
+
+  it('clicking Ranked Barriers renders the ranked barriers table', () => {
+    renderDashboard()
+    fireEvent.click(screen.getByRole('button', { name: 'Ranked Barriers' }))
+    expect(screen.getByTestId('ranked-barriers-table')).toBeTruthy()
   })
 
   it('Drivers & HF tab is active when clicked', () => {
