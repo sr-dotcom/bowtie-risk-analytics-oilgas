@@ -187,6 +187,37 @@ cp .env.example .env
 # Edit .env and set ANTHROPIC_API_KEY (other keys are optional)
 ```
 
+## Running with Docker
+
+The full stack (FastAPI backend + Next.js frontend + nginx reverse proxy) can be run with Docker Compose in four steps:
+
+```bash
+# 1. Copy environment file and set your API key
+cp .env.example .env
+# Edit .env — ANTHROPIC_API_KEY is optional for /health and /predict,
+# but required for the /explain endpoint (LLM-powered evidence narrative).
+
+# 2. Build images
+docker compose build
+
+# 3. Start the stack in the background
+docker compose up -d
+
+# 4. Visit the app
+open http://localhost        # nginx serves the Next.js UI on port 80
+# API is available at http://localhost/api/health
+```
+
+Tear down with:
+
+```bash
+docker compose down          # stop containers
+docker compose down -v       # stop + remove volumes
+```
+
+> **Note:** The `api` service uses a 60-second `start_period` healthcheck so the frontend waits
+> for the model artifacts to load before serving traffic.
+
 ## Pipeline Commands
 
 The pipeline is driven by `python -m src.pipeline` with these subcommands:
