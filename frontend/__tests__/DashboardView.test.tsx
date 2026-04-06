@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, fireEvent, act } from '@testing-library/react'
+import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
 import { useEffect, useRef } from 'react'
 import { BowtieProvider, useBowtieContext } from '@/context/BowtieContext'
 import type { Barrier, PredictResponse } from '@/lib/types'
@@ -436,5 +436,156 @@ describe('DashboardView — Ranked Barriers integration', () => {
 
     // ShapWaterfall renders 'Barrier Analysis Factors' as its heading
     expect(screen.getByText('Barrier Analysis Factors')).toBeTruthy()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Evidence tab integration tests
+// ---------------------------------------------------------------------------
+
+describe('DashboardView — Evidence tab integration', () => {
+  const INTEGRATION_BARRIER: Barrier = {
+    id: 'ev-barrier-001',
+    name: 'Evidence Test Barrier',
+    side: 'prevention',
+    barrier_type: 'engineering',
+    barrier_family: 'pressure_relief',
+    line_of_defense: '1st',
+    barrierRole: 'test',
+    riskLevel: 'unanalyzed',
+  }
+
+  const INTEGRATION_PREDICTION: PredictResponse = {
+    model1_probability: 0.85,
+    model2_probability: 0.75,
+    model1_shap: [{ feature: 'barrier_type', value: 0.3, category: 'barrier' }],
+    model2_shap: [],
+    model1_base_value: 0.5,
+    model2_base_value: 0.5,
+    feature_metadata: [],
+    degradation_factors: [],
+    risk_level: 'High',
+    barrier_type_display: 'Engineering',
+    lod_display: '1st Line of Defence',
+    barrier_condition_display: 'Likely Ineffective',
+  }
+
+  beforeEach(() => {
+    mockAnalyzeAll.mockClear()
+    mockFetchAprioriRules.mockResolvedValue([])
+    mockExplain.mockResolvedValue({
+      narrative: 'Evidence narrative',
+      citations: [
+        {
+          incident_id: 'INC-001',
+          control_id: 'C1',
+          barrier_name: 'Test',
+          barrier_family: 'pressure_relief',
+          supporting_text: 'text',
+          relevance_score: 0.85,
+        },
+      ],
+      retrieval_confidence: 0.8,
+      model_used: 'stub',
+      recommendations: '- Rec 1\n- Rec 2',
+    })
+  })
+
+  it('clicking Evidence tab renders evidence-view container', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider
+          initialBarriers={[INTEGRATION_BARRIER]}
+          initialPredictions={{ 'ev-barrier-001': INTEGRATION_PREDICTION }}
+        >
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Evidence' }))
+    })
+
+    expect(screen.getByTestId('evidence-view')).toBeTruthy()
+  })
+
+  it('Evidence tab does not show coming soon', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider
+          initialBarriers={[INTEGRATION_BARRIER]}
+          initialPredictions={{ 'ev-barrier-001': INTEGRATION_PREDICTION }}
+        >
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Evidence' }))
+    })
+
+    expect(screen.queryByText('Evidence coming soon')).toBeNull()
+  })
+
+  it('Evidence tab shows empty state when no analyzed barriers', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider>
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Evidence' }))
+    })
+
+    expect(screen.getByText('Run analysis to view barrier evidence')).toBeTruthy()
+  })
+
+  it('Evidence tab with analyzed barrier shows barrier selector', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider
+          initialBarriers={[INTEGRATION_BARRIER]}
+          initialPredictions={{ 'ev-barrier-001': INTEGRATION_PREDICTION }}
+        >
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Evidence' }))
+    })
+
+    const select = screen.getByRole('combobox') as HTMLSelectElement
+    expect(select.id).toBe('evidence-barrier-select')
+    // The option text contains the barrier name
+    const options = Array.from(select.options)
+    expect(options.some((opt) => opt.text.includes(INTEGRATION_BARRIER.name))).toBe(true)
+  })
+
+  it('Evidence tab with analyzed barrier renders EvidenceSection with confidence dot', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider
+          initialBarriers={[INTEGRATION_BARRIER]}
+          initialPredictions={{ 'ev-barrier-001': INTEGRATION_PREDICTION }}
+        >
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Evidence' }))
+    })
+
+    await waitFor(() => {
+      expect(screen.getByTestId('confidence-dot')).toBeTruthy()
+    })
   })
 })
