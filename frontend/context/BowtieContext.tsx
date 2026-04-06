@@ -38,10 +38,18 @@ const BowtieContext = createContext<BowtieState | null>(null)
 // Provider
 // ---------------------------------------------------------------------------
 
-export function BowtieProvider({ children }: { children: ReactNode }) {
+export function BowtieProvider({
+  children,
+  initialBarriers = [],
+  initialPredictions = {},
+}: {
+  children: ReactNode
+  initialBarriers?: Barrier[]
+  initialPredictions?: Record<string, PredictResponse>
+}) {
   const [eventDescription, setEventDescription] = useState<string>('')
-  const [barriers, setBarriers] = useState<Barrier[]>([])
-  const [predictions, setPredictions] = useState<Record<string, PredictResponse>>({})
+  const [barriers, setBarriers] = useState<Barrier[]>(initialBarriers)
+  const [predictions, setPredictions] = useState<Record<string, PredictResponse>>(initialPredictions)
   const [selectedBarrierId, setSelectedBarrierId] = useState<string | null>(null)
   const [evidenceMap, setEvidenceMap] = useState<Record<string, ExplainResponse>>({})
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false)

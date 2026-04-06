@@ -1,9 +1,97 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { BowtieProvider } from '@/context/BowtieContext'
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { render, screen, fireEvent, act } from '@testing-library/react'
+import { useEffect, useRef } from 'react'
+import { BowtieProvider, useBowtieContext } from '@/context/BowtieContext'
+import type { Barrier, PredictResponse } from '@/lib/types'
+
+// ---------------------------------------------------------------------------
+// Mock useAnalyzeBarriers at module level — hoisted before component import
+// so vitest replaces the module for ALL tests in this file.
+// ---------------------------------------------------------------------------
+
+const mockAnalyzeAll = vi.fn()
+vi.mock('@/hooks/useAnalyzeBarriers', () => ({
+  useAnalyzeBarriers: () => ({ analyzeAll: mockAnalyzeAll }),
+}))
+
+// Import component AFTER vi.mock so the mock is applied
 import DashboardView from '@/components/dashboard/DashboardView'
 
+// ---------------------------------------------------------------------------
+// Test helpers
+// ---------------------------------------------------------------------------
+
 const TAB_LABELS = ['Executive Summary', 'Barrier Coverage', 'Incident Trends', 'Risk Matrix']
+
+type BarrierDef = Omit<Barrier, 'id' | 'riskLevel'>
+
+/** Populates BowtieContext with barriers (and optionally predictions) before rendering. */
+function SetupBarriers({
+  barrierDefs,
+  predictionsToSet,
+}: {
+  barrierDefs: BarrierDef[]
+  predictionsToSet?: Record<string, PredictResponse>
+}) {
+  const { addBarrier, setPrediction, barriers } = useBowtieContext()
+  const loaded = useRef(false)
+
+  useEffect(() => {
+    if (loaded.current) return
+    loaded.current = true
+    barrierDefs.forEach((b) => addBarrier(b))
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Once barriers are populated, set predictions by barrier index
+  useEffect(() => {
+    if (!predictionsToSet || barriers.length === 0) return
+    // predictionsToSet keys are indices ("0", "1", …) mapped to barrier positions
+    Object.entries(predictionsToSet).forEach(([idxStr, pred]) => {
+      const idx = parseInt(idxStr, 10)
+      const barrier = barriers[idx]
+      if (barrier) setPrediction(barrier.id, pred)
+    })
+  }, [barriers.length]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  return null
+}
+
+/** Populates BowtieContext with isAnalyzing=true. */
+function SetupAnalyzing() {
+  const { setIsAnalyzing } = useBowtieContext()
+  const done = useRef(false)
+  useEffect(() => {
+    if (done.current) return
+    done.current = true
+    setIsAnalyzing(true)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  return null
+}
+
+const BARRIER_DEF: BarrierDef = {
+  name: 'Test Barrier',
+  side: 'prevention',
+  barrier_type: 'engineering',
+  barrier_family: 'other_unknown',
+  line_of_defense: '1st',
+  barrierRole: 'test',
+}
+
+/** A minimal stub PredictResponse so context.predictions has an entry. */
+const STUB_PREDICTION: PredictResponse = {
+  model1_probability: 0.2,
+  model2_probability: 0.2,
+  model1_shap: [],
+  model2_shap: [],
+  model1_base_value: 0,
+  model2_base_value: 0,
+  feature_metadata: [],
+  degradation_factors: [],
+  risk_level: 'Low',
+  barrier_type_display: 'Engineering',
+  lod_display: '1st Line of Defence',
+  barrier_condition_display: 'Likely Effective',
+}
 
 function renderDashboard() {
   return render(
@@ -13,7 +101,15 @@ function renderDashboard() {
   )
 }
 
+// ---------------------------------------------------------------------------
+// Existing tab tests (unchanged)
+// ---------------------------------------------------------------------------
+
 describe('DashboardView', () => {
+  beforeEach(() => {
+    mockAnalyzeAll.mockClear()
+  })
+
   it('renders all 4 tab buttons with correct labels', () => {
     renderDashboard()
     const buttons = screen.getAllByRole('button')
@@ -85,5 +181,67 @@ describe('DashboardView', () => {
   it('executive-summary tab shows scenario context component', () => {
     renderDashboard()
     expect(screen.getByTestId('scenario-context')).toBeTruthy()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Auto-batch /predict tests
+// ---------------------------------------------------------------------------
+
+describe('DashboardView auto-batch', () => {
+  beforeEach(() => {
+    mockAnalyzeAll.mockClear()
+  })
+
+  it('calls analyzeAll when barriers exist without predictions', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider>
+          <SetupBarriers barrierDefs={[BARRIER_DEF]} />
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+    expect(mockAnalyzeAll).toHaveBeenCalledOnce()
+  })
+
+  it('does not call analyzeAll when no barriers exist', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider>
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+    expect(mockAnalyzeAll).not.toHaveBeenCalled()
+  })
+
+  it('does not call analyzeAll when all barriers already have predictions', async () => {
+    // Pre-populate both barriers and predictions synchronously via BowtieProvider initial props
+    // so no timing race exists between addBarrier and setPrediction useEffects.
+    const barrierWithId: Barrier = { ...BARRIER_DEF, id: 'fixed-id-001', riskLevel: 'unanalyzed' }
+    await act(async () => {
+      render(
+        <BowtieProvider
+          initialBarriers={[barrierWithId]}
+          initialPredictions={{ 'fixed-id-001': STUB_PREDICTION }}
+        >
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+    expect(mockAnalyzeAll).not.toHaveBeenCalled()
+  })
+
+  it('shows loading indicator when isAnalyzing is true', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider>
+          <SetupAnalyzing />
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+    expect(screen.getByText('Analyzing barriers...')).toBeTruthy()
   })
 })
