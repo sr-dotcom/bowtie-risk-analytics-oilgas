@@ -17,9 +17,10 @@ vi.mock('@/hooks/useAnalyzeBarriers', () => ({
 // Mock fetchAprioriRules so the AprioriRulesTable inside Drivers & HF tab
 // doesn't make real network calls during DashboardView tests.
 const mockFetchAprioriRules = vi.hoisted(() => vi.fn())
+const mockExplain = vi.hoisted(() => vi.fn())
 vi.mock('@/lib/api', async () => {
   const actual = await vi.importActual('@/lib/api')
-  return { ...actual, fetchAprioriRules: mockFetchAprioriRules }
+  return { ...actual, fetchAprioriRules: mockFetchAprioriRules, explain: mockExplain }
 })
 
 // Import component AFTER vi.mock so the mock is applied
@@ -117,6 +118,7 @@ describe('DashboardView', () => {
   beforeEach(() => {
     mockAnalyzeAll.mockClear()
     mockFetchAprioriRules.mockResolvedValue([])
+    mockExplain.mockResolvedValue({ narrative: 'Test evidence', citations: [], retrieval_confidence: 0.8, model_used: 'stub', recommendations: '' })
   })
 
   it('renders all 6 tab buttons with correct labels', () => {
@@ -200,10 +202,14 @@ describe('DashboardView', () => {
     expect(screen.getByTestId('ranked-barriers-table')).toBeTruthy()
   })
 
-  it('Drivers & HF tab is active when clicked', () => {
-    renderDashboard()
+  it('Drivers & HF tab is active when clicked', async () => {
+    await act(async () => {
+      renderDashboard()
+    })
     const driversBtn = screen.getByRole('button', { name: 'Drivers & HF' })
-    fireEvent.click(driversBtn)
+    await act(async () => {
+      fireEvent.click(driversBtn)
+    })
     expect(driversBtn.className).toContain('border-[#3B82F6]')
   })
 
@@ -253,6 +259,7 @@ describe('DashboardView auto-batch', () => {
   beforeEach(() => {
     mockAnalyzeAll.mockClear()
     mockFetchAprioriRules.mockResolvedValue([])
+    mockExplain.mockResolvedValue({ narrative: 'Test evidence', citations: [], retrieval_confidence: 0.8, model_used: 'stub', recommendations: '' })
   })
 
   it('calls analyzeAll when barriers exist without predictions', async () => {
@@ -305,5 +312,129 @@ describe('DashboardView auto-batch', () => {
       )
     })
     expect(screen.getByText('Analyzing barriers...')).toBeTruthy()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Ranked Barriers integration tests
+// ---------------------------------------------------------------------------
+
+describe('DashboardView — Ranked Barriers integration', () => {
+  const INTEGRATION_BARRIER: Barrier = {
+    id: 'int-barrier-001',
+    name: 'Integration Test Barrier',
+    side: 'prevention',
+    barrier_type: 'engineering',
+    barrier_family: 'pressure_relief',
+    line_of_defense: '1st',
+    barrierRole: 'test',
+    riskLevel: 'unanalyzed',
+  }
+
+  const INTEGRATION_PREDICTION: PredictResponse = {
+    model1_probability: 0.999,
+    model2_probability: 0.8,
+    model1_shap: [{ feature: 'barrier_type', value: 0.3, category: 'barrier' }],
+    model2_shap: [],
+    model1_base_value: 0.5,
+    model2_base_value: 0.5,
+    feature_metadata: [],
+    degradation_factors: [],
+    risk_level: 'High',
+    barrier_type_display: 'Engineering',
+    lod_display: '1st Line of Defence',
+    barrier_condition_display: 'Likely Ineffective',
+  }
+
+  function SelectedBarrierSpy({ onId }: { onId: (id: string | null) => void }) {
+    const { selectedBarrierId } = useBowtieContext()
+    useEffect(() => { onId(selectedBarrierId) }, [selectedBarrierId, onId])
+    return null
+  }
+
+  beforeEach(() => {
+    mockAnalyzeAll.mockClear()
+    mockFetchAprioriRules.mockResolvedValue([])
+    mockExplain.mockResolvedValue({ narrative: 'Test evidence', citations: [], retrieval_confidence: 0.8, model_used: 'stub', recommendations: '' })
+  })
+
+  it('clicking a barrier row in Ranked Barriers tab updates selectedBarrierId', async () => {
+    const spyFn = vi.fn()
+    await act(async () => {
+      render(
+        <BowtieProvider
+          initialBarriers={[INTEGRATION_BARRIER]}
+          initialPredictions={{ 'int-barrier-001': INTEGRATION_PREDICTION }}
+        >
+          <SelectedBarrierSpy onId={spyFn} />
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+
+    // Navigate to Ranked Barriers tab
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Ranked Barriers' }))
+    })
+
+    // Find and click the barrier row
+    await act(async () => {
+      const cell = screen.getByText('Integration Test Barrier')
+      const row = cell.closest('tr')!
+      fireEvent.click(row)
+    })
+
+    expect(spyFn).toHaveBeenCalledWith('int-barrier-001')
+  })
+
+  it('clicking a barrier row expands the row detail section', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider
+          initialBarriers={[INTEGRATION_BARRIER]}
+          initialPredictions={{ 'int-barrier-001': INTEGRATION_PREDICTION }}
+        >
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Ranked Barriers' }))
+    })
+
+    await act(async () => {
+      const cell = screen.getByText('Integration Test Barrier')
+      const row = cell.closest('tr')!
+      fireEvent.click(row)
+    })
+
+    expect(screen.getByTestId('ranked-row-expanded')).toBeTruthy()
+  })
+
+  it('expanded row shows ShapWaterfall heading', async () => {
+    await act(async () => {
+      render(
+        <BowtieProvider
+          initialBarriers={[INTEGRATION_BARRIER]}
+          initialPredictions={{ 'int-barrier-001': INTEGRATION_PREDICTION }}
+        >
+          <DashboardView />
+        </BowtieProvider>,
+      )
+    })
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Ranked Barriers' }))
+    })
+
+    await act(async () => {
+      const cell = screen.getByText('Integration Test Barrier')
+      const row = cell.closest('tr')!
+      fireEvent.click(row)
+    })
+
+    // ShapWaterfall renders 'Barrier Analysis Factors' as its heading
+    expect(screen.getByText('Barrier Analysis Factors')).toBeTruthy()
   })
 })
