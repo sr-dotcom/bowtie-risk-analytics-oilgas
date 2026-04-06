@@ -145,6 +145,15 @@ export const PIF_DISPLAY_NAMES: Record<keyof PifFlags, string> = {
   pif_training: 'Training',
 }
 
+export interface AprioriRule {
+  antecedent: string
+  consequent: string
+  support: number
+  confidence: number
+  lift: number
+  count: number
+}
+
 export interface Barrier {
   id: string
   name: string

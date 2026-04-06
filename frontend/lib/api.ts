@@ -1,4 +1,4 @@
-import type { ExplainRequest, ExplainResponse, PredictRequest, PredictResponse } from './types'
+import type { AprioriRule, ExplainRequest, ExplainResponse, PredictRequest, PredictResponse } from './types'
 
 /**
  * POST /api/predict — assess barrier historical reliability and SHAP values.
@@ -43,4 +43,20 @@ export async function explain(payload: ExplainRequest): Promise<ExplainResponse>
   })
   if (!res.ok) throw new Error(`Evidence retrieval failed: ${res.status} ${res.statusText}`)
   return res.json() as Promise<ExplainResponse>
+}
+
+/**
+ * GET /api/apriori-rules — retrieve pre-computed Apriori co-failure rules.
+ *
+ * Rules are loaded from data/models/artifacts/apriori_rules.json at server
+ * startup and served as a static list (no filtering on the server side).
+ *
+ * @returns Array of AprioriRule objects sorted by confidence descending on the server.
+ * @throws Error if the server returns a non-OK status.
+ */
+export async function fetchAprioriRules(): Promise<AprioriRule[]> {
+  const res = await fetch('/api/apriori-rules')
+  if (!res.ok) throw new Error(`Failed to load rules: ${res.status}`)
+  const data = await res.json() as { rules: AprioriRule[] }
+  return data.rules
 }

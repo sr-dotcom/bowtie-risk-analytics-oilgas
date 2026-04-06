@@ -1,15 +1,30 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi } from 'vitest'
+import { render, screen, act } from '@testing-library/react'
+
+// ---------------------------------------------------------------------------
+// Mock @/lib/api at module level — hoisted before component import so vitest
+// replaces the module for ALL tests in this file (mirrors DashboardView.test.tsx).
+// ---------------------------------------------------------------------------
+
+const mockFetchAprioriRules = vi.hoisted(() => vi.fn())
+vi.mock('@/lib/api', async () => {
+  const actual = await vi.importActual('@/lib/api')
+  return { ...actual, fetchAprioriRules: mockFetchAprioriRules }
+})
+
+// Import components AFTER vi.mock so the mock is applied
 import {
   buildGlobalShapData,
   buildPifPrevalenceData,
   PifPrevalenceChart,
   PIF_CATEGORY,
+  AprioriRulesTable,
+  sortRules,
 } from '@/components/dashboard/DriversHF'
 import type { GlobalShapEntry, PifPrevalenceEntry } from '@/components/dashboard/DriversHF'
 import { BowtieProvider } from '@/context/BowtieContext'
 import GlobalShapChart from '@/components/dashboard/DriversHF'
-import type { PredictResponse, ShapValue } from '@/lib/types'
+import type { AprioriRule, PredictResponse, ShapValue } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -232,5 +247,59 @@ describe('PifPrevalenceChart', () => {
       </BowtieProvider>,
     )
     expect(screen.getByText(/Run Analyze Barriers/i)).toBeTruthy()
+  })
+})
+
+// ---------------------------------------------------------------------------
+// sortRules pure function tests
+// ---------------------------------------------------------------------------
+
+const SAMPLE_RULES: AprioriRule[] = [
+  { antecedent: 'safety_valve', consequent: 'blowout_preventer', support: 0.10, confidence: 0.80, lift: 3.5, count: 72 },
+  { antecedent: 'blowout_preventer', consequent: 'emergency_shutdown_isolation', support: 0.15, confidence: 0.60, lift: 2.1, count: 108 },
+  { antecedent: 'emergency_shutdown_isolation', consequent: 'control_room', support: 0.08, confidence: 0.70, lift: 4.2, count: 58 },
+]
+
+describe('sortRules', () => {
+  it('sorts by confidence descending', () => {
+    const result = sortRules(SAMPLE_RULES, 'confidence', 'desc')
+    expect(result[0].confidence).toBeGreaterThanOrEqual(result[1].confidence)
+    expect(result[1].confidence).toBeGreaterThanOrEqual(result[2].confidence)
+    expect(result[0].confidence).toBe(0.80)
+  })
+
+  it('sorts by support ascending', () => {
+    const result = sortRules(SAMPLE_RULES, 'support', 'asc')
+    expect(result[0].support).toBeLessThanOrEqual(result[1].support)
+    expect(result[1].support).toBeLessThanOrEqual(result[2].support)
+    expect(result[0].support).toBe(0.08)
+  })
+
+  it('sorts by lift descending', () => {
+    const result = sortRules(SAMPLE_RULES, 'lift', 'desc')
+    expect(result[0].lift).toBeGreaterThanOrEqual(result[1].lift)
+    expect(result[1].lift).toBeGreaterThanOrEqual(result[2].lift)
+    expect(result[0].lift).toBe(4.2)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// AprioriRulesTable render tests
+// ---------------------------------------------------------------------------
+
+describe('AprioriRulesTable', () => {
+  it('renders data-testid apriori-rules-table after data loads', async () => {
+    mockFetchAprioriRules.mockResolvedValue(SAMPLE_RULES)
+    await act(async () => {
+      render(<AprioriRulesTable />)
+    })
+    expect(screen.getByTestId('apriori-rules-table')).toBeTruthy()
+  })
+
+  it('shows loading state while fetch is pending', () => {
+    // Never-resolving promise keeps the component in the loading state
+    mockFetchAprioriRules.mockReturnValue(new Promise(() => {}))
+    render(<AprioriRulesTable />)
+    expect(screen.getByText('Loading co-failure rules...')).toBeTruthy()
   })
 })

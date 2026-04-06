@@ -1,10 +1,13 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Cell, Tooltip, ResponsiveContainer } from 'recharts'
 import { useBowtieContext } from '@/context/BowtieContext'
 import { CHART_COLORS } from '@/lib/chart-colors'
 import { PIF_DISPLAY_NAMES } from '@/lib/types'
-import type { PifFlags, PredictResponse } from '@/lib/types'
+import type { AprioriRule, PifFlags, PredictResponse } from '@/lib/types'
+import { fetchAprioriRules } from '@/lib/api'
+import { formatBarrierFamily } from '@/lib/format'
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -281,6 +284,119 @@ export function PifPrevalenceChart() {
           </BarChart>
         </ResponsiveContainer>
       )}
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Apriori Co-failure Rules Table
+// ---------------------------------------------------------------------------
+
+export type SortKey = 'confidence' | 'support' | 'lift'
+export type SortDir = 'asc' | 'desc'
+
+/**
+ * Sort a copy of `rules` by `key` in direction `dir`.
+ * Pure function — does not mutate the input array.
+ */
+export function sortRules(rules: AprioriRule[], key: SortKey, dir: SortDir): AprioriRule[] {
+  return [...rules].sort((a, b) => dir === 'desc' ? b[key] - a[key] : a[key] - b[key])
+}
+
+/**
+ * Table of Apriori co-failure association rules with client-side sorting.
+ * Data is fetched independently via fetchAprioriRules (no BowtieContext dependency).
+ * S04 will compose this component into the Drivers & HF tab.
+ */
+export function AprioriRulesTable() {
+  const [rules, setRules] = useState<AprioriRule[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [sortKey, setSortKey] = useState<SortKey>('confidence')
+  const [sortDir, setSortDir] = useState<SortDir>('desc')
+
+  useEffect(() => {
+    let cancelled = false
+    fetchAprioriRules()
+      .then((data) => {
+        if (!cancelled) {
+          setRules(data)
+          setLoading(false)
+        }
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : String(err))
+          setLoading(false)
+        }
+      })
+    return () => { cancelled = true }
+  }, [])
+
+  function handleSort(key: SortKey) {
+    if (key === sortKey) {
+      setSortDir((d) => (d === 'desc' ? 'asc' : 'desc'))
+    } else {
+      setSortKey(key)
+      setSortDir('desc')
+    }
+  }
+
+  if (loading) return <p>Loading co-failure rules...</p>
+  if (error) return <p className="text-red-400">Error: {error}</p>
+
+  const sorted = sortRules(rules, sortKey, sortDir)
+
+  const headerClass = 'cursor-pointer select-none px-3 py-2 text-left text-xs font-semibold text-[#8B93A8] uppercase tracking-wider hover:text-[#E8ECF4] transition-colors'
+  const cellClass = 'px-3 py-2 text-sm text-[#E8ECF4]'
+  const dimCellClass = 'px-3 py-2 text-sm text-[#8B93A8]'
+
+  return (
+    <div data-testid="apriori-rules-table" className="bg-[#242836] rounded-lg overflow-hidden">
+      <h3 className="text-base font-semibold px-4 py-3 text-[#E8ECF4]">
+        Co-failure Association Rules
+      </h3>
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead className="border-b border-[#2E3348]">
+            <tr>
+              <th className={headerClass}>Antecedent</th>
+              <th className={headerClass}>Consequent</th>
+              <th
+                className={`${headerClass}${sortKey === 'confidence' ? ' text-[#E8ECF4]' : ''}`}
+                onClick={() => handleSort('confidence')}
+              >
+                Confidence {sortKey === 'confidence' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
+              </th>
+              <th
+                className={`${headerClass}${sortKey === 'support' ? ' text-[#E8ECF4]' : ''}`}
+                onClick={() => handleSort('support')}
+              >
+                Support {sortKey === 'support' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
+              </th>
+              <th
+                className={`${headerClass}${sortKey === 'lift' ? ' text-[#E8ECF4]' : ''}`}
+                onClick={() => handleSort('lift')}
+              >
+                Lift {sortKey === 'lift' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
+              </th>
+              <th className={headerClass}>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((rule, i) => (
+              <tr key={i} className="border-b border-[#2E3348] hover:bg-[#2E3348] transition-colors">
+                <td className={cellClass}>{formatBarrierFamily(rule.antecedent)}</td>
+                <td className={cellClass}>{formatBarrierFamily(rule.consequent)}</td>
+                <td className={dimCellClass}>{(rule.confidence * 100).toFixed(1)}%</td>
+                <td className={dimCellClass}>{(rule.support * 100).toFixed(1)}%</td>
+                <td className={dimCellClass}>{rule.lift.toFixed(2)}</td>
+                <td className={dimCellClass}>{rule.count}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
