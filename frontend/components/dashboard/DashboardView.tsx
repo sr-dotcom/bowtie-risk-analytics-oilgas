@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useBowtieContext } from '@/context/BowtieContext'
+import { useAnalyzeBarriers } from '@/hooks/useAnalyzeBarriers'
 import RiskDistributionChart, { buildRiskDistribution } from './RiskDistributionChart'
 import TopAtRiskBarriers from './TopAtRiskBarriers'
 import ModelKPIs from './ModelKPIs'
@@ -26,7 +27,18 @@ type TabId = (typeof TABS)[number]['id']
 
 export default function DashboardView() {
   const [activeTab, setActiveTab] = useState<TabId>('executive-summary')
-  const { barriers } = useBowtieContext()
+  const { barriers, predictions, isAnalyzing } = useBowtieContext()
+  const { analyzeAll } = useAnalyzeBarriers()
+
+  const autoTriggered = useRef(false)
+  useEffect(() => {
+    if (autoTriggered.current) return
+    const hasUnanalyzed = barriers.some((b) => !predictions[b.id])
+    if (barriers.length > 0 && hasUnanalyzed && !isAnalyzing) {
+      autoTriggered.current = true
+      analyzeAll()
+    }
+  }, [barriers.length]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const counts = buildRiskDistribution(barriers)
 
@@ -48,6 +60,13 @@ export default function DashboardView() {
           </button>
         ))}
       </div>
+
+      {/* Loading indicator — visible while batch /predict is running */}
+      {isAnalyzing && (
+        <div className="px-8 pt-4">
+          <div className="text-sm text-[#8B93A8] animate-pulse">Analyzing barriers...</div>
+        </div>
+      )}
 
       {/* Tab content */}
       <div className="flex-1 p-8">

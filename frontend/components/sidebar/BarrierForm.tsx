@@ -4,15 +4,13 @@ import { useState, useEffect } from 'react'
 import { Plus, Trash2, Loader2, AlertCircle } from 'lucide-react'
 
 import { useBowtieContext } from '@/context/BowtieContext'
-import { predict } from '@/lib/api'
-import { mapProbabilityToRiskLevel } from '@/lib/riskScore'
-import type { PredictRequest, RiskThresholds, PifFlags } from '@/lib/types'
+import { useAnalyzeBarriers } from '@/hooks/useAnalyzeBarriers'
+import type { PifFlags } from '@/lib/types'
 import { PIF_DISPLAY_NAMES } from '@/lib/types'
 import {
   BARRIER_TYPES,
   BARRIER_FAMILIES,
   LINE_OF_DEFENSE,
-  SOURCE_AGENCY_DEFAULT,
 } from './constants'
 
 // ---------------------------------------------------------------------------
@@ -26,17 +24,16 @@ export default function BarrierForm() {
     barriers,
     addBarrier,
     removeBarrier,
-    updateBarrierRisk,
     predictions,
-    setPrediction,
     isAnalyzing,
-    setIsAnalyzing,
     analysisError,
     setAnalysisError,
     setSelectedBarrierId,
     pifFlags,
     togglePif,
   } = useBowtieContext()
+
+  const { analyzeAll } = useAnalyzeBarriers()
 
   // --------------------------------------------------------------------------
   // Prevention barrier form state
@@ -108,71 +105,10 @@ export default function BarrierForm() {
   }
 
   // --------------------------------------------------------------------------
-  // Analyze barriers — call /predict for all prevention barriers in parallel
+  // Analyze barriers — delegate to shared hook
   // --------------------------------------------------------------------------
   async function handleAnalyze() {
-    if (barriers.length === 0) return
-
-    setIsAnalyzing(true)
-    setAnalysisError(null)
-
-    try {
-      // Load risk thresholds from public dir
-      const thresholdsRes = await fetch('/risk_thresholds.json')
-      const thresholds: RiskThresholds = await thresholdsRes.json()
-
-      // Build predict requests for ALL barriers (prevention + mitigation)
-      const requests = barriers.map((b) => {
-        const req: PredictRequest = {
-          side: b.side,
-          barrier_type: b.barrier_type,
-          line_of_defense: b.line_of_defense,
-          barrier_family: b.barrier_family,
-          source_agency: SOURCE_AGENCY_DEFAULT,
-          // 9 active PIFs from context pifFlags state (Bug #2 fix)
-          // pif_fatigue, pif_workload, pif_time_pressure excluded from training scope
-          pif_competence: pifFlags.pif_competence,
-          pif_communication: pifFlags.pif_communication,
-          pif_situational_awareness: pifFlags.pif_situational_awareness,
-          pif_procedures: pifFlags.pif_procedures,
-          pif_tools_equipment: pifFlags.pif_tools_equipment,
-          pif_safety_culture: pifFlags.pif_safety_culture,
-          pif_management_of_change: pifFlags.pif_management_of_change,
-          pif_supervision: pifFlags.pif_supervision,
-          pif_training: pifFlags.pif_training,
-          supporting_text_count: 0,
-        }
-        return { barrier: b, req }
-      })
-
-      // Fire all predictions in parallel per D-10
-      const results = await Promise.allSettled(
-        requests.map(({ req }) => predict(req)),
-      )
-
-      results.forEach((result, idx) => {
-        const barrier = requests[idx].barrier
-        if (result.status === 'fulfilled') {
-          const response = result.value
-          const riskLevel = mapProbabilityToRiskLevel(response.model1_probability, thresholds)
-          // Store full prediction response (SHAP values, etc.) in predictions map
-          setPrediction(barrier.id, response)
-          // Update barrier's riskLevel + probability so BowtieFlow node colors update
-          updateBarrierRisk(barrier.id, riskLevel, response.model1_probability)
-        } else {
-          setAnalysisError(
-            `Prediction failed for ${barrier.name}. Check the server logs and retry.`,
-          )
-        }
-      })
-    } catch (err) {
-      setAnalysisError(
-        'Backend unavailable. Start the FastAPI server at localhost:8000 and try again.',
-      )
-      console.error('Analysis error:', err)
-    } finally {
-      setIsAnalyzing(false)
-    }
+    await analyzeAll()
   }
 
   // --------------------------------------------------------------------------
