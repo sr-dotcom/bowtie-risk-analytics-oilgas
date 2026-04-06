@@ -158,8 +158,20 @@ export default function RankedBarriers() {
   const [sortDir, setSortDir] = useState<SortDir>('asc')
   const [expandedRowId, setExpandedRowId] = useState<string | null>(null)
   const [showEvidence, setShowEvidence] = useState<Record<string, boolean>>({})
+  const [filterSide, setFilterSide] = useState<string>('all')
+  const [filterRiskLevel, setFilterRiskLevel] = useState<string>('all')
+  const [filterType, setFilterType] = useState<string>('all')
 
   const rows = buildRankedRows(barriers, predictions, sortKey, sortDir)
+
+  const filteredRows = rows.filter((row) => {
+    if (filterSide !== 'all' && row.side !== filterSide) return false
+    if (filterRiskLevel !== 'all' && row.riskLevel !== filterRiskLevel) return false
+    if (filterType !== 'all' && row.barrierType !== filterType) return false
+    return true
+  })
+
+  const typeOptions = Array.from(new Set(rows.map((r) => r.barrierType))).sort()
 
   function handleHeaderClick(key: keyof RankedRow) {
     if (key === sortKey) {
@@ -175,10 +187,51 @@ export default function RankedBarriers() {
     <div data-testid="ranked-barriers-table" className="overflow-x-auto">
       <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">All Barriers Ranked by Risk</h3>
 
+      <div className="flex gap-3 mb-4 items-center flex-wrap">
+        <select
+          data-testid="filter-side"
+          value={filterSide}
+          onChange={(e) => setFilterSide(e.target.value)}
+          className={`bg-[#242836] border border-[#2E3348] text-xs rounded px-2 py-1 ${filterSide !== 'all' ? 'text-[#E8ECF4]' : 'text-[#8B93A8]'}`}
+        >
+          <option value="all">All Sides</option>
+          <option value="prevention">Prevention</option>
+          <option value="mitigation">Mitigation</option>
+        </select>
+        <select
+          data-testid="filter-risk-level"
+          value={filterRiskLevel}
+          onChange={(e) => setFilterRiskLevel(e.target.value)}
+          className={`bg-[#242836] border border-[#2E3348] text-xs rounded px-2 py-1 ${filterRiskLevel !== 'all' ? 'text-[#E8ECF4]' : 'text-[#8B93A8]'}`}
+        >
+          <option value="all">All Risk Levels</option>
+          <option value="red">High</option>
+          <option value="amber">Medium</option>
+          <option value="green">Low</option>
+        </select>
+        <select
+          data-testid="filter-type"
+          value={filterType}
+          onChange={(e) => setFilterType(e.target.value)}
+          className={`bg-[#242836] border border-[#2E3348] text-xs rounded px-2 py-1 ${filterType !== 'all' ? 'text-[#E8ECF4]' : 'text-[#8B93A8]'}`}
+        >
+          <option value="all">All Types</option>
+          {typeOptions.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {rows.length === 0 ? (
         <p className="text-sm text-[#5A6178]">No analyzed barriers yet</p>
       ) : (
-        <table className="w-full text-sm border-collapse bg-[#1A1D27]">
+        <>
+          <p data-testid="filter-result-count" className="text-xs text-[#8B93A8] mb-3">
+            Showing {filteredRows.length} of {rows.length} barriers
+          </p>
+          <table className="w-full text-sm border-collapse bg-[#1A1D27]">
           <thead>
             <tr className="bg-[#242836] border-b border-[#2E3348]">
               {COLUMNS.map((col) => {
@@ -201,7 +254,7 @@ export default function RankedBarriers() {
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => {
+            {filteredRows.map((row) => {
               const isPositive = row.topFactorValue !== null && row.topFactorValue >= 0
               const pillColor = PILL_COLORS[row.riskLevel]
               const pillLabel = PILL_LABELS[row.riskLevel]
@@ -313,6 +366,7 @@ export default function RankedBarriers() {
             })}
           </tbody>
         </table>
+        </>
       )}
     </div>
   )
