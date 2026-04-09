@@ -20,6 +20,13 @@ const RISK_LEVEL_COLORS: Record<string, string> = {
   unanalyzed: 'bg-[#242836] text-[#5A6178]',
 }
 
+const RISK_STRIPE_COLORS: Record<string, string> = {
+  red: 'border-l-red-500',
+  amber: 'border-l-amber-400',
+  green: 'border-l-green-500',
+  unanalyzed: 'border-l-[#2E3348]',
+}
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -50,11 +57,13 @@ function BarrierCard({
   const label = RISK_LEVEL_LABELS[riskLevel] ?? ''
   const badgeColor = RISK_LEVEL_COLORS[riskLevel] ?? RISK_LEVEL_COLORS.unanalyzed
 
+  const stripeColor = RISK_STRIPE_COLORS[riskLevel] ?? RISK_STRIPE_COLORS.unanalyzed
+
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`w-full text-left rounded-lg border p-3 transition-all duration-150 hover:shadow-md ${
+      className={`w-full text-left rounded-lg border border-l-4 p-3 transition-all duration-150 hover:shadow-md ${stripeColor} ${
         isSelected
           ? 'border-blue-400 ring-2 ring-blue-400 bg-[#242836]'
           : 'border-[#2E3348] bg-[#1A1D27] hover:bg-[#242836]'
@@ -69,7 +78,14 @@ function BarrierCard({
         )}
       </div>
       <p className="text-xs text-[#8B93A8] truncate">{barrier.barrierRole}</p>
-      <p className="text-xs text-[#5A6178] mt-0.5">{barrier.line_of_defense} LoD</p>
+      <div className="flex gap-1.5 mt-1.5">
+        <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#2E3348] text-[#5A6178]">
+          {barrier.barrier_type}
+        </span>
+        <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#2E3348] text-[#5A6178]">
+          LOD {barrier.line_of_defense}
+        </span>
+      </div>
     </button>
   )
 }

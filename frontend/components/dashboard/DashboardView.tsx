@@ -5,7 +5,6 @@ import { useBowtieContext } from '@/context/BowtieContext'
 import { useAnalyzeBarriers } from '@/hooks/useAnalyzeBarriers'
 import RiskDistributionChart, { buildRiskDistribution } from './RiskDistributionChart'
 import TopAtRiskBarriers from './TopAtRiskBarriers'
-import ModelKPIs from './ModelKPIs'
 import ScenarioContext from './ScenarioContext'
 import GlobalShapChart, { PifPrevalenceChart, AprioriRulesTable } from './DriversHF'
 import RankedBarriers from './RankedBarriers'
@@ -84,15 +83,89 @@ export default function DashboardView() {
       <div className="flex-1 p-8">
         {activeTab === 'executive-summary' && (
           <>
-            <RiskDistributionChart counts={counts} />
+            {/* Scenario header */}
+            <ScenarioContext />
+
+            {/* Risk Posture + Analysis Overview */}
+            {(() => {
+              const overallRisk =
+                counts.high > 0 ? 'high' : counts.medium > 0 ? 'medium' : 'low'
+              return (
+                <div className="grid grid-cols-2 gap-4 mt-6">
+                  {/* Scenario Risk Posture */}
+                  <div className="bg-[#242836] rounded-lg p-5 border border-[#2E3348]">
+                    <h3 className="text-xs font-medium text-[#5A6178] mb-3 uppercase tracking-wider">
+                      Scenario Risk Posture
+                    </h3>
+                    <div className="flex items-center gap-4">
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 ${
+                        overallRisk === 'high'
+                          ? 'bg-red-500/20 text-red-400 ring-2 ring-red-500/40'
+                          : overallRisk === 'medium'
+                          ? 'bg-amber-500/20 text-amber-400 ring-2 ring-amber-500/40'
+                          : 'bg-green-500/20 text-green-400 ring-2 ring-green-500/40'
+                      }`}>
+                        {overallRisk === 'high' ? 'H' : overallRisk === 'medium' ? 'M' : 'L'}
+                      </div>
+                      <div>
+                        <p className="text-base font-semibold text-[#E8ECF4]">
+                          {overallRisk === 'high' ? 'High Risk' : overallRisk === 'medium' ? 'Elevated Risk' : 'Controlled Risk'}
+                        </p>
+                        <p className="text-xs text-[#5A6178] mt-0.5">
+                          {counts.high} high · {counts.medium} medium · {counts.low} low risk barriers
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Analysis Overview */}
+                  <div className="bg-[#242836] rounded-lg p-5 border border-[#2E3348]">
+                    <h3 className="text-xs font-medium text-[#5A6178] mb-3 uppercase tracking-wider">
+                      Analysis Overview
+                    </h3>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <p className="text-2xl font-bold text-[#E8ECF4]">{barriers.length}</p>
+                        <p className="text-xs text-[#5A6178]">Barriers analyzed</p>
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold text-[#E8ECF4]">
+                          {barriers.filter((b) => b.side === 'prevention').length} / {barriers.filter((b) => b.side === 'mitigation').length}
+                        </p>
+                        <p className="text-xs text-[#5A6178]">Prevention / Mitigation</p>
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold text-[#E8ECF4]">174</p>
+                        <p className="text-xs text-[#5A6178]">Reference incidents</p>
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold text-[#E8ECF4]">558</p>
+                        <p className="text-xs text-[#5A6178]">Barrier observations</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            })()}
+
+            {/* Risk Distribution (secondary) */}
+            <div className="mt-6">
+              <RiskDistributionChart counts={counts} />
+            </div>
             <div className="mt-6">
               <TopAtRiskBarriers />
             </div>
-            <div className="mt-6">
-              <ModelKPIs />
-            </div>
-            <div className="mt-6">
-              <ScenarioContext />
+            <div className="mt-6 bg-[#242836] rounded-lg p-4 border border-[#2E3348]">
+              <h3 className="text-sm font-semibold text-[#E8ECF4] mb-2">Assessment Basis</h3>
+              <p className="text-sm text-[#8B93A8] leading-relaxed">
+                Historical reliability assessment based on analysis of{' '}
+                <span className="text-[#E8ECF4] font-medium">174 real BSEE/CSB incidents</span>{' '}
+                with{' '}
+                <span className="text-[#E8ECF4] font-medium">558 barrier observations</span>{' '}
+                from Loss of Containment events in oil &amp; gas operations.
+                Barrier failure patterns identified using XGBoost with SHAP explainability,
+                validated through 5-fold cross-validation.
+              </p>
             </div>
           </>
         )}

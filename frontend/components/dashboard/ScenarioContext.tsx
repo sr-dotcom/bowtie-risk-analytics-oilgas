@@ -44,16 +44,16 @@ export default function ScenarioContext() {
   const summary = buildScenarioSummary(barriers, predictions, eventDescription)
 
   return (
-    <div data-testid="scenario-context">
-      <h3 className="text-sm font-semibold text-[#E8ECF4] mb-2">Scenario Context</h3>
-
-      <p className="text-sm text-[#8B93A8] mb-3">
+    <div data-testid="scenario-context" className="mb-2">
+      <p className="text-xs text-[#5A6178] uppercase tracking-wider mb-1">
+        Top Event / Scenario
+      </p>
+      <h2 className="text-xl font-semibold text-[#E8ECF4]">
         {summary.eventDescription.trim() !== ''
           ? summary.eventDescription
           : 'No scenario loaded'}
-      </p>
-
-      <div className="flex gap-2">
+      </h2>
+      <div className="flex gap-2 mt-2">
         <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-[#2E3348] text-[#8B93A8]">
           {summary.totalBarriers} barriers
         </span>

@@ -45,14 +45,14 @@ export interface BowtieSVGProps {
 const THREAT_X = 30
 const THREAT_W = 200
 const THREAT_H = 115
-const BARRIER_START_X = 340
+const BARRIER_START_X = 340   // unused after Task 1 — kept for reference
 const BARRIER_W = 180
-const BARRIER_H = 78
-const BARRIER_GAP_X = 30
+const BARRIER_H = 90
+const BARRIER_GAP_X = 30      // unused after Task 1 — kept for reference
 const TOP_EVENT_CX = 700
 const TOP_EVENT_R = 80
-const MIT_START_X = TOP_EVENT_CX + TOP_EVENT_R + 100 // 880
-const CONSEQUENCE_X = 1150
+const MIT_START_X = TOP_EVENT_CX + TOP_EVENT_R + 100 // unused after Task 1 — kept for reference
+const CONSEQUENCE_X = 1300
 const CONSEQUENCE_W = 200
 const CONSEQUENCE_H = 90
 const HAZARD_W = 170
@@ -85,24 +85,28 @@ function wrapText(text: string, maxChars: number): string[] {
 function typeInfo(t: string): { color: string; label: string } {
   switch (t) {
     case 'engineering':
-      return { color: '#3B82F6', label: 'A-HW Active hardware' }
+      return { color: '#3B82F6', label: 'Engineered' }
     case 'administrative':
-      return { color: '#8B5CF6', label: 'ST Socio technical' }
+      return { color: '#8B5CF6', label: 'Administrative' }
     case 'ppe':
-      return { color: '#EC4899', label: 'BEH Behavioural' }
+      return { color: '#EC4899', label: 'Behavioural' }
+    case 'active_human':
+      return { color: '#14B8A6', label: 'Active Human' }
+    case 'active_hw_human':
+      return { color: '#6366F1', label: 'HW + Human' }
     default:
-      return { color: '#94A3B8', label: t }
+      return { color: '#94A3B8', label: t.replace(/_/g, ' ') }
   }
 }
 
 function contribInfo(c: 'high' | 'medium' | 'low') {
   switch (c) {
     case 'high':
-      return { color: '#DC2626', label: 'HC High contribution' }
+      return { color: '#DC2626', label: 'High Contribution' }
     case 'medium':
-      return { color: '#F59E0B', label: 'MC Medium contribution' }
+      return { color: '#F59E0B', label: 'Medium Contribution' }
     case 'low':
-      return { color: '#F59E0B', label: 'LC Low contribution' }
+      return { color: '#F59E0B', label: 'Low Contribution' }
   }
 }
 
@@ -151,7 +155,7 @@ function computeLayout(
   barriers: BarrierInput[],
 ) {
   const rows = Math.max(threats.length, consequences.length, 1)
-  const H = rows * 200 + 100
+  const H = rows * 300 + 100
   const CY = H / 2
 
   // Vertical distribution for a set of boxes
@@ -197,27 +201,67 @@ function computeLayout(
     }
   }
 
-  // Position prevention barriers along each pathway
+  // Position prevention barriers along each threat → top-event pathway.
+  // For each threat, divide the horizontal space [threat_right, top_event_left_tangent]
+  // into (n+1) equal segments; barrier j sits at segment (j+1).
+  // Y is linearly interpolated along the straight line from threat cy to CY at that X.
   const bPos: PositionedBarrier[] = []
+
+  const prevStartX = THREAT_X + THREAT_W          // 230 — threat right edge
+  const prevEndX   = TOP_EVENT_CX - TOP_EVENT_R   // 620 — top-event left tangent
 
   for (const tp of tPos) {
     const bs = prevByThreat.get(tp.id) ?? []
     const n = bs.length
+    if (n === 0) continue
+
+    const segW = (prevEndX - prevStartX) / (n + 1)
+
     for (let j = 0; j < n; j++) {
-      const bx = BARRIER_START_X + j * (BARRIER_W + BARRIER_GAP_X)
-      const t = (j + 1) / (n + 1)
-      const by = tp.cy + t * (CY - tp.cy) - BARRIER_H / 2
-      bPos.push({ ...bs[j], x: bx, y: by, cy: by + BARRIER_H / 2 })
+      const bCenterX = prevStartX + (j + 1) * segW
+      const bx       = bCenterX - BARRIER_W / 2
+      const tParam   = (bCenterX - prevStartX) / (prevEndX - prevStartX)
+      const bCenterY = tp.cy + tParam * (CY - tp.cy)
+      const by       = bCenterY - BARRIER_H / 2
+      bPos.push({ ...bs[j], x: bx, y: by, cy: bCenterY })
     }
   }
 
-  // Position mitigation barriers on center line
-  for (let j = 0; j < mit.length; j++) {
-    const bx = MIT_START_X + j * (BARRIER_W + BARRIER_GAP_X)
-    bPos.push({ ...mit[j], x: bx, y: CY - BARRIER_H / 2, cy: CY })
+  // Position mitigation barriers fanning out toward consequences.
+  // Assign round-robin to consequences, then distribute each group along
+  // the straight line from top-event right tangent to its consequence.
+  const mitStartX = TOP_EVENT_CX + TOP_EVENT_R   // 780
+  const mitEndX   = CONSEQUENCE_X                // 1300
+
+  const mitByConsequence = new Map<string, BarrierInput[]>()
+  for (const c of consequences) mitByConsequence.set(c.id, [])
+
+  // Round-robin assignment (or single bucket if no consequences)
+  if (cPos.length > 0) {
+    for (let j = 0; j < mit.length; j++) {
+      const targetId = cPos[j % cPos.length].id
+      mitByConsequence.get(targetId)!.push(mit[j])
+    }
   }
 
-  return { H, CY, tPos, cPos, bPos, prevByThreat, mit }
+  for (const cp of cPos) {
+    const bs = mitByConsequence.get(cp.id) ?? []
+    const n  = bs.length
+    if (n === 0) continue
+
+    const segW = (mitEndX - mitStartX) / (n + 1)
+
+    for (let j = 0; j < n; j++) {
+      const bCenterX = mitStartX + (j + 1) * segW
+      const bx       = bCenterX - BARRIER_W / 2
+      const tParam   = (bCenterX - mitStartX) / (mitEndX - mitStartX)
+      const bCenterY = CY + tParam * (cp.cy - CY)
+      const by       = bCenterY - BARRIER_H / 2
+      bPos.push({ ...bs[j], x: bx, y: by, cy: bCenterY })
+    }
+  }
+
+  return { H, CY, tPos, cPos, bPos, prevByThreat, mitByConsequence }
 }
 
 // ---------------------------------------------------------------------------
@@ -239,7 +283,7 @@ export default function BowtieSVG({
     [threats, consequences, barriers],
   )
 
-  const { H, CY, tPos, cPos, bPos, prevByThreat, mit } = layout
+  const { H, CY, tPos, cPos, bPos, prevByThreat, mitByConsequence } = layout
 
   // Hazard box position
   const hazardX = TOP_EVENT_CX - HAZARD_W / 2
@@ -286,36 +330,29 @@ export default function BowtieSVG({
     }
   }
 
-  // Mitigation pathways: top event → barriers → consequences
-  const mitPositioned = bPos.filter((b) => b.side === 'mitigation')
-  mitPositioned.sort((a, b) => a.x - b.x)
+  // Mitigation pathways: one chain per consequence (mirrors prevention side)
+  for (const cp of cPos) {
+    const bs = (mitByConsequence.get(cp.id) ?? [])
+      .map((b) => bPos.find((bp) => bp.id === b.id))
+      .filter(Boolean) as PositionedBarrier[]
 
-  if (mitPositioned.length > 0) {
-    // Top event right tangent → first mitigation barrier
-    const first = mitPositioned[0]
-    paths.push({
-      d: sCurve(TOP_EVENT_CX + TOP_EVENT_R, CY, first.x, first.cy),
-    })
-    // Between consecutive mitigation barriers
-    for (let i = 0; i < mitPositioned.length - 1; i++) {
-      paths.push({
-        d: sCurve(
-          mitPositioned[i].x + BARRIER_W,
-          mitPositioned[i].cy,
-          mitPositioned[i + 1].x,
-          mitPositioned[i + 1].cy,
-        ),
-      })
-    }
-    // Last mitigation barrier → each consequence
-    const last = mitPositioned[mitPositioned.length - 1]
-    for (const cp of cPos) {
-      paths.push({ d: sCurve(last.x + BARRIER_W, last.cy, cp.x, cp.cy) })
-    }
-  } else {
-    // No mitigation barriers: top event → each consequence directly
-    for (const cp of cPos) {
+    bs.sort((a, b) => a.x - b.x)
+
+    if (bs.length === 0) {
+      // Direct: top event right tangent → consequence
       paths.push({ d: sCurve(TOP_EVENT_CX + TOP_EVENT_R, CY, cp.x, cp.cy) })
+    } else {
+      // Top event → first barrier left edge
+      paths.push({ d: sCurve(TOP_EVENT_CX + TOP_EVENT_R, CY, bs[0].x, bs[0].cy) })
+      // Between consecutive barriers
+      for (let i = 0; i < bs.length - 1; i++) {
+        paths.push({
+          d: sCurve(bs[i].x + BARRIER_W, bs[i].cy, bs[i + 1].x, bs[i + 1].cy),
+        })
+      }
+      // Last barrier right edge → consequence
+      const last = bs[bs.length - 1]
+      paths.push({ d: sCurve(last.x + BARRIER_W, last.cy, cp.x, cp.cy) })
     }
   }
 
@@ -333,11 +370,11 @@ export default function BowtieSVG({
         style={{
           transform: `scale(${zoom})`,
           transformOrigin: '0 0',
-          minWidth: 1400,
+          minWidth: 1600,
         }}
       >
         <svg
-          viewBox={`0 0 1400 ${H}`}
+          viewBox={`0 0 1600 ${H}`}
           width="100%"
           style={{ fontFamily: 'Arial, sans-serif', display: 'block' }}
         >
@@ -356,6 +393,16 @@ export default function BowtieSVG({
               <stop offset="0%" stopColor="#F97316" />
               <stop offset="100%" stopColor="#DC2626" />
             </radialGradient>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+              <feMerge>
+                <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="barrier-shadow" x="-5%" y="-5%" width="110%" height="110%">
+              <feDropShadow dx="1" dy="1" stdDeviation="2" floodOpacity="0.15" />
+            </filter>
           </defs>
 
           {/* ===== LAYER 1: Pathway curves ===== */}
@@ -369,20 +416,7 @@ export default function BowtieSVG({
             />
           ))}
 
-          {/* ===== LAYER 2: Effectiveness indicators ===== */}
-          {bPos.map((b) => (
-            <rect
-              key={`ind-${b.id}`}
-              x={b.x - 12}
-              y={b.cy - 11}
-              width={8}
-              height={22}
-              rx={1}
-              fill={riskColor(b.risk_level)}
-            />
-          ))}
-
-          {/* ===== LAYER 3: Barrier blocks ===== */}
+          {/* ===== LAYER 2: Barrier blocks (stripe integrated) ===== */}
           {bPos.map((b) => {
             const ti = typeInfo(b.barrier_type)
             const nameLines = wrapText(b.name, 22)
@@ -393,6 +427,22 @@ export default function BowtieSVG({
                 style={{ cursor: 'pointer' }}
                 onClick={() => onBarrierClick(b.id)}
               >
+                {/* Selection glow — behind everything */}
+                {isSelected && (
+                  <rect
+                    x={b.x - 4}
+                    y={b.y - 4}
+                    width={BARRIER_W + 8}
+                    height={BARRIER_H + 8}
+                    fill="none"
+                    stroke="#3B82F6"
+                    strokeWidth={2.5}
+                    rx={3}
+                    opacity={0.6}
+                    filter="url(#glow)"
+                  />
+                )}
+                {/* White barrier body */}
                 <rect
                   x={b.x}
                   y={b.y}
@@ -400,25 +450,22 @@ export default function BowtieSVG({
                   height={BARRIER_H}
                   fill="white"
                   stroke={isSelected ? '#3B82F6' : '#999'}
-                  strokeWidth={isSelected ? 2 : 1}
+                  strokeWidth={isSelected ? 1.5 : 0.5}
+                  filter="url(#barrier-shadow)"
                 />
-                {isSelected && (
-                  <rect
-                    x={b.x - 3}
-                    y={b.y - 3}
-                    width={BARRIER_W + 6}
-                    height={BARRIER_H + 6}
-                    fill="none"
-                    stroke="rgba(59,130,246,0.3)"
-                    strokeWidth={2}
-                    rx={2}
-                  />
-                )}
-                {/* Row 1: Name */}
+                {/* Risk level color stripe — 6px vertical bar on left edge */}
+                <rect
+                  x={b.x}
+                  y={b.y}
+                  width={6}
+                  height={BARRIER_H}
+                  fill={riskColor(b.risk_level)}
+                />
+                {/* Row 1: Name — shifted right to clear stripe */}
                 {nameLines.map((line, li) => (
                   <text
                     key={li}
-                    x={b.x + 15}
+                    x={b.x + 14}
                     y={b.y + 16 + li * 15}
                     fill={BLUE}
                     fontSize={13}
@@ -439,7 +486,7 @@ export default function BowtieSVG({
                 {/* Row 2: Role (underlined) */}
                 {b.barrier_role && (
                   <text
-                    x={b.x + 15}
+                    x={b.x + 14}
                     y={b.y + 28 + nameLines.length * 15}
                     fill={BLUE}
                     fontSize={11}
@@ -459,7 +506,7 @@ export default function BowtieSVG({
                 />
                 {/* Row 3: Type indicator */}
                 <rect
-                  x={b.x + 15}
+                  x={b.x + 14}
                   y={b.y + BARRIER_H - 18}
                   width={12}
                   height={12}
@@ -467,7 +514,7 @@ export default function BowtieSVG({
                   rx={1}
                 />
                 <text
-                  x={b.x + 32}
+                  x={b.x + 30}
                   y={b.y + BARRIER_H - 8}
                   fill={BLUE}
                   fontSize={10}

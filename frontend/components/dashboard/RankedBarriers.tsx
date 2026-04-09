@@ -97,7 +97,7 @@ export function buildRankedRows(
       name: barrier.name,
       riskLevel: barrier.riskLevel,
       probability,
-      condition: pred.barrier_condition_display ?? '—',
+      condition: pred.barrier_condition_display || PILL_LABELS[barrier.riskLevel] || '—',
       topFactor,
       topFactorValue,
       barrierType: pred.barrier_type_display ?? barrier.barrier_type,

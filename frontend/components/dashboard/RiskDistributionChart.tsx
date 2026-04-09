@@ -1,6 +1,6 @@
 'use client'
 
-import { BarChart, Bar, XAxis, YAxis, Cell, Tooltip, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Cell, Tooltip, ResponsiveContainer, LabelList } from 'recharts'
 import { CHART_COLORS } from '@/lib/chart-colors'
 import type { Barrier } from '@/lib/types'
 
@@ -85,6 +85,11 @@ export default function RiskDistributionChart({ counts }: RiskDistributionChartP
             }}
           />
           <Bar dataKey="count" isAnimationActive={false}>
+            <LabelList
+              dataKey="count"
+              position="right"
+              style={{ fontSize: 11, fill: '#8B93A8' }}
+            />
             {data.map((entry, i) => (
               <Cell key={i} fill={entry.fill} />
             ))}

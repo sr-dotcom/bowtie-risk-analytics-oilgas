@@ -216,9 +216,9 @@ describe('DashboardView', () => {
     expect(screen.getByTestId('top-at-risk-barriers')).toBeTruthy()
   })
 
-  it('executive-summary tab shows model KPIs component', () => {
+  it('executive-summary tab shows assessment basis card', () => {
     renderDashboard()
-    expect(screen.getByTestId('model-kpis')).toBeTruthy()
+    expect(screen.getByText('Assessment Basis')).toBeTruthy()
   })
 
   it('executive-summary tab shows scenario context component', () => {

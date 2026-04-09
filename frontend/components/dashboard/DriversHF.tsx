@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { BarChart, Bar, XAxis, YAxis, Cell, Tooltip, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, Cell, Tooltip, ResponsiveContainer, LabelList } from 'recharts'
 import { useBowtieContext } from '@/context/BowtieContext'
 import { CHART_COLORS } from '@/lib/chart-colors'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES } from '@/lib/shap-config'
@@ -118,6 +118,12 @@ export default function GlobalShapChart() {
               }}
             />
             <Bar dataKey="meanAbsShap" isAnimationActive={false}>
+              <LabelList
+                dataKey="meanAbsShap"
+                position="right"
+                formatter={(v: number) => v.toFixed(3)}
+                style={{ fontSize: 10, fill: '#8B93A8' }}
+              />
               {data.map((entry, i) => (
                 <Cell
                   key={i}
@@ -226,6 +232,7 @@ export function PifPrevalenceChart() {
           >
             <XAxis
               type="number"
+              domain={[0, 1]}
               tickFormatter={(v) => `${((v as number) * 100).toFixed(0)}%`}
               tick={{ fontSize: 12, fill: '#8B93A8' }}
               stroke="#2E3348"
@@ -253,6 +260,12 @@ export function PifPrevalenceChart() {
               }}
             />
             <Bar dataKey="prevalence" isAnimationActive={false}>
+              <LabelList
+                dataKey="prevalence"
+                position="right"
+                formatter={(v: number) => `${(v * 100).toFixed(0)}%`}
+                style={{ fontSize: 10, fill: '#8B93A8' }}
+              />
               {data.map((entry, i) => (
                 <Cell
                   key={i}
@@ -340,9 +353,16 @@ export function AprioriRulesTable() {
 
   return (
     <div data-testid="apriori-rules-table" className="bg-[#242836] rounded-lg overflow-hidden">
-      <h3 className="text-base font-semibold px-4 py-3 text-[#E8ECF4]">
-        Co-failure Association Rules
-      </h3>
+      <div className="px-4 pt-3 pb-2">
+        <h3 className="text-base font-semibold mb-1 text-[#E8ECF4]">
+          Co-failure Association Rules
+        </h3>
+        <p className="text-sm text-[#5A6178]">
+          When the antecedent barrier family fails in an incident, the consequent barrier family
+          also fails with the shown confidence. Based on Apriori analysis of 174 BSEE/CSB incident
+          investigations.
+        </p>
+      </div>
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead className="border-b border-[#2E3348]">

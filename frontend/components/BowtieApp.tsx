@@ -5,7 +5,7 @@ import { BowtieProvider, useBowtieContext } from '@/context/BowtieContext'
 import BarrierForm from './sidebar/BarrierForm'
 import BowtieSVG from './diagram/BowtieSVG'
 import PathwayView from './diagram/PathwayView'
-import DetailPanel from './panel/DetailPanel'
+import DetailDrawer from './panel/DetailDrawer'
 import { DEMO_SCENARIO } from './sidebar/constants'
 import DashboardView from './dashboard/DashboardView'
 
@@ -186,10 +186,7 @@ function BowtieAppInner() {
         )}
       </main>
 
-      {/* Right panel: barrier detail */}
-      <aside className="w-96 overflow-y-auto border-l border-[#2E3348] bg-[#1A1D27] p-4 flex-shrink-0">
-        <DetailPanel />
-      </aside>
+      <DetailDrawer />
     </div>
   )
 }

@@ -1,11 +1,20 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Loader2, AlertCircle } from 'lucide-react'
+import { Loader2, AlertCircle, ChevronDown, ChevronRight } from 'lucide-react'
 import { explain } from '@/lib/api'
 import { useBowtieContext } from '@/context/BowtieContext'
 import type { Barrier, ExplainRequest, ExplainResponse, PredictResponse } from '@/lib/types'
 import SimpleMarkdown from '@/components/ui/SimpleMarkdown'
+
+// ---------------------------------------------------------------------------
+// Helper: extract first N sentences from a block of text
+// ---------------------------------------------------------------------------
+
+function extractFirstSentences(text: string, n: number): string {
+  const sentences = text.match(/[^.!?]+[.!?]+/g) ?? []
+  return sentences.slice(0, n).join(' ').trim() || text.slice(0, 200)
+}
 
 // ---------------------------------------------------------------------------
 // Component
@@ -33,6 +42,8 @@ export default function EvidenceSection({
   const { evidence, setEvidence } = useBowtieContext()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [narrativeExpanded, setNarrativeExpanded] = useState(false)
+  const [citationsExpanded, setCitationsExpanded] = useState(false)
 
   // Load evidence on mount or when barrierId changes (D-15: on-demand per click)
   useEffect(() => {
@@ -119,6 +130,9 @@ export default function EvidenceSection({
         .filter((line) => line.length > 0)
     : []
 
+  // Key findings: first 2 sentences of narrative
+  const keyFindings = isLowConfidence ? '' : extractFirstSentences(ev.narrative, 2)
+
   return (
     <div className="space-y-3">
       <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">
@@ -135,10 +149,39 @@ export default function EvidenceSection({
           barrier.
         </p>
       ) : (
-        <SimpleMarkdown content={ev.narrative} className="text-sm text-[#8B93A8] leading-relaxed mb-3" />
+        <>
+          {/* Key Findings callout — only when narrative is long enough to split */}
+          {keyFindings && keyFindings !== ev.narrative.trim() ? (
+            <>
+              <div className="bg-[#1A2332] border-l-4 border-blue-400 p-4 rounded-r-lg">
+                <p className="text-xs font-semibold text-[#8B93A8] uppercase tracking-wider mb-1">
+                  Key Findings
+                </p>
+                <p className="text-sm text-[#E8ECF4] leading-relaxed">{keyFindings}</p>
+              </div>
+
+              {/* Full narrative — collapsible, hidden by default but in DOM */}
+              <div>
+                <button
+                  onClick={() => setNarrativeExpanded((v) => !v)}
+                  className="flex items-center gap-1 text-xs text-[#5A6178] hover:text-[#8B93A8] transition-colors mb-1"
+                >
+                  {narrativeExpanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  {narrativeExpanded ? 'Collapse analysis' : 'Read full analysis'}
+                </button>
+                <div className={narrativeExpanded ? '' : 'hidden'}>
+                  <SimpleMarkdown content={ev.narrative} className="text-sm text-[#8B93A8] leading-relaxed" />
+                </div>
+              </div>
+            </>
+          ) : (
+            /* Short narrative — render directly */
+            <SimpleMarkdown content={ev.narrative} className="text-sm text-[#8B93A8] leading-relaxed mb-3" />
+          )}
+        </>
       )}
 
-      {/* Recommendations (D-12, Fidel-#2) — per-card rendering */}
+      {/* Recommendations (D-12, Fidel-#2) — per-card rendering, always visible */}
       {recommendationCards.length > 0 && (
         <div className="mt-3">
           <h4 className="text-sm font-semibold mb-1 text-[#E8ECF4]">Recommendations</h4>
@@ -155,22 +198,31 @@ export default function EvidenceSection({
         </div>
       )}
 
+      {/* Similar Incidents — collapsible, collapsed by default */}
       {ev.citations.length > 0 && (
         <div>
-          <h4 className="text-sm font-semibold mb-1 text-[#E8ECF4]">Similar Incidents</h4>
-          <div className="space-y-2">
-            {ev.citations.map((c, i) => (
-              <div
-                key={`${c.incident_id}-${i}`}
-                className="bg-[#242836] rounded-md border border-[#2E3348] p-2 hover:bg-[#2E3348] transition-colors"
-              >
-                <p className="text-xs font-medium text-[#8B93A8]">
-                  {c.incident_id} — {c.barrier_name}
-                </p>
-                <p className="text-sm text-[#E8ECF4] mt-0.5">{c.incident_summary || c.supporting_text}</p>
-              </div>
-            ))}
-          </div>
+          <button
+            onClick={() => setCitationsExpanded((v) => !v)}
+            className="flex items-center gap-1 text-sm font-semibold text-[#E8ECF4] hover:text-[#8B93A8] transition-colors mb-1"
+          >
+            {citationsExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+            Similar Incidents ({ev.citations.length})
+          </button>
+          {citationsExpanded && (
+            <div className="space-y-2 mt-1">
+              {ev.citations.map((c, i) => (
+                <div
+                  key={`${c.incident_id}-${i}`}
+                  className="bg-[#1E2230] rounded-lg p-3 border border-[#2E3348] hover:bg-[#2E3348] transition-colors"
+                >
+                  <p className="text-xs font-medium text-[#5A6178]">
+                    {c.incident_id} — {c.barrier_name}
+                  </p>
+                  <p className="text-sm text-[#E8ECF4] mt-0.5">{c.incident_summary || c.supporting_text}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

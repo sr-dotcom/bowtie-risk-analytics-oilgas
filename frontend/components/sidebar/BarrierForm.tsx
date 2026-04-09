@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, Trash2, Loader2, AlertCircle } from 'lucide-react'
+import { Plus, Loader2, AlertCircle } from 'lucide-react'
 
 import { useBowtieContext } from '@/context/BowtieContext'
 import { useAnalyzeBarriers } from '@/hooks/useAnalyzeBarriers'
@@ -37,22 +37,14 @@ export default function BarrierForm() {
   const { analyzeAll } = useAnalyzeBarriers()
 
   // --------------------------------------------------------------------------
-  // Prevention barrier form state
+  // Unified barrier form state
   // --------------------------------------------------------------------------
-  const [prevName, setPrevName] = useState('')
-  const [prevType, setPrevType] = useState('')
-  const [prevFamily, setPrevFamily] = useState('')
-  const [prevRole, setPrevRole] = useState('')
-  const [prevLod, setPrevLod] = useState('')
-
-  // --------------------------------------------------------------------------
-  // Mitigation barrier form state
-  // --------------------------------------------------------------------------
-  const [mitName, setMitName] = useState('')
-  const [mitType, setMitType] = useState('')
-  const [mitFamily, setMitFamily] = useState('')
-  const [mitRole, setMitRole] = useState('')
-  const [mitLod, setMitLod] = useState('')
+  const [side, setSide] = useState<'prevention' | 'mitigation'>('prevention')
+  const [name, setName] = useState('')
+  const [type, setType] = useState('')
+  const [family, setFamily] = useState('')
+  const [role, setRole] = useState('')
+  const [lod, setLod] = useState('')
 
   // --------------------------------------------------------------------------
   // Error auto-dismiss
@@ -64,45 +56,24 @@ export default function BarrierForm() {
   }, [analysisError, setAnalysisError])
 
   // --------------------------------------------------------------------------
-  // Add prevention barrier
+  // Add barrier
   // --------------------------------------------------------------------------
-  function handleAddPrevention() {
-    const name = prevName.trim()
-    if (!name) return
+  function handleAddBarrier() {
+    const trimmedName = name.trim()
+    if (!trimmedName) return
     addBarrier({
-      name,
-      side: 'prevention',
-      barrier_type: prevType || 'unknown',
-      barrier_family: prevFamily || 'other_unknown',
-      line_of_defense: prevLod || 'unknown',
-      barrierRole: prevRole.trim(),
+      name: trimmedName,
+      side,
+      barrier_type: type || 'unknown',
+      barrier_family: family || 'other_unknown',
+      line_of_defense: lod || 'unknown',
+      barrierRole: role.trim(),
     })
-    setPrevName('')
-    setPrevType('')
-    setPrevFamily('')
-    setPrevRole('')
-    setPrevLod('')
-  }
-
-  // --------------------------------------------------------------------------
-  // Add mitigation barrier
-  // --------------------------------------------------------------------------
-  function handleAddMitigation() {
-    const name = mitName.trim()
-    if (!name) return
-    addBarrier({
-      name,
-      side: 'mitigation',
-      barrier_type: mitType || 'unknown',
-      barrier_family: mitFamily || 'other_unknown',
-      line_of_defense: mitLod || 'unknown',
-      barrierRole: mitRole.trim(),
-    })
-    setMitName('')
-    setMitType('')
-    setMitFamily('')
-    setMitRole('')
-    setMitLod('')
+    setName('')
+    setType('')
+    setFamily('')
+    setRole('')
+    setLod('')
   }
 
   // --------------------------------------------------------------------------
@@ -116,7 +87,6 @@ export default function BarrierForm() {
   // New Scenario — clear all state
   // --------------------------------------------------------------------------
   function handleNewScenario() {
-    // Remove all barriers
     barriers.forEach((b) => removeBarrier(b.id))
     setEventDescription('')
     setSelectedBarrierId(null)
@@ -141,141 +111,90 @@ export default function BarrierForm() {
         />
       </div>
 
-      {/* Add Prevention Barrier */}
+      {/* Unified Add Barrier form */}
       <div className="mt-4">
-        <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">Add Prevention Barrier</h3>
+        <h3 className="text-sm font-semibold text-[#E8ECF4] mb-2">Add Barrier</h3>
+
+        {/* Side toggle */}
+        <div className="flex rounded-lg overflow-hidden border border-[#2E3348] mb-3">
+          <button
+            onClick={() => setSide('prevention')}
+            className={`flex-1 px-3 py-1.5 text-xs font-medium transition-colors ${
+              side === 'prevention'
+                ? 'bg-blue-600 text-white'
+                : 'bg-[#242836] text-[#5A6178] hover:text-[#8B93A8]'
+            }`}
+          >
+            Prevention
+          </button>
+          <button
+            onClick={() => setSide('mitigation')}
+            className={`flex-1 px-3 py-1.5 text-xs font-medium transition-colors ${
+              side === 'mitigation'
+                ? 'bg-blue-600 text-white'
+                : 'bg-[#242836] text-[#5A6178] hover:text-[#8B93A8]'
+            }`}
+          >
+            Mitigation
+          </button>
+        </div>
 
         <input
           type="text"
-          value={prevName}
-          onChange={(e) => setPrevName(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleAddPrevention()}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleAddBarrier()}
           placeholder="Barrier name"
           className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] placeholder:text-[#5A6178] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
         />
 
         <select
-          value={prevType}
-          onChange={(e) => setPrevType(e.target.value)}
+          value={type}
+          onChange={(e) => setType(e.target.value)}
           className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
         >
           <option value="">Select type...</option>
           {BARRIER_TYPES.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
+            <option key={t} value={t}>{t}</option>
           ))}
         </select>
 
         <select
-          value={prevFamily}
-          onChange={(e) => setPrevFamily(e.target.value)}
+          value={family}
+          onChange={(e) => setFamily(e.target.value)}
           className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
         >
           <option value="">Select family...</option>
           {BARRIER_FAMILIES.map((f) => (
-            <option key={f} value={f}>
-              {formatBarrierFamily(f)}
-            </option>
+            <option key={f} value={f}>{formatBarrierFamily(f)}</option>
           ))}
         </select>
 
         <input
           type="text"
-          value={prevRole}
-          onChange={(e) => setPrevRole(e.target.value)}
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
           placeholder="Barrier role description"
           className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] placeholder:text-[#5A6178] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
         />
 
         <select
-          value={prevLod}
-          onChange={(e) => setPrevLod(e.target.value)}
+          value={lod}
+          onChange={(e) => setLod(e.target.value)}
           className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
         >
           <option value="">Select LOD...</option>
           {LINE_OF_DEFENSE.map((l) => (
-            <option key={l} value={l}>
-              {l}
-            </option>
+            <option key={l} value={l}>{l}</option>
           ))}
         </select>
 
         <button
-          onClick={handleAddPrevention}
+          onClick={handleAddBarrier}
           className="w-full rounded-md bg-[#242836] text-[#E8ECF4] border border-[#2E3348] py-2 text-sm font-medium hover:bg-[#2E3348] active:bg-[#3A3F52] flex items-center justify-center gap-1.5"
         >
           <Plus size={14} />
-          Add Prevention Barrier
-        </button>
-      </div>
-
-      {/* Add Mitigation Barrier */}
-      <div className="mt-4">
-        <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">Add Mitigation Barrier</h3>
-
-        <input
-          type="text"
-          value={mitName}
-          onChange={(e) => setMitName(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleAddMitigation()}
-          placeholder="Barrier name"
-          className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] placeholder:text-[#5A6178] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
-        />
-
-        <select
-          value={mitType}
-          onChange={(e) => setMitType(e.target.value)}
-          className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
-        >
-          <option value="">Select type...</option>
-          {BARRIER_TYPES.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={mitFamily}
-          onChange={(e) => setMitFamily(e.target.value)}
-          className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
-        >
-          <option value="">Select family...</option>
-          {BARRIER_FAMILIES.map((f) => (
-            <option key={f} value={f}>
-              {formatBarrierFamily(f)}
-            </option>
-          ))}
-        </select>
-
-        <input
-          type="text"
-          value={mitRole}
-          onChange={(e) => setMitRole(e.target.value)}
-          placeholder="Barrier role description"
-          className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] placeholder:text-[#5A6178] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
-        />
-
-        <select
-          value={mitLod}
-          onChange={(e) => setMitLod(e.target.value)}
-          className="w-full rounded-md border border-[#2E3348] bg-[#242836] text-[#E8ECF4] p-2 text-sm mb-2 focus:ring-2 focus:ring-blue-400 focus:border-transparent outline-none"
-        >
-          <option value="">Select LOD...</option>
-          {LINE_OF_DEFENSE.map((l) => (
-            <option key={l} value={l}>
-              {l}
-            </option>
-          ))}
-        </select>
-
-        <button
-          onClick={handleAddMitigation}
-          className="w-full rounded-md bg-[#242836] text-[#E8ECF4] border border-[#2E3348] py-2 text-sm font-medium hover:bg-[#2E3348] active:bg-[#3A3F52] flex items-center justify-center gap-1.5"
-        >
-          <Plus size={14} />
-          Add Mitigation Barrier
+          Add {side === 'prevention' ? 'Prevention' : 'Mitigation'} Barrier
         </button>
       </div>
 
@@ -284,37 +203,45 @@ export default function BarrierForm() {
         <div className="mt-4">
           <h3 className="text-base font-semibold mb-1 text-[#E8ECF4]">Barriers</h3>
           <div className="space-y-0.5">
-            {barriers.map((b) => {
-              const pred = predictions[b.id]
-              return (
-                <div
-                  key={b.id}
-                  className="flex items-center justify-between py-1.5 px-2 rounded text-sm hover:bg-[#242836]"
+            {barriers.map((b) => (
+              <div
+                key={b.id}
+                className="group flex items-start gap-2 py-1.5 px-2 rounded hover:bg-[#242836] cursor-pointer transition-colors"
+                onClick={() => setSelectedBarrierId(b.id)}
+              >
+                {/* Risk dot */}
+                <span
+                  className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${
+                    b.riskLevel === 'red' ? 'bg-red-500'
+                    : b.riskLevel === 'amber' ? 'bg-amber-400'
+                    : b.riskLevel === 'green' ? 'bg-green-500'
+                    : 'bg-[#5A6178]'
+                  }`}
+                />
+
+                {/* Barrier name — allow wrapping */}
+                <span className="text-xs text-[#E8ECF4] leading-tight flex-1">
+                  {b.name}
+                </span>
+
+                {/* Side indicator */}
+                <span className="text-[10px] text-[#5A6178] flex-shrink-0 mt-0.5">
+                  {b.side === 'prevention' ? 'P' : 'M'}
+                </span>
+
+                {/* Delete — hover only */}
+                <button
+                  className="opacity-0 group-hover:opacity-100 text-[#5A6178] hover:text-red-400 transition-opacity flex-shrink-0"
+                  onClick={(e) => { e.stopPropagation(); removeBarrier(b.id) }}
+                  title="Remove barrier"
+                  aria-label="Remove barrier"
                 >
-                  <span className="truncate flex-1 text-[#E8ECF4]">{b.name}</span>
-                  <span className="text-xs text-[#5A6178] mr-2">
-                    {b.side === 'prevention' ? 'L' : 'R'}
-                  </span>
-                  {b.riskLevel && b.riskLevel !== 'unanalyzed' && (
-                    <span className={`text-xs font-medium mr-2 ${
-                      b.riskLevel === 'red' ? 'text-red-500' :
-                      b.riskLevel === 'amber' ? 'text-amber-500' :
-                      'text-green-500'
-                    }`}>
-                      {b.riskLevel === 'red' ? 'High' : b.riskLevel === 'amber' ? 'Medium' : 'Low'}
-                    </span>
-                  )}
-                  <button
-                    onClick={() => removeBarrier(b.id)}
-                    className="text-[#5A6178] hover:text-red-500 transition-colors"
-                    title="Remove barrier"
-                    aria-label="Remove barrier"
-                  >
-                    <Trash2 size={14} />
-                  </button>
-                </div>
-              )
-            })}
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M9 3L3 9M3 3l6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       ) : (

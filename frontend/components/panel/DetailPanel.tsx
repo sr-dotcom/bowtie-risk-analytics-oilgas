@@ -142,10 +142,35 @@ export default function DetailPanel() {
               riskLevel={barrier.riskLevel}
             />
 
+            {/* Plain-language risk summary */}
+            {(() => {
+              const topShap = topFactors[0]
+              const topName = topShap ? (featureDisplayNames[topShap.feature] ?? topShap.feature) : null
+              const rl = barrier.riskLevel
+              return (
+                <div className="bg-[#0F1117] rounded-lg p-3">
+                  <p className="text-sm text-[#8B93A8] leading-relaxed">
+                    {rl === 'green' && (
+                      <>This barrier has demonstrated <span className="text-green-400 font-medium">historically low failure rates</span> across similar operational contexts in the BSEE/CSB incident database.</>
+                    )}
+                    {rl === 'amber' && (
+                      <>This barrier shows <span className="text-amber-400 font-medium">mixed historical reliability</span> — some similar barriers have failed under comparable conditions.</>
+                    )}
+                    {rl === 'red' && (
+                      <>This barrier has <span className="text-red-400 font-medium">significant historical failure patterns</span> in similar operational contexts. Priority review recommended.</>
+                    )}
+                    {topName && (
+                      <>{' '}Top contributing factor: <span className="text-[#E8ECF4] font-medium">{topName}</span>.</>
+                    )}
+                  </p>
+                </div>
+              )
+            })()}
+
             <div>
               <h3 className="text-base font-semibold mb-1 text-[#E8ECF4]">Barrier Analysis Factors</h3>
-              <p className="text-xs text-[#8B93A8] mb-3">
-                Base rate: {pred.model1_base_value.toFixed(3)}
+              <p className="text-xs text-[#5A6178] mb-3">
+                Model baseline (avg. across all barriers): {pred.model1_base_value.toFixed(3)}
               </p>
 
               {topFactors.length > 0 && (
@@ -168,15 +193,36 @@ export default function DetailPanel() {
                 </div>
               )}
 
+              {/* Degradation factors as colored badges */}
               {pred.degradation_factors && pred.degradation_factors.length > 0 && (
-                <p className="text-xs text-[#8B93A8] mt-3">
-                  Primary degradation factors:{' '}
-                  {pred.degradation_factors
-                    .filter((df) => !SHAP_HIDDEN_FEATURES.has(df.source_feature))
-                    .slice(0, 3)
-                    .map((df) => df.factor)
-                    .join(', ')}
-                </p>
+                <div className="mt-4">
+                  <h4 className="text-xs font-medium text-[#5A6178] mb-2 uppercase tracking-wider">
+                    Degradation Factors
+                  </h4>
+                  <div className="flex flex-wrap gap-1.5">
+                    {pred.degradation_factors
+                      .filter((df) => !SHAP_HIDDEN_FEATURES.has(df.source_feature))
+                      .map((df, i) => {
+                        const absContrib = Math.abs(df.contribution)
+                        const strength = absContrib >= 0.15 ? 'strong' : absContrib >= 0.05 ? 'moderate' : 'weak'
+                        return (
+                          <span
+                            key={i}
+                            className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium ${
+                              strength === 'strong'
+                                ? 'bg-red-500/15 text-red-400 border border-red-500/30'
+                                : strength === 'moderate'
+                                ? 'bg-amber-500/15 text-amber-400 border border-amber-500/30'
+                                : 'bg-blue-500/15 text-blue-400 border border-blue-500/30'
+                            }`}
+                          >
+                            {df.factor}
+                            <span className="ml-1.5 opacity-70 text-[10px]">({strength})</span>
+                          </span>
+                        )
+                      })}
+                  </div>
+                </div>
               )}
             </div>
           </div>
