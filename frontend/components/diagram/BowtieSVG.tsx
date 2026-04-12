@@ -126,7 +126,7 @@ function riskColor(level: string | null | undefined): string {
 /** Cubic bezier S-curve from (x1,y1) to (x2,y2) */
 function sCurve(x1: number, y1: number, x2: number, y2: number): string {
   const dx = x2 - x1
-  return `M ${x1} ${y1} C ${x1 + dx * 0.4} ${y1}, ${x1 + dx * 0.6} ${y2}, ${x2} ${y2}`
+  return `M ${x1} ${y1} C ${x1 + dx * 0.25} ${y1}, ${x1 + dx * 0.75} ${y2}, ${x2} ${y2}`
 }
 
 // ---------------------------------------------------------------------------
@@ -480,7 +480,7 @@ export default function BowtieSVG({
                   y1={b.y + 14 + nameLines.length * 15}
                   x2={b.x + BARRIER_W}
                   y2={b.y + 14 + nameLines.length * 15}
-                  stroke="#CCC"
+                  stroke="#DDD"
                   strokeWidth={0.5}
                 />
                 {/* Row 2: Role (underlined) */}
@@ -501,7 +501,7 @@ export default function BowtieSVG({
                   y1={b.y + BARRIER_H - 22}
                   x2={b.x + BARRIER_W}
                   y2={b.y + BARRIER_H - 22}
-                  stroke="#CCC"
+                  stroke="#DDD"
                   strokeWidth={0.5}
                 />
                 {/* Row 3: Type indicator */}
@@ -528,7 +528,7 @@ export default function BowtieSVG({
           {/* ===== LAYER 4: Threat boxes ===== */}
           {tPos.map((t) => {
             const ci = contribInfo(t.contribution)
-            const nameLines = wrapText(t.name, 20)
+            const nameLines = wrapText(t.name, 18)
             return (
               <g key={`t-${t.id}`}>
                 <rect
@@ -538,12 +538,20 @@ export default function BowtieSVG({
                   height={THREAT_H}
                   fill="white"
                   stroke={DARK_BLUE}
-                  strokeWidth={3}
+                  strokeWidth={1.5}
+                />
+                {/* Contribution color stripe — left edge, full height */}
+                <rect
+                  x={t.x}
+                  y={t.y}
+                  width={8}
+                  height={THREAT_H}
+                  fill={ci.color}
                 />
                 {nameLines.map((line, li) => (
                   <text
                     key={li}
-                    x={t.x + 16}
+                    x={t.x + 20}
                     y={t.y + 24 + li * 18}
                     fill={BLUE}
                     fontSize={15}
@@ -558,12 +566,12 @@ export default function BowtieSVG({
                   y1={t.y + 20 + nameLines.length * 18 + 8}
                   x2={t.x + THREAT_W}
                   y2={t.y + 20 + nameLines.length * 18 + 8}
-                  stroke="#BBB"
+                  stroke="#DDD"
                   strokeWidth={0.5}
                 />
                 {/* Contribution badge */}
                 <rect
-                  x={t.x + 16}
+                  x={t.x + 20}
                   y={t.y + THREAT_H - 30}
                   width={14}
                   height={14}
@@ -571,7 +579,7 @@ export default function BowtieSVG({
                   rx={1}
                 />
                 <text
-                  x={t.x + 36}
+                  x={t.x + 40}
                   y={t.y + THREAT_H - 18}
                   fill={BLUE}
                   fontSize={11}
@@ -653,8 +661,8 @@ export default function BowtieSVG({
             x={TOP_EVENT_CX}
             y={CY + 30}
             textAnchor="middle"
-            fill="#666"
-            fontSize={10}
+            fill="#999"
+            fontSize={9}
           >
             (Top Event)
           </text>
@@ -669,30 +677,22 @@ export default function BowtieSVG({
                   y={c.y}
                   width={CONSEQUENCE_W}
                   height={CONSEQUENCE_H}
-                  fill="white"
-                  stroke="#DC2626"
-                  strokeWidth={3}
+                  fill="#DC2626"
+                  stroke="#B91C1C"
+                  strokeWidth={2}
                 />
                 {nameLines.map((line, li) => (
                   <text
                     key={li}
                     x={c.x + 18}
                     y={c.y + 24 + li * 18}
-                    fill={BLUE}
+                    fill="white"
                     fontSize={14}
                     fontWeight={700}
                   >
                     {line}
                   </text>
                 ))}
-                {/* Red bottom strip */}
-                <rect
-                  x={c.x}
-                  y={c.y + CONSEQUENCE_H - 13}
-                  width={CONSEQUENCE_W}
-                  height={13}
-                  fill="#DC2626"
-                />
               </g>
             )
           })}
