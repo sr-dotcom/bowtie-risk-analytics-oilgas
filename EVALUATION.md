@@ -199,7 +199,7 @@ Comparison of full 18-feature model vs. non-PIF baseline (6 categorical + 3 nume
 
 ## RAG Retrieval
 
-**Corpus:** 526 incidents, 3,253 barrier controls, 25 barrier families.
+**Corpus:** 526 incidents, 3,253 barrier controls, 25 barrier families (subset of 739 canonical — filtered to incidents with RAG-quality barrier text).
 **Embedding model:** `all-mpnet-base-v2` (768-dim, sentence-transformers).
 **Index:** FAISS `IndexFlatIP` (inner product on L2-normalized vectors = cosine similarity).
 

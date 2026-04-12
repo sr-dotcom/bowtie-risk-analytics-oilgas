@@ -162,8 +162,8 @@ Browser → nginx:80
 | Module | Purpose |
 |--------|---------|
 | `src/models/incident_v23.py` | `IncidentV23` — canonical Schema v2.3 Pydantic model |
-| `src/models/incident.py` | Legacy Incident model (V1-era) |
-| `src/models/bowtie.py` | Legacy Bowtie model (V1-era) |
+| `src/_legacy/incident.py` | Legacy Incident model (V1-era) |
+| `src/_legacy/bowtie.py` | Legacy Bowtie model (V1-era) |
 
 ### ML Modeling
 
@@ -206,7 +206,7 @@ Browser → nginx:80
 |------|---------|
 | `frontend/app/page.tsx` | Next.js 15 App Router root page |
 | `frontend/components/BowtieApp.tsx` | Root client component; owns `BowtieProvider` context boundary |
-| `frontend/components/diagram/BowtieFlow.tsx` | React Flow bowtie diagram (nodeTypes must be at module scope) |
+| `frontend/components/diagram/BowtieSVG.tsx` | Interactive SVG bowtie diagram with barrier click/hover |
 | `frontend/components/sidebar/BarrierForm.tsx` | Barrier input form |
 | `frontend/components/panel/DetailPanel.tsx` | Barrier detail: prediction, SHAP waterfall, RAG evidence |
 | `frontend/context/BowtieContext.tsx` | Global state: barriers, event description, predictions |
@@ -290,5 +290,5 @@ Open `http://localhost` — nginx routes to frontend and proxies `/api/*` to Fas
 | RAG confidence gate | `barrier_sim_score ≥ 0.25` | `rrf_score` is rank-based, not a similarity measure; cosine similarity has a natural threshold |
 | LLM provider | `AnthropicProvider` (claude-haiku-4-5 for narratives) | Cost-efficient for high-volume inference; wrapped in `asyncio.to_thread()` in async FastAPI routes |
 | API startup | Single lifespan, `app.state` | All artifacts loaded once — no per-request model loading |
-| Frontend | Next.js 15 App Router + React Flow + Recharts | Standalone output enables minimal production image; React Flow requires module-scope `nodeTypes` |
+| Frontend | Next.js 15 App Router + Custom SVG (BowtieSVG) + Recharts | Standalone output enables minimal production image; Custom SVG avoids React Flow dependency; renders interactive bowtie with barrier click/hover |
 | Python version | 3.12 | PyTorch wheel availability (`cp312` only for the pre-baked CPU build) |

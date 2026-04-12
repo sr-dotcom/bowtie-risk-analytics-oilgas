@@ -83,6 +83,12 @@ FETCH_HEAD
 _quarantine/
 archive/
 
+# --- sensitive / local dev config ---
+.mcp.json
+skills-lock.json
+.agents/
+docs/handoff/v23_canonical_575/
+
 # --- data (keep repo light) ---
 data/raw/
 data/processed/
@@ -96,7 +102,6 @@ data/models/evaluation/
 .claude/skills/
 
 # ── GSD baseline (auto-generated) ──
-.gsd
 *~
 *.code-workspace
 node_modules/

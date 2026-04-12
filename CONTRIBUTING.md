@@ -10,6 +10,19 @@
     pip install -r requirements.txt
     ```
 3.  **Testing**: Run `pytest` before pushing changes.
+4.  **Backend** (FastAPI dev server):
+    ```bash
+    uvicorn src.api.main:create_app --factory --reload --port 8000
+    ```
+5.  **Frontend** (Next.js dev server):
+    ```bash
+    cd frontend && npm install && npm run dev   # http://localhost:3000
+    cd frontend && npx vitest                   # frontend unit tests
+    ```
+6.  **Docker** (full stack):
+    ```bash
+    docker compose up --build
+    ```
 
 ## Code Style
 
@@ -19,18 +32,23 @@
 
 ## Directory Structure
 
-- `src/models/` -- Pydantic v2 data models (Incident, Bowtie, Schema v2.3).
+- `src/models/` -- Pydantic v2 data models (IncidentV23, canonical Schema v2.3).
 - `src/ingestion/` -- Data acquisition, PDF text extraction, structured LLM extraction.
-- `src/llm/` -- LLM provider abstraction (Stub, OpenAI, Anthropic, Gemini).
+- `src/llm/` -- LLM provider abstraction (Stub, Anthropic); model policy ladder.
 - `src/prompts/` -- Extraction prompt templates and loader.
 - `src/validation/` -- Pydantic-based schema validation.
-- `src/analytics/` -- Coverage calculation, gap analysis, flattening, baseline analytics.
-- `src/app/` -- Streamlit dashboard.
-- `assets/schema/` -- Schema v2.3 JSON schema and template.
-- `assets/prompts/` -- Extraction prompt markdown.
-- `docs/` -- ADRs, devlog, step tracker, meeting notes, handoff docs.
-- `scripts/` -- Standalone analytics CLI.
-- `tests/` -- Unit tests (`pytest`).
+- `src/analytics/` -- Coverage calculation, flattening, baseline analytics, combined exports.
+- `src/modeling/` -- Feature engineering, XGBoost/LogReg training, SHAP explainability, prediction.
+- `src/api/` -- FastAPI backend (predict, explain, health, apriori-rules endpoints).
+- `src/rag/` -- Hybrid RAG retrieval: embeddings, FAISS index, retriever, context builder, explainer.
+- `src/corpus/` -- corpus_v1 management (manifest, extract, clean).
+- `src/nlp/` -- Keyword-based LOC scoring.
+- `src/_legacy/` -- Quarantined V1 code (do not import in active code).
+- `frontend/` -- Next.js 15 frontend (App Router, TypeScript, Tailwind CSS).
+- `configs/` -- Source URL lists, model policy YAML, barrier/LOD display name mappings.
+- `scripts/` -- Standalone analytics and association mining scripts.
+- `docs/` -- ADRs, devlog, architecture docs, plans.
+- `tests/` -- Python unit tests (`pytest`).
 
 ## Workflow
 
