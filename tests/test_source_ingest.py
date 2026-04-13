@@ -23,14 +23,15 @@ from src.ingestion.source_ingest import (
 
 
 def _make_pdf_with_text(path: Path, text: str = "hello") -> None:
-    """Generate a tiny PDF containing *text* using reportlab."""
-    from reportlab.lib.pagesizes import letter
-    from reportlab.pdfgen import canvas
+    """Generate a tiny PDF containing *text* using fpdf2."""
+    from fpdf import FPDF
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    c = canvas.Canvas(str(path), pagesize=letter)
-    c.drawString(72, 720, text)
-    c.save()
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Helvetica", size=12)
+    pdf.text(10, 20, text)
+    pdf.output(str(path))
 
 
 # ── manifest round-trip ─────────────────────────────────────────────────
