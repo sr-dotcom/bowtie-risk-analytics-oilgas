@@ -19,6 +19,7 @@ to avoid blocking the event loop (D-07, API-05).
 import asyncio
 import json
 import logging
+import os
 import time
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -151,13 +152,18 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
         lifespan=lifespan_override or lifespan,
     )
 
-    # CORS — permissive for development; tighten origins in Phase 7 (D-05 discretion)
+    # CORS — restricted origins from env; defaults to localhost for dev
+    allowed_origins = [
+        o.strip()
+        for o in os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+        if o.strip()
+    ]
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=allowed_origins,
         allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
+        allow_methods=["GET", "POST"],
+        allow_headers=["Authorization", "Content-Type", "X-API-Key"],
     )
 
     # -----------------------------------------------------------------------
