@@ -92,5 +92,5 @@ class CrossEncoderReranker:
         for c, score in zip(candidates, scores):
             c.rerank_score = float(score)
 
-        candidates.sort(key=lambda r: (-r.rerank_score, -r.rrf_score))
+        candidates.sort(key=lambda r: (-(r.rerank_score or 0.0), -r.rrf_score))
         return candidates[:top_k]

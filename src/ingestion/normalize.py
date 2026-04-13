@@ -41,7 +41,7 @@ def normalize_v23_payload(payload: dict[str, Any]) -> dict[str, int]:
     # 2-5) bowtie.controls[]
     SIDE_MAP = {
         "left": "prevention", "prevention": "prevention", "prevent": "prevention",
-        "right": "mitigation", "mitigation": "mitigation", "mitigate": "mitigation", "recovery": "mitigation", "recovery": "mitigation",
+        "right": "mitigation", "mitigation": "mitigation", "mitigate": "mitigation", "recovery": "mitigation",
     }
     LOD_INT_MAP = {1: "1st", 2: "2nd", 3: "3rd", 4: "recovery"}
     LOD_ALLOWED = {"1st", "2nd", "3rd", "recovery", "unknown"}

@@ -44,7 +44,7 @@ def failure_rates(df: pd.DataFrame, group_col: str) -> dict:
 
 def co_occurrence_crosstab(df: pd.DataFrame) -> pd.DataFrame:
     """Crosstab of control names that co-occur as failed within the same incident."""
-    failed = df[df["barrier_failed"] == True][["incident_id", "name"]]
+    failed = df[df["barrier_failed"]][["incident_id", "name"]]
     if failed.empty:
         return pd.DataFrame()
 

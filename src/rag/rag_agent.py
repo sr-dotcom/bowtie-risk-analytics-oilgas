@@ -161,7 +161,7 @@ class RAGAgent:
             b_meta = self._find_barrier_meta(r)
             i_meta = self._incident_meta.get(r.incident_id, {})
 
-            supporting_text = []
+            supporting_text: list[str] = []
             raw = b_meta.get("supporting_text", "[]")
             try:
                 supporting_text = json.loads(raw) if raw else []

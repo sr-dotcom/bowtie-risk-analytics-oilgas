@@ -14,13 +14,14 @@ class SentenceTransformerProvider(EmbeddingProvider):
 
     def __init__(self, model_name: str = DEFAULT_MODEL) -> None:
         self._model = SentenceTransformer(model_name)
-        self._dimension = self._model.get_sentence_embedding_dimension()
+        dim = self._model.get_sentence_embedding_dimension()
+        self._dimension: int = dim if dim is not None else 0
 
     def embed(self, text: str) -> np.ndarray:
-        return self._model.encode(text, normalize_embeddings=True).astype(np.float32)
+        return np.asarray(self._model.encode(text, normalize_embeddings=True), dtype=np.float32)
 
     def embed_batch(self, texts: list[str]) -> np.ndarray:
-        return self._model.encode(texts, normalize_embeddings=True).astype(np.float32)
+        return np.asarray(self._model.encode(texts, normalize_embeddings=True), dtype=np.float32)
 
     @property
     def dimension(self) -> int:
