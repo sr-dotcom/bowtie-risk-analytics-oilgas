@@ -1,0 +1,139 @@
+{
+  "rules": [
+    {
+      "antecedent": "communication",
+      "consequent": "procedures",
+      "support": 0.071923,
+      "confidence": 0.732394,
+      "lift": 1.423444,
+      "count": 52
+    },
+    {
+      "antecedent": "hazard_analysis_prework_checks",
+      "consequent": "overpressurization_gas_discharge_gas_isolation",
+      "support": 0.102351,
+      "confidence": 0.643478,
+      "lift": 1.240626,
+      "count": 74
+    },
+    {
+      "antecedent": "hazard_analysis_prework_checks",
+      "consequent": "other_admin",
+      "support": 0.098202,
+      "confidence": 0.617391,
+      "lift": 1.243381,
+      "count": 71
+    },
+    {
+      "antecedent": "other_ppe",
+      "consequent": "procedures",
+      "support": 0.073306,
+      "confidence": 0.609195,
+      "lift": 1.184001,
+      "count": 53
+    },
+    {
+      "antecedent": "training",
+      "consequent": "procedures",
+      "support": 0.145228,
+      "confidence": 0.586592,
+      "lift": 1.14007,
+      "count": 105
+    },
+    {
+      "antecedent": "regulatory_and_permits",
+      "consequent": "other_admin",
+      "support": 0.095436,
+      "confidence": 0.584746,
+      "lift": 1.177636,
+      "count": 69
+    },
+    {
+      "antecedent": "other_ppe",
+      "consequent": "other_admin",
+      "support": 0.069156,
+      "confidence": 0.574713,
+      "lift": 1.15743,
+      "count": 50
+    },
+    {
+      "antecedent": "detection_monitoring_alarms",
+      "consequent": "overpressurization_gas_discharge_gas_isolation",
+      "support": 0.053942,
+      "confidence": 0.557143,
+      "lift": 1.074171,
+      "count": 39
+    },
+    {
+      "antecedent": "pressure_relief_blowdown_flare_disposal",
+      "consequent": "procedures",
+      "support": 0.056708,
+      "confidence": 0.554054,
+      "lift": 1.076831,
+      "count": 41
+    },
+    {
+      "antecedent": "regulatory_and_permits",
+      "consequent": "overpressurization_gas_discharge_gas_isolation",
+      "support": 0.08852,
+      "confidence": 0.542373,
+      "lift": 1.045695,
+      "count": 64
+    },
+    {
+      "antecedent": "pressure_relief_blowdown_flare_disposal",
+      "consequent": "overpressurization_gas_discharge_gas_isolation",
+      "support": 0.055325,
+      "confidence": 0.540541,
+      "lift": 1.042162,
+      "count": 40
+    },
+    {
+      "antecedent": "regulatory_and_permits",
+      "consequent": "procedures",
+      "support": 0.085754,
+      "confidence": 0.525424,
+      "lift": 1.021186,
+      "count": 62
+    },
+    {
+      "antecedent": "training",
+      "consequent": "other_admin",
+      "support": 0.130014,
+      "confidence": 0.52514,
+      "lift": 1.057593,
+      "count": 94
+    },
+    {
+      "antecedent": "other_admin",
+      "consequent": "procedures",
+      "support": 0.260028,
+      "confidence": 0.523677,
+      "lift": 1.017791,
+      "count": 188
+    },
+    {
+      "antecedent": "pressure_relief_blowdown_flare_disposal",
+      "consequent": "other_admin",
+      "support": 0.052559,
+      "confidence": 0.513514,
+      "lift": 1.034179,
+      "count": 38
+    },
+    {
+      "antecedent": "procedures",
+      "consequent": "other_admin",
+      "support": 0.260028,
+      "confidence": 0.505376,
+      "lift": 1.017791,
+      "count": 188
+    }
+  ],
+  "metadata": {
+    "n_incidents": 723,
+    "min_support": 0.05,
+    "min_confidence": 0.5,
+    "min_lift": 1.0,
+    "generated_at": "2026-04-06T03:37:03.920164+00:00"
+  }
+}

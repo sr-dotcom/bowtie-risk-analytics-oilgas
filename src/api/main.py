@@ -94,7 +94,7 @@ async def lifespan(app: FastAPI):  # type: ignore[type-arg]
     logger.info("MappingConfig loaded from configs/mappings/")
 
     # Load Apriori co-failure rules (S03)
-    apriori_rules_path = ARTIFACTS_DIR / "apriori_rules.json"
+    apriori_rules_path = Path("data/evaluation/apriori_rules.json")
     if apriori_rules_path.exists():
         with open(apriori_rules_path) as f:
             apriori_data = json.load(f)
