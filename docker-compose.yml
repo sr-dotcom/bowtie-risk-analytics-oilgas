@@ -39,7 +39,7 @@ services:
       - bowtie-net
 
   nginx:
-    image: nginx:alpine
+    image: nginx:alpine@sha256:c1263cc56873d66f381fd07149aa0dc7244dd7c941334cd18473c46509f08465
     ports:
       - "80:80"
     volumes:

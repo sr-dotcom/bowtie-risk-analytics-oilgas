@@ -1,6 +1,6 @@
 # Bowtie Risk Analytics — API Dockerfile
 # python:3.12-slim required: torch wheel is cp312 only
-FROM python:3.12-slim
+FROM python:3.12-slim@sha256:e31013b9573989b2dc2f0cb688044c9e650c2721dd52c54d0fd3c669d3548bb6
 
 # --- System dependencies ---
 # curl: HEALTHCHECK; gcc/g++: numba/llvmlite compile; git: huggingface_hub

@@ -3,7 +3,7 @@
 # Requires output: 'standalone' in frontend/next.config.ts.
 
 # ---- Stage 1: builder ----
-FROM node:20-alpine AS builder
+FROM node:20-alpine@sha256:42d1d5b07c84257b55d409f4e6e3be3b55d42867afce975a5648a3f231bf7e81 AS builder
 
 WORKDIR /app
 
@@ -22,7 +22,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
 # ---- Stage 2: runner ----
-FROM node:20-alpine AS runner
+FROM node:20-alpine@sha256:42d1d5b07c84257b55d409f4e6e3be3b55d42867afce975a5648a3f231bf7e81 AS runner
 
 WORKDIR /app
 
