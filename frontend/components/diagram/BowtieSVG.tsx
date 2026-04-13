@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 
 // ---------------------------------------------------------------------------
-// Types
+// Types (unchanged — same props interface)
 // ---------------------------------------------------------------------------
 
 interface Threat {
@@ -40,29 +40,44 @@ export interface BowtieSVGProps {
 }
 
 // ---------------------------------------------------------------------------
-// Constants (BowTieXP visual spec)
+// Visual constants — BowTieXP standard
 // ---------------------------------------------------------------------------
 
-const THREAT_X = 30
-const THREAT_W = 200
-const THREAT_H = 115
-const BARRIER_START_X = 340   // unused after Task 1 — kept for reference
-const BARRIER_W = 180
-const BARRIER_H = 90
-const BARRIER_GAP_X = 30      // unused after Task 1 — kept for reference
-const TOP_EVENT_CX = 700
-const TOP_EVENT_R = 80
-const MIT_START_X = TOP_EVENT_CX + TOP_EVENT_R + 100 // unused after Task 1 — kept for reference
-const CONSEQUENCE_X = 1300
-const CONSEQUENCE_W = 200
-const CONSEQUENCE_H = 90
+const FONT = '"Segoe UI", Arial, sans-serif'
 
-const BLUE = '#0000EE'
-const DARK_BLUE = '#0000CC'
-const LINE_COLOR = '#AAA'
+const TOP_EVENT_R = 50
+const HAZARD_W = 140
+const HAZARD_H = 40
+const THREAT_W = 120
+const THREAT_H = 48
+const CONSEQUENCE_W = 120
+const CONSEQUENCE_H = 48
+const BAR_W = 32
+const BAR_H = 72
+const PADDING = 40
+const THREAT_COL_W = 130
+const TOP_EVENT_COL_W = 120
+const CONSEQUENCE_COL_W = 130
 
 // ---------------------------------------------------------------------------
-// Helpers
+// Color helpers
+// ---------------------------------------------------------------------------
+
+function riskFill(level: string | null | undefined): string {
+  switch (level) {
+    case 'High':
+      return '#F44336'
+    case 'Medium':
+      return '#FFC107'
+    case 'Low':
+      return '#4CAF50'
+    default:
+      return '#9E9E9E'
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Text wrapping
 // ---------------------------------------------------------------------------
 
 function wrapText(text: string, maxChars: number): string[] {
@@ -81,71 +96,25 @@ function wrapText(text: string, maxChars: number): string[] {
   return lines
 }
 
-function typeInfo(t: string): { color: string; label: string } {
-  switch (t) {
-    case 'engineering':
-      return { color: '#3B82F6', label: 'Engineered' }
-    case 'administrative':
-      return { color: '#94A3B8', label: 'Administrative' }
-    case 'ppe':
-      return { color: '#22C55E', label: 'Behavioural' }
-    case 'active_human':
-      return { color: '#14B8A6', label: 'Active Human' }
-    case 'active_hw_human':
-      return { color: '#6366F1', label: 'HW + Human' }
-    default:
-      return { color: '#94A3B8', label: t.replace(/_/g, ' ') }
-  }
-}
-
-function contribInfo(c: 'high' | 'medium' | 'low') {
-  switch (c) {
-    case 'high':
-      return { color: '#DC2626', label: 'High Contribution' }
-    case 'medium':
-      return { color: '#F59E0B', label: 'Medium Contribution' }
-    case 'low':
-      return { color: '#F59E0B', label: 'Low Contribution' }
-  }
-}
-
-function riskColor(level: string | null | undefined): string {
-  switch (level) {
-    case 'High':
-      return '#EF4444'
-    case 'Medium':
-      return '#F59E0B'
-    case 'Low':
-      return '#22C55E'
-    default:
-      return '#94A3B8'
-  }
-}
-
-/** Cubic bezier S-curve from (x1,y1) to (x2,y2) */
-function sCurve(x1: number, y1: number, x2: number, y2: number): string {
-  const dx = x2 - x1
-  return `M ${x1} ${y1} C ${x1 + dx * 0.25} ${y1}, ${x1 + dx * 0.75} ${y2}, ${x2} ${y2}`
-}
-
 // ---------------------------------------------------------------------------
-// Layout computation
+// Layout engine
 // ---------------------------------------------------------------------------
 
 interface PositionedThreat extends Threat {
-  x: number
-  y: number
+  cx: number
   cy: number
 }
+
 interface PositionedConsequence extends Consequence {
-  x: number
-  y: number
+  cx: number
   cy: number
 }
+
 interface PositionedBarrier extends BarrierInput {
-  x: number
-  y: number
+  barX: number
+  barY: number
   cy: number
+  pathwayY: number
 }
 
 function computeLayout(
@@ -153,122 +122,144 @@ function computeLayout(
   consequences: Consequence[],
   barriers: BarrierInput[],
 ) {
-  const rows = Math.max(threats.length, consequences.length, 1)
-  const H = rows * 300 + 100
-  const CY = H / 2
+  const threatCount = Math.max(threats.length, 1)
+  const consCount = Math.max(consequences.length, 1)
 
-  // Vertical distribution for a set of boxes
-  function spreadY(count: number, boxH: number): number[] {
-    if (count <= 0) return []
-    if (count === 1) return [CY - boxH / 2]
-    const totalSpace = H - 160
-    const slot = totalSpace / count
-    return Array.from({ length: count }, (_, i) => 80 + i * slot + (slot - boxH) / 2)
-  }
+  // Group barriers by side
+  const prevBarriers = barriers.filter((b) => b.side === 'prevention')
+  const mitBarriers = barriers.filter((b) => b.side === 'mitigation')
 
-  const tPos: PositionedThreat[] = threats.map((t, i) => {
-    const ys = spreadY(threats.length, THREAT_H)
-    return { ...t, x: THREAT_X, y: ys[i], cy: ys[i] + THREAT_H / 2 }
-  })
-
-  const cPos: PositionedConsequence[] = consequences.map((c, i) => {
-    const ys = spreadY(consequences.length, CONSEQUENCE_H)
-    return { ...c, x: CONSEQUENCE_X, y: ys[i], cy: ys[i] + CONSEQUENCE_H / 2 }
-  })
-
-  // Group prevention barriers by threat (round-robin if no threatId)
-  const prev = barriers.filter((b) => b.side === 'prevention')
-  const mit = barriers.filter((b) => b.side === 'mitigation')
-
+  // Assign prevention barriers to threats
   const prevByThreat = new Map<string, BarrierInput[]>()
   for (const t of threats) prevByThreat.set(t.id, [])
-
-  for (const b of prev) {
+  for (const b of prevBarriers) {
     if (b.threatId && prevByThreat.has(b.threatId)) {
       prevByThreat.get(b.threatId)!.push(b)
     } else if (threats.length > 0) {
-      // Find threat with fewest barriers
       let minId = threats[0].id
       let minN = Infinity
       for (const [id, bs] of prevByThreat) {
-        if (bs.length < minN) {
-          minN = bs.length
-          minId = id
-        }
+        if (bs.length < minN) { minN = bs.length; minId = id }
       }
       prevByThreat.get(minId)!.push(b)
     }
   }
 
-  // Position prevention barriers along each threat → top-event pathway.
-  // For each threat, divide the horizontal space [threat_right, top_event_left_tangent]
-  // into (n+1) equal segments; barrier j sits at segment (j+1).
-  // Y is linearly interpolated along the straight line from threat cy to CY at that X.
+  // Assign mitigation barriers to consequences (round-robin)
+  const mitByCons = new Map<string, BarrierInput[]>()
+  for (const c of consequences) mitByCons.set(c.id, [])
+  if (consequences.length > 0) {
+    for (let j = 0; j < mitBarriers.length; j++) {
+      const targetId = consequences[j % consequences.length].id
+      mitByCons.get(targetId)!.push(mitBarriers[j])
+    }
+  }
+
+  // Compute max barrier counts per side
+  let maxLeftBarriers = 0
+  for (const bs of prevByThreat.values()) maxLeftBarriers = Math.max(maxLeftBarriers, bs.length)
+  let maxRightBarriers = 0
+  for (const bs of mitByCons.values()) maxRightBarriers = Math.max(maxRightBarriers, bs.length)
+
+  const leftBarrierZoneW = Math.max(60, maxLeftBarriers * 50)
+  const rightBarrierZoneW = Math.max(60, maxRightBarriers * 50)
+
+  const canvasWidth =
+    PADDING + THREAT_COL_W + leftBarrierZoneW + TOP_EVENT_COL_W +
+    rightBarrierZoneW + CONSEQUENCE_COL_W + PADDING
+
+  const canvasHeight = Math.max(
+    300,
+    Math.max(threatCount, consCount) * 100 + 80,
+  )
+
+  const topEventCX = PADDING + THREAT_COL_W + leftBarrierZoneW + TOP_EVENT_COL_W / 2
+  const topEventCY = canvasHeight / 2
+
+  // Vertical spread
+  function spreadY(count: number): number[] {
+    const ys: number[] = []
+    for (let i = 0; i < count; i++) {
+      ys.push(40 + ((canvasHeight - 80) / (count + 1)) * (i + 1))
+    }
+    return ys
+  }
+
+  const threatYs = spreadY(threats.length)
+  const consYs = spreadY(consequences.length)
+
+  const tPos: PositionedThreat[] = threats.map((t, i) => ({
+    ...t,
+    cx: PADDING + THREAT_COL_W / 2,
+    cy: threatYs[i],
+  }))
+
+  const cPos: PositionedConsequence[] = consequences.map((c, i) => ({
+    ...c,
+    cx: canvasWidth - PADDING - CONSEQUENCE_COL_W / 2,
+    cy: consYs[i],
+  }))
+
+  // Position barriers on pathways
   const bPos: PositionedBarrier[] = []
 
-  const prevStartX = THREAT_X + THREAT_W          // 230 — threat right edge
-  const prevEndX   = TOP_EVENT_CX - TOP_EVENT_R   // 620 — top-event left tangent
+  const leftZoneStart = PADDING + THREAT_COL_W
+  const leftZoneEnd = leftZoneStart + leftBarrierZoneW
+  const rightZoneStart = leftZoneEnd + TOP_EVENT_COL_W
+  const rightZoneEnd = rightZoneStart + rightBarrierZoneW
 
   for (const tp of tPos) {
     const bs = prevByThreat.get(tp.id) ?? []
     const n = bs.length
     if (n === 0) continue
-
-    const segW = (prevEndX - prevStartX) / (n + 1)
-
-    for (let j = 0; j < n; j++) {
-      const bCenterX = prevStartX + (j + 1) * segW
-      const bx       = bCenterX - BARRIER_W / 2
-      const tParam   = (bCenterX - prevStartX) / (prevEndX - prevStartX)
-      const bCenterY = tp.cy + tParam * (CY - tp.cy)
-      const by       = bCenterY - BARRIER_H / 2
-      bPos.push({ ...bs[j], x: bx, y: by, cy: bCenterY })
-    }
-  }
-
-  // Position mitigation barriers fanning out toward consequences.
-  // Assign round-robin to consequences, then distribute each group along
-  // the straight line from top-event right tangent to its consequence.
-  const mitStartX = TOP_EVENT_CX + TOP_EVENT_R   // 780
-  const mitEndX   = CONSEQUENCE_X                // 1300
-
-  const mitByConsequence = new Map<string, BarrierInput[]>()
-  for (const c of consequences) mitByConsequence.set(c.id, [])
-
-  // Round-robin assignment (or single bucket if no consequences)
-  if (cPos.length > 0) {
-    for (let j = 0; j < mit.length; j++) {
-      const targetId = cPos[j % cPos.length].id
-      mitByConsequence.get(targetId)!.push(mit[j])
+    const spacing = leftBarrierZoneW / (n + 1)
+    for (let k = 0; k < n; k++) {
+      const centerX = leftZoneStart + spacing * (k + 1)
+      bPos.push({
+        ...bs[k],
+        barX: centerX - BAR_W / 2,
+        barY: tp.cy - BAR_H / 2,
+        cy: tp.cy,
+        pathwayY: tp.cy,
+      })
     }
   }
 
   for (const cp of cPos) {
-    const bs = mitByConsequence.get(cp.id) ?? []
-    const n  = bs.length
+    const bs = mitByCons.get(cp.id) ?? []
+    const n = bs.length
     if (n === 0) continue
-
-    const segW = (mitEndX - mitStartX) / (n + 1)
-
-    for (let j = 0; j < n; j++) {
-      const bCenterX = mitStartX + (j + 1) * segW
-      const bx       = bCenterX - BARRIER_W / 2
-      const tParam   = (bCenterX - mitStartX) / (mitEndX - mitStartX)
-      const bCenterY = CY + tParam * (cp.cy - CY)
-      const by       = bCenterY - BARRIER_H / 2
-      bPos.push({ ...bs[j], x: bx, y: by, cy: bCenterY })
+    const spacing = rightBarrierZoneW / (n + 1)
+    for (let k = 0; k < n; k++) {
+      const centerX = rightZoneStart + spacing * (k + 1)
+      bPos.push({
+        ...bs[k],
+        barX: centerX - BAR_W / 2,
+        barY: cp.cy - BAR_H / 2,
+        cy: cp.cy,
+        pathwayY: cp.cy,
+      })
     }
   }
 
-  return { H, CY, tPos, cPos, bPos, prevByThreat, mitByConsequence }
+  return {
+    canvasWidth,
+    canvasHeight,
+    topEventCX,
+    topEventCY,
+    tPos,
+    cPos,
+    bPos,
+    prevByThreat,
+    mitByCons,
+    leftZoneEnd,
+    rightZoneStart,
+  }
 }
 
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
-
-const HAZARD_W = 160
-const HAZARD_H = 40
 
 export default function BowtieSVG({
   topEvent,
@@ -286,73 +277,40 @@ export default function BowtieSVG({
     [threats, consequences, barriers],
   )
 
-  const { H, CY, tPos, cPos, bPos, prevByThreat, mitByConsequence } = layout
+  const {
+    canvasWidth,
+    canvasHeight,
+    topEventCX,
+    topEventCY,
+    tPos,
+    cPos,
+    bPos,
+    prevByThreat,
+    mitByCons,
+    leftZoneEnd,
+    rightZoneStart,
+  } = layout
 
-  // Top event text lines
-  const teLines = wrapText(topEvent, 12)
+  const teLines = wrapText(topEvent, 10)
+  const hazardLabel = hazardName || 'Hazard'
+  const hazardX = topEventCX - HAZARD_W / 2
+  const hazardY = topEventCY - TOP_EVENT_R - 12 - HAZARD_H
 
-  // ---- Build pathway curves ----
-  const paths: Array<{ d: string }> = []
+  // Build two-segment pathway lines
+  const pathLines: Array<{ d: string }> = []
 
-  // Prevention pathways: threat → barriers → top event
+  // Prevention side: threat right edge → horizontal to leftZoneEnd → diagonal to top event center
   for (const tp of tPos) {
-    const bs = (prevByThreat.get(tp.id) ?? [])
-      .map((b) => bPos.find((bp) => bp.id === b.id))
-      .filter(Boolean) as PositionedBarrier[]
-
-    // Sorted by x position
-    bs.sort((a, b) => a.x - b.x)
-
-    if (bs.length === 0) {
-      // Direct: threat right edge → top event left tangent
-      const tx = TOP_EVENT_CX - TOP_EVENT_R
-      paths.push({ d: sCurve(THREAT_X + THREAT_W, tp.cy, tx, CY) })
-    } else {
-      // Threat → first barrier
-      paths.push({
-        d: sCurve(THREAT_X + THREAT_W, tp.cy, bs[0].x, bs[0].cy),
-      })
-      // Between consecutive barriers
-      for (let i = 0; i < bs.length - 1; i++) {
-        paths.push({
-          d: sCurve(bs[i].x + BARRIER_W, bs[i].cy, bs[i + 1].x, bs[i + 1].cy),
-        })
-      }
-      // Last barrier → top event left tangent
-      const last = bs[bs.length - 1]
-      const dx = TOP_EVENT_CX - (last.x + BARRIER_W)
-      const dy = CY - last.cy
-      const dist = Math.sqrt(dx * dx + dy * dy)
-      const tx = TOP_EVENT_CX - TOP_EVENT_R * (dx / dist)
-      const ty = CY - TOP_EVENT_R * (dy / dist)
-      paths.push({ d: sCurve(last.x + BARRIER_W, last.cy, tx, ty) })
-    }
+    const threatRightX = tp.cx + THREAT_W / 2
+    const d = `M ${threatRightX},${tp.cy} L ${leftZoneEnd},${tp.cy} L ${topEventCX},${topEventCY}`
+    pathLines.push({ d })
   }
 
-  // Mitigation pathways: one chain per consequence (mirrors prevention side)
+  // Mitigation side: top event center → diagonal to rightZoneStart → horizontal to consequence left edge
   for (const cp of cPos) {
-    const bs = (mitByConsequence.get(cp.id) ?? [])
-      .map((b) => bPos.find((bp) => bp.id === b.id))
-      .filter(Boolean) as PositionedBarrier[]
-
-    bs.sort((a, b) => a.x - b.x)
-
-    if (bs.length === 0) {
-      // Direct: top event right tangent → consequence
-      paths.push({ d: sCurve(TOP_EVENT_CX + TOP_EVENT_R, CY, cp.x, cp.cy) })
-    } else {
-      // Top event → first barrier left edge
-      paths.push({ d: sCurve(TOP_EVENT_CX + TOP_EVENT_R, CY, bs[0].x, bs[0].cy) })
-      // Between consecutive barriers
-      for (let i = 0; i < bs.length - 1; i++) {
-        paths.push({
-          d: sCurve(bs[i].x + BARRIER_W, bs[i].cy, bs[i + 1].x, bs[i + 1].cy),
-        })
-      }
-      // Last barrier right edge → consequence
-      const last = bs[bs.length - 1]
-      paths.push({ d: sCurve(last.x + BARRIER_W, last.cy, cp.x, cp.cy) })
-    }
+    const consLeftX = cp.cx - CONSEQUENCE_W / 2
+    const d = `M ${topEventCX},${topEventCY} L ${rightZoneStart},${cp.cy} L ${consLeftX},${cp.cy}`
+    pathLines.push({ d })
   }
 
   return (
@@ -361,7 +319,7 @@ export default function BowtieSVG({
         width: '100%',
         height: '100%',
         overflow: 'auto',
-        background: '#E0E0E0',
+        background: '#FFFFFF',
         position: 'relative',
       }}
     >
@@ -369,305 +327,236 @@ export default function BowtieSVG({
         style={{
           transform: `scale(${zoom})`,
           transformOrigin: '0 0',
-          minWidth: 1600,
+          minWidth: canvasWidth,
         }}
       >
         <svg
-          viewBox={`0 0 1600 ${H}`}
+          viewBox={`0 0 ${canvasWidth} ${canvasHeight}`}
           width="100%"
-          style={{ fontFamily: 'Arial, sans-serif', display: 'block' }}
+          style={{ fontFamily: FONT, display: 'block' }}
         >
           <defs>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            <filter id="barrier-shadow" x="-5%" y="-5%" width="110%" height="110%">
-              <feDropShadow dx="1" dy="1" stdDeviation="2" floodOpacity="0.15" />
-            </filter>
-            <pattern id="hazard-stripes" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-              <rect width="5" height="10" fill="#FFD600" />
-              <rect x="5" width="5" height="10" fill="#222" />
+            <pattern
+              id="hazard-stripes"
+              width="10"
+              height="10"
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(45)"
+            >
+              <rect width="5" height="10" fill="#FFC107" />
+              <rect x="5" width="5" height="10" fill="#000" />
             </pattern>
           </defs>
 
-          {/* ===== LAYER 1: Pathway curves ===== */}
-          {paths.map((p, i) => (
+          {/* Layer 1: Background */}
+          <rect width={canvasWidth} height={canvasHeight} fill="#FFFFFF" />
+
+          {/* Layer 2: Pathway lines */}
+          {pathLines.map((p, i) => (
             <path
               key={`path-${i}`}
               d={p.d}
-              stroke={LINE_COLOR}
-              strokeWidth={2}
+              stroke="#333333"
+              strokeWidth={1.5}
               fill="none"
             />
           ))}
 
-          {/* ===== LAYER 2: Barrier blocks (stripe integrated) ===== */}
+          {/* Layer 3: Hazard connecting line */}
+          <line
+            x1={topEventCX}
+            y1={hazardY + HAZARD_H}
+            x2={topEventCX}
+            y2={topEventCY - TOP_EVENT_R}
+            stroke="#333333"
+            strokeWidth={1.5}
+          />
+
+          {/* Layer 4: Hazard box */}
+          <rect
+            x={hazardX}
+            y={hazardY}
+            width={HAZARD_W}
+            height={HAZARD_H}
+            fill="url(#hazard-stripes)"
+            stroke="#F57F17"
+            strokeWidth={2}
+          />
+          <text
+            x={topEventCX}
+            y={hazardY + HAZARD_H / 2 + 5}
+            textAnchor="middle"
+            fill="#000"
+            fontSize={12}
+            fontWeight={700}
+          >
+            {hazardLabel}
+          </text>
+
+          {/* Layer 5: Top event circle */}
+          <circle
+            cx={topEventCX}
+            cy={topEventCY}
+            r={TOP_EVENT_R}
+            fill="#D32F2F"
+            stroke="#B71C1C"
+            strokeWidth={2}
+          />
+          {teLines.slice(0, 4).map((line, i) => {
+            const totalLines = Math.min(teLines.length, 4)
+            const lineH = 15
+            const blockH = totalLines * lineH
+            const startY = topEventCY - blockH / 2 + lineH / 2
+            return (
+              <text
+                key={`te-${i}`}
+                x={topEventCX}
+                y={startY + i * lineH}
+                textAnchor="middle"
+                dominantBaseline="central"
+                fill="white"
+                fontSize={13}
+                fontWeight={700}
+              >
+                {line}
+              </text>
+            )
+          })}
+
+          {/* Layer 6: Threat boxes */}
+          {tPos.map((t) => {
+            const lines = wrapText(t.name, 12)
+            const tx = t.cx - THREAT_W / 2
+            const ty = t.cy - THREAT_H / 2
+            return (
+              <g key={`t-${t.id}`}>
+                <rect
+                  x={tx}
+                  y={ty}
+                  width={THREAT_W}
+                  height={THREAT_H}
+                  fill="#1976D2"
+                  stroke="#0D47A1"
+                  strokeWidth={1.5}
+                  rx={2}
+                />
+                {lines.map((line, li) => {
+                  const totalLines = lines.length
+                  const lineH = 14
+                  const blockH = totalLines * lineH
+                  const startY = t.cy - blockH / 2 + lineH / 2
+                  return (
+                    <text
+                      key={li}
+                      x={t.cx}
+                      y={startY + li * lineH}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      fill="white"
+                      fontSize={11}
+                      fontWeight={600}
+                    >
+                      {line}
+                    </text>
+                  )
+                })}
+              </g>
+            )
+          })}
+
+          {/* Layer 7: Consequence boxes */}
+          {cPos.map((c) => {
+            const lines = wrapText(c.name, 12)
+            const cx = c.cx - CONSEQUENCE_W / 2
+            const cy = c.cy - CONSEQUENCE_H / 2
+            return (
+              <g key={`c-${c.id}`}>
+                <rect
+                  x={cx}
+                  y={cy}
+                  width={CONSEQUENCE_W}
+                  height={CONSEQUENCE_H}
+                  fill="#D32F2F"
+                  stroke="#B71C1C"
+                  strokeWidth={1.5}
+                  rx={2}
+                />
+                {lines.map((line, li) => {
+                  const totalLines = lines.length
+                  const lineH = 14
+                  const blockH = totalLines * lineH
+                  const startY = c.cy - blockH / 2 + lineH / 2
+                  return (
+                    <text
+                      key={li}
+                      x={c.cx}
+                      y={startY + li * lineH}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      fill="white"
+                      fontSize={11}
+                      fontWeight={600}
+                    >
+                      {line}
+                    </text>
+                  )
+                })}
+              </g>
+            )
+          })}
+
+          {/* Layer 8: Barrier bars */}
           {bPos.map((b) => {
-            const ti = typeInfo(b.barrier_type)
-            const nameLines = wrapText(b.name, 22)
             const isSelected = b.id === selectedBarrierId
+            const fill = riskFill(b.risk_level)
             return (
               <g
                 key={`b-${b.id}`}
                 style={{ cursor: 'pointer' }}
                 onClick={() => onBarrierClick(b.id)}
               >
-                {/* Selection glow — behind everything */}
                 {isSelected && (
                   <rect
-                    x={b.x - 4}
-                    y={b.y - 4}
-                    width={BARRIER_W + 8}
-                    height={BARRIER_H + 8}
+                    x={b.barX - 3}
+                    y={b.barY - 3}
+                    width={BAR_W + 6}
+                    height={BAR_H + 6}
                     fill="none"
-                    stroke="#3B82F6"
-                    strokeWidth={2.5}
-                    rx={3}
-                    opacity={0.6}
-                    filter="url(#glow)"
+                    stroke="#FF6F00"
+                    strokeWidth={3}
+                    rx={2}
                   />
                 )}
-                {/* White barrier body */}
                 <rect
-                  x={b.x}
-                  y={b.y}
-                  width={BARRIER_W}
-                  height={BARRIER_H}
-                  fill="white"
-                  stroke={isSelected ? '#3B82F6' : '#999'}
-                  strokeWidth={isSelected ? 1.5 : 0.5}
-                  filter="url(#barrier-shadow)"
+                  x={b.barX}
+                  y={b.barY}
+                  width={BAR_W}
+                  height={BAR_H}
+                  fill={fill}
+                  stroke="#616161"
+                  strokeWidth={1}
                 />
-                {/* Status indicator — 3 small rects at top of barrier */}
-                {[0, 1, 2].map((idx) => (
-                  <rect
-                    key={`ind-${idx}`}
-                    x={b.x + 8 + idx * 16}
-                    y={b.y + 4}
-                    width={12}
-                    height={8}
-                    fill={riskColor(b.risk_level)}
-                    rx={1}
-                  />
-                ))}
-                {/* Row 1: Name */}
-                {nameLines.map((line, li) => (
-                  <text
-                    key={li}
-                    x={b.x + 8}
-                    y={b.y + 26 + li * 15}
-                    fill={BLUE}
-                    fontSize={13}
-                    fontWeight={700}
-                  >
-                    {line}
-                  </text>
-                ))}
-                {/* Separator 1 */}
-                <line
-                  x1={b.x}
-                  y1={b.y + 24 + nameLines.length * 15}
-                  x2={b.x + BARRIER_W}
-                  y2={b.y + 24 + nameLines.length * 15}
-                  stroke="#DDD"
-                  strokeWidth={0.5}
-                />
-                {/* Row 2: Role (underlined) */}
-                {b.barrier_role && (
-                  <text
-                    x={b.x + 8}
-                    y={b.y + 38 + nameLines.length * 15}
-                    fill={BLUE}
-                    fontSize={11}
-                    textDecoration="underline"
-                  >
-                    {b.barrier_role}
-                  </text>
-                )}
-                {/* Separator 2 */}
-                <line
-                  x1={b.x}
-                  y1={b.y + BARRIER_H - 22}
-                  x2={b.x + BARRIER_W}
-                  y2={b.y + BARRIER_H - 22}
-                  stroke="#DDD"
-                  strokeWidth={0.5}
-                />
-                {/* Row 3: Type indicator */}
-                <rect
-                  x={b.x + 8}
-                  y={b.y + BARRIER_H - 18}
-                  width={12}
-                  height={12}
-                  fill={ti.color}
-                  rx={1}
-                />
-                <text
-                  x={b.x + 24}
-                  y={b.y + BARRIER_H - 8}
-                  fill={BLUE}
-                  fontSize={10}
-                >
-                  {ti.label}
-                </text>
               </g>
             )
           })}
 
-          {/* ===== LAYER 4: Threat boxes ===== */}
-          {tPos.map((t) => {
-            const ci = contribInfo(t.contribution)
-            const nameLines = wrapText(t.name, 18)
-            return (
-              <g key={`t-${t.id}`}>
-                <rect
-                  x={t.x}
-                  y={t.y}
-                  width={THREAT_W}
-                  height={THREAT_H}
-                  fill="#1565C0"
-                  stroke="#0D47A1"
-                  strokeWidth={1.5}
-                />
-                {nameLines.map((line, li) => (
-                  <text
-                    key={li}
-                    x={t.x + THREAT_W / 2}
-                    y={t.y + 24 + li * 18}
-                    textAnchor="middle"
-                    fill="white"
-                    fontSize={15}
-                    fontWeight={700}
-                  >
-                    {line}
-                  </text>
-                ))}
-                {/* Contribution badge */}
-                <rect
-                  x={t.x + 20}
-                  y={t.y + THREAT_H - 30}
-                  width={14}
-                  height={14}
-                  fill={ci.color}
-                  rx={1}
-                />
-                <text
-                  x={t.x + 40}
-                  y={t.y + THREAT_H - 18}
-                  fill="white"
-                  fontSize={11}
-                  fontWeight={700}
-                >
-                  {ci.label}
-                </text>
-              </g>
-            )
-          })}
-
-          {/* ===== LAYER 5a: Hazard box above top event ===== */}
-          {(() => {
-            const hx = TOP_EVENT_CX - HAZARD_W / 2
-            const hy = CY - TOP_EVENT_R - 60 - HAZARD_H
-            const hLabel = hazardName || 'Hazard'
-            return (
-              <g>
-                <rect
-                  x={hx}
-                  y={hy}
-                  width={HAZARD_W}
-                  height={HAZARD_H}
-                  fill="url(#hazard-stripes)"
-                  stroke="#222"
-                  strokeWidth={1.5}
-                  rx={2}
-                />
-                <text
-                  x={TOP_EVENT_CX}
-                  y={hy + HAZARD_H / 2 + 5}
-                  textAnchor="middle"
-                  fill="#222"
-                  fontSize={13}
-                  fontWeight={700}
-                >
-                  {hLabel}
-                </text>
-                <line
-                  x1={TOP_EVENT_CX}
-                  y1={hy + HAZARD_H}
-                  x2={TOP_EVENT_CX}
-                  y2={CY - TOP_EVENT_R}
-                  stroke="#666"
-                  strokeWidth={1.5}
-                />
-              </g>
-            )
-          })()}
-
-          {/* ===== LAYER 5b: Top Event ===== */}
-          <circle
-            cx={TOP_EVENT_CX}
-            cy={CY}
-            r={TOP_EVENT_R}
-            fill="#FF6B00"
-            stroke="#CC5500"
-            strokeWidth={2}
-          />
-          {teLines.slice(0, 3).map((line, i) => (
-            <text
-              key={`te-${i}`}
-              x={TOP_EVENT_CX}
-              y={CY - 12 + i * 16}
-              textAnchor="middle"
-              fill="white"
-              fontSize={13}
-              fontWeight={700}
-            >
-              {line}
-            </text>
-          ))}
-          <text
-            x={TOP_EVENT_CX}
-            y={CY + 34}
-            textAnchor="middle"
-            fill="rgba(255,255,255,0.7)"
-            fontSize={9}
-          >
-            (Top Event)
-          </text>
-
-          {/* ===== LAYER 6: Consequence boxes ===== */}
-          {cPos.map((c) => {
-            const nameLines = wrapText(c.name, 20)
-            return (
-              <g key={`c-${c.id}`}>
-                <rect
-                  x={c.x}
-                  y={c.y}
-                  width={CONSEQUENCE_W}
-                  height={CONSEQUENCE_H}
-                  fill="#C62828"
-                  stroke="#B71C1C"
-                  strokeWidth={1.5}
-                />
-                {nameLines.map((line, li) => (
-                  <text
-                    key={li}
-                    x={c.x + CONSEQUENCE_W / 2}
-                    y={c.y + 24 + li * 18}
-                    textAnchor="middle"
-                    fill="white"
-                    fontSize={14}
-                    fontWeight={700}
-                  >
-                    {line}
-                  </text>
-                ))}
-              </g>
-            )
+          {/* Layer 9: Barrier name labels below bars */}
+          {bPos.map((b) => {
+            const lines = wrapText(b.name, 8)
+            const labelX = b.barX + BAR_W / 2
+            const labelY = b.barY + BAR_H + 14
+            return lines.map((line, li) => (
+              <text
+                key={`bl-${b.id}-${li}`}
+                x={labelX}
+                y={labelY + li * 11}
+                textAnchor="middle"
+                fill="#333333"
+                fontSize={9}
+              >
+                {line}
+              </text>
+            ))
           })}
         </svg>
       </div>
@@ -685,10 +574,7 @@ export default function BowtieSVG({
         {[
           { label: '+', fn: () => setZoom((z) => Math.min(z + 0.1, 2)) },
           { label: '\u2212', fn: () => setZoom((z) => Math.max(z - 0.1, 0.5)) },
-          {
-            label: '\u2b1c',
-            fn: () => setZoom(1),
-          },
+          { label: '\u2b1c', fn: () => setZoom(1) },
         ].map((btn) => (
           <button
             key={btn.label}
