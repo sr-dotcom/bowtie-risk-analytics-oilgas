@@ -41,6 +41,11 @@ COPY data/models/artifacts/ /app/data/models/artifacts/
 # RAG workspace: FAISS indexes + corpus CSVs
 COPY data/evaluation/rag_workspace/ /app/data/evaluation/rag_workspace/
 
+# --- Non-root user ---
+RUN groupadd --system appuser && useradd --system --gid appuser appuser \
+    && chown -R appuser:appuser /app
+USER appuser
+
 # --- Runtime configuration ---
 # Port
 EXPOSE 8000
