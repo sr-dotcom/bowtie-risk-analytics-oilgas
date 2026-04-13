@@ -10,7 +10,7 @@ Schema decisions are from 05-CONTEXT.md:
 """
 from __future__ import annotations
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 # ---------------------------------------------------------------------------
@@ -39,31 +39,31 @@ class PredictRequest(BaseModel):
     model_config = ConfigDict(strict=False)
 
     # Barrier-level categoricals (required)
-    side: str
-    barrier_type: str
-    line_of_defense: str
-    barrier_family: str
+    side: str = Field(..., max_length=50)
+    barrier_type: str = Field(..., max_length=200)
+    line_of_defense: str = Field(..., max_length=50)
+    barrier_family: str = Field(..., max_length=200)
 
     # Incident-level categoricals (optional — safe defaults for API callers)
-    source_agency: str = "UNKNOWN"
-    primary_threat_category: str = "unknown_threat"
+    source_agency: str = Field("UNKNOWN", max_length=100)
+    primary_threat_category: str = Field("unknown_threat", max_length=200)
 
     # PIF boolean fields — 9 active features (default 0)
     # pif_fatigue, pif_workload, pif_time_pressure excluded from training scope
-    pif_competence: int = 0
-    pif_communication: int = 0
-    pif_situational_awareness: int = 0
-    pif_procedures: int = 0
-    pif_tools_equipment: int = 0
-    pif_safety_culture: int = 0
-    pif_management_of_change: int = 0
-    pif_supervision: int = 0
-    pif_training: int = 0
+    pif_competence: int = Field(0, ge=0, le=1)
+    pif_communication: int = Field(0, ge=0, le=1)
+    pif_situational_awareness: int = Field(0, ge=0, le=1)
+    pif_procedures: int = Field(0, ge=0, le=1)
+    pif_tools_equipment: int = Field(0, ge=0, le=1)
+    pif_safety_culture: int = Field(0, ge=0, le=1)
+    pif_management_of_change: int = Field(0, ge=0, le=1)
+    pif_supervision: int = Field(0, ge=0, le=1)
+    pif_training: int = Field(0, ge=0, le=1)
 
     # Numeric features (default 0)
-    supporting_text_count: int = 0
-    pathway_sequence: int = 0
-    upstream_failure_rate: float = 0.0
+    supporting_text_count: int = Field(0, ge=0, le=1000)
+    pathway_sequence: int = Field(0, ge=0, le=100)
+    upstream_failure_rate: float = Field(0.0, ge=0.0, le=1.0)
 
 
 class ShapValue(BaseModel):
@@ -137,13 +137,13 @@ class ExplainRequest(BaseModel):
 
     model_config = ConfigDict(strict=False)
 
-    barrier_family: str
-    barrier_type: str
-    side: str
-    barrier_role: str           # text for RAG barrier query
-    event_description: str      # text for RAG incident query
-    shap_factors: list[ShapValue] | None = None  # optional SHAP enrichment
-    risk_level: str = ""        # optional H/M/L context from /predict result
+    barrier_family: str = Field(..., max_length=200)
+    barrier_type: str = Field(..., max_length=200)
+    side: str = Field(..., max_length=50)
+    barrier_role: str = Field(..., max_length=2000)
+    event_description: str = Field(..., max_length=5000)
+    shap_factors: list[ShapValue] | None = Field(None, max_length=50)
+    risk_level: str = Field("", max_length=20)
 
 
 class CitationResponse(BaseModel):
