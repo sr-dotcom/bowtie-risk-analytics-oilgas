@@ -121,7 +121,7 @@ export default function GlobalShapChart() {
               <LabelList
                 dataKey="meanAbsShap"
                 position="right"
-                formatter={(v: number) => v.toFixed(3)}
+                formatter={(v: unknown) => typeof v === 'number' ? v.toFixed(3) : String(v ?? '')}
                 style={{ fontSize: 10, fill: '#8B93A8' }}
               />
               {data.map((entry, i) => (
@@ -263,7 +263,7 @@ export function PifPrevalenceChart() {
               <LabelList
                 dataKey="prevalence"
                 position="right"
-                formatter={(v: number) => `${(v * 100).toFixed(0)}%`}
+                formatter={(v: unknown) => typeof v === 'number' ? `${(v * 100).toFixed(0)}%` : String(v ?? '')}
                 style={{ fontSize: 10, fill: '#8B93A8' }}
               />
               {data.map((entry, i) => (
