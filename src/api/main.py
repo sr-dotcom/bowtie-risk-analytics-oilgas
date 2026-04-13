@@ -25,8 +25,11 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, HTTPException, Request
+import hmac
+
+from fastapi import Depends, FastAPI, HTTPException, Request, Security
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import APIKeyHeader
 
 from src.api.mapping_loader import MappingConfig
 from src.api.schemas import (
@@ -127,6 +130,23 @@ async def lifespan(app: FastAPI):  # type: ignore[type-arg]
 
 
 # ---------------------------------------------------------------------------
+# API key authentication — disabled when BOWTIE_API_KEY is unset
+# ---------------------------------------------------------------------------
+
+_api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
+
+
+async def verify_api_key(
+    api_key: str | None = Security(_api_key_header),
+) -> None:
+    required_key = os.getenv("BOWTIE_API_KEY")
+    if not required_key:
+        return
+    if not api_key or not hmac.compare_digest(api_key, required_key):
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+
+
+# ---------------------------------------------------------------------------
 # App factory — routes registered inside to bind to the correct app instance
 # ---------------------------------------------------------------------------
 
@@ -170,7 +190,7 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
     # POST /predict — barrier failure probability + SHAP reason codes (API-01)
     # -----------------------------------------------------------------------
 
-    @app.post("/predict", response_model=PredictResponse)
+    @app.post("/predict", response_model=PredictResponse, dependencies=[Depends(verify_api_key)])
     async def predict(request: PredictRequest, req: Request) -> PredictResponse:
         """Predict barrier failure probability with SHAP reason codes.
 
@@ -305,7 +325,7 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
     # GET /apriori-rules — pre-computed Apriori co-failure rules (S03)
     # -----------------------------------------------------------------------
 
-    @app.get("/apriori-rules", response_model=AprioriRulesResponse)
+    @app.get("/apriori-rules", response_model=AprioriRulesResponse, dependencies=[Depends(verify_api_key)])
     async def apriori_rules(req: Request) -> AprioriRulesResponse:
         """Return pre-computed Apriori barrier co-failure association rules (S03).
 
@@ -326,7 +346,7 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
     # POST /explain — RAG evidence narrative for a barrier (API-02)
     # -----------------------------------------------------------------------
 
-    @app.post("/explain", response_model=ExplainResponse)
+    @app.post("/explain", response_model=ExplainResponse, dependencies=[Depends(verify_api_key)])
     async def explain(request: ExplainRequest, req: Request) -> ExplainResponse:
         """Generate RAG evidence narrative for a barrier (API-02).
 
