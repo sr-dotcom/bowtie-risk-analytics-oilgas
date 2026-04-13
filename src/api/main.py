@@ -48,7 +48,6 @@ from src.api.schemas import (
     ShapValue,
 )
 from src.modeling.predict import BarrierPredictor
-from src.rag.config import CONFIDENCE_THRESHOLD
 from src.rag.embeddings.sentence_transformers_provider import SentenceTransformerProvider
 from src.rag.explainer import BarrierExplainer
 from src.rag.rag_agent import RAGAgent
@@ -307,20 +306,11 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
         return HealthResponse(
             status="ok",
             models={
-                "model1": ModelInfo(
-                    type="XGBoost",
-                    path=str(ARTIFACTS_DIR / "xgb_model1.json"),
-                    loaded=True,
-                ),
-                "model2": ModelInfo(
-                    type="XGBoost",
-                    path=str(ARTIFACTS_DIR / "xgb_model2.json"),
-                    loaded=True,
-                ),
+                "model1": ModelInfo(name="barrier_failure", loaded=True),
+                "model2": ModelInfo(name="human_factor", loaded=True),
             },
             rag=RagInfo(
                 corpus_size=req.app.state.rag_corpus_size,
-                threshold=CONFIDENCE_THRESHOLD,
             ),
             uptime_seconds=round(uptime, 2),
         )

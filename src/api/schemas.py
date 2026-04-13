@@ -178,8 +178,7 @@ class ExplainResponse(BaseModel):
 class ModelInfo(BaseModel):
     """Info about a single loaded ML model (D-08)."""
 
-    type: str
-    path: str
+    name: str
     loaded: bool
 
 
@@ -187,7 +186,6 @@ class RagInfo(BaseModel):
     """Info about the loaded RAG corpus (D-08)."""
 
     corpus_size: int
-    threshold: float
 
 
 class HealthResponse(BaseModel):

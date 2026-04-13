@@ -288,25 +288,24 @@ def test_health_returns_200(client: TestClient) -> None:
     assert "model1" in data["models"]
     assert "model2" in data["models"]
     assert "rag" in data
-    assert data["rag"]["threshold"] == pytest.approx(0.25)
     assert data["rag"]["corpus_size"] == 3253
     assert "uptime_seconds" in data
     assert data["uptime_seconds"] >= 0.0
 
 
 def test_health_model_info(client: TestClient) -> None:
-    """GET /health model1 has loaded=True and type=XGBoost."""
+    """GET /health model info has loaded=True and name fields."""
     resp = client.get("/health")
     assert resp.status_code == 200
 
     data = resp.json()
     model1 = data["models"]["model1"]
     assert model1["loaded"] is True
-    assert model1["type"] == "XGBoost"
+    assert model1["name"] == "barrier_failure"
 
     model2 = data["models"]["model2"]
     assert model2["loaded"] is True
-    assert model2["type"] == "XGBoost"
+    assert model2["name"] == "human_factor"
 
 
 def test_predict_does_not_reload_resources(
@@ -544,16 +543,33 @@ def test_apriori_rules_schema_validated(client: TestClient) -> None:
 # OpenAPI schema regression test (Task 2)
 # ---------------------------------------------------------------------------
 
-def test_openapi_schema_has_all_endpoints(client: TestClient) -> None:
+def test_openapi_schema_has_all_endpoints(
+    mock_predictor: MagicMock, monkeypatch: pytest.MonkeyPatch,
+) -> None:
     """Verify OpenAPI spec includes /predict, /explain, /health, /apriori-rules."""
-    resp = client.get("/openapi.json")
+    monkeypatch.setenv("BOWTIE_ENABLE_DOCS", "true")
+
+    @asynccontextmanager
+    async def noop_lifespan(app):  # type: ignore[type-arg]
+        yield
+
+    app = create_app(lifespan_override=noop_lifespan)
+    app.state.predictor = mock_predictor
+    app.state.explainer = _make_mock_explainer()
+    app.state.start_time = time.monotonic()
+    app.state.rag_corpus_size = 3253
+    app.state.mapping_config = MappingConfig.load()
+    app.state.apriori_rules = []
+
+    with TestClient(app) as c:
+        resp = c.get("/openapi.json")
+
     assert resp.status_code == 200
     paths = resp.json()["paths"]
     assert "/predict" in paths
     assert "/explain" in paths
     assert "/health" in paths
     assert "/apriori-rules" in paths
-    # Verify HTTP methods
     assert "post" in paths["/predict"]
     assert "post" in paths["/explain"]
     assert "get" in paths["/health"]
