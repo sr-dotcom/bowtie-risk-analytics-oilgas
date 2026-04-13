@@ -31,6 +31,7 @@ interface BarrierInput {
 
 export interface BowtieSVGProps {
   topEvent: string
+  hazardName?: string
   threats: Threat[]
   consequences: Consequence[]
   barriers: BarrierInput[]
@@ -266,8 +267,12 @@ function computeLayout(
 // Component
 // ---------------------------------------------------------------------------
 
+const HAZARD_W = 160
+const HAZARD_H = 40
+
 export default function BowtieSVG({
   topEvent,
+  hazardName,
   threats,
   consequences,
   barriers,
@@ -383,6 +388,10 @@ export default function BowtieSVG({
             <filter id="barrier-shadow" x="-5%" y="-5%" width="110%" height="110%">
               <feDropShadow dx="1" dy="1" stdDeviation="2" floodOpacity="0.15" />
             </filter>
+            <pattern id="hazard-stripes" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <rect width="5" height="10" fill="#FFD600" />
+              <rect x="5" width="5" height="10" fill="#222" />
+            </pattern>
           </defs>
 
           {/* ===== LAYER 1: Pathway curves ===== */}
@@ -433,20 +442,24 @@ export default function BowtieSVG({
                   strokeWidth={isSelected ? 1.5 : 0.5}
                   filter="url(#barrier-shadow)"
                 />
-                {/* Risk level color stripe — 6px vertical bar on left edge */}
-                <rect
-                  x={b.x}
-                  y={b.y}
-                  width={6}
-                  height={BARRIER_H}
-                  fill={riskColor(b.risk_level)}
-                />
-                {/* Row 1: Name — shifted right to clear stripe */}
+                {/* Status indicator — 3 small rects at top of barrier */}
+                {[0, 1, 2].map((idx) => (
+                  <rect
+                    key={`ind-${idx}`}
+                    x={b.x + 8 + idx * 16}
+                    y={b.y + 4}
+                    width={12}
+                    height={8}
+                    fill={riskColor(b.risk_level)}
+                    rx={1}
+                  />
+                ))}
+                {/* Row 1: Name */}
                 {nameLines.map((line, li) => (
                   <text
                     key={li}
-                    x={b.x + 14}
-                    y={b.y + 16 + li * 15}
+                    x={b.x + 8}
+                    y={b.y + 26 + li * 15}
                     fill={BLUE}
                     fontSize={13}
                     fontWeight={700}
@@ -457,17 +470,17 @@ export default function BowtieSVG({
                 {/* Separator 1 */}
                 <line
                   x1={b.x}
-                  y1={b.y + 14 + nameLines.length * 15}
+                  y1={b.y + 24 + nameLines.length * 15}
                   x2={b.x + BARRIER_W}
-                  y2={b.y + 14 + nameLines.length * 15}
+                  y2={b.y + 24 + nameLines.length * 15}
                   stroke="#DDD"
                   strokeWidth={0.5}
                 />
                 {/* Row 2: Role (underlined) */}
                 {b.barrier_role && (
                   <text
-                    x={b.x + 14}
-                    y={b.y + 28 + nameLines.length * 15}
+                    x={b.x + 8}
+                    y={b.y + 38 + nameLines.length * 15}
                     fill={BLUE}
                     fontSize={11}
                     textDecoration="underline"
@@ -486,7 +499,7 @@ export default function BowtieSVG({
                 />
                 {/* Row 3: Type indicator */}
                 <rect
-                  x={b.x + 14}
+                  x={b.x + 8}
                   y={b.y + BARRIER_H - 18}
                   width={12}
                   height={12}
@@ -494,7 +507,7 @@ export default function BowtieSVG({
                   rx={1}
                 />
                 <text
-                  x={b.x + 30}
+                  x={b.x + 24}
                   y={b.y + BARRIER_H - 8}
                   fill={BLUE}
                   fontSize={10}
@@ -516,39 +529,23 @@ export default function BowtieSVG({
                   y={t.y}
                   width={THREAT_W}
                   height={THREAT_H}
-                  fill="white"
-                  stroke={DARK_BLUE}
+                  fill="#1565C0"
+                  stroke="#0D47A1"
                   strokeWidth={1.5}
-                />
-                {/* Contribution color stripe — left edge, full height */}
-                <rect
-                  x={t.x}
-                  y={t.y}
-                  width={8}
-                  height={THREAT_H}
-                  fill={ci.color}
                 />
                 {nameLines.map((line, li) => (
                   <text
                     key={li}
-                    x={t.x + 20}
+                    x={t.x + THREAT_W / 2}
                     y={t.y + 24 + li * 18}
-                    fill={BLUE}
+                    textAnchor="middle"
+                    fill="white"
                     fontSize={15}
                     fontWeight={700}
                   >
                     {line}
                   </text>
                 ))}
-                {/* Separator */}
-                <line
-                  x1={t.x}
-                  y1={t.y + 20 + nameLines.length * 18 + 8}
-                  x2={t.x + THREAT_W}
-                  y2={t.y + 20 + nameLines.length * 18 + 8}
-                  stroke="#DDD"
-                  strokeWidth={0.5}
-                />
                 {/* Contribution badge */}
                 <rect
                   x={t.x + 20}
@@ -561,9 +558,9 @@ export default function BowtieSVG({
                 <text
                   x={t.x + 40}
                   y={t.y + THREAT_H - 18}
-                  fill={BLUE}
+                  fill="white"
                   fontSize={11}
-                  fontWeight={600}
+                  fontWeight={700}
                 >
                   {ci.label}
                 </text>
@@ -571,7 +568,46 @@ export default function BowtieSVG({
             )
           })}
 
-          {/* ===== LAYER 5: Top Event ===== */}
+          {/* ===== LAYER 5a: Hazard box above top event ===== */}
+          {(() => {
+            const hx = TOP_EVENT_CX - HAZARD_W / 2
+            const hy = CY - TOP_EVENT_R - 60 - HAZARD_H
+            const hLabel = hazardName || 'Hazard'
+            return (
+              <g>
+                <rect
+                  x={hx}
+                  y={hy}
+                  width={HAZARD_W}
+                  height={HAZARD_H}
+                  fill="url(#hazard-stripes)"
+                  stroke="#222"
+                  strokeWidth={1.5}
+                  rx={2}
+                />
+                <text
+                  x={TOP_EVENT_CX}
+                  y={hy + HAZARD_H / 2 + 5}
+                  textAnchor="middle"
+                  fill="#222"
+                  fontSize={13}
+                  fontWeight={700}
+                >
+                  {hLabel}
+                </text>
+                <line
+                  x1={TOP_EVENT_CX}
+                  y1={hy + HAZARD_H}
+                  x2={TOP_EVENT_CX}
+                  y2={CY - TOP_EVENT_R}
+                  stroke="#666"
+                  strokeWidth={1.5}
+                />
+              </g>
+            )
+          })()}
+
+          {/* ===== LAYER 5b: Top Event ===== */}
           <circle
             cx={TOP_EVENT_CX}
             cy={CY}
@@ -613,23 +649,17 @@ export default function BowtieSVG({
                   y={c.y}
                   width={CONSEQUENCE_W}
                   height={CONSEQUENCE_H}
-                  fill="white"
-                  stroke="#CC0000"
+                  fill="#C62828"
+                  stroke="#B71C1C"
                   strokeWidth={1.5}
-                />
-                <rect
-                  x={c.x}
-                  y={c.y}
-                  width={6}
-                  height={CONSEQUENCE_H}
-                  fill="#CC0000"
                 />
                 {nameLines.map((line, li) => (
                   <text
                     key={li}
-                    x={c.x + 18}
+                    x={c.x + CONSEQUENCE_W / 2}
                     y={c.y + 24 + li * 18}
-                    fill="#CC0000"
+                    textAnchor="middle"
+                    fill="white"
                     fontSize={14}
                     fontWeight={700}
                   >
