@@ -165,11 +165,15 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
     Returns:
         Configured FastAPI application with all routes registered.
     """
+    enable_docs = os.getenv("BOWTIE_ENABLE_DOCS", "").lower() == "true"
     app = FastAPI(
         title="Bowtie Risk Analytics API",
         version="0.1.0",
         description="Barrier failure prediction and evidence narrative API",
         lifespan=lifespan_override or lifespan,
+        docs_url="/docs" if enable_docs else None,
+        redoc_url="/redoc" if enable_docs else None,
+        openapi_url="/openapi.json" if enable_docs else None,
     )
 
     # CORS — restricted origins from env; defaults to localhost for dev
