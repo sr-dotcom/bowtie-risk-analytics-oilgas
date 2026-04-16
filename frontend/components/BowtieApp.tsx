@@ -170,6 +170,7 @@ function BowtieAppInner() {
         {viewMode === 'diagram' ? (
           <BowtieSVG
             topEvent={eventDescription}
+            hazardName="High-pressure gas"
             threats={DEMO_THREATS}
             consequences={DEMO_CONSEQUENCES}
             barriers={svgBarriers}
