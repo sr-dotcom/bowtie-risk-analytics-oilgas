@@ -1,3 +1,4 @@
+import sys
 """Tests for source discovery adapters (CSB, BSEE, PHMSA). All offline."""
 import csv
 from pathlib import Path
@@ -524,7 +525,7 @@ class TestDiscoverSourceCli:
         """discover-source with invalid source should exit 1."""
         import subprocess
         result = subprocess.run(
-            ["python", "-m", "src.pipeline", "discover-source", "--source", "unknown"],
+            [sys.executable, "-m", "src.pipeline", "discover-source", "--source", "unknown"],
             capture_output=True, text=True,
         )
         assert result.returncode != 0
