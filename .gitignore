@@ -125,3 +125,7 @@ src/_legacy/
 # ── GSD baseline (auto-generated) ──
 .gsd
 data/exports/
+
+# --- graphify ---
+.graphifyignore
+graphify-out/
