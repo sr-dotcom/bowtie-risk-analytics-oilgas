@@ -65,13 +65,21 @@ function BowtieAppInner() {
   }, [])
 
   // Map barriers from context format to BowtieSVG format
-  const svgBarriers = barriers.map((b, _i) => {
+  const prevOnly = barriers.filter((x) => x.side === 'prevention')
+  const mitOnly = barriers.filter((x) => x.side === 'mitigation')
+  const svgBarriers = barriers.map((b) => {
     // Assign prevention barriers to threats round-robin
-    const prevOnly = barriers.filter((x) => x.side === 'prevention')
     const prevIdx = prevOnly.indexOf(b)
     let threatId: string | undefined
     if (b.side === 'prevention' && prevIdx >= 0 && DEMO_THREATS.length > 0) {
       threatId = DEMO_THREATS[prevIdx % DEMO_THREATS.length].id
+    }
+
+    // Assign mitigation barriers to consequences round-robin
+    const mitIdx = mitOnly.indexOf(b)
+    let consequenceId: string | undefined
+    if (b.side === 'mitigation' && mitIdx >= 0 && DEMO_CONSEQUENCES.length > 0) {
+      consequenceId = DEMO_CONSEQUENCES[mitIdx % DEMO_CONSEQUENCES.length].id
     }
 
     return {
@@ -83,6 +91,7 @@ function BowtieAppInner() {
       line_of_defense: b.line_of_defense,
       risk_level: mapRiskLevel(b.riskLevel),
       threatId,
+      consequenceId,
     }
   })
 

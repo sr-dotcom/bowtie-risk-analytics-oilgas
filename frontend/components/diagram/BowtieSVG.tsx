@@ -614,6 +614,7 @@ function renderBarrier(
   onBarrierClick: (id: string) => void,
 ) {
   const isSelected = b.id === selectedBarrierId
+  const riskColor = b.risk_level ? riskBadge(b.risk_level).color : '#333'
   const nameLines = wrapText(b.name, 13, 3)
   const textStartY = BARRIER_H / 2 - ((nameLines.length - 1) * 15) / 2
 
@@ -644,8 +645,8 @@ function renderBarrier(
         width={BARRIER_W}
         height={BARRIER_H}
         fill="#fff"
-        stroke={isSelected ? '#2979FF' : '#333'}
-        strokeWidth={isSelected ? 2.5 : 1.5}
+        stroke={isSelected ? '#2979FF' : riskColor}
+        strokeWidth={isSelected ? 2.5 : (b.risk_level ? 2.5 : 1.5)}
       />
       {/* Top connector tabs */}
       <rect x={30} y={-BARRIER_TAB_OVERHANG} width={16} height={22} rx={4} fill="#444" stroke="#222" strokeWidth={1} />
