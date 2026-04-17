@@ -54,6 +54,8 @@ export function useAnalyzeBarriers(): { analyzeAll: () => Promise<void> } {
           pif_supervision: pifFlags.pif_supervision,
           pif_training: pifFlags.pif_training,
           supporting_text_count: 0,
+          ...(b.pathway_sequence !== undefined && { pathway_sequence: b.pathway_sequence }),
+          ...(b.upstream_failure_rate !== undefined && { upstream_failure_rate: b.upstream_failure_rate }),
         }
         return { barrier: b, req }
       })

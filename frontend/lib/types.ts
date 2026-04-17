@@ -164,6 +164,8 @@ export interface Barrier {
   barrierRole: string
   riskLevel: RiskLevel
   probability?: number
+  pathway_sequence?: number
+  upstream_failure_rate?: number
 }
 
 export interface Threat {

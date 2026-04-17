@@ -76,6 +76,8 @@ export const DEMO_SCENARIO = {
       barrier_family: 'pressure_relief_blowdown_flare_disposal',
       line_of_defense: '1st' as const,
       barrierRole: 'Prevent overpressure beyond design limits',
+      pathway_sequence: 0,
+      upstream_failure_rate: 0.0,
     },
     {
       name: 'Automatic Shutdown System',
@@ -84,6 +86,8 @@ export const DEMO_SCENARIO = {
       barrier_family: 'emergency_shutdown_isolation',
       line_of_defense: '1st' as const,
       barrierRole: 'Isolate on high pressure signal',
+      pathway_sequence: 0,
+      upstream_failure_rate: 0.0,
     },
     {
       name: 'Operator Monitoring Procedure',
@@ -92,6 +96,8 @@ export const DEMO_SCENARIO = {
       barrier_family: 'monitoring',
       line_of_defense: '3rd' as const,
       barrierRole: 'Manual monitoring of pressure and flow readings during transfer',
+      pathway_sequence: 3,
+      upstream_failure_rate: 0.7,
     },
     {
       name: 'Pre-Transfer Safety Checklist',
@@ -100,6 +106,8 @@ export const DEMO_SCENARIO = {
       barrier_family: 'procedures',
       line_of_defense: '2nd' as const,
       barrierRole: 'Verify valve alignment and line integrity before operations',
+      pathway_sequence: 2,
+      upstream_failure_rate: 0.5,
     },
     {
       name: 'Gas Detection System',
@@ -108,6 +116,8 @@ export const DEMO_SCENARIO = {
       barrier_family: 'gas_detection_atmospheric_monitoring',
       line_of_defense: '2nd' as const,
       barrierRole: 'Detect gas release in transfer area',
+      pathway_sequence: 1,
+      upstream_failure_rate: 0.3,
     },
     {
       name: 'Emergency Response Plan',
@@ -116,6 +126,8 @@ export const DEMO_SCENARIO = {
       barrier_family: 'emergency_preparedness_planning_training_drills',
       line_of_defense: '1st' as const,
       barrierRole: 'Coordinate emergency response and evacuation',
+      pathway_sequence: 1,
+      upstream_failure_rate: 0.4,
     },
     {
       name: 'Fire Suppression System',
@@ -124,6 +136,8 @@ export const DEMO_SCENARIO = {
       barrier_family: 'active_fire_protection_firefighting',
       line_of_defense: '1st' as const,
       barrierRole: 'Suppress fire from ignited gas release',
+      pathway_sequence: 0,
+      upstream_failure_rate: 0.0,
     },
   ],
 }
