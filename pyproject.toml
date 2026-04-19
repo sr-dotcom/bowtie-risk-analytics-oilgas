@@ -42,6 +42,9 @@ dev = [
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow-running (deselect with '-m \"not slow\"')",
+]
 
 [tool.setuptools.packages.find]
 where = ["."]
