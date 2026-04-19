@@ -56,10 +56,13 @@ Thumbs.db
 secrets/
 
 # Data artifacts (never commit — reproduce via pipeline)
-/data/
+/data/*
 !/data/sources/**
 !/data/samples/**
 !/data/evaluation/
+!/data/evaluation/**
+!/data/demo_scenarios/
+!/data/demo_scenarios/**
 
 # Deliverable packs (generated, shared out-of-band)
 /out/
@@ -115,6 +118,10 @@ tmp/
 
 # --- frontend build cache ---
 .vite/
+
+# --- generated frontend demo scenarios (sourced from /data/demo_scenarios/) ---
+frontend/public/demo-scenarios/*.json
+!frontend/public/demo-scenarios/.gitkeep
 
 # --- Windows alternate data streams ---
 *:Zone.Identifier
