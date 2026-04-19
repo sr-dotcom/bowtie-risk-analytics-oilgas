@@ -1,0 +1,143 @@
+{
+  "scenario_id": "unknown_caribbean-petroleum-corporation-capeco-refinery-tank-explosion-and-fire",
+  "source_agency": "UNKNOWN",
+  "incident_id": "caribbean-petroleum-corporation-capeco-refinery-tank-explosion-and-fire",
+  "top_event": "Tank overfill and vapor cloud explosion",
+  "context": {
+    "region": "Bayamón, Puerto Rico",
+    "operator": "Caribbean Petroleum Corporation (CAPECO)",
+    "operating_phase": "storage and distribution",
+    "materials": [
+      "unleaded gasoline",
+      "fuel oil",
+      "jet fuel",
+      "diesel fuel"
+    ]
+  },
+  "barriers": [
+    {
+      "control_id": "C-001",
+      "name": "Float and tape automatic tank gauge (ATG) system",
+      "barrier_level": "prevention",
+      "lod_industry_standard": "Alarm and Operator Response",
+      "lod_numeric": 1,
+      "barrier_condition": "ineffective",
+      "barrier_type": "engineering",
+      "barrier_role": "Level monitoring and indication",
+      "linked_threat_ids": [
+        "T-001"
+      ],
+      "description": "Level monitoring and indication",
+      "line_of_defense": "1st"
+    },
+    {
+      "control_id": "C-005",
+      "name": "Secondary containment dike system",
+      "barrier_level": "mitigation",
+      "lod_industry_standard": "Process Containment",
+      "lod_numeric": 2,
+      "barrier_condition": "ineffective",
+      "barrier_type": "engineering",
+      "barrier_role": "Containment of spilled gasoline",
+      "linked_threat_ids": [
+        "T-001"
+      ],
+      "description": "Containment of spilled gasoline",
+      "line_of_defense": "2nd"
+    },
+    {
+      "control_id": "C-007",
+      "name": "High-level alarm system",
+      "barrier_level": "prevention",
+      "lod_industry_standard": "Alarm and Operator Response",
+      "lod_numeric": 2,
+      "barrier_condition": "ineffective",
+      "barrier_type": "engineering",
+      "barrier_role": "Alert operators to approaching tank maximum level",
+      "linked_threat_ids": [
+        "T-001",
+        "T-002",
+        "T-003"
+      ],
+      "description": "Alert operators to approaching tank maximum level",
+      "line_of_defense": "2nd"
+    },
+    {
+      "control_id": "C-008",
+      "name": "Automatic Overfill Prevention System (AOPS)",
+      "barrier_level": "prevention",
+      "lod_industry_standard": "Structural Integrity",
+      "lod_numeric": 3,
+      "barrier_condition": "ineffective",
+      "barrier_type": "engineering",
+      "barrier_role": "Automatic termination of tank filling at maximum level",
+      "linked_threat_ids": [
+        "T-001",
+        "T-002",
+        "T-003"
+      ],
+      "description": "Automatic termination of tank filling at maximum level",
+      "line_of_defense": "3rd"
+    },
+    {
+      "control_id": "C-011",
+      "name": "Internal floating roof system",
+      "barrier_level": "prevention",
+      "lod_industry_standard": "Process Containment",
+      "lod_numeric": 1,
+      "barrier_condition": "status_unknown",
+      "barrier_type": "engineering",
+      "barrier_role": "Prevent vapor formation above liquid surface",
+      "linked_threat_ids": [
+        "T-003"
+      ],
+      "description": "Prevent vapor formation above liquid surface",
+      "line_of_defense": "1st"
+    }
+  ],
+  "threats": [
+    {
+      "threat_id": "T-001",
+      "name": "Tank overfill due to malfunctioning level gauge",
+      "description": null
+    },
+    {
+      "threat_id": "T-002",
+      "name": "Tank overfill due to increased gasoline flow rate from ship",
+      "description": null
+    },
+    {
+      "threat_id": "T-003",
+      "name": "Tank overfill due to internal floating roof failure",
+      "description": null
+    },
+    {
+      "threat_id": "T-004",
+      "name": "Vapor cloud migration through open dike drain valves",
+      "description": null
+    },
+    {
+      "threat_id": "T-005",
+      "name": "Ignition of vapor cloud in wastewater treatment area",
+      "description": null
+    }
+  ],
+  "pif_context": {
+    "people": {
+      "competence": true,
+      "communication": true,
+      "situational_awareness": true
+    },
+    "work": {
+      "procedures": true,
+      "workload": true,
+      "time_pressure": true,
+      "tools_equipment": true
+    },
+    "organisation": {
+      "safety_culture": true,
+      "supervision": true,
+      "training": true
+    }
+  }
+}

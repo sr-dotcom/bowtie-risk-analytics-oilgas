@@ -1,0 +1,142 @@
+{
+  "scenario_id": "csb_arkema-inc-chemical-plant-fire-",
+  "source_agency": "CSB",
+  "incident_id": "arkema-inc-chemical-plant-fire-",
+  "top_event": "Loss of Containment - Organic Peroxide Decomposition and Fire",
+  "context": {
+    "region": "Crosby, Texas, USA",
+    "operator": "Arkema Inc.",
+    "operating_phase": "production",
+    "materials": [
+      "organic peroxides",
+      "peróxido orgánico"
+    ]
+  },
+  "barriers": [
+    {
+      "control_id": "C-001",
+      "name": "Redundant refrigeration systems in low-temperature storage tanks",
+      "barrier_level": "prevention",
+      "lod_industry_standard": "Structural Integrity",
+      "lod_numeric": 1,
+      "barrier_condition": "ineffective",
+      "barrier_type": "engineering",
+      "barrier_role": "Primary containment",
+      "linked_threat_ids": [
+        "T-001",
+        "T-004"
+      ],
+      "description": "Primary containment",
+      "line_of_defense": "1st"
+    },
+    {
+      "control_id": "C-002",
+      "name": "Emergency backup generators for power supply",
+      "barrier_level": "prevention",
+      "lod_industry_standard": "Process Containment",
+      "lod_numeric": 2,
+      "barrier_condition": "ineffective",
+      "barrier_type": "engineering",
+      "barrier_role": "Secondary containment",
+      "linked_threat_ids": [
+        "T-001",
+        "T-002"
+      ],
+      "description": "Secondary containment",
+      "line_of_defense": "2nd"
+    },
+    {
+      "control_id": "C-003",
+      "name": "Liquid nitrogen alternative cooling system",
+      "barrier_level": "prevention",
+      "lod_industry_standard": "Process Control",
+      "lod_numeric": 3,
+      "barrier_condition": "ineffective",
+      "barrier_type": "engineering",
+      "barrier_role": "Tertiary containment",
+      "linked_threat_ids": [
+        "T-001",
+        "T-004"
+      ],
+      "description": "Tertiary containment",
+      "line_of_defense": "3rd"
+    },
+    {
+      "control_id": "C-004",
+      "name": "Refrigerated trailers for temporary organic peroxide storage",
+      "barrier_level": "prevention",
+      "lod_industry_standard": "Process Containment",
+      "lod_numeric": 1,
+      "barrier_condition": "ineffective",
+      "barrier_type": "engineering",
+      "barrier_role": "Temporary containment",
+      "linked_threat_ids": [
+        "T-001",
+        "T-003",
+        "T-004"
+      ],
+      "description": "Temporary containment",
+      "line_of_defense": "1st"
+    },
+    {
+      "control_id": "C-010",
+      "name": "Telemetry monitoring of refrigerated trailer temperatures",
+      "barrier_level": "mitigation",
+      "lod_industry_standard": "Alarm and Operator Response",
+      "lod_numeric": 2,
+      "barrier_condition": "degraded",
+      "barrier_type": "engineering",
+      "barrier_role": "Detection and alarm",
+      "linked_threat_ids": [
+        "T-004",
+        "T-005"
+      ],
+      "description": "Detection and alarm",
+      "line_of_defense": "2nd"
+    }
+  ],
+  "threats": [
+    {
+      "threat_id": "T-001",
+      "name": "Loss of electrical power to refrigeration systems",
+      "description": null
+    },
+    {
+      "threat_id": "T-002",
+      "name": "Failure of backup generators due to flooding",
+      "description": null
+    },
+    {
+      "threat_id": "T-003",
+      "name": "Inability to relocate refrigerated trailers to higher elevation",
+      "description": null
+    },
+    {
+      "threat_id": "T-004",
+      "name": "Organic peroxide temperature exceeds SADT",
+      "description": null
+    },
+    {
+      "threat_id": "T-005",
+      "name": "Decomposition and self-heating of organic peroxide",
+      "description": null
+    }
+  ],
+  "pif_context": {
+    "people": {
+      "competence": true,
+      "situational_awareness": true
+    },
+    "work": {
+      "procedures": true,
+      "workload": true,
+      "time_pressure": true,
+      "tools_equipment": true
+    },
+    "organisation": {
+      "safety_culture": true,
+      "supervision": true,
+      "training": true
+    }
+  }
+}
