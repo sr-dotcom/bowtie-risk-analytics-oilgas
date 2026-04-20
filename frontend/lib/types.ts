@@ -270,6 +270,10 @@ export interface Barrier {
   probability?: number
   pathway_sequence?: number
   upstream_failure_rate?: number
+  /** Mean y_fail_probability across all N-1 conditioning rotations (Average Cascading Risk). */
+  average_cascading_probability?: number
+  /** Top-2 SHAP factors from the highest-probability cascading run for this barrier. */
+  top_reasons?: { feature: string; value: number; display_name: string }[]
 }
 
 export interface Threat {

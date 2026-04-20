@@ -6,29 +6,8 @@ import type {
   ExplainRequest,
   ExplainResponse,
   PredictCascadingResponse,
-  PredictRequest,
-  PredictResponse,
   RankTargetsResponse,
 } from './types'
-
-/**
- * POST /api/predict — assess barrier historical reliability and SHAP values.
- *
- * @deprecated Use predictCascading instead (S05a/T01). Retained until S05a/T06.
- *
- * @param payload - Barrier features to assess.
- * @returns Historical reliability assessment with SHAP values for both models.
- * @throws Error if the server returns a non-OK status.
- */
-export async function predict(payload: PredictRequest): Promise<PredictResponse> {
-  const res = await fetch('/api/predict', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  })
-  if (!res.ok) throw new Error(`Assessment failed: ${res.status} ${res.statusText}`)
-  return res.json() as Promise<PredictResponse>
-}
 
 /**
  * POST /api/explain — retrieve RAG evidence, LLM narrative, and recommendations for a barrier.

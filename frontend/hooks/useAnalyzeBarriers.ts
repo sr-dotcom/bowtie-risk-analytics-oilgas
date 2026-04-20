@@ -1,85 +1,74 @@
 'use client'
 
 import { useBowtieContext } from '@/context/BowtieContext'
-import { predict } from '@/lib/api'
+import { predictCascading } from '@/lib/api'
 import { mapProbabilityToRiskLevel } from '@/lib/riskScore'
-import type { PredictRequest, RiskThresholds } from '@/lib/types'
-import { SOURCE_AGENCY_DEFAULT } from '@/components/sidebar/constants'
+import type { BarrierPrediction, RiskThresholds } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
-// useAnalyzeBarriers
-// Shared hook that fires /predict for ALL barriers in parallel and updates
-// context state.  Extracted from BarrierForm.handleAnalyze so that
-// DashboardView can also trigger analysis on mount (auto-batch).
+// useAnalyzeBarriers — Average Cascading Risk (S05b/2.5)
+//
+// Replaces the dead /predict endpoint. For each barrier in the scenario,
+// fires /predict-cascading with that barrier as the conditioner (N parallel
+// requests). Aggregates each barrier's y_fail_probability across the N-1
+// runs where it is a TARGET (not the conditioner) by taking the mean.
+// That mean is "Average Cascading Risk" — a portfolio-level metric layered
+// on top of the cascading API (see docs/api_contract.md for methodology).
 // ---------------------------------------------------------------------------
 
 export function useAnalyzeBarriers(): { analyzeAll: () => Promise<void> } {
   const {
     barriers,
-    pifFlags,
+    scenario,
     setIsAnalyzing,
     setAnalysisError,
-    setPrediction,
-    updateBarrierRisk,
+    updateBarrierCascading,
   } = useBowtieContext()
 
   async function analyzeAll(): Promise<void> {
-    if (barriers.length === 0) return
+    if (barriers.length === 0 || !scenario) return
 
     setIsAnalyzing(true)
     setAnalysisError(null)
 
     try {
-      // Load risk thresholds from public dir
+      // Load risk thresholds from public dir (D006 thresholds: p60=0.45, p80=0.70)
       const thresholdsRes = await fetch('/risk_thresholds.json')
       const thresholds: RiskThresholds = await thresholdsRes.json()
 
-      // Build predict requests for ALL barriers (prevention + mitigation)
-      const requests = barriers.map((b) => {
-        const req: PredictRequest = {
-          side: b.side,
-          barrier_type: b.barrier_type,
-          line_of_defense: b.line_of_defense,
-          barrier_family: b.barrier_family,
-          source_agency: SOURCE_AGENCY_DEFAULT,
-          // 9 active PIFs from context pifFlags state (Bug #2 fix)
-          // pif_fatigue, pif_workload, pif_time_pressure excluded from training scope
-          pif_competence: pifFlags.pif_competence,
-          pif_communication: pifFlags.pif_communication,
-          pif_situational_awareness: pifFlags.pif_situational_awareness,
-          pif_procedures: pifFlags.pif_procedures,
-          pif_tools_equipment: pifFlags.pif_tools_equipment,
-          pif_safety_culture: pifFlags.pif_safety_culture,
-          pif_management_of_change: pifFlags.pif_management_of_change,
-          pif_supervision: pifFlags.pif_supervision,
-          pif_training: pifFlags.pif_training,
-          supporting_text_count: 0,
-          ...(b.pathway_sequence !== undefined && { pathway_sequence: b.pathway_sequence }),
-          ...(b.upstream_failure_rate !== undefined && { upstream_failure_rate: b.upstream_failure_rate }),
-        }
-        return { barrier: b, req }
-      })
-
-      // Fire all predictions in parallel per D-10
-      const results = await Promise.allSettled(
-        requests.map(({ req }) => predict(req)),
+      // N parallel /predict-cascading calls — one per barrier as conditioner.
+      // barrier.id === scenario barrier control_id (ensured by addBarrierWithId loading).
+      const runs = await Promise.all(
+        barriers.map((b) =>
+          predictCascading({ scenario, conditioning_barrier_id: b.id })
+            .then((res) => ({ conditionerId: b.id, predictions: res.predictions }))
+            .catch(() => ({ conditionerId: b.id, predictions: [] as BarrierPrediction[] }))
+        )
       )
 
-      results.forEach((result, idx) => {
-        const barrier = requests[idx].barrier
-        if (result.status === 'fulfilled') {
-          const response = result.value
-          const riskLevel = mapProbabilityToRiskLevel(response.model1_probability, thresholds)
-          // Store full prediction response (SHAP values, etc.) in predictions map
-          setPrediction(barrier.id, response)
-          // Update barrier's riskLevel + probability so BowtieFlow node colors update
-          updateBarrierRisk(barrier.id, riskLevel, response.model1_probability)
-        } else {
-          setAnalysisError(
-            `Prediction failed for ${barrier.name}. Check the server logs and retry.`,
-          )
-        }
-      })
+      // Aggregate per barrier: collect target predictions across all other runs
+      for (const b of barriers) {
+        const targetPreds = runs
+          .filter((r) => r.conditionerId !== b.id)
+          .flatMap((r) => r.predictions.filter((p) => p.target_barrier_id === b.id))
+
+        if (targetPreds.length === 0) continue
+
+        // Mean y_fail_probability across N-1 conditioning scenarios
+        const avgProb =
+          targetPreds.reduce((sum, p) => sum + p.y_fail_probability, 0) / targetPreds.length
+
+        // SHAP from the run with the highest y_fail_probability (most informative cascade)
+        const topRun = targetPreds.reduce((best, p) =>
+          p.y_fail_probability > best.y_fail_probability ? p : best,
+        )
+        const topReasons = [...topRun.shap_values]
+          .sort((a, b) => Math.abs(b.value) - Math.abs(a.value))
+          .slice(0, 2)
+
+        const riskLevel = mapProbabilityToRiskLevel(avgProb, thresholds)
+        updateBarrierCascading(b.id, avgProb, riskLevel, topReasons)
+      }
     } catch (err) {
       setAnalysisError(
         'Backend unavailable. Start the FastAPI server at localhost:8000 and try again.',

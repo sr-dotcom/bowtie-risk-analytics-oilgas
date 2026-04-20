@@ -133,13 +133,13 @@ export default function TopAtRiskBarriers() {
 
   return (
     <div data-testid="top-at-risk-barriers">
-      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">Top At-Risk Barriers</h3>
+      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">Top Barriers by Avg Cascade Risk</h3>
 
       {isEmpty ? (
         <p className="text-sm text-[#5A6178]">
           {isCascadingMode
             ? 'No cascading predictions available'
-            : 'Run Analyze Barriers to see top risk rankings'}
+            : 'Run Analyze Barriers to compute Average Cascading Risk'}
         </p>
       ) : isCascadingMode ? (
         <div>

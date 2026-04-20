@@ -181,7 +181,7 @@ interface Column { key: keyof RankedRow; label: string; className?: string }
 const COLUMNS: Column[] = [
   { key: 'rank', label: '#', className: 'w-10 text-center' },
   { key: 'name', label: 'Barrier Name', className: 'min-w-[160px]' },
-  { key: 'riskLevel', label: 'Risk Level', className: 'w-24 text-center' },
+  { key: 'riskLevel', label: 'Avg Cascade Risk', className: 'w-24 text-center' },
   { key: 'condition', label: 'Condition', className: 'min-w-[120px]' },
   { key: 'topFactor', label: 'Top SHAP Factor', className: 'min-w-[140px]' },
   { key: 'barrierType', label: 'Type', className: 'min-w-[100px]' },
@@ -304,7 +304,7 @@ export default function RankedBarriers() {
       </div>
 
       {rows.length === 0 ? (
-        <p className="text-sm text-[#5A6178]">No analyzed barriers yet</p>
+        <p className="text-sm text-[#5A6178]">No analyzed barriers yet — click Analyze Barriers to compute Average Cascading Risk.</p>
       ) : (
         <>
           <p data-testid="filter-result-count" className="text-xs text-[#8B93A8] mb-3">
@@ -472,6 +472,10 @@ export default function RankedBarriers() {
           </table>
         </>
       )}
+      <p className="text-xs text-[#5A6178] mt-4 italic">
+        Average Cascading Risk: mean failure probability across all single-barrier-failure scenarios.
+        See API contract for methodology.
+      </p>
     </div>
   )
 }

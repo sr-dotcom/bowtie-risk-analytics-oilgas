@@ -208,7 +208,7 @@ describe('RankedBarriers component', () => {
         <RankedBarriers />
       </BowtieProvider>,
     )
-    expect(screen.getByText('No analyzed barriers yet')).toBeTruthy()
+    expect(screen.getByText(/No analyzed barriers yet/)).toBeTruthy()
   })
 
   it('renders ranked-barriers-table testid', () => {
@@ -395,7 +395,7 @@ describe('RankedBarriers — initialBarriers/initialPredictions + sub-component 
   // (a) Empty state
   it('shows "No analyzed barriers yet" when rendered with no barriers or predictions', () => {
     renderWithInitial([], {})
-    expect(screen.getByText('No analyzed barriers yet')).toBeTruthy()
+    expect(screen.getByText(/No analyzed barriers yet/)).toBeTruthy()
   })
 
   // (b) Renders one row per analyzed barrier

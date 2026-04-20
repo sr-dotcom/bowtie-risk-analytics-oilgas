@@ -27,6 +27,8 @@ interface BarrierInput {
   risk_level?: 'Low' | 'Medium' | 'High' | null
   threatId?: string
   consequenceId?: string
+  top_reasons?: { feature: string; value: number; display_name: string }[]
+  average_cascading_probability?: number
 }
 
 export interface BowtieSVGProps {
@@ -57,6 +59,8 @@ const ROW_H = 160
 const HAZARD_W = 180
 const HAZARD_H = 55
 const STEM_GAP = 30
+const BARRIER_BAND_W = 8              // traffic-light strip width on left edge
+const BARRIER_METRIC_BLOCK_H = 46     // below-barrier SHAP block, only when top_reasons present
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -604,6 +608,10 @@ function renderBarrier(
 ) {
   const isSelected = b.id === selectedBarrierId
   const riskColor = b.risk_level ? riskBadge(b.risk_level).color : '#333'
+  const bandColor = b.risk_level ? riskBadge(b.risk_level).color : '#CCC'
+  const reasons = b.top_reasons?.slice(0, 2) ?? []
+  const hasMetric = reasons.length > 0
+  const metricH = hasMetric ? BARRIER_METRIC_BLOCK_H : 0
   const nameLines = wrapText(b.name, 13, 3)
   const textStartY = BARRIER_H / 2 - ((nameLines.length - 1) * 15) / 2
 
@@ -614,26 +622,30 @@ function renderBarrier(
       style={{ cursor: 'pointer' }}
       onClick={() => onBarrierClick(b.id)}
     >
-      {/* Selection highlight */}
+      {/* Selection highlight — height extends to include metric block when present */}
       {isSelected && (
         <rect
           x={-3}
           y={-BARRIER_TAB_OVERHANG - 3}
           width={BARRIER_W + 6}
-          height={BARRIER_H + BARRIER_TAB_OVERHANG * 2 + 6}
+          height={BARRIER_H + BARRIER_TAB_OVERHANG * 2 + 6 + metricH}
           fill="none"
           stroke="#2979FF"
           strokeWidth={3}
           rx={4}
         />
       )}
-      {/* Barrier box */}
+      {/* 1. White background fill */}
+      <rect x={0} y={0} width={BARRIER_W} height={BARRIER_H} fill="#fff" />
+      {/* 2. Traffic-light band — solid color strip on left edge */}
+      <rect x={0} y={0} width={BARRIER_BAND_W} height={BARRIER_H} fill={bandColor} />
+      {/* 3. Border-only rect on top (fill=none preserves band visibility) */}
       <rect
         x={0}
         y={0}
         width={BARRIER_W}
         height={BARRIER_H}
-        fill="#fff"
+        fill="none"
         stroke={isSelected ? '#2979FF' : riskColor}
         strokeWidth={isSelected ? 2.5 : (b.risk_level ? 2.5 : 1.5)}
       />
@@ -642,11 +654,11 @@ function renderBarrier(
       <rect x={80} y={-BARRIER_TAB_OVERHANG} width={16} height={22} rx={4} fill="#444" stroke="#222" strokeWidth={1} />
       {/* Bottom connector tab */}
       <rect x={57} y={BARRIER_H - BARRIER_TAB_OVERHANG} width={16} height={22} rx={4} fill="#444" stroke="#222" strokeWidth={1} />
-      {/* Text */}
+      {/* Name text — x shifted right by half the band width to re-centre in white area */}
       {nameLines.map((line, li) => (
         <text
           key={li}
-          x={BARRIER_W / 2}
+          x={BARRIER_W / 2 + 4}
           y={textStartY + li * 15}
           fontSize={11}
           fontWeight="bold"
@@ -655,6 +667,41 @@ function renderBarrier(
           {line}
         </text>
       ))}
+      {/* Metric block — SHAP reasons below barrier, only when top_reasons present */}
+      {hasMetric && (
+        <>
+          <rect x={0} y={BARRIER_H} width={BARRIER_W} height={BARRIER_METRIC_BLOCK_H} fill="#fff" stroke="#333" strokeWidth={1} />
+          {reasons.map((s, ri) => {
+            const dn = s.display_name.length > 18 ? s.display_name.slice(0, 17) + '…' : s.display_name
+            const rowY = BARRIER_H + 6 + ri * 14 + 7
+            const valStr = (s.value >= 0 ? '+' : '') + s.value.toFixed(2)
+            return (
+              <g key={`reason-${ri}`}>
+                <text
+                  x={BARRIER_BAND_W + 4}
+                  y={rowY}
+                  fontSize={11}
+                  fontWeight="bold"
+                  fill="#0D47A1"
+                  style={{ textAnchor: 'start', dominantBaseline: 'central' }}
+                >
+                  {dn}
+                </text>
+                <text
+                  x={BARRIER_W - 4}
+                  y={rowY}
+                  fontSize={11}
+                  fontWeight="bold"
+                  fill={s.value >= 0 ? '#C62828' : '#1565C0'}
+                  style={{ textAnchor: 'end', dominantBaseline: 'central' }}
+                >
+                  {valStr}
+                </text>
+              </g>
+            )
+          })}
+        </>
+      )}
     </g>
   )
 }

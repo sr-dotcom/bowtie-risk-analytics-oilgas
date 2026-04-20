@@ -6,7 +6,8 @@ import BarrierForm from './sidebar/BarrierForm'
 import BowtieSVG from './diagram/BowtieSVG'
 import PathwayView from './diagram/PathwayView'
 import DetailDrawer from './panel/DetailDrawer'
-import { BSEE_DEMO_SCENARIO, DEMO_SCENARIO } from './sidebar/constants'
+import { BSEE_DEMO_SCENARIO } from './sidebar/constants'
+import type { ScenarioBarrier } from '@/lib/types'
 import DashboardView from './dashboard/DashboardView'
 
 // ---------------------------------------------------------------------------
@@ -39,9 +40,23 @@ function mapRiskLevel(rl: string): 'Low' | 'Medium' | 'High' | null {
 // Inner component — must be inside BowtieProvider to access context
 // ---------------------------------------------------------------------------
 
+// Map a ScenarioBarrier to the Barrier shape expected by addBarrierWithId.
+// barrier_family is unused in the cascading flow but is required by the Barrier type.
+function scenarioBarrierToBarrier(sb: ScenarioBarrier): Parameters<ReturnType<typeof useBowtieContext>['addBarrierWithId']>[0] {
+  return {
+    id: sb.control_id,
+    name: sb.name,
+    side: sb.barrier_level === 'prevention' ? 'prevention' : 'mitigation',
+    barrier_type: sb.barrier_type,
+    barrier_family: 'other_unknown',
+    line_of_defense: sb.line_of_defense ?? '1st',
+    barrierRole: sb.barrier_role,
+  }
+}
+
 function BowtieAppInner() {
   const {
-    addBarrier,
+    addBarrierWithId,
     setEventDescription,
     setScenario,
     barriers,
@@ -60,8 +75,8 @@ function BowtieAppInner() {
   useEffect(() => {
     if (demoLoaded.current || barriers.length > 0) return
     demoLoaded.current = true
-    setEventDescription(DEMO_SCENARIO.eventDescription)
-    DEMO_SCENARIO.barriers.forEach((b) => addBarrier(b))
+    setEventDescription(BSEE_DEMO_SCENARIO.top_event)
+    BSEE_DEMO_SCENARIO.barriers.forEach((sb) => addBarrierWithId(scenarioBarrierToBarrier(sb)))
     setScenario(BSEE_DEMO_SCENARIO)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -92,6 +107,8 @@ function BowtieAppInner() {
       barrier_role: b.barrierRole,
       line_of_defense: b.line_of_defense,
       risk_level: mapRiskLevel(b.riskLevel),
+      top_reasons: b.top_reasons,
+      average_cascading_probability: b.average_cascading_probability,
       threatId,
       consequenceId,
     }

@@ -36,8 +36,15 @@ interface BowtieState {
 
   setEventDescription: (v: string) => void
   addBarrier: (b: Omit<Barrier, 'id' | 'riskLevel'>) => void
+  addBarrierWithId: (b: Omit<Barrier, 'riskLevel'>) => void
   removeBarrier: (id: string) => void
   updateBarrierRisk: (id: string, riskLevel: RiskLevel, probability: number) => void
+  updateBarrierCascading: (
+    id: string,
+    avgProb: number,
+    riskLevel: RiskLevel,
+    topReasons: { feature: string; value: number; display_name: string }[],
+  ) => void
   setPrediction: (id: string, pred: PredictResponse) => void
   setSelectedBarrierId: (id: string | null) => void
   setEvidence: (id: string, ev: ExplainResponse) => void
@@ -145,9 +152,29 @@ export function BowtieProvider({
     setBarriers((prev) => [...prev, newBarrier])
   }
 
+  function addBarrierWithId(b: Omit<Barrier, 'riskLevel'>): void {
+    const newBarrier: Barrier = { ...b, riskLevel: 'unanalyzed' }
+    setBarriers((prev) => [...prev, newBarrier])
+  }
+
   function updateBarrierRisk(id: string, riskLevel: RiskLevel, probability: number): void {
     setBarriers((prev) =>
       prev.map((b) => (b.id === id ? { ...b, riskLevel, probability } : b)),
+    )
+  }
+
+  function updateBarrierCascading(
+    id: string,
+    avgProb: number,
+    riskLevel: RiskLevel,
+    topReasons: { feature: string; value: number; display_name: string }[],
+  ): void {
+    setBarriers((prev) =>
+      prev.map((b) =>
+        b.id === id
+          ? { ...b, riskLevel, probability: avgProb, average_cascading_probability: avgProb, top_reasons: topReasons }
+          : b,
+      ),
     )
   }
 
@@ -187,8 +214,10 @@ export function BowtieProvider({
         dashboardTab,
         setEventDescription,
         addBarrier,
+        addBarrierWithId,
         removeBarrier,
         updateBarrierRisk,
+        updateBarrierCascading,
         setPrediction,
         setSelectedBarrierId,
         setEvidence,

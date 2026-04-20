@@ -268,3 +268,31 @@ Both `/predict-cascading` and `/explain-cascading` degrade gracefully:
 | Empty RAG retrieval | `/explain-cascading` | `narrative_unavailable: true` (but HTTP 200) |
 
 Callers must check `explanation_unavailable` / `narrative_unavailable` before rendering results.
+
+---
+
+## Average Cascading Risk (frontend-derived metric)
+
+**Definition:** For each barrier B in a scenario of N barriers, the frontend fires N parallel `/predict-cascading` calls — one per barrier acting as conditioner. Average Cascading Risk for B is the arithmetic mean of `y_fail_probability` across the N−1 runs where B appears as a *target* (i.e., every run except the one where B is the conditioner).
+
+```
+AverageCascadingRisk(B) = mean { y_fail_probability(B | conditioner=C) : C ≠ B }
+```
+
+**SHAP attribution:** The top-2 SHAP features are taken from the single run that produced the highest `y_fail_probability` for B. This is the most informative cascade scenario for explaining *why* B is at risk.
+
+**Key properties:**
+
+| Property | Detail |
+|----------|--------|
+| Not a model output | Aggregated in the frontend from N cascading API responses — the backend has no knowledge of this metric |
+| Weighting | Each single-barrier-failure scenario is weighted equally (simple mean) |
+| Risk band mapping | Mapped to LOW / MEDIUM / HIGH via D006 thresholds: p < 0.45 → LOW, p < 0.70 → MEDIUM, p ≥ 0.70 → HIGH (loaded from `/risk_thresholds.json`) |
+| SHAP thresholds source | `/risk_thresholds.json` public asset (p60 = 0.45, p80 = 0.70) |
+
+**Consumer components:**
+
+- `frontend/components/dashboard/RankedBarriers.tsx` — "Avg Cascade Risk" column, sorted by composite score then average probability
+- `frontend/components/dashboard/TopAtRiskBarriers.tsx` — "Top Barriers by Avg Cascade Risk" panel
+- `frontend/components/diagram/BowtieSVG.tsx` — left-edge traffic-light band on each barrier rect
+- `frontend/hooks/useAnalyzeBarriers.ts` — fires the N parallel requests and aggregates the metric via `updateBarrierCascading()`
