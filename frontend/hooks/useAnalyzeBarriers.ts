@@ -69,7 +69,7 @@ export function useAnalyzeBarriers(): { analyzeAll: () => Promise<void> } {
           .map((sv) => ({
             feature: sv.feature,
             value: sv.value,
-            display_name: getFeatureDisplayName(sv.feature) ?? sv.display_name ?? sv.feature,
+            display_name: getFeatureDisplayName(sv.feature) || sv.display_name || sv.feature,
           }))
 
         const riskLevel = mapProbabilityToRiskLevel(avgProb, thresholds)

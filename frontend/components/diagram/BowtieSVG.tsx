@@ -15,6 +15,7 @@ interface Threat {
 interface Consequence {
   id: string
   name: string
+  severity?: string
 }
 
 interface BarrierInput {
@@ -301,17 +302,24 @@ export default function BowtieSVG({
   const threatX = PADDING
   const consX = CW - PADDING - CONS_W
   const hazardLabel = hazardName || 'Hazard'
-  const topEventLines = wrapText(topEvent, 18, 4)
+  const topEventLines = wrapText(topEvent, 22, 4)
 
-  // Highest risk level among barriers linked to a consequence
-  function consRiskLevel(consId: string): string | null {
+  // Highest risk among barriers linked to a consequence; falls back to
+  // consequence severity, then gray '?' so every consequence has a pill.
+  function consRiskLevel(consId: string, severity?: string): string {
     const linked = mitByConsequence.get(consId)
-    if (!linked) return null
-    const levels = linked.map((b) => b.risk_level).filter(Boolean) as string[]
-    if (levels.includes('High')) return 'High'
-    if (levels.includes('Medium')) return 'Medium'
-    if (levels.includes('Low')) return 'Low'
-    return null
+    if (linked) {
+      const levels = linked.map((b) => b.risk_level).filter(Boolean) as string[]
+      if (levels.includes('High')) return 'High'
+      if (levels.includes('Medium')) return 'Medium'
+      if (levels.includes('Low')) return 'Low'
+    }
+    if (severity) {
+      if (severity === 'critical' || severity === 'high') return 'High'
+      if (severity === 'medium') return 'Medium'
+      if (severity === 'low') return 'Low'
+    }
+    return 'Unknown'
   }
 
   return (
@@ -426,7 +434,7 @@ export default function BowtieSVG({
         <rect x={cx - 70} y={cy - 40} width={140} height={80} rx={4} fill="#fff" stroke="#333" strokeWidth={1.5} />
         {/* Top event text */}
         {topEventLines.map((line, i) => {
-          const lineH = 18
+          const lineH = 17
           const startY = cy - ((topEventLines.length - 1) * lineH) / 2
           return (
             <text
@@ -501,7 +509,7 @@ export default function BowtieSVG({
           const cyPos = cp.cy - CONS_H / 2
           const nameLines = wrapText(c.name, 14, 3)
           const textStartY = cp.cy - ((nameLines.length - 1) * 17) / 2
-          const rl = consRiskLevel(c.id)
+          const rl = consRiskLevel(c.id, c.severity)
 
           return (
             <g key={`cons-${c.id}`}>
@@ -672,7 +680,7 @@ function renderBarrier(
         <>
           <rect x={0} y={BARRIER_H} width={BARRIER_W} height={BARRIER_METRIC_BLOCK_H} fill="#fff" stroke="#333" strokeWidth={1} />
           {reasons.map((s, ri) => {
-            const dn = s.display_name.length > 18 ? s.display_name.slice(0, 17) + '…' : s.display_name
+            const dn = s.display_name.length > 22 ? s.display_name.slice(0, 21) + '…' : s.display_name
             const rowY = BARRIER_H + 6 + ri * 14 + 7
             const valStr = (s.value >= 0 ? '+' : '') + s.value.toFixed(2)
             return (

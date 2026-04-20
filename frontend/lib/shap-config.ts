@@ -30,21 +30,33 @@ export const FEATURE_DISPLAY_NAMES: Record<string, string> = {
   ...(PIF_DISPLAY_NAMES as Record<string, string>),
 }
 
-/** Display names for cascading model features (conditioner/target pairs). */
+/** Display names for all 18 cascading model features (5 target + 6 cond + 7 context). */
 export const CASCADING_FEATURE_DISPLAY_NAMES: Record<string, string> = {
-  barrier_condition_cond: 'Barrier condition (conditioner)',
-  barrier_condition_target: 'Barrier condition',
-  lod_numeric_cond: 'Line of defense (conditioner)',
-  lod_numeric_target: 'Line of defense',
-  barrier_level_cond: 'Pathway (conditioner)',
-  barrier_level_target: 'Pathway',
-  lod_industry_standard_cond: 'Industry standard LOD (conditioner)',
-  lod_industry_standard_target: 'Industry standard LOD',
-  barrier_type_cond: 'Barrier type (conditioner)',
-  barrier_type_target: 'Barrier type',
+  // Target barrier features
+  'lod_industry_standard_target': 'Target LoD category',
+  'barrier_level_target': 'Target role',
+  'pathway_sequence_target': 'Target pathway position',
+  'lod_numeric_target': 'Target LoD tier',
+  'num_threats_in_lod_numeric_target': 'Threats at target tier',
+  // Conditioning barrier features
+  'lod_industry_standard_cond': 'Cond. LoD category',
+  'barrier_level_cond': 'Cond. role',
+  'barrier_condition_cond': 'Cond. condition',
+  'pathway_sequence_cond': 'Cond. pathway position',
+  'lod_numeric_cond': 'Cond. LoD tier',
+  'num_threats_in_lod_numeric_cond': 'Threats at cond. tier',
+  // Incident-level context features
+  'total_prev_barriers_incident': 'Prevention barriers in incident',
+  'total_mit_barriers_incident': 'Mitigation barriers in incident',
+  'num_threats_in_sequence': 'Threats in pathway sequence',
+  'flag_environmental_threat': 'Environmental threat present',
+  'flag_electrical_failure': 'Electrical failure present',
+  'flag_procedural_error': 'Procedural error present',
+  'flag_mechanical_failure': 'Mechanical failure present',
 }
 
-/** Look up a human-readable display name for any SHAP feature (legacy or cascading). */
-export function getFeatureDisplayName(feature: string): string | null {
-  return FEATURE_DISPLAY_NAMES[feature] ?? CASCADING_FEATURE_DISPLAY_NAMES[feature] ?? null
+/** Look up a human-readable display name for any SHAP feature (legacy or cascading).
+ *  Falls back to the raw feature name — never returns null or empty string. */
+export function getFeatureDisplayName(feature: string): string {
+  return FEATURE_DISPLAY_NAMES[feature] ?? CASCADING_FEATURE_DISPLAY_NAMES[feature] ?? feature
 }
