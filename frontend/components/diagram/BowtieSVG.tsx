@@ -373,17 +373,11 @@ export default function BowtieSVG({
           }
           if (!leftConnects[i]) return null
           const lc = leftConnects[i]
-          const lastBarrierRight = tp.barrierXs[tp.barrierXs.length - 1] + BARRIER_W
-          const curveStartX = lastBarrierRight + 15
-
           let d = `M ${threatX + THREAT_W + 14},${tp.cy}`
           for (const bx of tp.barrierXs) {
             d += ` L ${bx},${tp.cy} L ${bx + BARRIER_W},${tp.cy}`
           }
-          d += ` L ${curveStartX},${tp.cy}`
-          const cpX1 = curveStartX + (lc.x - curveStartX) * 0.5
-          const cpX2 = lc.x - (lc.x - curveStartX) * 0.15
-          d += ` C ${cpX1},${tp.cy} ${cpX2},${lc.y} ${lc.x},${lc.y}`
+          d += ` L ${lc.x},${lc.y}`
 
           return <path key={`prev-path-${i}`} d={d} fill="none" stroke="#111" strokeWidth={1.5} />
         })}
@@ -405,12 +399,7 @@ export default function BowtieSVG({
             )
           }
 
-          const firstBarrierLeft = cp.barrierXs[0]
-          const curveEndX = firstBarrierLeft - 15
-          const cpX1 = rc.x + (curveEndX - rc.x) * 0.15
-          const cpX2 = rc.x + (curveEndX - rc.x) * 0.5
-          let d = `M ${rc.x},${rc.y} C ${cpX1},${rc.y} ${cpX2},${cp.cy} ${curveEndX},${cp.cy}`
-
+          let d = `M ${rc.x},${rc.y}`
           for (const bx of cp.barrierXs) {
             d += ` L ${bx},${cp.cy} L ${bx + BARRIER_W},${cp.cy}`
           }
