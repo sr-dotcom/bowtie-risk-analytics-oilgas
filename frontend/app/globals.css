@@ -3,11 +3,38 @@
 @tailwind utilities;
 
 :root {
-  --background: #0F1117;
-  --foreground: #E8ECF4;
+  --bg-base: #0F1419;
+  --bg-surface: #151B24;
+  --bg-elevated: #1C2430;
+  --bg-accent: #1A2332;
+  --border-subtle: #1F2937;
+  --border-default: #2A3442;
+  --border-strong: #3A4556;
+  --text-primary: #E8E8E8;
+  --text-secondary: #9CA3AF;
+  --text-tertiary: #6B7280;
+  --text-inverse: #0F1419;
+  --risk-high: #C0392B;
+  --risk-high-text: #E74C3C;
+  --risk-medium: #996515;
+  --risk-medium-text: #D68910;
+  --risk-low: #1F6F43;
+  --risk-low-text: #27AE60;
+  --risk-unknown: #4A5568;
+  --accent-primary: #2C5F7F;
+  --accent-hover: #3A7399;
+  --accent-active: #1F4A66;
+  --accent-subtle: #1A3344;
+  --shadow-focus: 0 0 0 2px #2C5F7F66;
+  --shadow-drill: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-mono: 'SF Mono', 'Roboto Mono', Consolas, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
 }
