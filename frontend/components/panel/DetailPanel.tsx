@@ -41,6 +41,33 @@ export default function DetailPanel() {
 
   const isCascadingMode = cascadingPredictions.length > 0 && scenario !== null
 
+  // Pre-load evidence when a barrier with a prediction is selected — by the time
+  // the user clicks the Evidence tab the data is already in context.
+  // Must sit before any early return to satisfy React's Rules of Hooks.
+  useEffect(() => {
+    if (!selectedBarrierId || !barrier || !pred || evidence[selectedBarrierId]) return
+
+    let cancelled = false
+    const req: ExplainRequest = {
+      barrier_family: barrier.barrier_family,
+      barrier_type: barrier.barrier_type,
+      side: barrier.side,
+      barrier_role: barrier.barrierRole,
+      event_description: eventDescription,
+      shap_factors: pred.model1_shap,
+      risk_level: pred.risk_level || '',
+    }
+
+    explain(req)
+      .then((r) => { if (!cancelled) setEvidence(selectedBarrierId, r) })
+      .catch(() => { /* EvidenceSection renders its own error when evidence is absent */ })
+
+    return () => { cancelled = true }
+  // pred != null captures the transition from unanalyzed → analyzed without
+  // needing the full pred object as a dependency (avoids stale-closure issues).
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedBarrierId, pred != null])
+
   // ---------------------------------------------------------------------------
   // Cascading detail view
   // ---------------------------------------------------------------------------
@@ -122,32 +149,6 @@ export default function DetailPanel() {
       </div>
     )
   }
-
-  // Pre-load evidence when a barrier with a prediction is selected — by the time
-  // the user clicks the Evidence tab the data is already in context.
-  useEffect(() => {
-    if (!selectedBarrierId || !barrier || !pred || evidence[selectedBarrierId]) return
-
-    let cancelled = false
-    const req: ExplainRequest = {
-      barrier_family: barrier.barrier_family,
-      barrier_type: barrier.barrier_type,
-      side: barrier.side,
-      barrier_role: barrier.barrierRole,
-      event_description: eventDescription,
-      shap_factors: pred.model1_shap,
-      risk_level: pred.risk_level || '',
-    }
-
-    explain(req)
-      .then((r) => { if (!cancelled) setEvidence(selectedBarrierId, r) })
-      .catch(() => { /* EvidenceSection renders its own error when evidence is absent */ })
-
-    return () => { cancelled = true }
-  // pred != null captures the transition from unanalyzed → analyzed without
-  // needing the full pred object as a dependency (avoids stale-closure issues).
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedBarrierId, pred != null])
 
   // State 1: No barrier selected
   if (!selectedBarrierId) {
