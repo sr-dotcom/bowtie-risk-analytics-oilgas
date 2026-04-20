@@ -33,3 +33,5 @@ Items noticed but deliberately NOT fixed in their discovery pass. Each entry rec
 ---
 
 - Python test environment drift: 19 pre-existing pytest failures (shap/xgboost ImportErrors). Not regressions, environment issue. Resolve before defense: `pip install -e .` in clean venv, verify `pytest tests/ -q` returns 0 failures. Logged 2026-04-20.
+
+- T1 defect: sidebar does not auto-collapse to 48px icon strip when drill-down opens (UI-CONTEXT.md §8 viewport handling). Currently all three regions (sidebar 360px, bowtie, drill-down 420px) open simultaneously, reducing bowtie canvas below the 1200px §8 minimum on <1920px viewports. Fix scope: sidebar collapsed-state, auto-collapse on drill-down open, expand-closes-drilldown rule. Defer until T5 polish pass. Logged 2026-04-20.

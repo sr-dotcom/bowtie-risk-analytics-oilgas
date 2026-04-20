@@ -212,15 +212,17 @@ function BowtieAppInner() {
         )}
 
         {viewMode === 'diagram' ? (
-          <BowtieSVG
-            topEvent={eventDescription}
-            hazardName="High-pressure gas"
-            threats={DEMO_THREATS}
-            consequences={DEMO_CONSEQUENCES}
-            barriers={svgBarriers}
-            selectedBarrierId={selectedBarrierId}
-            onBarrierClick={handleBarrierClick}
-          />
+          <div className="h-full w-full bg-[#0F1419] p-3">
+            <BowtieSVG
+              topEvent={eventDescription}
+              hazardName="High-pressure gas"
+              threats={DEMO_THREATS}
+              consequences={DEMO_CONSEQUENCES}
+              barriers={svgBarriers}
+              selectedBarrierId={selectedBarrierId}
+              onBarrierClick={handleBarrierClick}
+            />
+          </div>
         ) : (
           <PathwayView
             barriers={barriers}
