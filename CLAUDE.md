@@ -249,6 +249,51 @@ Three models are trained and evaluated. All use XGBoost with 5-fold stratified G
 
 LogReg baselines are trained alongside XGBoost for both binary targets (logreg_model1.joblib, logreg_model2.joblib). Feature importance via SHAP TreeExplainer — values are in log-odds space (margin output). SHAP is NOT serialized; TreeExplainer is recreated from model at prediction time.
 
+## M003 cascading architecture
+
+The current (M003) prediction pipeline uses a cascading pair-feature XGBoost model, replacing the single-barrier Model 1 from M002. Core modules:
+
+- `src/modeling/cascading/pair_builder.py` — constructs 18-feature barrier-pair vectors from a scenario
+- `src/modeling/cascading/predict.py` — inference module; loads XGBoost pipeline, emits `y_fail_probability` + `risk_band` + SHAP values
+- `src/modeling/cascading/train.py` — training entry point
+- `src/modeling/cascading/data_prep.py` — preprocessing
+- `src/modeling/cascading/shap_probe.py` — SHAP explainer setup
+- `src/modeling/cascading/hf_recovery.py` — y_hf_fail target support (retained but disabled per D016 Branch C)
+- `src/modeling/cascading/mini_gate.py` — threshold gating for predictions
+
+Model artifacts live in `data/models/artifacts/xgb_cascade_y_fail_*.{joblib,json}`. Training data: `data/processed/cascading_training.parquet` (156 unique incidents, 530 pair-feature rows current; model metadata records 813 rows from an earlier snapshot).
+
+### API endpoints
+
+- `POST /predict-cascading` — returns `y_fail_probability` + SHAP for every barrier in a scenario, conditioned on a specified barrier
+- `POST /rank-targets` — lightweight ranking without SHAP, for quick comparative views
+- `POST /explain-cascading` — pairs a prediction with RAG-retrieved evidence (degradation context, similar incidents, narrative synthesis)
+- `GET /predict` → 410 Gone (deprecated single-barrier endpoint)
+- `GET /explain` → 410 Gone
+
+### RAG v2 corpus
+
+Built by `scripts/build_rag_v2.py`. Scoped to the 156-incident cascading training set. Two document types:
+
+- `data/rag/v2/datasets/barrier_documents.csv` (1,161 barriers)
+- `data/rag/v2/datasets/incident_documents.csv` (156 incidents)
+
+Embeddings and FAISS indexes in `data/rag/v2/{embeddings,barrier_faiss.bin,incident_faiss.bin}`.
+
+### Frontend integration
+
+- `frontend/hooks/useAnalyzeCascading.ts` — calls `/predict-cascading`
+- `frontend/hooks/useExplainCascading.ts` — calls `/explain-cascading`
+- `frontend/context/BowtieContext.tsx` — orchestrates cascading state, fires explain on barrier click
+
+### Cross-boundary risk thresholds
+
+`configs/risk_thresholds.json` (D006) is the single source of truth for HIGH/MEDIUM/LOW tier cutoffs. Both the Python API (`src/modeling/cascading/predict.py`) and the TypeScript frontend hook (`frontend/hooks/useAnalyzeBarriers.ts`) read this file. The cascade model's own `xgb_cascade_y_fail_metadata.json` contains a parallel `risk_tier_thresholds` field — **this field is currently unused**; predict.py reads D006, not the metadata. Do not rely on metadata thresholds.
+
+### Decision register
+
+Design decisions are exported from GSD to `docs/decisions/DECISIONS.md`. Recent keys: D016 (Branch C — y_hf_fail retained but not surfaced), D017 (RAG v2 corpus build), D006 (threshold recalibration).
+
 ## Code Conventions
 
 - Python 3.10+, type hints required on all functions

@@ -57,6 +57,7 @@ secrets/
 
 # Data artifacts (never commit — reproduce via pipeline)
 /data/*
+!/data/README.md
 !/data/sources/**
 !/data/samples/**
 !/data/evaluation/
