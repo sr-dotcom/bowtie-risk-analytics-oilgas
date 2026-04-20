@@ -3,6 +3,7 @@
 import { useBowtieContext } from '@/context/BowtieContext'
 import { predictCascading } from '@/lib/api'
 import { mapProbabilityToRiskLevel } from '@/lib/riskScore'
+import { getFeatureDisplayName } from '@/lib/shap-config'
 import type { BarrierPrediction, RiskThresholds } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
@@ -65,6 +66,11 @@ export function useAnalyzeBarriers(): { analyzeAll: () => Promise<void> } {
         const topReasons = [...topRun.shap_values]
           .sort((a, b) => Math.abs(b.value) - Math.abs(a.value))
           .slice(0, 2)
+          .map((sv) => ({
+            feature: sv.feature,
+            value: sv.value,
+            display_name: getFeatureDisplayName(sv.feature) ?? sv.display_name ?? sv.feature,
+          }))
 
         const riskLevel = mapProbabilityToRiskLevel(avgProb, thresholds)
         updateBarrierCascading(b.id, avgProb, riskLevel, topReasons)

@@ -29,3 +29,22 @@ export const FEATURE_DISPLAY_NAMES: Record<string, string> = {
   // PIF features (from lib/types.ts PIF_DISPLAY_NAMES)
   ...(PIF_DISPLAY_NAMES as Record<string, string>),
 }
+
+/** Display names for cascading model features (conditioner/target pairs). */
+export const CASCADING_FEATURE_DISPLAY_NAMES: Record<string, string> = {
+  barrier_condition_cond: 'Barrier condition (conditioner)',
+  barrier_condition_target: 'Barrier condition',
+  lod_numeric_cond: 'Line of defense (conditioner)',
+  lod_numeric_target: 'Line of defense',
+  barrier_level_cond: 'Pathway (conditioner)',
+  barrier_level_target: 'Pathway',
+  lod_industry_standard_cond: 'Industry standard LOD (conditioner)',
+  lod_industry_standard_target: 'Industry standard LOD',
+  barrier_type_cond: 'Barrier type (conditioner)',
+  barrier_type_target: 'Barrier type',
+}
+
+/** Look up a human-readable display name for any SHAP feature (legacy or cascading). */
+export function getFeatureDisplayName(feature: string): string | null {
+  return FEATURE_DISPLAY_NAMES[feature] ?? CASCADING_FEATURE_DISPLAY_NAMES[feature] ?? null
+}

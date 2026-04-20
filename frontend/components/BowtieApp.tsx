@@ -64,10 +64,26 @@ function BowtieAppInner() {
     eventDescription,
     selectedBarrierId,
     setSelectedBarrierId,
+    setSelectedTargetBarrierId,
+    setConditioningBarrierId,
     isAnalyzing,
     viewMode,
     setViewMode,
   } = useBowtieContext()
+
+  function handleBarrierClick(barrierId: string) {
+    setSelectedBarrierId(barrierId)
+    setSelectedTargetBarrierId(barrierId)
+
+    // Pick conditioner: highest avg cascading risk among other barriers;
+    // fall back to first non-clicked barrier if analysis hasn't run yet.
+    const analyzed = barriers
+      .filter((b) => b.id !== barrierId && b.average_cascading_probability !== undefined)
+      .sort((a, b) => (b.average_cascading_probability ?? 0) - (a.average_cascading_probability ?? 0))
+
+    const conditioner = analyzed[0] ?? barriers.find((b) => b.id !== barrierId) ?? null
+    if (conditioner) setConditioningBarrierId(conditioner.id)
+  }
 
   // Load demo scenario on first mount.
   // Ref guard prevents React 18 StrictMode double-invocation from adding duplicates.
@@ -203,7 +219,7 @@ function BowtieAppInner() {
             consequences={DEMO_CONSEQUENCES}
             barriers={svgBarriers}
             selectedBarrierId={selectedBarrierId}
-            onBarrierClick={setSelectedBarrierId}
+            onBarrierClick={handleBarrierClick}
           />
         ) : (
           <PathwayView

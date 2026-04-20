@@ -343,6 +343,11 @@ export default function BowtieSVG({
             <stop offset="0%" stopColor="#FF1744" />
             <stop offset="100%" stopColor="#B71C1C" />
           </radialGradient>
+          <linearGradient id="connectorTab" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#999" />
+            <stop offset="50%" stopColor="#CCC" />
+            <stop offset="100%" stopColor="#999" />
+          </linearGradient>
           <pattern
             id="hazardStripe"
             width="14.14"
@@ -475,16 +480,16 @@ export default function BowtieSVG({
                   {line}
                 </text>
               ))}
-              {/* Gray connector tab on right edge */}
+              {/* Cylinder-style connector tab on right edge */}
               <rect
                 x={threatX + THREAT_W}
-                y={tp.cy - 14}
+                y={tp.cy - 12}
                 width={14}
-                height={28}
-                rx={5}
-                fill="#555"
-                stroke="#333"
-                strokeWidth={1}
+                height={24}
+                rx={3}
+                fill="url(#connectorTab)"
+                stroke="#666"
+                strokeWidth={0.5}
               />
             </g>
           )
@@ -510,16 +515,16 @@ export default function BowtieSVG({
                 stroke="#7f0000"
                 strokeWidth={2}
               />
-              {/* Gray connector tab on left edge */}
+              {/* Cylinder-style connector tab on left edge */}
               <rect
                 x={consX - 14}
-                y={cp.cy - 14}
+                y={cp.cy - 12}
                 width={14}
-                height={28}
-                rx={5}
-                fill="#555"
-                stroke="#333"
-                strokeWidth={1}
+                height={24}
+                rx={3}
+                fill="url(#connectorTab)"
+                stroke="#666"
+                strokeWidth={0.5}
               />
               {nameLines.map((line, li) => (
                 <text
@@ -649,11 +654,6 @@ function renderBarrier(
         stroke={isSelected ? '#2979FF' : riskColor}
         strokeWidth={isSelected ? 2.5 : (b.risk_level ? 2.5 : 1.5)}
       />
-      {/* Top connector tabs */}
-      <rect x={30} y={-BARRIER_TAB_OVERHANG} width={16} height={22} rx={4} fill="#444" stroke="#222" strokeWidth={1} />
-      <rect x={80} y={-BARRIER_TAB_OVERHANG} width={16} height={22} rx={4} fill="#444" stroke="#222" strokeWidth={1} />
-      {/* Bottom connector tab */}
-      <rect x={57} y={BARRIER_H - BARRIER_TAB_OVERHANG} width={16} height={22} rx={4} fill="#444" stroke="#222" strokeWidth={1} />
       {/* Name text — x shifted right by half the band width to re-centre in white area */}
       {nameLines.map((line, li) => (
         <text
