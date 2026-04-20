@@ -1,6 +1,110 @@
 // Risk levels (from UI-SPEC risk level color mapping)
 export type RiskLevel = 'red' | 'amber' | 'green' | 'unanalyzed'
 
+// ---------------------------------------------------------------------------
+// Scenario types — match data/demo_scenarios/*.json shape (S05a/T01)
+// ---------------------------------------------------------------------------
+
+export interface ScenarioBarrier {
+  control_id: string
+  name: string
+  barrier_level: string          // "prevention" | "mitigation"
+  lod_industry_standard?: string
+  lod_numeric?: number
+  barrier_condition: string      // "effective" | "degraded" | "ineffective"
+  barrier_type: string
+  barrier_role: string
+  linked_threat_ids?: string[]
+  description?: string
+  line_of_defense?: string
+}
+
+export interface ScenarioThreat {
+  threat_id: string
+  name: string
+  description: string | null
+}
+
+export interface Scenario {
+  scenario_id: string
+  source_agency: string
+  incident_id: string
+  top_event: string
+  context?: {
+    region?: string
+    operator?: string
+    operating_phase?: string
+    materials?: string[]
+  }
+  barriers: ScenarioBarrier[]
+  threats: ScenarioThreat[]
+  pif_context?: Record<string, Record<string, boolean>>
+}
+
+// ---------------------------------------------------------------------------
+// Cascading API types — mirroring src/api/schemas.py cascading section (S05a/T01)
+// ---------------------------------------------------------------------------
+
+export interface CascadingRequest {
+  scenario: Scenario
+  conditioning_barrier_id: string
+}
+
+export interface CascadingShapValue {
+  feature: string
+  value: number
+  display_name: string
+}
+
+export type RiskBand = 'HIGH' | 'MEDIUM' | 'LOW'
+
+export interface BarrierPrediction {
+  target_barrier_id: string
+  y_fail_probability: number
+  risk_band: RiskBand
+  shap_values: CascadingShapValue[]
+}
+
+export interface PredictCascadingResponse {
+  predictions: BarrierPrediction[]
+  explanation_unavailable: boolean
+}
+
+export interface RankedBarrier {
+  target_barrier_id: string
+  composite_risk_score: number
+}
+
+export interface RankTargetsResponse {
+  ranked_barriers: RankedBarrier[]
+}
+
+export interface ExplainCascadingRequest {
+  conditioning_barrier_id: string
+  target_barrier_id: string
+  bowtie_context: Scenario
+}
+
+export interface EvidenceSnippet {
+  incident_id: string
+  source_agency: string
+  text: string
+  score: number
+}
+
+export interface DegradationContext {
+  pif_mentions: string[]
+  recommendations: string[]
+  barrier_condition: string
+}
+
+export interface ExplainCascadingResponse {
+  narrative_text: string
+  evidence_snippets: EvidenceSnippet[]
+  degradation_context: DegradationContext
+  narrative_unavailable: boolean
+}
+
 export interface RiskThresholds {
   p80: number
   p60: number

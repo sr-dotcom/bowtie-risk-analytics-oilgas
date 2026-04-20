@@ -3,7 +3,7 @@
 import { useBowtieContext } from '@/context/BowtieContext'
 import RiskScoreBadge from '@/components/panel/RiskScoreBadge'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES } from '@/lib/shap-config'
-import type { Barrier, PredictResponse, ShapValue } from '@/lib/types'
+import type { BarrierPrediction, Barrier, PredictResponse, RankedBarrier, ScenarioBarrier, ShapValue } from '@/lib/types'
 
 // Re-export for downstream consumers (RankedBarriers imports from here)
 export { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES }
@@ -16,6 +16,58 @@ export interface AtRiskBarrierEntry {
   barrier: Barrier
   probability: number
   topFactor: ShapValue | null
+}
+
+export interface CascadingAtRiskEntry {
+  control_id: string
+  name: string
+  probability: number
+  riskBand: 'HIGH' | 'MEDIUM' | 'LOW'
+  topFactor: string | null
+}
+
+/**
+ * Build top-N barriers from cascading predictions ranked by composite_risk_score.
+ *
+ * @param cascadingPredictions - BarrierPrediction[] from BowtieContext.
+ * @param ranked               - RankedBarrier[] composite scores from rank-targets.
+ * @param scenarioBarriers     - Scenario barrier metadata for names.
+ * @param n                    - Max entries to return (default 3).
+ */
+export function buildTopCascadingBarriers(
+  cascadingPredictions: BarrierPrediction[],
+  ranked: RankedBarrier[],
+  scenarioBarriers: ScenarioBarrier[],
+  n = 3,
+): CascadingAtRiskEntry[] {
+  if (cascadingPredictions.length === 0) return []
+
+  const nameMap = new Map(scenarioBarriers.map((b) => [b.control_id, b.name]))
+  const predMap = new Map(cascadingPredictions.map((p) => [p.target_barrier_id, p]))
+
+  // Sort by composite_risk_score (from ranked) if available, else by y_fail_probability
+  const sorted = ranked.length > 0
+    ? [...ranked]
+        .sort((a, b) => b.composite_risk_score - a.composite_risk_score)
+        .slice(0, n)
+        .map((r) => predMap.get(r.target_barrier_id))
+        .filter(Boolean) as BarrierPrediction[]
+    : [...cascadingPredictions]
+        .sort((a, b) => b.y_fail_probability - a.y_fail_probability)
+        .slice(0, n)
+
+  return sorted.map((p) => {
+    const topShap = p.shap_values.length > 0
+      ? [...p.shap_values].sort((a, b) => Math.abs(b.value) - Math.abs(a.value))[0]
+      : null
+    return {
+      control_id: p.target_barrier_id,
+      name: nameMap.get(p.target_barrier_id) ?? p.target_barrier_id,
+      probability: p.y_fail_probability,
+      riskBand: p.risk_band,
+      topFactor: topShap?.display_name ?? topShap?.feature ?? null,
+    }
+  })
 }
 
 /**
@@ -61,43 +113,66 @@ export function buildTopAtRiskBarriers(
 // Component
 // ---------------------------------------------------------------------------
 
+const RISK_BAND_LEVEL: Record<'HIGH' | 'MEDIUM' | 'LOW', 'red' | 'amber' | 'green'> = {
+  HIGH: 'red',
+  MEDIUM: 'amber',
+  LOW: 'green',
+}
+
 export default function TopAtRiskBarriers() {
-  const { barriers, predictions } = useBowtieContext()
-  const items = buildTopAtRiskBarriers(barriers, predictions)
+  const { barriers, predictions, cascadingPredictions, cascadingRanked, scenario } = useBowtieContext()
+  const isCascadingMode = cascadingPredictions.length > 0 && scenario !== null
+
+  const cascadingItems = isCascadingMode
+    ? buildTopCascadingBarriers(cascadingPredictions, cascadingRanked, scenario.barriers, 3)
+    : []
+
+  const legacyItems = buildTopAtRiskBarriers(barriers, predictions, 5)
+
+  const isEmpty = isCascadingMode ? cascadingItems.length === 0 : legacyItems.length === 0
 
   return (
     <div data-testid="top-at-risk-barriers">
       <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">Top At-Risk Barriers</h3>
 
-      {items.length === 0 ? (
+      {isEmpty ? (
         <p className="text-sm text-[#5A6178]">
-          Run Analyze Barriers to see top risk rankings
+          {isCascadingMode
+            ? 'No cascading predictions available'
+            : 'Run Analyze Barriers to see top risk rankings'}
         </p>
+      ) : isCascadingMode ? (
+        <div>
+          {cascadingItems.map((item) => (
+            <div key={item.control_id} className="bg-[#242836] rounded-lg p-3 mb-2">
+              <p className="text-base font-semibold text-[#E8ECF4] mb-2">{item.name}</p>
+              <RiskScoreBadge
+                probability={item.probability}
+                riskLevel={RISK_BAND_LEVEL[item.riskBand]}
+              />
+              {item.topFactor && (
+                <div className="flex items-center justify-between text-xs mt-1">
+                  <span className="text-[#8B93A8] truncate mr-2">{item.topFactor}</span>
+                  <span className="text-xs text-[#5A6178]">
+                    {(item.probability * 100).toFixed(0)}% failure risk
+                  </span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       ) : (
         <div>
-          {items.map((item) => {
+          {legacyItems.map((item) => {
             const featureName = item.topFactor
               ? (FEATURE_DISPLAY_NAMES[item.topFactor.feature] ?? item.topFactor.feature)
               : null
             const isPositive = item.topFactor ? item.topFactor.value >= 0 : false
 
             return (
-              <div
-                key={item.barrier.id}
-                className="bg-[#242836] rounded-lg p-3 mb-2"
-              >
-                {/* Barrier name */}
-                <p className="text-base font-semibold text-[#E8ECF4] mb-2">
-                  {item.barrier.name}
-                </p>
-
-                {/* Risk badge */}
-                <RiskScoreBadge
-                  probability={item.probability}
-                  riskLevel={item.barrier.riskLevel}
-                />
-
-                {/* Top SHAP factor */}
+              <div key={item.barrier.id} className="bg-[#242836] rounded-lg p-3 mb-2">
+                <p className="text-base font-semibold text-[#E8ECF4] mb-2">{item.barrier.name}</p>
+                <RiskScoreBadge probability={item.probability} riskLevel={item.barrier.riskLevel} />
                 {item.topFactor && featureName && (
                   <div className="flex items-center justify-between text-xs mt-1">
                     <span className="text-[#8B93A8] truncate mr-2">{featureName}</span>

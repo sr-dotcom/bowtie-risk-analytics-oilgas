@@ -1,6 +1,6 @@
 'use client'
 
-import type { RiskLevel } from '@/lib/types'
+import type { RiskLevel, RiskBand } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
 // Color mapping per UI-SPEC Color section
@@ -28,9 +28,16 @@ const RISK_LEVEL_LABELS: Record<string, { label: string; subtitle: string }> = {
 // Component
 // ---------------------------------------------------------------------------
 
+const RISK_BAND_TO_LEVEL: Record<RiskBand, RiskLevel> = {
+  HIGH: 'red',
+  MEDIUM: 'amber',
+  LOW: 'green',
+}
+
 interface RiskScoreBadgeProps {
   probability: number
-  riskLevel: RiskLevel
+  riskLevel?: RiskLevel
+  riskBand?: RiskBand  // cascading mode: maps HIGH/MEDIUM/LOW → riskLevel
 }
 
 /**
@@ -40,9 +47,10 @@ interface RiskScoreBadgeProps {
  * and programmatic consumers) but is NOT rendered in the badge. The riskLevel prop
  * drives all display logic.
  */
-export default function RiskScoreBadge({ probability, riskLevel }: RiskScoreBadgeProps) {
-  const colorClass = levelColors[riskLevel] ?? levelColors.unanalyzed
-  const levelConfig = RISK_LEVEL_LABELS[riskLevel] ?? RISK_LEVEL_LABELS.unanalyzed
+export default function RiskScoreBadge({ probability, riskLevel, riskBand }: RiskScoreBadgeProps) {
+  const resolvedLevel: RiskLevel = riskBand ? RISK_BAND_TO_LEVEL[riskBand] : (riskLevel ?? 'unanalyzed')
+  const colorClass = levelColors[resolvedLevel] ?? levelColors.unanalyzed
+  const levelConfig = RISK_LEVEL_LABELS[resolvedLevel] ?? RISK_LEVEL_LABELS.unanalyzed
 
   return (
     <div className="flex items-center gap-3 mb-3">

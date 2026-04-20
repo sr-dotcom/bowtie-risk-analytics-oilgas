@@ -1,0 +1,22 @@
+{
+  "predictions": [
+    {
+      "target_barrier_id": "C-002",
+      "y_fail_probability": 0.82,
+      "risk_band": "HIGH",
+      "shap_values": [
+        { "feature": "barrier_type", "value": 0.3, "display_name": "Engineering" },
+        { "feature": "barrier_condition", "value": 0.25, "display_name": "Ineffective" }
+      ]
+    },
+    {
+      "target_barrier_id": "C-003",
+      "y_fail_probability": 0.55,
+      "risk_band": "MEDIUM",
+      "shap_values": [
+        { "feature": "barrier_type", "value": 0.1, "display_name": "Engineering" }
+      ]
+    }
+  ],
+  "explanation_unavailable": false
+}

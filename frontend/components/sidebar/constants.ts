@@ -1,3 +1,5 @@
+import type { Scenario } from '@/lib/types'
+
 // Exact values from encoder.joblib (verified 2026-03-30, 49 barrier families)
 export const BARRIER_TYPES = ['administrative', 'engineering', 'ppe', 'unknown'] as const
 
@@ -140,4 +142,126 @@ export const DEMO_SCENARIO = {
       upstream_failure_rate: 0.0,
     },
   ],
+}
+
+// ---------------------------------------------------------------------------
+// BSEE demo scenario — matches data/demo_scenarios/bsee_eb-165-a-fieldwood-09-may-2015.json
+// Used as raw scenario for the cascading /predict-cascading endpoint (S05a).
+// ---------------------------------------------------------------------------
+
+export const BSEE_DEMO_SCENARIO: Scenario = {
+  scenario_id: 'bsee_eb-165-a-fieldwood-09-may-2015',
+  source_agency: 'BSEE',
+  incident_id: 'eb-165-a-fieldwood-09-may-2015',
+  top_event: 'Fire from overpressurization and rupture of fuel gas filter vessel',
+  context: {
+    region: 'Gulf of Mexico',
+    operator: 'Fieldwood SD Offshore LLC',
+    operating_phase: 'production',
+    materials: ['natural gas', 'hydrocarbon fluids', 'glycol'],
+  },
+  barriers: [
+    {
+      control_id: 'C-001',
+      name: 'Pressure Safety Valve on MBF-V940 Fuel Gas Scrubber',
+      barrier_level: 'prevention',
+      lod_industry_standard: 'Process Control',
+      lod_numeric: 1,
+      barrier_condition: 'ineffective',
+      barrier_type: 'engineering',
+      barrier_role: 'Prevent overpressurization upstream of fuel gas filter',
+      linked_threat_ids: ['T-001', 'T-002'],
+      description: 'Prevent overpressurization upstream of fuel gas filter',
+      line_of_defense: '1st',
+    },
+    {
+      control_id: 'C-002',
+      name: 'Pressure Safety Valve on MAK-F960B Fuel Gas Filter',
+      barrier_level: 'prevention',
+      lod_industry_standard: 'Structural Integrity',
+      lod_numeric: 2,
+      barrier_condition: 'ineffective',
+      barrier_type: 'engineering',
+      barrier_role: 'Prevent overpressurization of fuel gas filter vessel',
+      linked_threat_ids: ['T-001', 'T-002'],
+      description: 'Prevent overpressurization of fuel gas filter vessel',
+      line_of_defense: '2nd',
+    },
+    {
+      control_id: 'C-003',
+      name: 'Vessel structural integrity and corrosion management',
+      barrier_level: 'prevention',
+      lod_industry_standard: 'Structural Integrity',
+      lod_numeric: 1,
+      barrier_condition: 'ineffective',
+      barrier_type: 'engineering',
+      barrier_role: 'Maintain vessel pressure rating through corrosion prevention',
+      linked_threat_ids: ['T-003'],
+      description: 'Maintain vessel pressure rating through corrosion prevention',
+      line_of_defense: '1st',
+    },
+    {
+      control_id: 'C-004',
+      name: 'Differential pressure gauges on fuel gas filters',
+      barrier_level: 'prevention',
+      lod_industry_standard: 'Alarm and Operator Response',
+      lod_numeric: 2,
+      barrier_condition: 'ineffective',
+      barrier_type: 'engineering',
+      barrier_role: 'Provide operator indication of filter element condition and need for replacement',
+      linked_threat_ids: ['T-001'],
+      description: 'Provide operator indication of filter element condition and need for replacement',
+      line_of_defense: '2nd',
+    },
+    {
+      control_id: 'C-005',
+      name: 'Level Safety High (LSH) and Sight Glasses on fuel gas filters',
+      barrier_level: 'prevention',
+      lod_industry_standard: 'Alarm and Operator Response',
+      lod_numeric: 2,
+      barrier_condition: 'degraded',
+      barrier_type: 'engineering',
+      barrier_role: 'Provide accurate indication of fluid level in filter vessels',
+      linked_threat_ids: ['T-001'],
+      description: 'Provide accurate indication of fluid level in filter vessels',
+      line_of_defense: '2nd',
+    },
+    {
+      control_id: 'C-006',
+      name: 'Single-stage pressure reduction system',
+      barrier_level: 'prevention',
+      lod_industry_standard: 'Structural Integrity',
+      lod_numeric: 1,
+      barrier_condition: 'degraded',
+      barrier_type: 'engineering',
+      barrier_role: 'Reduce inlet pressure from 945-1290 PSI to safe operating pressure',
+      linked_threat_ids: ['T-001'],
+      description: 'Reduce inlet pressure from 945-1290 PSI to safe operating pressure',
+      line_of_defense: '1st',
+    },
+    {
+      control_id: 'C-008',
+      name: 'Emergency response and fire suppression equipment',
+      barrier_level: 'mitigation',
+      lod_industry_standard: 'Protection Systems',
+      lod_numeric: 4,
+      barrier_condition: 'effective',
+      barrier_type: 'engineering',
+      barrier_role: 'Extinguish fire and limit consequences',
+      linked_threat_ids: ['T-004'],
+      description: 'Extinguish fire and limit consequences',
+      line_of_defense: 'recovery',
+    },
+  ],
+  threats: [
+    { threat_id: 'T-001', name: 'Overpressurization of fuel gas filter vessel', description: null },
+    { threat_id: 'T-002', name: 'Failure of pressure safety valves to relieve at set pressure', description: null },
+    { threat_id: 'T-003', name: 'Structural failure of corroded vessel', description: null },
+    { threat_id: 'T-004', name: 'Ignition of released fuel gas', description: null },
+  ],
+  pif_context: {
+    people: { situational_awareness: true },
+    work: { procedures: true, tools_equipment: true },
+    organisation: { safety_culture: true, management_of_change: true },
+  },
 }

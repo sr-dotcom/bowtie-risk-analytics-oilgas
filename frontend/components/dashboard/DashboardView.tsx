@@ -6,7 +6,7 @@ import { useAnalyzeBarriers } from '@/hooks/useAnalyzeBarriers'
 import RiskDistributionChart, { buildRiskDistribution } from './RiskDistributionChart'
 import TopAtRiskBarriers from './TopAtRiskBarriers'
 import ScenarioContext from './ScenarioContext'
-import GlobalShapChart, { PifPrevalenceChart, AprioriRulesTable } from './DriversHF'
+import GlobalShapChart, { PifPrevalenceChart, AprioriRulesTable, DegradationContextPanel } from './DriversHF'
 import RankedBarriers from './RankedBarriers'
 import EvidenceView from './EvidenceView'
 
@@ -32,7 +32,7 @@ const TRAINING_BARRIERS = 558
 
 export default function DashboardView() {
   const [activeTab, setActiveTab] = useState<TabId>('executive-summary')
-  const { barriers, predictions, isAnalyzing, dashboardTab, setDashboardTab } = useBowtieContext()
+  const { barriers, predictions, isAnalyzing, dashboardTab, setDashboardTab, cascadingPredictions } = useBowtieContext()
 
   // Consume dashboardTab from context: switch active tab then clear to avoid re-triggering
   useEffect(() => {
@@ -176,7 +176,8 @@ export default function DashboardView() {
           <>
             <GlobalShapChart />
             <div className="mt-6">
-              <PifPrevalenceChart />
+              {/* D016 Branch C: show Degradation Context when cascading predictions available */}
+              {cascadingPredictions.length > 0 ? <DegradationContextPanel /> : <PifPrevalenceChart />}
             </div>
             <div className="mt-6">
               <AprioriRulesTable />

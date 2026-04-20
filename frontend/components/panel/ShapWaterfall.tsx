@@ -10,7 +10,7 @@ import {
   ReferenceLine,
   ResponsiveContainer,
 } from 'recharts'
-import type { ShapValue } from '@/lib/types'
+import type { ShapValue, CascadingShapValue } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
 // Data transformation
@@ -75,16 +75,53 @@ export function buildWaterfallData(
 // ---------------------------------------------------------------------------
 
 interface ShapWaterfallProps {
-  shap: ShapValue[]
-  baseValue: number
+  shap?: ShapValue[]
+  baseValue?: number
   featureDisplayNames?: Record<string, string>  // pif_fatigue -> "Operator Fatigue"
   hiddenFeatures?: Set<string>  // Feature names to exclude from the chart
+  cascadingShap?: CascadingShapValue[]  // cascading mode: use display_name, treat all as 'barrier'
 }
 
-export default function ShapWaterfall({ shap, baseValue, featureDisplayNames, hiddenFeatures }: ShapWaterfallProps) {
+export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames, hiddenFeatures, cascadingShap }: ShapWaterfallProps) {
+  // Cascading mode: convert CascadingShapValue[] → ShapValue[] treating all as 'barrier'
+  if (cascadingShap && cascadingShap.length > 0) {
+    const converted: ShapValue[] = cascadingShap.map((s) => ({
+      feature: s.feature,
+      value: s.value,
+      category: 'barrier' as const,
+    }))
+    const displayNames: Record<string, string> = {}
+    for (const s of cascadingShap) {
+      displayNames[s.feature] = s.display_name
+    }
+    const data = buildWaterfallData(converted, 0, displayNames)
+    if (data.length === 0) {
+      return <div className="text-xs text-[#5A6178] italic py-2">No SHAP values available.</div>
+    }
+    const chartHeight = Math.max(160, data.length * 36 + 60)
+    return (
+      <div className="mb-4">
+        <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">Cascade Risk Factors</h3>
+        <ResponsiveContainer width="100%" height={chartHeight}>
+          <BarChart layout="vertical" data={data} margin={{ top: 4, right: 16, bottom: 4, left: 0 }}>
+            <XAxis type="number" tick={{ fontSize: 12, fill: '#8B93A8' }} tickFormatter={(v: number) => v.toFixed(2)} stroke="#2E3348" />
+            <YAxis type="category" dataKey="feature" width={140} tick={{ fontSize: 12, fill: '#8B93A8' }} stroke="#2E3348" />
+            <ReferenceLine x={0} stroke="#4A5178" strokeDasharray="3 3" />
+            <Tooltip contentStyle={{ backgroundColor: '#1A1D27', border: '1px solid #2E3348', borderRadius: '6px' }} labelStyle={{ color: '#E8ECF4' }} itemStyle={{ color: '#8B93A8' }} formatter={(val, name) => name === 'value' && typeof val === 'number' ? [val.toFixed(4), 'SHAP'] : ['', '']} />
+            <Bar dataKey="offset" stackId="a" fill="transparent" isAnimationActive={false} />
+            <Bar dataKey="value" stackId="a" isAnimationActive={false}>
+              {data.map((entry, i) => <Cell key={i} fill={entry.raw >= 0 ? '#ef4444' : '#3b82f6'} />)}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    )
+  }
+
+  const resolvedShap = shap ?? []
   const visible = hiddenFeatures
-    ? shap.filter((s) => !hiddenFeatures.has(s.feature))
-    : shap
+    ? resolvedShap.filter((s) => !hiddenFeatures.has(s.feature))
+    : resolvedShap
 
   const barrierData = buildWaterfallData(
     visible.filter((s) => s.category === 'barrier'),

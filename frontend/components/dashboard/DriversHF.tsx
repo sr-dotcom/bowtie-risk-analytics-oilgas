@@ -6,7 +6,7 @@ import { useBowtieContext } from '@/context/BowtieContext'
 import { CHART_COLORS } from '@/lib/chart-colors'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES } from '@/lib/shap-config'
 import { PIF_DISPLAY_NAMES } from '@/lib/types'
-import type { AprioriRule, PifFlags, PredictResponse } from '@/lib/types'
+import type { AprioriRule, DegradationContext, PifFlags, PredictResponse } from '@/lib/types'
 import { fetchAprioriRules } from '@/lib/api'
 import { formatBarrierFamily } from '@/lib/format'
 
@@ -275,6 +275,103 @@ export function PifPrevalenceChart() {
             </Bar>
           </BarChart>
         </ResponsiveContainer>
+      )}
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Degradation Context Panel (S05a/T05 — D016 Branch C)
+// Replaces the PIF Prevalence section when a drill-down explanation is
+// available from useExplainCascading. Falls back to PifPrevalenceChart
+// when no barrier is selected.
+// ---------------------------------------------------------------------------
+
+/**
+ * Shows pif_mentions + recommendations from the current drill-down explanation.
+ * Renders the old PifPrevalenceChart as fallback when no explanation is loaded.
+ */
+export function DegradationContextPanel() {
+  const { explanation, selectedTargetBarrierId, scenario } = useBowtieContext()
+
+  const targetName = selectedTargetBarrierId && scenario
+    ? (scenario.barriers.find((b) => b.control_id === selectedTargetBarrierId)?.name
+        ?? selectedTargetBarrierId)
+    : null
+
+  if (!explanation) {
+    if (selectedTargetBarrierId) {
+      return (
+        <div data-testid="degradation-context-panel">
+          <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">
+            Degradation Context (from similar incidents)
+          </h3>
+          <p className="text-sm text-[#5A6178] animate-pulse">Loading degradation context…</p>
+        </div>
+      )
+    }
+    return (
+      <div data-testid="degradation-context-panel">
+        <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">
+          Degradation Context (from similar incidents)
+        </h3>
+        <p className="text-sm text-[#5A6178]">Select a barrier to see degradation context.</p>
+      </div>
+    )
+  }
+
+  const { pif_mentions, recommendations, barrier_condition } = explanation.degradation_context
+
+  return (
+    <div data-testid="degradation-context-panel">
+      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">
+        Degradation Context (from similar incidents)
+      </h3>
+      {targetName && (
+        <p className="text-xs text-[#8B93A8] mb-3">
+          Target barrier: <span className="text-[#E8ECF4] font-medium">{targetName}</span>
+          {' '}— condition: <span className="text-amber-300">{barrier_condition}</span>
+        </p>
+      )}
+
+      {pif_mentions.length > 0 && (
+        <div className="mb-4">
+          <p className="text-xs font-medium text-[#5A6178] mb-2 uppercase tracking-wider">
+            Performance-Influencing Factors
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {pif_mentions.map((pif, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30"
+              >
+                {pif}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {recommendations.length > 0 && (
+        <div>
+          <p className="text-xs font-medium text-[#5A6178] mb-2 uppercase tracking-wider">
+            Recommendations
+          </p>
+          <div className="space-y-1.5">
+            {recommendations.map((rec, i) => (
+              <div
+                key={i}
+                className="bg-[#1E2130] border-l-2 border-blue-500 rounded-md px-3 py-2 text-xs text-[#8B93A8]"
+              >
+                {rec}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {pif_mentions.length === 0 && recommendations.length === 0 && (
+        <p className="text-sm text-[#5A6178]">No degradation context available for this barrier.</p>
       )}
     </div>
   )

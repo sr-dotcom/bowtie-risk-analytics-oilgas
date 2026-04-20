@@ -6,7 +6,7 @@ import BarrierForm from './sidebar/BarrierForm'
 import BowtieSVG from './diagram/BowtieSVG'
 import PathwayView from './diagram/PathwayView'
 import DetailDrawer from './panel/DetailDrawer'
-import { DEMO_SCENARIO } from './sidebar/constants'
+import { BSEE_DEMO_SCENARIO, DEMO_SCENARIO } from './sidebar/constants'
 import DashboardView from './dashboard/DashboardView'
 
 // ---------------------------------------------------------------------------
@@ -43,6 +43,7 @@ function BowtieAppInner() {
   const {
     addBarrier,
     setEventDescription,
+    setScenario,
     barriers,
     predictions,
     eventDescription,
@@ -61,6 +62,7 @@ function BowtieAppInner() {
     demoLoaded.current = true
     setEventDescription(DEMO_SCENARIO.eventDescription)
     DEMO_SCENARIO.barriers.forEach((b) => addBarrier(b))
+    setScenario(BSEE_DEMO_SCENARIO)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

@@ -8,6 +8,7 @@ import EvidenceSection from './EvidenceSection'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES as BASE_FEATURE_DISPLAY_NAMES } from '@/lib/shap-config'
 import { explain } from '@/lib/api'
 import type { ExplainRequest } from '@/lib/types'
+import type { RiskBand } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
 // Tabs
@@ -26,12 +27,101 @@ type TabId = (typeof TABS)[number]['id']
 // ---------------------------------------------------------------------------
 
 export default function DetailPanel() {
-  const { selectedBarrierId, barriers, predictions, eventDescription, setViewMode, setDashboardTab, evidence, setEvidence } = useBowtieContext()
+  const {
+    selectedBarrierId, barriers, predictions, eventDescription,
+    setViewMode, setDashboardTab, evidence, setEvidence,
+    cascadingPredictions, scenario, selectedTargetBarrierId,
+    explanation, explanationLoading,
+  } = useBowtieContext()
   const [activeTab, setActiveTab] = useState<TabId>('overview')
 
   // Derive barrier and pred before hooks so the auto-load effect can reference them.
   const barrier = barriers.find((b) => b.id === selectedBarrierId)
   const pred = selectedBarrierId ? predictions[selectedBarrierId] : undefined
+
+  const isCascadingMode = cascadingPredictions.length > 0 && scenario !== null
+
+  // ---------------------------------------------------------------------------
+  // Cascading detail view
+  // ---------------------------------------------------------------------------
+  if (isCascadingMode && selectedTargetBarrierId) {
+    const targetSb = scenario.barriers.find((b) => b.control_id === selectedTargetBarrierId)
+    const targetPred = cascadingPredictions.find((p) => p.target_barrier_id === selectedTargetBarrierId)
+    const riskBand = targetPred?.risk_band as RiskBand | undefined
+    const snippets = explanation?.evidence_snippets ?? []
+    const degradation = explanation?.degradation_context
+
+    return (
+      <div className="flex flex-col h-full">
+        <div className="pb-3">
+          <h2 className="text-xl font-semibold mb-1 text-[#E8ECF4]">
+            {targetSb?.name ?? selectedTargetBarrierId}
+          </h2>
+          <p className="text-sm text-[#8B93A8] mb-3">Cascading analysis</p>
+        </div>
+
+        <div className="flex-1 overflow-y-auto space-y-4">
+          {targetPred && (
+            <RiskScoreBadge
+              probability={targetPred.y_fail_probability}
+              riskBand={riskBand}
+            />
+          )}
+
+          {targetPred && targetPred.shap_values.length > 0 && (
+            <ShapWaterfall cascadingShap={targetPred.shap_values} />
+          )}
+
+          {explanationLoading && (
+            <p className="text-sm text-[#5A6178] animate-pulse">Loading evidence…</p>
+          )}
+
+          {degradation && degradation.pif_mentions.length > 0 && (
+            <div>
+              <h4 className="text-xs font-medium text-[#5A6178] mb-2 uppercase tracking-wider">
+                Degradation Factors
+              </h4>
+              <div className="flex flex-wrap gap-1.5">
+                {degradation.pif_mentions.map((m, i) => (
+                  <span key={i} className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-400 border border-amber-500/30">
+                    {m}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {explanation && !explanation.narrative_unavailable && explanation.narrative_text && (
+            <div className="bg-[#1A2332] border-l-4 border-blue-400 p-4 rounded-r-lg">
+              <p className="text-xs font-semibold text-[#8B93A8] uppercase tracking-wider mb-1">Analysis</p>
+              <p className="text-sm text-[#E8ECF4] leading-relaxed">{explanation.narrative_text}</p>
+            </div>
+          )}
+
+          {snippets.length > 0 && (
+            <div>
+              <h4 className="text-sm font-semibold text-[#E8ECF4] mb-2">
+                Similar Incidents ({snippets.length})
+              </h4>
+              <div className="space-y-2">
+                {snippets.map((s, i) => (
+                  <div key={`${s.incident_id}-${i}`} className="bg-[#1E2230] rounded-lg p-3 border border-[#2E3348]">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#242836] border border-[#2E3348] text-[#8B93A8]">
+                        {s.source_agency}
+                      </span>
+                      <span className="text-xs text-[#5A6178]">{s.incident_id}</span>
+                    </div>
+                    <p className="text-sm text-[#E8ECF4]">{s.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
 
   // Pre-load evidence when a barrier with a prediction is selected — by the time
   // the user clicks the Evidence tab the data is already in context.
