@@ -35,15 +35,23 @@ def compose_incident_text(
     operating_phase: str,
     materials: list[str],
     summary: str,
+    recommendations: list[str] | None = None,
+    pif_value_texts: list[str] | None = None,
 ) -> str:
     """Compose structured incident embedding text."""
     materials_str = ", ".join(materials) if materials else "N/A"
+    recs = recommendations or []
+    pivals = pif_value_texts or []
+    rec_lines = "\n".join(recs) if recs else "N/A"
+    pif_lines = "\n".join(pivals) if pivals else "N/A"
     return (
         f"Top Event: {top_event}\n"
         f"Incident Type: {incident_type}\n"
         f"Operating Phase: {operating_phase}\n"
         f"Materials: {materials_str}\n"
-        f"Summary: {summary}"
+        f"Summary: {summary}\n"
+        f"Recommendations:\n{rec_lines}\n"
+        f"Performance-Influencing Factor Notes:\n{pif_lines}"
     )
 
 
@@ -92,6 +100,17 @@ def _extract_pifs(pifs: dict[str, Any]) -> dict[str, bool]:
     result: dict[str, bool] = {}
     for col_name, category, field in PIF_FIELDS:
         result[col_name] = bool(pifs.get(category, {}).get(field, False))
+    return result
+
+
+def _extract_pif_values(pifs: dict[str, Any]) -> list[str]:
+    """Extract non-None PIF _value text strings in 12-PIF column order."""
+    result: list[str] = []
+    for _col_name, category, mentioned_field in PIF_FIELDS:
+        value_field = mentioned_field.replace("_mentioned", "_value")
+        val = pifs.get(category, {}).get(value_field)
+        if val is not None and str(val).strip():
+            result.append(str(val).strip())
     return result
 
 
@@ -153,7 +172,11 @@ def _read_incident_json(path: Path) -> dict[str, Any] | None:
         return None
 
 
-def build_barrier_documents(json_dir: Path, out_csv: Path) -> int:
+def build_barrier_documents(
+    json_dir: Path,
+    out_csv: Path,
+    incident_id_filter: set[str] | None = None,
+) -> int:
     """Build barrier document table from V2.3 JSON files.
 
     Returns the number of barrier rows written.
@@ -170,6 +193,8 @@ def build_barrier_documents(json_dir: Path, out_csv: Path) -> int:
             continue
 
         incident_id = incident.get("incident_id", "unknown")
+        if incident_id_filter is not None and incident_id not in incident_id_filter:
+            continue
         pifs = incident.get("pifs", {})
         pif_flags = _extract_pifs(pifs)
         summary = incident.get("event", {}).get("summary", "")
@@ -226,7 +251,11 @@ def build_barrier_documents(json_dir: Path, out_csv: Path) -> int:
     return len(rows)
 
 
-def build_incident_documents(json_dir: Path, out_csv: Path) -> int:
+def build_incident_documents(
+    json_dir: Path,
+    out_csv: Path,
+    incident_id_filter: set[str] | None = None,
+) -> int:
     """Build incident document table from V2.3 JSON files.
 
     Returns the number of incident rows written.
@@ -242,20 +271,31 @@ def build_incident_documents(json_dir: Path, out_csv: Path) -> int:
         if incident is None:
             continue
 
+        incident_id = incident.get("incident_id", "unknown")
+        if incident_id_filter is not None and incident_id not in incident_id_filter:
+            continue
+
         ctx = incident.get("context", {})
         evt = incident.get("event", {})
         materials = ctx.get("materials", [])
         if not isinstance(materials, list):
             materials = []
 
+        recommendations = evt.get("recommendations", [])
+        if not isinstance(recommendations, list):
+            recommendations = []
+        pif_value_texts = _extract_pif_values(incident.get("pifs", {}))
+
         rows.append({
-            "incident_id": incident.get("incident_id", "unknown"),
+            "incident_id": incident_id,
             "incident_embed_text": compose_incident_text(
                 top_event=evt.get("top_event", "unknown"),
                 incident_type=evt.get("incident_type", "unknown"),
                 operating_phase=ctx.get("operating_phase", "unknown"),
                 materials=materials,
                 summary=evt.get("summary", ""),
+                recommendations=recommendations,
+                pif_value_texts=pif_value_texts,
             ),
             "top_event": evt.get("top_event", "unknown"),
             "incident_type": evt.get("incident_type", "unknown"),
@@ -264,7 +304,7 @@ def build_incident_documents(json_dir: Path, out_csv: Path) -> int:
             "region": ctx.get("region", "unknown"),
             "operator": ctx.get("operator", "unknown"),
             "summary": evt.get("summary", ""),
-            "recommendations": json.dumps(evt.get("recommendations", [])),
+            "recommendations": json.dumps(recommendations),
         })
 
     if not rows:

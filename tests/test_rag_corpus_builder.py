@@ -348,3 +348,55 @@ class TestBuildIncidentDocuments:
         assert rows[0]["top_event"] == "Loss of Containment"
         assert rows[0]["operating_phase"] == "production"
         assert "A valve failed" in rows[0]["summary"]
+
+    def test_incident_embed_text_contains_recommendation(self, tmp_path):
+        """D017: recommendation text must appear in embed text."""
+        json_dir = tmp_path / "incidents"
+        json_dir.mkdir()
+        incident = _make_v23_incident()
+        (json_dir / "test.json").write_text(json.dumps(incident), encoding="utf-8")
+
+        out_csv = tmp_path / "incident_documents.csv"
+        build_incident_documents(json_dir, out_csv)
+
+        import csv as csv_mod
+        with open(out_csv, encoding="utf-8") as f:
+            rows = list(csv_mod.DictReader(f))
+        assert "Replace valve" in rows[0]["incident_embed_text"]
+
+    def test_incident_embed_text_contains_pif_value(self, tmp_path):
+        """D017: PIF _value text must appear in embed text."""
+        json_dir = tmp_path / "incidents"
+        json_dir.mkdir()
+        incident = _make_v23_incident()
+        (json_dir / "test.json").write_text(json.dumps(incident), encoding="utf-8")
+
+        out_csv = tmp_path / "incident_documents.csv"
+        build_incident_documents(json_dir, out_csv)
+
+        import csv as csv_mod
+        with open(out_csv, encoding="utf-8") as f:
+            rows = list(csv_mod.DictReader(f))
+        # The fixture has competence_value="low", communication_value="poor",
+        # procedures_value="inadequate", training_value="inadequate"
+        assert "low" in rows[0]["incident_embed_text"]
+
+
+class TestIncidentIdFilter:
+    def test_filter_restricts_to_scope(self, tmp_path):
+        """incident_id_filter must exclude incidents not in the set."""
+        json_dir = tmp_path / "incidents"
+        json_dir.mkdir()
+        for iid in ("INC-001", "INC-002", "INC-003"):
+            inc = _make_v23_incident(iid)
+            (json_dir / f"{iid}.json").write_text(json.dumps(inc), encoding="utf-8")
+
+        out_csv = tmp_path / "incident_documents.csv"
+        count = build_incident_documents(json_dir, out_csv, incident_id_filter={"INC-001", "INC-003"})
+
+        assert count == 2
+        import csv as csv_mod
+        with open(out_csv, encoding="utf-8") as f:
+            rows = list(csv_mod.DictReader(f))
+        ids = {r["incident_id"] for r in rows}
+        assert ids == {"INC-001", "INC-003"}
