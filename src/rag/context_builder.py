@@ -1,7 +1,7 @@
 """Assemble retrieval results into structured LLM context text."""
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from src.rag.config import MAX_CONTEXT_CHARS
 
@@ -25,12 +25,18 @@ class ContextEntry:
     rrf_score: float
     barrier_rank: int
     incident_rank: int
+    recommendations: list[str] = field(default_factory=list)
 
 
 def _format_entry(entry: ContextEntry, result_num: int) -> str:
     """Format a single result entry."""
     evidence_lines = "\n".join(f'- "{t}"' for t in entry.supporting_text) if entry.supporting_text else "- N/A"
     human_failed = "Yes" if entry.barrier_failed_human else "No"
+
+    rec_lines = ""
+    if entry.recommendations:
+        rec_text = "\n".join(f"- {r}" for r in entry.recommendations)
+        rec_lines = f"**Recommendations:**\n{rec_text}\n"
 
     return (
         f"### Result {result_num} (RRF: {entry.rrf_score:.4f}, "
@@ -43,6 +49,7 @@ def _format_entry(entry: ContextEntry, result_num: int) -> str:
         f"**Evidence:**\n{evidence_lines}\n\n"
         f"**Parent Incident:** {entry.incident_id}\n"
         f"**Incident Summary:** {entry.incident_summary}\n"
+        f"{rec_lines}"
     )
 
 

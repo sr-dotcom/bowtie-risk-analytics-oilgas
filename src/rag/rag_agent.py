@@ -174,6 +174,15 @@ class RAGAgent:
             barrier_role = lines[1].replace("Role: ", "") if len(lines) > 1 else ""
             lod_basis = lines[2].replace("LOD Basis: ", "") if len(lines) > 2 else ""
 
+            incident_recommendations: list[str] = []
+            raw_recs = i_meta.get("recommendations", "[]")
+            try:
+                parsed = json.loads(raw_recs) if raw_recs else []
+                if isinstance(parsed, list):
+                    incident_recommendations = [str(r) for r in parsed if r]
+            except (json.JSONDecodeError, TypeError):
+                pass
+
             entries.append(ContextEntry(
                 incident_id=r.incident_id,
                 control_id=b_meta.get("control_id", r.control_id),
@@ -190,6 +199,7 @@ class RAGAgent:
                 rrf_score=r.rrf_score,
                 barrier_rank=r.barrier_rank,
                 incident_rank=r.incident_rank,
+                recommendations=incident_recommendations,
             ))
 
         context_text = build_context(entries, max_context_chars=max_context_chars)
