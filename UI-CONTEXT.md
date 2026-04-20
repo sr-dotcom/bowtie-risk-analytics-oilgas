@@ -1,4 +1,4 @@
-# UI-CONTEXT.md — Bowtie Risk Analytics Visual Standards (v2.3)
+# UI-CONTEXT.md — Bowtie Risk Analytics Visual Standards (v2.4)
 
 This document is the visual design source of truth for the Bowtie Risk Analytics dashboard. Every UI brief (T1–T4 and beyond) must read this file first. CCCLI references this when implementing components.
 
@@ -469,10 +469,23 @@ The product's front door. Composed client-side from cascading predictions + RAG 
 When NOT to render the hero:
 - Before user clicks Analyze (no predictions yet) → render a placeholder strip with `text.tertiary` text: "Click Analyze Barriers to generate scenario summary."
 
-Composition logic (T2 brief):
+### Composition strategy (T2 split)
+
+The hero has two composition paths:
+
+**T2a — Template (default, always-on):**
+Client-side composition from cascading predictions + RAG stats already in state. Renders instantly on Analyze. Deterministic, testable, zero LLM cost. This is the baseline narrative the user always sees.
+
+Composition logic:
 - Count barriers, count high-risk, identify top-1 by `average_cascading_probability`
-- Pull short context from top barrier's most-similar incident (1 sentence max)
-- Template: `"This scenario has {N} barriers defending against {top_event}. {high_risk_count} are high-risk. The weakest link is {top_barrier} — historical data shows similar barriers failed in {similar_incident_count} of {total_retrieved} comparable incidents."`
+- Pull retrieval stats: `similarIncidentsCount` (count of RAG-retrieved evidence snippets for the selected target barrier), `totalRetrievedIncidents` (fixed constant = RAG corpus size = 156)
+- Template: "This scenario has {N} barriers defending against {top_event}. {high_risk_count} are high-risk. The weakest link is {top_barrier} — historical data shows similar barriers failed in {similar_incident_count} of {total_retrieved} comparable incidents."
+- Edge cases documented in `NarrativeHero.tsx::composeNarrative`
+
+**T2b — Haiku synthesis (opt-in button):**
+Server endpoint `POST /narrative-synthesis` accepts top barrier + SHAP top-3 + 3 RAG incident contexts. Returns a 2-3 sentence narrative synthesizing the *why* of the risk pattern. Rendered behind a "✨ Summarize with AI" button at the hero's top-right corner. Clicking the button replaces the template body with the synthesis. Separate commit (T2b).
+
+Rationale for the split: the template is deterministic and fast (factual aggregate — the *what*). The LLM adds interpretive prose from RAG evidence (the *why*) but costs latency, determinism, and a dependency on Anthropic's API. Making it opt-in via button lets the user pay the cost of interpretation when they want it, while keeping the always-on hero free and reliable.
 
 ---
 
@@ -645,3 +658,4 @@ Workflow per brief:
 - v2.1: factual corrections — Section 7 rewritten as "protected anchor" framing with forbidden-changes list; Section 10 provenance string corrected with two-line predictions+evidence format
 - v2.2: closed 13 gaps from v2.1 red-team — verified all data-truth numbers against disk artifacts; resolved 530-vs-813 row discrepancy (model metadata is the truth, not latest parquet); documented BSEE 113 / CSB 43 incident split; resolved D006-vs-cascade-metadata threshold conflict (D006 wins by code, metadata field unused); added viewport sizing rules with sidebar auto-collapse on drill-down; added S05b changes grandfathering; fixed K001 cross-doc coupling; explicitly scoped Tailwind allowlist to chip-style elements only (standalone text-color utilities go through tokens)
 - v2.3: T1 soul pass execution — added expanded row panel pattern, model/variant KPI card rule (one accent family), dial/gauge indicator pattern (no alpha overlays on large elements), status dot pattern, disabled state opacity clarification. Swap map holes from v2.2 brief resolved inline during T1 execution.
+- v2.4: T2a ships template-path narrative hero. §9 amended with T2a/T2b composition split — template always-on, Haiku synthesis behind opt-in button (T2b).

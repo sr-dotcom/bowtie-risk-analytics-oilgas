@@ -9,6 +9,7 @@ import ScenarioContext from './ScenarioContext'
 import GlobalShapChart, { PifPrevalenceChart, AprioriRulesTable, DegradationContextPanel } from './DriversHF'
 import RankedBarriers from './RankedBarriers'
 import EvidenceView from './EvidenceView'
+import { NarrativeHero } from './NarrativeHero'
 
 // ---------------------------------------------------------------------------
 // Tabs
@@ -25,6 +26,7 @@ type TabId = (typeof TABS)[number]['id']
 
 const TRAINING_INCIDENTS = 174
 const TRAINING_BARRIERS = 558
+const RAG_CORPUS_INCIDENTS = 156
 
 // ---------------------------------------------------------------------------
 // Component
@@ -32,7 +34,7 @@ const TRAINING_BARRIERS = 558
 
 export default function DashboardView() {
   const [activeTab, setActiveTab] = useState<TabId>('executive-summary')
-  const { barriers, predictions, isAnalyzing, dashboardTab, setDashboardTab, cascadingPredictions } = useBowtieContext()
+  const { barriers, predictions, isAnalyzing, dashboardTab, setDashboardTab, cascadingPredictions, eventDescription, explanation } = useBowtieContext()
 
   // Consume dashboardTab from context: switch active tab then clear to avoid re-triggering
   useEffect(() => {
@@ -54,6 +56,15 @@ export default function DashboardView() {
   }, [barriers.length]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const counts = buildRiskDistribution(barriers)
+
+  const hasAnalyzed = barriers.some((b) => b.average_cascading_probability !== undefined)
+  const highRiskCount = barriers.filter((b) => b.riskLevel === 'red').length
+  const topBarrier = barriers
+    .filter((b) => b.average_cascading_probability !== undefined)
+    .sort((a, b) => (b.average_cascading_probability ?? 0) - (a.average_cascading_probability ?? 0))[0] ?? null
+  const heroTopBarrier = topBarrier
+    ? { name: topBarrier.name, probability: topBarrier.average_cascading_probability ?? 0 }
+    : null
 
   return (
     <div className="w-full bg-[#0F1419] min-h-screen flex flex-col">
@@ -86,6 +97,17 @@ export default function DashboardView() {
       <div className="flex-1 p-8">
         {activeTab === 'executive-summary' && (
           <>
+            {/* Narrative hero — §9, above KPI cards */}
+            <NarrativeHero
+              topEvent={eventDescription}
+              totalBarriers={barriers.length}
+              highRiskCount={highRiskCount}
+              topBarrier={heroTopBarrier}
+              similarIncidentsCount={explanation?.evidence_snippets?.length ?? 0}
+              totalRetrievedIncidents={RAG_CORPUS_INCIDENTS}
+              hasAnalyzed={hasAnalyzed}
+            />
+
             {/* Scenario header */}
             <ScenarioContext />
 
