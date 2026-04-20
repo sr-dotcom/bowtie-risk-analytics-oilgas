@@ -132,24 +132,24 @@ function BowtieAppInner() {
 
   if (viewMode === 'dashboard') {
     return (
-      <div className="flex h-screen min-w-[1280px] bg-[#0F1117] flex-col">
+      <div className="flex h-screen min-w-[1280px] bg-[#0F1419] flex-col">
         {/* Toggle bar */}
-        <div className="flex-shrink-0 flex items-center px-4 py-2 border-b border-[#2E3348] bg-[#1A1D27]">
-          <div className="flex rounded-lg overflow-hidden border border-[#2E3348] bg-[#242836]">
+        <div className="flex-shrink-0 flex items-center px-4 py-2 border-b border-[#2A3442] bg-[#151B24]">
+          <div className="flex rounded-lg overflow-hidden border border-[#2A3442] bg-[#151B24]">
             <button
               onClick={() => setViewMode('diagram')}
-              className="px-3 py-1 text-xs font-medium transition-colors text-[#8B93A8] hover:text-[#E8ECF4]"
+              className="px-3 py-1 text-xs font-medium transition-colors text-[#9CA3AF] hover:text-[#E8E8E8]"
             >
               Diagram View
             </button>
             <button
               onClick={() => setViewMode('pathway')}
-              className="px-3 py-1 text-xs font-medium transition-colors text-[#8B93A8] hover:text-[#E8ECF4]"
+              className="px-3 py-1 text-xs font-medium transition-colors text-[#9CA3AF] hover:text-[#E8E8E8]"
             >
               Pathway View
             </button>
             <button
-              className="px-3 py-1 text-xs font-medium transition-colors bg-[#3B82F6] text-white"
+              className="px-3 py-1 text-xs font-medium transition-colors bg-[#2C5F7F] text-[#E8E8E8]"
             >
               Analytics
             </button>
@@ -164,22 +164,22 @@ function BowtieAppInner() {
   }
 
   return (
-    <div className="flex h-screen min-w-[1280px] bg-[#0F1117]">
+    <div className="flex h-screen min-w-[1280px] bg-[#0F1419]">
       {/* Left panel: barrier input form */}
-      <aside className="w-80 overflow-y-auto border-r border-[#2E3348] bg-[#1A1D27] flex-shrink-0">
+      <aside className="w-80 overflow-y-auto border-r border-[#2A3442] bg-[#151B24] flex-shrink-0">
         <BarrierForm />
       </aside>
 
       {/* Center panel: Bowtie diagram or pathway view */}
       <main className="flex-1 h-full overflow-hidden relative">
         {/* View toggle */}
-        <div className="absolute top-3 right-3 z-20 flex rounded-lg overflow-hidden border border-[#2E3348] bg-[#242836]">
+        <div className="absolute top-3 right-3 z-20 flex rounded-lg overflow-hidden border border-[#2A3442] bg-[#151B24]">
           <button
             onClick={() => setViewMode('diagram')}
             className={`px-3 py-1 text-xs font-medium transition-colors ${
               viewMode === 'diagram'
-                ? 'bg-[#3B82F6] text-white'
-                : 'text-[#8B93A8] hover:text-[#E8ECF4]'
+                ? 'bg-[#2C5F7F] text-[#E8E8E8]'
+                : 'text-[#9CA3AF] hover:text-[#E8E8E8]'
             }`}
           >
             Diagram View
@@ -188,15 +188,15 @@ function BowtieAppInner() {
             onClick={() => setViewMode('pathway')}
             className={`px-3 py-1 text-xs font-medium transition-colors ${
               viewMode === 'pathway'
-                ? 'bg-[#3B82F6] text-white'
-                : 'text-[#8B93A8] hover:text-[#E8ECF4]'
+                ? 'bg-[#2C5F7F] text-[#E8E8E8]'
+                : 'text-[#9CA3AF] hover:text-[#E8E8E8]'
             }`}
           >
             Pathway View
           </button>
           <button
             onClick={() => setViewMode('dashboard')}
-            className="px-3 py-1 text-xs font-medium transition-colors text-[#8B93A8] hover:text-[#E8ECF4]"
+            className="px-3 py-1 text-xs font-medium transition-colors text-[#9CA3AF] hover:text-[#E8E8E8]"
           >
             Analytics
           </button>
@@ -205,7 +205,7 @@ function BowtieAppInner() {
         {/* Analyzing overlay */}
         {isAnalyzing && (
           <div className="absolute inset-0 z-10 pointer-events-none flex items-end justify-center pb-4">
-            <span className="bg-[#242836] border border-[#2E3348] rounded-md px-3 py-1.5 text-xs text-[#8B93A8] shadow-lg animate-pulse">
+            <span className="bg-[#151B24] border border-[#2A3442] rounded-md px-3 py-1.5 text-xs text-[#9CA3AF] shadow-lg animate-pulse">
               Analyzing barriers...
             </span>
           </div>

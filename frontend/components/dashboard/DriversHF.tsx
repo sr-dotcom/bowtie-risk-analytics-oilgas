@@ -76,10 +76,10 @@ export default function GlobalShapChart() {
 
   return (
     <div data-testid="global-shap-chart">
-      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">Global Feature Importance</h3>
+      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">Global Feature Importance</h3>
 
       {data.length === 0 ? (
-        <p className="text-sm text-[#5A6178]">
+        <p className="text-sm text-[#6B7280]">
           Run Analyze Barriers to see feature importance
         </p>
       ) : (
@@ -92,24 +92,24 @@ export default function GlobalShapChart() {
             <XAxis
               type="number"
               tickFormatter={(v) => (v as number).toFixed(3)}
-              tick={{ fontSize: 12, fill: '#8B93A8' }}
-              stroke="#2E3348"
+              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              stroke="#2A3442"
             />
             <YAxis
               type="category"
               dataKey="feature"
               width={160}
-              tick={{ fontSize: 12, fill: '#8B93A8' }}
-              stroke="#2E3348"
+              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              stroke="#2A3442"
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#1A1D27',
-                border: '1px solid #2E3348',
+                backgroundColor: '#151B24',
+                border: '1px solid #2A3442',
                 borderRadius: '6px',
               }}
-              labelStyle={{ color: '#E8ECF4' }}
-              itemStyle={{ color: '#8B93A8' }}
+              labelStyle={{ color: '#E8E8E8' }}
+              itemStyle={{ color: '#9CA3AF' }}
               formatter={(val, name) => {
                 if (name === 'meanAbsShap' && typeof val === 'number') {
                   return [val.toFixed(4), 'Mean |SHAP|']
@@ -122,7 +122,7 @@ export default function GlobalShapChart() {
                 dataKey="meanAbsShap"
                 position="right"
                 formatter={(v: unknown) => typeof v === 'number' ? v.toFixed(3) : String(v ?? '')}
-                style={{ fontSize: 10, fill: '#8B93A8' }}
+                style={{ fontSize: 10, fill: '#9CA3AF' }}
               />
               {data.map((entry, i) => (
                 <Cell
@@ -217,10 +217,10 @@ export function PifPrevalenceChart() {
 
   return (
     <div data-testid="pif-prevalence-chart">
-      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">PIF Prevalence in Top Drivers</h3>
+      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">PIF Prevalence in Top Drivers</h3>
 
       {data.length === 0 ? (
-        <p className="text-sm text-[#5A6178]">
+        <p className="text-sm text-[#6B7280]">
           Run Analyze Barriers to see PIF prevalence
         </p>
       ) : (
@@ -234,24 +234,24 @@ export function PifPrevalenceChart() {
               type="number"
               domain={[0, 1]}
               tickFormatter={(v) => `${((v as number) * 100).toFixed(0)}%`}
-              tick={{ fontSize: 12, fill: '#8B93A8' }}
-              stroke="#2E3348"
+              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              stroke="#2A3442"
             />
             <YAxis
               type="category"
               dataKey="feature"
               width={160}
-              tick={{ fontSize: 12, fill: '#8B93A8' }}
-              stroke="#2E3348"
+              tick={{ fontSize: 12, fill: '#9CA3AF' }}
+              stroke="#2A3442"
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: '#1A1D27',
-                border: '1px solid #2E3348',
+                backgroundColor: '#151B24',
+                border: '1px solid #2A3442',
                 borderRadius: '6px',
               }}
-              labelStyle={{ color: '#E8ECF4' }}
-              itemStyle={{ color: '#8B93A8' }}
+              labelStyle={{ color: '#E8E8E8' }}
+              itemStyle={{ color: '#9CA3AF' }}
               formatter={(val, name) => {
                 if (name === 'prevalence' && typeof val === 'number') {
                   return [`${(val * 100).toFixed(1)}%`, 'Prevalence']
@@ -264,7 +264,7 @@ export function PifPrevalenceChart() {
                 dataKey="prevalence"
                 position="right"
                 formatter={(v: unknown) => typeof v === 'number' ? `${(v * 100).toFixed(0)}%` : String(v ?? '')}
-                style={{ fontSize: 10, fill: '#8B93A8' }}
+                style={{ fontSize: 10, fill: '#9CA3AF' }}
               />
               {data.map((entry, i) => (
                 <Cell
@@ -303,19 +303,19 @@ export function DegradationContextPanel() {
     if (selectedTargetBarrierId) {
       return (
         <div data-testid="degradation-context-panel">
-          <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">
+          <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">
             Degradation Context (from similar incidents)
           </h3>
-          <p className="text-sm text-[#5A6178] animate-pulse">Loading degradation context…</p>
+          <p className="text-sm text-[#6B7280] animate-pulse">Loading degradation context…</p>
         </div>
       )
     }
     return (
       <div data-testid="degradation-context-panel">
-        <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">
+        <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">
           Degradation Context (from similar incidents)
         </h3>
-        <p className="text-sm text-[#5A6178]">Select a barrier to see degradation context.</p>
+        <p className="text-sm text-[#6B7280]">Select a barrier to see degradation context.</p>
       </div>
     )
   }
@@ -324,26 +324,26 @@ export function DegradationContextPanel() {
 
   return (
     <div data-testid="degradation-context-panel">
-      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">
+      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">
         Degradation Context (from similar incidents)
       </h3>
       {targetName && (
-        <p className="text-xs text-[#8B93A8] mb-3">
-          Target barrier: <span className="text-[#E8ECF4] font-medium">{targetName}</span>
-          {' '}— condition: <span className="text-amber-300">{barrier_condition}</span>
+        <p className="text-xs text-[#9CA3AF] mb-3">
+          Target barrier: <span className="text-[#E8E8E8] font-medium">{targetName}</span>
+          {' '}— condition: <span style={{ color: '#D68910' }}>{barrier_condition}</span>
         </p>
       )}
 
       {pif_mentions.length > 0 && (
         <div className="mb-4">
-          <p className="text-xs font-medium text-[#5A6178] mb-2 uppercase tracking-wider">
+          <p className="text-xs font-medium text-[#6B7280] mb-2 uppercase tracking-wider">
             Performance-Influencing Factors
           </p>
           <div className="flex flex-wrap gap-2">
             {pif_mentions.map((pif, i) => (
               <span
                 key={i}
-                className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-300 border border-amber-500/30"
+                className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-400 border border-amber-500/30"
               >
                 {pif}
               </span>
@@ -354,14 +354,14 @@ export function DegradationContextPanel() {
 
       {recommendations.length > 0 && (
         <div>
-          <p className="text-xs font-medium text-[#5A6178] mb-2 uppercase tracking-wider">
+          <p className="text-xs font-medium text-[#6B7280] mb-2 uppercase tracking-wider">
             Recommendations
           </p>
           <div className="space-y-1.5">
             {recommendations.map((rec, i) => (
               <div
                 key={i}
-                className="bg-[#1E2130] border-l-2 border-blue-500 rounded-md px-3 py-2 text-xs text-[#8B93A8]"
+                className="bg-[#1C2430] border-l-2 border-blue-500 rounded-md px-3 py-2 text-xs text-[#9CA3AF]"
               >
                 {rec}
               </div>
@@ -371,7 +371,7 @@ export function DegradationContextPanel() {
       )}
 
       {pif_mentions.length === 0 && recommendations.length === 0 && (
-        <p className="text-sm text-[#5A6178]">No degradation context available for this barrier.</p>
+        <p className="text-sm text-[#6B7280]">No degradation context available for this barrier.</p>
       )}
     </div>
   )
@@ -432,29 +432,29 @@ export function AprioriRulesTable() {
   }
 
   if (loading) return (
-    <div data-testid="apriori-rules-table" className="bg-[#242836] rounded-lg p-4">
-      <p className="text-sm text-[#8B93A8] animate-pulse">Loading co-failure rules...</p>
+    <div data-testid="apriori-rules-table" className="bg-[#151B24] rounded-lg p-4">
+      <p className="text-sm text-[#9CA3AF] animate-pulse">Loading co-failure rules...</p>
     </div>
   )
   if (error) return (
-    <div className="bg-[#242836] rounded-lg p-4">
-      <span className="text-red-400 text-sm">Error: {error}</span>
+    <div className="bg-[#151B24] rounded-lg p-4">
+      <span className="text-sm" style={{ color: '#E74C3C' }}>Error: {error}</span>
     </div>
   )
 
   const sorted = sortRules(rules, sortKey, sortDir)
 
-  const headerClass = 'cursor-pointer select-none px-3 py-2 text-left text-xs font-semibold text-[#8B93A8] uppercase tracking-wider hover:text-[#E8ECF4] transition-colors'
-  const cellClass = 'px-3 py-2 text-sm text-[#E8ECF4]'
-  const dimCellClass = 'px-3 py-2 text-sm text-[#8B93A8]'
+  const headerClass = 'cursor-pointer select-none px-3 py-2 text-left text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider hover:text-[#E8E8E8] transition-colors'
+  const cellClass = 'px-3 py-2 text-sm text-[#E8E8E8]'
+  const dimCellClass = 'px-3 py-2 text-sm text-[#9CA3AF]'
 
   return (
-    <div data-testid="apriori-rules-table" className="bg-[#242836] rounded-lg overflow-hidden">
+    <div data-testid="apriori-rules-table" className="bg-[#151B24] rounded-lg overflow-hidden">
       <div className="px-4 pt-3 pb-2">
-        <h3 className="text-base font-semibold mb-1 text-[#E8ECF4]">
+        <h3 className="text-base font-semibold mb-1 text-[#E8E8E8]">
           Co-failure Association Rules
         </h3>
-        <p className="text-sm text-[#5A6178]">
+        <p className="text-sm text-[#6B7280]">
           When the antecedent barrier family fails in an incident, the consequent barrier family
           also fails with the shown confidence. Based on Apriori analysis of 174 BSEE/CSB incident
           investigations.
@@ -462,24 +462,24 @@ export function AprioriRulesTable() {
       </div>
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead className="border-b border-[#2E3348]">
+          <thead className="border-b border-[#2A3442]">
             <tr>
               <th className={headerClass}>Antecedent</th>
               <th className={headerClass}>Consequent</th>
               <th
-                className={`${headerClass}${sortKey === 'confidence' ? ' text-[#E8ECF4]' : ''}`}
+                className={`${headerClass}${sortKey === 'confidence' ? ' text-[#E8E8E8]' : ''}`}
                 onClick={() => handleSort('confidence')}
               >
                 Confidence {sortKey === 'confidence' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
               </th>
               <th
-                className={`${headerClass}${sortKey === 'support' ? ' text-[#E8ECF4]' : ''}`}
+                className={`${headerClass}${sortKey === 'support' ? ' text-[#E8E8E8]' : ''}`}
                 onClick={() => handleSort('support')}
               >
                 Support {sortKey === 'support' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
               </th>
               <th
-                className={`${headerClass}${sortKey === 'lift' ? ' text-[#E8ECF4]' : ''}`}
+                className={`${headerClass}${sortKey === 'lift' ? ' text-[#E8E8E8]' : ''}`}
                 onClick={() => handleSort('lift')}
               >
                 Lift {sortKey === 'lift' ? (sortDir === 'desc' ? '↓' : '↑') : ''}
@@ -489,7 +489,7 @@ export function AprioriRulesTable() {
           </thead>
           <tbody>
             {sorted.map((rule, i) => (
-              <tr key={`${rule.antecedent}-${rule.consequent}`} className="border-b border-[#2E3348] hover:bg-[#2E3348] transition-colors">
+              <tr key={`${rule.antecedent}-${rule.consequent}`} className="border-b border-[#2A3442] hover:bg-[#2A3442] transition-colors">
                 <td className={cellClass}>{formatBarrierFamily(rule.antecedent)}</td>
                 <td className={cellClass}>{formatBarrierFamily(rule.consequent)}</td>
                 <td className={dimCellClass}>{(rule.confidence * 100).toFixed(1)}%</td>

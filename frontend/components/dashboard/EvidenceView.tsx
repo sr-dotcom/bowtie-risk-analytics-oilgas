@@ -67,7 +67,7 @@ export default function EvidenceView() {
         <div className="mb-6">
           <label
             htmlFor="evidence-cascading-select"
-            className="block text-xs font-medium text-[#5A6178] mb-1"
+            className="block text-xs font-medium text-[#6B7280] mb-1"
           >
             Select target barrier
           </label>
@@ -75,7 +75,7 @@ export default function EvidenceView() {
             id="evidence-cascading-select"
             value={selectedTargetBarrierId ?? ''}
             onChange={(e) => setSelectedTargetBarrierId(e.target.value || null)}
-            className="w-full bg-[#242836] border border-[#2E3348] rounded-md px-3 py-2 text-sm text-[#E8ECF4] focus:outline-none focus:ring-1 focus:ring-[#3B82F6]"
+            className="w-full bg-[#151B24] border border-[#2A3442] rounded-md px-3 py-2 text-sm text-[#E8E8E8] focus:outline-none focus:ring-1 focus:ring-[#2C5F7F]"
           >
             <option value="">— Select barrier —</option>
             {cascadingPredictions.map((p) => {
@@ -90,32 +90,35 @@ export default function EvidenceView() {
         </div>
 
         {!selectedTargetBarrierId && (
-          <p className="text-sm text-[#5A6178]">Select a barrier above to view evidence.</p>
+          <p className="text-sm text-[#6B7280]">Select a barrier above to view evidence.</p>
         )}
 
         {selectedTargetBarrierId && explanationLoading && (
-          <p className="text-sm text-[#5A6178] animate-pulse">Loading evidence…</p>
+          <p className="text-sm text-[#6B7280] animate-pulse">Loading evidence…</p>
         )}
 
         {selectedTargetBarrierId && explanationError && (
-          <p className="text-sm text-red-400">Evidence retrieval failed: {explanationError}</p>
+          <p className="text-sm" style={{ color: '#E74C3C' }}>Evidence retrieval failed: {explanationError}</p>
         )}
 
         {selectedTargetBarrierId && explanation && (
           <div className="space-y-4">
             {/* Narrative */}
             {!explanation.narrative_unavailable && explanation.narrative_text && (
-              <div className="bg-[#1A2332] border-l-4 border-blue-400 p-4 rounded-r-lg">
-                <p className="text-xs font-semibold text-[#8B93A8] uppercase tracking-wider mb-1">
+              <div className="bg-[#1A2332] border-l-4 border-[#2C5F7F] p-4 rounded-r-lg">
+                <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-1">
                   Analysis
                 </p>
-                <p className="text-sm text-[#E8ECF4] leading-relaxed">
+                <p className="text-sm text-[#E8E8E8] leading-relaxed">
                   {explanation.narrative_text}
                 </p>
               </div>
             )}
             {explanation.narrative_unavailable && (
-              <p className="text-sm text-amber-400 bg-amber-950/30 border border-amber-800/40 rounded-md p-2">
+              <p
+                className="text-sm rounded-md p-2"
+                style={{ color: '#D68910', backgroundColor: '#1A2332', borderLeft: '3px solid #996515' }}
+              >
                 Evidence unavailable for this barrier combination.
               </p>
             )}
@@ -123,25 +126,25 @@ export default function EvidenceView() {
             {/* Evidence snippets */}
             {snippets.length > 0 && (
               <div>
-                <h4 className="text-sm font-semibold text-[#E8ECF4] mb-2">
+                <h4 className="text-sm font-semibold text-[#E8E8E8] mb-2">
                   Similar Incidents ({snippets.length})
                 </h4>
                 <div className="space-y-2">
                   {snippets.map((s, i) => (
                     <div
                       key={`${s.incident_id}-${i}`}
-                      className="bg-[#1E2230] rounded-lg p-3 border border-[#2E3348]"
+                      className="bg-[#1C2430] rounded-lg p-3 border border-[#2A3442]"
                     >
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#242836] border border-[#2E3348] text-[#8B93A8]">
+                        <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#151B24] border border-[#2A3442] text-[#9CA3AF]">
                           {s.source_agency}
                         </span>
-                        <span className="text-xs text-[#5A6178]">{s.incident_id}</span>
-                        <span className="ml-auto text-xs text-[#5A6178]">
+                        <span className="text-xs text-[#6B7280]">{s.incident_id}</span>
+                        <span className="ml-auto text-xs text-[#6B7280]">
                           score: {s.score.toFixed(2)}
                         </span>
                       </div>
-                      <p className="text-sm text-[#E8ECF4]">{s.text}</p>
+                      <p className="text-sm text-[#E8E8E8]">{s.text}</p>
                     </div>
                   ))}
                 </div>
@@ -164,14 +167,14 @@ export default function EvidenceView() {
     <div className="w-full" data-testid="evidence-view">
       {analyzedBarriers.length === 0 ? (
         <div className="flex items-center justify-center py-16">
-          <p className="text-sm text-[#5A6178]">Run analysis to view barrier evidence</p>
+          <p className="text-sm text-[#6B7280]">Run analysis to view barrier evidence</p>
         </div>
       ) : (
         <>
           <div className="mb-6">
             <label
               htmlFor="evidence-barrier-select"
-              className="block text-xs font-medium text-[#5A6178] mb-1"
+              className="block text-xs font-medium text-[#6B7280] mb-1"
             >
               Select barrier
             </label>
@@ -179,7 +182,7 @@ export default function EvidenceView() {
               id="evidence-barrier-select"
               value={legacySelectedId ?? ''}
               onChange={(e) => setLegacySelectedId(e.target.value || null)}
-              className="w-full bg-[#242836] border border-[#2E3348] rounded-md px-3 py-2 text-sm text-[#E8ECF4] focus:outline-none focus:ring-1 focus:ring-[#3B82F6]"
+              className="w-full bg-[#151B24] border border-[#2A3442] rounded-md px-3 py-2 text-sm text-[#E8E8E8] focus:outline-none focus:ring-1 focus:ring-[#2C5F7F]"
             >
               {analyzedBarriers.map((barrier) => (
                 <option key={barrier.id} value={barrier.id}>

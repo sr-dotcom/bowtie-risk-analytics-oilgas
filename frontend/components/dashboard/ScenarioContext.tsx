@@ -45,19 +45,19 @@ export default function ScenarioContext() {
 
   return (
     <div data-testid="scenario-context" className="mb-2">
-      <p className="text-xs text-[#5A6178] uppercase tracking-wider mb-1">
+      <p className="text-xs text-[#6B7280] uppercase tracking-wider mb-1">
         Top Event / Scenario
       </p>
-      <h2 className="text-xl font-semibold text-[#E8ECF4]">
+      <h2 className="text-xl font-semibold text-[#E8E8E8]">
         {summary.eventDescription.trim() !== ''
           ? summary.eventDescription
           : 'No scenario loaded'}
       </h2>
       <div className="flex gap-2 mt-2">
-        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-[#2E3348] text-[#8B93A8]">
+        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-[#2A3442] text-[#9CA3AF]">
           {summary.totalBarriers} barriers
         </span>
-        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-[#2E3348] text-[#8B93A8]">
+        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-[#2A3442] text-[#9CA3AF]">
           {summary.analyzedBarriers} analyzed
         </span>
       </div>

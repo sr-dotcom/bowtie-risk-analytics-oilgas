@@ -133,10 +133,10 @@ export default function TopAtRiskBarriers() {
 
   return (
     <div data-testid="top-at-risk-barriers">
-      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">Top Barriers by Avg Cascade Risk</h3>
+      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">Top Barriers by Avg Cascade Risk</h3>
 
       {isEmpty ? (
-        <p className="text-sm text-[#5A6178]">
+        <p className="text-sm text-[#6B7280]">
           {isCascadingMode
             ? 'No cascading predictions available'
             : 'Run Analyze Barriers to compute Average Cascading Risk'}
@@ -144,16 +144,16 @@ export default function TopAtRiskBarriers() {
       ) : isCascadingMode ? (
         <div>
           {cascadingItems.map((item) => (
-            <div key={item.control_id} className="bg-[#242836] rounded-lg p-3 mb-2">
-              <p className="text-base font-semibold text-[#E8ECF4] mb-2">{item.name}</p>
+            <div key={item.control_id} className="bg-[#151B24] rounded-lg p-3 mb-2">
+              <p className="text-base font-semibold text-[#E8E8E8] mb-2">{item.name}</p>
               <RiskScoreBadge
                 probability={item.probability}
                 riskLevel={RISK_BAND_LEVEL[item.riskBand]}
               />
               {item.topFactor && (
                 <div className="flex items-center justify-between text-xs mt-1">
-                  <span className="text-[#8B93A8] truncate mr-2">{item.topFactor}</span>
-                  <span className="text-xs text-[#5A6178]">
+                  <span className="text-[#9CA3AF] truncate mr-2">{item.topFactor}</span>
+                  <span className="text-xs text-[#6B7280]">
                     {(item.probability * 100).toFixed(0)}% failure risk
                   </span>
                 </div>
@@ -170,13 +170,13 @@ export default function TopAtRiskBarriers() {
             const isPositive = item.topFactor ? item.topFactor.value >= 0 : false
 
             return (
-              <div key={item.barrier.id} className="bg-[#242836] rounded-lg p-3 mb-2">
-                <p className="text-base font-semibold text-[#E8ECF4] mb-2">{item.barrier.name}</p>
+              <div key={item.barrier.id} className="bg-[#151B24] rounded-lg p-3 mb-2">
+                <p className="text-base font-semibold text-[#E8E8E8] mb-2">{item.barrier.name}</p>
                 <RiskScoreBadge probability={item.probability} riskLevel={item.barrier.riskLevel} />
                 {item.topFactor && featureName && (
                   <div className="flex items-center justify-between text-xs mt-1">
-                    <span className="text-[#8B93A8] truncate mr-2">{featureName}</span>
-                    <span className={isPositive ? 'text-red-400' : 'text-blue-400'}>
+                    <span className="text-[#9CA3AF] truncate mr-2">{featureName}</span>
+                    <span style={{ color: isPositive ? '#E74C3C' : '#2C5F7F' }}>
                       {isPositive ? '+' : ''}{item.topFactor.value.toFixed(3)}
                     </span>
                   </div>

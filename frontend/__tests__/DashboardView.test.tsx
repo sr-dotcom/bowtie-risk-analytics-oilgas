@@ -133,7 +133,7 @@ describe('DashboardView', () => {
   it('defaults to Executive Summary tab active', () => {
     renderDashboard()
     const execBtn = screen.getByRole('button', { name: 'Executive Summary' })
-    expect(execBtn.className).toContain('border-[#3B82F6]')
+    expect(execBtn.className).toContain('border-[#2C5F7F]')
     // The Executive Summary tab shows the chart, not a "coming soon" message
     expect(screen.getByTestId('risk-distribution-chart')).toBeTruthy()
   })
@@ -186,7 +186,7 @@ describe('DashboardView', () => {
     await act(async () => {
       fireEvent.click(driversBtn)
     })
-    expect(driversBtn.className).toContain('border-[#3B82F6]')
+    expect(driversBtn.className).toContain('border-[#2C5F7F]')
   })
 
   it('switching away from Drivers & HF to Executive Summary hides the chart', async () => {
@@ -206,7 +206,7 @@ describe('DashboardView', () => {
     // With Executive Summary active, the other tabs should carry the inactive colour
     for (const label of ['Drivers & HF', 'Ranked Barriers', 'Evidence']) {
       const btn = screen.getByRole('button', { name: label })
-      expect(btn.className).toContain('text-[#5A6178]')
+      expect(btn.className).toContain('text-[#6B7280]')
     }
   })
 

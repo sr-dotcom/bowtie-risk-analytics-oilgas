@@ -81,7 +81,7 @@ export default function EvidenceSection({
   // Loading state
   if (loading) {
     return (
-      <div className="flex items-center gap-2 text-sm text-[#5A6178] py-2">
+      <div className="flex items-center gap-2 text-sm text-[#6B7280] py-2">
         <Loader2 className="w-4 h-4 animate-spin" />
         <span>Loading evidence...</span>
       </div>
@@ -91,7 +91,7 @@ export default function EvidenceSection({
   // Error state
   if (error) {
     return (
-      <div className="flex items-start gap-2 text-sm text-red-400 py-2">
+      <div className="flex items-start gap-2 text-sm py-2" style={{ color: '#E74C3C' }}>
         <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
         <span>{error}</span>
       </div>
@@ -103,7 +103,7 @@ export default function EvidenceSection({
   // Not yet loaded (should only flash briefly before loading kicks in)
   if (!ev) {
     return (
-      <div className="text-xs text-[#5A6178] italic py-2">
+      <div className="text-xs text-[#6B7280] italic py-2">
         Select a barrier and click Analyze to load evidence.
       </div>
     )
@@ -117,10 +117,10 @@ export default function EvidenceSection({
   // Derive confidence dot color from retrieval_confidence threshold
   const confidenceDotClass =
     ev.retrieval_confidence >= 0.7
-      ? 'bg-green-400'
+      ? 'bg-[#1F6F43]'
       : ev.retrieval_confidence >= 0.4
-        ? 'bg-amber-400'
-        : 'bg-red-400'
+        ? 'bg-[#996515]'
+        : 'bg-[#C0392B]'
 
   // Parse recommendations string into individual cards
   const recommendationCards = ev.recommendations
@@ -135,7 +135,7 @@ export default function EvidenceSection({
 
   return (
     <div className="space-y-3">
-      <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">
+      <h3 className="text-base font-semibold mb-2 text-[#E8E8E8]">
         Evidence
         <span
           data-testid="confidence-dot"
@@ -144,7 +144,10 @@ export default function EvidenceSection({
       </h3>
 
       {isLowConfidence ? (
-        <p className="text-sm text-amber-400 bg-amber-950/30 border border-amber-800/40 rounded-md p-2">
+        <p
+          className="text-sm rounded-md p-2"
+          style={{ color: '#D68910', backgroundColor: '#1A2332', borderLeft: '3px solid #996515' }}
+        >
           No matching incidents found. The model has low confidence in retrieved context for this
           barrier.
         </p>
@@ -153,30 +156,30 @@ export default function EvidenceSection({
           {/* Key Findings callout — only when narrative is long enough to split */}
           {keyFindings && keyFindings !== ev.narrative.trim() ? (
             <>
-              <div className="bg-[#1A2332] border-l-4 border-blue-400 p-4 rounded-r-lg">
-                <p className="text-xs font-semibold text-[#8B93A8] uppercase tracking-wider mb-1">
+              <div className="bg-[#1A2332] border-l-4 border-[#2C5F7F] p-4 rounded-r-lg">
+                <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-1">
                   Key Findings
                 </p>
-                <p className="text-sm text-[#E8ECF4] leading-relaxed">{keyFindings}</p>
+                <p className="text-sm text-[#E8E8E8] leading-relaxed">{keyFindings}</p>
               </div>
 
               {/* Full narrative — collapsible, hidden by default but in DOM */}
               <div>
                 <button
                   onClick={() => setNarrativeExpanded((v) => !v)}
-                  className="flex items-center gap-1 text-xs text-[#5A6178] hover:text-[#8B93A8] transition-colors mb-1"
+                  className="flex items-center gap-1 text-xs text-[#6B7280] hover:text-[#9CA3AF] transition-colors mb-1"
                 >
                   {narrativeExpanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
                   {narrativeExpanded ? 'Collapse analysis' : 'Read full analysis'}
                 </button>
                 <div className={narrativeExpanded ? '' : 'hidden'}>
-                  <SimpleMarkdown content={ev.narrative} className="text-sm text-[#8B93A8] leading-relaxed" />
+                  <SimpleMarkdown content={ev.narrative} className="text-sm text-[#9CA3AF] leading-relaxed" />
                 </div>
               </div>
             </>
           ) : (
             /* Short narrative — render directly */
-            <SimpleMarkdown content={ev.narrative} className="text-sm text-[#8B93A8] leading-relaxed mb-3" />
+            <SimpleMarkdown content={ev.narrative} className="text-sm text-[#9CA3AF] leading-relaxed mb-3" />
           )}
         </>
       )}
@@ -184,14 +187,14 @@ export default function EvidenceSection({
       {/* Recommendations (D-12, Fidel-#2) — per-card rendering, always visible */}
       {recommendationCards.length > 0 && (
         <div className="mt-3">
-          <h4 className="text-sm font-semibold mb-1 text-[#E8ECF4]">Recommendations</h4>
+          <h4 className="text-sm font-semibold mb-1 text-[#E8E8E8]">Recommendations</h4>
           <div className="space-y-2">
             {recommendationCards.map((card, idx) => (
               <div
                 key={idx}
-                className="bg-[#242836] border-l-2 border-blue-500 rounded-md p-3"
+                className="bg-[#151B24] border-l-2 border-blue-500 rounded-md p-3"
               >
-                <SimpleMarkdown content={card} className="text-sm text-[#8B93A8]" />
+                <SimpleMarkdown content={card} className="text-sm text-[#9CA3AF]" />
               </div>
             ))}
           </div>
@@ -203,7 +206,7 @@ export default function EvidenceSection({
         <div>
           <button
             onClick={() => setCitationsExpanded((v) => !v)}
-            className="flex items-center gap-1 text-sm font-semibold text-[#E8ECF4] hover:text-[#8B93A8] transition-colors mb-1"
+            className="flex items-center gap-1 text-sm font-semibold text-[#E8E8E8] hover:text-[#9CA3AF] transition-colors mb-1"
           >
             {citationsExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
             Similar Incidents ({ev.citations.length})
@@ -213,12 +216,12 @@ export default function EvidenceSection({
               {ev.citations.map((c, i) => (
                 <div
                   key={`${c.incident_id}-${i}`}
-                  className="bg-[#1E2230] rounded-lg p-3 border border-[#2E3348] hover:bg-[#2E3348] transition-colors"
+                  className="bg-[#1C2430] rounded-lg p-3 border border-[#2A3442] hover:bg-[#2A3442] transition-colors"
                 >
-                  <p className="text-xs font-medium text-[#5A6178]">
+                  <p className="text-xs font-medium text-[#6B7280]">
                     {c.incident_id} — {c.barrier_name}
                   </p>
-                  <p className="text-sm text-[#E8ECF4] mt-0.5">{c.incident_summary || c.supporting_text}</p>
+                  <p className="text-sm text-[#E8E8E8] mt-0.5">{c.incident_summary || c.supporting_text}</p>
                 </div>
               ))}
             </div>

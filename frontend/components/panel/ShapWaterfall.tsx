@@ -96,18 +96,18 @@ export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames
     }
     const data = buildWaterfallData(converted, 0, displayNames)
     if (data.length === 0) {
-      return <div className="text-xs text-[#5A6178] italic py-2">No SHAP values available.</div>
+      return <div className="text-xs text-[#6B7280] italic py-2">No SHAP values available.</div>
     }
     const chartHeight = Math.max(160, data.length * 36 + 60)
     return (
       <div className="mb-4">
-        <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">Cascade Risk Factors</h3>
+        <h3 className="text-base font-semibold mb-2 text-[#E8E8E8]">Cascade Risk Factors</h3>
         <ResponsiveContainer width="100%" height={chartHeight}>
           <BarChart layout="vertical" data={data} margin={{ top: 4, right: 16, bottom: 4, left: 0 }}>
-            <XAxis type="number" tick={{ fontSize: 12, fill: '#8B93A8' }} tickFormatter={(v: number) => v.toFixed(2)} stroke="#2E3348" />
-            <YAxis type="category" dataKey="feature" width={140} tick={{ fontSize: 12, fill: '#8B93A8' }} stroke="#2E3348" />
-            <ReferenceLine x={0} stroke="#4A5178" strokeDasharray="3 3" />
-            <Tooltip contentStyle={{ backgroundColor: '#1A1D27', border: '1px solid #2E3348', borderRadius: '6px' }} labelStyle={{ color: '#E8ECF4' }} itemStyle={{ color: '#8B93A8' }} formatter={(val, name) => name === 'value' && typeof val === 'number' ? [val.toFixed(4), 'SHAP'] : ['', '']} />
+            <XAxis type="number" tick={{ fontSize: 12, fill: '#9CA3AF' }} tickFormatter={(v: number) => v.toFixed(2)} stroke="#2A3442" />
+            <YAxis type="category" dataKey="feature" width={140} tick={{ fontSize: 12, fill: '#9CA3AF' }} stroke="#2A3442" />
+            <ReferenceLine x={0} stroke="#2A3442" strokeDasharray="3 3" />
+            <Tooltip contentStyle={{ backgroundColor: '#151B24', border: '1px solid #2A3442', borderRadius: '6px' }} labelStyle={{ color: '#E8E8E8' }} itemStyle={{ color: '#9CA3AF' }} formatter={(val, name) => name === 'value' && typeof val === 'number' ? [val.toFixed(4), 'SHAP'] : ['', '']} />
             <Bar dataKey="offset" stackId="a" fill="transparent" isAnimationActive={false} />
             <Bar dataKey="value" stackId="a" isAnimationActive={false}>
               {data.map((entry, i) => <Cell key={i} fill={entry.raw >= 0 ? '#ef4444' : '#3b82f6'} />)}
@@ -161,7 +161,7 @@ export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames
 
   if (data.length === 0) {
     return (
-      <div className="text-xs text-[#5A6178] italic py-2">No SHAP values available.</div>
+      <div className="text-xs text-[#6B7280] italic py-2">No SHAP values available.</div>
     )
   }
 
@@ -169,12 +169,12 @@ export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames
 
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold mb-2 text-[#E8ECF4]">Barrier Analysis Factors</h3>
-      <p className="text-xs text-[#8B93A8] mb-1">Base rate: {baseValue.toFixed(3)}</p>
+      <h3 className="text-base font-semibold mb-2 text-[#E8E8E8]">Barrier Analysis Factors</h3>
+      <p className="text-xs text-[#9CA3AF] mb-1">Base rate: {baseValue.toFixed(3)}</p>
 
       {/* Plain-English summary of top degradation factors (D-08) */}
       {contextData.length > 0 && (
-        <p className="text-xs text-[#8B93A8] mb-2" data-testid="degradation-summary">
+        <p className="text-xs text-[#9CA3AF] mb-2" data-testid="degradation-summary">
           Primary degradation factors:{' '}
           {contextData
             .slice(0, 3)
@@ -194,22 +194,22 @@ export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames
         >
           <XAxis
             type="number"
-            tick={{ fontSize: 12, fill: '#8B93A8' }}
+            tick={{ fontSize: 12, fill: '#9CA3AF' }}
             tickFormatter={(v: number) => v.toFixed(2)}
-            stroke="#2E3348"
+            stroke="#2A3442"
           />
           <YAxis
             type="category"
             dataKey="feature"
             width={140}
-            tick={{ fontSize: 12, fill: '#8B93A8' }}
-            stroke="#2E3348"
+            tick={{ fontSize: 12, fill: '#9CA3AF' }}
+            stroke="#2A3442"
           />
-          <ReferenceLine x={0} stroke="#4A5178" strokeDasharray="3 3" />
+          <ReferenceLine x={0} stroke="#2A3442" strokeDasharray="3 3" />
           <Tooltip
-            contentStyle={{ backgroundColor: '#1A1D27', border: '1px solid #2E3348', borderRadius: '6px' }}
-            labelStyle={{ color: '#E8ECF4' }}
-            itemStyle={{ color: '#8B93A8' }}
+            contentStyle={{ backgroundColor: '#151B24', border: '1px solid #2A3442', borderRadius: '6px' }}
+            labelStyle={{ color: '#E8E8E8' }}
+            itemStyle={{ color: '#9CA3AF' }}
             formatter={(val, name) => {
               if (name === 'value' && typeof val === 'number') {
                 return [val.toFixed(4), 'SHAP']
@@ -237,7 +237,7 @@ export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames
       </ResponsiveContainer>
 
       {hasContext && (
-        <p className="text-xs text-[#5A6178] mt-1 italic">
+        <p className="text-xs text-[#6B7280] mt-1 italic">
           Degradation factors from historical incident context
         </p>
       )}

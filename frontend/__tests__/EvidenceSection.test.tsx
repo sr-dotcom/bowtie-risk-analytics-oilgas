@@ -108,39 +108,39 @@ describe('EvidenceSection — confidence dot', () => {
     expect(dot).toBeTruthy()
   })
 
-  it('confidence dot has bg-green-400 class for retrieval_confidence >= 0.7', async () => {
+  it('confidence dot has risk-low class for retrieval_confidence >= 0.7', async () => {
     mockExplain.mockResolvedValue(makeExplainResponse({ retrieval_confidence: 0.7 }))
     renderEvidenceSection()
     const dot = await screen.findByTestId('confidence-dot')
-    expect(dot.className).toContain('bg-green-400')
+    expect(dot.className).toContain('bg-[#1F6F43]')
   })
 
-  it('confidence dot has bg-green-400 class for retrieval_confidence above 0.7', async () => {
+  it('confidence dot has risk-low class for retrieval_confidence above 0.7', async () => {
     mockExplain.mockResolvedValue(makeExplainResponse({ retrieval_confidence: 0.9 }))
     renderEvidenceSection()
     const dot = await screen.findByTestId('confidence-dot')
-    expect(dot.className).toContain('bg-green-400')
+    expect(dot.className).toContain('bg-[#1F6F43]')
   })
 
-  it('confidence dot has bg-amber-400 class for retrieval_confidence in [0.4, 0.7)', async () => {
+  it('confidence dot has risk-medium class for retrieval_confidence in [0.4, 0.7)', async () => {
     mockExplain.mockResolvedValue(makeExplainResponse({ retrieval_confidence: 0.55 }))
     renderEvidenceSection()
     const dot = await screen.findByTestId('confidence-dot')
-    expect(dot.className).toContain('bg-amber-400')
+    expect(dot.className).toContain('bg-[#996515]')
   })
 
-  it('confidence dot has bg-amber-400 class at the exact 0.4 boundary', async () => {
+  it('confidence dot has risk-medium class at the exact 0.4 boundary', async () => {
     mockExplain.mockResolvedValue(makeExplainResponse({ retrieval_confidence: 0.4 }))
     renderEvidenceSection()
     const dot = await screen.findByTestId('confidence-dot')
-    expect(dot.className).toContain('bg-amber-400')
+    expect(dot.className).toContain('bg-[#996515]')
   })
 
-  it('confidence dot has bg-red-400 class for retrieval_confidence < 0.4', async () => {
+  it('confidence dot has risk-high class for retrieval_confidence < 0.4', async () => {
     mockExplain.mockResolvedValue(makeExplainResponse({ retrieval_confidence: 0.2 }))
     renderEvidenceSection()
     const dot = await screen.findByTestId('confidence-dot')
-    expect(dot.className).toContain('bg-red-400')
+    expect(dot.className).toContain('bg-[#C0392B]')
   })
 })
 

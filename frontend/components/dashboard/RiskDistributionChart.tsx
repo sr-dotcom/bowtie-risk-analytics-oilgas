@@ -49,7 +49,7 @@ export default function RiskDistributionChart({ counts }: RiskDistributionChartP
 
   return (
     <div data-testid="risk-distribution-chart">
-      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">Barrier Risk Distribution</h3>
+      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">Barrier Risk Distribution</h3>
       <ResponsiveContainer width="100%" height={240}>
         <BarChart
           layout="vertical"
@@ -59,24 +59,24 @@ export default function RiskDistributionChart({ counts }: RiskDistributionChartP
           <XAxis
             type="number"
             allowDecimals={false}
-            tick={{ fontSize: 12, fill: '#8B93A8' }}
-            stroke="#2E3348"
+            tick={{ fontSize: 12, fill: '#9CA3AF' }}
+            stroke="#2A3442"
           />
           <YAxis
             type="category"
             dataKey="name"
             width={60}
-            tick={{ fontSize: 12, fill: '#8B93A8' }}
-            stroke="#2E3348"
+            tick={{ fontSize: 12, fill: '#9CA3AF' }}
+            stroke="#2A3442"
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: '#1A1D27',
-              border: '1px solid #2E3348',
+              backgroundColor: '#151B24',
+              border: '1px solid #2A3442',
               borderRadius: '6px',
             }}
-            labelStyle={{ color: '#E8ECF4' }}
-            itemStyle={{ color: '#8B93A8' }}
+            labelStyle={{ color: '#E8E8E8' }}
+            itemStyle={{ color: '#9CA3AF' }}
             formatter={(val, name) => {
               if (name === 'count' && typeof val === 'number') {
                 return [val, 'Barriers']
@@ -88,7 +88,7 @@ export default function RiskDistributionChart({ counts }: RiskDistributionChartP
             <LabelList
               dataKey="count"
               position="right"
-              style={{ fontSize: 11, fill: '#8B93A8' }}
+              style={{ fontSize: 11, fill: '#9CA3AF' }}
             />
             {data.map((entry, i) => (
               <Cell key={i} fill={entry.fill} />

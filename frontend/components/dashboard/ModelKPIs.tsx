@@ -76,14 +76,14 @@ export default function ModelKPIs() {
         <div
           key={card.label}
           className={[
-            'bg-[#242836] rounded-lg p-3',
+            'bg-[#151B24] rounded-lg p-3',
             'border-l-4',
-            card.category === 'model1' ? 'border-blue-500' : 'border-purple-500',
+            'border-[#2C5F7F]',
           ].join(' ')}
         >
-          <p className="text-xs text-[#5A6178] mb-1">{card.label}</p>
-          <p className="text-2xl font-bold text-[#E8ECF4]">{card.value}</p>
-          <p className="text-xs text-[#5A6178] mt-1">{card.subtitle}</p>
+          <p className="text-xs text-[#6B7280] mb-1">{card.label}</p>
+          <p className="text-2xl font-bold text-[#E8E8E8]">{card.value}</p>
+          <p className="text-xs text-[#6B7280] mt-1">{card.subtitle}</p>
         </div>
       ))}
     </div>

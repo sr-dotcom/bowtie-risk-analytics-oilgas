@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, Fragment } from 'react'
+import type React from 'react'
 import { useBowtieContext } from '@/context/BowtieContext'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES } from './TopAtRiskBarriers'
 import RiskScoreBadge from '@/components/panel/RiskScoreBadge'
@@ -40,11 +41,11 @@ type SortDir = 'asc' | 'desc'
 // Risk level helpers
 // ---------------------------------------------------------------------------
 
-const PILL_COLORS: Record<RiskLevel, string> = {
-  red: 'bg-red-500 text-white',
-  amber: 'bg-amber-400 text-gray-900',
-  green: 'bg-green-500 text-white',
-  unanalyzed: 'bg-[#2E3348] text-[#5A6178]',
+const PILL_STYLES: Record<RiskLevel, React.CSSProperties> = {
+  red:        { backgroundColor: '#1A2332', color: '#E74C3C', border: '1px solid #C0392B' },
+  amber:      { backgroundColor: '#1A2332', color: '#D68910', border: '1px solid #996515' },
+  green:      { backgroundColor: '#1A2332', color: '#27AE60', border: '1px solid #1F6F43' },
+  unanalyzed: { backgroundColor: '#151B24', color: '#6B7280', border: '1px solid #2A3442' },
 }
 
 const PILL_LABELS: Record<RiskLevel, string> = {
@@ -253,13 +254,13 @@ export default function RankedBarriers() {
 
   return (
     <div data-testid="ranked-barriers-table" className="overflow-x-auto">
-      <h3 className="text-base font-semibold mb-3 text-[#E8ECF4]">All Barriers Ranked by Risk</h3>
+      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">All Barriers Ranked by Risk</h3>
 
       {isCascadingMode && conditioningBarrierId && (
-        <div className="mb-3 px-3 py-2 bg-[#1A2332] border-l-4 border-amber-400 rounded-r-lg">
-          <p className="text-xs text-[#8B93A8]">
+        <div className="mb-3 px-3 py-2 bg-[#1A2332] border-l-4 border-[#D68910] rounded-r-lg">
+          <p className="text-xs text-[#9CA3AF]">
             Cascading analysis: assuming{' '}
-            <span className="text-amber-300 font-medium">
+            <span style={{ color: '#D68910' }} className="font-medium">
               {scenario?.barriers.find((b) => b.control_id === conditioningBarrierId)?.name
                 ?? conditioningBarrierId}
             </span>{' '}
@@ -273,7 +274,7 @@ export default function RankedBarriers() {
           data-testid="filter-side"
           value={filterSide}
           onChange={(e) => setFilterSide(e.target.value)}
-          className={`bg-[#242836] border border-[#2E3348] text-xs rounded px-2 py-1 ${filterSide !== 'all' ? 'text-[#E8ECF4]' : 'text-[#8B93A8]'}`}
+          className={`bg-[#151B24] border border-[#2A3442] text-xs rounded px-2 py-1 ${filterSide !== 'all' ? 'text-[#E8E8E8]' : 'text-[#9CA3AF]'}`}
         >
           <option value="all">All Sides</option>
           <option value="prevention">Prevention</option>
@@ -283,7 +284,7 @@ export default function RankedBarriers() {
           data-testid="filter-risk-level"
           value={filterRiskLevel}
           onChange={(e) => setFilterRiskLevel(e.target.value)}
-          className={`bg-[#242836] border border-[#2E3348] text-xs rounded px-2 py-1 ${filterRiskLevel !== 'all' ? 'text-[#E8ECF4]' : 'text-[#8B93A8]'}`}
+          className={`bg-[#151B24] border border-[#2A3442] text-xs rounded px-2 py-1 ${filterRiskLevel !== 'all' ? 'text-[#E8E8E8]' : 'text-[#9CA3AF]'}`}
         >
           <option value="all">All Risk Levels</option>
           <option value="red">High</option>
@@ -294,7 +295,7 @@ export default function RankedBarriers() {
           data-testid="filter-type"
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          className={`bg-[#242836] border border-[#2E3348] text-xs rounded px-2 py-1 ${filterType !== 'all' ? 'text-[#E8ECF4]' : 'text-[#8B93A8]'}`}
+          className={`bg-[#151B24] border border-[#2A3442] text-xs rounded px-2 py-1 ${filterType !== 'all' ? 'text-[#E8E8E8]' : 'text-[#9CA3AF]'}`}
         >
           <option value="all">All Types</option>
           {typeOptions.map((t) => (
@@ -304,32 +305,32 @@ export default function RankedBarriers() {
       </div>
 
       {rows.length === 0 ? (
-        <p className="text-sm text-[#5A6178]">No analyzed barriers yet — click Analyze Barriers to compute Average Cascading Risk.</p>
+        <p className="text-sm text-[#6B7280]">No analyzed barriers yet — click Analyze Barriers to compute Average Cascading Risk.</p>
       ) : (
         <>
-          <p data-testid="filter-result-count" className="text-xs text-[#8B93A8] mb-3">
+          <p data-testid="filter-result-count" className="text-xs text-[#9CA3AF] mb-3">
             Showing {filteredRows.length} of {rows.length} barriers
           </p>
-          <table className="w-full text-sm border-collapse bg-[#1A1D27]">
+          <table className="w-full text-sm border-collapse bg-[#151B24]">
             <thead>
-              <tr className="bg-[#242836] border-b border-[#2E3348]">
+              <tr className="bg-[#151B24] border-b border-[#2A3442]">
                 {COLUMNS.map((col) => {
                   const isActive = col.key === sortKey
                   return (
                     <th
                       key={col.key}
-                      className={`px-3 py-2 text-left text-xs font-medium text-[#8B93A8] cursor-pointer select-none whitespace-nowrap ${col.className ?? ''}`}
+                      className={`px-3 py-2 text-left text-xs font-medium text-[#9CA3AF] cursor-pointer select-none whitespace-nowrap ${col.className ?? ''}`}
                       onClick={() => handleHeaderClick(col.key)}
                     >
                       {col.label}
                       {isActive && (
-                        <span className="ml-1 text-[#E8ECF4]">{sortDir === 'asc' ? '▲' : '▼'}</span>
+                        <span className="ml-1 text-[#E8E8E8]">{sortDir === 'asc' ? '▲' : '▼'}</span>
                       )}
                     </th>
                   )
                 })}
                 {/* Extra column for "What if this fails?" button */}
-                <th className="px-3 py-2 text-left text-xs font-medium text-[#8B93A8] w-32">
+                <th className="px-3 py-2 text-left text-xs font-medium text-[#9CA3AF] w-32">
                   Cascade
                 </th>
               </tr>
@@ -337,7 +338,7 @@ export default function RankedBarriers() {
             <tbody>
               {filteredRows.map((row) => {
                 const isPositive = row.topFactorValue !== null && row.topFactorValue >= 0
-                const pillColor = PILL_COLORS[row.riskLevel]
+                const pillStyle = PILL_STYLES[row.riskLevel]
                 const pillLabel = PILL_LABELS[row.riskLevel]
                 const isConditioning = row.barrierId === conditioningBarrierId
                 const cascadingPred = isCascadingMode
@@ -347,7 +348,7 @@ export default function RankedBarriers() {
                 return (
                   <Fragment key={row.barrierId}>
                     <tr
-                      className={`border-b border-[#2E3348] hover:bg-[#242836] cursor-pointer text-[#E8ECF4] transition-colors ${isConditioning ? 'bg-amber-950/20' : ''}`}
+                      className={`border-b border-[#2A3442] hover:bg-[#1C2430] cursor-pointer text-[#E8E8E8] transition-colors ${isConditioning ? 'bg-[#1A2332]' : ''}`}
                       onClick={() => {
                         setExpandedRowId((prev) => (prev === row.barrierId ? null : row.barrierId))
                         if (isCascadingMode) {
@@ -357,26 +358,26 @@ export default function RankedBarriers() {
                         }
                       }}
                     >
-                      <td className="px-3 py-2 text-center text-[#8B93A8] font-mono">{row.rank}</td>
+                      <td className="px-3 py-2 text-center text-[#9CA3AF] font-mono">{row.rank}</td>
                       <td className="px-3 py-2 font-medium">{row.name}</td>
                       <td className="px-3 py-2 text-center">
-                        <span className={`inline-block text-xs font-medium px-2 py-0.5 rounded-full ${pillColor}`}>
+                        <span className="inline-block text-xs font-medium px-2 py-0.5 rounded-full" style={pillStyle}>
                           {pillLabel}
                         </span>
                       </td>
-                      <td className="px-3 py-2 text-[#8B93A8]">{row.condition}</td>
+                      <td className="px-3 py-2 text-[#9CA3AF]">{row.condition}</td>
                       <td className="px-3 py-2">
-                        <span className="text-[#8B93A8] mr-2">{row.topFactor}</span>
+                        <span className="text-[#9CA3AF] mr-2">{row.topFactor}</span>
                         {row.topFactorValue !== null && (
-                          <span className={`text-xs font-mono ${isPositive ? 'text-red-400' : 'text-blue-400'}`}>
+                          <span className="text-xs font-mono" style={{ color: isPositive ? '#E74C3C' : '#2C5F7F' }}>
                             {isPositive ? '+' : ''}{row.topFactorValue.toFixed(3)}
                           </span>
                         )}
                       </td>
-                      <td className="px-3 py-2 text-[#8B93A8]">{row.barrierType}</td>
-                      <td className="px-3 py-2 text-center text-[#8B93A8]">{row.lod}</td>
+                      <td className="px-3 py-2 text-[#9CA3AF]">{row.barrierType}</td>
+                      <td className="px-3 py-2 text-center text-[#9CA3AF]">{row.lod}</td>
                       <td className="px-3 py-2 text-center">
-                        <span className={`text-xs ${row.side === 'prevention' ? 'text-blue-300' : 'text-amber-300'}`}>
+                        <span className="text-xs" style={{ color: row.side === 'prevention' ? '#2C5F7F' : '#D68910' }}>
                           {row.side === 'prevention' ? 'Prevention' : 'Mitigation'}
                         </span>
                       </td>
@@ -387,7 +388,7 @@ export default function RankedBarriers() {
                           className={`px-2 py-1 text-xs rounded transition-colors ${
                             isConditioning
                               ? 'bg-amber-500/30 text-amber-300 border border-amber-500/50'
-                              : 'bg-[#242836] border border-[#2E3348] text-[#5A6178] hover:text-[#E8ECF4]'
+                              : 'bg-[#151B24] border border-[#2A3442] text-[#6B7280] hover:text-[#E8E8E8]'
                           }`}
                           onClick={(e) => {
                             e.stopPropagation()
@@ -403,7 +404,7 @@ export default function RankedBarriers() {
 
                     {expandedRowId === row.barrierId && (
                       <tr key={`${row.barrierId}-expanded`} data-testid="ranked-row-expanded">
-                        <td colSpan={COLUMNS.length + 1} className="px-4 py-4 bg-[#1E2130] border-b border-[#2E3348]">
+                        <td colSpan={COLUMNS.length + 1} className="px-4 py-4 bg-[#1C2430] border-b border-[#2A3442]">
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
                               <RiskScoreBadge
@@ -430,7 +431,7 @@ export default function RankedBarriers() {
                           </div>
                           {/* Evidence section — only old mode (cascading evidence shown in Evidence tab) */}
                           {!isCascadingMode && (
-                            <div className="mt-3 border-t border-[#2E3348] pt-3">
+                            <div className="mt-3 border-t border-[#2A3442] pt-3">
                               {showEvidence[row.barrierId] ? (
                                 <EvidenceSection
                                   barrierId={row.barrierId}
@@ -441,7 +442,7 @@ export default function RankedBarriers() {
                               ) : (
                                 <button
                                   data-testid="load-evidence-btn"
-                                  className="px-3 py-1.5 text-sm bg-[#3B82F6] hover:bg-[#2563EB] text-white rounded-md transition-colors"
+                                  className="px-3 py-1.5 text-sm bg-[#2C5F7F] hover:bg-[#3A7399] text-[#E8E8E8] rounded-md transition-colors"
                                   onClick={(e) => {
                                     e.stopPropagation()
                                     setShowEvidence((prev) => ({ ...prev, [row.barrierId]: true }))
@@ -453,10 +454,10 @@ export default function RankedBarriers() {
                             </div>
                           )}
                           {/* Navigation */}
-                          <div className="mt-3 border-t border-[#2E3348] pt-3">
+                          <div className="mt-3 border-t border-[#2A3442] pt-3">
                             <button
                               data-testid="view-on-diagram-btn"
-                              className="px-3 py-1.5 text-xs bg-[#242836] border border-[#2E3348] text-[#8B93A8] hover:text-[#E8ECF4] rounded-md transition-colors"
+                              className="px-3 py-1.5 text-xs bg-[#151B24] border border-[#2A3442] text-[#9CA3AF] hover:text-[#E8E8E8] rounded-md transition-colors"
                               onClick={(e) => { e.stopPropagation(); setViewMode('diagram') }}
                             >
                               View on Diagram
@@ -472,7 +473,7 @@ export default function RankedBarriers() {
           </table>
         </>
       )}
-      <p className="text-xs text-[#5A6178] mt-4 italic">
+      <p className="text-xs text-[#6B7280] mt-4 italic">
         Average Cascading Risk: mean failure probability across all single-barrier-failure scenarios.
         See API contract for methodology.
       </p>

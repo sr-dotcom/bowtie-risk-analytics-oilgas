@@ -1,16 +1,17 @@
 'use client'
 
+import type React from 'react'
 import type { RiskLevel, RiskBand } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
-// Color mapping per UI-SPEC Color section
+// Color mapping — bg.accent + border + risk.*Text per UI-CONTEXT §6
 // ---------------------------------------------------------------------------
 
-const levelColors: Record<string, string> = {
-  red: 'bg-red-500 text-white',
-  amber: 'bg-amber-400 text-gray-900',
-  green: 'bg-green-500 text-white',
-  unanalyzed: 'bg-[#242836] text-[#5A6178]',
+const LEVEL_STYLES: Record<string, React.CSSProperties> = {
+  red:        { backgroundColor: '#1A2332', color: '#E74C3C', borderColor: '#C0392B' },
+  amber:      { backgroundColor: '#1A2332', color: '#D68910', borderColor: '#996515' },
+  green:      { backgroundColor: '#1A2332', color: '#27AE60', borderColor: '#1F6F43' },
+  unanalyzed: { backgroundColor: '#151B24', color: '#6B7280', borderColor: '#2A3442' },
 }
 
 // ---------------------------------------------------------------------------
@@ -49,19 +50,20 @@ interface RiskScoreBadgeProps {
  */
 export default function RiskScoreBadge({ probability, riskLevel, riskBand }: RiskScoreBadgeProps) {
   const resolvedLevel: RiskLevel = riskBand ? RISK_BAND_TO_LEVEL[riskBand] : (riskLevel ?? 'unanalyzed')
-  const colorClass = levelColors[resolvedLevel] ?? levelColors.unanalyzed
+  const levelStyle = LEVEL_STYLES[resolvedLevel] ?? LEVEL_STYLES.unanalyzed
   const levelConfig = RISK_LEVEL_LABELS[resolvedLevel] ?? RISK_LEVEL_LABELS.unanalyzed
 
   return (
     <div className="flex items-center gap-3 mb-3">
       <span
-        className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold ${colorClass}`}
+        className="inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold border-2"
+        style={levelStyle}
       >
         {levelConfig.label}
       </span>
       <div>
-        <p className="text-sm font-semibold text-[#E8ECF4]">{levelConfig.subtitle}</p>
-        <p className="text-xs text-[#8B93A8]">
+        <p className="text-sm font-semibold text-[#E8E8E8]">{levelConfig.subtitle}</p>
+        <p className="text-xs text-[#9CA3AF]">
           Historical reliability assessment
         </p>
       </div>
