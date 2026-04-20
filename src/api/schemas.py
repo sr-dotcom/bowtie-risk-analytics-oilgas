@@ -10,6 +10,8 @@ Schema decisions are from 05-CONTEXT.md:
 """
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -229,3 +231,96 @@ class AprioriRulesResponse(BaseModel):
     """GET /apriori-rules response body (S03)."""
 
     rules: list[AprioriRule]
+
+
+# ---------------------------------------------------------------------------
+# Cascading prediction schemas (S03/T02)
+# ---------------------------------------------------------------------------
+
+class CascadingRequest(BaseModel):
+    """POST /predict-cascading and /rank-targets request body."""
+
+    model_config = ConfigDict(strict=False)
+
+    scenario: dict  # full bowtie config per data/demo_scenarios/*.json shape
+    conditioning_barrier_id: str
+
+
+class CascadingShapValue(BaseModel):
+    """A single SHAP value from the cascading model (distinct from /predict ShapValue)."""
+
+    feature: str
+    value: float
+    display_name: str = ""
+
+
+class CascadingBarrierPrediction(BaseModel):
+    """Per-target barrier prediction from the cascading model."""
+
+    target_barrier_id: str
+    y_fail_probability: float
+    risk_band: Literal["HIGH", "MEDIUM", "LOW"]
+    shap_values: list[CascadingShapValue]
+
+
+class PredictCascadingResponse(BaseModel):
+    """POST /predict-cascading response body."""
+
+    predictions: list[CascadingBarrierPrediction]
+    explanation_unavailable: bool = False
+
+
+class RankedBarrier(BaseModel):
+    """Lightweight ranked barrier entry (no SHAP) for /rank-targets."""
+
+    target_barrier_id: str
+    composite_risk_score: float
+
+
+class RankTargetsResponse(BaseModel):
+    """POST /rank-targets response body."""
+
+    ranked_barriers: list[RankedBarrier]
+
+
+class ExplainCascadingRequest(BaseModel):
+    """POST /explain-cascading request body."""
+
+    model_config = ConfigDict(strict=False)
+
+    conditioning_barrier_id: str
+    target_barrier_id: str
+    bowtie_context: dict  # full scenario
+
+
+class EvidenceSnippet(BaseModel):
+    """A single evidence snippet from RAG retrieval."""
+
+    incident_id: str
+    source_agency: str
+    text: str
+    score: float
+
+
+class DegradationContext(BaseModel):
+    """Degradation context extracted from RAG results and scenario PIF data."""
+
+    pif_mentions: list[str]
+    recommendations: list[str]
+    barrier_condition: str
+
+
+class ExplainCascadingResponse(BaseModel):
+    """POST /explain-cascading response body."""
+
+    narrative_text: str
+    evidence_snippets: list[EvidenceSnippet]
+    degradation_context: DegradationContext
+    narrative_unavailable: bool = False
+
+
+class GoneResponse(BaseModel):
+    """HTTP 410 Gone response body for deprecated endpoints."""
+
+    error: Literal["gone"] = "gone"
+    migrate_to: str

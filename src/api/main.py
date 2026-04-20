@@ -6,14 +6,16 @@ load_dotenv()
 """FastAPI application for Bowtie Risk Analytics.
 
 Endpoints:
-  POST /predict  — barrier failure probability + SHAP reason codes (API-01, D-01, D-02)
-  POST /explain  — RAG evidence narrative for a barrier (API-02, D-03, D-04)
-  GET  /health   — service status with loaded model artifact info (API-03, D-08)
+  POST /predict-cascading — cascading barrier failure probability + SHAP (S03)
+  POST /rank-targets      — lightweight ranking without SHAP (S03)
+  POST /explain-cascading — RAG evidence + degradation context (S03)
+  GET  /health            — service status with loaded model artifact info (API-03, D-08)
+  GET  /apriori-rules     — pre-computed Apriori co-failure rules (S03)
+  GET  /predict           — 410 Gone (migrated to /predict-cascading)
+  GET  /explain           — 410 Gone (migrated to /explain-cascading)
 
 All ML resources are loaded exactly once at startup via the async lifespan
-context manager and stored on app.state (D-05, D-06, API-04).
-AnthropicProvider calls in /explain are wrapped in asyncio.to_thread()
-to avoid blocking the event loop (D-07, API-05).
+context manager and stored on app.state.
 """
 
 import asyncio
@@ -29,36 +31,38 @@ import hmac
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Security
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from fastapi.security import APIKeyHeader
 
 from src.api.mapping_loader import MappingConfig
-from src.api.sanitize import sanitize_prompt_input
 from src.api.schemas import (
     AprioriRule,
     AprioriRulesResponse,
-    CitationResponse,
-    DegradationFactor,
-    ExplainRequest,
-    ExplainResponse,
-    FeatureMetadata,
+    CascadingRequest,
+    CascadingShapValue,
+    CascadingBarrierPrediction,
+    DegradationContext,
+    EvidenceSnippet,
+    ExplainCascadingRequest,
+    ExplainCascadingResponse,
+    GoneResponse,
     HealthResponse,
     ModelInfo,
-    PredictRequest,
-    PredictResponse,
+    PredictCascadingResponse,
     RagInfo,
-    ShapValue,
+    RankedBarrier,
+    RankTargetsResponse,
 )
-from src.modeling.predict import BarrierPredictor
+from src.modeling.cascading.predict import load_cascading_predictor
 from src.rag.embeddings.sentence_transformers_provider import SentenceTransformerProvider
-from src.rag.explainer import BarrierExplainer
+from src.rag.pair_context_builder import build_pair_context
 from src.rag.rag_agent import RAGAgent
-from src.llm.anthropic_provider import AnthropicProvider
 
 logger = logging.getLogger(__name__)
 
 # Default artifact paths — configurable via environment or constructor
 ARTIFACTS_DIR = Path("data/models/artifacts")
-RAG_DIR = Path("data/evaluation/rag_workspace")
+RAG_V2_DIR = Path("data/rag/v2")
 
 
 # ---------------------------------------------------------------------------
@@ -67,65 +71,61 @@ RAG_DIR = Path("data/evaluation/rag_workspace")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):  # type: ignore[type-arg]
-    """Load ML models and RAG resources exactly once at startup (D-05, D-06).
+    """Load ML models and RAG resources exactly once at startup.
 
     Stores on app.state for endpoint access:
-      app.state.predictor       — BarrierPredictor
-      app.state.explainer       — BarrierExplainer
-      app.state.start_time      — float (monotonic)
-      app.state.rag_corpus_size — int
+      app.state.cascading_predictor — CascadingPredictor (None on load failure)
+      app.state.rag_v2_agent        — RAGAgent for v2 corpus (None on load failure)
+      app.state.start_time          — float (monotonic)
+      app.state.rag_corpus_size     — int
+      app.state.apriori_rules       — list[dict]
     """
     start_time = time.monotonic()
 
-    # Load BarrierPredictor (Phase 3 artifact)
-    predictor = BarrierPredictor(artifacts_dir=ARTIFACTS_DIR)
-    logger.info("BarrierPredictor loaded from %s", ARTIFACTS_DIR)
-
-    # Load RAG agent + BarrierExplainer (Phase 4 artifact)
+    # Load shared embedding provider (reused across all RAG agents)
     embedding_provider = SentenceTransformerProvider()
-    rag_agent = RAGAgent.from_directory(RAG_DIR, embedding_provider)
 
-    # AnthropicProvider with haiku for cost-efficient narratives (D-07)
-    llm_provider = AnthropicProvider(
-        model="claude-haiku-4-5-20251001",
-        max_output_tokens=1500,
-    )
-    explainer = BarrierExplainer(rag_agent=rag_agent, llm_provider=llm_provider)
-    logger.info("BarrierExplainer loaded from %s", RAG_DIR)
+    # Load CascadingPredictor — graceful degradation if artifact missing
+    cascading_predictor = None
+    try:
+        cascading_predictor = load_cascading_predictor(ARTIFACTS_DIR)
+        logger.info("CascadingPredictor loaded from %s", ARTIFACTS_DIR)
+    except Exception as exc:
+        logger.warning("CascadingPredictor not loaded — predict-cascading will degrade: %s", exc)
 
-    # Load process safety terminology mappings (Phase 8)
-    mapping_config = MappingConfig.load()
-    logger.info("MappingConfig loaded from configs/mappings/")
+    # Load RAGAgent v2 for cascading explain endpoint
+    rag_v2_agent = None
+    rag_v2_corpus_size = 0
+    if RAG_V2_DIR.exists():
+        try:
+            rag_v2_agent = RAGAgent.from_directory(RAG_V2_DIR, embedding_provider)
+            rag_v2_corpus_size = len(rag_v2_agent._barrier_meta)
+            logger.info("RAGAgent v2 loaded from %s (%d barriers)", RAG_V2_DIR, rag_v2_corpus_size)
+        except Exception as exc:
+            logger.warning("RAGAgent v2 not loaded — explain-cascading will degrade: %s", exc)
+    else:
+        logger.warning("RAG v2 directory not found at %s", RAG_V2_DIR)
 
-    # Load Apriori co-failure rules (S03)
+    # Load Apriori co-failure rules
     apriori_rules_path = Path("data/evaluation/apriori_rules.json")
     if apriori_rules_path.exists():
         with open(apriori_rules_path) as f:
             apriori_data = json.load(f)
         apriori_rules_list = apriori_data["rules"]
-        logger.info(
-            "Loaded %d Apriori rules from %s",
-            len(apriori_rules_list),
-            apriori_rules_path,
-        )
+        logger.info("Loaded %d Apriori rules from %s", len(apriori_rules_list), apriori_rules_path)
     else:
         apriori_rules_list = []
-        logger.warning(
-            "Apriori rules not found at %s — endpoint will return empty list",
-            apriori_rules_path,
-        )
+        logger.warning("Apriori rules not found at %s — endpoint will return empty list", apriori_rules_path)
 
-    # Store on app.state for endpoint access (D-05)
-    app.state.predictor = predictor
-    app.state.explainer = explainer
+    # Store on app.state for endpoint access
+    app.state.cascading_predictor = cascading_predictor
+    app.state.rag_v2_agent = rag_v2_agent
     app.state.start_time = start_time
-    app.state.rag_corpus_size = len(rag_agent._barrier_meta)
-    app.state.mapping_config = mapping_config
+    app.state.rag_corpus_size = rag_v2_corpus_size
     app.state.apriori_rules = apriori_rules_list
 
     yield  # App runs here
 
-    # Cleanup — read-only resources, nothing to release
     logger.info("Shutting down — resources released")
 
 
@@ -191,248 +191,254 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
     )
 
     # -----------------------------------------------------------------------
-    # POST /predict — barrier failure probability + SHAP reason codes (API-01)
+    # GET /predict — 410 Gone (migrated to /predict-cascading)
     # -----------------------------------------------------------------------
 
-    @app.post("/predict", response_model=PredictResponse, dependencies=[Depends(verify_api_key)])
-    async def predict(request: PredictRequest, req: Request) -> PredictResponse:
-        """Predict barrier failure probability with SHAP reason codes.
+    @app.get("/predict")
+    async def predict_gone() -> JSONResponse:
+        """Legacy /predict endpoint — permanently removed (S03).
 
-        Accepts raw 18-field feature dict (D-01).
-        Returns probabilities + SHAP values for both models (D-02).
-        Resources are loaded once in lifespan — no per-request loading (D-06).
-
-        Args:
-            request: PredictRequest with 18 barrier feature fields.
-            req: Raw FastAPI request (used to access app.state).
-
-        Returns:
-            PredictResponse with model probabilities, SHAP lists, and feature metadata.
-
-        Raises:
-            HTTPException: 422 if prediction fails due to invalid features.
+        Returns HTTP 410 Gone with migration hint.
         """
-        predictor: BarrierPredictor = req.app.state.predictor
-        features = request.model_dump()
-
-        # top_event_category and source_agency are incident-level features that
-        # the frontend doesn't supply per-barrier. PredictRequest provides safe
-        # defaults ("loss_of_containment", "UNKNOWN") so this dict is already
-        # complete — no manual injection needed here.
-
-        try:
-            result = predictor.predict(features)
-        except Exception as exc:
-            logger.exception("Prediction failed: %s", exc)
-            raise HTTPException(status_code=422, detail="Prediction failed due to invalid input")
-
-        # Convert SHAP dicts to ShapValue lists with category metadata
-        feature_meta = predictor.feature_names  # list[dict] with name + category
-        category_map = {f["name"]: f["category"] for f in feature_meta}
-
-        model1_shap = [
-            ShapValue(feature=name, value=val, category=category_map.get(name, "barrier"))
-            for name, val in result.model1_shap_values.items()
-        ]
-        model2_shap = [
-            ShapValue(feature=name, value=val, category=category_map.get(name, "barrier"))
-            for name, val in result.model2_shap_values.items()
-        ]
-        feature_metadata = [
-            FeatureMetadata(name=f["name"], category=f["category"])
-            for f in feature_meta
-        ]
-
-        # Phase 8: Process safety terminology mapping (D-03, D-07, Fidel-#6,#9,#12,#34,#59,#63)
-        mapping: MappingConfig = req.app.state.mapping_config
-
-        # Degradation factors: PIF SHAP values mapped to process safety names
-        degradation_factors = [
-            DegradationFactor(
-                factor=mapping.get_degradation_factor(sv.feature),
-                source_feature=sv.feature,
-                contribution=sv.value,
-            )
-            for sv in model1_shap
-            if sv.category == "incident_context"
-        ]
-        degradation_factors.sort(key=lambda x: abs(x.contribution), reverse=True)
-
-        # Risk level: H/M/L from probability (D-07)
-        risk_level = mapping.compute_risk_level(result.model1_probability)
-
-        # Display names for barrier_type and line_of_defense (D-01, Fidel-#6, Fidel-#9)
-        barrier_type_display = mapping.get_barrier_type_display(
-            features.get("barrier_type", "")
-        )
-        lod_display = mapping.get_lod_display(
-            features.get("line_of_defense", "")
-        )
-
-        # Barrier condition display (Fidel-#59) — empty at prediction time;
-        # populated when barrier_status is known (e.g., from a broader context)
-        barrier_condition_display = ""
-
-        return PredictResponse(
-            model1_probability=result.model1_probability,
-            model2_probability=result.model2_probability,
-            model1_shap=model1_shap,
-            model2_shap=model2_shap,
-            model1_base_value=result.model1_base_value,
-            model2_base_value=result.model2_base_value,
-            feature_metadata=feature_metadata,
-            degradation_factors=degradation_factors,
-            risk_level=risk_level,
-            barrier_type_display=barrier_type_display,
-            lod_display=lod_display,
-            barrier_condition_display=barrier_condition_display,
+        return JSONResponse(
+            status_code=410,
+            content=GoneResponse(migrate_to="/predict-cascading").model_dump(),
         )
 
     # -----------------------------------------------------------------------
-    # GET /health — service status with model artifact info (API-03)
+    # GET /explain — 410 Gone (migrated to /explain-cascading)
+    # -----------------------------------------------------------------------
+
+    @app.get("/explain")
+    async def explain_gone() -> JSONResponse:
+        """Legacy /explain endpoint — permanently removed (S03).
+
+        Returns HTTP 410 Gone with migration hint.
+        """
+        return JSONResponse(
+            status_code=410,
+            content=GoneResponse(migrate_to="/explain-cascading").model_dump(),
+        )
+
+    # -----------------------------------------------------------------------
+    # GET /health — service status (API-03)
     # -----------------------------------------------------------------------
 
     @app.get("/health", response_model=HealthResponse)
     async def health(req: Request) -> HealthResponse:
-        """Service health with loaded model artifact info (D-08).
-
-        Args:
-            req: Raw FastAPI request (used to access app.state).
-
-        Returns:
-            HealthResponse with status, model info, RAG info, and uptime.
-        """
+        """Service health with loaded model artifact info."""
         uptime = time.monotonic() - req.app.state.start_time
+        cascading_loaded = req.app.state.cascading_predictor is not None
+        rag_v2_loaded = req.app.state.rag_v2_agent is not None
 
         return HealthResponse(
             status="ok",
             models={
-                "model1": ModelInfo(name="barrier_failure", loaded=True),
-                "model2": ModelInfo(name="human_factor", loaded=True),
+                "cascading": ModelInfo(name="xgb_cascade_y_fail", loaded=cascading_loaded),
+                "rag_v2": ModelInfo(name="rag_v2", loaded=rag_v2_loaded),
             },
-            rag=RagInfo(
-                corpus_size=req.app.state.rag_corpus_size,
-            ),
+            rag=RagInfo(corpus_size=req.app.state.rag_corpus_size),
             uptime_seconds=round(uptime, 2),
         )
 
     # -----------------------------------------------------------------------
-    # GET /apriori-rules — pre-computed Apriori co-failure rules (S03)
+    # GET /apriori-rules — pre-computed Apriori co-failure rules
     # -----------------------------------------------------------------------
 
     @app.get("/apriori-rules", response_model=AprioriRulesResponse, dependencies=[Depends(verify_api_key)])
     async def apriori_rules(req: Request) -> AprioriRulesResponse:
-        """Return pre-computed Apriori barrier co-failure association rules (S03).
-
-        Rules are loaded once at startup from data/models/artifacts/apriori_rules.json.
-        Returns an empty list if the artifact was not present at startup.
-
-        Args:
-            req: Raw FastAPI request (used to access app.state).
-
-        Returns:
-            AprioriRulesResponse with a list of AprioriRule objects.
-        """
+        """Return pre-computed Apriori barrier co-failure association rules."""
         return AprioriRulesResponse(
             rules=[AprioriRule(**r) for r in req.app.state.apriori_rules]
         )
 
     # -----------------------------------------------------------------------
-    # POST /explain — RAG evidence narrative for a barrier (API-02)
+    # POST /predict-cascading — cascading barrier failure predictions (S03)
     # -----------------------------------------------------------------------
 
-    @app.post("/explain", response_model=ExplainResponse, dependencies=[Depends(verify_api_key)])
-    async def explain(request: ExplainRequest, req: Request) -> ExplainResponse:
-        """Generate RAG evidence narrative for a barrier (API-02).
+    @app.post("/predict-cascading", response_model=PredictCascadingResponse, dependencies=[Depends(verify_api_key)])
+    async def predict_cascading(request: CascadingRequest, req: Request) -> PredictCascadingResponse:
+        """Predict cascading barrier failure for all non-conditioning barriers.
 
-        Wraps BarrierExplainer.explain() in asyncio.to_thread() because
-        AnthropicProvider.extract() is blocking (uses requests.post) — it
-        MUST NOT block the FastAPI event loop (D-07, API-05).
-
-        Args:
-            request: ExplainRequest with barrier context and optional SHAP factors.
-            req: Raw FastAPI request (used to access app.state).
-
-        Returns:
-            ExplainResponse with narrative, citations, retrieval_confidence, model_used.
-
-        Raises:
-            HTTPException: 500 if BarrierExplainer.explain() raises an unexpected error.
+        On predictor load failure, returns empty predictions with explanation_unavailable=True.
         """
-        explainer: BarrierExplainer = req.app.state.explainer
+        predictor = req.app.state.cascading_predictor
+        if predictor is None:
+            return PredictCascadingResponse(predictions=[], explanation_unavailable=True)
 
-        # Sanitize user-provided text before it reaches the LLM prompt (M-06)
-        safe_barrier_type = sanitize_prompt_input(request.barrier_type)
-        safe_barrier_family = sanitize_prompt_input(request.barrier_family)
-        safe_barrier_role = sanitize_prompt_input(request.barrier_role)
-        safe_event_description = sanitize_prompt_input(request.event_description)
-
-        # Build barrier query matching corpus text structure for better cosine similarity.
-        barrier_query = (
-            f"Barrier: {safe_barrier_type} - {safe_barrier_family}\n"
-            f"Role: {safe_barrier_role}"
-        )
-        logger.info(
-            "explain: barrier_family=%s query_len=%d",
-            request.barrier_family,
-            len(barrier_query),
-        )
-
-        # Build incident query from event_description (text describing the incident)
-        incident_query = safe_event_description
-
-        # Convert ShapValue list to dict[str, float] for BarrierExplainer (D-03)
-        shap_dict: dict[str, float] | None = None
-        if request.shap_factors:
-            shap_dict = {sv.feature: sv.value for sv in request.shap_factors}
-
-        # Phase 8: Use risk_level from request if provided (Bug #3 fix — client
-        # sends prediction context), otherwise fall back to empty string.
-        risk_level_str = request.risk_level or ""
-
-        logger.info(
-            "Explain request: family=%s, side=%s, role=%.60s",
-            request.barrier_family,
-            request.side,
-            request.barrier_role,
-        )
+        # Validate conditioning_barrier_id exists in scenario
+        barrier_ids = [b.get("control_id") for b in request.scenario.get("barriers", [])]
+        if request.conditioning_barrier_id not in barrier_ids:
+            raise HTTPException(
+                status_code=400,
+                detail=f"conditioning_barrier_id '{request.conditioning_barrier_id}' not found in scenario barriers",
+            )
 
         try:
-            # CRITICAL: asyncio.to_thread() prevents blocking the event loop (D-07, API-05)
-            # BarrierExplainer.explain() calls AnthropicProvider.extract() which uses
-            # synchronous requests.post — running it in a thread keeps the loop responsive
-            result = await asyncio.to_thread(
-                explainer.explain,
-                barrier_query=barrier_query,
-                incident_query=incident_query,
-                shap_factors=shap_dict,
-                risk_level=risk_level_str,
-                barrier_family=safe_barrier_family,
+            result = predictor.predict(request.scenario, request.conditioning_barrier_id)
+        except Exception as exc:
+            logger.exception("Cascading prediction failed: %s", exc)
+            return PredictCascadingResponse(predictions=[], explanation_unavailable=True)
+
+        predictions = [
+            CascadingBarrierPrediction(
+                target_barrier_id=p.target_barrier_id,
+                y_fail_probability=p.y_fail_probability,
+                risk_band=p.risk_band,
+                shap_values=[
+                    CascadingShapValue(feature=sv.feature, value=sv.value)
+                    for sv in p.shap_values
+                ],
+            )
+            for p in result.predictions
+        ]
+        return PredictCascadingResponse(predictions=predictions)
+
+    # -----------------------------------------------------------------------
+    # POST /rank-targets — lightweight ranking without SHAP (S03)
+    # -----------------------------------------------------------------------
+
+    @app.post("/rank-targets", response_model=RankTargetsResponse, dependencies=[Depends(verify_api_key)])
+    async def rank_targets(request: CascadingRequest, req: Request) -> RankTargetsResponse:
+        """Rank non-conditioning barriers by failure probability (no SHAP)."""
+        predictor = req.app.state.cascading_predictor
+        if predictor is None:
+            return RankTargetsResponse(ranked_barriers=[])
+
+        barrier_ids = [b.get("control_id") for b in request.scenario.get("barriers", [])]
+        if request.conditioning_barrier_id not in barrier_ids:
+            raise HTTPException(
+                status_code=400,
+                detail=f"conditioning_barrier_id '{request.conditioning_barrier_id}' not found in scenario barriers",
+            )
+
+        try:
+            result = predictor.rank(request.scenario, request.conditioning_barrier_id)
+        except Exception as exc:
+            logger.exception("Ranking failed: %s", exc)
+            return RankTargetsResponse(ranked_barriers=[])
+
+        return RankTargetsResponse(
+            ranked_barriers=[
+                RankedBarrier(
+                    target_barrier_id=rb.target_barrier_id,
+                    composite_risk_score=rb.composite_risk_score,
+                )
+                for rb in result.ranked_barriers
+            ]
+        )
+
+    # -----------------------------------------------------------------------
+    # POST /explain-cascading — RAG evidence + degradation context (S03)
+    # -----------------------------------------------------------------------
+
+    @app.post("/explain-cascading", response_model=ExplainCascadingResponse, dependencies=[Depends(verify_api_key)])
+    async def explain_cascading(request: ExplainCascadingRequest, req: Request) -> ExplainCascadingResponse:
+        """Build RAG evidence narrative for a (conditioning, target) barrier pair.
+
+        RAG-only — does NOT call an LLM. SHAP is on /predict-cascading.
+        """
+        rag_v2: RAGAgent | None = req.app.state.rag_v2_agent
+        if rag_v2 is None:
+            return ExplainCascadingResponse(
+                narrative_text="",
+                evidence_snippets=[],
+                degradation_context=DegradationContext(pif_mentions=[], recommendations=[], barrier_condition=""),
+                narrative_unavailable=True,
+            )
+
+        scenario = request.bowtie_context
+        barriers = scenario.get("barriers", [])
+        barrier_map = {b.get("control_id"): b for b in barriers}
+
+        conditioning = barrier_map.get(request.conditioning_barrier_id)
+        target = barrier_map.get(request.target_barrier_id)
+
+        if conditioning is None:
+            raise HTTPException(status_code=400, detail=f"conditioning_barrier_id '{request.conditioning_barrier_id}' not found")
+        if target is None:
+            raise HTTPException(status_code=400, detail=f"target_barrier_id '{request.target_barrier_id}' not found")
+
+        # Build incident context from scenario fields
+        ctx = scenario.get("context", {})
+        incident_context: dict[str, Any] = {
+            "top_event": scenario.get("top_event", ""),
+            "operating_phase": ctx.get("operating_phase", ""),
+            "materials": ctx.get("materials", []),
+        }
+
+        try:
+            pair_result = await asyncio.to_thread(
+                build_pair_context,
+                conditioning,
+                target,
+                rag_v2,
+                incident_context,
             )
         except Exception as exc:
-            logger.exception("Explain failed: %s", exc)
-            raise HTTPException(status_code=500, detail="Evidence generation failed")
-
-        # Convert Citation objects to CitationResponse Pydantic models
-        citations = [
-            CitationResponse(
-                incident_id=c.incident_id,
-                control_id=c.control_id,
-                barrier_name=c.barrier_name,
-                barrier_family=c.barrier_family,
-                supporting_text=c.supporting_text,
-                relevance_score=c.relevance_score,
-                incident_summary=c.incident_summary,
+            logger.exception("explain-cascading RAG retrieval failed: %s", exc)
+            return ExplainCascadingResponse(
+                narrative_text="",
+                evidence_snippets=[],
+                degradation_context=DegradationContext(pif_mentions=[], recommendations=[], barrier_condition=""),
+                narrative_unavailable=True,
             )
-            for c in result.citations
-        ]
 
-        return ExplainResponse(
-            narrative=result.narrative,
-            citations=citations,
-            retrieval_confidence=result.retrieval_confidence,
-            model_used=result.model_used,
-            recommendations=result.recommendations,  # Phase 8 (D-12)
+        narrative_unavailable = bool(pair_result.empty_retrievals)
+
+        # Build evidence snippets from target results
+        evidence_snippets: list[EvidenceSnippet] = []
+        incident_meta_store = getattr(rag_v2, "_incident_meta", {})
+        for rr in pair_result.target_results:
+            inc_meta = incident_meta_store.get(rr.incident_id, {})
+            evidence_snippets.append(EvidenceSnippet(
+                incident_id=rr.incident_id,
+                source_agency=inc_meta.get("source_agency", ""),
+                text=f"Barrier family: {rr.barrier_family} (RRF score: {rr.rrf_score:.4f})",
+                score=rr.rrf_score,
+            ))
+
+        # PIF mentions — truthy keys from scenario pif_context
+        pif_context = scenario.get("pif_context", {})
+        pif_mentions: list[str] = []
+        for group, items in pif_context.items():
+            if isinstance(items, dict):
+                for key, val in items.items():
+                    if val:
+                        pif_mentions.append(f"{group}.{key}")
+
+        # Recommendations — collect from retrieved conditioning incident metadata
+        recommendations: list[str] = []
+        seen_recs: set[str] = set()
+        for rr in (pair_result.conditioning_results + pair_result.target_results):
+            inc_meta = incident_meta_store.get(rr.incident_id, {})
+            raw_recs = inc_meta.get("recommendations", "[]")
+            try:
+                parsed = json.loads(raw_recs) if isinstance(raw_recs, str) else []
+                for rec in parsed:
+                    rec_str = str(rec).strip()
+                    if rec_str and rec_str not in seen_recs:
+                        seen_recs.add(rec_str)
+                        recommendations.append(rec_str)
+                        if len(recommendations) >= 5:
+                            break
+            except (json.JSONDecodeError, TypeError):
+                pass
+            if len(recommendations) >= 5:
+                break
+
+        # barrier_condition from the conditioning barrier
+        barrier_condition = conditioning.get("barrier_condition", "")
+
+        return ExplainCascadingResponse(
+            narrative_text=pair_result.context_text,
+            evidence_snippets=evidence_snippets,
+            degradation_context=DegradationContext(
+                pif_mentions=pif_mentions,
+                recommendations=recommendations,
+                barrier_condition=barrier_condition,
+            ),
+            narrative_unavailable=narrative_unavailable,
         )
 
     return app
