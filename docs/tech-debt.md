@@ -29,3 +29,7 @@ Items noticed but deliberately NOT fixed in their discovery pass. Each entry rec
 **Why deferred:** The `*:Zone.Identifier` rule already prevents it from being committed. Deleting it is a one-liner (`rm 'SPRINT_ANALYSIS_VISUAL_DEPLOY.md:Zone.Identifier'`) but is out of scope for a documentation-only commit pass.
 
 **Fix when:** Next time the repo root is touched for non-documentation reasons.
+
+---
+
+- Python test environment drift: 19 pre-existing pytest failures (shap/xgboost ImportErrors). Not regressions, environment issue. Resolve before defense: `pip install -e .` in clean venv, verify `pytest tests/ -q` returns 0 failures. Logged 2026-04-20.
