@@ -79,6 +79,30 @@ Milestone: **M003-z2jh4m** — Cascading Pair-Feature Model + Scenario-Builder U
 - 11 new tests; total: **182/182**
 - UI-CONTEXT.md bumped v2.3 → v2.4; §9 amended with T2a/T2b composition split
 
+### What T2b shipped (4 commits: 4d43a4c, 2e8ad29, f69e361, 1994783)
+
+**T2b/1** — Dedup fix: `DashboardView.tsx` now computes `similarIncidentsCount` via `new Set(evidence_snippets.map(s => s.incident_id)).size` (unique incidents, not snippet count). T2a tech-debt entry resolved. +1 test.
+
+**T2b/2** — Backend endpoint `POST /narrative-synthesis`:
+- New Pydantic schemas: `ShapFeature`, `IncidentContext`, `NarrativeSynthesisRequest`, `NarrativeSynthesisResponse`
+- `AnthropicProvider` (Haiku 4.5) loaded at startup via lifespan; stored on `app.state.narrative_provider`; graceful degradation → 503 if key absent
+- `asyncio.wait_for(asyncio.to_thread(...), timeout=10.0)` — 504 on timeout
+- Quality gate: empty / >60 words / >4 sentences → 502
+- 7 new backend tests
+
+**T2b/3** — Frontend hook `useNarrativeSynthesis`:
+- Typed error states: `timeout | quality_gate | unavailable | unknown`
+- 15s client-side AbortController (wider than backend 10s to ensure typed 504 reaches client)
+- `trigger()` one-shot, no retry; `reset()` returns to initial state
+- 5 new hook tests
+
+**T2b/4** — Button component + feature flag:
+- `NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS === 'true'` guards button render (default OFF)
+- `✨ Summarize with AI` button; loading dot during synthesis; success swaps body + metadata line
+- Error badge auto-dismisses 5s; `reset()` fired when top barrier identity changes
+- `shapTopFeatures` + `evidenceSnippets` passed from DashboardView
+- 7 new component tests
+
 ### T2a wiring check (2026-04-20, same session)
 **No bug.** `explanation?.evidence_snippets?.length ?? 0` is correct for T2a scope. The 0-count when no barrier is selected is intentional — `explanation` only fetches when `selectedTargetBarrierId` is set (user clicks a barrier). The "no comparable incidents" edge-case clause fires correctly until then. T2b will add a dedicated top-barrier RAG call.
 
@@ -86,15 +110,17 @@ Milestone: **M003-z2jh4m** — Cascading Pair-Feature Model + Scenario-Builder U
 | Item | Location | Resolve when |
 |------|----------|-------------|
 | Sidebar auto-collapse to 48px strip (§8) | `docs/tech-debt.md` | T5 polish pass |
-| 19 pytest ImportErrors (shap/xgboost env) | `docs/tech-debt.md` | pre-defense via `pip install -e .` |
+| pytest ImportErrors (shap/xgboost env) | `docs/tech-debt.md` | pre-defense via `pip install -e .` |
+| T2b quality gate pass (flag flip) | manual 5-scenario review | NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS=true in .env.production |
 
 ### Decisions locked this session
 - Hero placement: Analytics view → Executive Summary tab only (not persistent across all tabs — intentional, team ruling)
 - `similarIncidentsCount` denominator: fixed at 156 (RAG corpus) not `evidence_snippets.length` — "X of 156" is more informative than "X of X"
 - T2b design: opt-in "Summarize with AI" button, not auto-trigger; replaces template body with Haiku synthesis
+- T2b gate: feature flag `NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS` defaults OFF in production; flipped ON after 5-scenario manual review
+- Branch: direct to `milestone/M003-z2jh4m` — no sub-branch (single cohesive unit, zero isolation benefit)
 
 ### Branch state
 - Branch: `milestone/M003-z2jh4m`
-- All commits pushed to origin
-- Tree clean
-- Test count: **182/182** (Vitest) · Python pytest: 352 passing (19 pre-existing ImportErrors, not regressions)
+- T2b status: **code complete, flag OFF** — pending 5-scenario manual quality gate review
+- Test count: **195/195** (Vitest) · Python pytest: 613 passing (12 pre-existing failures + 10 collection errors, not regressions)
