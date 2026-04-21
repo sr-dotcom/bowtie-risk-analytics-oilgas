@@ -106,6 +106,8 @@ export default function DashboardView() {
               similarIncidentsCount={explanation?.evidence_snippets ? new Set(explanation.evidence_snippets.map(s => s.incident_id)).size : 0}
               totalRetrievedIncidents={RAG_CORPUS_INCIDENTS}
               hasAnalyzed={hasAnalyzed}
+              shapTopFeatures={topBarrier?.top_reasons?.slice(0, 3) ?? []}
+              evidenceSnippets={explanation?.evidence_snippets ?? []}
             />
 
             {/* Scenario header */}

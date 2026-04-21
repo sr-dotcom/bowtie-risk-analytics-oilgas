@@ -1,6 +1,27 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { render, screen, fireEvent, act } from '@testing-library/react'
 import { NarrativeHero, type NarrativeHeroProps } from '@/components/dashboard/NarrativeHero'
+
+// ---------------------------------------------------------------------------
+// Mock useNarrativeSynthesis so T2b component tests control hook state
+// ---------------------------------------------------------------------------
+
+const mockTrigger = vi.fn()
+const mockReset = vi.fn()
+let mockSynthState = {
+  narrative: null as string | null,
+  isLoading: false,
+  error: null as 'timeout' | 'quality_gate' | 'unavailable' | 'unknown' | null,
+  generatedAt: null as string | null,
+}
+
+vi.mock('@/hooks/useNarrativeSynthesis', () => ({
+  useNarrativeSynthesis: () => ({
+    state: mockSynthState,
+    trigger: mockTrigger,
+    reset: mockReset,
+  }),
+}))
 
 // ---------------------------------------------------------------------------
 // Fixtures
@@ -104,5 +125,82 @@ describe('NarrativeHero — edge cases', () => {
     const hero = screen.getByTestId('narrative-hero')
     expect(hero.textContent).toMatch(/similar barriers failed in 2/)
     expect(hero.textContent).not.toMatch(/similar barriers failed in 3/)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// T2b — feature flag + synthesis button
+// ---------------------------------------------------------------------------
+
+describe('NarrativeHero — T2b feature flag', () => {
+  beforeEach(() => {
+    // Reset hook mock state before each test
+    mockSynthState = { narrative: null, isLoading: false, error: null, generatedAt: null }
+    mockTrigger.mockReset()
+    mockReset.mockReset()
+  })
+
+  afterEach(() => {
+    delete process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS
+    vi.useRealTimers()
+  })
+
+  it('renders without synthesis button when flag is OFF', () => {
+    renderHero()
+    expect(screen.queryByTestId('synthesis-button')).toBeNull()
+  })
+
+  it('renders synthesis button when flag is ON and hasAnalyzed=true', () => {
+    process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS = 'true'
+    renderHero()
+    expect(screen.getByTestId('synthesis-button')).toBeTruthy()
+    expect(screen.getByTestId('synthesis-button').textContent).toContain('Summarize with AI')
+  })
+
+  it('button is disabled when hasAnalyzed is false (flag ON)', () => {
+    process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS = 'true'
+    renderHero({ hasAnalyzed: true, topBarrier: null })
+    const btn = screen.getByTestId('synthesis-button') as HTMLButtonElement
+    expect(btn.disabled).toBe(true)
+  })
+
+  it('clicking button calls trigger with synthesis input', () => {
+    process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS = 'true'
+    renderHero()
+    fireEvent.click(screen.getByTestId('synthesis-button'))
+    expect(mockTrigger).toHaveBeenCalledOnce()
+  })
+
+  it('success state replaces template body with synthesis narrative', () => {
+    process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS = 'true'
+    mockSynthState = { narrative: 'AI generated text.', isLoading: false, error: null, generatedAt: '2026-04-20T00:00:00Z' }
+    renderHero()
+    expect(screen.getByTestId('narrative-hero').textContent).toContain('AI generated text.')
+    // Template phrase should not appear
+    expect(screen.queryByText(/weakest link/i)).toBeNull()
+  })
+
+  it('error state shows badge and keeps template body visible', () => {
+    process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS = 'true'
+    mockSynthState = { narrative: null, isLoading: false, error: 'timeout', generatedAt: null }
+    renderHero()
+    expect(screen.getByTestId('synthesis-error-badge')).toBeTruthy()
+    expect(screen.getByTestId('synthesis-error-badge').textContent).toContain('Synthesis timed out')
+    // Template body still visible
+    expect(screen.getByTestId('narrative-hero').textContent).toMatch(/weakest link/)
+  })
+
+  it('error badge auto-dismisses after 5s', async () => {
+    vi.useFakeTimers()
+    process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS = 'true'
+    mockSynthState = { narrative: null, isLoading: false, error: 'timeout', generatedAt: null }
+    renderHero()
+    expect(screen.getByTestId('synthesis-error-badge')).toBeTruthy()
+
+    await act(async () => {
+      vi.advanceTimersByTime(5001)
+    })
+
+    expect(screen.queryByTestId('synthesis-error-badge')).toBeNull()
   })
 })
