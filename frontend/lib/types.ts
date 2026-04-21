@@ -288,3 +288,25 @@ export interface Consequence {
   description: string
   severity?: string  // 'critical' | 'high' | 'medium' | 'low' — optional
 }
+
+// ---------------------------------------------------------------------------
+// Narrative synthesis wire types (T2b)
+// Mirrors NarrativeSynthesisRequest in src/api/schemas.py.
+// Changes here must be made in both places until we generate types from OpenAPI.
+// ---------------------------------------------------------------------------
+
+export interface NarrativeSynthesisInput {
+  top_barrier_name: string
+  top_barrier_risk_band: 'HIGH' | 'MEDIUM' | 'LOW'
+  top_barrier_probability: number
+  shap_top_features: Array<{ feature: string; value: number; display_name?: string }>
+  rag_incident_contexts: Array<{
+    incident_id: string
+    summary_text: string
+    barrier_failure_description: string
+  }>
+  total_barriers: number
+  high_risk_count: number
+  top_event: string
+  similar_incidents_count: number
+}

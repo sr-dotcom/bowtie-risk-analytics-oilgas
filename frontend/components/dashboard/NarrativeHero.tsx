@@ -3,7 +3,7 @@
 import { useMemo, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { useNarrativeSynthesis } from '@/hooks/useNarrativeSynthesis'
-import type { NarrativeSynthesisInput } from '@/hooks/useNarrativeSynthesis'
+import type { NarrativeSynthesisInput } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
 // Types
