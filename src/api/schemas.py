@@ -10,9 +10,10 @@ Schema decisions are from 05-CONTEXT.md:
 """
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 # ---------------------------------------------------------------------------
@@ -324,3 +325,65 @@ class GoneResponse(BaseModel):
 
     error: Literal["gone"] = "gone"
     migrate_to: str
+
+
+# ---------------------------------------------------------------------------
+# Narrative synthesis schemas (T2b)
+# ---------------------------------------------------------------------------
+
+class ShapFeature(BaseModel):
+    """A single SHAP feature for the narrative synthesis prompt."""
+
+    model_config = ConfigDict(strict=False)
+
+    feature: str
+    value: float
+    display_name: str = ""
+
+
+class IncidentContext(BaseModel):
+    """A single historical incident context for the narrative synthesis prompt.
+
+    summary_text and barrier_failure_description are trimmed in validators
+    so the LLM prompt stays within budget regardless of caller input length.
+    """
+
+    model_config = ConfigDict(strict=False)
+
+    incident_id: str
+    summary_text: str = ""
+    barrier_failure_description: str = ""
+
+    @field_validator("summary_text", mode="before")
+    @classmethod
+    def _trim_summary(cls, v: object) -> str:
+        return str(v)[:500] if v else ""
+
+    @field_validator("barrier_failure_description", mode="before")
+    @classmethod
+    def _trim_description(cls, v: object) -> str:
+        return str(v)[:300] if v else ""
+
+
+class NarrativeSynthesisRequest(BaseModel):
+    """POST /narrative-synthesis request body (T2b)."""
+
+    model_config = ConfigDict(strict=False)
+
+    top_barrier_name: str
+    top_barrier_risk_band: Literal["HIGH", "MEDIUM", "LOW"]
+    top_barrier_probability: float
+    shap_top_features: list[ShapFeature]
+    rag_incident_contexts: list[IncidentContext]
+    total_barriers: int
+    high_risk_count: int
+    top_event: str
+    similar_incidents_count: int
+
+
+class NarrativeSynthesisResponse(BaseModel):
+    """POST /narrative-synthesis response body (T2b)."""
+
+    narrative: str
+    model: str
+    generated_at: datetime

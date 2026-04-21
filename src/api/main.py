@@ -24,6 +24,7 @@ import logging
 import os
 import time
 from contextlib import asynccontextmanager
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -48,6 +49,8 @@ from src.api.schemas import (
     GoneResponse,
     HealthResponse,
     ModelInfo,
+    NarrativeSynthesisRequest,
+    NarrativeSynthesisResponse,
     PredictCascadingResponse,
     RagInfo,
     RankedBarrier,
@@ -63,6 +66,41 @@ logger = logging.getLogger(__name__)
 # Default artifact paths — configurable via environment or constructor
 ARTIFACTS_DIR = Path("data/models/artifacts")
 RAG_V2_DIR = Path("data/rag/v2")
+
+# Narrative synthesis — Haiku model, 10s timeout, quality gate: ≤60 words, ≤4 sentences
+_NARRATIVE_MODEL = "claude-haiku-4-5-20251001"
+_NARRATIVE_MAX_TOKENS = 120
+_NARRATIVE_TEMPERATURE = 0.3
+_NARRATIVE_TIMEOUT = 10.0
+
+NARRATIVE_SYNTHESIS_PROMPT = """\
+You are a process safety analyst summarizing a barrier risk assessment for an oil and gas operator.
+
+Write a 2-3 sentence synthesis (maximum 60 words) explaining why the weakest barrier is at risk. Focus on causal interpretation, not enumeration.
+
+Rules:
+- Do not list incident names
+- Do not restate SHAP values as numbers
+- Do not mention "SHAP", "model", "probability", or "RAG"
+- Speak as a domain expert explaining patterns, not a system reporting outputs
+- Reference historical precedent generally ("similar hardware barriers have shown...") rather than specifically
+- Write in active voice, present tense
+
+Input data:
+
+Scenario: {total_barriers} barriers defending against {top_event}. {high_risk_count} are high-risk.
+
+Weakest barrier: {top_barrier_name}
+Risk level: {top_barrier_risk_band}
+
+Top contributing factors (do not restate verbatim):
+{shap_features_formatted}
+
+Historical evidence from {similar_incidents_count} comparable incidents:
+{rag_contexts_formatted}
+
+Synthesis:\
+"""
 
 
 # ---------------------------------------------------------------------------
@@ -117,12 +155,26 @@ async def lifespan(app: FastAPI):  # type: ignore[type-arg]
         apriori_rules_list = []
         logger.warning("Apriori rules not found at %s — endpoint will return empty list", apriori_rules_path)
 
+    # Load AnthropicProvider for narrative synthesis — graceful degradation if key absent
+    narrative_provider = None
+    try:
+        from src.llm.anthropic_provider import AnthropicProvider  # noqa: PLC0415
+        narrative_provider = AnthropicProvider(
+            model=_NARRATIVE_MODEL,
+            max_output_tokens=_NARRATIVE_MAX_TOKENS,
+            temperature=_NARRATIVE_TEMPERATURE,
+        )
+        logger.info("NarrativeProvider loaded (model=%s)", _NARRATIVE_MODEL)
+    except RuntimeError as exc:
+        logger.warning("NarrativeProvider not loaded — /narrative-synthesis will return 503: %s", exc)
+
     # Store on app.state for endpoint access
     app.state.cascading_predictor = cascading_predictor
     app.state.rag_v2_agent = rag_v2_agent
     app.state.start_time = start_time
     app.state.rag_corpus_size = rag_v2_corpus_size
     app.state.apriori_rules = apriori_rules_list
+    app.state.narrative_provider = narrative_provider
 
     yield  # App runs here
 
@@ -439,6 +491,68 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
                 barrier_condition=barrier_condition,
             ),
             narrative_unavailable=narrative_unavailable,
+        )
+
+    # -----------------------------------------------------------------------
+    # POST /narrative-synthesis — Haiku LLM synthesis for narrative hero (T2b)
+    # -----------------------------------------------------------------------
+
+    @app.post("/narrative-synthesis", response_model=NarrativeSynthesisResponse, dependencies=[Depends(verify_api_key)])
+    async def narrative_synthesis(request: NarrativeSynthesisRequest, req: Request) -> NarrativeSynthesisResponse:
+        """Generate a 2-3 sentence Haiku synthesis of the highest-risk barrier.
+
+        Quality gate rejects empty responses, >60 words, or >4 sentences (HTTP 502).
+        Times out after 10s (HTTP 504). Returns 503 if provider not loaded.
+        """
+        provider = req.app.state.narrative_provider
+        if provider is None:
+            raise HTTPException(status_code=503, detail="Narrative synthesis unavailable — provider not loaded")
+
+        shap_lines = "\n".join(
+            f"- {f.display_name or f.feature}: {f.value:+.3f}"
+            for f in request.shap_top_features
+        ) or "No SHAP data available"
+
+        ctx_lines = "\n".join(
+            f"Incident {c.incident_id}: {c.summary_text}"
+            + (f" | Barrier failure: {c.barrier_failure_description}" if c.barrier_failure_description else "")
+            for c in request.rag_incident_contexts
+        ) or "No historical context available"
+
+        prompt = (
+            NARRATIVE_SYNTHESIS_PROMPT
+            .replace("{total_barriers}", str(request.total_barriers))
+            .replace("{top_event}", request.top_event)
+            .replace("{high_risk_count}", str(request.high_risk_count))
+            .replace("{top_barrier_name}", request.top_barrier_name)
+            .replace("{top_barrier_risk_band}", request.top_barrier_risk_band)
+            .replace("{shap_features_formatted}", shap_lines)
+            .replace("{similar_incidents_count}", str(request.similar_incidents_count))
+            .replace("{rag_contexts_formatted}", ctx_lines)
+        )
+
+        try:
+            narrative = await asyncio.wait_for(
+                asyncio.to_thread(provider.extract, prompt),
+                timeout=_NARRATIVE_TIMEOUT,
+            )
+        except asyncio.TimeoutError:
+            raise HTTPException(status_code=504, detail="Narrative synthesis timed out")
+        except Exception as exc:
+            logger.exception("Narrative synthesis provider call failed: %s", exc)
+            raise HTTPException(status_code=503, detail="Narrative synthesis unavailable")
+
+        narrative = narrative.strip()
+        word_count = len(narrative.split())
+        sentence_count = sum(1 for c in narrative if c in ".!?")
+
+        if not narrative or word_count > 60 or sentence_count > 4:
+            raise HTTPException(status_code=502, detail="synthesis quality gate failed")
+
+        return NarrativeSynthesisResponse(
+            narrative=narrative,
+            model=getattr(provider, "model", _NARRATIVE_MODEL),
+            generated_at=datetime.now(timezone.utc),
         )
 
     return app
