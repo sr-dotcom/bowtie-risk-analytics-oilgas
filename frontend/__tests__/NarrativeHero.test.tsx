@@ -190,17 +190,32 @@ describe('NarrativeHero — T2b feature flag', () => {
     expect(screen.getByTestId('narrative-hero').textContent).toMatch(/weakest link/)
   })
 
-  it('error badge auto-dismisses after 5s', async () => {
-    vi.useFakeTimers()
+  it('error badge has css animation for auto-dismiss', () => {
     process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS = 'true'
     mockSynthState = { narrative: null, isLoading: false, error: 'timeout', generatedAt: null }
     renderHero()
+    const badge = screen.getByTestId('synthesis-error-badge') as HTMLElement
+    expect(badge.style.animation).toContain('fade-badge')
+  })
+
+  it('badge stays visible at t=4s after second same-type error within 3s', async () => {
+    vi.useFakeTimers()
+    process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS = 'true'
+
+    // First error
+    mockSynthState = { narrative: null, isLoading: false, error: 'timeout', generatedAt: null }
+    const { rerender } = renderHero()
     expect(screen.getByTestId('synthesis-error-badge')).toBeTruthy()
 
-    await act(async () => {
-      vi.advanceTimersByTime(5001)
-    })
+    // Within 3s, hook clears error (trigger called) then sets same error again
+    await act(async () => { vi.advanceTimersByTime(1000) })
+    mockSynthState = { narrative: null, isLoading: true, error: null, generatedAt: null }
+    rerender(<NarrativeHero {...BASE_PROPS} />)
+    mockSynthState = { narrative: null, isLoading: false, error: 'timeout', generatedAt: null }
+    rerender(<NarrativeHero {...BASE_PROPS} />)
 
-    expect(screen.queryByTestId('synthesis-error-badge')).toBeNull()
+    // 4s after second error — badge remounted fresh, CSS animation at 4s of its 5s delay
+    await act(async () => { vi.advanceTimersByTime(4000) })
+    expect(screen.getByTestId('synthesis-error-badge')).toBeTruthy()
   })
 })

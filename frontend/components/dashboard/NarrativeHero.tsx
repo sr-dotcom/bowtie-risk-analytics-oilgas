@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useEffect, useState } from 'react'
+import { useMemo, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { useNarrativeSynthesis } from '@/hooks/useNarrativeSynthesis'
 import type { NarrativeSynthesisInput } from '@/hooks/useNarrativeSynthesis'
@@ -40,7 +40,6 @@ const ERROR_LABELS: Record<string, string> = {
 export function NarrativeHero(props: NarrativeHeroProps) {
   const synthEnabled = process.env.NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS === 'true'
   const { state: synthState, trigger, reset } = useNarrativeSynthesis()
-  const [badgeDismissed, setBadgeDismissed] = useState(false)
 
   const templateBody = useMemo(() => composeNarrative(props), [props])
 
@@ -50,17 +49,6 @@ export function NarrativeHero(props: NarrativeHeroProps) {
     reset()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topBarrierName])
-
-  // Auto-dismiss error badge 5s after it appears
-  useEffect(() => {
-    if (!synthState.error) {
-      setBadgeDismissed(false)
-      return
-    }
-    setBadgeDismissed(false)
-    const timer = setTimeout(() => setBadgeDismissed(true), 5000)
-    return () => clearTimeout(timer)
-  }, [synthState.error])
 
   if (!props.hasAnalyzed) {
     return (
@@ -84,7 +72,7 @@ export function NarrativeHero(props: NarrativeHeroProps) {
 
   const canSynthesize = synthEnabled && props.hasAnalyzed && props.topBarrier !== null
   const showSynthesisBody = synthState.narrative !== null
-  const errorLabel = synthState.error && !badgeDismissed ? ERROR_LABELS[synthState.error] : null
+  const errorLabel = synthState.error ? ERROR_LABELS[synthState.error] : null
 
   function handleSynthesize(): void {
     if (!props.topBarrier) return
@@ -170,6 +158,7 @@ export function NarrativeHero(props: NarrativeHeroProps) {
                   border: '1px solid var(--risk-medium)',
                   borderRadius: 2,
                   padding: '4px 8px',
+                  animation: 'fade-badge 0s 5s forwards',
                 }}
               >
                 {errorLabel}

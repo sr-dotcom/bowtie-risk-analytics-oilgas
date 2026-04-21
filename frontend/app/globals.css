@@ -38,3 +38,10 @@ body {
   -webkit-font-smoothing: antialiased;
   margin: 0;
 }
+
+@keyframes fade-badge {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
