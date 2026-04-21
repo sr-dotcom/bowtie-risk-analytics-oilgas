@@ -124,3 +124,30 @@ Milestone: **M003-z2jh4m** — Cascading Pair-Feature Model + Scenario-Builder U
 - Branch: `milestone/M003-z2jh4m`
 - T2b status: **code complete, flag OFF** — pending 5-scenario manual quality gate review
 - Test count: **195/195** (Vitest) · Python pytest: 613 passing (12 pre-existing failures + 10 collection errors, not regressions)
+
+---
+
+## T2b closeout (2026-04-20 late session)
+
+### Status
+**T2b complete, flag OFF, gate deferred.**
+
+10 commits on `milestone/M003-z2jh4m` (5 original + 5 audit fixes):
+- `4d43a4c` T2b/1 dedup
+- `2e8ad29` T2b/2 endpoint
+- `f69e361` T2b/3 hook
+- `1994783` T2b/4 button
+- `b46abe8` state update
+- `29542df` Fix A CSS animation
+- `b543bc8` Fix C prompt injection hardening
+- `0795a50` Fix D fail-closed auth
+- `12c27d7` Fix E shared type
+- `80ccbb9` tech-debt log
+
+Test counts: 361 backend, 196 frontend, all green. Production flag `NEXT_PUBLIC_ENABLE_T2B_SYNTHESIS=false`.
+
+### Gate deferred — why
+Gate judgment requires trusting the numbers the synthesis cites ("5 of 156 comparable incidents"). Dashboard currently shows five different denominators across tabs (156 RAG, 174 Apriori, 813 model training, 530 current parquet, 739 structured JSONs). Running the prose gate before reconciling these risks inconsistent numbers in front of the domain expert on demo day.
+
+### Next milestone
+**M004 — Corpus Reconciliation** (new chat, fresh context). Audit every numeric claim in the dashboard UI, trace source, reconcile or document. Gate T2b after numbers are stable. T2b code stays dormant on `milestone/M003-z2jh4m` until M004 completes.
