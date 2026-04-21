@@ -1,0 +1,106 @@
+{
+  "as_of_commit": "bd029a4dc939fb756e9a581581e3666efc38d7e7",
+  "as_of_date": "2026-04-21",
+  "note": "One entry per distinct numeric source value used in or spec'd for the dashboard UI. See docs/architecture/DENOMINATORS_AUDIT.md for claim-level tracing.",
+  "denominators": [
+    {
+      "key": "rag_corpus_incidents",
+      "value": 156,
+      "source_file": "data/rag/v2/datasets/incident_documents.csv",
+      "source_query": "import pandas as pd; print(len(pd.read_csv('data/rag/v2/datasets/incident_documents.csv')))",
+      "scope_description": "Unique incidents in the RAG v2 corpus, which is also the M003 cascade model training set. Used as denominator in Narrative Hero 'X of 156 comparable incidents'.",
+      "regeneration_status": "reproducible",
+      "regeneration_note": "python scripts/build_rag_v2.py rebuilds corpus from cascading 156-incident set"
+    },
+    {
+      "key": "rag_corpus_barriers",
+      "value": 1161,
+      "source_file": "data/rag/v2/datasets/barrier_documents.csv",
+      "source_query": "import pandas as pd; print(len(pd.read_csv('data/rag/v2/datasets/barrier_documents.csv')))",
+      "scope_description": "Barrier-level documents in the RAG v2 corpus. Spec'd for provenance strip Line 2 ('1,161 barriers') but not yet rendered in any frontend component.",
+      "regeneration_status": "reproducible",
+      "regeneration_note": "python scripts/build_rag_v2.py rebuilds corpus"
+    },
+    {
+      "key": "m002_training_incidents",
+      "value": 174,
+      "source_file": "data/models/artifacts/feature_matrix.parquet",
+      "source_query": "import pandas as pd; print(pd.read_parquet('data/models/artifacts/feature_matrix.parquet')['incident_id'].nunique())",
+      "scope_description": "Unique incidents in the M002 LOC-scoped training set (feature_matrix.parquet, XGBoost/LogReg non-cascade models). Used in DashboardView 'Reference incidents' KPI and Assessment Basis block. Incorrectly reused in DriversHF Apriori description (actual Apriori source has 723 incidents).",
+      "regeneration_status": "reproducible",
+      "regeneration_note": "python -m src.modeling.feature_engineering regenerates feature_matrix.parquet from controls_combined.csv"
+    },
+    {
+      "key": "m002_training_barriers",
+      "value": 558,
+      "source_file": "data/models/artifacts/feature_matrix.parquet",
+      "source_query": "import pandas as pd; print(len(pd.read_parquet('data/models/artifacts/feature_matrix.parquet')))",
+      "scope_description": "LOC-scoped barrier rows in M002 training set (one row per barrier observation). Used in DashboardView 'Barrier observations' KPI and Assessment Basis block.",
+      "regeneration_status": "reproducible",
+      "regeneration_note": "python -m src.modeling.feature_engineering regenerates feature_matrix.parquet"
+    },
+    {
+      "key": "m003_cascade_training_pair_rows",
+      "value": 813,
+      "source_file": "data/models/artifacts/xgb_cascade_y_fail_metadata.json",
+      "source_query": "import json; print(json.load(open('data/models/artifacts/xgb_cascade_y_fail_metadata.json'))['training_rows'])",
+      "scope_description": "Pair-feature rows (one row per conditioning+target barrier pair) used to train the M003 cascade XGBoost model. Spec'd for provenance strip Line 1. The pair-feature matrix itself was ephemeral — not saved to disk. Current cascading_training.parquet has 530 single-barrier rows (different granularity). The base input CSV (data/models/cascading_input/barrier_model_dataset_base_v3.csv) has 552 rows.",
+      "regeneration_status": "ephemeral",
+      "regeneration_note": "pair_builder.py must be re-run to regenerate; will not produce 813 rows from current 552-row base CSV — model was trained on an earlier snapshot"
+    },
+    {
+      "key": "m003_cascade_current_parquet_rows",
+      "value": 530,
+      "source_file": "data/processed/cascading_training.parquet",
+      "source_query": "import pandas as pd; print(len(pd.read_parquet('data/processed/cascading_training.parquet')))",
+      "scope_description": "Current single-barrier rows in cascading_training.parquet. 156 unique incidents. Same incident set as RAG corpus. Different from 813 (pair-feature rows) — different granularity, different snapshot.",
+      "regeneration_status": "reproducible",
+      "regeneration_note": "data_prep.py in src/modeling/cascading/ regenerates from cascading_input CSV"
+    },
+    {
+      "key": "apriori_analysis_incidents",
+      "value": 723,
+      "source_file": "data/evaluation/apriori_rules.json",
+      "source_query": "import json; print(json.load(open('data/evaluation/apriori_rules.json'))['metadata']['n_incidents'])",
+      "scope_description": "Number of incidents analysed to produce the Apriori co-failure rules. This is the value that should appear in the Apriori table description in DriversHF.tsx, not 174. The 174 currently in the UI is wrong for this context.",
+      "regeneration_status": "unknown",
+      "regeneration_note": "Apriori rules were generated by scripts/association_mining/ chain. Re-running requires the full aggregated incident data. Script existence confirmed but runability on current data not verified."
+    },
+    {
+      "key": "apriori_rule_count",
+      "value": 16,
+      "source_file": "data/evaluation/apriori_rules.json",
+      "source_query": "import json; print(len(json.load(open('data/evaluation/apriori_rules.json'))['rules']))",
+      "scope_description": "Number of Apriori co-failure rules loaded by the /apriori-rules API endpoint. Rendered as table rows in DriversHF AprioriRulesTable. No static UI claim — value comes from API at runtime.",
+      "regeneration_status": "unknown",
+      "regeneration_note": "Same as apriori_analysis_incidents"
+    },
+    {
+      "key": "schema_v2_3_json_count",
+      "value": 739,
+      "source_file": "data/structured/incidents/schema_v2_3/",
+      "source_query": "ls data/structured/incidents/schema_v2_3/*.json | wc -l",
+      "scope_description": "Total canonical V2.3 JSON files in the structured incidents directory. Not shown in the dashboard UI. Referenced in CLAUDE.md session checkpoint.",
+      "regeneration_status": "reproducible",
+      "regeneration_note": "Output of full pipeline acquire+extract+convert-schema chain"
+    },
+    {
+      "key": "cascade_model_cv_auc_mean",
+      "value": 0.763,
+      "source_file": "data/models/artifacts/xgb_cascade_y_fail_metadata.json",
+      "source_query": "import json; print(json.load(open('data/models/artifacts/xgb_cascade_y_fail_metadata.json'))['cv_scores']['mean'])",
+      "scope_description": "Mean 5-fold CV AUC for the M003 cascade XGBoost model. Spec'd for provenance strip Line 1 ('AUC 0.76 ± 0.07'). Not yet rendered in any frontend component.",
+      "regeneration_status": "ephemeral",
+      "regeneration_note": "Retraining will change this value; current value is from the training run that produced the committed pipeline.joblib"
+    },
+    {
+      "key": "cascade_model_cv_auc_std",
+      "value": 0.066,
+      "source_file": "data/models/artifacts/xgb_cascade_y_fail_metadata.json",
+      "source_query": "import json; print(json.load(open('data/models/artifacts/xgb_cascade_y_fail_metadata.json'))['cv_scores']['std'])",
+      "scope_description": "Std dev of 5-fold CV AUC for M003 cascade model. Spec'd for provenance strip Line 1 ('0.76 ± 0.07'). Not yet rendered.",
+      "regeneration_status": "ephemeral",
+      "regeneration_note": "Same as cascade_model_cv_auc_mean"
+    }
+  ]
+}
