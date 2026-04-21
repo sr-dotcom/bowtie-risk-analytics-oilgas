@@ -43,3 +43,7 @@ Items noticed but deliberately NOT fixed in their discovery pass. Each entry rec
 - T2b: NarrativeHero identifies the top barrier by `.name` string when building the synthesis input. Switch to `control_id` as the stable identity key once the cascading API surfaces it in the `/predict-cascading` response shape.
 
 - T2b/auth: endpoint rate-limiting deferred. Current protection is the `BOWTIE_API_KEY` header (one shared key). Add per-IP or per-key rate limiting (e.g. slowapi or Nginx upstream) in M004 before any public deployment.
+
+- UX: Executive Summary hero shows `barriers.length` (all barriers including the conditioning barrier), while Ranked Barriers correctly excludes the conditioning barrier from its list — causing "7 barriers" vs "6 of 6 barriers" on the same dashboard. Fix: pass `total_barriers = barriers.length - 1` (excluding conditioning) to the hero, or add a parenthetical "(+ 1 conditioning)" note. Defer to T5 polish.
+
+- UX: Two incident counts visible on same dashboard — "156 comparable incidents" in hero (RAG v2 corpus) and "174 real BSEE/CSB incidents" in Assessment Basis / Drivers & HF (M002 LOC training scope). Both numbers are correct for their contexts but a reader sees inconsistency. Fix: label clarification — hero denominator should read "from the 156-incident retrieval corpus"; Drivers & HF note should read "from 174 LOC-scoped training incidents". Alternatively consolidate to a single narrative dataset in M004 when RAG and training corpora are unified.
