@@ -362,7 +362,7 @@ class IncidentContext(BaseModel):
     @field_validator("barrier_failure_description", mode="before")
     @classmethod
     def _trim_description(cls, v: object) -> str:
-        return str(v)[:300] if v else ""
+        return str(v)[:200] if v else ""
 
 
 class NarrativeSynthesisRequest(BaseModel):
@@ -370,14 +370,14 @@ class NarrativeSynthesisRequest(BaseModel):
 
     model_config = ConfigDict(strict=False)
 
-    top_barrier_name: str
+    top_barrier_name: str = Field(max_length=200)
     top_barrier_risk_band: Literal["HIGH", "MEDIUM", "LOW"]
     top_barrier_probability: float
     shap_top_features: list[ShapFeature]
     rag_incident_contexts: list[IncidentContext]
     total_barriers: int
     high_risk_count: int
-    top_event: str
+    top_event: str = Field(max_length=200)
     similar_incidents_count: int
 
 
