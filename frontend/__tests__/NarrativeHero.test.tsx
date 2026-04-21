@@ -96,4 +96,13 @@ describe('NarrativeHero — edge cases', () => {
     renderHero({ topBarrier: { name: longName, probability: 0.9 } })
     expect(screen.getByText(longName)).toBeTruthy()
   })
+
+  it('similarIncidentsCount=2 renders 2 — dedup from 3 snippets across 2 unique incidents', () => {
+    // Dedup logic lives in DashboardView: new Set(snippets.map(s=>s.incident_id)).size
+    // When 3 snippets come from 2 unique incidents, the prop passed here is 2 not 3
+    renderHero({ similarIncidentsCount: 2, totalRetrievedIncidents: 156 })
+    const hero = screen.getByTestId('narrative-hero')
+    expect(hero.textContent).toMatch(/similar barriers failed in 2/)
+    expect(hero.textContent).not.toMatch(/similar barriers failed in 3/)
+  })
 })
