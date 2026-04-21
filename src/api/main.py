@@ -122,6 +122,9 @@ async def lifespan(app: FastAPI):  # type: ignore[type-arg]
     """
     start_time = time.monotonic()
 
+    if os.getenv("BOWTIE_API_KEY") is None and os.getenv("ENVIRONMENT", "development") != "development":
+        raise RuntimeError("BOWTIE_API_KEY required in non-dev environments")
+
     # Load shared embedding provider (reused across all RAG agents)
     embedding_provider = SentenceTransformerProvider()
 

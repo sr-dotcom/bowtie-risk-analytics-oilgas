@@ -133,6 +133,16 @@ def test_narrative_synthesis_calls_haiku_model(client_narrative: TestClient) -> 
     assert response.json()["model"] == "claude-haiku-4-5-20251001"
 
 
+def test_app_fails_to_start_without_api_key_in_production(monkeypatch: pytest.MonkeyPatch) -> None:
+    """App must not start in production without BOWTIE_API_KEY set."""
+    monkeypatch.setenv("ENVIRONMENT", "production")
+    monkeypatch.delenv("BOWTIE_API_KEY", raising=False)
+    app = create_app()
+    with pytest.raises(RuntimeError, match="BOWTIE_API_KEY required in non-dev environments"):
+        with TestClient(app):
+            pass
+
+
 def test_narrative_synthesis_injection_attempt_is_xml_wrapped(client_narrative: TestClient) -> None:
     """XML wrapping contains injection — prompt shows <top_barrier_name> tags, response != 'HELLO'."""
     captured: list[str] = []
