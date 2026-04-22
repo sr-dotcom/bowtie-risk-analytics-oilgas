@@ -130,10 +130,10 @@ def test_risk_level_high(mapping: MappingConfig) -> None:
 
 
 def test_risk_level_medium(mapping: MappingConfig) -> None:
-    """probability 0.90 (between p60=0.8576 and p80=0.9358) returns 'Medium'."""
-    assert mapping.compute_risk_level(0.90) == "Medium"
+    """probability 0.55 (between p60=0.45 and p80=0.70) returns 'Medium'."""
+    assert mapping.compute_risk_level(0.55) == "Medium"
 
 
 def test_risk_level_low(mapping: MappingConfig) -> None:
-    """probability 0.50 (below p60=0.8576) returns 'Low'."""
-    assert mapping.compute_risk_level(0.50) == "Low"
+    """probability 0.30 (below p60=0.45) returns 'Low'."""
+    assert mapping.compute_risk_level(0.30) == "Low"
