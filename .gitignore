@@ -64,6 +64,8 @@ secrets/
 !/data/evaluation/**
 !/data/demo_scenarios/
 !/data/demo_scenarios/**
+!/data/rag/
+!/data/rag/v2/**
 
 # Deliverable packs (generated, shared out-of-band)
 /out/

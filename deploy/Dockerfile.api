@@ -21,12 +21,10 @@ WORKDIR /build
 
 RUN pip install --upgrade pip
 
-# Install CPU-only torch from pre-built wheel (cp312, ~182 MB).
+# Install CPU-only torch via PyTorch index (~182 MB, same wheel as local dev).
 # Must precede requirements-api.txt so sentence-transformers resolves the
 # already-installed torch rather than pulling the GPU variant (~2.5 GB).
-COPY docker-deps/wheels/torch-2.11.0+cpu-cp312-cp312-manylinux_2_28_x86_64.whl /tmp/
-RUN pip install /tmp/torch-2.11.0+cpu-cp312-cp312-manylinux_2_28_x86_64.whl \
-    && rm /tmp/torch-2.11.0+cpu-cp312-cp312-manylinux_2_28_x86_64.whl
+RUN pip install torch --index-url https://download.pytorch.org/whl/cpu
 
 # Install API-only production dependencies (excludes ingestion/dev packages).
 COPY requirements-api.txt ./
