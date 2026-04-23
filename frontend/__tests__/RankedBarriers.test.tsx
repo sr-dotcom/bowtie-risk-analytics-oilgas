@@ -220,6 +220,21 @@ describe('RankedBarriers component', () => {
     expect(screen.getByTestId('ranked-barriers-table')).toBeTruthy()
   })
 
+  it('renders ranking criteria info icon with D006 threshold values in title', () => {
+    render(
+      <BowtieProvider>
+        <RankedBarriers />
+      </BowtieProvider>,
+    )
+    const icon = screen.getByLabelText('Ranking criteria')
+    expect(icon).toBeTruthy()
+    const title = icon.getAttribute('title') ?? ''
+    expect(title).toContain('XGBoost')
+    expect(title).toContain('0.45')  // p60 threshold from risk_thresholds.json
+    expect(title).toContain('0.70')  // p80 threshold from risk_thresholds.json
+    expect(title).toContain('0.76')  // AUC mean from denominators.json
+  })
+
   it('renders a data row for each analyzed barrier', async () => {
     renderWithContext([BARRIER_DEF, { ...BARRIER_DEF, name: 'Second Barrier' }], (barriers) => ({
       [barriers[0].id]: makePrediction(0.7),

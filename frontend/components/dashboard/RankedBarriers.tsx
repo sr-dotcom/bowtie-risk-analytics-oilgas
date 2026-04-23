@@ -2,7 +2,10 @@
 
 import { useState, useEffect, Fragment } from 'react'
 import type React from 'react'
+import { Info } from 'lucide-react'
 import { useBowtieContext } from '@/context/BowtieContext'
+import { getDenominatorValue } from '@/lib/denominators'
+import riskThresholds from '@/public/risk_thresholds.json'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES } from './TopAtRiskBarriers'
 import RiskScoreBadge from '@/components/panel/RiskScoreBadge'
 import ShapWaterfall from '@/components/panel/ShapWaterfall'
@@ -14,6 +17,30 @@ import type {
   RiskLevel,
   ScenarioBarrier,
 } from '@/lib/types'
+
+// ---------------------------------------------------------------------------
+// Ranking criteria tooltip — all values from denominators.json + risk_thresholds.json
+// ---------------------------------------------------------------------------
+
+const _p60 = riskThresholds.p60.toFixed(2)
+const _p80 = riskThresholds.p80.toFixed(2)
+const _aucMean = Number(getDenominatorValue('cascade_model_cv_auc_mean')).toFixed(2)
+const _aucStd = Number(getDenominatorValue('cascade_model_cv_auc_std')).toFixed(2)
+const _incidents = getDenominatorValue('rag_corpus_incidents')
+const _pairRows = getDenominatorValue('m003_cascade_training_pair_rows')
+
+const RANKING_CRITERIA_TOOLTIP = [
+  `Ranked by predicted failure probability from the M003 cascading XGBoost model`,
+  `trained on ${_incidents} BSEE+CSB incidents (${_pairRows} pair-feature rows).`,
+  ``,
+  `Risk tiers per D006 thresholds:`,
+  `  LOW    < ${_p60}`,
+  `  MEDIUM ≥ ${_p60} and < ${_p80}`,
+  `  HIGH   ≥ ${_p80}`,
+  ``,
+  `5-fold GroupKFold CV AUC: ${_aucMean} ± ${_aucStd}`,
+  `(fold range 0.65–0.85, fold 4 floor 0.65 published not hidden)`,
+].join('\n')
 
 // ---------------------------------------------------------------------------
 // Types
@@ -254,7 +281,15 @@ export default function RankedBarriers() {
 
   return (
     <div data-testid="ranked-barriers-table" className="overflow-x-auto">
-      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">All Barriers Ranked by Risk</h3>
+      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8] flex items-center gap-1.5">
+        All Barriers Ranked by Risk
+        <Info
+          className="w-4 h-4 text-[#6B7280] cursor-help flex-shrink-0"
+          title={RANKING_CRITERIA_TOOLTIP}
+          aria-label="Ranking criteria"
+          role="img"
+        />
+      </h3>
 
       {isCascadingMode && conditioningBarrierId && (
         <div className="mb-3 px-3 py-2 bg-[#1A2332] border-l-4 border-[#D68910] rounded-r-lg">
