@@ -12,6 +12,7 @@ from scripts.association_mining.event_barrier_normalization import (
     normalize_for_family,
     _QUADRANT_DISPATCH,
 )
+from src.rag.context_builder import extract_pif_tags
 
 logger = logging.getLogger(__name__)
 
@@ -156,6 +157,7 @@ INCIDENT_DOC_COLUMNS = [
     "operator",
     "summary",
     "recommendations",
+    "pif_tags_json",
 ]
 
 
@@ -305,6 +307,7 @@ def build_incident_documents(
             "operator": ctx.get("operator", "unknown"),
             "summary": evt.get("summary", ""),
             "recommendations": json.dumps(recommendations),
+            "pif_tags_json": json.dumps(extract_pif_tags(incident)),
         })
 
     if not rows:

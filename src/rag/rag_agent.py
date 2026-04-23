@@ -183,6 +183,14 @@ class RAGAgent:
             except (json.JSONDecodeError, TypeError):
                 pass
 
+            pif_tags: dict[str, list[str]] | None = None
+            raw_pif = i_meta.get("pif_tags_json")
+            if raw_pif:
+                try:
+                    pif_tags = json.loads(raw_pif)
+                except (json.JSONDecodeError, TypeError):
+                    pass
+
             entries.append(ContextEntry(
                 incident_id=r.incident_id,
                 control_id=b_meta.get("control_id", r.control_id),
@@ -200,6 +208,7 @@ class RAGAgent:
                 barrier_rank=r.barrier_rank,
                 incident_rank=r.incident_rank,
                 recommendations=incident_recommendations,
+                pif_tags=pif_tags,
             ))
 
         context_text = build_context(entries, max_context_chars=max_context_chars)

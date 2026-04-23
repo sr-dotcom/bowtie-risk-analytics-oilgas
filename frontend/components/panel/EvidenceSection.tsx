@@ -178,6 +178,30 @@ export default function EvidenceSection({
         </div>
       )}
 
+      {/* Performance Influencing Factors (negative) — D020 */}
+      {ev.degradation_context?.pif_tags &&
+        Object.values(ev.degradation_context.pif_tags).some((f) => f.length > 0) && (
+          <div className="mt-3" data-testid="pif-tags-block">
+            <h4 className="text-sm font-semibold mb-1 text-[#E8E8E8]">
+              Performance Influencing Factors (negative)
+            </h4>
+            <div className="space-y-1">
+              {(['people', 'work', 'organisation'] as const).map((cat) => {
+                const factors = ev.degradation_context?.pif_tags?.[cat]
+                if (!factors?.length) return null
+                return (
+                  <p key={cat} className="text-sm text-[#9CA3AF]">
+                    <span className="font-medium text-[#E8E8E8]">
+                      {cat.charAt(0).toUpperCase() + cat.slice(1)}:
+                    </span>{' '}
+                    {factors.map((f) => f.replace(/_/g, ' ')).join(', ')}
+                  </p>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
       {/* Similar Incidents — unique_incident_count is API-sourced (D-M004-03 + D-M004-10) */}
       {ev.evidence_snippets.length > 0 && (
         <div>

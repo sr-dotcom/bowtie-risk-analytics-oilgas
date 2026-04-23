@@ -311,6 +311,7 @@ class DegradationContext(BaseModel):
     pif_mentions: list[str]
     recommendations: list[str]
     barrier_condition: str
+    pif_tags: dict[str, list[str]] | None = None
 
 
 class ExplainCascadingResponse(BaseModel):

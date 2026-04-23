@@ -96,6 +96,7 @@ export interface DegradationContext {
   pif_mentions: string[]
   recommendations: string[]
   barrier_condition: string
+  pif_tags?: Record<string, string[]>
 }
 
 export interface ExplainCascadingResponse {

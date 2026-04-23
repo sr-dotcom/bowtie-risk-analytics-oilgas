@@ -336,6 +336,57 @@ describe('EvidenceSection — recommendations cards', () => {
 })
 
 // ---------------------------------------------------------------------------
+// Tests — PIF tags block (D020)
+// ---------------------------------------------------------------------------
+
+describe('EvidenceSection — PIF tags block (D020)', () => {
+  it('renders PIF tags block when pif_tags has at least one non-empty category', () => {
+    mockUseBowtieContext.mockReturnValue(
+      makeContextState({
+        explanation: makeExplainCascadingResponse({
+          unique_incident_count: 2,
+          degradation_context: {
+            pif_mentions: [],
+            recommendations: [],
+            barrier_condition: 'nominal',
+            pif_tags: {
+              people: ['competence', 'communication'],
+              work: ['procedures'],
+              organisation: [],
+            },
+          },
+        }),
+      }),
+    )
+    renderEvidenceSection()
+    expect(screen.getByTestId('pif-tags-block')).toBeTruthy()
+    expect(screen.getByText('Performance Influencing Factors (negative)')).toBeTruthy()
+    expect(screen.getByText(/People:/)).toBeTruthy()
+    expect(screen.getByText(/competence, communication/)).toBeTruthy()
+    expect(screen.getByText(/Work:/)).toBeTruthy()
+    expect(screen.getByText(/procedures/)).toBeTruthy()
+  })
+
+  it('does not render PIF tags block when pif_tags is null or undefined', () => {
+    mockUseBowtieContext.mockReturnValue(
+      makeContextState({
+        explanation: makeExplainCascadingResponse({
+          unique_incident_count: 2,
+          degradation_context: {
+            pif_mentions: [],
+            recommendations: [],
+            barrier_condition: 'nominal',
+          },
+        }),
+      }),
+    )
+    renderEvidenceSection()
+    expect(screen.queryByTestId('pif-tags-block')).toBeNull()
+    expect(screen.queryByText('Performance Influencing Factors (negative)')).toBeNull()
+  })
+})
+
+// ---------------------------------------------------------------------------
 // Tests — Similar Incidents uses API-sourced unique_incident_count
 // ---------------------------------------------------------------------------
 

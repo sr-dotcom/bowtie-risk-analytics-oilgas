@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Any
 
 from src.rag.config import MAX_CONTEXT_CHARS
 
@@ -26,6 +27,28 @@ class ContextEntry:
     barrier_rank: int
     incident_rank: int
     recommendations: list[str] = field(default_factory=list)
+    pif_tags: dict[str, list[str]] | None = None
+
+
+def extract_pif_tags(incident: dict[str, Any]) -> dict[str, list[str]] | None:
+    """Return negative PIF factors grouped by category.
+
+    Returns {'people': [...], 'work': [...], 'organisation': [...]} where each
+    list contains factor names with _value == 'negative'. Returns None if no
+    negative PIFs are present.
+    """
+    pifs = incident.get("pifs") or {}
+    out: dict[str, list[str]] = {}
+    for category in ("people", "work", "organisation"):
+        cat = pifs.get(category) or {}
+        negatives = sorted(
+            k.replace("_value", "")
+            for k, v in cat.items()
+            if k.endswith("_value") and v == "negative"
+        )
+        if negatives:
+            out[category] = negatives
+    return out or None
 
 
 def _format_entry(entry: ContextEntry, result_num: int) -> str:
@@ -37,6 +60,17 @@ def _format_entry(entry: ContextEntry, result_num: int) -> str:
     if entry.recommendations:
         rec_text = "\n".join(f"- {r}" for r in entry.recommendations)
         rec_lines = f"**Recommendations:**\n{rec_text}\n"
+
+    pif_block = ""
+    if entry.pif_tags:
+        pif_lines = []
+        for cat in ("people", "work", "organisation"):
+            factors = entry.pif_tags.get(cat)
+            if factors:
+                names = ", ".join(f.replace("_", " ") for f in factors)
+                pif_lines.append(f"- {cat.title()}: {names}")
+        if pif_lines:
+            pif_block = "**Performance Influencing Factors (negative):**\n" + "\n".join(pif_lines) + "\n"
 
     return (
         f"### Result {result_num} (RRF: {entry.rrf_score:.4f}, "
@@ -50,6 +84,7 @@ def _format_entry(entry: ContextEntry, result_num: int) -> str:
         f"**Parent Incident:** {entry.incident_id}\n"
         f"**Incident Summary:** {entry.incident_summary}\n"
         f"{rec_lines}"
+        f"{pif_block}"
     )
 
 

@@ -118,6 +118,29 @@ export default function DetailPanel() {
             </div>
           )}
 
+          {degradation?.pif_tags &&
+            Object.values(degradation.pif_tags).some((f) => f.length > 0) && (
+              <div data-testid="pif-tags-block">
+                <h4 className="text-xs font-medium text-[#6B7280] mb-2 uppercase tracking-wider">
+                  Performance Influencing Factors (negative)
+                </h4>
+                <div className="space-y-1">
+                  {(['people', 'work', 'organisation'] as const).map((cat) => {
+                    const factors = degradation.pif_tags?.[cat]
+                    if (!factors?.length) return null
+                    return (
+                      <p key={cat} className="text-sm text-[#9CA3AF]">
+                        <span className="font-medium text-[#E8E8E8]">
+                          {cat.charAt(0).toUpperCase() + cat.slice(1)}:
+                        </span>{' '}
+                        {factors.map((f) => f.replace(/_/g, ' ')).join(', ')}
+                      </p>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
           {explanation && !explanation.narrative_unavailable && explanation.narrative_text && (
             <div className="bg-[#1A2332] border-l-4 border-[#2C5F7F] p-4 rounded-r-lg">
               <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-1">Analysis</p>

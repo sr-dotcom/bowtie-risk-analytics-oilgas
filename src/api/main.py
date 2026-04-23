@@ -497,6 +497,22 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
         # barrier_condition from the conditioning barrier
         barrier_condition = conditioning.get("barrier_condition", "")
 
+        # Aggregate negative PIF tags from retrieved incident metadata
+        agg_pif: dict[str, set[str]] = {}
+        for rr in (pair_result.conditioning_results + pair_result.target_results):
+            inc_meta = incident_meta_store.get(rr.incident_id, {})
+            raw_pif = inc_meta.get("pif_tags_json")
+            if raw_pif:
+                try:
+                    tags = json.loads(raw_pif) or {}
+                    for cat, factors in tags.items():
+                        agg_pif.setdefault(cat, set()).update(factors)
+                except (json.JSONDecodeError, TypeError):
+                    pass
+        pif_tags: dict[str, list[str]] | None = (
+            {cat: sorted(f) for cat, f in agg_pif.items()} if agg_pif else None
+        )
+
         return ExplainCascadingResponse(
             narrative_text=pair_result.context_text,
             evidence_snippets=evidence_snippets,
@@ -504,6 +520,7 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
                 pif_mentions=pif_mentions,
                 recommendations=recommendations,
                 barrier_condition=barrier_condition,
+                pif_tags=pif_tags,
             ),
             narrative_unavailable=narrative_unavailable,
             snippet_count=len(evidence_snippets),
