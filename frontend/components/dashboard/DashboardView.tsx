@@ -10,6 +10,7 @@ import GlobalShapChart, { PifPrevalenceChart, AprioriRulesTable, DegradationCont
 import RankedBarriers from './RankedBarriers'
 import EvidenceView from './EvidenceView'
 import { NarrativeHero } from './NarrativeHero'
+import ProvenanceStrip from './ProvenanceStrip'
 
 // ---------------------------------------------------------------------------
 // Tabs
@@ -215,6 +216,9 @@ export default function DashboardView() {
         {activeTab === 'evidence' && <EvidenceView />}
 
       </div>
+
+      {/* Provenance strip — UI-CONTEXT.md §10, visible across all tabs */}
+      <ProvenanceStrip />
     </div>
   )
 }
