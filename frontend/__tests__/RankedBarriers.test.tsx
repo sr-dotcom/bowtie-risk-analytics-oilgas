@@ -445,26 +445,28 @@ describe('RankedBarriers — initialBarriers/initialPredictions + sub-component 
     expect(screen.getByRole('button', { name: 'Load Evidence' })).toBeTruthy()
   })
 
-  // (h) Clicking Load Evidence calls explain
-  it('clicking Load Evidence invokes the explain API function', async () => {
+  // (h) Clicking Load Evidence mounts EvidenceSection (evidence from /explain-cascading via context)
+  it('clicking Load Evidence mounts EvidenceSection showing conditioning placeholder', async () => {
     renderWithInitial()
     fireEvent.click(screen.getByText('Pressure Relief Valve').closest('tr')!)
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Load Evidence' }))
     })
-    expect(mockExplain).toHaveBeenCalledOnce()
+    // EvidenceSection is mounted; explain() is no longer called — evidence sourced from context
+    expect(mockExplain).not.toHaveBeenCalled()
+    // No conditioning barrier in this test context → EvidenceSection shows the placeholder
+    expect(screen.getByText(/Click a barrier.*conditioning context/i)).toBeTruthy()
   })
 
-  // (i) After explain resolves, narrative is rendered
-  it('renders the explain narrative once EvidenceSection has loaded', async () => {
+  // (i) After Load Evidence, EvidenceSection renders (conditioning placeholder until cascading context set)
+  it('EvidenceSection is mounted after Load Evidence click', async () => {
     renderWithInitial()
     fireEvent.click(screen.getByText('Pressure Relief Valve').closest('tr')!)
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: 'Load Evidence' }))
     })
-    // Wait for the async explain promise to settle and React to re-render
-    const narrativeEl = await screen.findByText(MOCK_EXPLAIN_RESPONSE.narrative)
-    expect(narrativeEl).toBeTruthy()
+    // EvidenceSection is mounted and renders (placeholder shown — no conditioningBarrierId in test context)
+    expect(screen.getByText(/Click a barrier.*conditioning context/i)).toBeTruthy()
   })
 
   // (j) Row switching — expand A, click B → A collapses, B expands

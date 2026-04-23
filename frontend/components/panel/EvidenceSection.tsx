@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Loader2, AlertCircle, ChevronDown, ChevronRight } from 'lucide-react'
-import { explain } from '@/lib/api'
 import { useBowtieContext } from '@/context/BowtieContext'
-import type { Barrier, ExplainRequest, ExplainResponse, PredictResponse } from '@/lib/types'
+import type { Barrier, PredictResponse } from '@/lib/types'
 import SimpleMarkdown from '@/components/ui/SimpleMarkdown'
 
 // ---------------------------------------------------------------------------
@@ -28,58 +27,38 @@ interface EvidenceSectionProps {
 }
 
 /**
- * Loads RAG evidence on-demand per barrier click (D-15).
- *
- * Evidence is cached in BowtieContext so re-clicking the same barrier
- * does not trigger a second /explain call.
+ * Renders RAG evidence for the currently selected barrier.
+ * Explanation is sourced from BowtieContext (via useExplainCascading),
+ * which calls POST /explain-cascading conditioned on the selected barrier pair.
  */
 export default function EvidenceSection({
-  barrierId,
-  barrier,
-  eventDescription,
-  prediction,
+  barrierId: _barrierId,
+  barrier: _barrier,
+  eventDescription: _eventDescription,
+  prediction: _prediction,
 }: EvidenceSectionProps) {
-  const { evidence, setEvidence } = useBowtieContext()
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const {
+    conditioningBarrierId,
+    explanation,
+    explanationLoading,
+    explanationError,
+    narrativeUnavailable,
+  } = useBowtieContext()
   const [narrativeExpanded, setNarrativeExpanded] = useState(false)
   const [citationsExpanded, setCitationsExpanded] = useState(false)
 
-  // Load evidence on mount or when barrierId changes (D-15: on-demand per click)
-  useEffect(() => {
-    // Skip if already cached
-    if (evidence[barrierId]) return
-
-    const req: ExplainRequest = {
-      barrier_family: barrier.barrier_family,
-      barrier_type: barrier.barrier_type,
-      side: barrier.side,
-      barrier_role: barrier.barrierRole,
-      event_description: eventDescription,
-      shap_factors: prediction.model1_shap,
-      risk_level: prediction.risk_level || '',  // Bug #3 fix: pass prediction context
-    }
-
-    setLoading(true)
-    setError(null)
-
-    explain(req)
-      .then((response: ExplainResponse) => {
-        setEvidence(barrierId, response)
-      })
-      .catch((err: unknown) => {
-        const message = err instanceof Error ? err.message : String(err)
-        if (process.env.NODE_ENV !== 'production') console.error('[EvidenceSection] explain failed for barrier', barrierId, message)
-        setError(`Evidence retrieval failed: ${message}`)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [barrierId]) // Re-run only when barrier changes
+  // No conditioning barrier — user hasn't clicked a conditioning context yet
+  if (!conditioningBarrierId) {
+    return (
+      <div className="text-xs text-[#6B7280] italic py-2">
+        Click a barrier in the diagram to set conditioning context, then click Analyze to see
+        evidence.
+      </div>
+    )
+  }
 
   // Loading state
-  if (loading) {
+  if (explanationLoading) {
     return (
       <div className="flex items-center gap-2 text-sm text-[#6B7280] py-2">
         <Loader2 className="w-4 h-4 animate-spin" />
@@ -89,18 +68,18 @@ export default function EvidenceSection({
   }
 
   // Error state
-  if (error) {
+  if (explanationError) {
     return (
       <div className="flex items-start gap-2 text-sm py-2" style={{ color: '#E74C3C' }}>
         <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
-        <span>{error}</span>
+        <span>{explanationError}</span>
       </div>
     )
   }
 
-  const ev = evidence[barrierId]
+  const ev = explanation
 
-  // Not yet loaded (should only flash briefly before loading kicks in)
+  // Not yet loaded (conditioning barrier set but explanation not yet resolved)
   if (!ev) {
     return (
       <div className="text-xs text-[#6B7280] italic py-2">
@@ -109,29 +88,21 @@ export default function EvidenceSection({
     )
   }
 
-  // Confidence gate: low confidence narrative from RAG-02
-  const isLowConfidence =
-    ev.retrieval_confidence < 0.4 ||
-    ev.narrative.toLowerCase().includes('no matching incidents found')
+  // narrative_unavailable → amber banner; otherwise render narrative text
+  const isLowConfidence = narrativeUnavailable
 
-  // Derive confidence dot color from retrieval_confidence threshold
-  const confidenceDotClass =
-    ev.retrieval_confidence >= 0.7
+  // Confidence dot: green = evidence available, amber = no snippets yet available, red = unavailable
+  const confidenceDotClass = narrativeUnavailable
+    ? 'bg-[#C0392B]'
+    : ev.unique_incident_count > 0
       ? 'bg-[#1F6F43]'
-      : ev.retrieval_confidence >= 0.4
-        ? 'bg-[#996515]'
-        : 'bg-[#C0392B]'
+      : 'bg-[#996515]'
 
-  // Parse recommendations string into individual cards
-  const recommendationCards = ev.recommendations
-    ? ev.recommendations
-        .split('\n')
-        .map((line) => line.replace(/^[-*] /, '').trim())
-        .filter((line) => line.length > 0)
-    : []
+  // degradation_context.recommendations is already string[] from /explain-cascading
+  const recommendationCards = ev.degradation_context?.recommendations ?? []
 
   // Key findings: first 2 sentences of narrative
-  const keyFindings = isLowConfidence ? '' : extractFirstSentences(ev.narrative, 2)
+  const keyFindings = isLowConfidence ? '' : extractFirstSentences(ev.narrative_text, 2)
 
   return (
     <div className="space-y-3">
@@ -154,7 +125,7 @@ export default function EvidenceSection({
       ) : (
         <>
           {/* Key Findings callout — only when narrative is long enough to split */}
-          {keyFindings && keyFindings !== ev.narrative.trim() ? (
+          {keyFindings && keyFindings !== ev.narrative_text.trim() ? (
             <>
               <div className="bg-[#1A2332] border-l-4 border-[#2C5F7F] p-4 rounded-r-lg">
                 <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-1">
@@ -173,18 +144,24 @@ export default function EvidenceSection({
                   {narrativeExpanded ? 'Collapse analysis' : 'Read full analysis'}
                 </button>
                 <div className={narrativeExpanded ? '' : 'hidden'}>
-                  <SimpleMarkdown content={ev.narrative} className="text-sm text-[#9CA3AF] leading-relaxed" />
+                  <SimpleMarkdown
+                    content={ev.narrative_text}
+                    className="text-sm text-[#9CA3AF] leading-relaxed"
+                  />
                 </div>
               </div>
             </>
           ) : (
             /* Short narrative — render directly */
-            <SimpleMarkdown content={ev.narrative} className="text-sm text-[#9CA3AF] leading-relaxed mb-3" />
+            <SimpleMarkdown
+              content={ev.narrative_text}
+              className="text-sm text-[#9CA3AF] leading-relaxed mb-3"
+            />
           )}
         </>
       )}
 
-      {/* Recommendations (D-12, Fidel-#2) — per-card rendering, always visible */}
+      {/* Recommendations — pre-parsed string[] from degradation_context */}
       {recommendationCards.length > 0 && (
         <div className="mt-3">
           <h4 className="text-sm font-semibold mb-1 text-[#E8E8E8]">Recommendations</h4>
@@ -201,28 +178,27 @@ export default function EvidenceSection({
         </div>
       )}
 
-      {/* Similar Incidents — collapsible, collapsed by default */}
-      {ev.citations.length > 0 && (
+      {/* Similar Incidents — unique_incident_count is API-sourced (D-M004-03 + D-M004-10) */}
+      {ev.evidence_snippets.length > 0 && (
         <div>
           <button
             onClick={() => setCitationsExpanded((v) => !v)}
             className="flex items-center gap-1 text-sm font-semibold text-[#E8E8E8] hover:text-[#9CA3AF] transition-colors mb-1"
           >
             {citationsExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-            {/* Use unique_incident_count, not snippets.length, for domain-expert-facing label */}
-            Similar Incidents ({new Set(ev.citations.map(c => c.incident_id)).size})
+            Similar Incidents ({ev.unique_incident_count})
           </button>
           {citationsExpanded && (
             <div className="space-y-2 mt-1">
-              {ev.citations.map((c, i) => (
+              {ev.evidence_snippets.map((s, i) => (
                 <div
-                  key={`${c.incident_id}-${i}`}
+                  key={`${s.incident_id}-${i}`}
                   className="bg-[#1C2430] rounded-lg p-3 border border-[#2A3442] hover:bg-[#2A3442] transition-colors"
                 >
                   <p className="text-xs font-medium text-[#6B7280]">
-                    {c.incident_id} — {c.barrier_name}
+                    {s.incident_id} — {s.source_agency}
                   </p>
-                  <p className="text-sm text-[#E8E8E8] mt-0.5">{c.incident_summary || c.supporting_text}</p>
+                  <p className="text-sm text-[#E8E8E8] mt-0.5">{s.text}</p>
                 </div>
               ))}
             </div>

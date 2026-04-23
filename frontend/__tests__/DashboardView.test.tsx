@@ -544,7 +544,7 @@ describe('DashboardView — Evidence tab integration', () => {
     expect(options.some((opt) => opt.text.includes(INTEGRATION_BARRIER.name))).toBe(true)
   })
 
-  it('Evidence tab with analyzed barrier renders EvidenceSection with confidence dot', async () => {
+  it('Evidence tab with analyzed barrier renders EvidenceSection (conditioning placeholder until cascading context set)', async () => {
     await act(async () => {
       render(
         <BowtieProvider
@@ -560,8 +560,10 @@ describe('DashboardView — Evidence tab integration', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Evidence' }))
     })
 
+    // conditioningBarrierId is null in this test context — EvidenceSection shows the placeholder
+    // (confidence-dot appears only after cascading analysis with a conditioning barrier is run)
     await waitFor(() => {
-      expect(screen.getByTestId('confidence-dot')).toBeTruthy()
+      expect(screen.getByText(/Click a barrier.*conditioning context/i)).toBeTruthy()
     })
   })
 })
