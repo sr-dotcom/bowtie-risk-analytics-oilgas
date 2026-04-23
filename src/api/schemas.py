@@ -192,9 +192,10 @@ class RagInfo(BaseModel):
 
 
 class HealthResponse(BaseModel):
-    """GET /health response body (D-08)."""
+    """GET /health response body (D-08, ops-manual contract)."""
 
     status: str
+    timestamp: str  # ISO8601 UTC — ops-manual contract field
     models: dict[str, ModelInfo]
     rag: RagInfo
     uptime_seconds: float

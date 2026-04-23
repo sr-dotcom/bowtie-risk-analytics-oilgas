@@ -236,17 +236,21 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
         openapi_url="/openapi.json" if enable_docs else None,
     )
 
-    # CORS — restricted origins from env; defaults to localhost for dev
+    # CORS — env-driven allow-list. CORS_ALLOWED_ORIGINS is a comma-separated list;
+    # default covers production frontend + local dev.
     allowed_origins = [
         o.strip()
-        for o in os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+        for o in os.getenv(
+            "CORS_ALLOWED_ORIGINS",
+            "https://bowtie.gnsr.dev,http://localhost:3000",
+        ).split(",")
         if o.strip()
     ]
     app.add_middleware(
         CORSMiddleware,
         allow_origins=allowed_origins,
         allow_credentials=True,
-        allow_methods=["GET", "POST"],
+        allow_methods=["GET", "POST", "OPTIONS"],
         allow_headers=["Authorization", "Content-Type", "X-API-Key"],
     )
 
@@ -293,6 +297,7 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
 
         return HealthResponse(
             status="ok",
+            timestamp=datetime.now(timezone.utc).isoformat(),
             models={
                 "cascading": ModelInfo(name="xgb_cascade_y_fail", loaded=cascading_loaded),
                 "rag_v2": ModelInfo(name="rag_v2", loaded=rag_v2_loaded),

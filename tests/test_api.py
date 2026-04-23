@@ -4,20 +4,23 @@ After T03, /predict and /explain are HTTP 410 Gone (GET endpoints).
 Cascading endpoints tested in test_api_cascading.py.
 
 Tests:
-  test_predict_returns_410_gone    — GET /predict → 410 with migrate_to
-  test_explain_returns_410_gone    — GET /explain → 410 with migrate_to
-  test_health_returns_200          — GET /health → status=ok + fields present
-  test_health_model_info           — cascading + rag_v2 loaded info
-  test_apriori_rules_returns_200   — GET /apriori-rules → rules list
-  test_apriori_rules_empty         — empty state returns []
-  test_apriori_rules_schema        — rule fields validated
-  test_openapi_schema_endpoints    — new endpoints in OpenAPI, gone endpoints 410
+  test_predict_returns_410_gone       — GET /predict → 410 with migrate_to
+  test_explain_returns_410_gone       — GET /explain → 410 with migrate_to
+  test_health_returns_200             — GET /health → status=ok + fields present
+  test_health_timestamp_iso8601       — /health timestamp is ISO8601 UTC (ops-manual)
+  test_health_model_info              — cascading + rag_v2 loaded info
+  test_cors_preflight_prod_origin     — OPTIONS preflight from bowtie.gnsr.dev allowed
+  test_apriori_rules_returns_200      — GET /apriori-rules → rules list
+  test_apriori_rules_empty            — empty state returns []
+  test_apriori_rules_schema           — rule fields validated
+  test_openapi_schema_endpoints       — new endpoints in OpenAPI, gone endpoints 410
 """
 from __future__ import annotations
 
 import os
 import time
 from contextlib import asynccontextmanager
+from datetime import datetime, timezone
 from unittest.mock import MagicMock
 
 import pytest
@@ -94,10 +97,36 @@ def test_health_returns_200(client: TestClient) -> None:
 
     data = resp.json()
     assert data["status"] == "ok"
+    assert "timestamp" in data
     assert "models" in data
     assert "rag" in data
     assert "uptime_seconds" in data
     assert data["uptime_seconds"] >= 0.0
+
+
+def test_health_timestamp_iso8601(client: TestClient) -> None:
+    """GET /health timestamp is ISO8601 UTC — ops-manual contract."""
+    resp = client.get("/health")
+    assert resp.status_code == 200
+    ts = resp.json()["timestamp"]
+    # Must parse without error and carry timezone info (UTC offset or 'Z').
+    parsed = datetime.fromisoformat(ts)
+    assert parsed.tzinfo is not None
+
+
+def test_cors_preflight_prod_origin(client: TestClient) -> None:
+    """OPTIONS preflight from https://bowtie.gnsr.dev receives Allow-Origin header."""
+    resp = client.options(
+        "/predict-cascading",
+        headers={
+            "Origin": "https://bowtie.gnsr.dev",
+            "Access-Control-Request-Method": "POST",
+            "Access-Control-Request-Headers": "Content-Type",
+        },
+    )
+    # CORSMiddleware returns 200 for preflights with matching origin.
+    assert resp.status_code == 200
+    assert resp.headers.get("access-control-allow-origin") == "https://bowtie.gnsr.dev"
 
 
 def test_health_model_info(client: TestClient) -> None:
