@@ -11,6 +11,7 @@ import RankedBarriers from './RankedBarriers'
 import EvidenceView from './EvidenceView'
 import { NarrativeHero } from './NarrativeHero'
 import ProvenanceStrip from './ProvenanceStrip'
+import { getDenominatorValue } from '@/lib/denominators'
 
 // ---------------------------------------------------------------------------
 // Tabs
@@ -25,9 +26,15 @@ const TABS = [
 
 type TabId = (typeof TABS)[number]['id']
 
-const TRAINING_INCIDENTS = 174
-const TRAINING_BARRIERS = 558
 const RAG_CORPUS_INCIDENTS = 156
+
+// M003 cascade scope — sourced from configs/denominators.json registry
+const CASCADE_INCIDENTS = getDenominatorValue('rag_corpus_incidents') as number        // 156
+const CASCADE_PARQUET_ROWS = getDenominatorValue('m003_cascade_current_parquet_rows') as number  // 530
+const CASCADE_PAIR_ROWS = getDenominatorValue('m003_cascade_training_pair_rows') as number       // 813
+const CASCADE_AUC_MEAN = getDenominatorValue('cascade_model_cv_auc_mean') as number    // 0.763
+const CASCADE_AUC_STD = getDenominatorValue('cascade_model_cv_auc_std') as number     // 0.066
+const CASCADE_AUC_DISPLAY = `${Number(CASCADE_AUC_MEAN).toFixed(2)} ± ${Number(CASCADE_AUC_STD).toFixed(2)}`
 
 // ---------------------------------------------------------------------------
 // Component
@@ -166,12 +173,15 @@ export default function DashboardView() {
                         <p className="text-xs text-[#6B7280]">Prevention / Mitigation</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-[#E8E8E8]">{TRAINING_INCIDENTS}</p>
-                        <p className="text-xs text-[#6B7280]">Reference incidents</p>
+                        <p className="text-2xl font-bold text-[#E8E8E8]">{CASCADE_INCIDENTS}</p>
+                        <p className="text-xs text-[#6B7280]">Cascade training corpus</p>
+                        {/* 113 BSEE + 19 CSB + 24 UNKNOWN — audit A2a agency split */}
+                        <p className="text-[10px] text-[#4B5563] mt-0.5">113 BSEE · 19 CSB · 24 UNK</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-[#E8E8E8]">{TRAINING_BARRIERS}</p>
-                        <p className="text-xs text-[#6B7280]">Barrier observations</p>
+                        <p className="text-2xl font-bold text-[#E8E8E8]">{CASCADE_PARQUET_ROWS}</p>
+                        <p className="text-xs text-[#6B7280]">Cascade training rows</p>
+                        <p className="text-[10px] text-[#4B5563] mt-0.5">{CASCADE_PAIR_ROWS} pair-feature</p>
                       </div>
                     </div>
                   </div>
@@ -189,13 +199,14 @@ export default function DashboardView() {
             <div className="mt-6 bg-[#151B24] rounded-lg p-4 border border-[#2A3442]">
               <h3 className="text-sm font-semibold text-[#E8E8E8] mb-2">Assessment Basis</h3>
               <p className="text-sm text-[#9CA3AF] leading-relaxed">
-                Historical reliability assessment based on analysis of{' '}
-                <span className="text-[#E8E8E8] font-medium">{TRAINING_INCIDENTS} real BSEE/CSB incidents</span>{' '}
-                with{' '}
-                <span className="text-[#E8E8E8] font-medium">{TRAINING_BARRIERS} barrier observations</span>{' '}
-                from Loss of Containment events in oil &amp; gas operations.
-                Barrier failure patterns identified using XGBoost with SHAP explainability,
-                validated through 5-fold cross-validation.
+                M003 cascade pair-feature XGBoost model trained on{' '}
+                <span className="text-[#E8E8E8] font-medium">{CASCADE_INCIDENTS} BSEE+CSB Loss of Containment incidents</span>
+                {', '}
+                <span className="text-[#E8E8E8] font-medium">{CASCADE_PAIR_ROWS} pair-feature training rows</span>
+                {' '}({CASCADE_PARQUET_ROWS} single-barrier rows before pairing).
+                5-fold GroupKFold CV AUC{' '}
+                <span className="text-[#E8E8E8] font-medium">{CASCADE_AUC_DISPLAY}</span>.
+                Barrier failure patterns explained via SHAP TreeExplainer.
               </p>
             </div>
           </>
