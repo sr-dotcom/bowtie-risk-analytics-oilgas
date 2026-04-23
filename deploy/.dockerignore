@@ -1,0 +1,55 @@
+# VCS
+.git
+.github
+.gitignore
+
+# IDE / local
+.vscode
+.idea
+*.swp
+.DS_Store
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+.ruff_cache
+venv
+.venv
+env
+*.egg-info
+
+# Node
+node_modules
+frontend/.next
+frontend/node_modules
+frontend/out
+
+# Tests
+tests
+frontend/__tests__
+frontend/tests-e2e
+
+# Data we don't bake
+data/raw
+data/structured
+data/processed
+data/evaluation
+data/rag/v1
+data/rag/corpus_v1
+
+# Docs + audit + handoff (not needed at runtime)
+docs
+*.md
+!README.md
+
+# GSD + decisions
+.gsd
+.gsd-v2
+
+# Secrets
+.env
+.env.*
+!.env.example

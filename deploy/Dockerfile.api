@@ -1,0 +1,86 @@
+# syntax=docker/dockerfile:1.6
+
+###############################################################################
+# Stage 1 — builder: install deps, pre-download sentence-transformers model
+###############################################################################
+FROM python:3.12-slim-bookworm AS builder
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    HF_HOME=/opt/hf_cache
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      build-essential \
+      curl \
+      git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /build
+
+RUN pip install --upgrade pip
+
+# Install CPU-only torch from pre-built wheel (cp312, ~182 MB).
+# Must precede requirements-api.txt so sentence-transformers resolves the
+# already-installed torch rather than pulling the GPU variant (~2.5 GB).
+COPY docker-deps/wheels/torch-2.11.0+cpu-cp312-cp312-manylinux_2_28_x86_64.whl /tmp/
+RUN pip install /tmp/torch-2.11.0+cpu-cp312-cp312-manylinux_2_28_x86_64.whl \
+    && rm /tmp/torch-2.11.0+cpu-cp312-cp312-manylinux_2_28_x86_64.whl
+
+# Install API-only production dependencies (excludes ingestion/dev packages).
+COPY requirements-api.txt ./
+RUN pip install -r requirements-api.txt
+
+# Pre-download sentence-transformers model so runtime is fully offline-capable
+RUN python -c "from sentence_transformers import SentenceTransformer; \
+               SentenceTransformer('sentence-transformers/all-mpnet-base-v2')"
+
+###############################################################################
+# Stage 2 — runtime: slim, non-root, only what the API needs
+###############################################################################
+FROM python:3.12-slim-bookworm AS runtime
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    HF_HOME=/opt/hf_cache \
+    TRANSFORMERS_OFFLINE=1 \
+    HF_HUB_OFFLINE=1 \
+    PORT=8000
+
+# curl kept for healthcheck; libgomp1 required by xgboost runtime
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      curl \
+      libgomp1 \
+    && rm -rf /var/lib/apt/lists/* \
+    && groupadd --system --gid 10001 app \
+    && useradd --system --uid 10001 --gid app --home-dir /app --shell /usr/sbin/nologin app
+
+# Copy installed Python packages + binaries from builder
+COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
+COPY --from=builder /opt/hf_cache /opt/hf_cache
+
+WORKDIR /app
+
+# Source code
+COPY --chown=app:app src ./src
+COPY --chown=app:app configs ./configs
+
+# corpus_builder.py imports from scripts.association_mining at module load time
+COPY --chown=app:app scripts/association_mining ./scripts/association_mining
+RUN touch ./scripts/__init__.py ./scripts/association_mining/__init__.py && \
+    chown app:app ./scripts/__init__.py ./scripts/association_mining/__init__.py
+
+# Baked model + RAG artifacts
+COPY --chown=app:app data/models/artifacts ./data/models/artifacts
+COPY --chown=app:app data/rag/v2 ./data/rag/v2
+
+USER app
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
+  CMD curl -fsS http://localhost:8000/health || exit 1
+
+CMD ["uvicorn", "src.api.main:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]

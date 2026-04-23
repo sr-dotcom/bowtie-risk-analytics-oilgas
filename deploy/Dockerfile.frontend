@@ -1,0 +1,62 @@
+# syntax=docker/dockerfile:1.6
+
+###############################################################################
+# Stage 1 — deps: deterministic npm install
+###############################################################################
+FROM node:20-alpine AS deps
+
+WORKDIR /app
+
+# Alpine build tools for any native deps
+RUN apk add --no-cache libc6-compat
+
+COPY frontend/package.json frontend/package-lock.json* ./
+RUN npm ci --legacy-peer-deps
+
+###############################################################################
+# Stage 2 — builder: next build with NEXT_PUBLIC_API_URL baked in
+###############################################################################
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Build arg — defaulted to prod URL but overridable for local smoke
+ARG NEXT_PUBLIC_API_URL=https://api.bowtie.gnsr.dev
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+
+COPY --from=deps /app/node_modules ./node_modules
+COPY frontend/. ./
+
+# copy-demo-scenarios.mjs (prebuild) resolves ../../data/demo_scenarios from
+# frontend/scripts/ → /data/demo_scenarios in the container.
+COPY data/demo_scenarios /data/demo_scenarios
+
+RUN npm run build
+
+###############################################################################
+# Stage 3 — runner: Next.js standalone
+###############################################################################
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production \
+    PORT=3000 \
+    HOSTNAME=0.0.0.0
+
+RUN addgroup --system --gid 10001 app && \
+    adduser --system --uid 10001 --ingroup app --home /app --shell /sbin/nologin app
+
+# Next.js standalone output pattern
+COPY --from=builder --chown=app:app /app/public ./public
+COPY --from=builder --chown=app:app /app/.next/standalone ./
+COPY --from=builder --chown=app:app /app/.next/static ./.next/static
+
+USER app
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+  CMD wget -qO- http://127.0.0.1:3000/ > /dev/null 2>&1 || exit 1
+
+CMD ["node", "server.js"]

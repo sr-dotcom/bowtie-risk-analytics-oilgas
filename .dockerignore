@@ -58,9 +58,6 @@ docs/
 # --- GSD project management ---
 .gsd/
 
-# --- Frontend source (built separately) ---
-frontend/
-
 # --- Notebooks ---
 *.ipynb
 notebooks/

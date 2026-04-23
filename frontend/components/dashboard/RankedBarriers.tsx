@@ -283,12 +283,9 @@ export default function RankedBarriers() {
     <div data-testid="ranked-barriers-table" className="overflow-x-auto">
       <h3 className="text-base font-semibold mb-3 text-[#E8E8E8] flex items-center gap-1.5">
         All Barriers Ranked by Risk
-        <Info
-          className="w-4 h-4 text-[#6B7280] cursor-help flex-shrink-0"
-          title={RANKING_CRITERIA_TOOLTIP}
-          aria-label="Ranking criteria"
-          role="img"
-        />
+        <span title={RANKING_CRITERIA_TOOLTIP} aria-label="Ranking criteria" role="img" className="flex-shrink-0">
+          <Info className="w-4 h-4 text-[#6B7280] cursor-help" />
+        </span>
       </h3>
 
       {isCascadingMode && conditioningBarrierId && (
