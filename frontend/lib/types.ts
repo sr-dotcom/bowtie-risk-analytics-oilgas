@@ -103,6 +103,8 @@ export interface ExplainCascadingResponse {
   evidence_snippets: EvidenceSnippet[]
   degradation_context: DegradationContext
   narrative_unavailable: boolean
+  snippet_count: number
+  unique_incident_count: number
 }
 
 export interface RiskThresholds {

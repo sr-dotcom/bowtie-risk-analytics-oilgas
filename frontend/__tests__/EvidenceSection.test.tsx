@@ -289,3 +289,22 @@ describe('EvidenceSection — low confidence banner and narrative', () => {
     expect(mockExplain).toHaveBeenCalledOnce()
   })
 })
+
+describe('EvidenceSection — Similar Incidents dedup count', () => {
+  beforeEach(() => {
+    mockExplain.mockClear()
+  })
+
+  it('renders unique incident count, not raw citation count, in Similar Incidents label', async () => {
+    // 3 citations from 2 unique incidents — label should show (2) not (3)
+    const citations = [
+      { incident_id: 'INC-001', control_id: 'C-1', barrier_name: 'Valve', barrier_family: 'relief', supporting_text: 'text', relevance_score: 0.9, incident_summary: 'summary' },
+      { incident_id: 'INC-001', control_id: 'C-2', barrier_name: 'Valve2', barrier_family: 'relief', supporting_text: 'text2', relevance_score: 0.8, incident_summary: 'summary' },
+      { incident_id: 'INC-002', control_id: 'C-3', barrier_name: 'Sensor', barrier_family: 'detection', supporting_text: 'text3', relevance_score: 0.7, incident_summary: 'summary' },
+    ]
+    mockExplain.mockResolvedValue(makeExplainResponse({ retrieval_confidence: 0.8, citations }))
+    renderEvidenceSection()
+    await screen.findByTestId('confidence-dot')
+    expect(screen.getByText(/Similar Incidents \(2\)/)).toBeTruthy()
+  })
+})

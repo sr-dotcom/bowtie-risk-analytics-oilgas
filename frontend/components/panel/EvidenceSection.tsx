@@ -209,7 +209,8 @@ export default function EvidenceSection({
             className="flex items-center gap-1 text-sm font-semibold text-[#E8E8E8] hover:text-[#9CA3AF] transition-colors mb-1"
           >
             {citationsExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-            Similar Incidents ({ev.citations.length})
+            {/* Use unique_incident_count, not snippets.length, for domain-expert-facing label */}
+            Similar Incidents ({new Set(ev.citations.map(c => c.incident_id)).size})
           </button>
           {citationsExpanded && (
             <div className="space-y-2 mt-1">

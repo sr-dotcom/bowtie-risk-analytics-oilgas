@@ -320,6 +320,8 @@ class ExplainCascadingResponse(BaseModel):
     evidence_snippets: list[EvidenceSnippet]
     degradation_context: DegradationContext
     narrative_unavailable: bool = False
+    snippet_count: int = 0
+    unique_incident_count: int = 0
 
 
 class GoneResponse(BaseModel):

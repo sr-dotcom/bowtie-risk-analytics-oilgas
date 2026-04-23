@@ -128,7 +128,8 @@ export default function DetailPanel() {
           {snippets.length > 0 && (
             <div>
               <h4 className="text-sm font-semibold text-[#E8E8E8] mb-2">
-                Similar Incidents ({snippets.length})
+                {/* Use unique_incident_count, not snippets.length, for domain-expert-facing label */}
+                Similar Incidents ({explanation?.unique_incident_count ?? snippets.length})
               </h4>
               <div className="space-y-2">
                 {snippets.map((s, i) => (

@@ -408,6 +408,8 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
                 evidence_snippets=[],
                 degradation_context=DegradationContext(pif_mentions=[], recommendations=[], barrier_condition=""),
                 narrative_unavailable=True,
+                snippet_count=0,
+                unique_incident_count=0,
             )
 
         scenario = request.bowtie_context
@@ -445,6 +447,8 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
                 evidence_snippets=[],
                 degradation_context=DegradationContext(pif_mentions=[], recommendations=[], barrier_condition=""),
                 narrative_unavailable=True,
+                snippet_count=0,
+                unique_incident_count=0,
             )
 
         narrative_unavailable = bool(pair_result.empty_retrievals)
@@ -502,6 +506,8 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
                 barrier_condition=barrier_condition,
             ),
             narrative_unavailable=narrative_unavailable,
+            snippet_count=len(evidence_snippets),
+            unique_incident_count=len({s.incident_id for s in evidence_snippets}),
         )
 
     # -----------------------------------------------------------------------

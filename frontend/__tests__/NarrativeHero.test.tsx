@@ -118,9 +118,9 @@ describe('NarrativeHero — edge cases', () => {
     expect(screen.getByText(longName)).toBeTruthy()
   })
 
-  it('similarIncidentsCount=2 renders 2 — dedup from 3 snippets across 2 unique incidents', () => {
-    // Dedup logic lives in DashboardView: new Set(snippets.map(s=>s.incident_id)).size
-    // When 3 snippets come from 2 unique incidents, the prop passed here is 2 not 3
+  it('similarIncidentsCount=2 renders 2 — API-sourced unique_incident_count from ExplainCascadingResponse', () => {
+    // unique_incident_count is now computed server-side and passed via DashboardView as this prop.
+    // When 3 snippets come from 2 unique incidents, the API returns unique_incident_count=2.
     renderHero({ similarIncidentsCount: 2, totalRetrievedIncidents: 156 })
     const hero = screen.getByTestId('narrative-hero')
     expect(hero.textContent).toMatch(/similar barriers failed in 2/)

@@ -240,3 +240,15 @@ def test_explain_cascading_degraded_when_no_rag(client_no_predictor: TestClient)
     assert response.status_code == 200
     body = response.json()
     assert body["narrative_unavailable"] is True
+
+
+def test_explain_cascading_includes_snippet_and_incident_counts(client: TestClient) -> None:
+    """snippet_count and unique_incident_count are present and internally consistent."""
+    response = client.post("/explain-cascading", json=EXPLAIN_PAYLOAD)
+    assert response.status_code == 200
+    body = response.json()
+    assert isinstance(body["snippet_count"], int)
+    assert isinstance(body["unique_incident_count"], int)
+    assert body["snippet_count"] >= body["unique_incident_count"]
+    assert body["snippet_count"] == len(body["evidence_snippets"])
+    assert body["unique_incident_count"] == len({s["incident_id"] for s in body["evidence_snippets"]})
