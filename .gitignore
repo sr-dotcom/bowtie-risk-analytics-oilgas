@@ -137,3 +137,9 @@ data/exports/
 .graphifyignore
 graphify-out/
 .playwright-mcp/
+
+# CCCLI session artifacts
+SESSION_REPORT.md
+
+# Playwright runtime output
+frontend/test-results/
