@@ -216,7 +216,7 @@ describe('CrossLink — View Full Analysis', () => {
 describe('CrossLink — DashboardView consumes dashboardTab', () => {
   beforeEach(() => {
     mockAnalyzeAll.mockClear()
-    mockFetchAprioriRules.mockResolvedValue([])
+    mockFetchAprioriRules.mockResolvedValue({ rules: [], n_incidents: 0, generated_at: '' })
     mockExplain.mockClear()
     mockExplain.mockResolvedValue({
       narrative: '',

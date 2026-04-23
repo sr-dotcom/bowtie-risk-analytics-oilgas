@@ -1,5 +1,6 @@
 import type {
   AprioriRule,
+  AprioriRulesResponse,
   CascadingRequest,
   ExplainCascadingRequest,
   ExplainCascadingResponse,
@@ -34,11 +35,10 @@ export async function explain(payload: ExplainRequest): Promise<ExplainResponse>
  * @returns Array of AprioriRule objects sorted by confidence descending on the server.
  * @throws Error if the server returns a non-OK status.
  */
-export async function fetchAprioriRules(): Promise<AprioriRule[]> {
+export async function fetchAprioriRules(): Promise<AprioriRulesResponse> {
   const res = await fetch('/api/apriori-rules')
   if (!res.ok) throw new Error(`Failed to load rules: ${res.status}`)
-  const data = await res.json() as { rules: AprioriRule[] }
-  return data.rules
+  return res.json() as Promise<AprioriRulesResponse>
 }
 
 // ---------------------------------------------------------------------------

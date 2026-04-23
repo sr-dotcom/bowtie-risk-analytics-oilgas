@@ -55,6 +55,7 @@ def client() -> TestClient:
             "count": 52,
         }
     ]
+    app.state.apriori_metadata = {"n_incidents": 723, "generated_at": "2026-04-06T03:37:03"}
 
     with TestClient(app) as c:
         yield c
@@ -142,7 +143,7 @@ def test_apriori_rules_empty_when_no_artifact() -> None:
         resp = c.get("/apriori-rules")
 
     assert resp.status_code == 200
-    assert resp.json() == {"rules": []}
+    assert resp.json()["rules"] == []
 
 
 def test_apriori_rules_schema_validated(client: TestClient) -> None:
@@ -155,6 +156,17 @@ def test_apriori_rules_schema_validated(client: TestClient) -> None:
     assert isinstance(rule["confidence"], float)
     assert isinstance(rule["lift"], float)
     assert isinstance(rule["count"], int)
+
+
+def test_apriori_rules_includes_metadata(client: TestClient) -> None:
+    """GET /apriori-rules response includes n_incidents and generated_at from JSON metadata."""
+    resp = client.get("/apriori-rules")
+    assert resp.status_code == 200
+    body = resp.json()
+    assert isinstance(body["n_incidents"], int)
+    assert body["n_incidents"] > 0
+    assert isinstance(body["generated_at"], str)
+    assert len(body["generated_at"]) > 0
 
 
 # ---------------------------------------------------------------------------

@@ -258,6 +258,12 @@ export interface AprioriRule {
   count: number
 }
 
+export interface AprioriRulesResponse {
+  rules: AprioriRule[]
+  n_incidents: number
+  generated_at: string
+}
+
 export interface Barrier {
   id: string
   name: string

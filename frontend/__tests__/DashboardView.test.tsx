@@ -117,7 +117,7 @@ function renderDashboard() {
 describe('DashboardView', () => {
   beforeEach(() => {
     mockAnalyzeAll.mockClear()
-    mockFetchAprioriRules.mockResolvedValue([])
+    mockFetchAprioriRules.mockResolvedValue({ rules: [], n_incidents: 0, generated_at: '' })
     mockExplain.mockResolvedValue({ narrative: 'Test evidence', citations: [], retrieval_confidence: 0.8, model_used: 'stub', recommendations: '' })
   })
 
@@ -234,7 +234,7 @@ describe('DashboardView', () => {
 describe('DashboardView auto-batch', () => {
   beforeEach(() => {
     mockAnalyzeAll.mockClear()
-    mockFetchAprioriRules.mockResolvedValue([])
+    mockFetchAprioriRules.mockResolvedValue({ rules: [], n_incidents: 0, generated_at: '' })
     mockExplain.mockResolvedValue({ narrative: 'Test evidence', citations: [], retrieval_confidence: 0.8, model_used: 'stub', recommendations: '' })
   })
 
@@ -330,7 +330,7 @@ describe('DashboardView — Ranked Barriers integration', () => {
 
   beforeEach(() => {
     mockAnalyzeAll.mockClear()
-    mockFetchAprioriRules.mockResolvedValue([])
+    mockFetchAprioriRules.mockResolvedValue({ rules: [], n_incidents: 0, generated_at: '' })
     mockExplain.mockResolvedValue({ narrative: 'Test evidence', citations: [], retrieval_confidence: 0.8, model_used: 'stub', recommendations: '' })
   })
 
@@ -448,7 +448,7 @@ describe('DashboardView — Evidence tab integration', () => {
 
   beforeEach(() => {
     mockAnalyzeAll.mockClear()
-    mockFetchAprioriRules.mockResolvedValue([])
+    mockFetchAprioriRules.mockResolvedValue({ rules: [], n_incidents: 0, generated_at: '' })
     mockExplain.mockResolvedValue({
       narrative: 'Evidence narrative',
       citations: [

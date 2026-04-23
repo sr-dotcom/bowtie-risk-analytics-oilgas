@@ -155,9 +155,11 @@ async def lifespan(app: FastAPI):  # type: ignore[type-arg]
         with open(apriori_rules_path) as f:
             apriori_data = json.load(f)
         apriori_rules_list = apriori_data["rules"]
+        apriori_metadata = apriori_data.get("metadata", {})
         logger.info("Loaded %d Apriori rules from %s", len(apriori_rules_list), apriori_rules_path)
     else:
         apriori_rules_list = []
+        apriori_metadata = {}
         logger.warning("Apriori rules not found at %s — endpoint will return empty list", apriori_rules_path)
 
     # Load AnthropicProvider for narrative synthesis — graceful degradation if key absent
@@ -179,6 +181,7 @@ async def lifespan(app: FastAPI):  # type: ignore[type-arg]
     app.state.start_time = start_time
     app.state.rag_corpus_size = rag_v2_corpus_size
     app.state.apriori_rules = apriori_rules_list
+    app.state.apriori_metadata = apriori_metadata
     app.state.narrative_provider = narrative_provider
 
     yield  # App runs here
@@ -305,8 +308,11 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
     @app.get("/apriori-rules", response_model=AprioriRulesResponse, dependencies=[Depends(verify_api_key)])
     async def apriori_rules(req: Request) -> AprioriRulesResponse:
         """Return pre-computed Apriori barrier co-failure association rules."""
+        metadata = getattr(req.app.state, "apriori_metadata", {})
         return AprioriRulesResponse(
-            rules=[AprioriRule(**r) for r in req.app.state.apriori_rules]
+            rules=[AprioriRule(**r) for r in req.app.state.apriori_rules],
+            n_incidents=metadata.get("n_incidents", 0),
+            generated_at=metadata.get("generated_at", ""),
         )
 
     # -----------------------------------------------------------------------

@@ -232,6 +232,8 @@ class AprioriRulesResponse(BaseModel):
     """GET /apriori-rules response body (S03)."""
 
     rules: list[AprioriRule]
+    n_incidents: int = 0
+    generated_at: str = ""
 
 
 # ---------------------------------------------------------------------------

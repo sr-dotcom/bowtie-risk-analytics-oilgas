@@ -287,7 +287,7 @@ describe('sortRules', () => {
 
 describe('AprioriRulesTable', () => {
   it('renders data-testid apriori-rules-table after data loads', async () => {
-    mockFetchAprioriRules.mockResolvedValue(SAMPLE_RULES)
+    mockFetchAprioriRules.mockResolvedValue({ rules: SAMPLE_RULES, n_incidents: 723, generated_at: '2026-04-06T03:37:03Z' })
     await act(async () => {
       render(<AprioriRulesTable />)
     })
@@ -299,5 +299,13 @@ describe('AprioriRulesTable', () => {
     mockFetchAprioriRules.mockReturnValue(new Promise(() => {}))
     render(<AprioriRulesTable />)
     expect(screen.getByText('Loading co-failure rules...')).toBeTruthy()
+  })
+
+  it('renders n_incidents from API response in description text', async () => {
+    mockFetchAprioriRules.mockResolvedValue({ rules: SAMPLE_RULES, n_incidents: 999, generated_at: '2026-01-01T00:00:00Z' })
+    await act(async () => {
+      render(<AprioriRulesTable />)
+    })
+    expect(screen.getByText(/999/)).toBeTruthy()
   })
 })

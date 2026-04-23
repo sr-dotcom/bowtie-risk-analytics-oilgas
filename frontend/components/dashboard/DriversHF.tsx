@@ -399,6 +399,8 @@ export function sortRules(rules: AprioriRule[], key: SortKey, dir: SortDir): Apr
  */
 export function AprioriRulesTable() {
   const [rules, setRules] = useState<AprioriRule[]>([])
+  const [nIncidents, setNIncidents] = useState<number>(0)
+  const [generatedAt, setGeneratedAt] = useState<string>('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [sortKey, setSortKey] = useState<SortKey>('confidence')
@@ -409,7 +411,9 @@ export function AprioriRulesTable() {
     fetchAprioriRules()
       .then((data) => {
         if (!cancelled) {
-          setRules(data)
+          setRules(data.rules)
+          setNIncidents(data.n_incidents)
+          setGeneratedAt(data.generated_at)
           setLoading(false)
         }
       })
@@ -456,8 +460,9 @@ export function AprioriRulesTable() {
         </h3>
         <p className="text-sm text-[#6B7280]">
           When the antecedent barrier family fails in an incident, the consequent barrier family
-          also fails with the shown confidence. Based on Apriori analysis of 174 BSEE/CSB incident
-          investigations.
+          also fails with the shown confidence. Based on Apriori analysis of {nIncidents} incident
+          investigations{generatedAt ? ` (generated ${new Date(generatedAt).toLocaleDateString()})` : ''}.
+
         </p>
       </div>
       <div className="overflow-x-auto">
