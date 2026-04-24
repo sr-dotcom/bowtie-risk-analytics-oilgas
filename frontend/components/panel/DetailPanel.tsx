@@ -111,7 +111,7 @@ export default function DetailPanel() {
               <div className="flex flex-wrap gap-1.5">
                 {degradation.pif_mentions.map((m, i) => (
                   <span key={i} className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-400 border border-amber-500/30">
-                    {m}
+                    {m.split('.').at(-1)?.replace(/_/g, ' ') ?? m}
                   </span>
                 ))}
               </div>

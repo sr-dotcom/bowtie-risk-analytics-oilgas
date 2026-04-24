@@ -393,7 +393,7 @@ export function DegradationContextPanel() {
       {targetName && (
         <p className="text-xs text-[#9CA3AF] mb-3">
           Target barrier: <span className="text-[#E8E8E8] font-medium">{targetName}</span>
-          {' '}— condition: <span style={{ color: '#D68910' }}>{barrier_condition}</span>
+          {' '}— reported status: <span style={{ color: '#D68910' }}>{barrier_condition}</span>
         </p>
       )}
 
@@ -408,7 +408,7 @@ export function DegradationContextPanel() {
                 key={i}
                 className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-amber-500/15 text-amber-400 border border-amber-500/30"
               >
-                {pif}
+                {pif.split('.').at(-1)?.replace(/_/g, ' ') ?? pif}
               </span>
             ))}
           </div>
