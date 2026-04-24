@@ -210,7 +210,7 @@ const COLUMNS: Column[] = [
   { key: 'rank', label: '#', className: 'w-10 text-center' },
   { key: 'name', label: 'Barrier Name', className: 'min-w-[160px]' },
   { key: 'riskLevel', label: 'Avg Cascade Risk', className: 'w-24 text-center' },
-  { key: 'condition', label: 'Predicted Condition', className: 'min-w-[120px]' },
+  { key: 'condition', label: 'Recorded Condition', className: 'min-w-[120px]' },
   { key: 'topFactor', label: 'Top SHAP Factor', className: 'min-w-[140px]' },
   { key: 'barrierType', label: 'Type', className: 'min-w-[100px]' },
   { key: 'lod', label: 'LOD', className: 'w-16 text-center' },

@@ -393,7 +393,7 @@ export function DegradationContextPanel() {
       {targetName && (
         <p className="text-xs text-[#9CA3AF] mb-3">
           Target barrier: <span className="text-[#E8E8E8] font-medium">{targetName}</span>
-          {' '}— reported status: <span style={{ color: '#D68910' }}>{barrier_condition}</span>
+          {' '}— recorded condition: <span style={{ color: '#D68910' }}>{barrier_condition}</span>
         </p>
       )}
 
