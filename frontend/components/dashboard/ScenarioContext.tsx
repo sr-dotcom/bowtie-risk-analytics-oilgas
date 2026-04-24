@@ -31,7 +31,9 @@ export function buildScenarioSummary(
   eventDescription: string,
 ): ScenarioSummary {
   const totalBarriers = barriers.length
-  const analyzedBarriers = barriers.filter((b) => predictions[b.id] !== undefined).length
+  const analyzedBarriers = barriers.filter(
+    (b) => predictions[b.id] !== undefined || b.average_cascading_probability !== undefined,
+  ).length
   return { eventDescription, totalBarriers, analyzedBarriers }
 }
 

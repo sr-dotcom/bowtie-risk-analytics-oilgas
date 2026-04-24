@@ -68,6 +68,27 @@ describe('buildScenarioSummary', () => {
     expect(result.analyzedBarriers).toBe(2)
   })
 
+  it('H-1: counts barriers with average_cascading_probability as analyzed even when predictions is empty', () => {
+    const barriers = [
+      makeBarrier('b1'),
+      { ...makeBarrier('b2'), average_cascading_probability: 0.72 },
+      { ...makeBarrier('b3'), average_cascading_probability: 0.31 },
+    ]
+    const result = buildScenarioSummary(barriers, {}, '')
+    expect(result.totalBarriers).toBe(3)
+    expect(result.analyzedBarriers).toBe(2)
+  })
+
+  it('H-1: counts barrier as analyzed if either predictions OR average_cascading_probability present', () => {
+    const barriers = [
+      makeBarrier('b1'),
+      { ...makeBarrier('b2'), average_cascading_probability: 0.5 },
+    ]
+    const predictions: Record<string, PredictResponse> = { b1: makePrediction() }
+    const result = buildScenarioSummary(barriers, predictions, '')
+    expect(result.analyzedBarriers).toBe(2)
+  })
+
   it('passes through eventDescription unchanged', () => {
     const desc = 'Gas release from high-pressure pipeline'
     const result = buildScenarioSummary([], {}, desc)

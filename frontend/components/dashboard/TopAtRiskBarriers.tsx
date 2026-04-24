@@ -3,7 +3,7 @@
 import { useBowtieContext } from '@/context/BowtieContext'
 import RiskScoreBadge from '@/components/panel/RiskScoreBadge'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES } from '@/lib/shap-config'
-import type { BarrierPrediction, Barrier, PredictResponse, RankedBarrier, ScenarioBarrier, ShapValue } from '@/lib/types'
+import type { BarrierPrediction, Barrier, PredictResponse, RankedBarrier, RiskLevel, ScenarioBarrier, ShapValue } from '@/lib/types'
 
 // Re-export for downstream consumers (RankedBarriers imports from here)
 export { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES }
@@ -70,6 +70,39 @@ export function buildTopCascadingBarriers(
   })
 }
 
+/** Map BowtieContext RiskLevel to the 3-tier band used in CascadingAtRiskEntry. */
+function riskLevelToBand(level: RiskLevel): 'HIGH' | 'MEDIUM' | 'LOW' {
+  if (level === 'red') return 'HIGH'
+  if (level === 'amber') return 'MEDIUM'
+  return 'LOW'
+}
+
+/**
+ * Build top-N barriers from the analyzeAll() output stored on each barrier.
+ * Used when cascadingPredictions are not yet available (no barrier clicked),
+ * but averageAll() has already written average_cascading_probability to each barrier.
+ *
+ * @param barriers - All barriers from BowtieContext.
+ * @param n        - Max entries to return (default 3).
+ */
+export function buildAverageRiskItems(
+  barriers: Barrier[],
+  n = 3,
+): CascadingAtRiskEntry[] {
+  return barriers
+    .filter((b) => b.average_cascading_probability !== undefined)
+    .sort((a, b) => (b.average_cascading_probability ?? 0) - (a.average_cascading_probability ?? 0))
+    .slice(0, n)
+    .map((b) => ({
+      control_id: b.id,
+      name: b.name,
+      probability: b.average_cascading_probability ?? 0,
+      riskBand: riskLevelToBand(b.riskLevel),
+      topFactor:
+        b.top_reasons?.[0]?.display_name || b.top_reasons?.[0]?.feature || null,
+    }))
+}
+
 /**
  * Build the top-N barriers ranked by failure probability descending.
  *
@@ -121,15 +154,21 @@ const RISK_BAND_LEVEL: Record<'HIGH' | 'MEDIUM' | 'LOW', 'red' | 'amber' | 'gree
 
 export default function TopAtRiskBarriers() {
   const { barriers, predictions, cascadingPredictions, cascadingRanked, scenario } = useBowtieContext()
+
+  // Priority: per-conditioning predictions (barrier clicked) > analyzeAll() averages > legacy
   const isCascadingMode = cascadingPredictions.length > 0 && scenario !== null
+  const hasAnalyzedAll = barriers.some((b) => b.average_cascading_probability !== undefined)
 
   const cascadingItems = isCascadingMode
     ? buildTopCascadingBarriers(cascadingPredictions, cascadingRanked, scenario.barriers, 3)
+    : hasAnalyzedAll
+    ? buildAverageRiskItems(barriers, 3)
     : []
 
   const legacyItems = buildTopAtRiskBarriers(barriers, predictions, 5)
 
-  const isEmpty = isCascadingMode ? cascadingItems.length === 0 : legacyItems.length === 0
+  const usesCascading = isCascadingMode || hasAnalyzedAll
+  const isEmpty = usesCascading ? cascadingItems.length === 0 : legacyItems.length === 0
 
   return (
     <div data-testid="top-at-risk-barriers">
@@ -137,11 +176,11 @@ export default function TopAtRiskBarriers() {
 
       {isEmpty ? (
         <p className="text-sm text-[#6B7280]">
-          {isCascadingMode
+          {usesCascading
             ? 'No cascading predictions available'
             : 'Run Analyze Barriers to compute Average Cascading Risk'}
         </p>
-      ) : isCascadingMode ? (
+      ) : usesCascading ? (
         <div>
           {cascadingItems.map((item) => (
             <div key={item.control_id} className="bg-[#151B24] rounded-lg p-3 mb-2">

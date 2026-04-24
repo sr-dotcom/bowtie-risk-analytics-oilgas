@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import {
   buildTopAtRiskBarriers,
+  buildAverageRiskItems,
   SHAP_HIDDEN_FEATURES,
 } from '@/components/dashboard/TopAtRiskBarriers'
 import type { Barrier, PredictResponse, ShapValue } from '@/lib/types'
@@ -154,5 +155,72 @@ describe('buildTopAtRiskBarriers', () => {
     const result = buildTopAtRiskBarriers([b1, b2], predictions)
     expect(result).toHaveLength(1)
     expect(result[0].barrier.name).toBe('Analyzed')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// H-2: buildAverageRiskItems — analyzeAll() path
+// ---------------------------------------------------------------------------
+
+describe('buildAverageRiskItems', () => {
+  it('returns [] when no barriers have average_cascading_probability', () => {
+    const barriers = [makeBarrier(), makeBarrier()]
+    expect(buildAverageRiskItems(barriers)).toEqual([])
+  })
+
+  it('sorts by average_cascading_probability descending', () => {
+    const barriers = [
+      makeBarrier({ name: 'Low', riskLevel: 'green', average_cascading_probability: 0.2 }),
+      makeBarrier({ name: 'High', riskLevel: 'red', average_cascading_probability: 0.85 }),
+      makeBarrier({ name: 'Mid', riskLevel: 'amber', average_cascading_probability: 0.55 }),
+    ]
+    const result = buildAverageRiskItems(barriers)
+    expect(result[0].name).toBe('High')
+    expect(result[1].name).toBe('Mid')
+    expect(result[2].name).toBe('Low')
+  })
+
+  it('maps RiskLevel to riskBand correctly', () => {
+    const barriers = [
+      makeBarrier({ riskLevel: 'red', average_cascading_probability: 0.9 }),
+      makeBarrier({ riskLevel: 'amber', average_cascading_probability: 0.5 }),
+      makeBarrier({ riskLevel: 'green', average_cascading_probability: 0.2 }),
+    ]
+    const result = buildAverageRiskItems(barriers)
+    expect(result[0].riskBand).toBe('HIGH')
+    expect(result[1].riskBand).toBe('MEDIUM')
+    expect(result[2].riskBand).toBe('LOW')
+  })
+
+  it('respects n limit (default 3)', () => {
+    const barriers = Array.from({ length: 7 }, (_, i) =>
+      makeBarrier({ average_cascading_probability: 0.1 * (i + 1) }),
+    )
+    expect(buildAverageRiskItems(barriers)).toHaveLength(3)
+    expect(buildAverageRiskItems(barriers, 5)).toHaveLength(5)
+  })
+
+  it('uses display_name as topFactor when present, falls back to feature name', () => {
+    const b1 = makeBarrier({
+      average_cascading_probability: 0.7,
+      top_reasons: [{ feature: 'lod_industry_standard_target', value: 0.3, display_name: 'Target LoD category' }],
+    })
+    const b2 = makeBarrier({
+      average_cascading_probability: 0.5,
+      top_reasons: [{ feature: 'barrier_level_target', value: 0.2, display_name: '' }],
+    })
+    const result = buildAverageRiskItems([b1, b2])
+    expect(result[0].topFactor).toBe('Target LoD category')
+    expect(result[1].topFactor).toBe('barrier_level_target')
+  })
+
+  it('excludes barriers without average_cascading_probability', () => {
+    const barriers = [
+      makeBarrier({ name: 'NoAvg' }),
+      makeBarrier({ name: 'HasAvg', average_cascading_probability: 0.6 }),
+    ]
+    const result = buildAverageRiskItems(barriers)
+    expect(result).toHaveLength(1)
+    expect(result[0].name).toBe('HasAvg')
   })
 })

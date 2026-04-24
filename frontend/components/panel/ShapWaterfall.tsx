@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import type { ShapValue, CascadingShapValue } from '@/lib/types'
+import { getFeatureDisplayName } from '@/lib/shap-config'
 
 // ---------------------------------------------------------------------------
 // Data transformation
@@ -92,7 +93,8 @@ export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames
     }))
     const displayNames: Record<string, string> = {}
     for (const s of cascadingShap) {
-      displayNames[s.feature] = s.display_name
+      // display_name from the API defaults to "" — fall back to the shap-config lookup
+      displayNames[s.feature] = s.display_name || getFeatureDisplayName(s.feature)
     }
     const data = buildWaterfallData(converted, 0, displayNames)
     if (data.length === 0) {

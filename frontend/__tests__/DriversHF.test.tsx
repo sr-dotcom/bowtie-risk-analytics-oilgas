@@ -16,6 +16,7 @@ vi.mock('@/lib/api', async () => {
 import {
   buildGlobalShapData,
   buildPifPrevalenceData,
+  buildCascadingContextFactors,
   PifPrevalenceChart,
   PIF_CATEGORY,
   AprioriRulesTable,
@@ -24,7 +25,7 @@ import {
 import type { GlobalShapEntry, PifPrevalenceEntry } from '@/components/dashboard/DriversHF'
 import { BowtieProvider } from '@/context/BowtieContext'
 import GlobalShapChart from '@/components/dashboard/DriversHF'
-import type { AprioriRule, PredictResponse, ShapValue } from '@/lib/types'
+import type { AprioriRule, Barrier, PredictResponse, ShapValue } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -114,6 +115,140 @@ describe('buildGlobalShapData', () => {
     const contextEntry = result.find((e: GlobalShapEntry) => e.feature === 'Top Event Category')
     expect(barrierEntry?.category).toBe('barrier')
     expect(contextEntry?.category).toBe('incident_context')
+  })
+
+  it('H-4: returns [] when predictions empty and no barriers provided', () => {
+    expect(buildGlobalShapData({})).toEqual([])
+  })
+
+  it('H-4: aggregates from top_reasons when predictions is empty', () => {
+    const barriers: Barrier[] = [
+      {
+        id: 'b1', name: 'B1', side: 'prevention', barrier_type: 'admin', barrier_family: 'proc',
+        line_of_defense: '1', barrierRole: 'preventive', riskLevel: 'red',
+        average_cascading_probability: 0.85,
+        top_reasons: [
+          { feature: 'lod_industry_standard_target', value: 0.4, display_name: '' },
+          { feature: 'barrier_level_target', value: 0.2, display_name: '' },
+        ],
+      },
+      {
+        id: 'b2', name: 'B2', side: 'mitigation', barrier_type: 'tech', barrier_family: 'proc',
+        line_of_defense: '2', barrierRole: 'mitigative', riskLevel: 'amber',
+        average_cascading_probability: 0.5,
+        top_reasons: [
+          { feature: 'lod_industry_standard_target', value: 0.3, display_name: '' },
+          { feature: 'flag_mechanical_failure', value: 0.1, display_name: '' },
+        ],
+      },
+    ]
+    const result = buildGlobalShapData({}, barriers)
+    expect(result.length).toBeGreaterThan(0)
+    // lod_industry_standard_target appears twice — should be first (highest mean |SHAP|)
+    const first = result[0]
+    expect(first.feature).toBe('Target LoD category')
+    expect(first.meanAbsShap).toBeCloseTo(0.35) // (0.4 + 0.3) / 2
+  })
+})
+
+// ---------------------------------------------------------------------------
+// buildCascadingContextFactors tests
+// ---------------------------------------------------------------------------
+
+describe('buildCascadingContextFactors', () => {
+  function makeAnalyzedBarrier(
+    id: string,
+    probability: number,
+    topReasons: { feature: string; value: number }[],
+  ): Barrier {
+    return {
+      id,
+      name: `Barrier ${id}`,
+      side: 'prevention',
+      barrier_type: 'admin',
+      barrier_family: 'proc',
+      line_of_defense: '1',
+      barrierRole: 'preventive',
+      riskLevel: 'red',
+      average_cascading_probability: probability,
+      top_reasons: topReasons.map((r) => ({ ...r, display_name: '' })),
+    }
+  }
+
+  it('returns [] when no barriers have average_cascading_probability', () => {
+    const barriers: Barrier[] = [
+      { id: 'b1', name: 'B1', side: 'prevention', barrier_type: 'admin', barrier_family: 'proc', line_of_defense: '1', barrierRole: 'preventive', riskLevel: 'unanalyzed' },
+    ]
+    expect(buildCascadingContextFactors(barriers)).toEqual([])
+  })
+
+  it('returns [] when analyzed barriers have no top_reasons', () => {
+    const b = makeAnalyzedBarrier('b1', 0.7, [])
+    expect(buildCascadingContextFactors([b])).toEqual([])
+  })
+
+  it('prevalence = 1.0 when feature appears in every analyzed barrier', () => {
+    const b1 = makeAnalyzedBarrier('b1', 0.8, [{ feature: 'flag_mechanical_failure', value: 0.3 }])
+    const b2 = makeAnalyzedBarrier('b2', 0.6, [{ feature: 'flag_mechanical_failure', value: 0.2 }])
+    const result = buildCascadingContextFactors([b1, b2])
+    const entry = result.find((e) => e.featureKey === 'flag_mechanical_failure')
+    expect(entry?.prevalence).toBeCloseTo(1.0)
+  })
+
+  it('prevalence = 0.5 when feature appears in 1 out of 2 analyzed barriers', () => {
+    const b1 = makeAnalyzedBarrier('b1', 0.8, [{ feature: 'flag_mechanical_failure', value: 0.3 }])
+    const b2 = makeAnalyzedBarrier('b2', 0.6, [{ feature: 'barrier_level_target', value: 0.2 }])
+    const result = buildCascadingContextFactors([b1, b2])
+    const entry = result.find((e) => e.featureKey === 'flag_mechanical_failure')
+    expect(entry?.prevalence).toBeCloseTo(0.5)
+  })
+
+  it('deduplicates feature within the same barrier (counted at most once per barrier)', () => {
+    // feature appears twice in b1's top_reasons — should count as 1 occurrence, not 2
+    const b1 = makeAnalyzedBarrier('b1', 0.9, [
+      { feature: 'lod_industry_standard_target', value: 0.4 },
+      { feature: 'lod_industry_standard_target', value: 0.1 },
+    ])
+    const b2 = makeAnalyzedBarrier('b2', 0.5, [{ feature: 'barrier_level_target', value: 0.2 }])
+    const result = buildCascadingContextFactors([b1, b2])
+    const entry = result.find((e) => e.featureKey === 'lod_industry_standard_target')
+    // 1 barrier out of 2 — prevalence should be 0.5, not 1.0
+    expect(entry?.prevalence).toBeCloseTo(0.5)
+  })
+
+  it('sorts descending by prevalence', () => {
+    const b1 = makeAnalyzedBarrier('b1', 0.9, [
+      { feature: 'flag_mechanical_failure', value: 0.4 },
+      { feature: 'barrier_level_target', value: 0.2 },
+    ])
+    const b2 = makeAnalyzedBarrier('b2', 0.5, [
+      { feature: 'flag_mechanical_failure', value: 0.3 },
+    ])
+    const result = buildCascadingContextFactors([b1, b2])
+    for (let i = 0; i < result.length - 1; i++) {
+      expect(result[i].prevalence).toBeGreaterThanOrEqual(result[i + 1].prevalence)
+    }
+    expect(result[0].featureKey).toBe('flag_mechanical_failure')
+  })
+
+  it('uses getFeatureDisplayName to resolve human labels', () => {
+    const b = makeAnalyzedBarrier('b1', 0.8, [{ feature: 'lod_industry_standard_target', value: 0.4 }])
+    const result = buildCascadingContextFactors([b])
+    expect(result[0].feature).toBe('Target LoD category')
+    expect(result[0].featureKey).toBe('lod_industry_standard_target')
+  })
+
+  it('excludes barriers without average_cascading_probability from the analysis', () => {
+    const analyzed = makeAnalyzedBarrier('b1', 0.8, [{ feature: 'flag_mechanical_failure', value: 0.4 }])
+    const unanalyzed: Barrier = {
+      id: 'b2', name: 'B2', side: 'prevention', barrier_type: 'admin', barrier_family: 'proc',
+      line_of_defense: '1', barrierRole: 'preventive', riskLevel: 'unanalyzed',
+      top_reasons: [{ feature: 'flag_mechanical_failure', value: 0.9, display_name: '' }],
+    }
+    const result = buildCascadingContextFactors([analyzed, unanalyzed])
+    const entry = result.find((e) => e.featureKey === 'flag_mechanical_failure')
+    // Only 1 analyzed barrier, and it has the feature — prevalence = 1.0, not 0.5
+    expect(entry?.prevalence).toBeCloseTo(1.0)
   })
 })
 

@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Cell, Tooltip, ResponsiveContainer, LabelList } from 'recharts'
 import { useBowtieContext } from '@/context/BowtieContext'
 import { CHART_COLORS } from '@/lib/chart-colors'
-import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES } from '@/lib/shap-config'
+import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES, getFeatureDisplayName } from '@/lib/shap-config'
 import { PIF_DISPLAY_NAMES } from '@/lib/types'
-import type { AprioriRule, DegradationContext, PifFlags, PredictResponse } from '@/lib/types'
+import type { AprioriRule, Barrier, DegradationContext, PifFlags, PredictResponse } from '@/lib/types'
 import { fetchAprioriRules } from '@/lib/api'
 import { formatBarrierFamily } from '@/lib/format'
 
@@ -30,15 +30,38 @@ export interface GlobalShapEntry {
 
 /**
  * Compute mean |SHAP| per feature across all predictions.
+ * Falls back to barriers[].top_reasons when predictions is empty (analyzeAll() path).
  *
  * @param predictions - Map of barrierId → PredictResponse from BowtieContext.
+ * @param barriers    - Optional barrier list for the analyzeAll() fallback.
  * @returns Array of GlobalShapEntry sorted descending by meanAbsShap.
  */
 export function buildGlobalShapData(
   predictions: Record<string, PredictResponse>,
+  barriers?: Barrier[],
 ): GlobalShapEntry[] {
   const values = Object.values(predictions)
-  if (values.length === 0) return []
+  if (values.length === 0) {
+    // analyzeAll() path: aggregate from top_reasons stored on each barrier
+    if (!barriers?.length) return []
+    const sums: Record<string, number> = {}
+    const counts: Record<string, number> = {}
+    for (const b of barriers) {
+      for (const r of b.top_reasons ?? []) {
+        const abs = Math.abs(r.value)
+        sums[r.feature] = (sums[r.feature] ?? 0) + abs
+        counts[r.feature] = (counts[r.feature] ?? 0) + 1
+      }
+    }
+    if (Object.keys(sums).length === 0) return []
+    return Object.keys(sums)
+      .map((feat) => ({
+        feature: getFeatureDisplayName(feat),
+        meanAbsShap: sums[feat] / counts[feat],
+        category: 'barrier' as const,
+      }))
+      .sort((a, b) => b.meanAbsShap - a.meanAbsShap)
+  }
 
   const sums: Record<string, number> = {}
   const counts: Record<string, number> = {}
@@ -71,8 +94,8 @@ export function buildGlobalShapData(
 // ---------------------------------------------------------------------------
 
 export default function GlobalShapChart() {
-  const { predictions } = useBowtieContext()
-  const data = buildGlobalShapData(predictions)
+  const { predictions, barriers } = useBowtieContext()
+  const data = buildGlobalShapData(predictions, barriers)
 
   return (
     <div data-testid="global-shap-chart">
@@ -210,19 +233,59 @@ export function buildPifPrevalenceData(
   return result.sort((a, b) => b.prevalence - a.prevalence)
 }
 
+/**
+ * Build cascading context factor prevalence from barriers[].top_reasons.
+ * Used as the fallback for PifPrevalenceChart when no legacy predictions exist.
+ * Prevalence = fraction of analyzed barriers that list this feature in their top_reasons.
+ */
+export function buildCascadingContextFactors(barriers: Barrier[]): PifPrevalenceEntry[] {
+  const analyzed = barriers.filter((b) => b.average_cascading_probability !== undefined)
+  if (analyzed.length === 0) return []
+
+  const counts: Record<string, number> = {}
+  for (const b of analyzed) {
+    const seen = new Set<string>()
+    for (const r of b.top_reasons ?? []) {
+      if (!seen.has(r.feature)) {
+        seen.add(r.feature)
+        counts[r.feature] = (counts[r.feature] ?? 0) + 1
+      }
+    }
+  }
+
+  const total = analyzed.length
+  return Object.entries(counts)
+    .map(([feature, count]) => ({
+      feature: getFeatureDisplayName(feature),
+      featureKey: feature,
+      prevalence: count / total,
+      category: 'Work' as const,
+    }))
+    .sort((a, b) => b.prevalence - a.prevalence)
+}
+
 /** Horizontal bar chart showing PIF prevalence in top-3 SHAP drivers. */
 export function PifPrevalenceChart() {
-  const { predictions } = useBowtieContext()
-  const data = buildPifPrevalenceData(predictions)
+  const { predictions, barriers } = useBowtieContext()
+  const hasCascadingAnalysis = barriers.some((b) => b.average_cascading_probability !== undefined)
+  const hasLegacyPredictions = Object.keys(predictions).length > 0
+
+  // analyzeAll() path: cascading model has no pif_ features — show context factors instead
+  const isCascadingFallback = !hasLegacyPredictions && hasCascadingAnalysis
+  const data = isCascadingFallback
+    ? buildCascadingContextFactors(barriers)
+    : buildPifPrevalenceData(predictions)
+  const chartTitle = isCascadingFallback ? 'Context Factors Prevalence' : 'PIF Prevalence in Top Drivers'
+  const emptyMsg = isCascadingFallback
+    ? 'No context factors found in cascade analysis'
+    : 'Run Analyze Barriers to see PIF prevalence'
 
   return (
     <div data-testid="pif-prevalence-chart">
-      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">PIF Prevalence in Top Drivers</h3>
+      <h3 className="text-base font-semibold mb-3 text-[#E8E8E8]">{chartTitle}</h3>
 
       {data.length === 0 ? (
-        <p className="text-sm text-[#6B7280]">
-          Run Analyze Barriers to see PIF prevalence
-        </p>
+        <p className="text-sm text-[#6B7280]">{emptyMsg}</p>
       ) : (
         <ResponsiveContainer width="100%" height={Math.max(200, data.length * 32 + 60)}>
           <BarChart
