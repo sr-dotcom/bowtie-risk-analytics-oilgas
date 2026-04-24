@@ -83,3 +83,17 @@ jobs:
             ghcr.io/sr-dotcom/bowtie-risk-analytics-oilgas-frontend:${{ github.sha }}
           cache-from: type=gha,scope=frontend
           cache-to: type=gha,mode=max,scope=frontend
+
+  trigger-deploy:
+    needs: [build-api, build-frontend]
+    runs-on: ubuntu-latest
+    continue-on-error: true   # Phase 6 lands the Cloudflare route
+    steps:
+      - name: POST to webhook
+        env:
+          DEPLOY_WEBHOOK_SECRET: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer $DEPLOY_WEBHOOK_SECRET" \
+            https://bowtie-deploy.gnsr.dev/hooks/bowtie-analytics
+          echo "Webhook POST sent"
