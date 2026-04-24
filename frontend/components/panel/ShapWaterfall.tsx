@@ -107,7 +107,7 @@ export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames
         <ResponsiveContainer width="100%" height={chartHeight}>
           <BarChart layout="vertical" data={data} margin={{ top: 4, right: 16, bottom: 4, left: 0 }}>
             <XAxis type="number" tick={{ fontSize: 12, fill: '#9CA3AF' }} tickFormatter={(v: number) => v.toFixed(2)} stroke="#2A3442" />
-            <YAxis type="category" dataKey="feature" width={140} tick={{ fontSize: 12, fill: '#9CA3AF' }} stroke="#2A3442" />
+            <YAxis type="category" dataKey="feature" width={185} tick={{ fontSize: 12, fill: '#9CA3AF' }} stroke="#2A3442" />
             <ReferenceLine x={0} stroke="#2A3442" strokeDasharray="3 3" />
             <Tooltip contentStyle={{ backgroundColor: '#151B24', border: '1px solid #2A3442', borderRadius: '6px' }} labelStyle={{ color: '#E8E8E8' }} itemStyle={{ color: '#9CA3AF' }} formatter={(val, name) => name === 'value' && typeof val === 'number' ? [val.toFixed(4), 'SHAP'] : ['', '']} />
             <Bar dataKey="offset" stackId="a" fill="transparent" isAnimationActive={false} />
@@ -203,7 +203,7 @@ export default function ShapWaterfall({ shap, baseValue = 0, featureDisplayNames
           <YAxis
             type="category"
             dataKey="feature"
-            width={140}
+            width={185}
             tick={{ fontSize: 12, fill: '#9CA3AF' }}
             stroke="#2A3442"
           />

@@ -39,13 +39,20 @@ function isListBlock(lines: string[]): boolean {
 function renderBlock(block: string, blockIdx: number): React.ReactElement | null {
   const lines = block.split('\n')
 
-  // Heading: ## → <h3>, # → <h2>
+  // Headings: ### → <h4>, ## → <h3>, # → <h2> (most-specific first)
   const firstLine = lines[0].trimEnd()
+  if (/^### /.test(firstLine)) {
+    return <h4 key={blockIdx}>{firstLine.replace(/^### /, '')}</h4>
+  }
   if (/^## /.test(firstLine)) {
     return <h3 key={blockIdx}>{firstLine.replace(/^## /, '')}</h3>
   }
   if (/^# /.test(firstLine)) {
     return <h2 key={blockIdx}>{firstLine.replace(/^# /, '')}</h2>
+  }
+  // Horizontal rule
+  if (/^---\s*$/.test(firstLine)) {
+    return <hr key={blockIdx} className="my-3 border-t border-[#2A3442]" />
   }
 
   if (isListBlock(lines)) {

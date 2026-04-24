@@ -9,6 +9,7 @@ import DetailDrawer from './panel/DetailDrawer'
 import { BSEE_DEMO_SCENARIO } from './sidebar/constants'
 import type { ScenarioBarrier } from '@/lib/types'
 import DashboardView from './dashboard/DashboardView'
+import ProvenanceStrip from './dashboard/ProvenanceStrip'
 
 // ---------------------------------------------------------------------------
 // Demo threats and consequences (hardcoded — will be user-enterable later)
@@ -171,7 +172,7 @@ function BowtieAppInner() {
       </aside>
 
       {/* Center panel: Bowtie diagram or pathway view */}
-      <main className="flex-1 h-full overflow-hidden relative">
+      <main className="flex-1 h-full overflow-hidden relative flex flex-col">
         {/* View toggle */}
         <div className="absolute top-3 right-3 z-20 flex rounded-lg overflow-hidden border border-[#2A3442] bg-[#151B24]">
           <button
@@ -211,26 +212,29 @@ function BowtieAppInner() {
           </div>
         )}
 
-        {viewMode === 'diagram' ? (
-          <div className="h-full w-full bg-[#0F1419] p-3">
-            <BowtieSVG
-              topEvent={eventDescription}
-              hazardName="High-pressure gas"
-              threats={DEMO_THREATS}
-              consequences={DEMO_CONSEQUENCES}
-              barriers={svgBarriers}
+        <div className="flex-1 overflow-hidden">
+          {viewMode === 'diagram' ? (
+            <div className="h-full w-full bg-[#0F1419] p-3">
+              <BowtieSVG
+                topEvent={eventDescription}
+                hazardName="High-pressure gas"
+                threats={DEMO_THREATS}
+                consequences={DEMO_CONSEQUENCES}
+                barriers={svgBarriers}
+                selectedBarrierId={selectedBarrierId}
+                onBarrierClick={handleBarrierClick}
+              />
+            </div>
+          ) : (
+            <PathwayView
+              barriers={barriers}
+              predictions={predictions}
               selectedBarrierId={selectedBarrierId}
-              onBarrierClick={handleBarrierClick}
+              onBarrierClick={setSelectedBarrierId}
             />
-          </div>
-        ) : (
-          <PathwayView
-            barriers={barriers}
-            predictions={predictions}
-            selectedBarrierId={selectedBarrierId}
-            onBarrierClick={setSelectedBarrierId}
-          />
-        )}
+          )}
+        </div>
+        <ProvenanceStrip />
       </main>
 
       <DetailDrawer />

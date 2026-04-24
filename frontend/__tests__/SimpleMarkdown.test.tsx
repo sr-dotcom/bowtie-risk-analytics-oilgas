@@ -75,6 +75,18 @@ describe('SimpleMarkdown', () => {
     expect(p.tagName).toBe('P')
   })
 
+  it('renders "### heading" as <h4>', () => {
+    render(<SimpleMarkdown content="### Section Title" />)
+    const h4 = screen.getByText('Section Title')
+    expect(h4.tagName).toBe('H4')
+  })
+
+  it('renders "---" as <hr>', () => {
+    const { container } = render(<SimpleMarkdown content="---" />)
+    const hr = container.querySelector('hr')
+    expect(hr).not.toBeNull()
+  })
+
   it('handles mixed paragraphs and bullet lists separated by \\n\\n', () => {
     render(
       <SimpleMarkdown content={`Intro paragraph\n\n- Bullet A\n- Bullet B\n\nClosing paragraph`} />

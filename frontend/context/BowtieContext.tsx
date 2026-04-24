@@ -33,6 +33,7 @@ interface BowtieState {
   /** viewMode controls which top-level view is rendered */
   viewMode: 'diagram' | 'pathway' | 'dashboard'
   dashboardTab: string | null
+  analyticsTab: string
 
   setEventDescription: (v: string) => void
   addBarrier: (b: Omit<Barrier, 'id' | 'riskLevel'>) => void
@@ -54,6 +55,7 @@ interface BowtieState {
   togglePif: (key: keyof PifFlags) => void
   setViewMode: (v: 'diagram' | 'pathway' | 'dashboard') => void
   setDashboardTab: (tab: string | null) => void
+  setAnalyticsTab: (tab: string) => void
 
   // ── Cascading state (new /predict-cascading flow — S05a/T04) ──
   scenario: Scenario | null
@@ -109,6 +111,7 @@ export function BowtieProvider({
   const [pifFlags, setPifFlags] = useState<PifFlags>({ ...DEFAULT_PIF_FLAGS })
   const [viewMode, setViewMode] = useState<'diagram' | 'pathway' | 'dashboard'>(initialViewMode)
   const [dashboardTab, setDashboardTab] = useState<string | null>(initialDashboardTab)
+  const [analyticsTab, setAnalyticsTab] = useState<string>('executive-summary')
 
   // ── Cascading state ──
   const [scenario, setScenario] = useState<Scenario | null>(initialScenario)
@@ -212,6 +215,7 @@ export function BowtieProvider({
         pifFlags,
         viewMode,
         dashboardTab,
+        analyticsTab,
         setEventDescription,
         addBarrier,
         addBarrierWithId,
@@ -227,6 +231,7 @@ export function BowtieProvider({
         togglePif,
         setViewMode,
         setDashboardTab,
+        setAnalyticsTab,
         // Cascading
         scenario,
         conditioningBarrierId,

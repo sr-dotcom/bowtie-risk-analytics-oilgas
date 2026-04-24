@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useBowtieContext } from '@/context/BowtieContext'
 import { useAnalyzeBarriers } from '@/hooks/useAnalyzeBarriers'
 import RiskDistributionChart, { buildRiskDistribution } from './RiskDistributionChart'
@@ -41,16 +41,16 @@ const CASCADE_AUC_DISPLAY = `${Number(CASCADE_AUC_MEAN).toFixed(2)} ± ${Number(
 // ---------------------------------------------------------------------------
 
 export default function DashboardView() {
-  const [activeTab, setActiveTab] = useState<TabId>('executive-summary')
-  const { barriers, predictions, isAnalyzing, dashboardTab, setDashboardTab, cascadingPredictions, eventDescription, explanation } = useBowtieContext()
+  const { barriers, predictions, isAnalyzing, dashboardTab, setDashboardTab, analyticsTab, setAnalyticsTab, cascadingPredictions, eventDescription, explanation } = useBowtieContext()
+  const activeTab = analyticsTab as TabId
 
   // Consume dashboardTab from context: switch active tab then clear to avoid re-triggering
   useEffect(() => {
     if (dashboardTab) {
-      setActiveTab(dashboardTab as TabId)
+      setAnalyticsTab(dashboardTab)
       setDashboardTab(null)
     }
-  }, [dashboardTab, setDashboardTab])
+  }, [dashboardTab, setDashboardTab, setAnalyticsTab])
   const { analyzeAll } = useAnalyzeBarriers()
 
   const autoTriggered = useRef(false)
@@ -81,7 +81,7 @@ export default function DashboardView() {
         {TABS.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
+            onClick={() => setAnalyticsTab(tab.id)}
             className={`px-4 py-2.5 text-xs font-medium transition-colors cursor-pointer ${
               activeTab === tab.id
                 ? 'text-[#E8E8E8] border-b-2 border-[#2C5F7F]'
