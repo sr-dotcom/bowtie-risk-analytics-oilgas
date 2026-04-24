@@ -73,6 +73,7 @@ RUN touch ./scripts/__init__.py ./scripts/association_mining/__init__.py && \
 # Baked model + RAG artifacts
 COPY --chown=app:app data/models/artifacts ./data/models/artifacts
 COPY --chown=app:app data/rag/v2 ./data/rag/v2
+COPY --chown=app:app data/evaluation/apriori_rules.json ./data/evaluation/apriori_rules.json
 
 USER app
 

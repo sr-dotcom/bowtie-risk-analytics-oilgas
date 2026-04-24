@@ -36,7 +36,6 @@ frontend/tests-e2e
 data/raw
 data/structured
 data/processed
-data/evaluation
 data/rag/v1
 data/rag/corpus_v1
 
