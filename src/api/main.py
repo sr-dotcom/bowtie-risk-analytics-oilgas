@@ -1,8 +1,3 @@
-from __future__ import annotations
-
-from dotenv import load_dotenv
-load_dotenv()
-
 """FastAPI application for Bowtie Risk Analytics.
 
 Endpoints:
@@ -17,6 +12,11 @@ Endpoints:
 All ML resources are loaded exactly once at startup via the async lifespan
 context manager and stored on app.state.
 """
+
+from __future__ import annotations
+
+from dotenv import load_dotenv
+load_dotenv()
 
 import asyncio
 import json
@@ -258,7 +258,7 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
     # GET /predict — 410 Gone (migrated to /predict-cascading)
     # -----------------------------------------------------------------------
 
-    @app.get("/predict")
+    @app.api_route("/predict", methods=["GET", "POST"])
     async def predict_gone() -> JSONResponse:
         """Legacy /predict endpoint — permanently removed (S03).
 
@@ -273,7 +273,7 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
     # GET /explain — 410 Gone (migrated to /explain-cascading)
     # -----------------------------------------------------------------------
 
-    @app.get("/explain")
+    @app.api_route("/explain", methods=["GET", "POST"])
     async def explain_gone() -> JSONResponse:
         """Legacy /explain endpoint — permanently removed (S03).
 

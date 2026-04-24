@@ -5,7 +5,7 @@ schema against the S03 API contract.
 
 Checks:
   - All 3 new cascading endpoints documented (POST)
-  - Legacy /predict and /explain documented as GET with 410 responses
+  - Legacy /predict and /explain documented as GET + POST with 410 responses
   - /health and /apriori-rules still present
   - PredictCascadingResponse schema has correct shape
 """
@@ -69,23 +69,23 @@ def test_explain_cascading_documented(openapi_schema: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Gone endpoints documented as GET (not POST) with 410
+# Gone endpoints documented as GET + POST with 410
 # ---------------------------------------------------------------------------
 
-def test_predict_gone_documented_as_get(openapi_schema: dict) -> None:
-    """Legacy /predict is documented as GET (returns 410)."""
+def test_predict_gone_documented_as_get_and_post(openapi_schema: dict) -> None:
+    """Legacy /predict accepts GET and POST — both return 410 Gone."""
     assert "/predict" in openapi_schema["paths"]
     path_item = openapi_schema["paths"]["/predict"]
-    assert "get" in path_item, "/predict should be GET now"
-    assert "post" not in path_item, "/predict should no longer accept POST"
+    assert "get" in path_item, "/predict GET must return 410"
+    assert "post" in path_item, "/predict POST must return 410 (not 405) for legacy clients"
 
 
-def test_explain_gone_documented_as_get(openapi_schema: dict) -> None:
-    """Legacy /explain is documented as GET (returns 410)."""
+def test_explain_gone_documented_as_get_and_post(openapi_schema: dict) -> None:
+    """Legacy /explain accepts GET and POST — both return 410 Gone."""
     assert "/explain" in openapi_schema["paths"]
     path_item = openapi_schema["paths"]["/explain"]
-    assert "get" in path_item, "/explain should be GET now"
-    assert "post" not in path_item, "/explain should no longer accept POST"
+    assert "get" in path_item, "/explain GET must return 410"
+    assert "post" in path_item, "/explain POST must return 410 (not 405) for legacy clients"
 
 
 # ---------------------------------------------------------------------------

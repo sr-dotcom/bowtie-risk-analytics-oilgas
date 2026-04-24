@@ -1,11 +1,13 @@
 """Tests for src/api/main.py — S03 endpoint suite.
 
-After T03, /predict and /explain are HTTP 410 Gone (GET endpoints).
+After T03, /predict and /explain are HTTP 410 Gone (GET + POST endpoints).
 Cascading endpoints tested in test_api_cascading.py.
 
 Tests:
   test_predict_returns_410_gone       — GET /predict → 410 with migrate_to
+  test_predict_post_returns_410_gone  — POST /predict → 410 (legacy POST clients)
   test_explain_returns_410_gone       — GET /explain → 410 with migrate_to
+  test_explain_post_returns_410_gone  — POST /explain → 410 (legacy POST clients)
   test_health_returns_200             — GET /health → status=ok + fields present
   test_health_timestamp_iso8601       — /health timestamp is ISO8601 UTC (ops-manual)
   test_health_model_info              — cascading + rag_v2 loaded info
@@ -77,9 +79,27 @@ def test_predict_returns_410_gone(client: TestClient) -> None:
     assert data["migrate_to"] == "/predict-cascading"
 
 
+def test_predict_post_returns_410_gone(client: TestClient) -> None:
+    """POST /predict returns 410 Gone — legacy POST clients get migration hint."""
+    resp = client.post("/predict", json={})
+    assert resp.status_code == 410
+    data = resp.json()
+    assert data["error"] == "gone"
+    assert data["migrate_to"] == "/predict-cascading"
+
+
 def test_explain_returns_410_gone(client: TestClient) -> None:
     """GET /explain returns 410 Gone with migrate_to=/explain-cascading."""
     resp = client.get("/explain")
+    assert resp.status_code == 410
+    data = resp.json()
+    assert data["error"] == "gone"
+    assert data["migrate_to"] == "/explain-cascading"
+
+
+def test_explain_post_returns_410_gone(client: TestClient) -> None:
+    """POST /explain returns 410 Gone — legacy POST clients get migration hint."""
+    resp = client.post("/explain", json={})
     assert resp.status_code == 410
     data = resp.json()
     assert data["error"] == "gone"
@@ -231,13 +251,13 @@ def test_openapi_schema_endpoints(monkeypatch: pytest.MonkeyPatch) -> None:
     assert "post" in paths["/rank-targets"]
     assert "post" in paths["/explain-cascading"]
 
-    # Legacy endpoints now gone (GET, not POST)
+    # Legacy endpoints now gone — accept GET and POST so legacy clients get 410
     assert "/predict" in paths
     assert "/explain" in paths
     assert "get" in paths["/predict"]
     assert "get" in paths["/explain"]
-    assert "post" not in paths["/predict"]
-    assert "post" not in paths["/explain"]
+    assert "post" in paths["/predict"]
+    assert "post" in paths["/explain"]
 
     # Unchanged endpoints still present
     assert "/health" in paths

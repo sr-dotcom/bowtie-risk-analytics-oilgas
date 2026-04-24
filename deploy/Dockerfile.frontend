@@ -21,7 +21,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Build arg — defaulted to prod URL but overridable for local smoke
-ARG NEXT_PUBLIC_API_URL=https://api.bowtie.gnsr.dev
+ARG NEXT_PUBLIC_API_URL=https://bowtie-api.gnsr.dev
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 COPY --from=deps /app/node_modules ./node_modules
