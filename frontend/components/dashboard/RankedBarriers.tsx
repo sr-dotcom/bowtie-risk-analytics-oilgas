@@ -303,6 +303,9 @@ export default function RankedBarriers() {
 
       <div className="flex gap-3 mb-4 items-center flex-wrap">
         <select
+          id="filter-side"
+          name="filter-side"
+          autoComplete="off"
           data-testid="filter-side"
           value={filterSide}
           onChange={(e) => setFilterSide(e.target.value)}
@@ -313,6 +316,9 @@ export default function RankedBarriers() {
           <option value="mitigation">Mitigation</option>
         </select>
         <select
+          id="filter-risk-level"
+          name="filter-risk-level"
+          autoComplete="off"
           data-testid="filter-risk-level"
           value={filterRiskLevel}
           onChange={(e) => setFilterRiskLevel(e.target.value)}
@@ -324,6 +330,9 @@ export default function RankedBarriers() {
           <option value="green">Low</option>
         </select>
         <select
+          id="filter-type"
+          name="filter-type"
+          autoComplete="off"
           data-testid="filter-type"
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
