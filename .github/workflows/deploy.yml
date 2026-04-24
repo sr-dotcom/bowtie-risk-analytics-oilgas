@@ -77,7 +77,7 @@ jobs:
           file: deploy/Dockerfile.frontend
           push: true
           build-args: |
-            NEXT_PUBLIC_API_URL=https://api.bowtie.gnsr.dev
+            NEXT_PUBLIC_API_URL=https://bowtie-api.gnsr.dev
           tags: |
             ghcr.io/sr-dotcom/bowtie-risk-analytics-oilgas-frontend:latest
             ghcr.io/sr-dotcom/bowtie-risk-analytics-oilgas-frontend:${{ github.sha }}
