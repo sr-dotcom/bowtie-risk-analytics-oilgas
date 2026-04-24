@@ -26,8 +26,6 @@ const TABS = [
 
 type TabId = (typeof TABS)[number]['id']
 
-const RAG_CORPUS_INCIDENTS = 156
-
 // M003 cascade scope — sourced from configs/denominators.json registry
 const CASCADE_INCIDENTS = getDenominatorValue('rag_corpus_incidents') as number        // 156
 const CASCADE_PARQUET_ROWS = getDenominatorValue('m003_cascade_current_parquet_rows') as number  // 530
@@ -112,7 +110,7 @@ export default function DashboardView() {
               highRiskCount={highRiskCount}
               topBarrier={heroTopBarrier}
               similarIncidentsCount={explanation?.unique_incident_count ?? 0}
-              totalRetrievedIncidents={RAG_CORPUS_INCIDENTS}
+              totalRetrievedIncidents={CASCADE_INCIDENTS}
               hasAnalyzed={hasAnalyzed}
               shapTopFeatures={topBarrier?.top_reasons?.slice(0, 3) ?? []}
               evidenceSnippets={explanation?.evidence_snippets ?? []}
