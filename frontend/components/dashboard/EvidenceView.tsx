@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useBowtieContext } from '@/context/BowtieContext'
 import EvidenceSection from '@/components/panel/EvidenceSection'
+import SimpleMarkdown from '@/components/ui/SimpleMarkdown'
 import type { RiskLevel } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
@@ -109,9 +110,7 @@ export default function EvidenceView() {
                 <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-1">
                   Analysis
                 </p>
-                <p className="text-sm text-[#E8E8E8] leading-relaxed">
-                  {explanation.narrative_text}
-                </p>
+                <SimpleMarkdown content={explanation.narrative_text} className="text-sm text-[#E8E8E8] leading-relaxed" />
               </div>
             )}
             {explanation.narrative_unavailable && (

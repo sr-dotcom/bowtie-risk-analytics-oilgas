@@ -5,6 +5,7 @@ import { useBowtieContext } from '@/context/BowtieContext'
 import RiskScoreBadge from './RiskScoreBadge'
 import ShapWaterfall from './ShapWaterfall'
 import EvidenceSection from './EvidenceSection'
+import SimpleMarkdown from '@/components/ui/SimpleMarkdown'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES as BASE_FEATURE_DISPLAY_NAMES } from '@/lib/shap-config'
 import { explain } from '@/lib/api'
 import type { ExplainRequest } from '@/lib/types'
@@ -144,7 +145,7 @@ export default function DetailPanel() {
           {explanation && !explanation.narrative_unavailable && explanation.narrative_text && (
             <div className="bg-[#1A2332] border-l-4 border-[#2C5F7F] p-4 rounded-r-lg">
               <p className="text-xs font-semibold text-[#9CA3AF] uppercase tracking-wider mb-1">Analysis</p>
-              <p className="text-sm text-[#E8E8E8] leading-relaxed">{explanation.narrative_text}</p>
+              <SimpleMarkdown content={explanation.narrative_text} className="text-sm text-[#E8E8E8] leading-relaxed" />
             </div>
           )}
 
