@@ -145,3 +145,9 @@ SESSION_REPORT.md
 
 # Playwright runtime output
 frontend/test-results/
+
+# M003 cascade model artifacts — required at runtime, baked into image
+!/data/models/
+!/data/models/artifacts/
+!/data/models/artifacts/xgb_cascade_*.joblib
+!/data/models/artifacts/xgb_cascade_*.json
