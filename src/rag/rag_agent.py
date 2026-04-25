@@ -228,8 +228,18 @@ class RAGAgent:
         )
 
     def _find_barrier_meta(self, result: RetrievalResult) -> dict[str, Any]:
-        """Find barrier metadata matching a retrieval result by control_id."""
+        """Find barrier metadata matching a retrieval result by (incident_id, control_id).
+
+        Composite key lookup avoids returning the wrong incident's barrier when
+        multiple incidents share the same control_id (e.g. C-001..C-010).
+        Falls back to control_id-only match for any result whose incident_id has
+        no metadata entry (defensive, should not occur in a clean corpus).
+        """
+        fallback: dict[str, Any] = {}
         for meta in self._barrier_meta:
             if meta.get("control_id") == result.control_id:
-                return meta
-        return {}
+                if meta.get("incident_id") == result.incident_id:
+                    return meta
+                if not fallback:
+                    fallback = meta  # keep first control_id match as fallback
+        return fallback
