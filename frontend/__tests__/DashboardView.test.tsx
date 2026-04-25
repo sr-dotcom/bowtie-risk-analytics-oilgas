@@ -110,6 +110,17 @@ function renderDashboard() {
   )
 }
 
+const BARRIER_WITH_ID: Barrier = { ...BARRIER_DEF, id: 'dash-barrier-001', riskLevel: 'unanalyzed' }
+
+/** Renders DashboardView with one barrier pre-seeded (needed for non-empty-state content tests). */
+function renderDashboardWithBarrier() {
+  return render(
+    <BowtieProvider initialBarriers={[BARRIER_WITH_ID]}>
+      <DashboardView />
+    </BowtieProvider>,
+  )
+}
+
 // ---------------------------------------------------------------------------
 // Existing tab tests (unchanged)
 // ---------------------------------------------------------------------------
@@ -123,15 +134,13 @@ describe('DashboardView', () => {
 
   it('renders all 4 tab buttons with correct labels', () => {
     renderDashboard()
-    const buttons = screen.getAllByRole('button')
-    expect(buttons).toHaveLength(4)
     for (const label of TAB_LABELS) {
       expect(screen.getByRole('button', { name: label })).toBeTruthy()
     }
   })
 
   it('defaults to Executive Summary tab active', () => {
-    renderDashboard()
+    renderDashboardWithBarrier()
     const execBtn = screen.getByRole('button', { name: 'Executive Summary' })
     expect(execBtn.className).toContain('border-[#2C5F7F]')
     // The Executive Summary tab shows the chart, not a "coming soon" message
@@ -147,7 +156,7 @@ describe('DashboardView', () => {
 
   it('clicking Drivers & HF renders GlobalShapChart and PifPrevalenceChart', async () => {
     await act(async () => {
-      renderDashboard()
+      renderDashboardWithBarrier()
     })
     fireEvent.click(screen.getByRole('button', { name: 'Drivers & HF' }))
     expect(screen.getByTestId('global-shap-chart')).toBeTruthy()
@@ -156,7 +165,7 @@ describe('DashboardView', () => {
 
   it('clicking Drivers & HF renders AprioriRulesTable once data loads', async () => {
     await act(async () => {
-      renderDashboard()
+      renderDashboardWithBarrier()
     })
     fireEvent.click(screen.getByRole('button', { name: 'Drivers & HF' }))
     // findByTestId waits for async state (fetchAprioriRules resolves) to settle
@@ -166,14 +175,14 @@ describe('DashboardView', () => {
 
   it('clicking Drivers & HF does not show coming soon for that tab', async () => {
     await act(async () => {
-      renderDashboard()
+      renderDashboardWithBarrier()
     })
     fireEvent.click(screen.getByRole('button', { name: 'Drivers & HF' }))
     expect(screen.queryByText('Drivers & HF coming soon')).toBeNull()
   })
 
   it('clicking Ranked Barriers renders the ranked barriers table', () => {
-    renderDashboard()
+    renderDashboardWithBarrier()
     fireEvent.click(screen.getByRole('button', { name: 'Ranked Barriers' }))
     expect(screen.getByTestId('ranked-barriers-table')).toBeTruthy()
   })
@@ -191,7 +200,7 @@ describe('DashboardView', () => {
 
   it('switching away from Drivers & HF to Executive Summary hides the chart', async () => {
     await act(async () => {
-      renderDashboard()
+      renderDashboardWithBarrier()
     })
     fireEvent.click(screen.getByRole('button', { name: 'Drivers & HF' }))
     await act(async () => {
@@ -211,19 +220,33 @@ describe('DashboardView', () => {
   })
 
   it('executive-summary tab shows top-at-risk-barriers component', () => {
-    renderDashboard()
+    renderDashboardWithBarrier()
     // Executive Summary is the default tab
     expect(screen.getByTestId('top-at-risk-barriers')).toBeTruthy()
   })
 
   it('executive-summary tab shows assessment basis card', () => {
-    renderDashboard()
+    renderDashboardWithBarrier()
     expect(screen.getByText('Assessment Basis')).toBeTruthy()
   })
 
   it('executive-summary tab shows scenario context component', () => {
-    renderDashboard()
+    renderDashboardWithBarrier()
     expect(screen.getByTestId('scenario-context')).toBeTruthy()
+  })
+
+  it('empty state: all tabs show analytics-empty-state when no barriers', () => {
+    renderDashboard()
+    for (const label of TAB_LABELS) {
+      fireEvent.click(screen.getByRole('button', { name: label }))
+      expect(screen.getByTestId('analytics-empty-state')).toBeTruthy()
+      expect(screen.getByText('Add barriers to populate this view.')).toBeTruthy()
+    }
+  })
+
+  it('empty state: Load BSEE example button is present', () => {
+    renderDashboard()
+    expect(screen.getByRole('button', { name: 'Load BSEE example' })).toBeTruthy()
   })
 })
 
@@ -505,7 +528,7 @@ describe('DashboardView — Evidence tab integration', () => {
     expect(screen.queryByText('Evidence coming soon')).toBeNull()
   })
 
-  it('Evidence tab shows empty state when no analyzed barriers', async () => {
+  it('Evidence tab shows analytics empty state when no barriers exist', async () => {
     await act(async () => {
       render(
         <BowtieProvider>
@@ -518,7 +541,8 @@ describe('DashboardView — Evidence tab integration', () => {
       fireEvent.click(screen.getByRole('button', { name: 'Evidence' }))
     })
 
-    expect(screen.getByText('Run analysis to view barrier evidence')).toBeTruthy()
+    expect(screen.getByTestId('analytics-empty-state')).toBeTruthy()
+    expect(screen.getByText('Add barriers to populate this view.')).toBeTruthy()
   })
 
   it('Evidence tab with analyzed barrier shows barrier selector', async () => {

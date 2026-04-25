@@ -39,7 +39,7 @@ const CASCADE_AUC_DISPLAY = `${Number(CASCADE_AUC_MEAN).toFixed(2)} ± ${Number(
 // ---------------------------------------------------------------------------
 
 export default function DashboardView() {
-  const { barriers, predictions, isAnalyzing, dashboardTab, setDashboardTab, analyticsTab, setAnalyticsTab, cascadingPredictions, eventDescription, explanation } = useBowtieContext()
+  const { barriers, predictions, isAnalyzing, dashboardTab, setDashboardTab, analyticsTab, setAnalyticsTab, cascadingPredictions, eventDescription, explanation, loadBSEEExample } = useBowtieContext()
   const activeTab = analyticsTab as TabId
 
   // Consume dashboardTab from context: switch active tab then clear to avoid re-triggering
@@ -101,7 +101,22 @@ export default function DashboardView() {
 
       {/* Tab content */}
       <div className="flex-1 p-8">
-        {activeTab === 'executive-summary' && (
+        {barriers.length === 0 ? (
+          <div className="min-h-[500px] flex items-center justify-center" data-testid="analytics-empty-state">
+            <div className="w-[420px] rounded-lg border border-[#2A3442] bg-[#1C2430] p-8 flex flex-col gap-4">
+              <div>
+                <h2 className="text-base font-semibold text-[#E8E8E8] mb-1">No scenario loaded</h2>
+                <p className="text-sm text-[#9CA3AF]">Add barriers to populate this view.</p>
+              </div>
+              <button
+                onClick={loadBSEEExample}
+                className="text-xs text-[#6B7280] hover:text-[#9CA3AF] transition-colors underline text-left w-fit"
+              >
+                Load BSEE example
+              </button>
+            </div>
+          </div>
+        ) : activeTab === 'executive-summary' ? (
           <>
             {/* Narrative hero — §9, above KPI cards */}
             <NarrativeHero
@@ -208,8 +223,7 @@ export default function DashboardView() {
               </p>
             </div>
           </>
-        )}
-        {activeTab === 'drivers-hf' && (
+        ) : activeTab === 'drivers-hf' ? (
           <>
             <GlobalShapChart />
             <div className="mt-6">
@@ -220,9 +234,11 @@ export default function DashboardView() {
               <AprioriRulesTable />
             </div>
           </>
-        )}
-        {activeTab === 'ranked-barriers' && <RankedBarriers />}
-        {activeTab === 'evidence' && <EvidenceView />}
+        ) : activeTab === 'ranked-barriers' ? (
+          <RankedBarriers />
+        ) : activeTab === 'evidence' ? (
+          <EvidenceView />
+        ) : null}
 
       </div>
 
