@@ -34,7 +34,7 @@ export const FEATURE_DISPLAY_NAMES: Record<string, string> = {
 export const CASCADING_FEATURE_DISPLAY_NAMES: Record<string, string> = {
   // Target barrier features
   'lod_industry_standard_target': 'Target LoD category',
-  'barrier_level_target': 'Barrier position in sequence',
+  'barrier_level_target': 'Barrier position',
   'pathway_sequence_target': 'Target pathway position',
   'lod_numeric_target': 'Target LoD tier',
   'num_threats_in_lod_numeric_target': 'Threats at target tier',
