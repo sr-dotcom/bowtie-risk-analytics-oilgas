@@ -43,6 +43,7 @@ function BowtieAppInner() {
     barriers,
     predictions,
     eventDescription,
+    setEventDescription,
     selectedBarrierId,
     setSelectedBarrierId,
     setSelectedTargetBarrierId,
@@ -193,15 +194,49 @@ function BowtieAppInner() {
         <div className="flex-1 overflow-hidden">
           {viewMode === 'diagram' ? (
             <div className="h-full w-full bg-[#0F1419] p-3">
-              <BowtieSVG
-                topEvent={eventDescription}
-                hazardName="High-pressure gas"
-                threats={DEMO_THREATS}
-                consequences={DEMO_CONSEQUENCES}
-                barriers={svgBarriers}
-                selectedBarrierId={selectedBarrierId}
-                onBarrierClick={handleBarrierClick}
-              />
+              {!eventDescription && barriers.length === 0 ? (
+                <div className="h-full w-full flex items-center justify-center">
+                  <div className="w-[420px] rounded-lg border border-[#2A3442] bg-[#1C2430] p-8 flex flex-col gap-5">
+                    <div>
+                      <h2 className="text-base font-semibold text-[#E8E8E8] mb-1">
+                        Define your bowtie scenario
+                      </h2>
+                      <p className="text-sm text-[#9CA3AF]">
+                        Enter a Top Event below or load an example to begin.
+                      </p>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="canvas-top-event" className="text-xs font-medium text-[#9CA3AF]">
+                        Top Event
+                      </label>
+                      <input
+                        id="canvas-top-event"
+                        type="text"
+                        value={eventDescription}
+                        onChange={(e) => setEventDescription(e.target.value)}
+                        placeholder="e.g. Loss of containment of hydrocarbons"
+                        className="w-full rounded bg-[#0F1419] border border-[#2A3442] px-3 py-2 text-sm text-[#E8E8E8] placeholder-[#4B5563] focus:outline-none focus:border-[#2C5F7F]"
+                      />
+                    </div>
+                    <button
+                      onClick={loadBSEEExample}
+                      className="w-full rounded px-4 py-2 text-sm font-medium bg-[#1C2430] border border-[#2A3442] text-[#9CA3AF] hover:text-[#E8E8E8] hover:border-[#4B6A82] transition-colors"
+                    >
+                      Load BSEE example
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <BowtieSVG
+                  topEvent={eventDescription}
+                  hazardName="High-pressure gas"
+                  threats={DEMO_THREATS}
+                  consequences={DEMO_CONSEQUENCES}
+                  barriers={svgBarriers}
+                  selectedBarrierId={selectedBarrierId}
+                  onBarrierClick={handleBarrierClick}
+                />
+              )}
             </div>
           ) : (
             <PathwayView

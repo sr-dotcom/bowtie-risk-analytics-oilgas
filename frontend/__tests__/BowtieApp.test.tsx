@@ -40,9 +40,10 @@ function renderApp() {
 }
 
 describe('BowtieApp mode toggle', () => {
-  it('initial render shows diagram mode (bowtie-svg visible, dashboard-view and pathway-view absent)', () => {
+  it('initial render shows diagram mode (empty-state card visible, dashboard-view and pathway-view absent)', () => {
     renderApp()
-    expect(screen.getByTestId('bowtie-svg')).toBeTruthy()
+    expect(screen.getByText('Define your bowtie scenario')).toBeTruthy()
+    expect(screen.queryByTestId('bowtie-svg')).toBeNull()
     expect(screen.queryByTestId('dashboard-view')).toBeNull()
     expect(screen.queryByTestId('pathway-view')).toBeNull()
   })
@@ -61,7 +62,8 @@ describe('BowtieApp mode toggle', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Analytics' }))
     // Now in dashboard mode — top-bar has "Diagram View"
     fireEvent.click(screen.getByRole('button', { name: 'Diagram View' }))
-    expect(screen.getByTestId('bowtie-svg')).toBeTruthy()
+    // Cold state: no event/barriers → empty-state card shown, not BowtieSVG
+    expect(screen.getByText('Define your bowtie scenario')).toBeTruthy()
     expect(screen.queryByTestId('dashboard-view')).toBeNull()
   })
 
