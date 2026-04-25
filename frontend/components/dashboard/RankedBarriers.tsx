@@ -7,6 +7,7 @@ import { useBowtieContext } from '@/context/BowtieContext'
 import { getDenominatorValue } from '@/lib/denominators'
 import riskThresholds from '@/public/risk_thresholds.json'
 import { SHAP_HIDDEN_FEATURES, FEATURE_DISPLAY_NAMES } from './TopAtRiskBarriers'
+import { getFeatureDisplayName } from '@/lib/shap-config'
 import RiskScoreBadge from '@/components/panel/RiskScoreBadge'
 import ShapWaterfall from '@/components/panel/ShapWaterfall'
 import EvidenceSection from '@/components/panel/EvidenceSection'
@@ -176,7 +177,7 @@ export function buildCascadingRankedRows(
         riskLevel: riskBandToLevel(p.risk_band),
         probability: p.y_fail_probability,
         condition: sb?.barrier_condition ?? '—',
-        topFactor: topShap?.display_name ?? topShap?.feature ?? '—',
+        topFactor: topShap ? (topShap.display_name || getFeatureDisplayName(topShap.feature)) : '—',
         topFactorValue: topShap?.value ?? null,
         barrierType: sb?.barrier_type ?? '—',
         lod: sb?.line_of_defense ?? '—',
