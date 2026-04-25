@@ -11,7 +11,9 @@ import type {
   RankedBarrier,
   RiskLevel,
   Scenario,
+  ScenarioBarrier,
 } from '@/lib/types'
+import { BSEE_DEMO_SCENARIO } from '@/components/sidebar/constants'
 import { DEFAULT_PIF_FLAGS } from '@/lib/types'
 import { useAnalyzeCascading, type AnalysisState } from '@/hooks/useAnalyzeCascading'
 import { useExplainCascading } from '@/hooks/useExplainCascading'
@@ -73,6 +75,7 @@ interface BowtieState {
   setConditioningBarrierId: (id: string | null) => void
   setSelectedTargetBarrierId: (id: string | null) => void
   clearCascading: () => void
+  loadBSEEExample: () => void
 }
 
 const BowtieContext = createContext<BowtieState | null>(null)
@@ -196,6 +199,23 @@ export function BowtieProvider({
     setEvidenceMap((prev) => ({ ...prev, [id]: ev }))
   }
 
+  function loadBSEEExample(): void {
+    if (barriers.length > 0) return
+    setEventDescription(BSEE_DEMO_SCENARIO.top_event)
+    BSEE_DEMO_SCENARIO.barriers.forEach((sb: ScenarioBarrier) => {
+      addBarrierWithId({
+        id: sb.control_id,
+        name: sb.name,
+        side: sb.barrier_level === 'prevention' ? 'prevention' : 'mitigation',
+        barrier_type: sb.barrier_type,
+        barrier_family: 'other_unknown',
+        line_of_defense: sb.line_of_defense ?? '1st',
+        barrierRole: sb.barrier_role,
+      })
+    })
+    setScenario(BSEE_DEMO_SCENARIO)
+  }
+
   function clearCascading(): void {
     setConditioningBarrierId(null)
     setSelectedTargetBarrierId(null)
@@ -247,6 +267,7 @@ export function BowtieProvider({
         setConditioningBarrierId,
         setSelectedTargetBarrierId,
         clearCascading,
+        loadBSEEExample,
       }}
     >
       {children}

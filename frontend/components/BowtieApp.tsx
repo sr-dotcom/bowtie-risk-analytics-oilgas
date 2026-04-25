@@ -1,13 +1,10 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { BowtieProvider, useBowtieContext } from '@/context/BowtieContext'
 import BarrierForm from './sidebar/BarrierForm'
 import BowtieSVG from './diagram/BowtieSVG'
 import PathwayView from './diagram/PathwayView'
 import DetailDrawer from './panel/DetailDrawer'
-import { BSEE_DEMO_SCENARIO } from './sidebar/constants'
-import type { ScenarioBarrier } from '@/lib/types'
 import DashboardView from './dashboard/DashboardView'
 import ProvenanceStrip from './dashboard/ProvenanceStrip'
 
@@ -41,25 +38,8 @@ function mapRiskLevel(rl: string): 'Low' | 'Medium' | 'High' | null {
 // Inner component — must be inside BowtieProvider to access context
 // ---------------------------------------------------------------------------
 
-// Map a ScenarioBarrier to the Barrier shape expected by addBarrierWithId.
-// barrier_family is unused in the cascading flow but is required by the Barrier type.
-function scenarioBarrierToBarrier(sb: ScenarioBarrier): Parameters<ReturnType<typeof useBowtieContext>['addBarrierWithId']>[0] {
-  return {
-    id: sb.control_id,
-    name: sb.name,
-    side: sb.barrier_level === 'prevention' ? 'prevention' : 'mitigation',
-    barrier_type: sb.barrier_type,
-    barrier_family: 'other_unknown',
-    line_of_defense: sb.line_of_defense ?? '1st',
-    barrierRole: sb.barrier_role,
-  }
-}
-
 function BowtieAppInner() {
   const {
-    addBarrierWithId,
-    setEventDescription,
-    setScenario,
     barriers,
     predictions,
     eventDescription,
@@ -70,6 +50,7 @@ function BowtieAppInner() {
     isAnalyzing,
     viewMode,
     setViewMode,
+    loadBSEEExample,
   } = useBowtieContext()
 
   function handleBarrierClick(barrierId: string) {
@@ -85,18 +66,6 @@ function BowtieAppInner() {
     const conditioner = analyzed[0] ?? barriers.find((b) => b.id !== barrierId) ?? null
     if (conditioner) setConditioningBarrierId(conditioner.id)
   }
-
-  // Load demo scenario on first mount.
-  // Ref guard prevents React 18 StrictMode double-invocation from adding duplicates.
-  const demoLoaded = useRef(false)
-  useEffect(() => {
-    if (demoLoaded.current || barriers.length > 0) return
-    demoLoaded.current = true
-    setEventDescription(BSEE_DEMO_SCENARIO.top_event)
-    BSEE_DEMO_SCENARIO.barriers.forEach((sb) => addBarrierWithId(scenarioBarrierToBarrier(sb)))
-    setScenario(BSEE_DEMO_SCENARIO)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   // Map barriers from context format to BowtieSVG format
   const prevOnly = barriers.filter((x) => x.side === 'prevention')
@@ -168,6 +137,15 @@ function BowtieAppInner() {
     <div className="flex h-screen min-w-[1280px] bg-[#0F1419]">
       {/* Left panel: barrier input form */}
       <aside className="w-80 overflow-y-auto border-r border-[#2A3442] bg-[#151B24] flex-shrink-0">
+        {/* DEBUG: temporary load-example trigger — remove in Sub-build 4 */}
+        <div className="px-4 py-2 border-b border-[#2A3442]">
+          <button
+            onClick={loadBSEEExample}
+            className="w-full px-3 py-1.5 text-xs font-medium rounded bg-[#2C5F7F] text-[#E8E8E8] hover:bg-[#3A7A9F] transition-colors"
+          >
+            [DEBUG] Load BSEE Example
+          </button>
+        </div>
         <BarrierForm />
       </aside>
 
