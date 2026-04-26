@@ -143,6 +143,12 @@ graphify-out/
 # CCCLI session artifacts
 SESSION_REPORT.md
 
+# Sprint screenshots (working-tree noise; archive to /tmp/ before deletion)
+/*.png
+
+# Local docker dependency cache (torch wheel — not used by production Dockerfiles)
+docker-deps/
+
 # Playwright runtime output
 frontend/test-results/
 

@@ -1,4 +1,5 @@
-# Bowtie Risk Analytics — Frontend Dockerfile
+# Bowtie Risk Analytics — Frontend Dockerfile (LOCAL DEV ONLY)
+# Production builds use deploy/Dockerfile.frontend (used by GHA + ssh deploy.sh).
 # Multi-stage build: builder compiles Next.js standalone, runner executes it.
 # Requires output: 'standalone' in frontend/next.config.ts.
 

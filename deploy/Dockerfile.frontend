@@ -1,3 +1,5 @@
+# Bowtie Risk Analytics — Frontend Dockerfile (PRODUCTION CANONICAL)
+# Used by GHA (.github/workflows/deploy.yml) + ssh deploy.sh for https://bowtie.gnsr.dev.
 # syntax=docker/dockerfile:1.6
 
 ###############################################################################
