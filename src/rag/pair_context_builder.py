@@ -52,6 +52,21 @@ def _is_oil_gas_incident(incident_id: str, incident_meta: dict[str, Any]) -> boo
     return any(kw in region for kw in OIL_GAS_REGION_KEYWORDS)
 
 
+def _dedup_by_incident(results: list[RetrievalResult]) -> list[RetrievalResult]:
+    """Keep only the highest-RRF result per incident_id, preserving original order."""
+    best: dict[str, RetrievalResult] = {}
+    for r in results:
+        if r.incident_id not in best or r.rrf_score > best[r.incident_id].rrf_score:
+            best[r.incident_id] = r
+    seen: set[str] = set()
+    deduped: list[RetrievalResult] = []
+    for r in results:
+        if r.incident_id not in seen and best[r.incident_id] is r:
+            seen.add(r.incident_id)
+            deduped.append(r)
+    return deduped
+
+
 def _rebuild_context_for_filtered(
     results: list[RetrievalResult],
     rag_agent: RAGAgent,
@@ -241,6 +256,22 @@ def build_pair_context(
             target_barrier.get("control_id", "?"),
         )
 
+    # Per-incident dedup: keep highest-RRF result per incident_id
+    pre_dedup_cond = len(filtered_cond)
+    pre_dedup_tgt = len(filtered_tgt)
+    filtered_cond = _dedup_by_incident(filtered_cond)
+    filtered_tgt = _dedup_by_incident(filtered_tgt)
+    deduped_cond = pre_dedup_cond - len(filtered_cond)
+    deduped_tgt = pre_dedup_tgt - len(filtered_tgt)
+    if deduped_cond or deduped_tgt:
+        logger.debug(
+            "Incident dedup removed %d conditioning / %d target duplicates for pair (%s / %s)",
+            deduped_cond,
+            deduped_tgt,
+            conditioning_barrier.get("control_id", "?"),
+            target_barrier.get("control_id", "?"),
+        )
+
     # Detect empty retrievals after domain filter
     empty_retrievals: list[str] = []
     if not filtered_cond:
@@ -261,12 +292,12 @@ def build_pair_context(
     # prompt never contains non-oil-gas incident text. When nothing was removed,
     # use the pre-built context_text from RAGAgent.explain() directly (faster,
     # and preserves the original text for test stubs that lack real metadata).
-    if removed_cond:
+    if removed_cond or deduped_cond:
         conditioning_body = _rebuild_context_for_filtered(filtered_cond, rag_agent) or _NO_RESULTS_SENTINEL
     else:
         conditioning_body = conditioning_result.context_text or _NO_RESULTS_SENTINEL
 
-    if removed_tgt:
+    if removed_tgt or deduped_tgt:
         target_body = _rebuild_context_for_filtered(filtered_tgt, rag_agent) or _NO_RESULTS_SENTINEL
     else:
         target_body = target_result.context_text or _NO_RESULTS_SENTINEL

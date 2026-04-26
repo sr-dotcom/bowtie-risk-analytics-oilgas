@@ -35,24 +35,24 @@ export const CASCADING_FEATURE_DISPLAY_NAMES: Record<string, string> = {
   // Target barrier features
   'lod_industry_standard_target': 'Target LoD category',
   'barrier_level_target': 'Barrier position',
-  'pathway_sequence_target': 'Target pathway position',
+  'pathway_sequence_target': 'Target path pos.',
   'lod_numeric_target': 'Target LoD tier',
-  'num_threats_in_lod_numeric_target': 'Threats at target tier',
+  'num_threats_in_lod_numeric_target': 'Threats (tgt tier)',
   // Conditioning barrier features
   'lod_industry_standard_cond': 'Cond. LoD category',
   'barrier_level_cond': 'Cond. role',
   'barrier_condition_cond': 'Cond. condition',
-  'pathway_sequence_cond': 'Cond. pathway position',
+  'pathway_sequence_cond': 'Cond. path pos.',
   'lod_numeric_cond': 'Cond. LoD tier',
-  'num_threats_in_lod_numeric_cond': 'Threats at cond. tier',
+  'num_threats_in_lod_numeric_cond': 'Threats (cond tier)',
   // Incident-level context features
-  'total_prev_barriers_incident': 'Prevention barriers in incident',
-  'total_mit_barriers_incident': 'Mitigation barriers in incident',
-  'num_threats_in_sequence': 'Threats in pathway sequence',
-  'flag_environmental_threat': 'Environmental threat present',
-  'flag_electrical_failure': 'Electrical failure present',
-  'flag_procedural_error': 'Procedural error present',
-  'flag_mechanical_failure': 'Mechanical failure present',
+  'total_prev_barriers_incident': 'Prevention barriers',
+  'total_mit_barriers_incident': 'Mitigation barriers',
+  'num_threats_in_sequence': 'Pathway threats',
+  'flag_environmental_threat': 'Environ. threat',
+  'flag_electrical_failure': 'Electrical failure',
+  'flag_procedural_error': 'Procedural error',
+  'flag_mechanical_failure': 'Mechanical failure',
 }
 
 /** Look up a human-readable display name for any SHAP feature (legacy or cascading).
