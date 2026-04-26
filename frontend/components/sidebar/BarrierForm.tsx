@@ -32,6 +32,7 @@ export default function BarrierForm() {
     setSelectedBarrierId,
     pifFlags,
     togglePif,
+    loadBSEEExample,
   } = useBowtieContext()
 
   const { analyzeAll } = useAnalyzeBarriers()
@@ -106,9 +107,15 @@ export default function BarrierForm() {
         <textarea
           value={eventDescription}
           onChange={(e) => setEventDescription(e.target.value)}
-          placeholder="Describe the top event (e.g., Loss of containment)"
+          placeholder="e.g., Loss of containment of hazardous material"
           className="w-full rounded-md border border-[#2A3442] bg-[#151B24] text-[#E8E8E8] placeholder:text-[#6B7280] p-2 text-sm resize-none h-20 focus:ring-2 focus:ring-[#2C5F7F] focus:border-transparent outline-none"
         />
+        <button
+          onClick={loadBSEEExample}
+          className="mt-1.5 w-full rounded-md border border-[#2A3442] text-[#6B7280] py-1.5 text-xs hover:text-[#9CA3AF] hover:border-[#4B6A82] transition-colors"
+        >
+          Load BSEE example
+        </button>
       </div>
 
       {/* Unified Add Barrier form */}
@@ -144,7 +151,7 @@ export default function BarrierForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleAddBarrier()}
-          placeholder="Barrier name"
+          placeholder="e.g., Pressure Safety Valve"
           className="w-full rounded-md border border-[#2A3442] bg-[#151B24] text-[#E8E8E8] placeholder:text-[#6B7280] p-2 text-sm mb-2 focus:ring-2 focus:ring-[#2C5F7F] focus:border-transparent outline-none"
         />
 

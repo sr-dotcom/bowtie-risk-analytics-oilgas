@@ -138,15 +138,6 @@ function BowtieAppInner() {
     <div className="flex h-screen min-w-[1280px] bg-[#0F1419]">
       {/* Left panel: barrier input form */}
       <aside className="w-80 overflow-y-auto border-r border-[#2A3442] bg-[#151B24] flex-shrink-0">
-        {/* DEBUG: temporary load-example trigger — remove in Sub-build 4 */}
-        <div className="px-4 py-2 border-b border-[#2A3442]">
-          <button
-            onClick={loadBSEEExample}
-            className="w-full px-3 py-1.5 text-xs font-medium rounded bg-[#2C5F7F] text-[#E8E8E8] hover:bg-[#3A7A9F] transition-colors"
-          >
-            [DEBUG] Load BSEE Example
-          </button>
-        </div>
         <BarrierForm />
       </aside>
 
