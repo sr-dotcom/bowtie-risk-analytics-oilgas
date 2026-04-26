@@ -45,7 +45,64 @@ for the shorter `CASCADING_FEATURE_DISPLAY_NAMES` strings; this feature name is 
 
 ---
 
-## 3. Evidence tab conditioning barrier absent from dropdown
+## 3. SVG barrier overlap when barriers-per-row ≥ 3 (L001)
+
+**Status:** Deferred to M005.
+
+**Symptom:** When 3 or more barriers are assigned to the same threat row, barrier cards
+overlap horizontally. The current layout allocates a fixed `BARRIER_W = 130` regardless
+of how many cards must fit in the prevention zone.
+
+**File:** `frontend/components/diagram/BowtieSVG.tsx`  
+**Fix scope:** In `computeLayout()`, derive `boxWidth = Math.min(130, spacing - 4)` per row
+where `spacing = availableWidth / barriersInRow`. Alternatively, cap barriers-per-row at 2
+and render an overflow indicator (e.g., "+N more") for the remainder.  
+**Estimated effort:** 1–2 hr  
+**Milestone:** M005
+
+---
+
+## 4. Consequence node "?" badges on Explosive failure / Fire explosion (C6)
+
+**Status:** Deferred to M005.
+
+**Symptom:** The "Explosive failure of equipment" and "Fire / explosion" consequence nodes
+show a "?" badge in the diagram even when consequence data is available. The badge logic
+in BowtieSVG incorrectly falls through to the unknown-consequence branch for these nodes.
+
+**File:** `frontend/components/diagram/BowtieSVG.tsx` — consequence badge assignment logic  
+**Fix scope:** Audit the consequence-to-badge mapping; confirm all DEMO_CONSEQUENCES IDs
+are matched correctly in the badge render path. ~1 hr.  
+**Milestone:** M005
+
+---
+
+## 5. Verification MINORs carried forward from df506f1
+
+**Status:** All four deferred to M005. Noted here so they are not lost between milestones.
+
+**M1 — Context Factors "100%" clips at ≤ 1440px**  
+The "100%" label in the Context Factors section truncates or clips at viewport widths ≤ 1440px.
+Fix: adjust min-width or font-size in the relevant dashboard component.
+
+**M2 — Ranked Barriers empty on cold load (superseded by Path A, retain workflow note)**  
+Ranked Barriers tab showed empty state on cold load before the BSEE example was loaded.
+Superseded by the Path A demo flow (Load BSEE example → Analyze → view Analytics), but
+worth retaining the note: cold-load empty state should show a helpful placeholder, not a
+blank panel, for any non-Path-A entry point.
+
+**M3 — RAG `##` section headers render literally in Evidence tab**  
+Evidence narrative text contains raw `## Section Title` markdown that is not converted to
+HTML headings. Investigate post-Path-A whether the SimpleMarkdown renderer covers `##`;
+if not, add `##` → `<h3>` handling to `SimpleMarkdown.tsx`.
+
+**M4 — Barrier name truncation at 1268px viewport**  
+Long barrier names truncate aggressively in the sidebar barrier list at 1268px width.
+Fix: review Tailwind `truncate` / `min-w` classes on the barrier list item component.
+
+---
+
+## 6. Evidence tab conditioning barrier absent from dropdown
 
 **Status:** Closed as design. Documented here for stakeholder reference.
 
