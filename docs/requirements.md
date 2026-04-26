@@ -13,7 +13,7 @@ This file is the explicit capability and coverage contract for the project.
 - Primary owning slice: M003-z2jh4m/S02
 - Supporting slices: M003-z2jh4m/S01
 - Validation: unmapped
-- Notes: Port notebook cells 7, 9, 15, 17 verbatim from docs/references/xgb_combined_dual_inference_workflow.ipynb; use Patrick's exact hyperparameters; artifacts as .joblib pipelines (OrdinalEncoder + XGBClassifier) with metadata JSON sidecars
+- Notes: Port notebook cells 7, 9, 15, 17 verbatim from docs/evidence/reference/xgb-combined-dual-inference-workflow.ipynb; use Patrick's exact hyperparameters; artifacts as .joblib pipelines (OrdinalEncoder + XGBClassifier) with metadata JSON sidecars
 
 ### R018 — GroupKFold(5) CV on incident_id with y_fail_target AUC ≥ 0.70 as hard gate; S02 mini-gate task halts auto-mode if gate fails
 - Class: quality-attribute
@@ -90,7 +90,7 @@ This file is the explicit capability and coverage contract for the project.
 - Primary owning slice: M003-z2jh4m/S05
 - Supporting slices: none
 - Validation: unmapped
-- Notes: Reference docs/reference/BOWTIE_SVG_SPEC.md and docs/references/bowtie-reference-v4.html
+- Notes: Reference docs/reference/BOWTIE_SVG_SPEC.md and docs/evidence/reference/bowtie-reference-v4.html
 
 ### R026 — BowtieSVG coordinate edits require incremental manual browser verification under Claude Code CLI — never auto-executed. Color overlays, fill/stroke state changes, and interaction state are permitted without manual gate.
 - Class: constraint

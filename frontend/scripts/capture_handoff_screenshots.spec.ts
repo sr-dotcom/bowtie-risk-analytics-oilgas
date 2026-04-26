@@ -2,7 +2,7 @@
  * M004 UI handoff screenshot capture.
  *
  * Runs 6 deterministic shots against the live dev stack (backend :8000, frontend :3000).
- * Output: docs/uat/screenshots/handoff_2026-04-23/*.png
+ * Output: docs/evidence/uat/screenshots/handoff-2026-04-23/*.png
  *
  * Run:
  *   npx playwright test scripts/capture_handoff_screenshots.spec.ts \
@@ -52,7 +52,7 @@ import { test } from '@playwright/test'
 import fs from 'fs'
 import path from 'path'
 
-const OUTPUT = path.resolve(__dirname, '../../docs/uat/screenshots/handoff_2026-04-23')
+const OUTPUT = path.resolve(__dirname, '../../docs/evidence/uat/screenshots/handoff-2026-04-23')
 
 test('M004 handoff screenshots', async ({ page }) => {
   fs.mkdirSync(OUTPUT, { recursive: true })

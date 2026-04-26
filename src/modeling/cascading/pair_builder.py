@@ -1,7 +1,7 @@
 """Build pair dataset for cascading XGBoost training.
 
 Ported from Patrick's build_pair_dataset (cell 7 of
-docs/references/xgb_combined_dual_inference_workflow.ipynb).
+docs/evidence/reference/xgb-combined-dual-inference-workflow.ipynb).
 
 Adaptation: the S01 parquet omits control_id, so a synthetic in-incident
 row ordinal (df.groupby("incident_id").cumcount()) is inserted before the

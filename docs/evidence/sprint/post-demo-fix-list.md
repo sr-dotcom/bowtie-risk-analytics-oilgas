@@ -2,6 +2,11 @@
 
 Items deferred from the Four-Fix Sprint (2026-04-25).
 
+> **⚠ SECURITY ACTION REQUIRED — rotate before any public release**
+> The `.env` file at repo root contains a live `ANTHROPIC_API_KEY`.
+> Although gitignored, the key must be rotated at console.anthropic.com before
+> this repository or any derived image is shared publicly.  Added 2026-04-26.
+
 ---
 
 ## 1. Per-incident dedup in RAG retrieval (EB-165 Fieldwood saturation)

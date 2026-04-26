@@ -24,7 +24,7 @@ _LABEL_COLS: list[str] = ["y_fail", "y_hf_fail"]
 # Encoded feature columns retained in the output parquet.  Derived from
 # Patrick's BARRIER_FEATURES_TARGET, BARRIER_FEATURES_COND, and
 # CONTEXT_FEATURES in the reference notebook
-# (docs/references/xgb_combined_dual_inference_workflow.ipynb).
+# (docs/evidence/reference/xgb-combined-dual-inference-workflow.ipynb).
 ENCODED_FEATURES: list[str] = [
     # Barrier position / taxonomy
     "barrier_level",

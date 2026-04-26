@@ -1,7 +1,7 @@
 {
   "as_of_commit": "bd029a4dc939fb756e9a581581e3666efc38d7e7",
   "as_of_date": "2026-04-21",
-  "note": "One entry per distinct numeric source value used in or spec'd for the dashboard UI. See docs/architecture/DENOMINATORS_AUDIT.md for claim-level tracing.",
+  "note": "One entry per distinct numeric source value used in or spec'd for the dashboard UI. See docs/evidence/architecture/denominators-audit.md for claim-level tracing.",
   "denominators": [
     {
       "key": "rag_corpus_incidents",

@@ -16,7 +16,7 @@ Our S02 includes a mini-gate: re-run training with GroupKFold(5) on `incident_id
 
 - **Authoritative input:** `data/models/cascading_input/barrier_model_dataset_base_v3.csv` (Patrick's curated training set, gitignored)
 - **Raw reference:** `data/models/cascading_input/barrier_threat_pairs_for_jeffrey_v2.csv` (gitignored)
-- **Notebook reference:** `docs/references/xgb_combined_dual_inference_workflow.ipynb` (committed — port cells 7, 9, 15, 17 verbatim)
+- **Notebook reference:** `docs/evidence/reference/xgb-combined-dual-inference-workflow.ipynb` (committed — port cells 7, 9, 15, 17 verbatim)
 - **Rows:** 552 raw → drop 22 with `lod_industry_standard="Other"` + 1 with `lod_numeric=99` → **529 training rows**
 - **Incidents:** 156
 - **Labels:** `y_fail` 48.7% positive, `y_hf_fail` 15.2% positive

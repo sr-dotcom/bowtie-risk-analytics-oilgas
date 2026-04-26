@@ -20,7 +20,7 @@ Reconcile all numeric claims shown in the dashboard UI. Demo-critical: the domai
 | 558 | "LOC-scoped training rows" | CLAUDE.md |
 
 ## S01 — Audit
-Produce `docs/architecture/DENOMINATORS_AUDIT.md` listing every numeric claim in every dashboard tab, its source file/line, the disk artifact that produced it, and which other numbers it should agree with.
+Produce `docs/evidence/architecture/denominators-audit.md` listing every numeric claim in every dashboard tab, its source file/line, the disk artifact that produced it, and which other numbers it should agree with.
 
 ## S02 — Decisions
 For each inconsistency: unify, document, or hide. Output: decision records and reconciliation plan.
