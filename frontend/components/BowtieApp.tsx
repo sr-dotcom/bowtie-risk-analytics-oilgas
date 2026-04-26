@@ -184,7 +184,7 @@ function BowtieAppInner() {
 
         <div className="flex-1 overflow-hidden">
           {viewMode === 'diagram' ? (
-            <div className="h-full w-full bg-[#0F1419] p-3">
+            <div className="h-full w-full bg-[#0F1419] flex flex-col">
               {!eventDescription && barriers.length === 0 ? (
                 <div className="h-full w-full flex items-center justify-center">
                   <div className="w-[420px] rounded-lg border border-[#2A3442] bg-[#1C2430] p-8 flex flex-col gap-5">
@@ -218,15 +218,29 @@ function BowtieAppInner() {
                   </div>
                 </div>
               ) : (
-                <BowtieSVG
-                  topEvent={eventDescription}
-                  hazardName="High-pressure gas"
-                  threats={DEMO_THREATS}
-                  consequences={DEMO_CONSEQUENCES}
-                  barriers={svgBarriers}
-                  selectedBarrierId={selectedBarrierId}
-                  onBarrierClick={handleBarrierClick}
-                />
+                <>
+                  {barriers.length > 0 && barriers.every((b) => b.riskLevel === 'unanalyzed') && !isAnalyzing && (
+                    <div
+                      className="flex-shrink-0 flex justify-center pt-3 px-3"
+                      data-testid="p2-analyze-banner"
+                    >
+                      <div className="rounded-md border border-[#2A3442] bg-[#1C2430] px-4 py-2 text-sm text-[#9CA3AF]">
+                        Click <span className="text-[#E8E8E8] font-medium">Analyze Barriers</span> in the sidebar to see risk assessment
+                      </div>
+                    </div>
+                  )}
+                  <div className="flex-1 overflow-hidden p-3">
+                    <BowtieSVG
+                      topEvent={eventDescription}
+                      hazardName="High-pressure gas"
+                      threats={DEMO_THREATS}
+                      consequences={DEMO_CONSEQUENCES}
+                      barriers={svgBarriers}
+                      selectedBarrierId={selectedBarrierId}
+                      onBarrierClick={handleBarrierClick}
+                    />
+                  </div>
+                </>
               )}
             </div>
           ) : (

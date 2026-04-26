@@ -657,8 +657,8 @@ function renderBarrier(
   onBarrierClick: (id: string) => void,
 ) {
   const isSelected = b.id === selectedBarrierId
-  const riskColor = b.risk_level ? riskBadge(b.risk_level).color : '#333'
-  const bandColor = b.risk_level ? riskBadge(b.risk_level).color : '#CCC'
+  const riskColor = b.risk_level ? riskBadge(b.risk_level).color : '#9CA3AF'
+  const bandColor = b.risk_level ? riskBadge(b.risk_level).color : '#D1D5DB'
   const reasons = b.top_reasons?.slice(0, 2) ?? []
   const hasMetric = reasons.length > 0
   const metricH = hasMetric ? BARRIER_METRIC_BLOCK_H : 0
@@ -707,7 +707,7 @@ function renderBarrier(
           y={textStartY + li * 15}
           fontSize={11}
           fontWeight="bold"
-          fill="#000"
+          fill={b.risk_level ? '#000' : '#6B7280'}
         >
           {line}
         </text>
