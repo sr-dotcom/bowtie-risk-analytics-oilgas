@@ -602,6 +602,43 @@ export default function BowtieSVG({
             return renderBarrier(b, bx, by, cp.cy, selectedBarrierId, onBarrierClick)
           })
         })}
+
+        {/* ============ P1 PROMPT — top event set, zero barriers ============ */}
+        {barriers.length === 0 && topEvent && (() => {
+          const prevZoneStart = PADDING + THREAT_W + 30
+          const prevZoneEnd = Math.min(
+            prevZoneStart + (cx - TOP_EVENT_R - 80 - prevZoneStart) * 0.85,
+            cx - TOP_EVENT_R - 80,
+          )
+          const promptX = (prevZoneStart + prevZoneEnd) / 2
+          const promptY = threatPositions.length > 1
+            ? (threatPositions[0].cy + cy) / 2
+            : cy - ROW_H / 2
+          return (
+            <g key="p1-prompt" data-testid="p1-barrier-prompt">
+              <rect
+                x={prevZoneStart + 10}
+                y={promptY - 18}
+                width={prevZoneEnd - prevZoneStart - 20}
+                height={36}
+                rx={8}
+                fill="rgba(255,255,255,0.90)"
+                stroke="#bbb"
+                strokeWidth={1}
+              />
+              <text
+                x={promptX}
+                y={promptY}
+                fontSize={15}
+                fill="#666"
+                fontWeight="normal"
+                style={{ textAnchor: 'middle', dominantBaseline: 'central' }}
+              >
+                ← Add your first barrier using the sidebar
+              </text>
+            </g>
+          )
+        })()}
       </svg>
     </div>
   )
