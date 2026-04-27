@@ -2,7 +2,7 @@
 
 This document is the visual design source of truth for the Bowtie Risk Analytics dashboard. Every UI brief (T1–T4 and beyond) must read this file first. CCCLI references this when implementing components.
 
-**Audience:** modern industrial. Loosened ISA-101 — process safety domain experts (Fidel Ilizastigui Perez), academic reviewers (Prof. Dima Ageenko + UNC Charlotte faculty), and portfolio/screenshot viewers (LinkedIn, thesis defense). Visually credible to all three; insider-only to none.
+**Audience:** modern industrial. Loosened ISA-101 — process safety domain experts (Fidel Ilizastigui Perez), academic reviewers (Dr. Ilieva Ageenko + UNC Charlotte faculty), and portfolio/screenshot viewers (LinkedIn, thesis defense). Visually credible to all three; insider-only to none.
 
 **Mode:** dark-only for M003. Light mode is explicitly out of scope (see Section 14).
 

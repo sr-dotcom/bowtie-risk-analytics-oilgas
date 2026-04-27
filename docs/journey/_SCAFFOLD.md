@@ -25,7 +25,7 @@ verdicts are locked into this scaffold. Phase 3b authoring begins from this stat
 
 ## Audience
 
-**Primary:** Prof. Dima Ageenko (faculty supervisor, UNC Charlotte MS practicum) and
+**Primary:** Dr. Ilieva Ageenko (faculty supervisor, UNC Charlotte MS practicum) and
 Fidel Ilizastigui Perez (process safety domain expert evaluator). Submission for
 graduation May 2026, practicum presentation Apr 27.
 

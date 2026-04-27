@@ -15,7 +15,34 @@ Given a bowtie diagram describing a hazardous scenario (a top event, its threats
 3. **Retrieves similar historical incidents** via a hybrid 4-stage RAG pipeline (BM25 + dense embeddings + reranking + RRF fusion).
 4. **Surfaces investigator findings** — real recommendations from BSEE and CSB reports.
 
-Interactive bowtie diagram, click a barrier to drill into risk factors and evidence.
+Interactive bowtie diagram; click a barrier to drill into risk factors and evidence.
+
+---
+
+## Production access
+
+Live hosted demo:
+
+- **Frontend:** https://bowtie.gnsr.dev
+- **API base:** https://bowtie-api.gnsr.dev
+- **Health check:** https://bowtie-api.gnsr.dev/health
+
+What you'll find: an interactive bowtie diagram, a ranked-barriers dashboard, SHAP-based explanations per barrier, and retrieved evidence from BSEE and CSB incident reports.
+
+---
+
+## The journey
+
+The system was built in stages. Each chapter documents one decision boundary — what the problem was, what we tried, what worked, and what we'd do differently.
+
+1. [Chapter 1 — The Problem](docs/journey/01-the-problem.md)
+2. [Chapter 2 — From Investigation Reports to Training Rows](docs/journey/02-corpus-design.md)
+3. [Chapter 3 — Pair Features and the Cascade](docs/journey/03-cascade-model.md)
+4. [Chapter 4 — Two Explanation Signals](docs/journey/04-explainability-signals.md)
+5. [Chapter 5 — Retrieval, Scoping, and the Domain Filter](docs/journey/05-rag-retrieval.md)
+6. [Chapter 6 — Two Entry Paths and Four Implicit States](docs/journey/06-frontend-ux.md)
+7. [Chapter 7 — Self-Hosted Deployment and Its Trade-Offs](docs/journey/07-deployment.md)
+8. [Chapter 8 — Lessons Learned](docs/journey/08-lessons-learned.md)
 
 ---
 
@@ -27,56 +54,68 @@ Interactive bowtie diagram, click a barrier to drill into risk factors and evide
 - **Retrieval:** SentenceTransformers embeddings + FAISS + 4-stage hybrid pipeline
 - **LLM:** Claude Haiku for RAG narrative synthesis
 
-See `CLAUDE.md` for deeper technical details and `docs/decisions/DECISIONS.md` for the design decision log.
+See CLAUDE.md for deeper technical details and the decision register for the design decision log.
 
 ---
 
-## Quick start
+## Other documentation
 
-Requirements: Python 3.10+, Node 20+, npm.
-
-```bash
-# Backend
-git clone https://github.com/sr-dotcom/bowtie-risk-analytics-oilgas.git
-cd bowtie-risk-analytics-oilgas
-python3 -m venv .venv && source .venv/bin/activate
-pip install -e .
-cp .env.example .env  # add your ANTHROPIC_API_KEY
-
-# Frontend
-cd frontend
-npm install
-cd ..
-
-# Run
-uvicorn src.api.main:create_app --factory --reload --port 8000  # in one terminal
-cd frontend && npm run dev                                        # in another
-# Open http://localhost:3000
-```
+- CLAUDE.md — engineering notes, conventions, gotchas
+- docs/decisions/DECISIONS.md — architectural decision register (D001–D021)
+- docs/knowledge/KNOWLEDGE.md — durable lessons and rules (K-entries, L-entries)
+- docs/journey/ — eight chapters above, in narrative form
+- tests/README.md, data/evaluation/README.md, scripts/README.md, src/modeling/cascading/README.md — sub-area documentation
 
 ---
 
-## Project structure
-
-```
+## Repository structure
 src/           backend (Python): cascading model, RAG pipeline, FastAPI endpoints
 frontend/      frontend (Next.js + React): bowtie diagram, dashboard, drill-down
 scripts/       one-shot utilities (corpus build, model retraining, verification)
 tests/         pytest suite (backend) + Vitest (frontend)
 data/          datasets (raw + processed + model artifacts) — see data/README.md for tiering
 configs/       risk thresholds, model configuration
-docs/          architecture notes, decision log, knowledge base
+deploy/        Dockerfiles, docker-compose, server-side ops references
+docs/          architecture notes, decision log, journey chapters, evidence archive
 archive/       superseded artifacts preserved for provenance
-```
 
 ---
 
-## Credits
+## Local development
 
-Project lead / primary engineer: Naga Sathwik Reddy Gona (GNSR)  
-Academic supervisor: Prof. Dima Ageenko (UNC Charlotte)  
-Domain expert reviewer: Fidel Ilizastigui Perez  
-Team: Patrick Hunter (cascading model development), Jeffrey Arnette (co-failure association mining)
+Requirements: Python 3.10+, Node 20+, npm.
+
+```bash
+git clone https://github.com/sr-dotcom/bowtie-risk-analytics-oilgas.git
+cd bowtie-risk-analytics-oilgas
+
+# Backend
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e .
+cp .env.example .env  # add your ANTHROPIC_API_KEY
+
+# Frontend
+cd frontend && npm install && cd ..
+
+# Run (two terminals)
+uvicorn src.api.main:create_app --factory --reload --port 8000
+cd frontend && npm run dev
+
+# Open http://localhost:3000
+```
+
+Docker-compose path is documented in CLAUDE.md for parity with the hosted deployment.
+
+---
+
+## Team
+
+- Naga Sathwik Reddy Gona
+- Patrick Hunter
+- Jeffrey Arnette
+- Nithin Sai Kumar Bandarupalli
+
+Academic supervisor: Dr. Ilieva Ageenko (UNC Charlotte)
 
 ---
 
