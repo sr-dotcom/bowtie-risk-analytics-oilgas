@@ -8,8 +8,8 @@ references that break on deserialization). Instead this module saves:
   - xgb_model{N}.json (trained model)
   - shap_background_model{N}.npy (background sample array)
 
-BarrierPredictor in predict.py recreates the TreeExplainer at load time from
-the model + background array.
+The TreeExplainer is recreated at load time from the model + background array
+(the background array is what gets serialized; the explainer is rebuilt fresh).
 
 Usage::
 
@@ -65,7 +65,7 @@ def build_shap_backgrounds(
     background + model pair produces correct SHAP value shapes.
 
     TreeExplainer objects are NEVER serialized — this function only saves
-    the background arrays. BarrierPredictor recreates the explainer at init.
+    the background arrays. The explainer is recreated at load time.
 
     Args:
         feature_matrix_path: Path to feature_matrix.parquet.
