@@ -345,7 +345,7 @@ def test_feature_names_json_contains_expected_features(csvs):
     assert "barrier_family" in feature_names
     assert "pif_competence" in feature_names
     assert "supporting_text_count" in feature_names
-    assert len(feature_names) == 18, f"Expected 18 features, got {len(feature_names)}"
+    assert len(feature_names) == 17, f"Expected 17 features, got {len(feature_names)}"
 
 
 # ---------------------------------------------------------------------------
@@ -369,7 +369,7 @@ def test_encoder_joblib_roundtrip(csvs):
     assert len(encoder.categories_) == n_cat, f"Encoder should have {n_cat} category arrays"
 
     # Test unknown categories map to -1.
-    unknown_row = [["new_side", "new_type", "4th", "new_family", "NEW_AGENCY", "new_threat"]]
+    unknown_row = [["new_side", "new_type", "4th", "new_family", "NEW_AGENCY"]]
     encoded_unk = encoder.transform(unknown_row)
     assert encoded_unk.shape == (1, n_cat), f"Shape mismatch: {encoded_unk.shape}"
     assert (encoded_unk == -1).all(), "All unknowns should encode to -1"

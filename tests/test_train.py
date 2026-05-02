@@ -156,9 +156,9 @@ def test_logreg_produces_probabilities(train_results):
         assert model_path.exists(), f"Missing {model_path}"
         lr = jl.load(model_path)
 
-        # 5 rows, 18 features
+        n_features = len(CATEGORICAL_FEATURES) + len(PIF_FEATURES) + len(NUMERIC_FEATURES)
         rng = np.random.default_rng(0)
-        X = rng.integers(0, 5, size=(5, 18)).astype(float)
+        X = rng.integers(0, 5, size=(5, n_features)).astype(float)
         proba = lr.predict_proba(X)
         assert proba.shape == (5, 2), f"Expected (5, 2), got {proba.shape}"
         assert (proba >= 0.0).all() and (proba <= 1.0).all(), "Probabilities out of [0, 1]"
@@ -199,8 +199,9 @@ def test_xgb_artifact_saves_and_loads(train_results):
     xgb = XGBClassifier()
     xgb.load_model(str(model_path))
 
+    n_features = len(CATEGORICAL_FEATURES) + len(PIF_FEATURES) + len(NUMERIC_FEATURES)
     rng = np.random.default_rng(42)
-    X = rng.integers(0, 5, size=(10, 18)).astype(float)
+    X = rng.integers(0, 5, size=(10, n_features)).astype(float)
     proba = xgb.predict_proba(X)
     assert proba.shape[0] == 10, f"Expected 10 rows, got {proba.shape[0]}"
     assert proba.shape[1] == 2, f"Expected 2 classes, got {proba.shape[1]}"
@@ -220,8 +221,9 @@ def test_logreg_artifact_saves_and_loads(train_results):
     assert model_path.exists(), f"logreg_model1.joblib not found at {model_path}"
 
     lr = jl.load(model_path)
+    n_features = len(CATEGORICAL_FEATURES) + len(PIF_FEATURES) + len(NUMERIC_FEATURES)
     rng = np.random.default_rng(42)
-    X = rng.integers(0, 5, size=(10, 18)).astype(float)
+    X = rng.integers(0, 5, size=(10, n_features)).astype(float)
     proba = lr.predict_proba(X)
     assert proba.shape == (10, 2)
     assert (proba >= 0.0).all() and (proba <= 1.0).all()
