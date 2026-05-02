@@ -4,7 +4,7 @@ import { useBowtieContext } from '@/context/BowtieContext'
 import { predictCascading } from '@/lib/api'
 import { mapProbabilityToRiskLevel } from '@/lib/riskScore'
 import { getFeatureDisplayName } from '@/lib/shap-config'
-import type { BarrierPrediction, RiskThresholds } from '@/lib/types'
+import type { BarrierPrediction, RiskThresholds, Scenario } from '@/lib/types'
 
 // ---------------------------------------------------------------------------
 // useAnalyzeBarriers — Average Cascading Risk (S05b/2.5)
@@ -21,13 +21,33 @@ export function useAnalyzeBarriers(): { analyzeAll: () => Promise<void> } {
   const {
     barriers,
     scenario,
+    eventDescription,
     setIsAnalyzing,
     setAnalysisError,
     updateBarrierCascading,
   } = useBowtieContext()
 
   async function analyzeAll(): Promise<void> {
-    if (barriers.length === 0 || !scenario) return
+    if (barriers.length === 0) return
+
+    // Use the pre-loaded scenario (BSEE demo / any setScenario caller), or
+    // synthesise one from the user-built barrier list so the API can proceed.
+    const activeScenario: Scenario = scenario ?? {
+      scenario_id: 'user-scenario',
+      source_agency: 'UNKNOWN',
+      incident_id: 'user-scenario',
+      top_event: eventDescription || 'User-defined scenario',
+      barriers: barriers.map((b) => ({
+        control_id: b.id,
+        name: b.name,
+        barrier_level: b.side,         // 'prevention' | 'mitigation' — matches API
+        barrier_condition: 'effective', // default; API forces conditioner to 'ineffective'
+        barrier_type: b.barrier_type,
+        barrier_role: b.barrierRole,
+        line_of_defense: b.line_of_defense,
+      })),
+      threats: [],
+    }
 
     setIsAnalyzing(true)
     setAnalysisError(null)
@@ -41,7 +61,7 @@ export function useAnalyzeBarriers(): { analyzeAll: () => Promise<void> } {
       // barrier.id === scenario barrier control_id (ensured by addBarrierWithId loading).
       const runs = await Promise.all(
         barriers.map((b) =>
-          predictCascading({ scenario, conditioning_barrier_id: b.id })
+          predictCascading({ scenario: activeScenario, conditioning_barrier_id: b.id })
             .then((res) => ({ conditionerId: b.id, predictions: res.predictions }))
             .catch(() => ({ conditionerId: b.id, predictions: [] as BarrierPrediction[] }))
         )
