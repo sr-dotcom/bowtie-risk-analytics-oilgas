@@ -2,10 +2,15 @@
 
 Pytest suite for the Python backend, plus Vitest specs for the Next.js frontend. Backend tests live here; frontend tests live under `frontend/__tests__/` and `frontend/tests-e2e/`.
 
-**Backend gate:** ≥565 passing (current: 626).
-**Frontend gate:** ≥192 passing (current: 250).
+Backend test gate (post-v1.0, commit 79e0917):
+- **CI (no derived artifacts):** ≥ 540 passed, 0 failed
+- **Local (full data + fpdf2):** ≥ 549 passed, 0 failed
 
-**Fresh-clone prerequisite:** `pip install -r requirements.txt`, then `python -m src.modeling.cascading.data_prep && python -m src.modeling.cascading.train` to generate model artifacts from the tracked training input. `test_demo_scenarios` (~34 tests) will still error on fresh clone — its fixture requires `data/processed/flat_incidents_combined.csv`, which is built from the gitignored structured incident JSONs. These errors are expected and excluded from the gate count.
+**Frontend gate (CI and local equal):** ≥ 250 passed, 0 failed
+
+Any commit dropping below either floor is reverted.
+
+**Fresh-clone prerequisite:** `pip install -r requirements.txt`, then `python -m src.modeling.cascading.data_prep && python -m src.modeling.cascading.train` to generate model artifacts from the tracked training input. The `test_demo_scenarios` schema/R019 tests now run against committed fixtures in `data/demo_scenarios/` and pass on a fresh clone. The two builder-behaviour tests (`test_exactly_three_files`, `test_one_file_per_agency`) remain skipped without `flat_incidents_combined.csv`; this is expected and accounted for in the CI floor.
 
 Run:
 

@@ -44,10 +44,10 @@ Copy [`.env.example`](.env.example) to `.env.local` and fill in:
 
 ```bash
 npm test           # vitest watch mode
-npm test -- --run  # one-shot CI mode (250 tests, gate ≥192)
+npm test -- --run  # one-shot CI mode (250 tests, gate ≥250)
 ```
 
-The frontend gate (≥192) is documented in [`../tests/README.md`](../tests/README.md) alongside the backend gate.
+The frontend gate (≥250) is documented in [`../tests/README.md`](../tests/README.md) alongside the backend gate.
 
 ---
 

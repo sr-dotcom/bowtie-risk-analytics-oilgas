@@ -16,7 +16,7 @@ Built as a UNC Charlotte MS practicum project (graduation May 2026); demoed Apr 
 
 The handover is "done" when all six conditions hold:
 
-1. **Tests pass on fresh clone** — `pytest` (backend) and `npm test` (frontend) meet gate numbers after `git clone` + `pip install -r requirements.txt` + artifact bootstrap (two commands; see DoD step 4 below). Gates: ≥565 backend, ≥192 frontend (documented in `tests/README.md`). ~34 `test_demo_scenarios` setup-errors are expected on fresh clone — they require the full gitignored incident dataset and do not affect the gate count.
+1. **Tests pass on fresh clone** — `pytest` (backend) and `npm test` (frontend) meet gate numbers after `git clone` + `pip install -r requirements.txt` + artifact bootstrap (two commands; see DoD step 4 below). Gates: CI ≥540 backend, local ≥549 backend, ≥250 frontend (documented in `tests/README.md`). Two `test_demo_scenarios` builder-behaviour tests skip on fresh clone; all other tests pass.
 2. **No lint or type errors** — `ruff` clean and `mypy` clean (Python); TypeScript / ESLint clean (frontend).
 3. **README and CLAUDE.md current and accurate** — manual review by project lead at handover; no broken file references, no stale install commands, no contradictions with on-disk code.
 4. **Demo runs end-to-end on fresh clone** — `git clone && docker compose up` (or `docker compose -f deploy/docker-compose.server.yml up` for the single-container production path on port 8080) produces a working frontend at `localhost:80` with API reachable at `localhost:80/api/health`.
@@ -136,7 +136,7 @@ Then resolve:
 
 # Recommendations for Cleanup §B — Audit-driven Phase 3 batches
 
-A 19-finding tech-debt audit (F001–F019) was conducted and triaged. Result: **17 FIX, 0 DEFER, 2 REJECT**. The 17 fixes cluster into 7 logical commits below, executed in order. Each batch must be followed by `pytest -q` (≥565 passing) and `cd frontend && npm test -- --run` (≥192) before proceeding.
+A 19-finding tech-debt audit (F001–F019) was conducted and triaged. Result: **17 FIX, 0 DEFER, 2 REJECT**. The 17 fixes cluster into 7 logical commits below, executed in order. Each batch must be followed by `pytest -q` (≥540 passing in CI / ≥549 locally) and `cd frontend && npm test -- --run` (≥250) before proceeding.
 
 The two REJECTs (F018 circular-dependency comment, F019 deprecated-alias comment) are documented in §Looks Bad But Is Fine below.
 
@@ -152,7 +152,7 @@ Run `python3 -m ruff check src/ scripts/ --fix` for F011–F014. Manual edits fo
 
 **Batch B.2 — npm CVE clearance (`chore(deps): postcss override + vitest 4.x upgrade — clear all 7 npm CVEs`):**
 - F001 Chain A: add `"overrides": { "postcss": ">=8.5.10" }` to `frontend/package.json`. Run `npm install`. Verify `npm audit` clears the postcss + next entries. Verify `npm run build` passes.
-- F001 Chain B: upgrade `vitest` to `4.1.5` (semver major). Run `npm install`. Run frontend test suite — gate ≥ 192 passing.
+- F001 Chain B: upgrade `vitest` to `4.1.5` (semver major). Run `npm install`. Run frontend test suite — gate ≥ 250 passing.
 - **Phase 3 fallback if Chain B breaks tests:** roll back vitest to current version, accept the 5 dev-dep warnings, retag F001 as PARTIAL-FIX with Chain B documented in the **Deliberate Deferrals** section above.
 
 **Batch B.3 — fresh-clone fix for cascading training input (`feat: track curated training input + add fresh-clone guard`):**
