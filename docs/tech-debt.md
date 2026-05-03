@@ -41,6 +41,31 @@ evaluation artifacts), `python -m src.modeling.cascading.data_prep` (generates p
 
 ---
 
+## 2026-05-03: Bucket-C test followups deferred at v1.0 handoff
+
+**Found during:** Pre-handoff skip-test audit (fa79072 → Bucket A/B/C/D classification).
+
+**Background:** 30 of 45 CI-skipped tests were promoted to CI-passing by converting them from builder-dependent fixtures to committed-fixture or synthetic-data fixtures. Five tests were classified Bucket C and remain skipped on a fresh clone because they test script *behaviour* rather than schema *shape* — requiring proper CI fixture scaffolding to run correctly.
+
+**Tests still skipped on a fresh clone and why:**
+
+| Test | File | Skip condition | Reason skipped |
+|------|------|---------------|----------------|
+| `test_exactly_three_files` | `test_demo_scenarios.py` | `flat_incidents_combined.csv` absent | Asserts builder emits 3 files; needs real CSV + schema_v2_3 JSONs to run `build_demo_scenarios()` |
+| `test_one_file_per_agency` | `test_demo_scenarios.py` | `flat_incidents_combined.csv` absent | Asserts builder covers BSEE/CSB/UNKNOWN; same chain dependency |
+| `test_cv_report_exists` | `test_cascading_train.py` | `cascading_cv_report.md` absent | Asserts `train.py` produced its evaluation output file |
+| `test_cv_report_has_both_targets` | `test_cascading_train.py` | `cascading_cv_report.md` absent | Verifies CV report content format — should be a unit test of `_write_cv_report()` |
+| `test_cv_report_has_five_fold_rows_per_target` | `test_cascading_train.py` | `cascading_cv_report.md` absent | Same — table-structure format check belongs in a unit test |
+
+**Correct fix (medium effort each):**
+
+- `test_exactly_three_files`, `test_one_file_per_agency`: create a synthetic committed CSV + minimal JSON stubs sufficient to drive `build_demo_scenarios()` in a CI-compatible way. Or, since the committed `data/demo_scenarios/*.json` already demonstrate the 3-file/3-agency invariant, delete these tests as redundant.
+- `test_cv_report_*`: extract a `_write_cv_report(cv_results, df_pairs, path)` unit test with a synthetic `cv_results` dict written to `tmp_path`. The file format invariant should not require a trained model.
+
+**Note:** `test_pair_context_from_demo_scenario` in `test_rag_s04_integration.py` remains partially Bucket B — the parquet-dependent scope assertion (step 7) could be extracted to allow the main integration body to run in CI. Medium effort; deferred to post-handoff.
+
+---
+
 ## 2026-04-20: data/rag/archive/v1/ large binaries in git history
 
 **Found during:** Commit 2 gitignore audit.

@@ -14,13 +14,11 @@ import json
 from pathlib import Path
 
 import joblib
-import numpy as np
 import pandas as pd
 import pytest
 import shap
 
 _ARTIFACTS_DIR = Path("data/models/artifacts")
-_PARQUET_PATH = Path("data/processed/cascading_training.parquet")
 _PIPELINE_PATH = _ARTIFACTS_DIR / "xgb_cascade_y_fail_pipeline.joblib"
 _META_PATH = _ARTIFACTS_DIR / "xgb_cascade_y_fail_metadata.json"
 
@@ -45,18 +43,30 @@ def metadata():
 
 
 @pytest.fixture(scope="module")
-def first_pair_row(metadata):
-    """Return the first row of the pair dataset as a plain dict."""
-    if not _PARQUET_PATH.exists():
-        pytest.skip(
-            "data/processed/cascading_training.parquet not present (gitignored); "
-            "see tech-debt.md 2026-05-03 entry"
-        )
-    from src.modeling.cascading.pair_builder import build_pair_dataset
+def first_pair_row() -> dict:
+    """Synthetic pair row covering all 18 features — no parquet required.
 
-    df = pd.read_parquet(_PARQUET_PATH)
-    df_pairs, _cat, _num, all_features = build_pair_dataset(df)
-    return df_pairs.iloc[0][all_features].to_dict()
+    OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1)
+    handles unseen categorical strings, so placeholder values are safe.
+    """
+    from src.modeling.cascading.pair_builder import CONTEXT_FEATURES
+
+    row: dict = {
+        "lod_industry_standard_target": "regulatory",
+        "barrier_level_target": "passive",
+        "lod_industry_standard_cond": "regulatory",
+        "barrier_level_cond": "passive",
+        "barrier_condition_cond": "normal",
+        "pathway_sequence_target": 1.0,
+        "lod_numeric_target": 1.0,
+        "num_threats_in_lod_numeric_target": 1.0,
+        "pathway_sequence_cond": 1.0,
+        "lod_numeric_cond": 1.0,
+        "num_threats_in_lod_numeric_cond": 1.0,
+    }
+    for feat in CONTEXT_FEATURES:
+        row[feat] = 0.0
+    return row
 
 
 # ---------------------------------------------------------------------------

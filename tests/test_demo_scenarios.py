@@ -1,7 +1,11 @@
-"""Tests for demo-scenario fixture generation (T02).
+"""Tests for demo-scenario fixtures (R019 schema/constraint checks).
 
-Regenerates fixtures into a tmp dir from real CSV/JSON sources and asserts
-R019 constraints plus structural shape requirements from the S01→S05 boundary spec.
+Bucket B tests (schema + R019 constraints) run against the 3 committed
+fixtures in data/demo_scenarios/ — no gitignored data required.
+
+Bucket C tests (builder behaviour: test_exactly_three_files,
+test_one_file_per_agency) are preserved with function-level skipif gated
+on flat_incidents_combined.csv.  See tech-debt.md 2026-05-03 entry.
 """
 from __future__ import annotations
 
@@ -17,7 +21,10 @@ from scripts.build_demo_scenarios import (
     build_demo_scenarios,
 )
 
-pytestmark = pytest.mark.skipif(
+_DEMO_SCENARIOS_DIR = pathlib.Path(__file__).parent.parent / "data" / "demo_scenarios"
+
+# Reusable mark applied only to the two Bucket C tests.
+_bucket_c_skip = pytest.mark.skipif(
     not FLAT_INCIDENTS_CSV.exists(),
     reason="flat_incidents_combined.csv not present (gitignored processed data); "
            "run `python -m src.pipeline build-combined-exports` first. "
@@ -51,21 +58,17 @@ REQUIRED_BARRIER_KEYS = {
 
 
 @pytest.fixture(scope="module")
-def scenarios(tmp_path_factory: pytest.TempPathFactory) -> list[dict]:
-    """Regenerate all 3 fixtures into a temp dir and return parsed JSON dicts."""
-    out = tmp_path_factory.mktemp("demo_scenarios")
-    written = build_demo_scenarios(
-        base_v3_path=BASE_V3_CSV,
-        flat_incidents_path=FLAT_INCIDENTS_CSV,
-        incidents_dir=INCIDENTS_DIR,
-        out_dir=out,
-    )
-    return [json.loads(p.read_text(encoding="utf-8")) for p in sorted(written)]
+def scenarios() -> list[dict]:
+    """Load the 3 committed demo scenario fixtures from data/demo_scenarios/."""
+    return [
+        json.loads(p.read_text(encoding="utf-8"))
+        for p in sorted(_DEMO_SCENARIOS_DIR.glob("*.json"))
+    ]
 
 
 @pytest.fixture(scope="module")
 def scenario_files(tmp_path_factory: pytest.TempPathFactory) -> list[pathlib.Path]:
-    """Return written file paths for file-level checks."""
+    """Regenerate fixtures via builder — used only by Bucket C tests."""
     out = tmp_path_factory.mktemp("demo_scenarios_files")
     return sorted(
         build_demo_scenarios(
@@ -79,10 +82,12 @@ def scenario_files(tmp_path_factory: pytest.TempPathFactory) -> list[pathlib.Pat
 
 # ── File-level ────────────────────────────────────────────────────────────────
 
+@_bucket_c_skip
 def test_exactly_three_files(scenario_files: list[pathlib.Path]) -> None:
     assert len(scenario_files) == 3
 
 
+@_bucket_c_skip
 def test_one_file_per_agency(scenarios: list[dict]) -> None:
     agencies = sorted(s["source_agency"] for s in scenarios)
     assert agencies == ["BSEE", "CSB", "UNKNOWN"]
