@@ -89,6 +89,12 @@ This is a project-lead operational concern for the legacy self-hosted deployment
 The live `.env` (mode 600) on `/opt/projects/bowtie-analytics/.env` contains real `ANTHROPIC_API_KEY`. Only `.env.example` ships in the repo. Replicating production requires populating `.env` from the example template with valid keys.
 
 
+### 3.3 CORS default includes production hostname (`CORS_ALLOWED_ORIGINS`)
+
+`src/api/main.py:244` defaults `CORS_ALLOWED_ORIGINS` to `"https://bowtie.gnsr.dev,http://localhost:3000"`. Receivers standing up their own instance should set `CORS_ALLOWED_ORIGINS` in their `.env` to their own origin to avoid the production hostname remaining in the allow-list.
+
+A future cleanup (HANDOVER §B item F016) plans to remove the `gnsr.dev` hostname from the code default and document it in `.env.example` instead. Until that lands, the env variable override is the supported path.
+
 ### 3.4 `deploy.sh` and webhook compose live on the server, not in the repo
 
 The reliable production deploy path is `ssh gmk ./deploy.sh`, where `deploy.sh` lives at `/opt/projects/bowtie-analytics/deploy.sh` on the server. The webhook listener compose lives at `/opt/projects/webhook-bowtie/docker-compose.yml`.
@@ -123,9 +129,9 @@ These constraints follow from the corpus and the modeling approach. They are fix
 
 Training corpus: 156 BSEE + CSB incident investigations, US-regulatory record. The system does not generalize to non-LOC top events (toxic release, mechanical failure outside containment) or to non-US incident reporting regimes. The LOC scoping rationale is explained in `docs/journey/01-the-problem.md` and `02-corpus-design.md`.
 
-### 4.2 Fidel Comment #55 — 5-category barrier taxonomy — deferred
+### 4.2 Fidel Comment #55 (process safety domain evaluator review) — 5-category barrier taxonomy — deferred
 
-Comment #55 calls for a richer barrier-type taxonomy than what the system currently uses. Implementing it requires LLM re-extraction of all 739 incidents (cost-significant). Documented as M005+ work. Cannot be cherry-picked into M003 without breaking the cascade feature contract.
+Fidel Ilizastigui Perez (process safety professional, Todus Advisors) reviewed the demo and produced 14 review comments driving real architectural decisions per D012 — see `HANDOVER.md` §Architectural Decisions for the full authority structure. His Comment #55 calls for a richer barrier-type taxonomy than what the system currently uses. Implementing it requires LLM re-extraction of all 739 incidents (cost-significant). Documented as M005+ work. Cannot be cherry-picked into M003 without breaking the cascade feature contract.
 
 ### 4.3 `y_hf_fail` secondary target dropped from production
 
