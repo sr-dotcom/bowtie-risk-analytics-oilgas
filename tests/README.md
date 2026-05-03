@@ -5,6 +5,8 @@ Pytest suite for the Python backend, plus Vitest specs for the Next.js frontend.
 **Backend gate:** ≥565 passing (current: 626).
 **Frontend gate:** ≥192 passing (current: 250).
 
+**Fresh-clone prerequisite:** `pip install -r requirements.txt`, then `python -m src.modeling.cascading.data_prep && python -m src.modeling.cascading.train` to generate model artifacts from the tracked training input. `test_demo_scenarios` (~34 tests) will still error on fresh clone — its fixture requires `data/processed/flat_incidents_combined.csv`, which is built from the gitignored structured incident JSONs. These errors are expected and excluded from the gate count.
+
 Run:
 
 ```bash
