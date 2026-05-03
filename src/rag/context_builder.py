@@ -6,6 +6,10 @@ from typing import Any
 
 from src.rag.config import MAX_CONTEXT_CHARS
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 @dataclass
 class ContextEntry:

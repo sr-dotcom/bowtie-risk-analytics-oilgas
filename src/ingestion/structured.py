@@ -246,7 +246,7 @@ def extract_structured(
                     row.model = model_used
                     payload = data
                 except Exception as exc:
-                    logger.error(
+                    logger.exception(
                         f"{incident_id}: ladder raised unexpected error — {exc}"
                     )
                     payload = None
@@ -356,7 +356,7 @@ def extract_structured(
 
         except Exception as e:
             row.error = str(e)[:200]
-            logger.error(f"{incident_id}: extraction failed: {e}")
+            logger.exception(f"{incident_id}: extraction failed: {e}")
 
         rows.append(row)
         processed += 1

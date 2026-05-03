@@ -6,6 +6,10 @@ from pathlib import Path
 import faiss
 import numpy as np
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class VectorIndex:
     """Thin wrapper around FAISS IndexFlatIP for exact inner-product search.

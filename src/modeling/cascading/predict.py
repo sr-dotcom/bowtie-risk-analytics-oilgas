@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+import logging
 from pathlib import Path
 from typing import Any, Literal
 
@@ -24,6 +25,8 @@ from src.modeling.cascading.pair_builder import (
     CONTEXT_FEATURES,
 )
 from src.modeling.cascading.shap_probe import build_tree_explainer, compute_shap_for_record
+
+logger = logging.getLogger(__name__)
 
 # Re-export the constants so callers can reference the feature contract.
 __all__ = [

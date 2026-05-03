@@ -17,6 +17,10 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 # ── Feature contracts (must match cell 6 of the reference notebook) ──────────
 
 BARRIER_FEATURES_TARGET: list[str] = [

@@ -211,7 +211,7 @@ def run_corpus_extraction(
         try:
             text = _load_incident_text(incident_id, text_search_dirs)
         except Exception as exc:
-            logger.error(f"  {incident_id}: extraction failed — {exc}")
+            logger.exception(f"  {incident_id}: extraction failed — {exc}")
             continue
 
         if not text.strip():
@@ -229,7 +229,7 @@ def run_corpus_extraction(
         try:
             prompt = load_prompt(incident_text=text)
         except Exception as exc:
-            logger.error(f"  {incident_id}: prompt build failed — {exc}")
+            logger.exception(f"  {incident_id}: prompt build failed — {exc}")
             continue
 
         # Model ladder (policy-driven)

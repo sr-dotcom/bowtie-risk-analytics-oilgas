@@ -8,6 +8,10 @@ import numpy as np
 from src.rag.embeddings.base import EmbeddingProvider
 from src.rag.vector_index import VectorIndex
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 @dataclass
 class RetrievalResult:
