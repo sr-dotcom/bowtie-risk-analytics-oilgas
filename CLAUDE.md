@@ -260,7 +260,7 @@ The current (M003) prediction pipeline uses a cascading pair-feature XGBoost mod
 - `src/modeling/cascading/train.py` — training entry point
 - `src/modeling/cascading/data_prep.py` — preprocessing
 - `src/modeling/cascading/shap_probe.py` — SHAP explainer setup
-- `src/modeling/cascading/hf_recovery.py` — y_hf_fail target support (retained but disabled per D016 Branch C)
+- `archive/disabled-experiments/hf_recovery.py` — y_hf_fail target support (disabled per D016 Branch C; moved out of active src/ tree per AUDIT_TRIAGE F015)
 - `src/modeling/cascading/mini_gate.py` — threshold gating for predictions
 
 Model artifacts live in `data/models/artifacts/xgb_cascade_y_fail_*.{joblib,json}`. Training data: `data/processed/cascading_training.parquet` (156 unique incidents, 530 pair-feature rows current; model metadata records 813 rows from an earlier snapshot).
