@@ -158,6 +158,10 @@ frontend/test-results/
 !/data/models/artifacts/xgb_cascade_*.joblib
 !/data/models/artifacts/xgb_cascade_*.json
 
+# Cascading model training input — tracked per Patrick's OK to publish (S-005)
+# Required by src/modeling/cascading/data_prep.py at data load time.
+!/data/models/cascading_input/barrier_model_dataset_base_v3.csv
+
 # Jeffrey's association-mining export — kept locally for analytical work;
 # not consumed by current pipeline (data_prep.py uses v3 base file only)
 data/models/cascading_input/barrier_threat_pairs_for_jeffrey_v2.csv
