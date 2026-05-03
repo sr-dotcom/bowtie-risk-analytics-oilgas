@@ -35,6 +35,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.security import APIKeyHeader
 
+from src.api.mapping_loader import MappingConfig
 from src.api.schemas import (
     AprioriRule,
     AprioriRulesResponse,
@@ -241,7 +242,7 @@ def create_app(lifespan_override: Any = None) -> FastAPI:
         o.strip()
         for o in os.getenv(
             "CORS_ALLOWED_ORIGINS",
-            "http://localhost:3000",
+            "https://bowtie.gnsr.dev,http://localhost:3000",
         ).split(",")
         if o.strip()
     ]

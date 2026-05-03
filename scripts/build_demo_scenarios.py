@@ -29,6 +29,7 @@ import argparse
 import json
 import pathlib
 import re
+import sys
 from typing import Optional
 
 import pandas as pd
