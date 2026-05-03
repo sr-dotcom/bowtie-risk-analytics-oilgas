@@ -86,7 +86,7 @@ FETCH_HEAD
 
 # --- local work / quarantine / archive ---
 _quarantine/
-archive/
+/archive/
 
 # --- sensitive / local dev config ---
 .mcp.json
@@ -157,3 +157,6 @@ frontend/test-results/
 !/data/models/artifacts/
 !/data/models/artifacts/xgb_cascade_*.joblib
 !/data/models/artifacts/xgb_cascade_*.json
+
+# handover-prep process artifacts (local only)
+.handover/
