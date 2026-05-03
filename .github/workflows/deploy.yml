@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - milestone/M003-z2jh4m
     paths:
       - 'src/**'
       - 'frontend/**'
