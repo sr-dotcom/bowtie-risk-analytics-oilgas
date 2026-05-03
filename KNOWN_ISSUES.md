@@ -48,7 +48,7 @@ This asymmetry is documented in `docs/journey/07-deployment.md`. Manual `ssh gmk
 | File | Purpose |
 |---|---|
 | Root `Dockerfile` | Combined two-stage production build → produces `:latest` consumed by server |
-| Root `Dockerfile.api` + `Dockerfile.frontend` + `docker-compose.yml` | Local development three-service stack (Docker DNS, port 80) |
+| `deploy/Dockerfile.api` + `Dockerfile.frontend` + `docker-compose.yml` | Local development three-service stack (Docker DNS, port 80) |
 | `deploy/Dockerfile.api` + `deploy/Dockerfile.frontend` | Production canonical, built/pushed by GHA — see 2.1 caveat |
 | Root `nginx/nginx.conf` | DEV / HISTORICAL — header self-labels |
 | `deploy/nginx.conf` | PRODUCTION CANONICAL — header self-labels |

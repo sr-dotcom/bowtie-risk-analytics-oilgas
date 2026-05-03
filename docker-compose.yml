@@ -2,7 +2,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.api
+      dockerfile: deploy/Dockerfile.api
     expose:
       - "8000"
     env_file:
