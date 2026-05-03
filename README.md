@@ -61,7 +61,7 @@ See CLAUDE.md for deeper technical details and the decision register for the des
 ## Other documentation
 
 - CLAUDE.md — engineering notes, conventions, gotchas
-- docs/decisions/DECISIONS.md — architectural decision register (D001–D021)
+- docs/decisions/DECISIONS.md — architectural decision register (D001–D020)
 - docs/knowledge/KNOWLEDGE.md — durable lessons and rules (K-entries, L-entries)
 - docs/journey/ — eight chapters above, in narrative form
 - tests/README.md, data/evaluation/README.md, scripts/README.md, src/modeling/cascading/README.md — sub-area documentation

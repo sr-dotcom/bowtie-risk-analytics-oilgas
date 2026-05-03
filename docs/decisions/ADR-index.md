@@ -16,17 +16,19 @@ Use Pydantic v2 for all data models.
 - It validates the schema for both the input (raw narratives) and output (analytics results).
 
 
-## ADR-002: Streamlit for MVP
+## ADR-002: Streamlit for MVP — SUPERSEDED by D007
 **Date:** 2026-02-01
-**Status:** Accepted
+**Status:** Superseded (by D007, 2026-04 — see DECISIONS.md)
 
-**Context:**
+> **Note:** This decision was reversed in D007 when the architecture pivoted to a self-hosted Ubuntu mini-PC + Docker + Cloudflare Tunnel stack hosting FastAPI + Next.js. Streamlit Community Cloud could not host the two-process backend + frontend stack the project ultimately required. ADR-002 is preserved for project-evolution provenance; do not infer current architecture from it.
+
+**Context (historical):**
 I need a way to visualize the pipeline outputs (coverage, gap analysis, risk scores) quickly. The main goal is a working demo for the project presentation, not a production-grade web app.
 
-**Decision:**
+**Decision (superseded):**
 I'll use Streamlit. It's Python-native and lets me build the dashboard alongside the analytics code without context switching to JS/React.
 
-**Trade-offs:**
+**Trade-offs (historical):**
 - **Pros:** Fast to build, runs locally easily, good enough for the demo.
 - **Cons:** limited UI customization compared to React, but that's acceptable for this scope.
 

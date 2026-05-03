@@ -81,3 +81,19 @@
 **Reversible:** only by new D-entry superseding, per rule 15.
 
 **Source:** user ruling 2026-04-20.
+
+---
+
+## D020 — 2026-04-23 — Surface PIF negative-flag tags in RAG retrieval context
+
+**Decision:** Performance Influencing Factor (PIF) negative flags — boolean indicators set to TRUE when a PIF was identified as contributing to barrier failure in an incident — are surfaced in the RAG retrieval context for barrier-level queries. The flags appear both (a) as text in the embedded barrier document content used for similarity retrieval, and (b) as structured metadata returned alongside RAG narrative output for downstream display.
+
+**Scope:** This decision is narrower than D018 (which surfaces full PIF data in narrative output). D020 specifically covers the negative-flag subset — the binary "this PIF was a problem" indicator — and ensures it influences retrieval ranking, not just narrative presentation.
+
+**Rationale:** PIFs are excluded from cascade `y_fail` model features per D011 (structural-features-only hypothesis). However, when a maintainer or evaluator inspects WHY a barrier was predicted to fail, the PIF context from similar historical incidents is essential domain signal. Surfacing negative flags in retrieval context ensures the RAG pipeline returns incidents where similar PIF failures occurred, not just structurally similar incidents.
+
+**Implementation:** `src/rag/context_builder.py` and related corpus build path. Frontend surfaces the flags via `frontend/components/dashboard/DriversHF/PIFTags`. Implemented in commit `1e0e072` (`feat(rag): D020 — surface PIF negative-flag tags in RAG context`).
+
+**Reversible:** by new D-entry superseding, per rule 15.
+
+**Source:** project lead decision 2026-04-23.
