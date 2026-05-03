@@ -55,6 +55,7 @@ uvicorn src.api.main:create_app --factory --reload --port 8000
 cd frontend && npm install && npm run dev    # http://localhost:3000
 
 # Docker deployment (full stack)
+cp .env.example .env                        # first time only — add ANTHROPIC_API_KEY if needed
 docker compose up --build                   # starts API + frontend containers
 
 # RAG evaluation
@@ -332,8 +333,9 @@ Design decisions are exported from GSD to `docs/decisions/DECISIONS.md`. Recent 
 
 The full stack is containerized for deployment:
 
-```yaml
+```bash
 # docker-compose.yml spins up both services
+cp .env.example .env    # first time only
 docker compose up --build
 
 # Individual images

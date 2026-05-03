@@ -21,6 +21,7 @@
     ```
 6.  **Docker** (full stack):
     ```bash
+    cp .env.example .env   # first time only — add ANTHROPIC_API_KEY if needed
     docker compose up --build
     ```
 
