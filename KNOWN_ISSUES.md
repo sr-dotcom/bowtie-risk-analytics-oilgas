@@ -40,7 +40,7 @@ The GHA workflow (`.github/workflows/deploy.yml`) builds two images — `ghcr.io
 
 Production (`deploy/docker-compose.server.yml`) pulls `ghcr.io/sr-dotcom/bowtie-risk-analytics-oilgas:latest` — a **combined** single-container image built from the root `Dockerfile`. The per-service GHA images are never consumed by the production stack.
 
-This asymmetry is documented in `docs/journey/07-deployment.md`. Manual `ssh gmk ./deploy.sh` builds the combined image on the server itself. Future cleanup: either align the GHA workflow to build the combined image, or refactor the server to consume per-service images.
+This asymmetry is documented in `docs/journey/07-deployment.md`. Manual `ssh gmk ./deploy.sh` pulls the combined image from the registry and restarts the service. Future cleanup: either align the GHA workflow to build the combined image, or refactor the server to consume per-service images.
 
 ### 2.2 Three Dockerfile sets coexist with explicit purpose
 
@@ -98,7 +98,7 @@ A future cleanup (HANDOVER §B item F016) plans to remove the `gnsr.dev` hostnam
 
 The reliable production deploy path is `ssh gmk ./deploy.sh`, where `deploy.sh` lives at `/opt/projects/bowtie-analytics/deploy.sh` on the server. The webhook listener compose lives at `/opt/projects/webhook-bowtie/docker-compose.yml`.
 
-These files are not currently in the repo. Reproducing the deploy on a fresh server requires recreating them following the steps in `deploy/README.md` (server bootstrap section) or referring to internal handoff notes.
+A reference copy of `deploy.sh` is committed at `deploy/deploy.sh`. The webhook listener compose (`/opt/projects/webhook-bowtie/docker-compose.yml`) lives on the server only. Reproducing the full deploy stack on a fresh server: follow `deploy/README.md` (server bootstrap section).
 
 ### 3.5 Production stack pulls `:latest` without pinning
 
