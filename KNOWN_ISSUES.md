@@ -178,7 +178,7 @@ Not regressions; deliberate M003 scope-fence outcomes.
 
 ## 6. Tooling — status (installed and pending)
 
-Code-quality, security, and ML-observability tooling that the project would benefit from but has not yet integrated. Install order is documented in `TOOLING_ROADMAP.md` (handoff-only document, not in repo). Current state:
+Code-quality, security, and ML-observability tooling that the project would benefit from but has not yet integrated. Install order is documented in `TOOLING_ROADMAP.md` (internal reference; not tracked in this repo). Current state:
 
 **Already in place:** GitHub Dependabot alerts, Secret Protection, Push protection (no auto-PRs).
 
