@@ -25,6 +25,9 @@ pytest
 # Run a single test file
 pytest tests/test_engine.py
 
+# Lint (active source only — _legacy/ and scripts/archive/ excluded by design)
+ruff check src/ tests/ scripts/ --exclude src/_legacy --exclude scripts/archive
+
 # Pipeline CLI
 python -m src.pipeline acquire --csb-limit 20 --bsee-limit 20 --download
 python -m src.pipeline extract-text
@@ -298,7 +301,7 @@ Design decisions are exported from GSD to `docs/decisions/DECISIONS.md`. Recent 
 
 ## Code Conventions
 
-- Python 3.10+, type hints required on all functions
+- Python 3.12+, type hints required on all functions
 - Pydantic v2 for all data models with ConfigDict(strict=False) for flexible parsing
 - PEP 8 formatting
 - Tests in tests/ matching test_*.py pattern

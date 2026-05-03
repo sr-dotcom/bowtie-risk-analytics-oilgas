@@ -2,8 +2,8 @@
 
 Pytest suite for the Python backend, plus Vitest specs for the Next.js frontend. Backend tests live here; frontend tests live under `frontend/__tests__/` and `frontend/tests-e2e/`.
 
-**Backend gate:** ≥565 passing (current: 621).
-**Frontend gate:** ≥192 passing (current: 209).
+**Backend gate:** ≥565 passing (current: 626).
+**Frontend gate:** ≥192 passing (current: 250).
 
 Run:
 

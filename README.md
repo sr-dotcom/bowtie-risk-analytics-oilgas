@@ -48,8 +48,8 @@ The system was built in stages. Each chapter documents one decision boundary —
 
 ## Architecture
 
-- **Backend:** FastAPI (Python 3.10+) — cascading prediction endpoints, hybrid RAG retrieval
-- **Frontend:** Next.js 15 + React + TypeScript — interactive bowtie diagram, dashboard, drill-down panel
+- **Backend:** FastAPI (Python 3.12+) — cascading prediction endpoints, hybrid RAG retrieval
+- **Frontend:** Next.js 16 + React + TypeScript — interactive bowtie diagram, dashboard, drill-down panel
 - **ML:** XGBoost cascading model with SHAP explainability
 - **Retrieval:** SentenceTransformers embeddings + FAISS + 4-stage hybrid pipeline
 - **LLM:** Claude Haiku for RAG narrative synthesis
@@ -83,7 +83,7 @@ archive/       superseded artifacts preserved for provenance
 
 ## Local development
 
-Requirements: Python 3.10+, Node 20+, npm.
+Requirements: Python 3.12+, Node 20+, npm.
 
 ```bash
 git clone https://github.com/sr-dotcom/bowtie-risk-analytics-oilgas.git

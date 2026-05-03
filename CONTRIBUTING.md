@@ -2,7 +2,7 @@
 
 ## Development Setup
 
-1.  **Environment**: Python 3.10+ required.
+1.  **Environment**: Python 3.12+ required.
 2.  **Dependencies**:
     ```bash
     python -m venv venv
