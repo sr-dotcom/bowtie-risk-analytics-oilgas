@@ -47,3 +47,20 @@ Items noticed but deliberately NOT fixed in their discovery pass. Each entry rec
 - UX: Executive Summary hero shows `barriers.length` (all barriers including the conditioning barrier), while Ranked Barriers correctly excludes the conditioning barrier from its list — causing "7 barriers" vs "6 of 6 barriers" on the same dashboard. Fix: pass `total_barriers = barriers.length - 1` (excluding conditioning) to the hero, or add a parenthetical "(+ 1 conditioning)" note. Defer to T5 polish.
 
 - UX: Two incident counts visible on same dashboard — "156 comparable incidents" in hero (RAG v2 corpus) and "174 real BSEE/CSB incidents" in Assessment Basis / Drivers & HF (M002 LOC training scope). Both numbers are correct for their contexts but a reader sees inconsistency. Fix: label clarification — hero denominator should read "from the 156-incident retrieval corpus"; Drivers & HF note should read "from 174 LOC-scoped training incidents". Alternatively consolidate to a single narrative dataset in M004 when RAG and training corpora are unified.
+---
+
+## M005-NN — Remove `_legacy` imports from active code (closes D001 exit condition)
+
+Status: Deferred to M005. Effort estimate: 4–8 hours.
+
+Three production modules currently import from `src/_legacy/` per D001:
+
+- `src/pipeline.py`
+- `src/analytics/__init__.py`
+- `src/models/__init__.py`
+
+Total scope: 14 imports across 9 production files (analyzed during AUDIT_TRIAGE F006). The legacy coverage analysis these imports support must be either (a) verified still functional and migrated to non-legacy modules, or (b) confirmed retired and the call sites removed.
+
+D001 exit condition: "removed only when all production imports are migrated." Until this work lands, CLAUDE.md sections on `_legacy` carry exception clauses naming the 3 retained import sites.
+
+References: AUDIT_TRIAGE F006, DECISIONS.md D001, CLAUDE.md exception notes (lines 160, 219, 320).

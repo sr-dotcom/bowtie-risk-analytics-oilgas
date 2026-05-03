@@ -157,7 +157,7 @@ raw/ → structured/incidents/schema_v2_3/ → processed/ (flat CSVs) → data/m
 - `scripts/association_mining/event_barrier_normalization.py` — 4-quadrant barrier family assignment (45 families)
 
 ### V1 Legacy Code (quarantined)
-V1 files have been moved to `src/_legacy/` and are no longer imported by active code:
+V1 files have been moved to `src/_legacy/` but are still imported by 3 production modules per D001 (src/pipeline.py, src/analytics/__init__.py, src/models/__init__.py — load-bearing for legacy coverage analysis until M005 cleanup; see docs/tech-debt.md for the cleanup tracker):
 - `src/_legacy/incident.py` — Legacy Incident model (replaced by IncidentV23)
 - `src/_legacy/bowtie.py` — Legacy Bowtie model
 - `src/_legacy/engine.py` — Legacy barrier coverage engine (replaced by analytics/flatten.py)
@@ -216,7 +216,7 @@ out/
 - Do not bypass get_controls() for control extraction
 - Do not store ML/RAG artifacts in structured/ or raw/
 - Do not write to out/ from src/pipeline.py
-- Do not import from src/_legacy/ in active code
+- Do not import from src/_legacy/ in active code — exception: src/pipeline.py, src/analytics/__init__.py, and src/models/__init__.py retain _legacy imports per D001 until the legacy coverage analysis is removed (M005 backlog item; see docs/tech-debt.md)
 
 ## Key Schema Fields
 
@@ -317,7 +317,7 @@ Design decisions are exported from GSD to `docs/decisions/DECISIONS.md`. Recent 
 - **Test count: 352 Python tests passing** (pytest). 9 collection errors + import failures are pre-existing xgboost/faiss/shap environment issues, not regressions in source code. Frontend: 13 Vitest test files.
 - FastAPI /explain endpoint calls AnthropicProvider.extract() (blocking requests.post) via asyncio.to_thread() to avoid event-loop blocking — do not refactor to bare await
 - SHAP TreeExplainer must NOT be serialized (joblib/pickle); always recreate from the loaded XGBoost model
-- All imports of src/_legacy/ must be avoided in active code — the legacy module exists only for historical reference
+- All imports of src/_legacy/ must be avoided in active code — exception: 3 production modules (src/pipeline.py, src/analytics/__init__.py, src/models/__init__.py) retain _legacy imports per D001 until the legacy coverage analysis is removed. See docs/tech-debt.md M005 backlog. The legacy module otherwise exists only for historical reference.
 
 ## RAG System
 
