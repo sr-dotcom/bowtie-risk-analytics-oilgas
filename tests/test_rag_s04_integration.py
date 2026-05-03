@@ -20,8 +20,9 @@ _CASCADING_PARQUET = Path("data/processed/cascading_training.parquet")
 
 @pytest.mark.integration
 @pytest.mark.skipif(
-    not _V2_BARRIER_BIN.exists(),
-    reason="Run scripts/build_rag_v2.py (T01) first to produce data/rag/v2/barrier_faiss.bin",
+    not _V2_BARRIER_BIN.exists() or not _CASCADING_PARQUET.exists(),
+    reason="Run scripts/build_rag_v2.py (T01) and data_prep first; "
+           "data/rag/v2/barrier_faiss.bin or data/processed/cascading_training.parquet absent",
 )
 class TestS04Integration:
     def test_pair_context_from_demo_scenario(self) -> None:

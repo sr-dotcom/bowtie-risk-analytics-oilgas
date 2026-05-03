@@ -17,6 +17,13 @@ from scripts.build_demo_scenarios import (
     build_demo_scenarios,
 )
 
+pytestmark = pytest.mark.skipif(
+    not FLAT_INCIDENTS_CSV.exists(),
+    reason="flat_incidents_combined.csv not present (gitignored processed data); "
+           "run `python -m src.pipeline build-combined-exports` first. "
+           "See tech-debt.md 2026-05-03 entry.",
+)
+
 REQUIRED_TOP_LEVEL_KEYS = {
     "scenario_id",
     "source_agency",

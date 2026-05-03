@@ -4,26 +4,40 @@ Items noticed but deliberately NOT fixed in their discovery pass. Each entry rec
 
 ---
 
-## 2026-05-03: test_cascading_shap.py first_pair_row fixture — parquet guard gap
+## 2026-05-03: CI skip-guard gaps — four test files with gitignored-data dependencies
 
-**Found during:** Pre-handoff CI green sweep.
+**Found during:** Pre-handoff CI green sweep (iterative exposure via `-x` fail-fast).
 
-**Issue:** `tests/test_cascading_shap.py` had a `pytestmark.skipif` guarding on
-`_PIPELINE_PATH.exists()` and `_META_PATH.exists()`. These artifacts are committed
-to git (`xgb_cascade_y_fail_pipeline.joblib`, `xgb_cascade_y_fail_metadata.json`),
-so the skip condition evaluated to False in CI, causing the module's fixtures to run.
-The `first_pair_row` fixture reads `data/processed/cascading_training.parquet`
-(gitignored training data), which raised `FileNotFoundError` in CI, stopping all 549
-remaining tests via `-x`.
+**Root cause pattern:** Several test modules guarded on committed ML artifacts
+(`xgb_cascade_y_fail_pipeline.joblib`, `barrier_faiss.bin`), but inner tests or
+fixtures also read gitignored data files (`data/processed/`, `data/models/evaluation/`).
+Because the committed artifacts existed, `pytestmark.skipif` evaluated False and tests
+ran — hitting `FileNotFoundError` on the absent gitignored files.
 
-**Fix applied:** Added `pytest.skip()` inside `first_pair_row` when `_PARQUET_PATH`
-is absent. Tests `test_build_tree_explainer_returns_correct_type` and
-`test_no_shap_files_on_disk` are unaffected (they don't use the parquet fixture).
+**Files fixed and what was changed:**
 
-**Residual:** The three parquet-dependent tests (`test_shap_values_length`,
-`test_feature_names_match_metadata`, `test_shap_values_are_margin_space`) will
-silently skip in CI. They run locally when `data/processed/cascading_training.parquet`
-is present (generate via `python -m src.modeling.cascading.data_prep`).
+- `tests/test_cascading_shap.py` — Added `pytest.skip()` inside `first_pair_row`
+  fixture when `data/processed/cascading_training.parquet` is absent. Three parquet-
+  dependent tests skip in CI; `test_build_tree_explainer_returns_correct_type` and
+  `test_no_shap_files_on_disk` are unaffected.
+
+- `tests/test_cascading_train.py` — Added `@_CV_REPORT_SKIP` decorator to the three
+  CV-report tests (`test_cv_report_exists`, `test_cv_report_has_both_targets`,
+  `test_cv_report_has_five_fold_rows_per_target`) using `skipif(not _CV_REPORT.exists())`.
+  CV report is in gitignored `data/models/evaluation/`.
+
+- `tests/test_rag_s04_integration.py` — Widened `TestS04Integration.skipif` to also
+  gate on `_CASCADING_PARQUET.exists()`. `barrier_faiss.bin` is committed but the
+  parquet (used in assertion step 7) is gitignored.
+
+- `tests/test_demo_scenarios.py` — Added module-level `pytestmark.skipif` on
+  `FLAT_INCIDENTS_CSV.exists()`. The two module fixtures both call `build_demo_scenarios`
+  which reads `data/processed/flat_incidents_combined.csv` (gitignored). 34 tests skip
+  in CI.
+
+**To run these locally:** `python -m src.pipeline build-combined-exports` (generates
+the flat CSVs), `python -m src.modeling.cascading.train` (generates CV report and
+evaluation artifacts), `python -m src.modeling.cascading.data_prep` (generates parquet).
 
 ---
 
