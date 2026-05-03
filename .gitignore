@@ -158,5 +158,12 @@ frontend/test-results/
 !/data/models/artifacts/xgb_cascade_*.joblib
 !/data/models/artifacts/xgb_cascade_*.json
 
+# Jeffrey's association-mining export — kept locally for analytical work;
+# not consumed by current pipeline (data_prep.py uses v3 base file only)
+data/models/cascading_input/barrier_threat_pairs_for_jeffrey_v2.csv
+
+# Claude Code tooling state (local developer environment, not project content)
+skills-lock.json
+
 # handover-prep process artifacts (local only)
 .handover/

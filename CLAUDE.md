@@ -194,7 +194,9 @@ out/
 
 **Layer isolation:** L0 never reads L1/L2. L1 reads L0 only. L2 reads L1 only. Models consume from L2 only.
 
-**Data is gitignored** except data/samples/, data/evaluation/, and data/models/artifacts/feature_names.json. Reproduce via pipeline commands.
+**Data is gitignored** except data/samples/, data/evaluation/, data/models/artifacts/feature_names.json, and data/models/cascading_input/barrier_model_dataset_base_v3.csv (cascading training input — tracked per Patrick's OK to publish). Reproduce other artifacts via pipeline commands.
+
+**Note:** `data/models/cascading_input/barrier_threat_pairs_for_jeffrey_v2.csv` is Jeffrey's association-mining export, kept locally for analytical work. It is NOT consumed by the current pipeline (data_prep.py uses the v3 file only). Excluded from git via .gitignore; Jeffrey holds the master copy.
 
 **Training scope:** 558 LOC-scoped rows (domain-informed filtering on top of 4,688 training-eligible rows from controls_combined.csv). Filtering selects well-evidenced Loss of Containment controls.
 
