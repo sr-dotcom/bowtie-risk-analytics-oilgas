@@ -463,7 +463,7 @@ rag_dir/
 | Evaluation results | `data/evaluation/results/evaluation_results.json` | Full metric results |
 | Evaluation report | `docs/reports/rag_phase2_evaluation.md` | Analysis and recommendation |
 | Implementation audit | `docs/reports/rag_phase2_implementation_audit.md` | Design compliance review |
-| Phase-2 design | `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-design.md` | Reranker design document |
-| Phase-2 plan | `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-plan.md` | Implementation plan |
+| Phase-2 design | `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-design.md` (local-only) | Reranker design document |
+| Phase-2 plan | `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-plan.md` (local-only) | Implementation plan |
 | Evaluation script | `scripts/evaluate_retrieval.py` | Automated evaluation harness |
 | This document | `docs/rag_system_overview.md` | System architecture overview |

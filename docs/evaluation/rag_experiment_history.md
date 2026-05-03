@@ -287,8 +287,8 @@ Based on the three experiments, the following design decisions were made:
 | Cross-encoder reranker | `src/rag/reranker.py` | 2 |
 | Reranker config | `src/rag/config.py` (lines 18-24) | 2 |
 | Implementation audit | `docs/reports/rag_phase2_implementation_audit.md` | 2 |
-| Phase-2 design doc | `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-design.md` | 2 |
-| Phase-2 implementation plan | `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-plan.md` | 2 |
+| Phase-2 design doc | `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-design.md` (local-only) | 2 |
+| Phase-2 implementation plan | `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-plan.md` (local-only) | 2 |
 | Query dataset (50 queries) | `data/evaluation/rag_queries.json` | 3 |
 | Results JSON | `data/evaluation/results/evaluation_results.json` | 3 |
 | Harness script | `scripts/evaluate_retrieval.py` | 3 |

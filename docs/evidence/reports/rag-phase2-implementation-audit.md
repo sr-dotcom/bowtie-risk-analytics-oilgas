@@ -11,8 +11,8 @@
 
 ### Reference Documents
 
-- `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-design.md`
-- `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-plan.md`
+- `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-design.md` (local-only, not tracked in git)
+- `docs/plans/2026-03-05-rag-phase2-cross-encoder-reranking-plan.md` (local-only, not tracked in git)
 
 ### Compliance Matrix
 
