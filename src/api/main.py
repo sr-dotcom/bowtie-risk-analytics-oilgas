@@ -35,7 +35,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.security import APIKeyHeader
 
-from src.api.mapping_loader import MappingConfig
 from src.api.schemas import (
     AprioriRule,
     AprioriRulesResponse,

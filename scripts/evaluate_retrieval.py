@@ -27,7 +27,6 @@ import numpy as np
 # Ensure project root is on path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.rag.config import TOP_K_RERANK, FINAL_TOP_K
 from src.rag.corpus_builder import build_barrier_documents, build_incident_documents
 from src.rag.rag_agent import RAGAgent, ExplanationResult
 from src.rag.retriever import RetrievalResult
@@ -461,7 +460,7 @@ def main() -> None:
     if reranked_latencies:
         print(format_latency(reranked_latencies, "Reranked"))
 
-    print(f"\nMemory footprint:")
+    print("\nMemory footprint:")
     print(f"  Before agents: {mem_before:.0f} MB")
     print(f"  After baseline: {mem_after_baseline:.0f} MB")
     if not args.skip_reranker:
