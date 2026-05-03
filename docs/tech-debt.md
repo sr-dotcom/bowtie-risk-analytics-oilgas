@@ -4,6 +4,29 @@ Items noticed but deliberately NOT fixed in their discovery pass. Each entry rec
 
 ---
 
+## 2026-05-03: test_cascading_shap.py first_pair_row fixture — parquet guard gap
+
+**Found during:** Pre-handoff CI green sweep.
+
+**Issue:** `tests/test_cascading_shap.py` had a `pytestmark.skipif` guarding on
+`_PIPELINE_PATH.exists()` and `_META_PATH.exists()`. These artifacts are committed
+to git (`xgb_cascade_y_fail_pipeline.joblib`, `xgb_cascade_y_fail_metadata.json`),
+so the skip condition evaluated to False in CI, causing the module's fixtures to run.
+The `first_pair_row` fixture reads `data/processed/cascading_training.parquet`
+(gitignored training data), which raised `FileNotFoundError` in CI, stopping all 549
+remaining tests via `-x`.
+
+**Fix applied:** Added `pytest.skip()` inside `first_pair_row` when `_PARQUET_PATH`
+is absent. Tests `test_build_tree_explainer_returns_correct_type` and
+`test_no_shap_files_on_disk` are unaffected (they don't use the parquet fixture).
+
+**Residual:** The three parquet-dependent tests (`test_shap_values_length`,
+`test_feature_names_match_metadata`, `test_shap_values_are_margin_space`) will
+silently skip in CI. They run locally when `data/processed/cascading_training.parquet`
+is present (generate via `python -m src.modeling.cascading.data_prep`).
+
+---
+
 ## 2026-04-20: data/rag/archive/v1/ large binaries in git history
 
 **Found during:** Commit 2 gitignore audit.

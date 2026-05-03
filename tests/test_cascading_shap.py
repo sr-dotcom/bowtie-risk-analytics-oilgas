@@ -47,6 +47,11 @@ def metadata():
 @pytest.fixture(scope="module")
 def first_pair_row(metadata):
     """Return the first row of the pair dataset as a plain dict."""
+    if not _PARQUET_PATH.exists():
+        pytest.skip(
+            "data/processed/cascading_training.parquet not present (gitignored); "
+            "see tech-debt.md 2026-05-03 entry"
+        )
     from src.modeling.cascading.pair_builder import build_pair_dataset
 
     df = pd.read_parquet(_PARQUET_PATH)
