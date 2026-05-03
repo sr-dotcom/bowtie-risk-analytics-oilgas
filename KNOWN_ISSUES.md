@@ -1,6 +1,6 @@
 # Bowtie Risk Analytics — Known Issues
 
-> Authoritative list of open defects, deferred decisions, architectural caveats, domain-data caveats, and post-handover cleanup history. Generated 2026-05-02 from internal `KNOWN_LIMITATIONS_v1.md` (Phase -1 walk source) with Phase 3 cleanup updates folded in.
+> Authoritative list of open defects, deferred decisions, architectural caveats, domain-data caveats, and post-handover cleanup history. Generated 2026-05-02.
 > 
 > Read this in conjunction with `HANDOVER.md` for the full project context.
 
@@ -79,7 +79,7 @@ These are real-world deployment risks and configuration requirements that are no
 
 ### 3.1 Webhook bearer token (project-lead operational note)
 
-A bearer token used by `.github/workflows/deploy.yml:trigger-deploy` was visible in CCCLI session output during initial deploy setup. The token was never committed to git history (verified via `git log -S` historical scan).
+A bearer token used by `.github/workflows/deploy.yml:trigger-deploy` was visible in CLI session output during initial deploy setup. The token was never committed to git history (verified via `git log -S` historical scan).
 
 This is a project-lead operational concern for the legacy self-hosted deployment, not an action required of receivers. Receivers standing up their own infrastructure (AWS or otherwise) will use their own credentials and need not consider this token. The legacy server-side rotation is GNSR's to handle on the gnsr.dev hosting if/when relevant.
 
