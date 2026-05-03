@@ -23,11 +23,10 @@ import json
 import logging
 import os
 import time
-from contextlib import asynccontextmanager
+from collections.abc import Callable
+from contextlib import AbstractAsyncContextManager, asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
-
 import hmac
 
 from fastapi import Depends, FastAPI, HTTPException, Request, Security
@@ -209,7 +208,9 @@ async def verify_api_key(
 # App factory — routes registered inside to bind to the correct app instance
 # ---------------------------------------------------------------------------
 
-def create_app(lifespan_override: Any = None) -> FastAPI:
+def create_app(
+    lifespan_override: Callable[[FastAPI], AbstractAsyncContextManager[None]] | None = None,
+) -> FastAPI:
     """Create FastAPI application with lifespan and CORS.
 
     Routes are registered inside this function so they attach to the returned
