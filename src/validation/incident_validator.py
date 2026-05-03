@@ -22,7 +22,3 @@ def validate_incident_v23(payload: dict[str, Any]) -> tuple[bool, list[str]]:
             loc = " -> ".join(str(x) for x in err["loc"])
             errors.append(f"{loc}: {err['msg']}")
         return False, errors
-
-
-# Backwards-compat alias — schema is v2.3; old name kept for one release cycle
-validate_incident_v2_2 = validate_incident_v23
