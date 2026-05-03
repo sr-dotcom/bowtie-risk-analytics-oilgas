@@ -1,5 +1,7 @@
-# Bowtie Risk Analytics — Frontend Dockerfile (LOCAL DEV ONLY)
-# Production builds use deploy/Dockerfile.frontend (used by GHA + ssh deploy.sh).
+# Bowtie Risk Analytics — Frontend Dockerfile (NOT USED BY docker-compose.yml)
+# docker-compose.yml now points to deploy/Dockerfile.frontend (production canonical).
+# This file used context ./frontend; deploy/Dockerfile.frontend requires context . (project root).
+# Retained only as a reference for manual one-off local builds.
 # Multi-stage build: builder compiles Next.js standalone, runner executes it.
 # Requires output: 'standalone' in frontend/next.config.ts.
 

@@ -21,8 +21,8 @@ services:
 
   frontend:
     build:
-      context: ./frontend
-      dockerfile: ../Dockerfile.frontend
+      context: .
+      dockerfile: deploy/Dockerfile.frontend
     expose:
       - "3000"
     environment:
