@@ -1,8 +1,7 @@
 # Bowtie Risk Analytics — Known Issues
 
-> Authoritative list of open defects, deferred decisions, architectural caveats, domain-data caveats, and post-handover cleanup history. Generated 2026-05-02.
-> 
-> Read this in conjunction with `HANDOVER.md` for the full project context.
+> Consolidated known-issues view for reviewers and receivers. Active working log is `docs/tech-debt.md`; full project context is `HANDOVER.md`.
+> Generated 2026-05-02, updated 2026-05-03 (HEAD `e499697` — CI-skip audit additions).
 
 ---
 
@@ -212,6 +211,51 @@ Between the demo (`v1.0-apr27-demo`, commit `592bfa9`) and this handover, 14 cle
 Net: 626 backend tests passing, 250 frontend tests passing. No production code paths changed beyond documentation and observability additions; the Phase 3 work is entirely receiver-quality improvements over the demo tag.
 
 
+## 8. CI test environment (fresh-clone)
+
+Items surfaced during the pre-handover CI green sweep (commits `fa79072`–`e499697`).
+
+### 8.1 Seven test files excluded from the CI run
+
+`ci.yml` ignores seven test files that require ML artifacts or heavy environment dependencies not present on a fresh GitHub runner:
+
+`test_train.py`, `test_explain.py`, `test_predict.py`, `test_feature_engineering.py`, `test_profile.py`, `test_api.py`, `test_mapping.py`
+
+**Impact:** These tests are not validated in CI. Run them locally after bootstrapping artifacts (`python -m src.modeling.cascading.data_prep && python -m src.modeling.cascading.train`).
+**Fix-when:** Post-handoff — requires either artifact caching in CI or a fixture-stub refactor.
+
+### 8.2 Five Bucket-C tests skip on fresh clone
+
+Five tests classify as Bucket-C (builder-behavior tests requiring real CSV + JSON stubs) and skip when gitignored data files are absent:
+
+| Test | File | Depends on |
+|---|---|---|
+| `test_exactly_three_files` | `test_demo_scenarios.py` | `data/processed/flat_incidents_combined.csv` |
+| `test_one_file_per_agency` | `test_demo_scenarios.py` | `data/processed/flat_incidents_combined.csv` |
+| `test_cv_report_exists` | `test_cascading_train.py` | `data/models/evaluation/cascading_cv_report.md` |
+| `test_cv_report_has_both_targets` | `test_cascading_train.py` | `data/models/evaluation/cascading_cv_report.md` |
+| `test_cv_report_has_five_fold_rows_per_target` | `test_cascading_train.py` | `data/models/evaluation/cascading_cv_report.md` |
+
+**Impact:** These tests do not run on CI or fresh clones. The invariants they assert (3-file output, BSEE/CSB/UNKNOWN coverage, CV report shape) are real but unguarded in CI.
+**Correct fix (medium effort each):** Synthetic committed fixtures for the demo-scenario tests; extract `_write_cv_report()` to a unit test. See `docs/tech-debt.md` (2026-05-03 entry) for the exact recipe.
+**Fix-when:** Post-handoff.
+
+### 8.3 Additional tests skip on fresh clone (Bucket-B)
+
+Three parquet-dependent tests in `test_cascading_shap.py` skip when `data/processed/cascading_training.parquet` is absent. `test_pair_context_from_demo_scenario` in `test_rag_s04_integration.py` has a partially skipped scope assertion (step 7 requires the parquet). `test_demo_scenarios.py` module-level guard skips 34 tests when `flat_incidents_combined.csv` is absent (32 beyond the Bucket-C two).
+
+**To run all locally:** `python -m src.modeling.cascading.data_prep`, then `python -m src.modeling.cascading.train` (generates CV report and evaluation artifacts). `python -m src.pipeline build-combined-exports` (generates flat CSVs).
+
+### 8.4 19 pre-existing pytest collection errors (environment drift)
+
+`pytest tests/ -q` reports 19 collection errors (`ImportError` / `ModuleNotFoundError`) from xgboost, shap, and faiss dependencies that are present in the installed `requirements.txt` but whose C-extension initialisation fails in some environments (common in WSL2, conda-managed envs with conflicting CUDA libs).
+
+**Impact:** These errors pre-date handover; they are not regressions in source code. The 19 modules are collected but not executed. All other tests pass.
+**Workaround:** `pip install -e .` in a clean venv (`python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`), then re-run.
+**Fix-when:** Environment stabilization pass, or CI matrix expansion.
+
+---
+
 ## Provenance
 
 Source documents consulted in compiling this list:
@@ -224,5 +268,6 @@ Source documents consulted in compiling this list:
 - `docs/journey/08-lessons-learned.md` (constraint-driven choices, domain dependency)
 - `docs/decisions/DECISIONS.md` (D006, D007, D011, D016, D018, D019, D020 — the cited decision IDs)
 - `docs/diagnosis/2026-04-27_cascade_payload_bug.md` (post-demo cascade payload fix root cause)
+- `docs/tech-debt.md` 2026-05-03 entries (CI skip-guard gaps; Bucket-C followups; collection errors)
 
-For history of every issue surfaced and triaged: see the audit reports themselves and the post-demo commit log on `branch/restructure-cleanup` from `592bfa9` to `595978d`.
+For history of every issue surfaced and triaged: see the audit reports themselves, the post-demo commit log on `branch/restructure-cleanup` from `592bfa9` to `595978d`, and CI-fix commits `fa79072`–`e499697`.
